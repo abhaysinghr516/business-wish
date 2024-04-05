@@ -7,6 +7,8 @@ import { ComponentData, componentsData } from "../../../../data/componentsData";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
+type ComponentKey = "Accordion";
+
 const components = {
   Accordion: AccordionDocs,
 };
@@ -16,7 +18,9 @@ export default function ComponentPage() {
   const componentData: ComponentData | undefined = componentsData.find(
     (data) => data.href === pathname
   );
-  const Component = componentData ? components[componentData.title] : null;
+  const Component = componentData
+    ? components[componentData.title as ComponentKey]
+    : null;
 
   return (
     <>
