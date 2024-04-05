@@ -3,7 +3,11 @@ import { useMDXComponents } from "./mdx-components";
 
 const components = useMDXComponents({});
 
-const MDXLayout: React.FC = ({ children }) => {
+interface MDXLayoutProps {
+  children: React.ReactNode;
+}
+
+const MDXLayout: React.FC<MDXLayoutProps> = ({ children }) => {
   return (
     <MDXProvider components={components}>
       <div className="custom-mdx-layout">{children}</div>
