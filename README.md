@@ -22,4 +22,4 @@ git clone https://github.com/abhaysinghr516/buisness-wish.git
 
 **Additional Files:**
 
-- [License](LICENSE.md)
+- [License](LICENSE)
