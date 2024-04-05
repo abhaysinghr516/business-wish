@@ -11,6 +11,7 @@ const Sidebar = () => {
         {componentsData.map((component) => (
           <Link
             href={component.href}
+            key={component.title}
             className="text-gray-700 hover:text-blue-500"
           >
             <li
