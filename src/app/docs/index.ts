@@ -1,0 +1,1 @@
+export { default as AccordionDocs } from './Components/Accordion.mdx';
