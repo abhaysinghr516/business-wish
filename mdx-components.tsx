@@ -8,7 +8,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    pre: (props) => <div {...props} />,
+    pre: (props) => <pre {...props} />,
     code: ({ children, className }) => {
       const language = className
         ? className.replace("language-", "")
