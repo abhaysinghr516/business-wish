@@ -27,17 +27,17 @@ export const componentsData: ComponentData[] = [
     },
     {
         href: "/components/bento-grid",
-        title: "Bento Grid",
+        title: "Bento",
         components: "8",
     },
     {
         href: "/components/blog-list",
-        title: "Blog List",
+        title: "BlogList",
         components: "6",
     },
     {
         href: "/components/bottom-navigation",
-        title: "Bottom Navigation",
+        title: "BottomNavigation",
         components: "6",
     },
     {
@@ -52,7 +52,7 @@ export const componentsData: ComponentData[] = [
     },
     {
         href: "/components/cta",
-        title: "Call To Action",
+        title: "CTA",
         components: "5",
     },
     {

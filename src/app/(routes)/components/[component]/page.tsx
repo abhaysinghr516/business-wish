@@ -5,8 +5,22 @@ import {
   AvatarDocs,
   BadgeDocs,
   BannerDocs,
+  BentoDocs,
+  BlogListDocs,
+  BottomNavigationDocs,
+  BreadcrumbsDocs,
   ButtonDocs,
+  CtaDocs,
+  CardDocs,
+  DividerDocs,
+  DropdownDocs,
+  FeaturesDocs,
+  FooterDocs,
+  HeroDocs,
+  HeaderDocs,
+  SidebarDocs,
   TabsDocs,
+  TestimonialsDocs,
 } from "../../../docs/index";
 
 // src/components/ComponentPage.tsx
@@ -19,16 +33,44 @@ type ComponentKey =
   | "Avatar"
   | "Badge"
   | "Banner"
+  | "Bento"
+  | "BlogList"
+  | "BottomNavigation"
+  | "Breadcrumbs"
   | "Button"
-  | "Tabs";
+  | "CTA"
+  | "Card"
+  | "Divider"
+  | "Dropdown"
+  | "Features"
+  | "Footer"
+  | "Hero"
+  | "Header"
+  | "Sidebar"
+  | "Tabs"
+  | "Testimonials";
 
 const components = {
   Accordion: AccordionDocs,
   Avatar: AvatarDocs,
   Badge: BadgeDocs,
   Banner: BannerDocs,
+  Bento: BentoDocs,
+  BlogList: BlogListDocs,
+  BottomNavigation: BottomNavigationDocs,
+  Breadcrumbs: BreadcrumbsDocs,
   Button: ButtonDocs,
+  CTA: CtaDocs,
+  Card: CardDocs,
+  Divider: DividerDocs,
+  Dropdown: DropdownDocs,
+  Features: FeaturesDocs,
+  Footer: FooterDocs,
+  Hero: HeroDocs,
+  Header: HeaderDocs,
+  Sidebar: SidebarDocs,
   Tabs: TabsDocs,
+  Testimonials: TestimonialsDocs,
 };
 
 export default function ComponentPage() {
