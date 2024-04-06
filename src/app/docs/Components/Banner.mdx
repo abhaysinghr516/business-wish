@@ -1,4 +1,4 @@
-import { BasicBanner, BannerwithIcon, DismissibleBanner, BannerwithActions, StackedBanners } from '../../../components/Banner';
+import { BasicBanner, BannerwithIcon, DismissibleBanner, BannerwithActions, StackedBanners, BannerwithHeadingAndButton } from '../../../components/Banner';
       
 ### Basic Banner
       
@@ -73,7 +73,16 @@ import { BasicBanner, BannerwithIcon, DismissibleBanner, BannerwithActions, Stac
 </div>
 ```
 
+### Banner with Heading and Button 
+
+<BannerwithHeadingAndButton />
+```html
+<div class="bg-blue-200 p-6">
+  <h2 class="mb-4 text-2xl font-bold">Special Offer!</h2>
+  <p>Get 20% off on selected items. Limited time only.</p>
+  <button class="mt-4 rounded bg-white px-4 py-2 text-blue-400">Shop Now</button>
+</div>
+```
+
+
 export default ({children}) => <div className="prose">{children}</div>
-
-
-
