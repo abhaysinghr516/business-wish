@@ -1,16 +1,24 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
-import { AccordionDocs } from "../../../docs/index";
+import { usePathname } from "next/navigation";
+import {
+  AccordionDocs,
+  AvatarDocs,
+  BadgeDocs,
+  BannerDocs,
+} from "../../../docs/index";
 
 // src/components/ComponentPage.tsx
 import { ComponentData, componentsData } from "../../../../data/componentsData";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
-type ComponentKey = "Accordion";
+type ComponentKey = "Accordion" | "Avatar" | "Badge" | "Banner";
 
 const components = {
   Accordion: AccordionDocs,
+  Avatar: AvatarDocs,
+  Badge: BadgeDocs,
+  Banner: BannerDocs,
 };
 
 export default function ComponentPage() {
