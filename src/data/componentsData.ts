@@ -8,7 +8,7 @@ export const componentsData: ComponentData[] = [
     {
         href: "/components/accordion",
         title: "Accordion",
-        components: "5",
+        components: "2",
     },
     {
         href: "/components/avatar",
