@@ -43,7 +43,7 @@ export const componentsData: ComponentData[] = [
     {
         href: "/components/breadcrumbs",
         title: "Breadcrumbs",
-        components: "7",
+        components: "3",
     },
     {
         href: "/components/button",
