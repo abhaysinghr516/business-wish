@@ -28,7 +28,7 @@ export const componentsData: ComponentData[] = [
     {
         href: "/components/bento-grid",
         title: "Bento",
-        components: "8",
+        components: "5",
     },
     {
         href: "/components/blog-list",
