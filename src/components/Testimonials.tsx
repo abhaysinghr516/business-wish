@@ -34,16 +34,16 @@ export const TestimonialSectionwithGridlayout: React.FC = () => (
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 ">
         <div className="rounded-lg bg-white p-6">
           <div className="mb-4 text-gray-600">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            posuere erat a ante."
+            &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer posuere erat a ante.&quot;
           </div>
           <div className="font-semibold text-gray-800">John Doe</div>
           <div className="text-gray-500">CEO, Company ABC</div>
         </div>
         <div className="rounded-lg bg-white p-6">
           <div className="mb-4 text-gray-600">
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium."
+            &quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium.&quot;
           </div>
           <div className="font-semibold text-gray-800">Jane Smith</div>
           <div className="text-gray-500">Designer, Company XYZ</div>
@@ -90,8 +90,8 @@ export const SliderTestimonial: React.FC = () => (
               Testimonial Title
             </h2>
             <p className="m-0 mb-4 text-gray-600">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              posuere erat a ante."
+              &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Integer posuere erat a ante.&quot;
             </p>
             <div className="mb-4 flex items-center">
               <img
