@@ -1,3 +1,217 @@
-### Coming this week
+import { SimpleFooter, FooterwithLinks, FooterwithMultipleSections, CenteredwithBranding, FooterwithNewsletter, FooterwithCTA, DetailedFooter } from "../../../components/Footer";
+
+### Simple Footer
+<SimpleFooter />
+```html
+<footer class="bg-gray-900 py-6 text-white">
+  <div class="container mx-auto text-center">
+    <p class="text-sm">&copy; 2024 Your Company. All rights reserved.</p>
+  </div>
+</footer>
+```
+
+### Footer with Links
+<FooterwithLinks />
+```html
+<footer class="bg-gray-900 py-4 text-white">
+  <div class="container mx-auto flex justify-center">
+    <a href="#" class="mx-4 hover:text-gray-400">Home</a>
+    <a href="#" class="mx-4 hover:text-gray-400">About</a>
+    <a href="#" class="mx-4 hover:text-gray-400">Services</a>
+    <a href="#" class="mx-4 hover:text-gray-400">Contact</a>
+  </div>
+</footer>
+```
+
+### Footer with Multiple Sections
+<FooterwithMultipleSections />
+```html
+<footer class="bg-gray-900 py-8 text-white">
+  <div class="container mx-auto ml-5 flex flex-col justify-between sm:flex-row">
+    <div class="mb-4 lg:mb-0">
+      <p class="text-lg font-semibold">Your Company</p>
+      <p class="text-sm">123 Street, Cityville</p>
+      <p class="text-sm">info@example.com</p>
+    </div>
+    <div class="mb-4 lg:mb-0">
+      <p class="text-lg font-semibold">Company</p>
+      <ul class="mt-2">
+        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-lg font-semibold">Follow Us</p>
+      <div class="mt-2 flex">
+        <a href="#" class="mr-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><path d="m19 4-5.93 6.93M5 20l5.93-6.93m0 0 5.795 6.587c.19.216.483.343.794.343h1.474c.836 0 1.307-.85.793-1.435L13.07 10.93m-2.14 2.14L4.214 5.435C3.7 4.85 4.17 4 5.007 4h1.474c.31 0 .604.127.794.343l5.795 6.587" /></svg>
+        </a>
+        <a href="#" class="mr-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+            <path d="M15.462 11.487a3.5 3.5 0 1 1-6.925 1.026 3.5 3.5 0 0 1 6.925-1.026M17 6.5h.5" />
+            <path d="M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+```
+
+### Centered with Branding
+<CenteredwithBranding />
+```html
+<footer class="bg-gray-900 py-4 text-center text-white">
+  <h3 class="text-3xl font-bold">Company Name</h1>
+  <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <div class="flex-1 mt-4 border-t border-gray-300"></div>
+  <div class="container mx-auto mt-5 flex flex-wrap justify-center">
+    <a href="#" class="mx-4 my-2 hover:text-gray-400 sm:my-0">Home</a>
+    <a href="#" class="mx-4 my-2 hover:text-gray-400 sm:my-0">About</a>
+    <a href="#" class="mx-4 my-2 hover:text-gray-400 sm:my-0">Services</a>
+    <a href="#" class="mx-4 my-2 hover:text-gray-400 sm:my-0">Contact</a>
+  </div>
+</footer>
+```
+
+### Footer with Newsletter
+<FooterwithNewsletter />
+```html
+<footer class="bg-gray-900 text-white">
+  <div class="container mx-auto flex flex-col items-center justify-between border-b py-12 md:flex-row">
+    <div class="mb-6 md:mb-0 md:w-1/2">
+      <p class="text-lg font-semibold">Subscribe to our Newsletter</p>
+      <p class="mt-2 text-sm">Stay updated with the latest news and offers.</p>
+    </div>
+    <form class="flex items-center md:w-1/2">
+      <input type="email" placeholder="Enter your email" class="rounded-l-md bg-gray-800 p-2 text-white focus:outline-none" />
+      <button type="submit" class="rounded-r-md bg-blue-500 p-2 text-white hover:bg-blue-600">Subscribe</button>
+    </form>
+  </div>
+  <div class="container mx-auto pb-12 pt-6 text-center">
+    <p class="text-sm">&copy; 2023 Your Company. All rights reserved.</p>
+  </div>
+</footer>
+```
+
+### Footer with CTA
+<FooterwithCTA />
+```html
+<footer class="bg-gray-900 py-8 text-center text-white">
+  <h2 class="text-2xl font-bold">Join our community</h2>
+  <p class="mt-2">Get updates on our latest products and promotions.</p>
+  <button class="focus:shadow-outline mt-4 rounded-full bg-purple-500 px-6 py-2 font-bold text-white hover:bg-purple-600 focus:outline-none">Join Now</button>
+  <div class="my-4 flex items-center justify-center">
+    <div class="flex-1 border-t border-gray-300"></div>
+    <span class="mx-4 text-gray-500">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-purple-500">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+      </svg>
+    </span>
+    <div class="flex-1 border-t border-gray-300"></div>
+  </div>
+  <div class="container mx-auto mt-8 flex flex-col justify-between sm:flex-row">
+    <div class="mb-4 lg:mb-0">
+      <p class="text-lg font-semibold">Your Company</p>
+      <p class="text-sm">123 Street, Cityville</p>
+      <p class="text-sm">info@example.com</p>
+    </div>
+    <div class="mb-4 lg:mb-0">
+      <p class="text-lg font-semibold">Company</p>
+      <ul>
+        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-lg font-semibold">Follow Us</p>
+      <div class="mt-2 flex justify-center lg:justify-end">
+        <a href="#" class="mr-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><path d="m19 4-5.93 6.93M5 20l5.93-6.93m0 0 5.795 6.587c.19.216.483.343.794.343h1.474c.836 0 1.307-.85.793-1.435L13.07 10.93m-2.14 2.14L4.214 5.435C3.7 4.85 4.17 4 5.007 4h1.474c.31 0 .604.127.794.343l5.795 6.587" /></svg>
+        </a>
+        <a href="#" class="mr-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+            <path d="M15.462 11.487a3.5 3.5 0 1 1-6.925 1.026 3.5 3.5 0 0 1 6.925-1.026M17 6.5h.5" />
+            <path d="M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+```
+
+### Detailed Footer
+<DetailedFooter />
+```html
+<footer class="bg-gray-900 py-12 text-gray-300">
+  <div class="container mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div class="ml-5 sm:ml-0">
+      <a href="#" class="mb-4 flex items-center">
+        <img src="logo.png" alt="Company Logo" class="mr-2 h-8" />
+        <span class="text-lg font-bold">Your Brand</span>
+      </a>
+      <p class="mb-4">We are a cutting-edge AI company dedicated to pushing the boundaries of what's possible with technology.</p>
+      <div class="flex">
+        <a href="#" class="mx-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+            <path d="M15.462 11.487a3.5 3.5 0 1 1-6.925 1.026 3.5 3.5 0 0 1 6.925-1.026M17 6.5h.5" />
+            <path d="M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z" />
+          </svg>
+        </a>
+        <a href="#" class="mx-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+            <path d="M15.462 11.487a3.5 3.5 0 1 1-6.925 1.026 3.5 3.5 0 0 1 6.925-1.026M17 6.5h.5" />
+            <path d="M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z" />
+          </svg>
+        </a>
+        <a href="#" class="mx-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+            <path d="M15.462 11.487a3.5 3.5 0 1 1-6.925 1.026 3.5 3.5 0 0 1 6.925-1.026M17 6.5h.5" />
+            <path d="M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z" />
+          </svg>
+        </a>
+        <a href="#" class="mx-2 text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor">
+            <path d="M15.462 11.487a3.5 3.5 0 1 1-6.925 1.026 3.5 3.5 0 0 1 6.925-1.026M17 6.5h.5" />
+            <path d="M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="ml-5 sm:ml-0">
+      <h3 class="mb-4 text-lg font-bold">Products</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white">AI Models</a></li>
+        <li><a href="#" class="hover:text-white">APIs</a></li>
+        <li><a href="#" class="hover:text-white">Platforms</a></li>
+        <li><a href="#" class="hover:text-white">Solutions</a></li>
+      </ul>
+    </div>
+    <div class="ml-5 sm:ml-0">
+      <h3 class="mb-4 text-lg font-bold">Resources</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white">Blog</a></li>
+        <li><a href="#" class="hover:text-white">Docs</a></li>
+        <li><a href="#" class="hover:text-white">Research</a></li>
+        <li><a href="#" class="hover:text-white">Tutorials</a></li>
+      </ul>
+    </div>
+    <div class="ml-5 sm:ml-0">
+      <h3 class="mb-4 text-lg font-bold">Subscribe</h3>
+      <p class="mb-4">Stay up to date with our latest news and updates.</p>
+      <form>
+        <div class="flex">
+          <input type="email" placeholder="Enter your email" class="rounded-l bg-gray-800 px-4 py-2 text-gray-300 focus:outline-none" />
+          <button type="submit" class="rounded-r bg-blue-500 px-4 py-2 text-white hover:bg-blue-700">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="mt-8 border-t border-gray-700 pt-4 text-center text-sm">&copy; 2023 Your Company. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></div>
+</footer>
+```
 
 export default ({children}) => <div className="prose">{children}</div>
