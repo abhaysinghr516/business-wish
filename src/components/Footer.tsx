@@ -246,7 +246,7 @@ export const DetailedFooter: React.FC = () => (
         </div>
         <p className="m-0 mb-4">
           We are a cutting-edge AI company dedicated to pushing the boundaries
-          of what's possible with technology.
+          of what&apos;s possible with technology.
         </p>
         <div className="flex">
           <div className="cursor-pointer mx-2 text-gray-400 hover:text-white">
