@@ -26,8 +26,8 @@ export const BasicFeatures: React.FC = () => (
                 <h3 className="m-0 text-xl font-bold">Customizable</h3>
               </div>
               <p className="m-0 text-gray-600">
-                Easily customize components to match your brand's design and
-                style guidelines.
+                Easily customize components to match your brand&apos;s design
+                and style guidelines.
               </p>
             </div>
           </div>
@@ -53,8 +53,8 @@ export const BasicFeatures: React.FC = () => (
                 <h3 className="m-0 text-xl font-bold">Customizable</h3>
               </div>
               <p className="m-0 text-gray-600">
-                Easily customize components to match your brand's design and
-                style guidelines.
+                Easily customize components to match your brand&apos;s design
+                and style guidelines.
               </p>
             </div>
           </div>
@@ -152,8 +152,8 @@ export const VerticalFeatureList: React.FC = () => (
               Highly Customizable
             </h3>
             <p className="m-0 text-gray-600">
-              Easily customize components to match your brand's design and style
-              guidelines.
+              Easily customize components to match your brand&apos;s design and
+              style guidelines.
             </p>
           </div>
         </div>
@@ -227,8 +227,8 @@ export const FeatureswithBenefits: React.FC = () => (
               <h3 className="m-0 text-xl font-bold">Utility-First CSS</h3>
             </div>
             <p className="m-0 text-gray-600">
-              Build custom designs without leaving your HTML with Tailwind's
-              utility-first approach.
+              Build custom designs without leaving your HTML with
+              Tailwind&apos;s utility-first approach.
             </p>
           </div>
         </div>
@@ -252,8 +252,8 @@ export const FeatureswithBenefits: React.FC = () => (
               <h3 className="m-0 text-xl font-bold">Utility-First CSS</h3>
             </div>
             <p className="m-0 text-gray-600">
-              Build custom designs without leaving your HTML with Tailwind's
-              utility-first approach.
+              Build custom designs without leaving your HTML with
+              Tailwind&apos;s utility-first approach.
             </p>
           </div>
         </div>
@@ -320,8 +320,8 @@ export const CarouselFeatures: React.FC = () => (
                   <h3 className="m-0 text-xl font-bold">Customizable</h3>
                 </div>
                 <p className="m-0 text-gray-600">
-                  Easily customize components to match your brand's design and
-                  style guidelines.
+                  Easily customize components to match your brand&apos;s design
+                  and style guidelines.
                 </p>
               </div>
             </div>
