@@ -93,7 +93,7 @@ export const componentsData: ComponentData[] = [
     {
         href: "/components/sidebar",
         title: "Sidebar",
-        components: "5",
+        components: "3",
     },
     {
         href: "/components/tabs",
