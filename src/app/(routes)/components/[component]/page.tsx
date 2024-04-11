@@ -19,6 +19,7 @@ import {
   HeroDocs,
   HeaderDocs,
   SidebarDocs,
+  SkeletonDocs,
   TabsDocs,
   TestimonialsDocs,
 } from "../../../docs/index";
@@ -47,6 +48,7 @@ type ComponentKey =
   | "Hero"
   | "Header"
   | "Sidebar"
+  | "Skeleton"
   | "Tabs"
   | "Testimonials";
 
@@ -69,6 +71,7 @@ const components = {
   Hero: HeroDocs,
   Header: HeaderDocs,
   Sidebar: SidebarDocs,
+  Skeleton: SkeletonDocs,
   Tabs: TabsDocs,
   Testimonials: TestimonialsDocs,
 };
