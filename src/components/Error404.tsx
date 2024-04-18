@@ -32,7 +32,7 @@ export const Illustrated404Section: React.FC = () => (
       Oops! Page not found
     </h1>
     <p className="m-0 text-lg text-gray-600 mb-8">
-      The page you're looking for doesn't exist or has been moved.
+      The page you&apos;re looking for doesn&apos;t exist or has been moved.
     </p>
     <div className="cursor-pointer bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">
       Go Back Home
