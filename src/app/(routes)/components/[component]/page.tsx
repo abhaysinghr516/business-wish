@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import {
+  Error404Docs,
   AccordionDocs,
   AvatarDocs,
   BadgeDocs,
@@ -30,6 +31,7 @@ import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
 type ComponentKey =
+  | "Error404"
   | "Accordion"
   | "Avatar"
   | "Badge"
@@ -53,6 +55,7 @@ type ComponentKey =
   | "Testimonials";
 
 const components = {
+  Error404: Error404Docs,
   Accordion: AccordionDocs,
   Avatar: AvatarDocs,
   Badge: BadgeDocs,

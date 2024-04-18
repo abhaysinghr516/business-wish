@@ -6,6 +6,11 @@ export type ComponentData = {
 
 export const componentsData: ComponentData[] = [
     {
+        href: "/components/404",
+        title: "Error404",
+        components: "2",
+    },
+    {
         href: "/components/accordion",
         title: "Accordion",
         components: "2",

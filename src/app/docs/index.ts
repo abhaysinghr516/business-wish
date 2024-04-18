@@ -1,3 +1,4 @@
+export { default as Error404Docs } from './Components/Error404.mdx';
 export { default as AccordionDocs } from './Components/Accordion.mdx';
 export { default as AvatarDocs } from './Components/Avatar.mdx';
 export { default as BadgeDocs } from './Components/Badge.mdx';
