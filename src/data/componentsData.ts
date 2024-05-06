@@ -96,6 +96,11 @@ export const componentsData: ComponentData[] = [
         components: "6",
     },
     {
+        href: "/components/pagination",
+        title: "Pagination",
+        components: "5",
+    },
+    {
         href: "/components/sidebar",
         title: "Sidebar",
         components: "3",

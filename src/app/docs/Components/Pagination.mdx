@@ -1,0 +1,138 @@
+import { BasicPagination, PaginationwithActiveState, PaginationwithIcons, PaginationwithInputField, PaginationwithDots } from "../../../components/Pagination";
+
+### Basic Pagination
+
+<BasicPagination />
+```html
+<nav class="flex justify-center">
+  <ul class="flex list-none">
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">Previous</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">1</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">2</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">3</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">Next</button>
+    </li>
+  </ul>
+</nav>
+```
+
+### Pagination with Active State
+
+<PaginationwithActiveState />
+```html
+<nav class="flex justify-center">
+  <ul class="flex list-none">
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">Previous</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-white bg-purple-600 rounded hover:bg-purple-700">1</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">2</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">3</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">Next</button>
+    </li>
+  </ul>
+</nav>
+```
+
+### Pagination with Icons
+
+<PaginationwithIcons />
+```html
+<nav class="flex justify-center">
+  <ul class="flex list-none">
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Previous
+      </button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">1</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">2</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">3</button>
+    </li>
+    <li class="mx-1">
+      <button class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center">
+        Next
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </li>
+  </ul>
+</nav>
+```
+
+### Pagination with Input Field
+
+<PaginationwithInputField />
+```html
+<nav class="flex justify-center">
+  <ul class="flex list-none items-center">
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">Previous</button>
+    </li>
+    <li class="mx-1">
+      <input type="text" class="w-12 rounded border px-4 py-2 text-center outline-purple-500" placeholder="1" />
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">Next</button>
+    </li>
+  </ul>
+</nav>
+```
+
+### Pagination with Dots
+
+<PaginationwithDots />
+```html
+<nav class="flex justify-center">
+  <ul class="flex list-none">
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">Previous</button>
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">1</button>
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">2</button>
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">...</button>
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">9</button>
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">10</button>
+    </li>
+    <li class="mx-1">
+      <button class="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">Next</button>
+    </li>
+  </ul>
+</nav>
+```
+
+export default ({children}) => <div className="prose">{children}</div>

@@ -16,6 +16,7 @@ export { default as FeaturesDocs } from './Components/Features.mdx';
 export { default as FooterDocs } from './Components/Footer.mdx';
 export { default as HeroDocs } from './Components/Hero.mdx';
 export { default as HeaderDocs } from './Components/Header.mdx';
+export { default as PaginationDocs } from './Components/Pagination.mdx';
 export { default as SidebarDocs } from './Components/Sidebar.mdx';
 export { default as SkeletonDocs } from './Components/Skeleton.mdx';
 export { default as TabsDocs } from './Components/Tabs.mdx';
