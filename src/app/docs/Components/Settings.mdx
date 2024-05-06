@@ -1,0 +1,50 @@
+import { BasicSettingsPage, SettingsPagewithTabs } from "../../../components/Settings";
+
+### Basic Settings Page
+
+<BasicSettingsPage />
+```html
+<div class="min-h-screen bg-gray-100 p-8">
+  <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Settings</h2>
+    
+    <!-- Account Information -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-4">Account Information</h3>
+      <div class="mb-4">
+        <label class="block text-gray-600 mb-2">Username</label>
+        <input type="text" class="w-full border border-gray-300 p-2 rounded" placeholder="Enter your username">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-600 mb-2">Email</label>
+        <input type="email" class="w-full border border-gray-300 p-2 rounded" placeholder="Enter your email">
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-4">Preferences</h3>
+      <div class="flex items-center mb-4">
+        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+        <label class="ml-2 text-gray-600">Receive Email Notifications</label>
+      </div>
+      <div class="flex items-center">
+        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+        <label class="ml-2 text-gray-600">Receive SMS Alerts</label>
+      </div>
+    </div>
+    
+    <div class="flex justify-end">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save Changes</button>
+    </div>
+  </div>
+</div>
+```
+
+### Settings Page with Tabs
+
+<SettingsPagewithTabs />
+```html
+```
+
+export default ({children}) => <div className="prose">{children}</div>

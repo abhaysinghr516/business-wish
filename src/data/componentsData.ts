@@ -101,6 +101,11 @@ export const componentsData: ComponentData[] = [
         components: "5",
     },
     {
+        href: "/components/settings",
+        title: "Settings",
+        components: "2",
+    },
+    {
         href: "/components/sidebar",
         title: "Sidebar",
         components: "3",
