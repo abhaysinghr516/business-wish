@@ -45,6 +45,34 @@ import { BasicSettingsPage, SettingsPagewithTabs } from "../../../components/Set
 
 <SettingsPagewithTabs />
 ```html
+<div class="bg-gray-100 min-h-screen p-8">
+  <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold mb-6">Settings</h2>
+    
+    <!-- Tabs -->
+    <div class="flex space-x-4 mb-6">
+      <button class="py-2 px-4 bg-gray-200 text-gray-700 rounded">General</button>
+      <button class="py-2 px-4 text-gray-500 hover:bg-gray-200 rounded">Account</button>
+      <button class="py-2 px-4 text-gray-500 hover:bg-gray-200 rounded">Privacy</button>
+    </div>
+    
+    <!-- General Section -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4">General Settings</h3>
+      <div class="mb-4">
+        <label class="block text-gray-600 mb-2">Username</label>
+        <input type="text" class="w-full border border-gray-300 p-2 rounded" placeholder="Enter your username">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-600 mb-2">Email</label>
+        <input type="email" class="w-full border border-gray-300 p-2 rounded" placeholder="Enter your email">
+      </div>
+      <div class="flex justify-end">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 ```
 
 export default ({children}) => <div className="prose">{children}</div>
