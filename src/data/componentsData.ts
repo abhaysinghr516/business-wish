@@ -16,6 +16,11 @@ export const componentsData: ComponentData[] = [
         components: "2",
     },
     {
+        href: "/components/alert",
+        title: "Alert",
+        components: "3",
+    },
+    {
         href: "/components/avatar",
         title: "Avatar",
         components: "4",

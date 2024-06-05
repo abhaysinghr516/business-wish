@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import {
   Error404Docs,
   AccordionDocs,
+  AlertDocs,
   AvatarDocs,
   BadgeDocs,
   BannerDocs,
@@ -35,6 +36,7 @@ import Sidebar from "@/app/components/Sidebar";
 type ComponentKey =
   | "Error404"
   | "Accordion"
+  | "Alert"
   | "Avatar"
   | "Badge"
   | "Banner"
@@ -61,6 +63,7 @@ type ComponentKey =
 const components = {
   Error404: Error404Docs,
   Accordion: AccordionDocs,
+  Alert: AlertDocs,
   Avatar: AvatarDocs,
   Badge: BadgeDocs,
   Banner: BannerDocs,
