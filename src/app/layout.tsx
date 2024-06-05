@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Buisness Wish",
-  description: "Buisness Wish || Free Tailwind CSS UI components library",
+  title: "Business Wish",
+  description: "Business Wish || Free Tailwind CSS UI components library",
 };
 
 export default function RootLayout({
