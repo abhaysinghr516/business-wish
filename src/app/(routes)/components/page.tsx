@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Navbar from "@/app/components/Navbar";
 import React from "react";
 import Link from "next/link";
 import { ComponentData, componentsData } from "../../../data/componentsData";
 import Footer from "@/app/components/Footer";
+
+export const metadata: Metadata = {
+  title: `Business Wish || Tailwind CSS ${componentsData.length} Components`,
+  description: `Explore the ${componentsData.map(
+    (component, index) => component.components
+  )} components of Tailwind CSS || Business Wish `,
+};
 
 const page = () => {
   return (

@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Buisness Wish",
-  description: "Free Tailwind CSS UI components library",
+  description: "Buisness Wish || Free Tailwind CSS UI components library",
 };
 
 export default function RootLayout({
