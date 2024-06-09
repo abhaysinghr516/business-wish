@@ -30,10 +30,13 @@ const page = () => {
             <Link
               key={index}
               href={component.href}
-              className="p-6 text-left border border-black rounded-xl hover:text-blue-600 focus:text-blue-600"
+              className="p-6 text-left border border-black group rounded-xl hover:text-blue-600 focus:text-blue-600"
             >
               <h3 className="text-xl text-blue-600 font-bold">
-                {component.title} &rarr;
+                {component.title}{" "}
+                <span className="inline-block group-hover:translate-x-1 transition-transform">
+                  &rarr;
+                </span>
               </h3>
               <p className="mt-4 text-sm font-medium">
                 <span className="font-semibold">{component.components} </span>

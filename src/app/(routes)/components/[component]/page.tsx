@@ -20,6 +20,7 @@ import {
   FooterDocs,
   HeroDocs,
   HeaderDocs,
+  LoaderDocs,
   PaginationDocs,
   SettingsDocs,
   SidebarDocs,
@@ -53,6 +54,7 @@ type ComponentKey =
   | "Footer"
   | "Hero"
   | "Header"
+  | "Loader"
   | "Pagination"
   | "Settings"
   | "Sidebar"
@@ -80,6 +82,7 @@ const components = {
   Footer: FooterDocs,
   Hero: HeroDocs,
   Header: HeaderDocs,
+  Loader: LoaderDocs,
   Pagination: PaginationDocs,
   Settings: SettingsDocs,
   Sidebar: SidebarDocs,
