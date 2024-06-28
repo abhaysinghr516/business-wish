@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: `https://business-wish.vercel.app/components`,
     images: [
       {
-        url: `components-page.png`,
+        url: `https://business-wish.vercel.app/components-page.png`,
         width: 800,
         height: 600,
         alt: `Business Wish Tailwind CSS Components`,

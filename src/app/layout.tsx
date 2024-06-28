@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: "https://businesswish.com",
     images: [
       {
-        url: "/home.png",
+        url: "https://business-wish.vercel.app/home.png",
         width: 800,
         height: 600,
         alt: "Business Wish Tailwind CSS UI Components",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     site: "@abhaysinghr516",
     title: "Business Wish",
     description: "Free Tailwind CSS UI components library",
-    images: ["/home.png"],
+    images: ["https://business-wish.vercel.app/home.png"],
   },
 };
 
