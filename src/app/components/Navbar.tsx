@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -12,61 +12,41 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-purple-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/">
-            <div className="text-xl text-purple-600 font-bold mb-4 lg:mb-0 cursor-pointer">
-              Business Wish
-            </div>
+    <nav className="bg-gray-950 border-b border-gray-800 py-4 px-4 md:px-20">
+      <div className="container mx-auto flex items-center justify-between">
+        <Link href="/" className="ml-2 text-xl font-bold text-white">
+          <img src="/logo2.png" alt="logo" className="h-8" />
+        </Link>
+        <div
+          className={`items-center space-x-6 md:flex ${
+            isOpen ? "block" : "hidden md:flex"
+          }`}
+        >
+          <Link
+            href="/components"
+            className="relative text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
+          >
+            Component
           </Link>
-          <div className="block md:hidden relative">
+          <Link
+            href="/templates"
+            className="relative text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
+          >
+            Templates
+          </Link>
+        </div>
+        <div className="md:hidden">
+          <button
+            id="menu-toggle"
+            onClick={toggleMenu}
+            className="mr-2 text-gray-300 hover:text-white focus:outline-none"
+          >
             {isOpen ? (
-              <FaTimes
-                onClick={toggleMenu}
-                className="text-gray-600 cursor-pointer"
-              />
+              <FaTimes className="h-6 w-6" />
             ) : (
-              <FaBars
-                onClick={toggleMenu}
-                className="text-gray-600 cursor-pointer"
-              />
+              <FaBars className="h-6 w-6" />
             )}
-            {isOpen && (
-              <div className="absolute top-full right-0 mt-2 bg-white shadow-md rounded-md">
-                <div className="px-2 pt-2 pb-3 space-y-1">
-                  <Link
-                    href="/components"
-                    className="text-gray-600 hover:bg-purple-200 hover:text-purple-700 block px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Component
-                  </Link>
-                  <Link
-                    href="/templates"
-                    className="text-gray-600 hover:bg-purple-200 hover:text-purple-700 block px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Templates
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <Link
-                href="/components"
-                className="text-gray-600 hover:bg-purple-200 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Component
-              </Link>
-              <Link
-                href="/templates"
-                className="text-gray-600 hover:bg-purple-200 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Templates
-              </Link>
-            </div>
-          </div>
+          </button>
         </div>
       </div>
     </nav>

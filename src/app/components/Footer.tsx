@@ -1,38 +1,80 @@
-import React from "react";
 import Link from "next/link";
+import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <>
-      <footer className="flex items-center justify-center w-full h-16 border-t">
-        <Link
-          className="flex items-center justify-center"
-          href="https://x.com/abhaysinghr1"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Follow on{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="#2c3e50"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-          </svg>
-        </Link>
-      </footer>
-      <p className="flex items-center justify-center pb-4 text-sm">
-        &copy; 2024 Business Wish
-      </p>
-    </>
+    <footer className="bg-gray-950 border-t border-gray-800 text-gray-300 py-12 px-4 md:px-20">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* About section */}
+          <div className="md:col-span-2">
+            <div className="flex gap-x-5 mb-4">
+              <img src="/logo2.png" alt="logo" className="h-8" />
+              <h2 className="text-2xl font-bold text-white mb-4">
+                {/* Business Wish */}
+              </h2>
+            </div>
+            <p className="mb-4">
+              Empowering developers with intuitive and efficient UI components.
+            </p>
+            <p className="text-sm">
+              Created by{" "}
+              <span className="text-purple-400 font-semibold">
+                Abhay Singh Rathore
+              </span>
+              , a passionate Full-Stack Developer & UI/UX designer.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              {["Home", "Components", "Templates"].map((link) => (
+                <li key={link}>
+                  <a
+                    href="#"
+                    className="hover:text-purple-400 transition duration-300"
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Contact Us
+            </h3>
+            <div className="flex space-x-4 mt-4">
+              {[Github, Twitter, Linkedin, Mail].map((Icon, index) => (
+                <Link
+                  key={index}
+                  href="#"
+                  target="_blank"
+                  className="text-gray-400 hover:text-purple-400 transition duration-300"
+                >
+                  <Icon size={20} />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm">
+            © {currentYear} Business Wish. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
