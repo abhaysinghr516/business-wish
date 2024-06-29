@@ -1,0 +1,15 @@
+.responsive-preview-container {
+    max-width: 100%;
+}
+
+@media (max-width: 640px) {
+    .responsive-preview-container {
+        width: 100%;
+        height: auto;
+    }
+}
+/* 
+/* responsive-preview.css */
+/* .responsive-preview-container { */
+    /* box-sizing: border-box; */
+/* } */

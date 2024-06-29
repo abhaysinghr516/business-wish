@@ -2,13 +2,13 @@ export const BasicButtons: React.FC = () => (
   <div className="flex gap-2">
     <button
       type="button"
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      className="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded"
     >
       Primary
     </button>
     <button
       type="button"
-      className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+      className="bg-gray-300 hover:bg-gray-400 text-sm text-gray-800 font-bold py-2 px-4 rounded"
     >
       Secondary
     </button>
@@ -19,13 +19,13 @@ export const OutlinedButtons: React.FC = () => (
   <div className="flex gap-2">
     <button
       type="button"
-      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+      className="bg-transparent hover:bg-blue-500 text-sm text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
     >
       Outlined
     </button>
     <button
       type="button"
-      className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+      className="bg-transparent hover:bg-red-500 text-sm text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
     >
       Danger
     </button>
@@ -36,7 +36,7 @@ export const IconButtons: React.FC = () => (
   <div className="flex gap-2">
     <button
       type="button"
-      className="inline-flex items-center rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
+      className="inline-flex items-center rounded text-sm bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ export const IconButtons: React.FC = () => (
     </button>
     <button
       type="button"
-      className="inline-flex items-center rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"
+      className="inline-flex items-center rounded text-sm bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ export const IconButtons: React.FC = () => (
 export const PillButtons: React.FC = () => (
   <button
     type="button"
-    className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-700"
+    className="rounded-full text-sm bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-700"
   >
     Pill Button
   </button>
@@ -96,13 +96,13 @@ export const ButtonSizes: React.FC = () => (
     </button>
     <button
       type="button"
-      className="rounded h-fit cursor-pointer bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+      className="rounded h-fit cursor-pointer text-sm bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
     >
       Regular
     </button>
     <button
       type="button"
-      className="rounded-lg cursor-pointer h-fit bg-blue-500 px-6 py-3 text-lg font-bold text-white hover:bg-blue-700"
+      className="rounded-lg cursor-pointer h-fit text-base bg-blue-500 px-6 py-3 font-bold text-white hover:bg-blue-700"
     >
       Large
     </button>

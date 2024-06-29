@@ -1,0 +1,147 @@
+---
+---
+
+import DocLayout from '../components/DocsLayout';
+import { BasicButtons, OutlinedButtons, IconButtons, PillButtons, ButtonSizes, ButtonGroups, FAB  } from '../../components/Button';
+import { CenterContentHeroSection, SideImageHero } from "../../components/Hero";
+import CodeBlock from '../components/CodeBlock';
+import ResponsivePreview from '../components/ResponsivePreview';
+
+### Button Component 
+
+#### Basic Buttons
+
+<ResponsivePreview>
+  <div className="flex flex-wrap gap-4">
+    <BasicButtons />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+#### Outlined Buttons
+
+<ResponsivePreview>
+  <div className="flex flex-wrap gap-4">
+    <OutlinedButtons />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white">Outlined</button>
+<button type="button" class="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white">Danger</button>`}
+  codeJsx={`<button type="button" className="rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white">Outlined</button>
+<button type="button" className="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white">Danger</button>`}
+/>
+
+#### Icon Buttons
+
+<ResponsivePreview>
+  <div className="w-full max-w-sm mx-auto space-y-4">
+    <IconButtons />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="inline-flex items-center rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 h-4 w-4">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+  </svg>
+  Upload
+</button>
+<button type="button" class="inline-flex items-center rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w- mr-2 h-4">
+    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+  </svg>
+  Edit
+</button>`}
+  codeJsx={`<button type="button" className="inline-flex items-center rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-2 h-4 w-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+  </svg>
+  Upload
+</button>
+<button type="button" className="inline-flex items-center rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w- mr-2 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+  </svg>
+  Edit
+</button>`}
+/>
+
+#### Pill Buttons
+
+<ResponsivePreview>
+  <div className="flex flex-wrap gap-4">
+    <PillButtons />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-700">Pill Button</button>`}
+  codeJsx={`<button type="button" className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-700">Pill Button</button>`}
+/>
+
+#### Button Sizes
+
+<ResponsivePreview>
+  <div className="flex flex-wrap items-center gap-4">
+    <ButtonSizes />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded-full cursor-pointer bg-blue-500 px-2 py-1 text-xs font-bold text-white hover:bg-blue-700">Small</button>
+<button type="button" class="rounded cursor-pointer bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Regular</button>
+<button type="button" class="rounded-lg cursor-pointer bg-blue-500 px-6 py-3 text-lg font-bold text-white hover:bg-blue-700">Large</button>`}
+  codeJsx={`<button type="button" className="rounded-full cursor-pointer bg-blue-500 px-2 py-1 text-xs font-bold text-white hover:bg-blue-700">Small</button>
+<button type="button" className="rounded cursor-pointer bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Regular</button>
+<button type="button" className="rounded-lg cursor-pointer bg-blue-500 px-6 py-3 text-lg font-bold text-white hover:bg-blue-700">Large</button>`}
+/>
+
+#### Button Groups
+
+<ResponsivePreview>
+  <div className="flex flex-wrap gap-4">
+    <ButtonGroups />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<div class="inline-flex rounded-md shadow-sm" role="group">
+  <button type="button" class="rounded-l-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">Prev</button>
+  <button type="button" class="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">1</button>
+  <button type="button" class="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">2</button>
+  <button type="button" class="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">3</button>
+  <button type="button" class="rounded-r-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">Next</button>
+</div>`}
+  codeJsx={`<div className="inline-flex rounded-md shadow-sm" role="group">
+  <button type="button" className="rounded-l-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">Prev</button>
+  <button type="button" className="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">1</button>
+  <button type="button" className="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">2</button>
+  <button type="button" className="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">3</button>
+  <button type="button" className="rounded-r-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700">Next</button>
+</div>`}
+/>
+
+#### Floating Action Button
+
+<ResponsivePreview>
+  <div className="flex flex-wrap gap-4">
+    <FAB />
+  </div>
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white">Outlined</button>
+<button type="button" class="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white">Danger</button>`}
+  codeJsx={`<button type="button" className="rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white">Outlined</button>
+<button type="button" className="rounded border border-red-500 bg-transparent px-4 py-2 font-semibold text-red-700 hover:border-transparent hover:bg-red-500 hover:text-white">Danger</button>`}
+/>
+
+export default ({ children }) => <DocLayout>{children}</DocLayout>;
