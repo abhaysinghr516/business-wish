@@ -16,7 +16,7 @@ const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
       <div className="flex h-full w-full ">
         <Sidebar />
         <main className="md: overflow-y-auto flex-1">
-          <div className="prose prose-2xl p-4 md:p-8 pt-16">{children}</div>
+          <div className="prose prose-2xl p-4 md:p-8 py-16">{children}</div>
         </main>
         <TOC />
       </div>
