@@ -56,13 +56,13 @@ export const BadgeWithIcon: React.FC = () => (
 export const BadgeGroup: React.FC = () => (
   <div className="flex flex-wrap items-center space-x-2">
     <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-      Tag 1
+      Badge 1
     </span>
     <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-      Tag 2
+      Badge 2
     </span>
     <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">
-      Tag 3
+      Badge 3
     </span>
   </div>
 );

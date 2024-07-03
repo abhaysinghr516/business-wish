@@ -56,11 +56,11 @@ export const DismissibleBanner: React.FC = () => (
 );
 
 export const BannerwithActions: React.FC = () => (
-  <div className="bg-indigo-100 text-indigo-800 px-4 py-3 rounded-lg flex items-center justify-between">
-    <div>
-      <div className="text-sm">This is a banner with actions.</div>
+  <div className="bg-indigo-100 text-indigo-800 px-4 py-3 rounded-lg flex flex-col sm:flex-row items-center justify-between">
+    <div className="mb-2 sm:mb-0">
+      <p className="text-sm">This is a banner with actions.</p>
     </div>
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center justify-center sm:justify-end space-x-2">
       <button className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm">
         Action 1
       </button>

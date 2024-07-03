@@ -48,6 +48,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ codeHtml, codeJsx }) => {
       </div>
       <div className="my-4 rounded-lg overflow-hidden">
         <SyntaxHighlighter
+          showLineNumbers
           language={activeTab}
           style={vscDarkPlus}
           customStyle={{
