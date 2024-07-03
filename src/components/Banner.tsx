@@ -88,8 +88,10 @@ export const StackedBanners: React.FC = () => (
 export const BannerwithHeadingAndButton: React.FC = () => (
   <div className="bg-blue-200 p-6">
     <div className="mb-4 text-2xl font-bold">Special Offer!</div>
-    <div>Get 20% off on selected items. Limited time only.</div>
-    <button className="mt-4 rounded bg-white px-4 py-2 text-blue-400">
+    <div className="text-base">
+      Get 20% off on selected items. Limited time only.
+    </div>
+    <button className="text-base mt-4 rounded bg-white px-4 py-2 text-blue-400">
       Shop Now
     </button>
   </div>

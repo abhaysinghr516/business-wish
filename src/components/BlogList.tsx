@@ -3,14 +3,14 @@ export const BasicBlogList: React.FC = () => (
     {/* Blog Card 1  */}
     <div className="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
       <div className="p-4">
-        <div className="cursor-pointer text-lg font-semibold text-gray-800">
+        <div className="cursor-pointer text-lg font-semibold text-gray-800 hover:text-indigo-500">
           Title of the Blog Post
         </div>
         <div className="mt-2 text-sm text-gray-600">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -19,14 +19,14 @@ export const BasicBlogList: React.FC = () => (
     {/* Blog Card 2  */}
     <div className="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
       <div className="p-4">
-        <div className="cursor-pointer text-lg font-semibold text-gray-800">
+        <div className="cursor-pointer text-lg font-semibold text-gray-800 hover:text-indigo-500">
           Title of the Blog Post
         </div>
         <div className="mt-2 text-sm text-gray-600">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -151,7 +151,7 @@ export const ListLayoutBlogList: React.FC = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -170,7 +170,7 @@ export const ListLayoutBlogList: React.FC = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -199,7 +199,7 @@ export const CardwithAuthorandTagsBlogList: React.FC = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -222,7 +222,7 @@ export const CardwithAuthorandTagsBlogList: React.FC = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -247,7 +247,7 @@ export const TimelineLayoutBlogList: React.FC = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>
@@ -266,7 +266,7 @@ export const TimelineLayoutBlogList: React.FC = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-        <div className="cursor-pointer mt-2 block text-indigo-500 hover:underline">
+        <div className="text-sm cursor-pointer mt-2 block text-indigo-500 hover:underline">
           Read more
         </div>
       </div>

@@ -1,0 +1,80 @@
+---
+---
+
+import DocLayout from '../components/DocsLayout';
+import { BentoGrid1, BentoGrid2, BentoGrid3, BentoGrid4, BentoGrid5 } from '../../components/BentoGrid'
+import CodeBlock from '../components/CodeBlock';
+import ResponsivePreview from '../components/ResponsivePreview';
+
+### Bento Grid Component
+
+#### Bento Grid Layout 1
+
+<ResponsivePreview>
+    <BentoGrid1 />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 2
+
+<ResponsivePreview>
+    <BentoGrid2 />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 3
+
+<ResponsivePreview>
+    <BentoGrid3 />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 4
+
+<ResponsivePreview>
+    <BentoGrid4 />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 5
+
+<ResponsivePreview>
+    <BentoGrid5 />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+export default ({ children }) => <DocLayout>{children}</DocLayout>;

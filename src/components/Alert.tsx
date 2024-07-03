@@ -7,7 +7,7 @@ export const SimpleAlert: React.FC = () => (
   >
     <div className="flex">
       <div>
-        <p className="m-0 font-bold">Informational Alert</p>
+        <p className="m-0 text-lg font-bold">Informational Alert</p>
         <p className="m-0 text-sm">Some additional information for the user.</p>
       </div>
     </div>
@@ -16,7 +16,7 @@ export const SimpleAlert: React.FC = () => (
 
 export const DismissableAlert: React.FC = () => {
   return (
-    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+    <div className="bg-red-100 border text-base border-red-400 text-red-700 px-4 py-3 rounded relative">
       <strong className="font-bold text-red-700 mr-2">Error!</strong>
       <span className="block sm:inline">
         Something went wrong, please try again.

@@ -3,25 +3,43 @@ import React from "react";
 import { usePathname } from "next/navigation"; // Adjust import based on Next.js version
 
 // Import documentation components
-import { ButtonDocs, AlertDocs } from "../../../doc/index";
+import {
+  ButtonDocs,
+  AlertDocs,
+  AccordionDocs,
+  AvatarDocs,
+  BadgeDocs,
+  BannerDocs,
+  BentoDocs,
+  BlogListDocs,
+} from "../../../doc/index";
 
-// Assuming this data structure exists
 import {
   ComponentData,
   componentsData,
 } from "../../../../data/newcomponentData";
 
-// Import application components
-import Navbar from "@/app/components/Navbar";
-import Sidebar from "@/app/components/Sidebar";
-
 // Define a type for component keys
-type ComponentKey = "Button" | "Alert";
+type ComponentKey =
+  | "Button"
+  | "Alert"
+  | "Accordion"
+  | "Avatar"
+  | "Badge"
+  | "Banner"
+  | "Bento"
+  | "BlogList";
 
 // Mapping between component titles and their corresponding documentation components
 const components: Record<ComponentKey, React.FC> = {
   Button: ButtonDocs,
   Alert: AlertDocs,
+  Accordion: AccordionDocs,
+  Avatar: AvatarDocs,
+  Badge: BadgeDocs,
+  Banner: BannerDocs,
+  Bento: BentoDocs,
+  BlogList: BlogListDocs,
 };
 
 // Main ComponentPage function

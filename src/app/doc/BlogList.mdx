@@ -1,0 +1,89 @@
+---
+---
+
+import DocLayout from '../components/DocsLayout';
+import { BasicBlogList, MinimalCardBlogList, HorizontalCardBlogList, ListLayoutBlogList, CardwithAuthorandTagsBlogList, TimelineLayoutBlogList } from "../../components/BlogList";
+import CodeBlock from '../components/CodeBlock';
+import ResponsivePreview from '../components/ResponsivePreview';
+
+### Blog List Component
+
+#### Basic Blog List
+
+<ResponsivePreview>
+    <BasicBlogList />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+#### Minimal Card Blog List
+
+<ResponsivePreview>
+    <MinimalCardBlogList />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+#### Horizontal Card Blog List
+
+<ResponsivePreview>
+    <HorizontalCardBlogList />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+#### List Layout Blog List
+
+<ResponsivePreview>
+    <ListLayoutBlogList />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+#### Card with Author and Tags Blog List
+
+<ResponsivePreview>
+    <CardwithAuthorandTagsBlogList />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+#### Timeline Layout Blog List
+
+<ResponsivePreview>
+    <TimelineLayoutBlogList />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+export default ({ children }) => <DocLayout>{children}</DocLayout>;

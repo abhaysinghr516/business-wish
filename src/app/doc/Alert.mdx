@@ -1,30 +1,157 @@
 ---
-title: Alert 
 ---
 
-# Alert
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-
-## alert
-
-{/* rough test text data */}
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac purus sit amet nisl
-tincidunt
-
-### udage
-
 import DocLayout from '../components/DocsLayout';
+import { SimpleAlert, DismissableAlert, CustomAlert } from '../../components/Alert';
+import CodeBlock from '../components/CodeBlock';
+import ResponsivePreview from '../components/ResponsivePreview';
+
+### Alert Component
+
+#### Simple Alert
+
+<ResponsivePreview>
+    <SimpleAlert />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`
+<div
+  class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md"
+  role="alert"
+>
+  <div class="flex">
+    <div>
+      <p class="m-0 text-lg font-bold">Informational Alert</p>
+      <p class="m-0 text-sm">Some additional information for the user.</p>
+    </div>
+  </div>
+</div>
+  `}
+  codeJsx={`
+<div
+  className="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md"
+  role="alert"
+>
+  <div className="flex">
+    <div>
+      <p className="m-0 text-lg font-bold">Informational Alert</p>
+      <p className="m-0 text-sm">Some additional information for the user.</p>
+    </div>
+  </div>
+</div>
+  `}
+/>
+
+#### Dismissable Alert
+
+<ResponsivePreview>
+    <DismissableAlert />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`
+<div class="bg-red-100 border text-base border-red-400 text-red-700 px-4 py-3 rounded relative">
+  <strong class="font-bold text-red-700 mr-2">Error!</strong>
+  <span class="block sm:inline">Something went wrong, please try again.</span>
+  <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke="currentColor"
+      class="h-6 w-6 fill-current text-red-500"
+    >
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  </span>
+</div>
+  `}
+  codeJsx={`
+<div className="bg-red-100 border text-base border-red-400 text-red-700 px-4 py-3 rounded relative">
+  <strong className="font-bold text-red-700 mr-2">Error!</strong>
+  <span className="block sm:inline">Something went wrong, please try again.</span>
+  <span className="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      stroke="currentColor"
+      className="h-6 w-6 fill-current text-red-500"
+    >
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  </span>
+</div>
+  `}
+/>
+
+
+#### Custom Alert
+
+<ResponsivePreview>
+    <CustomAlert />
+</ResponsivePreview>
+
+<CodeBlock
+  codeHtml={`
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4" role="alert">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg
+        class="h-5 w-5 text-yellow-400"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11h-2v5h2V7zm0 6h-2v2h2v-2z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div class="ml-3">
+      <p class="m-0 text-sm text-yellow-700">
+        Warning! There might be potential issues with your action.
+      </p>
+    </div>
+  </div>
+</div>
+  `}
+  codeJsx={`
+<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4" role="alert">
+  <div className="flex">
+    <div className="flex-shrink-0">
+      <svg
+        className="h-5 w-5 text-yellow-400"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11h-2v5h2V7zm0 6h-2v2h2v-2z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="ml-3">
+      <p className="m-0 text-sm text-yellow-700">
+        Warning! There might be potential issues with your action.
+      </p>
+    </div>
+  </div>
+</div>
+  `}
+/>
+
 export default ({ children }) => <DocLayout>{children}</DocLayout>;
