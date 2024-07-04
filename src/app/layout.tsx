@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Business Wish",
     description: "Free Tailwind CSS UI components library",
     type: "website",
-    url: "https://businesswish.com",
+    url: "https://business-wish.vercel.app",
     images: [
       {
         url: "https://business-wish.vercel.app/home.png",
