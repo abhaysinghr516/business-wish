@@ -1,40 +1,34 @@
 export const JobCard: React.FC = () => (
-  <div className="mx-auto max-w-md">
-    <div className="mt-10">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-        <div className="col-span-1 w-72 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
-          <div className="flex flex-1 flex-col p-8">
-            <div className="mt-6 text-sm font-medium text-gray-900">
-              Product Manager
-            </div>
-            <div className="mt-1 flex flex-grow flex-col justify-between">
-              <div className="text-sm text-gray-500">Stark Industries</div>
-              <div className="mt-3">
-                <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                  New York, NY
-                </span>
-              </div>
-              <div className="sr-only">Type</div>
-              <div className="mt-3">
-                <span className="rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800">
-                  Full-time
-                </span>
-              </div>
-            </div>
+  <div className="mx-auto w-80 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+    <div className="flex flex-1 flex-col p-8">
+      <div className="mt-6 text-sm font-medium text-gray-900">
+        Product Manager
+      </div>
+      <div className="mt-1 flex flex-grow flex-col justify-between">
+        <div className="text-sm text-gray-500">Stark Industries</div>
+        <div className="mt-3">
+          <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
+            New York, NY
+          </span>
+        </div>
+        <div className="sr-only">Type</div>
+        <div className="mt-3">
+          <span className="rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800">
+            Full-time
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div className="-mt-px flex divide-x divide-gray-200">
+        <div className="flex w-0 flex-1">
+          <div className="cursor-pointer relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
+            View Details
           </div>
-          <div>
-            <div className="-mt-px flex divide-x divide-gray-200">
-              <div className="flex w-0 flex-1">
-                <div className="cursor-pointer relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
-                  View Details
-                </div>
-              </div>
-              <div className="-ml-px flex w-0 flex-1">
-                <div className="cursor-pointer relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
-                  Apply
-                </div>
-              </div>
-            </div>
+        </div>
+        <div className="-ml-px flex w-0 flex-1">
+          <div className="cursor-pointer relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
+            Apply
           </div>
         </div>
       </div>
@@ -43,26 +37,26 @@ export const JobCard: React.FC = () => (
 );
 
 export const ProductCard: React.FC = () => (
-  <div className="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow-lg">
+  <div className="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow">
     <img
       className="m-0 h-48 w-full object-cover"
       src="https://source.unsplash.com/random"
       alt="Product Image"
     />
     <div className="p-4">
-      <h2 className="m-0 text-xl font-semibold text-gray-800">Product Name</h2>
+      <p className="m-0 text-lg font-semibold text-gray-800">Product Name</p>
       <p className="m-0 mt-2 text-sm text-gray-600">
         Product Description goes here. Lorem ipsum dolor sit amet, consectetur
         adipiscing elit.
       </p>
       <div className="mt-3 flex items-center">
-        <span className="font-semibold text-gray-700">$49.99</span>
+        <span className="text-base font-semibold text-gray-700">$49.99</span>
         <div className="ml-auto flex items-center">
-          <span className="text-yellow-500">★</span>
+          <span className="text-base text-yellow-500">★</span>
           <span className="ml-1 text-sm text-gray-600">(4.8)</span>
         </div>
       </div>
-      <button className="mt-3 w-full rounded-full bg-blue-500 px-3 py-1 text-sm text-white hover:bg-blue-600">
+      <button className="mt-3 w-full rounded-full bg-blue-500 px-4 py-2 text-sm text-white hover:bg-blue-600">
         Add to Cart
       </button>
     </div>
@@ -70,7 +64,7 @@ export const ProductCard: React.FC = () => (
 );
 
 export const ProfileCard: React.FC = () => (
-  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg bg-white shadow-lg">
+  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg bg-white shadow">
     <img
       src="https://source.unsplash.com/random"
       alt="Cover Picture"
@@ -84,7 +78,7 @@ export const ProfileCard: React.FC = () => (
       />
     </div>
     <div className="p-6">
-      <h3 className="m-0 text-xl font-semibold text-gray-800">John Doe</h3>
+      <p className="m-0 text-xl font-semibold text-gray-800">John Doe</p>
       <p className="m-0 mt-2 text-sm text-gray-600">Frontend Developer</p>
       <div className="mt-4 flex items-center justify-between">
         <button
@@ -109,7 +103,7 @@ export const ProfileCard: React.FC = () => (
 );
 
 export const PropertyCard: React.FC = () => (
-  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg bg-white shadow-lg">
+  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg bg-white border shadow">
     <div className="w-max overflow-hidden rounded-lg shadow-lg">
       <div className="mx-auto max-w-md bg-white">
         <div className="flex">
@@ -122,9 +116,9 @@ export const PropertyCard: React.FC = () => (
             <div className="text-xs font-semibold uppercase tracking-wide text-indigo-500">
               Builder
             </div>
-            <h2 className="m-0 cursor-pointer text-lg font-semibold text-gray-800">
+            <p className="m-0 cursor-pointer text-lg font-semibold text-gray-800">
               Property Name
-            </h2>
+            </p>
             <p className="m-0 mt-2 text-sm text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -201,16 +195,16 @@ export const ArticleCard: React.FC = () => (
       className="m-0 mb-4 h-48 w-full rounded-md object-cover md:mb-0 md:mr-4 md:w-1/3"
     />
     <div className="md:flex-1">
-      <h2 className="m-0 mb-2 text-2xl font-bold">Article Title</h2>
-      <p className="m-0 mb-2 text-gray-600">
+      <p className="m-0 mb-2 text-2xl font-bold">Article Title</p>
+      <p className="m-0 mb-2 text-base text-gray-600">
         Published on <span className="text-blue-500">March 1, 2024</span> by{" "}
         <span className="text-blue-500">Author Name</span>
       </p>
-      <p className="m-0 mb-4 leading-7 text-gray-700">
+      <p className="m-0 mb-4 text-base leading-7 text-gray-700">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
         justo eu neque vulputate, a eleifend purus.
       </p>
-      <div className="cursor-pointer text-blue-500 hover:underline">
+      <div className="cursor-pointer text-base text-blue-500 hover:underline">
         Read More
       </div>
     </div>
@@ -221,7 +215,7 @@ export const ForumCard: React.FC = () => (
   <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg ">
     <div className="overflow-hidden bg-white sm:flex">
       <div className="p-4 sm:flex-1">
-        <h3 className="m-0 text-lg font-semibold">Forum Topic Title</h3>
+        <p className="m-0 text-lg font-semibold">Forum Topic Title</p>
         <div className="mt-2 flex items-center">
           <img
             src="https://source.unsplash.com/random/32x32"
@@ -229,7 +223,7 @@ export const ForumCard: React.FC = () => (
             className="m-0 h-8 w-8 rounded-full"
           />
           <div className="ml-2">
-            <p className="m-0 text-gray-600">
+            <p className="m-0 text-base text-gray-600">
               Posted by <span className="text-blue-500">John Doe</span>
             </p>
             <p className="m-0 text-sm text-gray-500">Member since 2020</p>
@@ -253,8 +247,8 @@ export const ForumCard: React.FC = () => (
       </div>
     </div>
     <div className="flex justify-between bg-gray-100 px-4 py-2">
-      <p className="m-0 text-gray-600">Last reply on March 5, 2024</p>
-      <p className="m-0 text-gray-600">12 replies</p>
+      <p className="m-0 text-base text-gray-600">Last reply on March 5, 2024</p>
+      <p className="m-0 text-base text-gray-600">12 replies</p>
     </div>
   </div>
 );
@@ -270,14 +264,12 @@ export const PodcastCard: React.FC = () => (
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-75"></div>
         <div className="absolute inset-x-0 bottom-0 p-4">
-          <h3 className="m-0 text-lg font-semibold text-white">
-            Podcast Title
-          </h3>
+          <p className="m-0 text-lg font-semibold text-white">Podcast Title</p>
           <p className="m-0 text-sm text-gray-300">Episode 12: Episode Name</p>
         </div>
       </div>
       <div className="p-4">
-        <p className="m-0 text-gray-700">
+        <p className="m-0 text-base text-gray-700">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
           justo eu neque vulputate, a eleifend purus tristique.
         </p>
@@ -285,7 +277,7 @@ export const PodcastCard: React.FC = () => (
           <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full mr-2">
             Episode 12
           </span>
-          <p className="m-0 text-gray-600">1h 22m</p>
+          <p className="m-0 text-base text-gray-600">1h 22m</p>
         </div>
       </div>
       <div className="px-4 py-2 bg-gray-100 flex justify-between items-center">
@@ -295,11 +287,11 @@ export const PodcastCard: React.FC = () => (
             alt="Avatar"
             className="m-0 h-8 w-8 rounded-full"
           />
-          <p className="m-0 text-gray-600 ml-2">
+          <p className="m-0 text-base text-gray-600 ml-2">
             Featuring <span className="text-blue-500">John Doe</span>
           </p>
         </div>
-        <button className="bg-blue-500 text-white px-3 py-1 rounded-full">
+        <button className="bg-blue-500 text-base text-white px-3 py-1 rounded-full">
           Play
         </button>
       </div>

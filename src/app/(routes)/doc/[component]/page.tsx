@@ -12,6 +12,7 @@ import {
   BannerDocs,
   BentoDocs,
   BlogListDocs,
+  CardDocs,
 } from "../../../doc/index";
 
 import {
@@ -28,7 +29,8 @@ type ComponentKey =
   | "Badge"
   | "Banner"
   | "Bento"
-  | "BlogList";
+  | "BlogList"
+  | "Card";
 
 // Mapping between component titles and their corresponding documentation components
 const components: Record<ComponentKey, React.FC> = {
@@ -40,6 +42,7 @@ const components: Record<ComponentKey, React.FC> = {
   Banner: BannerDocs,
   Bento: BentoDocs,
   BlogList: BlogListDocs,
+  Card: CardDocs,
 };
 
 // Main ComponentPage function
