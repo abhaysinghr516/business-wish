@@ -15,10 +15,48 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
-  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="flex flex-wrap justify-center">
+  <!-- Blog Card 1 -->
+  <div class="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <div class="p-4">
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Blog Card 2 -->
+  <div class="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <div class="p-4">
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Add more blog cards as needed -->
+</div>`}
+  codeJsx={`<div className="flex flex-wrap justify-center">
+  {/* Blog Card 1 */}
+  <div className="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <div className="p-4">
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Blog Card 2 */}
+  <div className="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <div className="p-4">
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Add more blog cards as needed */}
+</div>`}
 />
 
 #### Minimal Card Blog List
@@ -28,10 +66,52 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
-  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="flex flex-wrap justify-center">
+  <!-- Blog Card 1 -->
+  <div class="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <img class="h-32 w-full object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+    <div class="p-4">
+      <div class="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  <!-- Blog Card 2 -->
+  <div class="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <img class="h-32 w-full object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+    <div class="p-4">
+      <div class="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  <!-- Add more blog cards as needed -->
+</div>`}
+  codeJsx={`<div className="flex flex-wrap justify-center">
+  {/* Blog Card 1 */}
+  <div className="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <img className="h-32 w-full object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+    <div className="p-4">
+      <div className="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  {/* Blog Card 2 */}
+  <div className="m-4 mx-auto max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
+    <img className="h-32 w-full object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+    <div className="p-4">
+      <div className="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  {/* Add more blog cards as needed */}
+</div>`}
 />
 
 #### Horizontal Card Blog List
@@ -41,10 +121,60 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
-  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="flex flex-wrap justify-center">
+  <!-- Blog Card 1 -->
+  <div class="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div class="flex">
+      <img class="h-36 w-64 object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+      <div class="p-4">
+        <div class="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+        <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+        <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Card 2 -->
+  <div class="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div class="flex">
+      <img class="h-36 w-64 object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+      <div class="p-4">
+        <div class="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+        <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+        <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add more blog cards as needed -->
+</div>`}
+  codeJsx={`<div className="flex flex-wrap justify-center">
+  {/* Blog Card 1 */}
+  <div className="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div className="flex">
+      <img className="h-36 w-64 object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+      <div className="p-4">
+        <div className="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+        <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+        <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Blog Card 2 */}
+  <div className="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div className="flex">
+      <img className="h-36 w-64 object-cover object-center" src="https://source.unsplash.com/random" alt="Blog Image" />
+      <div className="p-4">
+        <div className="text-xs font-semibold uppercase tracking-wide text-indigo-500">Featured</div>
+        <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+        <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Add more blog cards as needed */}
+</div>`}
 />
 
 #### List Layout Blog List
@@ -54,10 +184,52 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
-  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="flex flex-wrap justify-center">
+  <!-- Blog Card 1 -->
+  <div class="m-4 mx-auto max-w-lg">
+    <div class="border-b border-gray-200 py-4">
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-1 text-sm text-gray-600">Published on <span class="font-semibold">April 1, 2024</span></p>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Blog Card 2 -->
+  <div class="m-4 mx-auto max-w-lg">
+    <div class="border-b border-gray-200 py-4">
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-1 text-sm text-gray-600">Published on <span class="font-semibold">April 1, 2024</span></p>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Add more blog cards as needed -->
+</div>`}
+  codeJsx={`<div className="flex flex-wrap justify-center">
+  {/* Blog Card 1 */}
+  <div className="m-4 mx-auto max-w-lg">
+    <div className="border-b border-gray-200 py-4">
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-1 text-sm text-gray-600">Published on <span className="font-semibold">April 1, 2024</span></p>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Blog Card 2 */}
+  <div className="m-4 mx-auto max-w-lg">
+    <div className="border-b border-gray-200 py-4">
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-1 text-sm text-gray-600">Published on <span className="font-semibold">April 1, 2024</span></p>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Add more blog cards as needed */}
+</div>`}
 />
 
 #### Card with Author and Tags Blog List
@@ -67,10 +239,64 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
-  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="flex flex-wrap justify-center">
+  <!-- Blog Card 1 -->
+  <div class="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div class="p-4">
+      <div class="flex items-center justify-between">
+        <div class="text-sm font-semibold text-gray-600">Author Name</div>
+        <div class="text-sm font-semibold text-gray-600">Tags: <span class="text-indigo-500">Technology</span>, <span class="text-indigo-500">Programming</span></div>
+      </div>
+      <h2 class="mt-2 cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Blog Card 2 -->
+  <div class="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div class="p-4">
+      <div class="flex items-center justify-between">
+        <div class="text-sm font-semibold text-gray-600">Author Name</div>
+        <div class="text-sm font-semibold text-gray-600">Tags: <span class="text-indigo-500">Technology</span>, <span class="text-indigo-500">Programming</span></div>
+      </div>
+      <h2 class="mt-2 cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Add more blog cards as needed -->
+</div>`}
+  codeJsx={`<div className="flex flex-wrap justify-center">
+  {/* Blog Card 1 */}
+  <div className="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div className="p-4">
+      <div className="flex items-center justify-between">
+        <div className="text-sm font-semibold text-gray-600">Author Name</div>
+        <div className="text-sm font-semibold text-gray-600">Tags: <span className="text-indigo-500">Technology</span>, <span className="text-indigo-500">Programming</span></div>
+      </div>
+      <h2 className="mt-2 cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Blog Card 2 */}
+  <div className="m-4 mx-auto max-w-md overflow-hidden bg-white shadow-md">
+    <div className="p-4">
+      <div className="flex items-center justify-between">
+        <div className="text-sm font-semibold text-gray-600">Author Name</div>
+        <div className="text-sm font-semibold text-gray-600">Tags: <span className="text-indigo-500">Technology</span>, <span className="text-indigo-500">Programming</span></div>
+      </div>
+      <h2 className="mt-2 cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Add more blog cards as needed */}
+</div>`}
 />
 
 #### Timeline Layout Blog List
@@ -80,10 +306,52 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
-  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="flex flex-wrap justify-center">
+  <!-- Blog Card 1 -->
+  <div class="m-4 mx-auto max-w-md">
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-1 text-sm text-gray-600">Published on <span class="font-semibold">April 1, 2024</span></p>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Blog Card 2 -->
+  <div class="m-4 mx-auto max-w-md">
+    <div class="border-l-4 border-indigo-500 pl-4">
+      <h2 class="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p class="mt-1 text-sm text-gray-600">Published on <span class="font-semibold">April 1, 2024</span></p>
+      <p class="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" class="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  <!-- Add more blog cards as needed -->
+</div>`}
+  codeJsx={`<div className="flex flex-wrap justify-center">
+  {/* Blog Card 1 */}
+  <div className="m-4 mx-auto max-w-md">
+    <div className="border-l-4 border-indigo-500 pl-4">
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-1 text-sm text-gray-600">Published on <span className="font-semibold">April 1, 2024</span></p>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Blog Card 2 */}
+  <div className="m-4 mx-auto max-w-md">
+    <div className="border-l-4 border-indigo-500 pl-4">
+      <h2 className="cursor-pointer text-lg font-semibold text-gray-800">Title of the Blog Post</h2>
+      <p className="mt-1 text-sm text-gray-600">Published on <span className="font-semibold">April 1, 2024</span></p>
+      <p className="mt-2 text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <a href="#" className="mt-2 block text-indigo-500 hover:underline">Read more</a>
+    </div>
+  </div>
+
+  {/* Add more blog cards as needed */}
+</div>`}
 />
 
 export default ({ children }) => <DocLayout>{children}</DocLayout>;

@@ -15,8 +15,26 @@ import Preview from '../components/Preview';
 </Preview>
 
 <CodeBlock
-  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
-<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeHtml={`<div class="grid grid-cols-4 grid-rows-3 gap-2 bg-black p-5">
+  <div class="col-span-1 row-span-2 flex h-60 items-center justify-center rounded-xl bg-yellow-100">
+    <div class="text-center text-xl font-medium">Content</div>
+  </div>
+  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-green-100">
+    <div class="text-center text-xl font-medium">Content</div>
+  </div>
+  <div class="col-span-2 row-span-2 flex items-center justify-center rounded-xl bg-purple-100">
+    <div class="text-center text-xl font-medium">Content</div>
+  </div>
+  <div class="col-span-2 row-span-1 flex items-center justify-center rounded-xl bg-red-100">
+    <div class="text-center text-xl font-medium">Content</div>
+  </div>
+  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-lg bg-indigo-100">
+    <div class="text-center text-xl font-medium">Content</div>
+  </div>
+  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
+    <div class="text-xl font-medium">Content</div>
+  </div>
+</div>`}
   codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
 <button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
 />
