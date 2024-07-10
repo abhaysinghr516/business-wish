@@ -100,21 +100,5 @@ export default function ComponentPage() {
     ? components[componentData.title as ComponentKey]
     : null;
 
-  return (
-    <>
-      <main className="mx-4 relative max-w-screen-2xl sm:mx-auto">
-        <div className="fixed z-50 top-0 right-0 w-full bg-white lg:border-b">
-          <Navbar />
-        </div>
-        <div className="lg:flex h-screen">
-          <Sidebar />
-          <div className="flex-1 overflow-auto lg:mt-16">
-            <div className="flex justify-center mt-10 mb-20">
-              {Component ? <Component /> : null}
-            </div>
-          </div>
-        </div>
-      </main>
-    </>
-  );
+  return <div className=" ">{Component ? <Component /> : null}</div>;
 }
