@@ -1,6 +1,6 @@
 export const BasicBreadcrumb: React.FC = () => (
   <nav>
-    <ol className="flex items-center space-x-2 list-none">
+    <ol className="flex items-center text-base space-x-2 list-none">
       <li>
         <a href="#" className="text-gray-600 hover:text-gray-900">
           Home
@@ -26,7 +26,7 @@ export const BasicBreadcrumb: React.FC = () => (
 
 export const BreadcrumbwithIcons: React.FC = () => (
   <nav>
-    <ol className="flex items-center space-x-2 list-none">
+    <ol className="flex items-center text-base space-x-2 list-none">
       <li>
         <a
           href="#"
@@ -84,7 +84,7 @@ export const BreadcrumbwithIcons: React.FC = () => (
 
 export const BreadcrumbwithSeparators: React.FC = () => (
   <nav>
-    <ol className="flex items-center list-none">
+    <ol className="flex items-center text-base list-none">
       <li>
         <a href="#" className="text-gray-600 hover:text-gray-900">
           Home

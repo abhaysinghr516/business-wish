@@ -1,5 +1,5 @@
 export const BottomNavigation: React.FC = () => (
-  <div className=" bottom-0 left-0 right-0 flex justify-around bg-white py-2 shadow-md">
+  <div className=" bottom-0 text-base left-0 right-0 flex justify-around bg-white py-2 shadow-md">
     <div className="cursor-pointer flex flex-col items-center justify-center font-semibold text-blue-500 focus:outline-none">
       <span>
         <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
