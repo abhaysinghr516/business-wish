@@ -1,10 +1,19 @@
+---
+---
+
+import DocLayout from '../../components/DocsLayout';
+import CodeBlock from '../../components/CodeBlock';
+import Preview from '../../components/Preview';
 import { BasicAccordion, BorderedAccordion } from '../../../components/Accordion';
 
-### Basic Accordion
+#### Basic Accordion
 
+<Preview>
 <BasicAccordion />
-```html
-<div class="flex cursor-pointer items-center justify-between bg-gray-200 px-6 py-4">
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="flex cursor-pointer items-center justify-between bg-gray-200 px-6 py-4">
   <h3 class="text-lg font-semibold">Accordion Title</h3>
   <span>
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -14,14 +23,28 @@ import { BasicAccordion, BorderedAccordion } from '../../../components/Accordion
 </div>
 <div class="bg-gray-100 px-6 py-4">
   <p>Accordion content goes here...</p>
+</div>`}
+  codeJsx={`<div className="flex cursor-pointer items-center justify-between bg-gray-200 px-6 py-4">
+  <h3 className="text-lg font-semibold">Accordion Title</h3>
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </span>
 </div>
-```
+<div className="bg-gray-100 px-6 py-4">
+  <p>Accordion content goes here...</p>
+</div>`}
+/>
 
-### Bordered Accordion
+ #### Bordered Accordion
 
-<BorderedAccordion />
-```html
-<div class="rounded-lg border border-gray-300">
+<Preview>
+ <BorderedAccordion />
+</Preview>
+ 
+<CodeBlock
+  codeHtml={`<div class="rounded-lg border border-gray-300">
   <div class="flex cursor-pointer items-center justify-between border-b px-6 py-4">
     <h3 class="text-lg font-semibold">Accordion Title</h3>
     <span>
@@ -33,7 +56,21 @@ import { BasicAccordion, BorderedAccordion } from '../../../components/Accordion
   <div class="px-6 py-4">
     <p>Accordion content goes here...</p>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="rounded-lg border border-gray-300">
+  <div className="flex cursor-pointer items-center justify-between border-b px-6 py-4">
+    <h3 className="text-lg font-semibold">Accordion Title</h3>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </span>
+  </div>
+  <div className="px-6 py-4">
+    <p>Accordion content goes here...</p>
+  </div>
+</div>`}
+/>
 
-export default ({ children }) => <div className="prose">{children}</div>;
+
+export default ({ children }) => <DocLayout className="prose">{children}</DocLayout>;

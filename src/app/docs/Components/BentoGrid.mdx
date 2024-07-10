@@ -1,9 +1,19 @@
+---
+---
+
+import DocLayout from '../../components/DocsLayout';
+import CodeBlock from '../../components/CodeBlock';
+import Preview from '../../components/Preview';
 import { BentoGrid1, BentoGrid2, BentoGrid3, BentoGrid4, BentoGrid5 } from '../../../components/BentoGrid'
 
-### Bento Grid Layout 1
-<BentoGrid1 />
-```html
-<div class="grid grid-cols-4 grid-rows-3 gap-2 bg-black p-5">
+#### Bento Grid Layout 1
+
+<Preview>
+    <BentoGrid1 />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="grid grid-cols-4 grid-rows-3 gap-2 bg-black p-5">
   <div class="col-span-1 row-span-2 flex h-60 items-center justify-center rounded-xl bg-yellow-100">
     <div class="text-center text-xl font-medium">Content</div>
   </div>
@@ -22,145 +32,65 @@ import { BentoGrid1, BentoGrid2, BentoGrid3, BentoGrid4, BentoGrid5 } from '../.
   <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
     <div class="text-xl font-medium">Content</div>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
 
-### Bento Grid Layout 2
-<BentoGrid2 />
-```html
-<div class="grid grid-cols-4 grid-rows-4 gap-2 bg-black p-5">
-  <div class="col-span-1 row-span-2 flex h-60 items-center justify-center rounded-xl bg-yellow-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-green-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-2 row-span-2 flex items-center justify-center rounded-xl bg-red-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-lg bg-indigo-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-2 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-</div>
-```
 
-### Bento Grid Layout 3
-<BentoGrid3 />
-```html
-<div class="grid grid-cols-3 grid-rows-6 gap-2 bg-black p-5">
-  <div class="col-span-1 row-span-3 flex h-60 items-center justify-center rounded-xl bg-yellow-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-green-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-3 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-red-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-3 flex items-center justify-center rounded-lg bg-indigo-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-2 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-</div>
-```
+#### Bento Grid Layout 2
 
-### Bento Grid Layout 4
-<BentoGrid4 />
-```html
-<div class="grid grid-cols-5 grid-rows-4 gap-2 bg-black p-5">
-  <div class="col-span-1 row-span-1 flex h-24 items-center justify-center rounded-xl bg-yellow-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-green-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-2 row-span-1 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-red-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-3 row-span-2 flex items-center justify-center rounded-lg bg-indigo-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-3 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-2 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-</div>
-```
+<Preview>
+    <BentoGrid2 />
+</Preview>
 
-### Bento Grid Layout 5
-<BentoGrid5 />
-```html
-<div class="grid grid-cols-3 grid-rows-5 gap-2 bg-black p-5">
-  <div class="col-span-1 row-span-1 flex h-24 items-center justify-center rounded-xl bg-yellow-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-green-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-3 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-purple-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-red-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-lg bg-indigo-100">
-    <div class="text-center text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-2 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-  <div class="col-span-1 row-span-1 flex items-center justify-center rounded-xl bg-orange-100">
-    <div class="text-xl font-medium">Content</div>
-  </div>
-</div>
-```
-export default ({children}) => <div className="prose">{children}</div>
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 3
+
+<Preview>
+    <BentoGrid3 />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 4
+
+<Preview>
+    <BentoGrid4 />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+
+#### Bento Grid Layout 5
+
+<Preview>
+    <BentoGrid5 />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<button type="button" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" class="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+  codeJsx={`<button type="button" className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Primary</button>
+<button type="button" className="rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400">Secondary</button>`}
+/>
+
+export default ({ children }) => <DocLayout>{children}</DocLayout>;

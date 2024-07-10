@@ -1,36 +1,59 @@
+---
+---
+
+import DocLayout from '../../components/DocsLayout';
+import CodeBlock from '../../components/CodeBlock';
+import Preview from '../../components/Preview';
 import { BasicBanner, BannerwithIcon, DismissibleBanner, BannerwithActions, StackedBanners, BannerwithHeadingAndButton } from '../../../components/Banner';
       
-### Basic Banner
-      
-<BasicBanner />
-```html
-    <div class="bg-blue-100 text-blue-800 px-4 py-3 rounded-lg">
-        <p class="text-sm">This is a basic banner component.</p>
-    </div>
-```
-      
-### Banner with Icon
+#### Basic Banner
 
-<BannerwithIcon />
-```html
-<div class="flex items-center rounded-lg bg-green-100 px-4 py-3 text-green-800">
-  <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+<Preview>
+    <BasicBanner />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="bg-blue-100 text-blue-800 px-4 py-3 rounded-lg">
+  <p class="text-sm">This is a basic banner component.</p>
+</div>`}
+  codeJsx={`<div className="bg-blue-100 text-blue-800 px-4 py-3 rounded-lg">
+  <p className="text-sm">This is a basic banner component.</p>
+</div>`}
+/>
+
+#### Banner with Icon
+
+<Preview>
+    <BannerwithIcon />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="flex items-center rounded-lg bg-green-100 px-4 py-3 text-green-800">
+  <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
   </svg>
   <div class="text-sm">This is a banner with an icon.</div>
-</div>
-      ```
+</div>`}
+  codeJsx={`<div className="flex items-center rounded-lg bg-green-100 px-4 py-3 text-green-800">
+  <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+  </svg>
+  <div className="text-sm">This is a banner with an icon.</div>
+</div>`}
+/>
 
-### Dismissible Banner
+#### Dismissible Banner
 
-<DismissibleBanner />
-```html
-<div class="relative rounded-lg bg-yellow-100 px-4 py-3 text-yellow-800">
+<Preview>
+    <DismissibleBanner />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="relative rounded-lg bg-yellow-100 px-4 py-3 text-yellow-800">
   <div class="flex items-center">
     <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
     </svg>
-
     <div class="text-sm">This is a dismissible banner component.</div>
   </div>
   <button class="absolute right-0 top-0 mr-4 mt-4 text-yellow-800 hover:text-yellow-700">
@@ -38,29 +61,57 @@ import { BasicBanner, BannerwithIcon, DismissibleBanner, BannerwithActions, Stac
       <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
     </svg>
   </button>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="relative rounded-lg bg-yellow-100 px-4 py-3 text-yellow-800">
+  <div className="flex items-center">
+    <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+    </svg>
+    <div className="text-sm">This is a dismissible banner component.</div>
+  </div>
+  <button className="absolute right-0 top-0 mr-4 mt-4 text-yellow-800 hover:text-yellow-700">
+    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+    </svg>
+  </button>
+</div>`}
+/>
 
-### Banner with Actions
+#### Banner with Actions
 
-<BannerwithActions />
-```html
-<div class="bg-indigo-100 text-indigo-800 px-4 py-3 rounded-lg flex items-center justify-between">
-  <div>
+<Preview>
+    <BannerwithActions />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="bg-indigo-100 text-indigo-800 px-4 py-3 rounded-lg flex flex-col sm:flex-row items-center justify-between">
+  <div class="mb-2 sm:mb-0">
     <p class="text-sm">This is a banner with actions.</p>
   </div>
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center justify-center sm:justify-end space-x-2">
     <button class="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm">Action 1</button>
     <button class="bg-indigo-200 text-indigo-800 px-3 py-2 rounded-md text-sm">Action 2</button>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="bg-indigo-100 text-indigo-800 px-4 py-3 rounded-lg flex flex-col sm:flex-row items-center justify-between">
+  <div className="mb-2 sm:mb-0">
+    <p className="text-sm">This is a banner with actions.</p>
+  </div>
+  <div className="flex items-center justify-center sm:justify-end space-x-2">
+    <button className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm">Action 1</button>
+    <button className="bg-indigo-200 text-indigo-800 px-3 py-2 rounded-md text-sm">Action 2</button>
+  </div>
+</div>`}
+/>
 
-### Stacked Banners
+#### Stacked Banners
 
-<StackedBanners />
-```html
-<div class="space-y-4">
+<Preview>
+    <StackedBanners />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="space-y-4">
   <div class="rounded-lg bg-blue-100 px-4 py-3 text-blue-800">
     <div class="text-sm">This is the first banner.</div>
   </div>
@@ -70,19 +121,38 @@ import { BasicBanner, BannerwithIcon, DismissibleBanner, BannerwithActions, Stac
   <div class="rounded-lg bg-yellow-100 px-4 py-3 text-yellow-800">
     <div class="text-sm">This is the third banner.</div>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="space-y-4">
+  <div className="rounded-lg bg-blue-100 px-4 py-3 text-blue-800">
+    <div className="text-sm">This is the first banner.</div>
+  </div>
+  <div className="rounded-lg bg-green-100 px-4 py-3 text-green-800">
+    <div className="text-sm">This is the second banner.</div>
+  </div>
+  <div className="rounded-lg bg-yellow-100 px-4 py-3 text-yellow-800">
+    <div className="text-sm">This is the third banner.</div>
+  </div>
+</div>`}
+/>
 
-### Banner with Heading and Button 
+#### Banner with Heading and Button
 
-<BannerwithHeadingAndButton />
-```html
-<div class="bg-blue-200 p-6">
+<Preview>
+    <BannerwithHeadingAndButton />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="bg-blue-200 p-6">
   <h2 class="mb-4 text-2xl font-bold">Special Offer!</h2>
   <p>Get 20% off on selected items. Limited time only.</p>
   <button class="mt-4 rounded bg-white px-4 py-2 text-blue-400">Shop Now</button>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="bg-blue-200 p-6">
+  <h2 className="mb-4 text-2xl font-bold">Special Offer!</h2>
+  <p>Get 20% off on selected items. Limited time only.</p>
+  <button className="mt-4 rounded bg-white px-4 py-2 text-blue-400">Shop Now</button>
+</div>`}
+/>
 
 
-export default ({children}) => <div className="prose">{children}</div>
+export default ({ children }) => <DocLayout>{children}</DocLayout>;

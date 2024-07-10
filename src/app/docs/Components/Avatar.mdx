@@ -1,23 +1,42 @@
+---
+---
+
+import DocLayout from '../../components/DocsLayout';
+import CodeBlock from '../../components/CodeBlock';
+import Preview from '../../components/Preview';
 import { AvatarwithInitials, AvatarwithNotificationBadge, AvatarwithActiveBadge, AvatarGroup } from '../../../components/Avatar';
 
-### Avatar with Initials
+#### Avatar with Initials
 
-<AvatarwithInitials />
-```html
-<div class="flex items-center">
+<Preview>
+    <AvatarwithInitials />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="flex items-center">
   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-500 text-2xl font-semibold text-white">JD</div>
   <div class="ml-4">
     <h3 class="text-lg font-semibold">John Doe</h3>
     <p class="text-gray-600">Online</p>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="flex items-center">
+  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-500 text-2xl font-semibold text-white">JD</div>
+  <div className="ml-4">
+    <h3 className="text-lg font-semibold">John Doe</h3>
+    <p className="text-gray-600">Online</p>
+  </div>
+</div>`}
+/>
 
-### Avatar with Notification Badge
+#### Avatar with Notification Badge
 
-<AvatarwithNotificationBadge />
-```html
-<div class="flex items-center">
+<Preview>
+    <AvatarwithNotificationBadge />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="flex items-center">
   <div class="relative">
     <img class="h-12 w-12 rounded-full" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
     <span class="absolute right-0 top-0 block rounded-full bg-red-500 px-2 py-1 text-xs text-white"> 3 </span>
@@ -26,14 +45,27 @@ import { AvatarwithInitials, AvatarwithNotificationBadge, AvatarwithActiveBadge,
     <h3 class="text-lg font-semibold">John Doe</h3>
     <p class="text-gray-600">Online</p>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="flex items-center">
+  <div className="relative">
+    <img className="h-12 w-12 rounded-full" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
+    <span className="absolute right-0 top-0 block rounded-full bg-red-500 px-2 py-1 text-xs text-white"> 3 </span>
+  </div>
+  <div className="ml-4">
+    <h3 className="text-lg font-semibold">John Doe</h3>
+    <p className="text-gray-600">Online</p>
+  </div>
+</div>`}
+/>
 
-### Avatar with Active Badge
+#### Avatar with Active Badge
 
-<AvatarwithActiveBadge />
-```html
-<div class="flex items-center">
+<Preview>
+    <AvatarwithActiveBadge />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="flex items-center">
   <div class="avatar relative">
     <img class="h-12 w-12 rounded-full" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
     <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white"></span>
@@ -42,14 +74,27 @@ import { AvatarwithInitials, AvatarwithNotificationBadge, AvatarwithActiveBadge,
     <h3 class="text-lg font-semibold">John Doe</h3>
     <p class="text-gray-600">Online</p>
   </div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="flex items-center">
+  <div className="avatar relative">
+    <img className="h-12 w-12 rounded-full" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
+    <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white"></span>
+  </div>
+  <div className="ml-4">
+    <h3 className="text-lg font-semibold">John Doe</h3>
+    <p className="text-gray-600">Online</p>
+  </div>
+</div>`}
+/>
 
-### Avatar Group
+#### Avatar Group
 
-<AvatarGroup />
-```html
-<div class="flex -space-x-4">
+<Preview>
+    <AvatarGroup />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div class="flex -space-x-4">
   <div>
     <img class="h-12 w-12 rounded-full border-2 border-white" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
   </div>
@@ -60,7 +105,19 @@ import { AvatarwithInitials, AvatarwithNotificationBadge, AvatarwithActiveBadge,
     <img class="h-12 w-12 rounded-full border-2 border-white" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
   </div>
   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-400 text-2xl font-semibold text-white">+3</div>
-</div>
-```
+</div>`}
+  codeJsx={`<div className="flex -space-x-4">
+  <div>
+    <img className="h-12 w-12 rounded-full border-2 border-white" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
+  </div>
+  <div>
+    <img className="h-12 w-12 rounded-full border-2 border-white" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
+  </div>
+  <div>
+    <img className="h-12 w-12 rounded-full border-2 border-white" src="https://source.unsplash.com/random/100x100?face" alt="Avatar" />
+  </div>
+  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-400 text-2xl font-semibold text-white">+3</div>
+</div>`}
+/>
 
-export default ({ children }) => <div className="prose">{children}</div>;
+export default ({ children }) => <DocLayout>{children}</DocLayout>;
