@@ -25,9 +25,9 @@ const Page = () => {
             Coming Soon!
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-12 max-w-md sm:max-w-3xl mx-auto leading-relaxed">
-            I'm crafting a stunning, versatile template to elevate your
-            projects. I'm putting the finishing touches on a design that will
-            transform your ideas into reality.
+            I&apos;m crafting a stunning, versatile template to elevate your
+            projects. I&apos;m putting the finishing touches on a design that
+            will transform your ideas into reality.
           </p>
         </div>
       </main>
