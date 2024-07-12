@@ -9,7 +9,7 @@ export const SimpleFooter: React.FC = () => (
 );
 
 export const FooterwithLinks: React.FC = () => (
-  <footer className="bg-gray-900 text-white py-4">
+  <footer className="bg-gray-900 text-base text-white py-4">
     <div className="container mx-auto flex justify-center">
       <div className="cursor-pointer mx-4 hover:text-gray-400">Home</div>
       <div className="cursor-pointer mx-4 hover:text-gray-400">About</div>
@@ -20,7 +20,7 @@ export const FooterwithLinks: React.FC = () => (
 );
 
 export const FooterwithMultipleSections: React.FC = () => (
-  <footer className="bg-gray-900 py-8 text-white">
+  <footer className="bg-gray-900 text-base py-8 text-white">
     <div className="container mx-auto flex flex-col justify-around sm:flex-row">
       <div className="mb-4 lg:mb-0">
         <p className="m-0 text-lg font-semibold">Your Company</p>
@@ -88,8 +88,8 @@ export const FooterwithMultipleSections: React.FC = () => (
 );
 
 export const CenteredwithBranding: React.FC = () => (
-  <footer className="bg-gray-900 py-4 text-center text-white">
-    <h3 className="m-0 text-3xl text-white font-bold">Company Name</h3>
+  <footer className="bg-gray-900 text-base py-4 text-center text-white">
+    <p className="m-0 text-3xl text-white font-bold">Company Name</p>
     <p className="m-0 mt-2">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </p>
@@ -112,7 +112,7 @@ export const CenteredwithBranding: React.FC = () => (
 );
 
 export const FooterwithNewsletter: React.FC = () => (
-  <footer className="bg-gray-900 text-white px-8">
+  <footer className="bg-gray-900 text-base text-white px-8">
     <div className="container mx-auto flex flex-col items-center justify-between border-b py-12 md:flex-row">
       <div className="mb-6 md:mb-0 md:w-1/2">
         <p className="m-0 text-lg font-semibold">Subscribe to our Newsletter</p>
@@ -143,8 +143,8 @@ export const FooterwithNewsletter: React.FC = () => (
 );
 
 export const FooterwithCTA: React.FC = () => (
-  <footer className="px-10 bg-gray-900 py-8 text-center text-white">
-    <h2 className="m-0 text-2xl font-bold">Join our community</h2>
+  <footer className="px-10 text-base bg-gray-900 py-8 text-center text-white">
+    <p className="m-0 text-2xl font-bold">Join our community</p>
     <p className="m-0 mt-2">
       Get updates on our latest products and promotions.
     </p>
@@ -177,7 +177,7 @@ export const FooterwithCTA: React.FC = () => (
         <p className="m-0 text-sm">123 Street, Cityville</p>
         <p className="m-0 text-sm">info@example.com</p>
       </div>
-      <div className="mb-4 lg:mb-0">
+      <div className="mb-4 text-left lg:mb-0">
         <p className="m-0 text-lg font-semibold">Company</p>
         <div>
           <div>
@@ -238,7 +238,7 @@ export const FooterwithCTA: React.FC = () => (
 );
 
 export const DetailedFooter: React.FC = () => (
-  <footer className="bg-gray-900 py-12 text-gray-300">
+  <footer className="bg-gray-900 text-base py-12 text-gray-300">
     <div className="container mx-auto grid grid-cols-2 gap-8 ">
       <div className="ml-5 ">
         <div className="cursor-pointer mb-4 flex items-center">
@@ -316,7 +316,7 @@ export const DetailedFooter: React.FC = () => (
         </div>
       </div>
       <div className="ml-5 ">
-        <h3 className="m-0 mb-4 text-lg font-bold text-gray-300">Products</h3>
+        <p className="m-0 mb-4 text-lg font-bold text-gray-300">Products</p>
         <div className="space-y-2">
           <div>
             <div className="cursor-pointer hover:text-white">AI Models</div>
@@ -333,7 +333,7 @@ export const DetailedFooter: React.FC = () => (
         </div>
       </div>
       <div className="ml-5 ">
-        <h3 className="m-0 mb-4 text-lg text-gray-300 font-bold">Resources</h3>
+        <p className="m-0 mb-4 text-lg text-gray-300 font-bold">Resources</p>
         <div className="space-y-2">
           <div>
             <div className="cursor-pointer hover:text-white">Blog</div>
@@ -350,7 +350,7 @@ export const DetailedFooter: React.FC = () => (
         </div>
       </div>
       <div className="ml-5">
-        <h3 className="m-0 mb-4 text-lg text-gray-300 font-bold">Subscribe</h3>
+        <p className="m-0 mb-4 text-lg text-gray-300 font-bold">Subscribe</p>
         <p className="m-0 mb-4">
           Stay up to date with our latest news and updates.
         </p>
