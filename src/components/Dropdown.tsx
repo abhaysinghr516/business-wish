@@ -1,5 +1,5 @@
 export const SimpleDropdown: React.FC = () => (
-  <div className="bg-gray-100 pt-2 h-56 w-full flex justify-center">
+  <div className="bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
     <div className="relative inline-block">
       <button className="inline-flex items-center rounded bg-gray-200 px-4 py-2 font-semibold text-gray-700 hover:bg-gray-300">
         <span>Dropdown</span>
@@ -23,7 +23,7 @@ export const SimpleDropdown: React.FC = () => (
 );
 
 export const DropdownwithIcons: React.FC = () => (
-  <div className=" bg-gray-100 pt-2 h-56 w-full flex justify-center">
+  <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
     <div className="relative inline-block">
       <button className="inline-flex items-center rounded bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700">
         <span>Dropdown</span>
@@ -89,7 +89,7 @@ export const DropdownwithIcons: React.FC = () => (
 );
 
 export const DropdownwithDividers: React.FC = () => (
-  <div className=" bg-gray-100 pt-2 h-56 w-full flex justify-center">
+  <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
     <div className="relative inline-block">
       <button className="inline-flex items-center rounded bg-green-500 px-4 py-2 font-semibold text-white hover:bg-green-600">
         <span>Dropdown</span>
@@ -114,7 +114,7 @@ export const DropdownwithDividers: React.FC = () => (
 );
 
 export const DropdownwithHeaders: React.FC = () => (
-  <div className=" bg-gray-100 pt-2 h-56 w-full flex justify-center">
+  <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
     <div className="relative inline-block">
       <button className="inline-flex items-center rounded bg-gray-800 px-4 py-2 font-semibold text-white hover:bg-gray-700">
         <span>Dropdown</span>
@@ -138,7 +138,7 @@ export const DropdownwithHeaders: React.FC = () => (
 );
 
 export const GroupedOptionsDropdown: React.FC = () => (
-  <div className=" bg-gray-100 pt-2 h-96 w-full flex justify-center">
+  <div className=" bg-gray-100 text-base pt-2 h-96 w-full flex justify-center">
     <div className="relative inline-block">
       <button className="inline-flex items-center rounded bg-orange-500 px-4 py-2 font-semibold text-white hover:bg-orange-600">
         <span>Dropdown</span>
