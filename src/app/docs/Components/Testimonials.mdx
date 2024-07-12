@@ -1,9 +1,17 @@
+---
+---
+
+import DocLayout from '../../components/DocsLayout';
+import CodeBlock from '../../components/CodeBlock';
+import Preview from '../../components/Preview';
 import { MinimalCardTestimonial, TestimonialSectionwithGridlayout, FullWidthTestimonial, SliderTestimonial } from "../../../components/Testimonials";
 
-### Minimal Testimonials Card
+#### Minimal Testimonials Card
+<Preview>
 <MinimalCardTestimonial />
-```html
-<div class="py-8">
+</Preview>
+ <CodeBlock
+      codeHtml={`<div class="py-8">
   <div class="mx-auto max-w-md px-4">
     <div class="overflow-hidden rounded-lg border border-gray-300 bg-white">
       <div class="p-6">
@@ -19,13 +27,32 @@ import { MinimalCardTestimonial, TestimonialSectionwithGridlayout, FullWidthTest
       </div>
     </div>
   </div>
-</div>
-```
+</div>`}
+codeJsx={`<div className="py-8">
+  <div className="mx-auto max-w-md px-4">
+    <div className="overflow-hidden rounded-lg border border-gray-300 bg-white">
+      <div className="p-6">
+        <p className="text-lg font-semibold">Testimonial Title</p>
+        <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div className="mt-4 flex items-center">
+          <img src="https://source.unsplash.com/random/100x100?face" alt="Avatar" className="mr-4 h-10 w-10 rounded-full" />
+          <div>
+            <p className="font-semibold">John Doe</p>
+            <p className="text-sm text-gray-500">CEO, Company Name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`}
+    />
 
-### Testimonials Section with Grid layout
+#### Testimonials Section with Grid layout
+<Preview>
 <TestimonialSectionwithGridlayout />
-```html
-<div class="bg-gray-100 py-12">
+</Preview>
+ <CodeBlock
+      codeHtml={`<div class="bg-gray-100 py-12">
   <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
     <h2 class="mb-8 text-center text-3xl font-bold text-gray-800">Testimonials</h2>
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -43,13 +70,34 @@ import { MinimalCardTestimonial, TestimonialSectionwithGridlayout, FullWidthTest
       </div>
     </div>
   </div>
-</div>
-```
+</div>`}
+codeJsx={`<div className="bg-gray-100 py-12">
+  <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <h2 className="mb-8 text-center text-3xl font-bold text-gray-800">Testimonials</h2>
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Testimonial 1 */}
+      <div className="rounded-lg bg-white p-6">
+        <p className="mb-4 text-gray-600">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
+        <p className="font-semibold text-gray-800">John Doe</p>
+        <p className="text-gray-500">CEO, Company ABC</p>
+      </div>
+      {/* Testimonial 2 */}
+      <div className="rounded-lg bg-white p-6">
+        <p className="mb-4 text-gray-600">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."</p>
+        <p className="font-semibold text-gray-800">Jane Smith</p>
+        <p className="text-gray-500">Designer, Company XYZ</p>
+      </div>
+    </div>
+  </div>
+</div>`}
+    />
 
-### Full Width Testimonials
+#### Full Width Testimonials
+<Preview>
 <FullWidthTestimonial />
-```html
-<div class="bg-gray-100 py-8">
+</Preview>
+ <CodeBlock
+      codeHtml={`<div class="bg-gray-100 py-8">
   <div class="mx-auto max-w-4xl px-4">
     <div class="overflow-hidden rounded-lg bg-white">
       <div class="p-8">
@@ -65,13 +113,32 @@ import { MinimalCardTestimonial, TestimonialSectionwithGridlayout, FullWidthTest
       </div>
     </div>
   </div>
-</div>
-```
+</div>`}
+codeJsx={`<div className="bg-gray-100 py-8">
+  <div className="mx-auto max-w-4xl px-4">
+    <div className="overflow-hidden rounded-lg bg-white">
+      <div className="p-8">
+        <p className="text-xl font-semibold">Testimonial Title</p>
+        <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div className="mt-4 flex items-center">
+          <img src="https://source.unsplash.com/random/100x100?face" alt="Avatar" className="mr-4 h-10 w-10 rounded-full" />
+          <div>
+            <p className="font-semibold">John Doe</p>
+            <p className="text-sm text-gray-500">CEO, Company Name</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`}
+    />
 
-### Slider Testimonials
+#### Slider Testimonials
+<Preview>
 <SliderTestimonial />
-```html
-<div class="bg-gray-100 py-12">
+</Preview>
+ <CodeBlock
+      codeHtml={`<div class="bg-gray-100 py-12">
   <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
     <div class="relative">
       <div class="overflow-hidden rounded-lg bg-white">
@@ -101,7 +168,38 @@ import { MinimalCardTestimonial, TestimonialSectionwithGridlayout, FullWidthTest
       </button>
     </div>
   </div>
-</div>
-```
+</div>`}
+codeJsx={`<div className="bg-gray-100 py-12">
+  <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div className="relative">
+      <div className="overflow-hidden rounded-lg bg-white">
+        <div className="px-6 py-8">
+          <h2 className="mb-4 text-xl font-semibold text-gray-800">Testimonial Title</h2>
+          <p className="mb-4 text-gray-600">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
+          <div className="mb-4 flex items-center">
+            <img src="https://source.unsplash.com/random/100x100?face" alt="Avatar" className="mr-4 h-10 w-10 rounded-full" />
+            <div>
+              <p className="font-semibold">John Doe</p>
+              <p className="text-sm text-gray-500">CEO, Company Name</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="mt-5 flex gap-2">
+      <button className="rounded-full bg-purple-200 p-2 font-bold text-purple-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6 pr-0.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      <button className="rounded-full bg-purple-200 p-2 font-bold text-purple-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="ml-0.5 h-6 w-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>`}
+    />
 
-export default ({children}) => <div className="prose">{children}</div>
+export default ({ children }) => <DocLayout>{children}</DocLayout>;

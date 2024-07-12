@@ -1,5 +1,5 @@
 export const MinimalCardTestimonial: React.FC = () => (
-  <div className="py-8">
+  <div className="py-8 text-base">
     <div className="mx-auto max-w-md px-4">
       <div className="overflow-hidden rounded-lg border border-gray-300 bg-white">
         <div className="p-6">
@@ -26,7 +26,7 @@ export const MinimalCardTestimonial: React.FC = () => (
 );
 
 export const TestimonialSectionwithGridlayout: React.FC = () => (
-  <div className="bg-gray-100 py-12">
+  <div className="bg-gray-100 text-base py-12">
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <div className="mb-8 text-center text-3xl font-bold text-gray-800">
         Testimonials
@@ -54,7 +54,7 @@ export const TestimonialSectionwithGridlayout: React.FC = () => (
 );
 
 export const FullWidthTestimonial: React.FC = () => (
-  <div className="bg-gray-100 py-8">
+  <div className="bg-gray-100 text-base py-8">
     <div className="mx-auto max-w-4xl px-4">
       <div className="overflow-hidden rounded-lg bg-white">
         <div className="p-8">
@@ -81,14 +81,14 @@ export const FullWidthTestimonial: React.FC = () => (
 );
 
 export const SliderTestimonial: React.FC = () => (
-  <div className="bg-gray-100 py-12">
+  <div className="bg-gray-100 text-base py-12">
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <div className="relative">
         <div className="overflow-hidden rounded-lg bg-white">
           <div className="px-6 py-8">
-            <h2 className="m-0 mb-4 text-xl font-semibold text-gray-800">
+            <p className="m-0 mb-4 text-xl font-semibold text-gray-800">
               Testimonial Title
-            </h2>
+            </p>
             <p className="m-0 mb-4 text-gray-600">
               &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Integer posuere erat a ante.&quot;
