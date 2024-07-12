@@ -30,7 +30,7 @@ export const SkeletonLoadingforUserProfile: React.FC = () => (
 );
 
 export const SkeletonwithLoadedContent: React.FC = () => (
-  <div className="mx-auto max-w-3xl p-4">
+  <div className="mx-auto text-base max-w-3xl p-4">
     <div className="animate-pulse rounded-md bg-gray-200 p-6">
       <div className="mb-4 flex items-center">
         <div className="h-12 w-12 rounded-full bg-gray-300"></div>
@@ -44,9 +44,7 @@ export const SkeletonwithLoadedContent: React.FC = () => (
       <div className="mt-2 h-4 w-48 rounded bg-gray-300"></div>
     </div>
     <div className="mt-8">
-      <h1 className="m-0 text-2xl font-bold">
-        Your Preloaded Content Goes Here
-      </h1>
+      <p className="m-0 text-2xl font-bold">Your Preloaded Content Goes Here</p>
       <p className="m-0 text-gray-600">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit...
       </p>
