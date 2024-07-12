@@ -21,9 +21,11 @@ const Footer = () => {
             </p>
             <p className="text-sm">
               Created by{" "}
-              <span className="text-purple-400 font-semibold">
-                Abhay Singh Rathore
-              </span>
+              <Link href="https://x.com/abhaysinghr1">
+                <span className="text-purple-400 font-semibold">
+                  Abhay Singh Rathore
+                </span>
+              </Link>
               , a passionate Full-Stack Developer & UI/UX designer.
             </p>
           </div>
@@ -34,35 +36,59 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className="space-y-2">
-              {["Home", "Components", "Templates"].map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="hover:text-purple-400 transition duration-300"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/"
+                  className="hover:text-purple-400 transition duration-300"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/components"
+                  className="hover:text-purple-400 transition duration-300"
+                >
+                  Components
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/templates"
+                  className="hover:text-purple-400 transition duration-300"
+                >
+                  Templates
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">
-              Contact Us
-            </h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Socials</h3>
             <div className="flex space-x-4 mt-4">
-              {[Github, Twitter, Linkedin, Mail].map((Icon, index) => (
-                <Link
-                  key={index}
-                  href="#"
-                  target="_blank"
-                  className="text-gray-400 hover:text-purple-400 transition duration-300"
-                >
-                  <Icon size={20} />
-                </Link>
-              ))}
+              <a
+                href="https://github.com/abhaysinghr516/business-wish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-purple-400 transition duration-300"
+              >
+                <Github size={20} />
+              </a>
+              <a
+                href="https://linkedin.com/in/abhaysinghr516/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-purple-400 transition duration-300"
+              >
+                <Linkedin size={20} />
+              </a>
+              <a
+                href="mailto:rathoreabhay1234@gmail.com"
+                className="text-gray-400 hover:text-purple-400 transition duration-300"
+              >
+                <Mail size={20} />
+              </a>
             </div>
           </div>
         </div>
