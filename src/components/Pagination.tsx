@@ -1,5 +1,5 @@
 export const BasicPagination: React.FC = () => (
-  <nav className="flex justify-center">
+  <nav className="flex text-base justify-center">
     <ul className="flex list-none">
       <li className="mx-1">
         <button className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
@@ -31,7 +31,7 @@ export const BasicPagination: React.FC = () => (
 );
 
 export const PaginationwithActiveState: React.FC = () => (
-  <nav className="flex justify-center">
+  <nav className="flex text-base justify-center">
     <ul className="flex list-none">
       <li className="mx-1">
         <button className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
@@ -63,7 +63,7 @@ export const PaginationwithActiveState: React.FC = () => (
 );
 
 export const PaginationwithIcons: React.FC = () => (
-  <nav className="flex justify-center">
+  <nav className="flex text-base justify-center">
     <ul className="flex list-none">
       <li className="mx-1">
         <button className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center">
@@ -123,7 +123,7 @@ export const PaginationwithIcons: React.FC = () => (
 );
 
 export const PaginationwithInputField: React.FC = () => (
-  <nav className="flex justify-center">
+  <nav className="flex text-base justify-center">
     <ul className="flex list-none items-center">
       <li className="mx-1">
         <button className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
@@ -147,7 +147,7 @@ export const PaginationwithInputField: React.FC = () => (
 );
 
 export const PaginationwithDots: React.FC = () => (
-  <nav className="flex justify-center">
+  <nav className="flex text-base justify-center">
     <ul className="flex list-none">
       <li className="mx-1">
         <button className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200">
