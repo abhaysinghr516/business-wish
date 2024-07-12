@@ -1,5 +1,5 @@
 export const BasicHeader: React.FC = () => (
-  <nav className="bg-teal-500 py-4">
+  <nav className="bg-teal-500 text-base py-4">
     <div className="container mx-auto flex justify-center">
       <div className="flex flex-wrap space-x-4 md:justify-center">
         <div>
@@ -28,7 +28,7 @@ export const BasicHeader: React.FC = () => (
 );
 
 export const BasicHeaderWithLogo: React.FC = () => (
-  <nav className="bg-gray-800 py-4">
+  <nav className="bg-gray-800 text-base py-4">
     <div className="container mx-auto flex justify-between">
       <div className="cursor-pointer ml-5 text-xl font-bold text-white md:mb-0">
         Logo
@@ -76,7 +76,7 @@ export const BasicHeaderWithLogo: React.FC = () => (
 );
 
 export const HeaderwithSearch: React.FC = () => (
-  <nav className="bg-gray-100 py-4">
+  <nav className="bg-gray-100 text-base py-4">
     <div className="container mx-auto flex items-center justify-between">
       <div className="cursor-pointer ml-2 text-xl font-bold">Logo</div>
       <div className="flex items-center space-x-4">
@@ -118,7 +118,7 @@ export const HeaderwithSearch: React.FC = () => (
 );
 
 export const HeaderwithAnimation: React.FC = () => (
-  <nav className="bg-gray-900 py-4">
+  <nav className="bg-gray-900 text-base py-4">
     <div className="container mx-auto flex items-center justify-between">
       <div className="cursor-pointer ml-5 text-xl font-bold text-white">
         Logo
@@ -163,7 +163,7 @@ export const HeaderwithAnimation: React.FC = () => (
 );
 
 export const CenteredAlignedHeader: React.FC = () => (
-  <nav className="bg-gray-100 py-4">
+  <nav className="bg-gray-100 text-base py-4">
     <div className="container mx-auto flex items-center justify-between">
       <div className="cursor-pointer ml-5 text-xl font-bold text-gray-800">
         Logo
