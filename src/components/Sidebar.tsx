@@ -1,5 +1,5 @@
 export const BasicSidebar: React.FC = () => (
-  <div className="flex flex-col w-64  bg-gray-50 h-screen justify-between text-gray-700">
+  <div className="flex flex-col w-64 text-base bg-gray-50 h-screen justify-between text-gray-700">
     <div className="overflow-y-auto px-3 py-4">
       <div className="space-y-2">
         <div>
@@ -36,7 +36,7 @@ export const BasicSidebar: React.FC = () => (
 );
 
 export const SidebarwithIcons: React.FC = () => (
-  <div className="flex flex-col w-64  bg-gray-50 h-screen justify-between text-gray-700">
+  <div className="flex flex-col w-64 text-base bg-gray-50 h-screen justify-between text-gray-700">
     <div className="overflow-y-auto px-3 py-4">
       <div className="space-y-2">
         <div>
@@ -121,7 +121,7 @@ export const SidebarwithIcons: React.FC = () => (
 );
 
 export const CollapseSidebar: React.FC = () => (
-  <div className="flex flex-col  bg-gray-50 w-fit h-screen justify-between text-gray-700">
+  <div className="flex flex-col text-base bg-gray-50 w-fit h-screen justify-between text-gray-700">
     <div className="overflow-y-auto px-3 py-4">
       <div className="space-y-2">
         <div>
