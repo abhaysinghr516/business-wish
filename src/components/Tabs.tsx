@@ -1,6 +1,6 @@
 export const BasicTabs: React.FC = () => (
   <div>
-    <ul className="flex border-b list-none ">
+    <ul className="flex text-base border-b list-none ">
       <div className="-mb-px mr-1">
         <div className=" cursor-pointer px-4 py-1 font-semibold text-blue-500 hover:text-blue-800">
           {" "}
@@ -25,7 +25,7 @@ export const BasicTabs: React.FC = () => (
 
 export const TabswithUnderline: React.FC = () => (
   <div>
-    <ul className="flex border-b list-none">
+    <ul className="flex text-base border-b list-none">
       <div className="mr-1">
         <div className=" cursor-pointer border-b-2 border-blue-500 px-4 py-1 font-semibold text-blue-500 hover:text-blue-800">
           {" "}
@@ -50,7 +50,7 @@ export const TabswithUnderline: React.FC = () => (
 
 export const TabswithIcons: React.FC = () => (
   <div>
-    <ul className="flex border-b">
+    <ul className="flex text-base border-b">
       <div className="-mb-px mr-1">
         <div className="cursor-pointer inline-flex items-center px-4 py-2 font-semibold text-blue-500 hover:text-blue-800">
           <svg
@@ -129,7 +129,7 @@ export const TabswithIcons: React.FC = () => (
 
 export const TabswithPill: React.FC = () => (
   <div>
-    <ul className="flex">
+    <ul className="flex text-base">
       <div className="mr-1">
         <div className="cursor-pointer inline-block rounded-full bg-blue-100 px-4 py-2 font-semibold text-blue-500 hover:text-blue-800">
           {" "}
@@ -154,7 +154,7 @@ export const TabswithPill: React.FC = () => (
 
 export const TabswithBox: React.FC = () => (
   <div>
-    <ul className="flex">
+    <ul className="flex text-base">
       <div className="mr-1">
         <div className="cursor-pointer inline-block rounded-t-lg border border-blue-500 px-4 py-2 font-semibold text-blue-500 hover:text-blue-800">
           {" "}
