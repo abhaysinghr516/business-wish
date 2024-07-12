@@ -1,9 +1,9 @@
 export const CenterContentHeroSection: React.FC = () => (
-  <section className="bg-gray-900 py-20">
+  <section className="bg-gray-900 text-base py-20">
     <div className="mx-auto max-w-3xl px-4 text-left sm:text-center sm:px-6 lg:px-8">
-      <h1 className="m-0 text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+      <p className="m-0 text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
         Simplicity at its Best
-      </h1>
+      </p>
       <p className="m-0 mx-auto mt-6 max-w-xl text-xl text-gray-300 sm:text-center">
         Our app embraces simplicity, with a clean and minimalistic design that
         puts the focus on what truly matters.
@@ -18,12 +18,12 @@ export const CenterContentHeroSection: React.FC = () => (
 );
 
 export const SideImageHero: React.FC = () => (
-  <section className="bg-gray-900 py-10 sm:py-20">
+  <section className="bg-gray-900 py-10 text-base sm:py-20">
     <div className="mx-auto flex flex-col-reverse sm:flex-row max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <div className="text-center sm:text-left">
-        <h1 className="m-0 text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white sm:tracking-tight">
+        <p className="m-0 text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white sm:tracking-tight">
           Experience the Power
-        </h1>
+        </p>
         <p className="m-0 mt-4 sm:mt-6 max-w-xl text-base sm:text-xl text-gray-300">
           Our app offers a powerful and intuitive experience, designed to
           simplify your workflow and boost your productivity.
@@ -46,7 +46,7 @@ export const SideImageHero: React.FC = () => (
 );
 
 export const IsolatedComponentHero: React.FC = () => (
-  <section className="bg-gray-900 py-10 sm:py-20">
+  <section className="bg-gray-900 text-base py-10 sm:py-20">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="relative">
         <img
@@ -65,9 +65,9 @@ export const IsolatedComponentHero: React.FC = () => (
           className="m-0 relative z-10 mx-auto h-72 w-72 rounded-xl shadow-2xl sm:h-96 sm:w-96"
         />
       </div>
-      <h1 className="m-0 mt-10 text-2xl font-extrabold text-white sm:mt-20 sm:text-4xl sm:tracking-tight lg:text-6xl">
+      <p className="m-0 mt-10 text-2xl font-extrabold text-white sm:mt-20 sm:text-4xl sm:tracking-tight lg:text-6xl">
         Experience the Power of Isolated Components
-      </h1>
+      </p>
       <p className="m-0 mt-4 max-w-xl text-base text-gray-300 sm:mt-6 sm:text-xl">
         Our app showcases the best of UI components, isolated and combined for
         maximum impact.
@@ -77,12 +77,12 @@ export const IsolatedComponentHero: React.FC = () => (
 );
 
 export const BentoHero: React.FC = () => (
-  <section className="bg-gray-800 py-10 sm:py-20">
+  <section className="bg-gray-800 text-base py-10 sm:py-20">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="text-center">
-        <h1 className="m-0 mt-6 text-2xl font-extrabold text-white sm:mt-12 sm:text-4xl sm:tracking-tight lg:text-6xl">
+        <p className="m-0 mt-6 text-2xl font-extrabold text-white sm:mt-12 sm:text-4xl sm:tracking-tight lg:text-6xl">
           Build Stunning UIs with Tailwind Components
-        </h1>
+        </p>
         <p className="m-0 mx-auto mt-4 max-w-xl text-base text-gray-300 sm:mt-6 sm:text-xl">
           Our library offers a curated collection of Tailwind CSS components,
           organized in a visually stunning bento layout.
@@ -142,12 +142,12 @@ export const BentoHero: React.FC = () => (
 );
 
 export const TypographyFocusedHero: React.FC = () => (
-  <section className="bg-gray-900 py-10 sm:py-20">
+  <section className="bg-gray-900 text-base py-10 sm:py-20">
     <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 md:px-8">
-      <h1 className="m-0 font-serif text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight md:text-7xl">
+      <p className="m-0 font-serif text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight md:text-7xl">
         <span className="block">Experience the</span>
         <span className="block text-indigo-500">Power of Typography</span>
-      </h1>
+      </p>
       <p className="m-0 mx-auto mt-4 max-w-xl text-base text-gray-300 sm:mt-6 sm:text-xl">
         Our app celebrates the art of typography, with a bold and visually
         striking hero section that speaks volumes.
@@ -162,11 +162,11 @@ export const TypographyFocusedHero: React.FC = () => (
 );
 
 export const CenterContentwithTrustedLogos: React.FC = () => (
-  <section className="bg-gray-900 py-20">
+  <section className="bg-gray-900 text-base py-20">
     <div className="mx-auto max-w-3xl px-4 text-left sm:px-6 md:text-center lg:px-8">
-      <h1 className="m-0 text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
+      <p className="m-0 text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
         Trusted by the Best
-      </h1>
+      </p>
       <p className="m-0 mx-auto mt-6 max-w-xl text-xl text-gray-300">
         Our app is trusted by leading companies and organizations across various
         industries.
