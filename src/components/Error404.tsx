@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 
 export const Minimal404Section: React.FC = () => (
-  <div className="flex py-20 items-center justify-center bg-gray-100">
+  <div className="flex py-20 text-base items-center justify-center bg-gray-100">
     <div className="max-w-md text-center">
-      <h1 className="m-0 text-9xl font-bold text-gray-800">404</h1>
+      <p className="m-0 text-9xl font-bold text-gray-800">404</p>
       <p className="m-0 mt-4 text-2xl font-semibold text-gray-600">
         Page not found
       </p>
@@ -20,7 +20,7 @@ export const Minimal404Section: React.FC = () => (
 );
 
 export const Illustrated404Section: React.FC = () => (
-  <div className="flex flex-col items-center justify-center py-10 bg-gray-100">
+  <div className="flex flex-col text-base items-center justify-center py-10 bg-gray-100">
     <Image
       src="/not-found.png"
       alt="404 Illustration"
@@ -28,9 +28,9 @@ export const Illustrated404Section: React.FC = () => (
       width={256}
       height={200}
     />
-    <h1 className="m-0 text-5xl font-bold text-gray-800 mb-4">
+    <p className="m-0 text-5xl font-bold text-gray-800 mb-4">
       Oops! Page not found
-    </h1>
+    </p>
     <p className="m-0 text-lg text-gray-600 mb-8">
       The page you&apos;re looking for doesn&apos;t exist or has been moved.
     </p>
