@@ -1,43 +1,62 @@
+"use client";
+
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
 import React from "react";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-200 font-sans leading-normal tracking-normal">
-        <section className="bg-white py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center">
-              <h1 className="text-4xl font-bold mb-6 text-purple-600">
-                We&apos;re launching templates soon
-              </h1>
-              <p className="text-gray-600 mb-12">
-                Enter your email to be the first to know when we launch.
-              </p>
-              <form className="max-w-md mx-auto">
-                <div className="flex items-center">
-                  <input
-                    type="email"
-                    className="bg-gray-100 mr-3 py-2 px-4 w-full rounded-md focus:outline-none focus:bg-white"
-                    placeholder="Enter your email"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
-                  >
-                    Subscribe
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-      </div>
+      <main className="relative flex flex-grow items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 min-h-screen overflow-hidden">
+        {/* Animated background shapes */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="animate-float absolute -top-16 -left-16 w-44 h-44 bg-purple-400 rounded-full mix-blend-lighten filter blur-sm opacity-80"></div>
+          <div className="animate-float absolute top-32 -right-16 w-44 h-44 bg-yellow-300 rounded-full mix-blend-lighten filter blur-sm opacity-80 animation-delay-2000"></div>
+          <div className="animate-float absolute -bottom-16 left-16 w-44 h-44 bg-pink-300 rounded-full mix-blend-lighten filter blur-sm opacity-80 animation-delay-4000"></div>
+        </div>
+
+        <div className="max-w-4xl w-full text-center space-y-8 relative z-10">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-gray-100 mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
+              Exciting Templates
+            </span>
+            <br />
+            Coming Soon!
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            I'm crafting a stunning, versatile template to elevate your
+            projects. I'm putting the finishing touches on a design that will
+            transform your ideas into reality.
+          </p>
+        </div>
+      </main>
       <Footer />
+
+      <style jsx>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-50px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+      `}</style>
     </>
   );
 };
 
-export default page;
+export default Page;
