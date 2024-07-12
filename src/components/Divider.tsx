@@ -1,5 +1,5 @@
 export const BasicDivider: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6">
     Section
     <div className="my-4 border-t border-gray-300"></div>
     Section
@@ -7,7 +7,7 @@ export const BasicDivider: React.FC = () => (
 );
 
 export const HorizontalDivider: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6">
     Section
     <div className="my-4 flex items-center">
       <div className="flex-1 border-t border-gray-300"></div>
@@ -19,7 +19,7 @@ export const HorizontalDivider: React.FC = () => (
 );
 
 export const DashedDivider: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6">
     Section
     <div className="my-4 border-t border-dashed border-gray-300"></div>
     Section
@@ -27,7 +27,7 @@ export const DashedDivider: React.FC = () => (
 );
 
 export const VerticalDivider: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6">
     <div className="flex">
       <div className="flex-1 pr-4">Section</div>
       <div className="w-px bg-gray-300"></div>
@@ -37,7 +37,7 @@ export const VerticalDivider: React.FC = () => (
 );
 
 export const CustomDividerwithIcon: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6">
     Section
     <div className="my-4 flex items-center">
       <div className="flex-1 border-t border-gray-300"></div>
@@ -64,7 +64,7 @@ export const CustomDividerwithIcon: React.FC = () => (
 );
 
 export const GradientDivider: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6">
     Section
     <div className="my-4 h-0.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
     Section
