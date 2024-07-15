@@ -21,6 +21,7 @@ import {
   HeroDocs,
   HeaderDocs,
   LoaderDocs,
+  ModalDocs,
   PaginationDocs,
   SettingsDocs,
   SidebarDocs,
@@ -55,6 +56,7 @@ type ComponentKey =
   | "Hero"
   | "Header"
   | "Loader"
+  | "Modal"
   | "Pagination"
   | "Settings"
   | "Sidebar"
@@ -83,6 +85,7 @@ const components = {
   Hero: HeroDocs,
   Header: HeaderDocs,
   Loader: LoaderDocs,
+  Modal: ModalDocs,
   Pagination: PaginationDocs,
   Settings: SettingsDocs,
   Sidebar: SidebarDocs,

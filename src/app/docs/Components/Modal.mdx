@@ -100,3 +100,105 @@ export default Modal;
 ```
 
 export default ({ children }) => <DocLayout>{children}</DocLayout>;
+---
+---
+
+import DocLayout from '../../components/DocsLayout';
+import CodeBlock from '../../components/CodeBlock';
+import Preview from '../../components/Preview';
+import Modal from '../../../components/Modal';
+
+#### Basic Modal
+
+<Preview>
+  <Modal />
+</Preview>
+
+<CodeBlock
+  codeHtml={`<div>
+  <button class="bg-blue-500 text-white px-4 py-2 rounded">
+    Open Modal
+  </button>
+
+  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded shadow-lg">
+      <h2 class="text-xl font-semibold mb-4">Modal Title</h2>
+      <p class="mb-4">This is the modal content.</p>
+      <button class="bg-red-500 text-white px-4 py-2 rounded">
+        Close Modal
+      </button>
+    </div>
+  </div>
+</div>`}
+  codeJsx={`<div>
+  <button className="bg-blue-500 text-white px-4 py-2 rounded">
+    Open Modal
+  </button>
+
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white p-6 rounded shadow-lg">
+      <h2 className="text-xl font-semibold mb-4">Modal Title</h2>
+      <p className="mb-4">This is the modal content.</p>
+      <button className="bg-red-500 text-white px-4 py-2 rounded">
+        Close Modal
+      </button>
+    </div>
+  </div>
+</div>`}
+/>
+
+#### Modal Props and State
+
+The `Modal` component uses the following props and state:
+
+- `isOpen`: A boolean state to manage the visibility of the modal.
+- `openModal`: A function to open the modal.
+- `closeModal`: A function to close the modal.
+
+#### Example Usage
+
+```jsx
+import React, { useState } from 'react';
+
+const Modal: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <div>
+      <button
+        onClick={openModal}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Open Modal
+      </button>
+
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">Modal Title</h2>
+            <p className="mb-4">This is the modal content.</p>
+            <button
+              onClick={closeModal}
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Close Modal
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Modal;
+```
+
+export default ({ children }) => <DocLayout>{children}</DocLayout>;
