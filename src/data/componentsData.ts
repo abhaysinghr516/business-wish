@@ -106,6 +106,11 @@ export const componentsData: ComponentData[] = [
         components: "3",
     },
     {
+        href: "/components/modal",
+        title: "Modal",
+        components: "1",
+    },
+    {
         href: "/components/pagination",
         title: "Pagination",
         components: "5",
