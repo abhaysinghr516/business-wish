@@ -86,10 +86,10 @@ export const JobCard: React.FC = () => (
         </p>
       </div>
       <p className="mb-6 text-sm leading-relaxed text-gray-500">
-        We're seeking a talented Software Engineer to join our dynamic team.
-        You'll work on cutting-edge projects, collaborate with cross-functional
-        teams, and have the opportunity to make a significant impact on our
-        products.
+        We&apos;re seeking a talented Software Engineer to join our dynamic
+        team. You&apos;ll work on cutting-edge projects, collaborate with
+        cross-functional teams, and have the opportunity to make a significant
+        impact on our products.
       </p>
       <div className="flex space-x-4">
         <button className="w-1/2 rounded bg-black px-4 py-2 font-medium text-white">
