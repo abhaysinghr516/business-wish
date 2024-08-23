@@ -1,36 +1,103 @@
 export const JobCard: React.FC = () => (
-  <div className="mx-auto w-80 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
-    <div className="flex flex-1 flex-col p-8">
-      <div className="mt-6 text-sm font-medium text-gray-900">
-        Product Manager
+  <div className="flex text-base items-center justify-center bg-gray-100">
+    <div className="w-full my-4 max-w-md rounded-lg bg-white p-8 pt-0 shadow-md">
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h2 className="mb-2 text-3xl font-semibold">Software Engineer</h2>
+          <p className="flex items-center text-sm text-gray-600">
+            <svg
+              className="mr-2 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+              />
+            </svg>
+            TechCorp Inc.
+          </p>
+        </div>
+        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold">
+          Full-time
+        </span>
       </div>
-      <div className="mt-1 flex flex-grow flex-col justify-between">
-        <div className="text-sm text-gray-500">Stark Industries</div>
-        <div className="mt-3">
-          <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-            New York, NY
-          </span>
-        </div>
-        <div className="sr-only">Type</div>
-        <div className="mt-3">
-          <span className="rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800">
-            Full-time
-          </span>
-        </div>
+      <div className="mb-6">
+        <p className="mb-3 flex items-center text-sm text-gray-600">
+          <svg
+            className="mr-2 h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+          San Francisco, CA (On-site)
+        </p>
+        <p className="mb-3 flex items-center text-sm text-gray-600">
+          <svg
+            className="mr-2 h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          $120,000 - $160,000 per year
+        </p>
+        <p className="flex items-center text-sm text-gray-600">
+          <svg
+            className="mr-2 h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          Posted 2 days ago
+        </p>
       </div>
-    </div>
-    <div>
-      <div className="-mt-px flex divide-x divide-gray-200">
-        <div className="flex w-0 flex-1">
-          <div className="cursor-pointer relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
-            View Details
-          </div>
-        </div>
-        <div className="-ml-px flex w-0 flex-1">
-          <div className="cursor-pointer relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
-            Apply
-          </div>
-        </div>
+      <p className="mb-6 text-sm leading-relaxed text-gray-500">
+        We're seeking a talented Software Engineer to join our dynamic team.
+        You'll work on cutting-edge projects, collaborate with cross-functional
+        teams, and have the opportunity to make a significant impact on our
+        products.
+      </p>
+      <div className="flex space-x-4">
+        <button className="w-1/2 rounded bg-black px-4 py-2 font-medium text-white">
+          Apply Now
+        </button>
+        <button className="w-1/2 rounded border border-gray-300 px-4 py-2 font-medium text-gray-800 hover:bg-gray-100">
+          View Details
+        </button>
       </div>
     </div>
   </div>
