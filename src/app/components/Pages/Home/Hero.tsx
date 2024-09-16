@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { ButtonGroup } from "@/components/Button";
+import { BadgeGroup } from "@/components/Badge";
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -34,7 +36,7 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-purple-500">
             Business Wish
           </h1>
-          <p className="text-xl sm:text-2xl mb-4 text-gray-300">
+          <p className="text-xl sm:text-2xl mb-4 text-gray-700">
             The ultimate Tailwind CSS component library for business
             applications
           </p>
@@ -67,40 +69,16 @@ const Hero = () => {
         </div>
 
         {/* Right side: UI Components Preview */}
-        <div className="lg:w-1/2 space-y-8 bg-gray-900 p-6 rounded-lg shadow-lg">
+        <div className="lg:w-1/2 space-y-8 bg-gray-100 p-6 rounded-lg shadow-lg">
           {/* Divider */}
           <div className="flex items-center">
             <div className="flex-grow border-t border-gray-600"></div>
-            <span className="flex-shrink mx-4 text-gray-400">Components</span>
+            <span className="flex-shrink mx-4 text-gray-600">Components</span>
             <div className="flex-grow border-t border-gray-600"></div>
           </div>
 
-          {/* Dropdown */}
-          <div className="relative">
-            <button
-              className="w-full bg-gray-800 text-left px-4 py-2 rounded flex justify-between items-center hover:bg-gray-700 transition duration-300"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              Select an option
-              <ChevronDownIcon
-                className={`ml-2 transform transition-transform duration-300 ${
-                  isDropdownOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute top-full left-0 w-full mt-1 bg-gray-700 rounded shadow-lg z-10">
-                {["Option 1", "Option 2", "Option 3"].map((option, index) => (
-                  <div
-                    key={index}
-                    className="px-4 py-2 hover:bg-gray-600 cursor-pointer transition duration-300"
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Button Group */}
+          <ButtonGroup />
 
           {/* Tabs */}
           <div className="flex border-b border-gray-700">
@@ -137,21 +115,7 @@ const Hero = () => {
           </div>
 
           {/* Bottom Navigation */}
-          <div className="bg-gray-700 rounded-full p-2 flex justify-between">
-            {navItems.map((item, index) => (
-              <button
-                key={index}
-                className={`p-2 rounded-full transition duration-300 ${
-                  activeNavItem === index
-                    ? "bg-purple-600 text-white"
-                    : "text-gray-400 hover:bg-gray-600"
-                }`}
-                onClick={() => setActiveNavItem(index)}
-              >
-                <item.icon size={20} />
-              </button>
-            ))}
-          </div>
+          <BadgeGroup />
         </div>
       </div>
     </div>

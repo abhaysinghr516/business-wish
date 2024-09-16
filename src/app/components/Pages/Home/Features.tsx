@@ -15,7 +15,7 @@ const FeatureCard: FunctionComponent<FeatureCardProps> = ({
   <div className="border border-gray-800 p-6 rounded-lg">
     <Icon className="text-purple-500 mb-4" size={32} />
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
-    <p className="text-gray-400">{description}</p>
+    <p className="text-gray-600">{description}</p>
   </div>
 );
 

@@ -27,26 +27,20 @@ const Navbar = () => {
         >
           <Link
             href="/docs/components/404"
-            className="relative text-sm text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
+            className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
           >
             Components
           </Link>
           <Link
             href="/templates"
-            className="relative text-sm text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
+            className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
           >
             Templates
           </Link>
-          <Link
-            href="https://github.com"
-            className="text-gray-300 hover:text-white"
-          >
+          <Link href="https://github.com">
             <FiGithub className="h-4 w-4" />
           </Link>
-          <Link
-            href="https://twitter.com"
-            className="text-gray-300 hover:text-white"
-          >
+          <Link href="https://twitter.com">
             <FaXTwitter className="h-4 w-4" />
           </Link>
           {/* <ThemeToggle /> */}

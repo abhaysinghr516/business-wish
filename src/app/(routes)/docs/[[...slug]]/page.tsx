@@ -1,6 +1,6 @@
 import DocsBreadcrumb from "@/app/components/docs-breadcrumb";
 import Pagination from "@/app/components/pagination";
-import Toc from "@/app/components/toc";
+import Toc from "../../../components/toc";
 import { page_routes } from "@/app/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getDocsForSlug } from "@/app/lib/markdown";
