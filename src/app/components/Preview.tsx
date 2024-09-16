@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Smartphone, Monitor, Maximize2, Tablet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -26,21 +26,22 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
       if (iframeDoc) {
         iframeDoc.open();
         iframeDoc.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <script src="https://cdn.tailwindcss.com"></script>
-          </head>
-          <body>
-            <div id="root"></div>
-          </body>
-        </html>
-      `);
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <script src="https://cdn.tailwindcss.com"></script>
+            </head>
+            <body>
+              <div id="root"></div>
+            </body>
+          </html>
+        `);
         iframeDoc.close();
 
         const root = iframeDoc.getElementById("root");
         if (root) {
-          ReactDOM.render(<>{children}</>, root);
+          const reactRoot = createRoot(root);
+          reactRoot.render(<>{children}</>);
         }
       }
     },
