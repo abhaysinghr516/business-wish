@@ -4,7 +4,7 @@ import { page_routes } from "@/app/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getDocsForSlug } from "@/app/lib/markdown";
 import { Typography } from "@/app/components/typography";
-import Toc from "@/app/components/toc";
+import Toc from "@/app/components/Toc";
 
 type PageProps = {
   params: { slug: string[] };
