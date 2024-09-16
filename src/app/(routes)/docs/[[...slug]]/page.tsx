@@ -1,10 +1,10 @@
 import DocsBreadcrumb from "@/app/components/docs-breadcrumb";
 import Pagination from "@/app/components/pagination";
-import Toc from "../../../components/toc";
 import { page_routes } from "@/app/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getDocsForSlug } from "@/app/lib/markdown";
 import { Typography } from "@/app/components/typography";
+import Toc from "@/app/components/toc";
 
 type PageProps = {
   params: { slug: string[] };

@@ -39,7 +39,7 @@ export const Playful404Section: React.FC = () => (
       Looks like this page has vanished into thin air!
     </p>
     <div className="cursor-pointer mt-6 bg-gray-900 text-sm font-semibold text-white py-2 px-6 rounded-md">
-      Let's go back home
+      Let&apos;s go back home
     </div>
   </div>
 );
@@ -86,7 +86,7 @@ export const Interactive404Section: React.FC = () => {
     <div className="flex flex-col items-center h-screen justify-center py-20 px-4">
       <h1 className="text-4xl font-bold mb-4">Oops! Page not found</h1>
       <p className="text-xl mb-8">
-        Let's see if we can find what you're looking for...
+        Let&apos;s see if we can find what you&apos;re looking for...
       </p>
       {!isSearching && !searchComplete && (
         <button
@@ -105,7 +105,8 @@ export const Interactive404Section: React.FC = () => {
       {searchComplete && (
         <div className="text-center mb-8">
           <p className="mb-4">
-            We couldn't find the exact page, but here are some helpful links:
+            We couldn&apos;t find the exact page, but here are some helpful
+            links:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <button className="flex justify-center items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
