@@ -7,8 +7,7 @@ import React from "react";
 const Page = () => {
   return (
     <>
-      <Navbar />
-      <main className="relative flex flex-grow items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-gray-950 min-h-screen overflow-hidden">
+      <main className="relative flex flex-grow items-center justify-center py-10 px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden">
         {/* Animated background shapes */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="animate-float absolute -top-16 -left-16 w-24 h-24 sm:w-44 sm:h-44 bg-purple-400 rounded-full mix-blend-lighten filter blur-sm opacity-80"></div>
@@ -31,7 +30,6 @@ const Page = () => {
           </p>
         </div>
       </main>
-      <Footer />
 
       <style jsx>{`
         @keyframes float {

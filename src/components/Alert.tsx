@@ -1,12 +1,15 @@
-import React from "react";
+"use client";
+import { CheckCircle, CircleAlert, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
+// Simple informational alert
 export const SimpleAlert: React.FC = () => (
   <div
-    className="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md"
+    className="bg-blue-50 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
     role="alert"
   >
-    <div className="flex">
-      <div>
+    <div className="flex flex-col sm:flex-row">
+      <div className="flex-grow">
         <p className="m-0 text-lg font-bold">Informational Alert</p>
         <p className="m-0 text-sm">Some additional information for the user.</p>
       </div>
@@ -14,54 +17,77 @@ export const SimpleAlert: React.FC = () => (
   </div>
 );
 
+// Dismissable alert with a close button
 export const DismissableAlert: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  const dismissAlert = () => setIsVisible(false);
+
+  // Automatically bring back the alert after 3 seconds
+  useEffect(() => {
+    if (!isVisible) {
+      const timeoutId = setTimeout(() => {
+        setIsVisible(true);
+      }, 3000); // 3 seconds delay
+
+      return () => clearTimeout(timeoutId); // Clean up the timeout if the component unmounts or visibility changes
+    }
+  }, [isVisible]);
+
   return (
-    <div className="bg-red-100 border text-base border-red-400 text-red-700 px-4 py-3 rounded relative">
-      <strong className="font-bold text-red-700 mr-2">Error!</strong>
-      <span className="block sm:inline">
-        Something went wrong, please try again.
-      </span>
-      <span className="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke="currentColor"
-          className="h-6 w-6 fill-current text-red-500"
+    <div className="max-w-md mx-auto sm:max-w-sm lg:max-w-lg">
+      {isVisible ? (
+        <div
+          className="relative border text-base border-red-400 text-red-500 px-4 py-3 rounded mb-4"
+          role="alert"
         >
-          <path d="M18 6 6 18M6 6l12 12" />
-        </svg>
-      </span>
+          <strong className="font-bold text-red-500 mr-2">Error!</strong>
+          <span className="block sm:inline">
+            Something went wrong, please try again.
+          </span>
+          <button
+            className="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-500 hover:text-red-700 focus:outline-none"
+            onClick={dismissAlert}
+            aria-label="Dismiss alert"
+          >
+            <X />
+          </button>
+        </div>
+      ) : (
+        <div className="text-center text-sm text-gray-500">
+          Hang tight! The alert will reappear shortly for you to interact with
+          it again.
+        </div>
+      )}
     </div>
   );
 };
 
+// Custom warning alert
 export const CustomAlert: React.FC = () => (
-  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4" role="alert">
-    <div className="flex">
-      <div className="flex-shrink-0">
-        <svg
-          className="h-5 w-5 text-yellow-400"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11h-2v5h2V7zm0 6h-2v2h2v-2z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </div>
+  <div
+    className="bg-yellow-50 border-l-4 border-yellow-400 p-4 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
+    role="alert"
+  >
+    <div className="flex items-center">
+      <CircleAlert className="w-6 h-6 text-yellow-700" />
       <div className="ml-3">
-        <p className=" m-0 text-sm text-yellow-700">
+        <p className="text-sm text-yellow-700">
           Warning! There might be potential issues with your action.
         </p>
       </div>
     </div>
+  </div>
+);
+
+// Floating alert for success notification
+export const FloatingAlert: React.FC = () => (
+  <div
+    className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center space-x-2"
+    role="alert"
+    aria-live="assertive"
+  >
+    <CheckCircle className="h-6 w-6" />
+    <p className="font-bold text-sm">Success!</p>
   </div>
 );

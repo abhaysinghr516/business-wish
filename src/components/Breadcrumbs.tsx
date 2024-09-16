@@ -2,17 +2,13 @@ export const BasicBreadcrumb: React.FC = () => (
   <nav>
     <ol className="flex items-center text-base space-x-2 list-none">
       <li>
-        <a href="#" className="text-gray-600 hover:text-gray-900">
-          Home
-        </a>
+        <div className="text-gray-600 hover:text-gray-900">Home</div>
       </li>
       <li>
         <span className="text-gray-500">/</span>
       </li>
       <li>
-        <a href="#" className="text-gray-600 hover:text-gray-900">
-          Products
-        </a>
+        <div className="text-gray-600 hover:text-gray-900">Products</div>
       </li>
       <li>
         <span className="text-gray-500">/</span>
@@ -28,10 +24,7 @@ export const BreadcrumbwithIcons: React.FC = () => (
   <nav>
     <ol className="flex items-center text-base space-x-2 list-none">
       <li>
-        <a
-          href="#"
-          className="flex items-center text-gray-600 hover:text-gray-900"
-        >
+        <div className="flex items-center text-gray-600 hover:text-gray-900">
           <svg
             className="w-4 h-4 mr-2"
             fill="none"
@@ -46,16 +39,13 @@ export const BreadcrumbwithIcons: React.FC = () => (
             />
           </svg>
           Home
-        </a>
+        </div>
       </li>
       <li>
         <span className="text-gray-500">/</span>
       </li>
       <li>
-        <a
-          href="#"
-          className="flex items-center text-gray-600 hover:text-gray-900"
-        >
+        <div className="flex items-center text-gray-600 hover:text-gray-900">
           <svg
             className="w-4 h-4 mr-2"
             fill="none"
@@ -70,7 +60,7 @@ export const BreadcrumbwithIcons: React.FC = () => (
             />
           </svg>
           Products
-        </a>
+        </div>
       </li>
       <li>
         <span className="text-gray-500">/</span>
@@ -86,9 +76,7 @@ export const BreadcrumbwithSeparators: React.FC = () => (
   <nav>
     <ol className="flex items-center text-base list-none">
       <li>
-        <a href="#" className="text-gray-600 hover:text-gray-900">
-          Home
-        </a>
+        <div className="text-gray-600 hover:text-gray-900">Home</div>
       </li>
       <li className="mx-2">
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -100,9 +88,7 @@ export const BreadcrumbwithSeparators: React.FC = () => (
         </svg>
       </li>
       <li>
-        <a href="#" className="text-gray-600 hover:text-gray-900">
-          Products
-        </a>
+        <div className="text-gray-600 hover:text-gray-900">Products</div>
       </li>
       <li className="mx-2">
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

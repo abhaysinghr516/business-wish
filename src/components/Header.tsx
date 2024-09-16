@@ -1,33 +1,4 @@
 export const BasicHeader: React.FC = () => (
-  <nav className="bg-teal-500 text-base py-4">
-    <div className="container mx-auto flex justify-center">
-      <div className="flex flex-wrap space-x-4 md:justify-center">
-        <div>
-          <div className="cursor-pointer text-white hover:text-gray-200">
-            Home
-          </div>
-        </div>
-        <div>
-          <div className="cursor-pointer text-white hover:text-gray-200">
-            About
-          </div>
-        </div>
-        <div>
-          <div className="cursor-pointer text-white hover:text-gray-200">
-            Services
-          </div>
-        </div>
-        <div>
-          <div className="cursor-pointer text-white hover:text-gray-200">
-            Contact
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-);
-
-export const BasicHeaderWithLogo: React.FC = () => (
   <nav className="bg-gray-800 text-base py-4">
     <div className="container mx-auto flex justify-between">
       <div className="cursor-pointer ml-5 text-xl font-bold text-white md:mb-0">

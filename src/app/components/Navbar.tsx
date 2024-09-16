@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import ThemeToggle from "./theme-switch";
+import { FiGithub } from "react-icons/fi";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +15,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-950 border-b border-gray-800 py-4 px-4 md:px-20">
+    <nav className="bg-gray-950 border-b border-gray-800 py-4 px-4 md:px-20 sticky top-0 z-50 backdrop-filter backdrop-blur-xl bg-opacity-5">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="ml-2 text-xl font-bold text-white">
-          <img src="/logo2.png" alt="logo" className="h-8" />
+          <img src="/logo2.png" alt="logo" className="h-5" />
         </Link>
         <div
           className={`items-center space-x-6 md:flex ${
@@ -23,17 +26,30 @@ const Navbar = () => {
           }`}
         >
           <Link
-            href="/components"
-            className="relative text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
+            href="/docs/components/404"
+            className="relative text-sm text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
           >
-            Component
+            Components
           </Link>
           <Link
             href="/templates"
-            className="relative text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
+            className="relative text-sm text-gray-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-white after:transition-all after:duration-300 hover:text-white hover:after:scale-x-100"
           >
             Templates
           </Link>
+          <Link
+            href="https://github.com"
+            className="text-gray-300 hover:text-white"
+          >
+            <FiGithub className="h-4 w-4" />
+          </Link>
+          <Link
+            href="https://twitter.com"
+            className="text-gray-300 hover:text-white"
+          >
+            <FaXTwitter className="h-4 w-4" />
+          </Link>
+          {/* <ThemeToggle /> */}
         </div>
         <div className="md:hidden">
           <button

@@ -1,42 +1,63 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useRef, useEffect } from "react";
+
+const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={`h-6 w-6 transform transition-transform duration-300 ease-in-out ${
+      isExpanded ? "rotate-180" : ""
+    } ${isExpanded ? "animate-bounce-down" : "animate-bounce-up"}`}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M19 9l-7 7-7-7"
+    />
+  </svg>
+);
 
 const BasicAccordion: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [height, setHeight] = useState<number | undefined>(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isExpanded) {
+      const contentEl = contentRef.current;
+      setHeight(contentEl?.scrollHeight);
+    } else {
+      setHeight(0);
+    }
+  }, [isExpanded]);
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
-    <div className="accordion">
-      <div className="accordion-item">
+    <div className="max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
+      <div className="rounded-lg overflow-hidden">
         <div
-          className="accordion-header flex items-center justify-between cursor-pointer py-2 px-6 bg-gray-100"
+          className="flex items-center justify-between cursor-pointer py-2 px-6 bg-gray-100"
           onClick={toggleAccordion}
         >
           <div className="text-lg font-semibold">Accordion Title</div>
-          <span className="accordion-arrow">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-6 w-6 transform ${isExpanded ? "rotate-180" : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+          <span>
+            <AnimatedArrow isExpanded={isExpanded} />
           </span>
         </div>
-        {isExpanded && (
-          <div className="accordion-body px-6 py-4 bg-gray-50">
+        <div
+          className="transition-all duration-300 ease-in-out bg-gray-100"
+          style={{ height: height }}
+        >
+          <div ref={contentRef} className="px-6 py-4">
             <p className="text-base">Accordion content goes here...</p>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -44,44 +65,43 @@ const BasicAccordion: React.FC = () => {
 
 const BorderedAccordion: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [height, setHeight] = useState<number | undefined>(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isExpanded) {
+      const contentEl = contentRef.current;
+      setHeight(contentEl?.scrollHeight);
+    } else {
+      setHeight(0);
+    }
+  }, [isExpanded]);
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);
   };
 
   return (
-    <div className="accordion border border-gray-300 rounded-lg">
-      <div className="accordion-item">
+    <div className="border border-gray-300 rounded-lg overflow-hidden max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
+      <div>
         <div
-          className={`accordion-header border-b flex items-center justify-between cursor-pointer py-4 px-6 
-            // add conditional classes here based on the state of the accordion
-            ${isExpanded ? "border-b" : "border-none"}
-            `}
+          className={`border-b flex items-center justify-between cursor-pointer py-2 px-6 
+            ${isExpanded ? "border-b" : "border-none"}`}
           onClick={toggleAccordion}
         >
           <div className="text-lg font-semibold">Accordion Title</div>
-          <span className="accordion-arrow">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-6 w-6 transform ${isExpanded ? "rotate-180" : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+          <span>
+            <AnimatedArrow isExpanded={isExpanded} />
           </span>
         </div>
-        {isExpanded && (
-          <div className="accordion-body px-6 py-4">
+        <div
+          className="transition-all duration-300 ease-in-out"
+          style={{ height: height }}
+        >
+          <div ref={contentRef} className="px-6 py-4">
             <p className="text-base">Accordion content goes here...</p>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

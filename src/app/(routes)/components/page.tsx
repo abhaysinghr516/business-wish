@@ -29,8 +29,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      <Navbar />
-      <main className="bg-gray-950 text-white flex flex-col items-center justify-center flex-1 px-6 sm:px-20 text-center pb-10">
+      <main className="text-white flex  flex-col items-center justify-center flex-1 px-6 sm:px-20 text-center pb-10">
         <h2 className="py-10 text-4xl font-semibold bg-gradient-to-br from-gray-500 via-gray-600 to-gray-800 bg-clip-text text-transparent">
           Tailwind CSS Components
         </h2>
@@ -56,7 +55,6 @@ const Page = () => {
           ))}
         </div>
       </main>
-      <Footer />
     </>
   );
 };

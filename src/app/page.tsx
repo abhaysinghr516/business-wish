@@ -6,10 +6,8 @@ import Hero from "./components/Pages/Home/Hero";
 export default function Home() {
   return (
     <>
-      <Navbar />
       <Hero />
       <Features />
-      <Footer />
     </>
   );
 }

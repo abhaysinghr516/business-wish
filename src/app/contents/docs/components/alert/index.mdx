@@ -1,0 +1,125 @@
+---
+title: Alert
+description: Alert component is used to show a message to the user.
+---
+
+### Simple Alert
+<Preview>
+<SimpleAlert />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+
+const SimpleAlert: React.FC = () => {
+  return (
+    <div
+      className="bg-blue-50 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
+      role="alert"
+    >
+      <div className="flex flex-col sm:flex-row">
+        <div className="flex-grow">
+          <p className="m-0 text-lg font-bold">Informational Alert</p>
+          <p className="m-0 text-sm">
+            Some additional information for the user.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SimpleAlert;
+```	
+
+### Dismissable Alert
+<Preview>
+<DismissableAlert />
+</Preview>
+
+```jsx showLineNumbers
+import { X } from "lucide-react";
+import React, { useState } from "react";
+
+const DismissableAlert: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
+  return (
+    <div
+      className="relative border text-base border-red-400 text-red-500 px-4 py-3 rounded max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
+      role="alert"
+    >
+      <strong className="font-bold text-red-500 mr-2">Error!</strong>
+      <span className="block sm:inline">
+        Something went wrong, please try again.
+      </span>
+      <button
+        className="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-500 hover:text-red-700 focus:outline-none"
+        onClick={() => setIsVisible(false)}
+        aria-label="Dismiss alert"
+      >
+        <X />
+      </button>
+    </div>
+  );
+};
+
+export default DismissableAlert;
+```
+
+### Custom Alert
+<Preview>
+<CustomAlert />
+</Preview>
+
+```jsx showLineNumbers
+import { CircleAlert } from "lucide-react";
+import React from "react";
+
+const CustomAlert: React.FC = () => {
+  return (
+    <div
+      className="bg-yellow-50 border-l-4 border-yellow-400 p-4 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
+      role="alert"
+    >
+      <div className="flex items-center">
+        <CircleAlert className="w-6 h-6 text-yellow-700" />
+        <div className="ml-3">
+          <p className="text-sm text-yellow-700">
+            Warning! There might be potential issues with your action.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CustomAlert;
+```
+
+### Flaoting Alert
+<Preview>
+<FloatingAlert />
+</Preview>
+
+```jsx showLineNumbers
+import { CheckCircle } from "lucide-react";
+import React from "react";
+
+const FloatingAlert: React.FC = () => {
+  return (
+    <div
+      className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center space-x-2"
+      role="alert"
+      aria-live="assertive"
+    >
+      <CheckCircle className="h-6 w-6" />
+      <p className="font-bold text-sm">Success!</p>
+    </div>
+  );
+};
+
+export default FloatingAlert;
+```

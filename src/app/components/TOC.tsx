@@ -1,92 +1,18 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import { getDocsTocs } from "@/app/lib/markdown";
+import TocObserver from "./toc-observer";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-interface TocItemProps {
-  text: string;
-  id: string;
-  level: number;
-  isActive: boolean;
-}
-
-const TocItem: React.FC<TocItemProps> = ({ text, id, level, isActive }) => (
-  <a
-    href={`#${id}`}
-    className={`block text-sm my-2 pl-${
-      level * 4
-    } hover:text-blue-500 transition-colors ${
-      isActive ? "text-blue-500 font-semibold" : "text-gray-700"
-    }`}
-    onClick={(e) => {
-      e.preventDefault();
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }}
-  >
-    {text}
-  </a>
-);
-
-const TOC: React.FC = () => {
-  const [headings, setHeadings] = useState<TocItemProps[]>([]);
-  const [activeId, setActiveId] = useState<string>("");
-  const pathname = usePathname();
-
-  const extractHeadings = useCallback(() => {
-    const content = document.querySelector(".prose");
-    if (!content) return [];
-    const headingElements = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
-    return Array.from(headingElements).map((el, index) => {
-      const id = el.id || `heading-${index}`;
-      if (!el.id) el.id = id;
-      return {
-        text: el.textContent || "",
-        id,
-        level: parseInt(el.tagName[1], 10),
-        isActive: false,
-      };
-    });
-  }, []);
-
-  useEffect(() => {
-    setHeadings(extractHeadings());
-  }, [pathname, extractHeadings]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-20% 0px -80% 0px" }
-    );
-
-    headings.forEach((heading) => {
-      const element = document.getElementById(heading.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [headings]);
-
-  if (headings.length === 0) return null;
+export default async function Toc({ path }: { path: string }) {
+  const tocs = await getDocsTocs(path);
 
   return (
-    <nav className="fixed right-0 top-16 w-64 h-full overflow-y-auto p-4 border-l hidden lg:block">
-      <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-      {headings.map((heading) => (
-        <TocItem
-          key={heading.id}
-          {...heading}
-          isActive={heading.id === activeId}
-        />
-      ))}
-    </nav>
+    <div className="lg:flex hidden toc flex-[1] min-w-[230px] py-8 sticky top-16 h-[95.95vh]">
+      <div className="flex flex-col gap-3 w-full">
+        <h3 className="font-medium text-sm">On this page</h3>
+        <ScrollArea className="pb-4 pt-0.5">
+          <TocObserver data={tocs} />
+        </ScrollArea>
+      </div>
+    </div>
   );
-};
-
-export default TOC;
+}

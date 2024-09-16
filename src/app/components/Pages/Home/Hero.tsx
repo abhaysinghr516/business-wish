@@ -6,6 +6,9 @@ import {
   Bell,
   User,
   ChevronDownIcon,
+  Puzzle,
+  Zap,
+  Code,
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -24,22 +27,38 @@ const Hero = () => {
   ];
 
   return (
-    <div className="bg-gray-950 text-white min-h-screen flex items-center p-4 sm:p-8 md:px-20">
+    <div className="min-h-screen flex items-center p-4 sm:p-8 sm:px-0">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
         {/* Left side: Content */}
         <div className="lg:w-1/2 sm:mr-5 mb-12 lg:mb-0">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-            Welcome to <span className="text-purple-500">Business Wish</span>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-purple-500">
+            Business Wish
           </h1>
-          <p className="text-xl sm:text-2xl mb-4 text-gray-500">
-            Empower Your Business with Our UI Components
+          <p className="text-xl sm:text-2xl mb-4 text-gray-300">
+            The ultimate Tailwind CSS component library for business
+            applications
           </p>
-          <p className="text-base sm:text-lg mb-12 text-gray-300">
-            Crafted with Tailwind CSS, Designed for React, Next.js, and HTML.
-            Elevate your projects with visually appealing, intuitive, and
-            efficient UI components.
-          </p>
-          <Link href="/components" className="group">
+          <ul className="grid gap-2 py-4">
+            <li className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-primary" />
+              <span className="text-sm md:text-base">
+                Rapid development with pre-built components
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Puzzle className="w-5 h-5 text-primary" />
+              <span className="text-sm md:text-base">
+                Easily customizable to match your brand
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Code className="w-5 h-5 text-primary" />
+              <span className="text-sm md:text-base">
+                Built on Tailwind CSS for ultimate flexibility
+              </span>
+            </li>
+          </ul>
+          <Link href="/docs/components/404" className="group">
             <button className="bg-purple-600 text-white py-3 px-8 rounded-full transition duration-300 flex items-center hover:bg-purple-700">
               Explore Components
               <ArrowRight className="ml-2 transition-transform group-hover:translate-x-2 group-hover:-rotate-45" />
@@ -49,24 +68,6 @@ const Hero = () => {
 
         {/* Right side: UI Components Preview */}
         <div className="lg:w-1/2 space-y-8 bg-gray-900 p-6 rounded-lg shadow-lg">
-          {/* Buttons with Badge */}
-          <div className="flex flex-wrap gap-4">
-            <button className="bg-purple-600 px-6 py-2 rounded-full hover:bg-purple-700 transition duration-300">
-              Primary
-            </button>
-            <button className="border border-purple-500 px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition duration-300">
-              Secondary
-            </button>
-            <span className="relative">
-              <button className="bg-blue-500 px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300">
-                Notifications
-              </button>
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                3
-              </span>
-            </span>
-          </div>
-
           {/* Divider */}
           <div className="flex items-center">
             <div className="flex-grow border-t border-gray-600"></div>

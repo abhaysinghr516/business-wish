@@ -4,7 +4,7 @@
 import DocLayout from '../../components/DocsLayout';
 import CodeBlock from '../../components/CodeBlock';
 import Preview from '../../components/Preview';
-import { Minimal404Section, Illustrated404Section, } from "../../../components/Error404";
+import { Minimal404Section, Interactive404Section, Playful404Section, Informative404Section } from "../../../components/Error404";
 
 #### Minimal 404 Section
 <Preview>
@@ -29,23 +29,18 @@ codeJsx={`<div className="flex h-screen items-center justify-center bg-gray-100"
 </div>`}
     />
 
-#### Illustrated 404 Section
+    #### PlayFul 404 Section
 <Preview>
-<Illustrated404Section />
+<Playful404Section />
 </Preview>
- <CodeBlock
-      codeHtml={`<div class="flex flex-col items-center justify-center h-screen bg-gray-100">
-  <img src="404-illustration.svg" alt="404 Illustration" class="w-64 mb-8">
-  <h1 class="text-5xl font-bold text-gray-800 mb-4">Oops! Page not found</h1>
-  <p class="text-lg text-gray-600 mb-8">The page you're looking for doesn't exist or has been moved.</p>
-  <a href="#" class="bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">Go Back Home</a>
-</div>`}
-codeJsx={`<div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-  <img src="404-illustration.svg" alt="404 Illustration" className="w-64 mb-8" />
-  <h1 className="text-5xl font-bold text-gray-800 mb-4">Oops! Page not found</h1>
-  <p className="text-lg text-gray-600 mb-8">The page you're looking for doesn't exist or has been moved.</p>
-  <a href="#" className="bg-indigo-500 text-white py-2 px-6 rounded-md hover:bg-indigo-600">Go Back Home</a>
-</div>`}
-    />
 
-export default ({ children }) => <DocLayout>{children}</DocLayout>;
+#### Informative 404 Section
+<Preview>
+<Informative404Section />
+</Preview>
+
+#### Interactive 404 Section
+<Preview>
+<Interactive404Section />
+</Preview>
+export default ({ children }) => <DocLayout className="prose">{children}</DocLayout>;
