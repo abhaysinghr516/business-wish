@@ -4,8 +4,7 @@ import { page_routes } from "@/app/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getDocsForSlug } from "@/app/lib/markdown";
 import { Typography } from "@/app/components/typography";
-import Toc from "@/app/components/Toc";
-
+import TOC from "@/app/components/TOC";
 type PageProps = {
   params: { slug: string[] };
 };
@@ -28,7 +27,7 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
           <Pagination pathname={pathName} />
         </Typography>
       </div>
-      <Toc path={pathName} />
+      <TOC path={pathName} />
     </div>
   );
 }
