@@ -21,7 +21,7 @@ import { AvatarGroup, AvatarSizes, AvatarWithActiveBadge, AvatarWithImage, Avata
 import { BadgeGroup } from "@/components/Badge";
 import { BannerwithActions, BannerwithHeadingAndButton, BasicBanner } from "@/components/Banner";
 import Preview from "../components/Preview";
-import { BasicBlogList, CardwithAuthorandTagsBlogList, HorizontalCardBlogList, ListLayoutBlogList, MinimalCardBlogList, TimelineLayoutBlogList } from "@/components/BlogList";
+import { BasicBlogList, HorizontalCardBlogList, MinimalCardBlogList, TimelineLayoutBlogList } from "@/components/BlogList";
 import { BottomNavigation, BubbleNavigation, FabNavigation } from "@/components/BottomNavigation";
 import { BasicBreadcrumb, BreadcrumbwithIcons, BreadcrumbwithSeparators } from "@/components/Breadcrumbs";
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
@@ -75,8 +75,6 @@ const components = {
     BasicBlogList,
     MinimalCardBlogList,
     HorizontalCardBlogList,
-    ListLayoutBlogList,
-    CardwithAuthorandTagsBlogList,
     TimelineLayoutBlogList,
     BottomNavigation,
     BubbleNavigation,
