@@ -8,7 +8,7 @@ import { AvatarSizes } from "@/components/Avatar";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col p-4 sm:p-8 mt-8">
+    <div className="flex flex-col p-4 sm:p-8 mt-8 px-4 md:px-20">
       {" "}
       {/* Added mt-8 here */}
       <div className="container mx-auto flex flex-col lg:flex-row items-center lg:justify-between">

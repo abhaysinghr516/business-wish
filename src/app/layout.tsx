@@ -52,7 +52,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="container mx-auto w-[88vw] h-auto">{children}</main>
+          <main>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

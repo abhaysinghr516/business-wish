@@ -1,5 +1,3 @@
-import Navbar from "@/app/components/Navbar";
-import Footer from "./components/Footer";
 import Features from "./components/Pages/Home/Features";
 import Hero from "./components/Pages/Home/Hero";
 

@@ -20,7 +20,7 @@ const FeatureCard: FunctionComponent<FeatureCardProps> = ({
 );
 
 const Features: FunctionComponent = () => (
-  <section className="py-16">
+  <section className="py-16 px-4 md:px-20">
     <div className="container mx-auto px-4 sm:px-0">
       <h2 className="text-3xl font-bold text-center mb-12">
         Why Choose Business Wish
