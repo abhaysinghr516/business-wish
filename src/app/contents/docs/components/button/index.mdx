@@ -2,23 +2,110 @@
 title: Button
 description: Buttons allow users to take actions, and make choices, with a single tap.
 ---
+## Implementation
+
+```jsx
+interface ButtonProps {
+  variant?: "primary" | "secondary" | "outlined" | "danger" | "icon";
+  size?: "small" | "regular" | "large";
+  icon?: "upload" | "edit";
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = "primary",
+  size = "regular",
+  icon,
+  children,
+  onClick,
+}) => {
+  const baseClass = "font-bold rounded focus:outline-none ";
+  const sizeClasses = {
+    small: "px-2 py-1 text-xs",
+    regular: "px-4 py-2 text-sm",
+    large: "px-6 py-3 text-base",
+  };
+  const variantClasses = {
+    primary: "bg-blue-500 hover:bg-blue-700 text-white",
+    secondary: "bg-gray-300 hover:bg-gray-400 text-gray-800",
+    outlined:
+      "bg-transparent border text-blue-700 hover:bg-blue-500 hover:text-white",
+    danger:
+      "bg-transparent border text-red-700 hover:bg-red-500 hover:text-white",
+    icon: "inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white",
+  };
+
+  return (
+    <button
+      type="button"
+      className={`${baseClass} ${sizeClasses[size]} ${
+        variantClasses[variant]
+      } ${variant === "icon" ? "flex items-center" : ""}`}
+      onClick={onClick}
+    >
+      {icon === "upload" && <Upload className="h-4 w-4 mr-2" />}
+      {children}
+    </button>
+  );
+};
+```
+
+## Usage
 
 ### Button Sizes
 <Preview>
 <ButtonSizes />
 </Preview>
+```jsx showLineNumbers
+<div className="flex gap-2 items-baseline">
+  <Button size="small">Small</Button>
+  <Button size="regular">Regular</Button>
+  <Button size="large">Large</Button>
+</div>
+```
 
-### Button Group
+### Button Variants
 <Preview>
 <ButtonGroup />
 </Preview>
+```jsx showLineNumbers
+<div className="flex gap-2">
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="outlined">Outlined</Button>
+  <Button variant="danger">Danger</Button>
+  <Button variant="icon" icon="upload">
+    Upload
+  </Button>
+</div>;
+```
+
+## Example Usage
 
 ### Button Groups
 <Preview>
 <ButtonGroups />
 </Preview>
+```jsx showLineNumbers
+<div className="inline-flex rounded-md shadow-sm" role="group">
+  <Button variant="outlined">Prev</Button>
+  <Button variant="outlined">1</Button>
+  <Button variant="outlined">2</Button>
+  <Button variant="outlined">3</Button>
+  <Button variant="outlined">Next</Button>
+</div>
+```
 
 ### Floating Action Button
 <Preview>
 <FAB />
 </Preview>
+```jsx showLineNumbers
+<div className="fixed bottom-4 right-4">
+  <Button variant="primary">
+    <Plus />
+  </Button>
+</div>;
+```

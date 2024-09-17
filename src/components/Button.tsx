@@ -1,4 +1,4 @@
-import { Pencil, Plus, Upload } from "lucide-react";
+import { Plus, Upload } from "lucide-react";
 
 interface ButtonProps {
   variant?: "primary" | "secondary" | "outlined" | "danger" | "icon";
@@ -79,7 +79,7 @@ export const ButtonGroups: React.FC = () => (
 
 export const FAB: React.FC = () => (
   <div className="fixed bottom-4 right-4">
-    <Button variant="primary" className="p-4 shadow-md rounded-full">
+    <Button variant="primary">
       <Plus />
     </Button>
   </div>
