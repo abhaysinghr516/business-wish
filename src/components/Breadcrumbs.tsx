@@ -1,107 +1,149 @@
-export const BasicBreadcrumb: React.FC = () => (
-  <nav>
-    <ol className="flex items-center text-base space-x-2 list-none">
-      <li>
-        <div className="text-gray-600 hover:text-gray-900">Home</div>
-      </li>
-      <li>
-        <span className="text-gray-500">/</span>
-      </li>
-      <li>
-        <div className="text-gray-600 hover:text-gray-900">Products</div>
-      </li>
-      <li>
-        <span className="text-gray-500">/</span>
-      </li>
-      <li>
-        <span className="text-gray-500">Product Details</span>
-      </li>
-    </ol>
-  </nav>
-);
+"use client";
+import Link from "next/link";
+import { useState } from "react";
 
-export const BreadcrumbwithIcons: React.FC = () => (
-  <nav>
-    <ol className="flex items-center text-base space-x-2 list-none">
-      <li>
-        <div className="flex items-center text-gray-600 hover:text-gray-900">
-          <svg
-            className="w-4 h-4 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
-          </svg>
-          Home
-        </div>
-      </li>
-      <li>
-        <span className="text-gray-500">/</span>
-      </li>
-      <li>
-        <div className="flex items-center text-gray-600 hover:text-gray-900">
-          <svg
-            className="w-4 h-4 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-            />
-          </svg>
-          Products
-        </div>
-      </li>
-      <li>
-        <span className="text-gray-500">/</span>
-      </li>
-      <li>
-        <span className="text-gray-500">Product Details</span>
-      </li>
-    </ol>
-  </nav>
-);
+export const BasicBreadcrumb: React.FC = () => {
+  const breadcrumbs = [
+    { label: "Home", href: "#" },
+    { label: "Products", href: "#" },
+    { label: "Laptops", href: "#" },
+  ];
 
-export const BreadcrumbwithSeparators: React.FC = () => (
-  <nav>
-    <ol className="flex items-center text-base list-none">
-      <li>
-        <div className="text-gray-600 hover:text-gray-900">Home</div>
-      </li>
-      <li className="mx-2">
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </li>
-      <li>
-        <div className="text-gray-600 hover:text-gray-900">Products</div>
-      </li>
-      <li className="mx-2">
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </li>
-      <li>
-        <span className="text-gray-500">Product Details</span>
-      </li>
-    </ol>
-  </nav>
-);
+  return (
+    <nav aria-label="Breadcrumb" className="text-sm">
+      <ol className="list-none p-0 inline-flex">
+        {breadcrumbs.map((breadcrumb, index) => (
+          <li key={breadcrumb.href} className="flex items-center">
+            {index > 0 && <span className="mx-2 text-gray-500">/</span>}
+            {index === breadcrumbs.length - 1 ? (
+              <span className="text-gray-700">{breadcrumb.label}</span>
+            ) : (
+              <Link
+                href={breadcrumb.href}
+                className="text-blue-600 hover:text-blue-800"
+              >
+                {breadcrumb.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+};
+
+export const DropdownBreadcrumb: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const breadcrumbs = [
+    { label: "Home", href: "#" },
+    { label: "Services", href: "#" },
+    { label: "Web Development", href: "#" },
+    { label: "React", href: "#" },
+  ];
+
+  return (
+    <nav aria-label="Breadcrumb" className="text-sm">
+      <ol className="list-none p-0 inline-flex items-center">
+        <li className="flex items-center">
+          <Link href="/" className="text-blue-600 hover:text-blue-800">
+            Home
+          </Link>
+        </li>
+        <li className="flex items-center ml-2">
+          <span className="mx-2 text-gray-500">/</span>
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-blue-600 hover:text-blue-800 flex items-center focus:outline-none"
+            >
+              ...
+              <svg
+                className="w-4 h-4 ml-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            {isOpen && (
+              <div className="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div
+                  className="py-1"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="options-menu"
+                >
+                  {breadcrumbs.slice(1, -1).map((breadcrumb) => (
+                    <Link
+                      key={breadcrumb.href}
+                      href={breadcrumb.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      role="menuitem"
+                    >
+                      {breadcrumb.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </li>
+        <li className="flex items-center">
+          <span className="mx-2 text-gray-500">/</span>
+          <span className="text-gray-700">
+            {breadcrumbs[breadcrumbs.length - 1].label}
+          </span>
+        </li>
+      </ol>
+    </nav>
+  );
+};
+
+export const BreadcrumbwithSeparators: React.FC = () => {
+  const breadcrumbs = [
+    { label: "Home", href: "#" },
+    { label: "Electronics", href: "#" },
+    { label: "Smartphones", href: "#" },
+    { label: "iPhone 12", href: "#" },
+  ];
+
+  return (
+    <nav aria-label="Breadcrumb" className="text-sm bg-gray-100 p-3 rounded-lg">
+      <ol className="list-none p-0 inline-flex">
+        {breadcrumbs.map((breadcrumb, index) => (
+          <li key={breadcrumb.href} className="flex items-center">
+            {index > 0 && (
+              <svg
+                className="w-3 h-3 mx-2 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            )}
+            {index === breadcrumbs.length - 1 ? (
+              <span className="text-gray-700 font-medium">
+                {breadcrumb.label}
+              </span>
+            ) : (
+              <Link
+                href={breadcrumb.href}
+                className="text-blue-600 hover:text-blue-800"
+              >
+                {breadcrumb.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+};

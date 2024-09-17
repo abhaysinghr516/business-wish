@@ -23,7 +23,7 @@ import { BannerwithActions, BannerwithHeadingAndButton, BasicBanner } from "@/co
 import Preview from "../components/Preview";
 import { BasicBlogList, HorizontalCardBlogList, MinimalCardBlogList, TimelineLayoutBlogList } from "@/components/BlogList";
 import { BottomNavigation, BubbleNavigation, FabNavigation } from "@/components/BottomNavigation";
-import { BasicBreadcrumb, BreadcrumbwithIcons, BreadcrumbwithSeparators } from "@/components/Breadcrumbs";
+import { BasicBreadcrumb, DropdownBreadcrumb, BreadcrumbwithSeparators } from "@/components/Breadcrumbs";
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
 import { CardStyleCTA, CTAwithForm, ImageOverlayCTA, SimpleCTA, SplitImageCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
@@ -80,7 +80,7 @@ const components = {
     BubbleNavigation,
     FabNavigation,
     BasicBreadcrumb,
-    BreadcrumbwithIcons,
+    DropdownBreadcrumb,
     BreadcrumbwithSeparators,
     ButtonSizes,
     ButtonGroup,
