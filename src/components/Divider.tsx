@@ -1,27 +1,7 @@
 export const BasicDivider: React.FC = () => (
-  <div className="mx-auto text-base max-w-screen-xl p-6">
+  <div className="mx-auto max-w-screen-xl p-6 text-base">
     Section
-    <div className="my-4 border-t border-gray-300"></div>
-    Section
-  </div>
-);
-
-export const HorizontalDivider: React.FC = () => (
-  <div className="mx-auto text-base max-w-screen-xl p-6">
-    Section
-    <div className="my-4 flex items-center">
-      <div className="flex-1 border-t border-gray-300"></div>
-      <span className="mx-4 text-gray-500">OR</span>
-      <div className="flex-1 border-t border-gray-300"></div>
-    </div>
-    Section
-  </div>
-);
-
-export const DashedDivider: React.FC = () => (
-  <div className="mx-auto text-base max-w-screen-xl p-6">
-    Section
-    <div className="my-4 border-t border-dashed border-gray-300"></div>
+    <hr className="my-4 border-t border-gray-300" />
     Section
   </div>
 );

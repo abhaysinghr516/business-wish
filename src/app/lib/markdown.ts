@@ -27,7 +27,7 @@ import { BasicBreadcrumb, DropdownBreadcrumb, BreadcrumbwithSeparators } from "@
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
 import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
-import { BasicDivider, CustomDividerwithIcon, DashedDivider, GradientDivider, HorizontalDivider, VerticalDivider } from "@/components/Divider";
+import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
 import { DropdownwithDividers, DropdownwithHeaders, DropdownwithIcons, GroupedOptionsDropdown, SimpleDropdown } from "@/components/Dropdown";
 import { AlternateFeatures, BasicFeatures, CarouselFeatures, FeatureswithBenefits, TabbedFeatures, VerticalFeatureList } from "@/components/Features";
 import { CenteredwithBranding, DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
@@ -97,8 +97,6 @@ const components = {
     ForumCard,
     PodcastCard,
     BasicDivider,
-    HorizontalDivider,
-    DashedDivider,
     VerticalDivider,
     CustomDividerwithIcon,
     GradientDivider,
