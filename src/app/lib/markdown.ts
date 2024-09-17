@@ -28,7 +28,7 @@ import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button
 import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
 import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
-import { DropdownwithDividers, DropdownwithHeaders, DropdownwithIcons, GroupedOptionsDropdown, SimpleDropdown } from "@/components/Dropdown";
+import { SearchableDropdown, DropdownwithIcons, SimpleDropdown } from "@/components/Dropdown";
 import { AlternateFeatures, BasicFeatures, CarouselFeatures, FeatureswithBenefits, TabbedFeatures, VerticalFeatureList } from "@/components/Features";
 import { CenteredwithBranding, DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
 import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch } from "@/components/Header";
@@ -102,9 +102,7 @@ const components = {
     GradientDivider,
     SimpleDropdown,
     DropdownwithIcons,
-    DropdownwithDividers,
-    DropdownwithHeaders,
-    GroupedOptionsDropdown,
+    SearchableDropdown,
     BasicFeatures,
     AlternateFeatures,
     VerticalFeatureList,

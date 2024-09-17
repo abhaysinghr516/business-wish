@@ -1,117 +1,213 @@
-export const SimpleDropdown: React.FC = () => (
-  <div className="bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
-    <div className="relative inline-block">
-      <button className="inline-flex items-center rounded bg-gray-200 px-4 py-2 font-semibold text-gray-700 hover:bg-gray-300">
-        <span>Dropdown</span>
-        <svg className="ml-2 h-4 w-4 fill-current" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-        </svg>
-      </button>
-      <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-2 shadow-lg">
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 1
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 2
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 3
-        </div>
-      </div>
-    </div>
-  </div>
-);
+"use client";
+import { ChevronDown, LogOut, Mail, Search, Settings } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-export const DropdownwithIcons: React.FC = () => (
-  <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
-    <div className="relative inline-block">
-      <button className="inline-flex items-center rounded bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700">
-        <span>Dropdown</span>
-        <svg className="ml-2 h-4 w-4 fill-current" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-        </svg>
-      </button>
-      <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-2 shadow-lg">
-        <div className="cursor-pointer flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="mr-5 h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-            />
-          </svg>
-          <span>Home</span>
-        </div>
-        <div className="cursor-pointer flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="mr-5 h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-            />
-          </svg>
-          <span>Help</span>
-        </div>
-        <div className="cursor-pointer flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="mr-5 h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
-            />
-          </svg>
-          <span>Sign Out</span>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+export const SimpleDropdown: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState("Choose an option");
 
-export const DropdownwithDividers: React.FC = () => (
-  <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
-    <div className="relative inline-block">
-      <button className="inline-flex items-center rounded bg-green-500 px-4 py-2 font-semibold text-white hover:bg-green-600">
-        <span>Dropdown</span>
-        <svg className="ml-2 h-4 w-4 fill-current" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-        </svg>
-      </button>
-      <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white py-2 shadow-lg">
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 1
+  const options = ["Option 1", "Option 2", "Option 3"];
+
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <div className="relative inline-block text-left">
+        <div>
+          <button
+            type="button"
+            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+            id="options-menu"
+            aria-haspopup="true"
+            aria-expanded="true"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {selected}
+            <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 2
-        </div>
-        <div className="border-b border-gray-200"></div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 3
-        </div>
+
+        {isOpen && (
+          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white">
+            <div
+              className="py-1"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="options-menu"
+            >
+              {options.map((option) => (
+                <a
+                  key={option}
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onClick={() => {
+                    setSelected(option);
+                    setIsOpen(false);
+                  }}
+                >
+                  {option}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+export const DropdownwithIcons: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const options = [
+    { label: "Messages", icon: Mail },
+    { label: "Settings", icon: Settings },
+    { label: "Logout", icon: LogOut },
+  ];
+
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <div className="relative inline-block text-left">
+        <div>
+          <button
+            type="button"
+            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+            id="options-menu"
+            aria-haspopup="true"
+            aria-expanded="true"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            Options
+            <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white">
+            <div
+              className="py-1"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="options-menu"
+            >
+              {options.map((option) => (
+                <a
+                  key={option.label}
+                  href="#"
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false);
+                    // Handle option selection here
+                  }}
+                >
+                  <option.icon
+                    className="mr-3 h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                  {option.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export const SearchableDropdown: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selected, setSelected] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const options = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Date",
+    "Elderberry",
+    "Fig",
+    "Grape",
+    "Honeydew",
+    "Kiwi",
+    "Lemon",
+  ];
+
+  const filteredOptions = options.filter((option) =>
+    option.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <div className="relative inline-block text-left" ref={dropdownRef}>
+        <div>
+          <button
+            type="button"
+            className="inline-flex justify-between w-64 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+            id="options-menu"
+            aria-haspopup="true"
+            aria-expanded="true"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {selected || "Select a fruit"}
+            <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white">
+            <div className="p-2">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  className="w-full pl-10 pr-4 py-2 border rounded-md text-sm"
+                  placeholder="Search fruits..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="max-h-60 overflow-y-auto">
+              {filteredOptions.map((option) => (
+                <a
+                  key={option}
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelected(option);
+                    setIsOpen(false);
+                  }}
+                >
+                  {option}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export const DropdownwithHeaders: React.FC = () => (
   <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
