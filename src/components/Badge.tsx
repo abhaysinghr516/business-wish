@@ -8,10 +8,13 @@ type Variant =
   | "danger"
   | "outlined";
 
-export const Badge: React.FC<{ variant: Variant; icon?: boolean }> = ({
-  variant,
-  icon,
-}) => {
+interface BadgeProps {
+  variant: Variant;
+  icon?: boolean;
+  text?: string; // Add the text prop
+}
+
+export const Badge: React.FC<BadgeProps> = ({ variant, icon, text }) => {
   const baseClass = "px-2 py-1 rounded-full text-xs";
   const variantClasses = {
     default: "bg-gray-200 text-gray-800",
@@ -25,7 +28,7 @@ export const Badge: React.FC<{ variant: Variant; icon?: boolean }> = ({
   return (
     <span className={`${baseClass} ${variantClasses[variant]}`}>
       {icon && <Check className="w-4 h-4 mr-1 inline" />}
-      {variant.charAt(0).toUpperCase() + variant.slice(1)}
+      {text || variant.charAt(0).toUpperCase() + variant.slice(1)}
     </span>
   );
 };
@@ -33,11 +36,11 @@ export const Badge: React.FC<{ variant: Variant; icon?: boolean }> = ({
 // Usage
 export const BadgeGroup: React.FC = () => (
   <div className="flex flex-wrap items-center space-x-2">
-    <Badge variant="primary" />
-    <Badge variant="success" />
-    <Badge variant="warning" />
-    <Badge variant="danger" />
-    <Badge variant="outlined" />
-    <Badge variant="success" icon />
+    <Badge variant="primary" text="Primary" />
+    <Badge variant="success" text="Success" />
+    <Badge variant="warning" text="Warning" />
+    <Badge variant="danger" text="Danger" />
+    <Badge variant="outlined" text="Outlined" />
+    <Badge variant="success" icon text="With Icon" />
   </div>
 );
