@@ -1,67 +1,50 @@
 "use client";
-import {
-  ArrowRight,
-  HomeIcon,
-  Search,
-  Bell,
-  User,
-  ChevronDownIcon,
-  Puzzle,
-  Zap,
-  Code,
-} from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Puzzle, Zap, Code } from "lucide-react";
 import Link from "next/link";
-import { ButtonGroup } from "@/components/Button";
+import { ButtonGroups } from "@/components/Button";
 import { BadgeGroup } from "@/components/Badge";
+import { TabswithUnderline } from "@/components/Tabs";
+import { AvatarSizes } from "@/components/Avatar";
 
 const Hero = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const [activeNavItem, setActiveNavItem] = useState(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [toggleState, setToggleState] = useState(false);
-
-  const navItems = [
-    { icon: HomeIcon, label: "Home" },
-    { icon: Search, label: "Search" },
-    { icon: Bell, label: "Notifications" },
-    { icon: User, label: "Profile" },
-  ];
-
   return (
-    <div className="min-h-screen flex items-center p-4 sm:p-8 sm:px-0">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
+    <div className="flex flex-col p-4 sm:p-8 mt-8">
+      {" "}
+      {/* Added mt-8 here */}
+      <div className="container mx-auto flex flex-col lg:flex-row items-center lg:justify-between">
         {/* Left side: Content */}
-        <div className="lg:w-1/2 sm:mr-5 mb-12 lg:mb-0">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-purple-500">
+        <div className="lg:w-1/2 mb-12 lg:mb-0 lg:mr-5">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-purple-500">
             Business Wish
           </h1>
-          <p className="text-xl sm:text-2xl mb-4 text-gray-700">
+          <p className="text-lg sm:text-xl lg:text-2xl mb-4 text-gray-700">
             The ultimate Tailwind CSS component library for business
             applications
           </p>
-          <ul className="grid gap-2 py-4">
-            <li className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-primary" />
+          <ul className="space-y-4">
+            <li className="flex items-start sm:items-center gap-2">
+              <Zap className="w-6 h-6 text-primary" />
               <span className="text-sm md:text-base">
                 Rapid development with pre-built components
               </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Puzzle className="w-5 h-5 text-primary" />
+            <li className="flex items-start sm:items-center gap-2">
+              <Puzzle className="w-6 h-6 text-primary" />
               <span className="text-sm md:text-base">
                 Easily customizable to match your brand
               </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Code className="w-5 h-5 text-primary" />
+            <li className="flex items-start sm:items-center gap-2">
+              <Code className="w-6 h-6 text-primary" />
               <span className="text-sm md:text-base">
                 Built on Tailwind CSS for ultimate flexibility
               </span>
             </li>
           </ul>
-          <Link href="/docs/components/404" className="group">
-            <button className="bg-purple-600 text-white py-3 px-8 rounded-full transition duration-300 flex items-center hover:bg-purple-700">
+          <Link href="/docs/components/404">
+            <button className="bg-purple-600 text-white py-3 px-8 rounded-full transition duration-300 flex items-center hover:bg-purple-700 mt-4">
+              {" "}
+              {/* Added mt-4 here */}
               Explore Components
               <ArrowRight className="ml-2 transition-transform group-hover:translate-x-2 group-hover:-rotate-45" />
             </button>
@@ -69,7 +52,7 @@ const Hero = () => {
         </div>
 
         {/* Right side: UI Components Preview */}
-        <div className="lg:w-1/2 space-y-8 bg-gray-100 p-6 rounded-lg shadow-lg">
+        <div className="lg:w-1/2 bg-gray-100 p-6 rounded-lg shadow-lg space-y-8">
           {/* Divider */}
           <div className="flex items-center">
             <div className="flex-grow border-t border-gray-600"></div>
@@ -78,43 +61,15 @@ const Hero = () => {
           </div>
 
           {/* Button Group */}
-          <ButtonGroup />
+          <ButtonGroups />
 
           {/* Tabs */}
-          <div className="flex border-b border-gray-700">
-            {["Overview", "Installation", "Usage"].map((tab, index) => (
-              <button
-                key={tab}
-                className={`py-2 px-4 ${
-                  activeTab === index
-                    ? "border-b-2 border-purple-500 text-purple-500"
-                    : ""
-                } hover:text-purple-400 transition duration-300`}
-                onClick={() => setActiveTab(index)}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+          <TabswithUnderline />
 
-          {/* Toggle Switch */}
-          <div className="flex items-center space-x-4">
-            <span>Toggle Switch</span>
-            <button
-              className={`w-14 h-7 flex items-center rounded-full p-1 ${
-                toggleState ? "bg-purple-600" : "bg-gray-700"
-              }`}
-              onClick={() => setToggleState(!toggleState)}
-            >
-              <div
-                className={`bg-white w-5 h-5 rounded-full shadow-md transform duration-300 ease-in-out ${
-                  toggleState ? "translate-x-7" : ""
-                }`}
-              ></div>
-            </button>
-          </div>
+          {/* Avatar */}
+          <AvatarSizes />
 
-          {/* Bottom Navigation */}
+          {/* Badge */}
           <BadgeGroup />
         </div>
       </div>
