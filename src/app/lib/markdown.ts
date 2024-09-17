@@ -25,7 +25,7 @@ import { BasicBlogList, HorizontalCardBlogList, MinimalCardBlogList, TimelineLay
 import { BottomNavigation, BubbleNavigation, FabNavigation } from "@/components/BottomNavigation";
 import { BasicBreadcrumb, DropdownBreadcrumb, BreadcrumbwithSeparators } from "@/components/Breadcrumbs";
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
-import { CardStyleCTA, CTAwithForm, ImageOverlayCTA, SimpleCTA, SplitImageCTA } from "@/components/CTA";
+import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
 import { BasicDivider, CustomDividerwithIcon, DashedDivider, GradientDivider, HorizontalDivider, VerticalDivider } from "@/components/Divider";
 import { DropdownwithDividers, DropdownwithHeaders, DropdownwithIcons, GroupedOptionsDropdown, SimpleDropdown } from "@/components/Dropdown";
@@ -89,8 +89,6 @@ const components = {
     SimpleCTA,
     CardStyleCTA,
     CTAwithForm,
-    SplitImageCTA,
-    ImageOverlayCTA,
     JobCard,
     ProductCard,
     ProfileCard,
