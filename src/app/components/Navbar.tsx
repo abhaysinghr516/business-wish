@@ -37,7 +37,7 @@ const Navbar = () => {
           >
             Templates
           </Link>
-          <Link href="https://github.com/abhaysinghr516">
+          <Link href="https://github.com/abhaysinghr516/business-wish">
             <FiGithub className="h-4 w-4" />
           </Link>
           <Link href="https://x.com/abhaysinghr1">
