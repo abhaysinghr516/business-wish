@@ -96,7 +96,7 @@ const Page = () => {
               Coming Soon
             </h2>
             <p className="text-lg md:text-xl leading-relaxed">
-              I'm crafting a stunning, versatile template to elevate your
+              I&apos;m crafting a stunning, versatile template to elevate your
               projects. Putting the finishing touches on a design that will
               transform your ideas into reality.
             </p>
