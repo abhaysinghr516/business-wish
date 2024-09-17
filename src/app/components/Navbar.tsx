@@ -37,10 +37,10 @@ const Navbar = () => {
           >
             Templates
           </Link>
-          <Link href="https://github.com">
+          <Link href="https://github.com/abhaysinghr516">
             <FiGithub className="h-4 w-4" />
           </Link>
-          <Link href="https://twitter.com">
+          <Link href="https://x.com/abhaysinghr1">
             <FaXTwitter className="h-4 w-4" />
           </Link>
           {/* <ThemeToggle /> */}
