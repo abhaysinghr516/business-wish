@@ -33,7 +33,7 @@ import { AlternateFeatures, BasicFeatures, CarouselFeatures, FeatureswithBenefit
 import { CenteredwithBranding, DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
 import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch } from "@/components/Header";
 import { BentoHero, CenterContentHeroSection, CenterContentwithTrustedLogos, IsolatedComponentHero, SideImageHero, TypographyFocusedHero } from "@/components/Hero";
-import { CircleLoader, PulseLoader, SimpleLoader } from "@/components/Loader";
+import { Loaders } from "@/components/Loader";
 import { BasicPagination, PaginationwithActiveState, PaginationwithDots, PaginationwithIcons, PaginationwithInputField } from "@/components/Pagination";
 import { BasicSettingsPage, SettingsPagewithTabs } from "@/components/Settings";
 import { BasicSidebar, CollapseSidebar, SidebarwithIcons } from "@/components/Sidebar";
@@ -125,9 +125,7 @@ const components = {
     BentoHero,
     TypographyFocusedHero,
     CenterContentwithTrustedLogos,
-    SimpleLoader,
-    PulseLoader,
-    CircleLoader,
+    Loaders,
     BasicPagination,
     PaginationwithActiveState,
     PaginationwithIcons,
