@@ -1,365 +1,373 @@
+import {
+  Bath,
+  Bed,
+  Briefcase,
+  Building2,
+  CarFront,
+  Clock,
+  DollarSign,
+  Expand,
+  Eye,
+  Headphones,
+  Heart,
+  LinkIcon,
+  MapPin,
+  MessageCircle,
+  Share2,
+  ShoppingCart,
+  Star,
+  ThumbsUp,
+} from "lucide-react";
+
 export const JobCard: React.FC = () => (
-  <div className="flex text-base items-center justify-center bg-gray-100">
-    <div className="w-full my-4 max-w-md rounded-lg bg-white p-8 pt-0 shadow-md">
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h2 className="mb-2 text-3xl font-semibold">Software Engineer</h2>
-          <p className="flex items-center text-sm text-gray-600">
-            <svg
-              className="mr-2 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-              />
-            </svg>
-            TechCorp Inc.
-          </p>
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h2 className="text-2xl font-bold mb-1">Software Engineer</h2>
+            <p className="text-sm text-gray-600 flex items-center">
+              <Building2 className="w-4 h-4 mr-1" />
+              TechCorp Inc.
+            </p>
+          </div>
+          <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+            Full-time
+          </span>
         </div>
-        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold">
-          Full-time
-        </span>
-      </div>
-      <div className="mb-6">
-        <p className="mb-3 flex items-center text-sm text-gray-600">
-          <svg
-            className="mr-2 h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-          San Francisco, CA (On-site)
+        <div className="space-y-2 mb-4">
+          <div className="flex items-center text-sm text-gray-600">
+            <MapPin className="w-4 h-4 mr-2" />
+            <span>San Francisco, CA (On-site)</span>
+          </div>
+          <div className="flex items-center text-sm text-gray-600">
+            <DollarSign className="w-4 h-4 mr-2" />
+            <span>$120,000 - $160,000 per year</span>
+          </div>
+          <div className="flex items-center text-sm text-gray-600">
+            <Clock className="w-4 h-4 mr-2" />
+            <span>Posted 2 days ago</span>
+          </div>
+        </div>
+        <p className="mb-6 text-sm leading-relaxed text-gray-500">
+          We&apos;re seeking a talented Software Engineer to join our dynamic
+          team. You&apos;ll work on cutting-edge projects, collaborate with
+          cross-functional teams, and have the opportunity to make a significant
+          impact on our products.
         </p>
-        <p className="mb-3 flex items-center text-sm text-gray-600">
-          <svg
-            className="mr-2 h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          $120,000 - $160,000 per year
-        </p>
-        <p className="flex items-center text-sm text-gray-600">
-          <svg
-            className="mr-2 h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          Posted 2 days ago
-        </p>
-      </div>
-      <p className="mb-6 text-sm leading-relaxed text-gray-500">
-        We&apos;re seeking a talented Software Engineer to join our dynamic
-        team. You&apos;ll work on cutting-edge projects, collaborate with
-        cross-functional teams, and have the opportunity to make a significant
-        impact on our products.
-      </p>
-      <div className="flex space-x-4">
-        <button className="w-1/2 rounded bg-black px-4 py-2 font-medium text-white">
-          Apply Now
-        </button>
-        <button className="w-1/2 rounded border border-gray-300 px-4 py-2 font-medium text-gray-800 hover:bg-gray-100">
-          View Details
-        </button>
+        <div className="flex space-x-4">
+          <button className="w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+            Apply Now
+          </button>
+          <button className="w-1/2 ml-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+            View Details
+          </button>
+        </div>
       </div>
     </div>
   </div>
 );
 
 export const ProductCard: React.FC = () => (
-  <div className="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow">
-    <img
-      className="m-0 h-48 w-full object-cover"
-      src="https://source.unsplash.com/random"
-      alt="Product Image"
-    />
-    <div className="p-4">
-      <p className="m-0 text-lg font-semibold text-gray-800">Product Name</p>
-      <p className="m-0 mt-2 text-sm text-gray-600">
-        Product Description goes here. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit.
-      </p>
-      <div className="mt-3 flex items-center">
-        <span className="text-base font-semibold text-gray-700">$49.99</span>
-        <div className="ml-auto flex items-center">
-          <span className="text-base text-yellow-500">★</span>
-          <span className="ml-1 text-sm text-gray-600">(4.8)</span>
-        </div>
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="relative">
+        <img
+          src="/placeholder.svg?height=200&width=300"
+          alt="Wireless Headphones"
+          className="w-full h-48 object-cover"
+        />
+        <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+          Sale
+        </span>
       </div>
-      <button className="mt-3 w-full rounded-full bg-blue-500 px-4 py-2 text-sm text-white hover:bg-blue-600">
-        Add to Cart
-      </button>
+      <div className="p-4">
+        <h2 className="text-xl font-semibold mb-2">
+          Wireless Noise-Cancelling Headphones
+        </h2>
+        <div className="flex items-center mb-2">
+          {[...Array(4)].map((_, i) => (
+            <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+          ))}
+          <Star className="w-5 h-5 text-yellow-400" />
+          <span className="ml-2 text-sm text-gray-600">(4.0)</span>
+        </div>
+        <p className="text-gray-600 text-sm mb-4">
+          Experience crystal-clear audio with our premium noise-cancelling
+          headphones. Perfect for music lovers and frequent travelers.
+        </p>
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <span className="text-2xl font-bold">$249.99</span>
+            <span className="text-sm text-gray-500 line-through ml-2">
+              $299.99
+            </span>
+          </div>
+          <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
+            Save $50
+          </span>
+        </div>
+        <button className="flex items-center justify-center w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+          <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
+        </button>
+      </div>
     </div>
   </div>
 );
 
 export const ProfileCard: React.FC = () => (
-  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg bg-white shadow">
-    <img
-      src="https://source.unsplash.com/random"
-      alt="Cover Picture"
-      className="m-0 h-40 w-full object-cover object-center"
-    />
-    <div className="relative">
-      <img
-        src="https://source.unsplash.com/random/100x100?face"
-        alt="Profile Picture"
-        className="m-0 mx-auto -mt-12 h-24 w-24 rounded-full border-4 border-white shadow-lg"
-      />
-    </div>
-    <div className="p-6">
-      <p className="m-0 text-xl font-semibold text-gray-800">John Doe</p>
-      <p className="m-0 mt-2 text-sm text-gray-600">Frontend Developer</p>
-      <div className="mt-4 flex items-center justify-between">
-        <button
-          type="button"
-          className="rounded bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none"
-        >
-          Follow
-        </button>
-        <button
-          type="button"
-          className="rounded border border-blue-500 bg-transparent px-4 py-2 text-sm font-medium text-blue-500 hover:bg-blue-50 focus:bg-blue-50 focus:outline-none"
-        >
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-lg shadow overflow-hidden">
+      <div className="p-4 text-center">
+        <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4">
+          <img
+            src="/placeholder.svg?height=96&width=96"
+            alt="Jane Doe"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h2 className="text-2xl font-bold mb-1">Jane Doe</h2>
+        <p className="text-gray-600 mb-3">Senior UX Designer</p>
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
+          {["UI/UX", "Product Design", "Prototyping"].map((skill) => (
+            <span
+              key={skill}
+              className="bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+        <div className="space-y-2 mb-4">
+          <div className="flex items-center justify-center text-sm text-gray-600">
+            <MapPin className="w-4 h-4 mr-2" />
+            San Francisco, CA
+          </div>
+          <div className="flex items-center justify-center text-sm text-gray-600">
+            <Briefcase className="w-4 h-4 mr-2" />
+            TechCorp Inc.
+          </div>
+          <div className="flex items-center justify-center text-sm">
+            <LinkIcon className="w-4 h-4 mr-2 text-gray-600" />
+            <a href="#" className="text-blue-600 hover:underline">
+              portfolio.com/janedoe
+            </a>
+          </div>
+        </div>
+        <p className="text-sm text-gray-600 mb-4">
+          Passionate UX designer with 5+ years of experience creating intuitive
+          and engaging digital experiences for global brands.
+        </p>
+      </div>
+      <div className="px-4 pb-4 flex gap-2">
+        <button className="flex items-center justify-center w-1/2 ml-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
           Message
         </button>
-      </div>
-      <div className="mt-4 border-t border-gray-200"></div>
-      <div className="mt-4 cursor-pointer text-sm text-blue-500 hover:text-blue-700">
-        View Profile
+        <button className="flex items-center justify-center w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+          Connect
+        </button>
       </div>
     </div>
   </div>
 );
 
 export const PropertyCard: React.FC = () => (
-  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg bg-white border shadow">
-    <div className="w-max overflow-hidden rounded-lg shadow-lg">
-      <div className="mx-auto max-w-md bg-white">
-        <div className="flex">
-          <img
-            className="m-0 h-36 w-64 object-cover rounded-lg ml-2 mt-2 object-center"
-            src="https://source.unsplash.com/random"
-            alt="Property Image"
-          />
-          <div className="p-4">
-            <div className="text-xs font-semibold uppercase tracking-wide text-indigo-500">
-              Builder
-            </div>
-            <p className="m-0 cursor-pointer text-lg font-semibold text-gray-800">
-              Property Name
-            </p>
-            <p className="m-0 mt-2 text-sm text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-sm overflow-hidden rounded-xl bg-white shadow-lg">
+      <div className="relative">
+        <img
+          src="/placeholder.svg?height=200&width=400"
+          alt="Modern house exterior"
+          className="h-48 w-full object-cover"
+        />
+        <span className="absolute left-2 top-2 rounded-full bg-green-500 px-2 py-1 text-xs font-semibold text-white">
+          For Sale
+        </span>
+        <button className="absolute right-2 top-2 rounded-full bg-white/80 p-1 text-rose-500 hover:bg-white/90 hover:text-rose-600">
+          <Heart className="h-5 w-5" />
+          <span className="sr-only">Add to favorites</span>
+        </button>
+      </div>
+      <div className="p-4">
+        <h2 className="mb-2 text-2xl font-bold text-gray-800">$450,000</h2>
+        <p className="mb-4 text-sm text-gray-600">
+          123 Modern Lane, Cityville, State 12345
+        </p>
+        <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex items-center">
+            <Bed className="mr-1 h-4 w-4" />
+            <span>3 Beds</span>
+          </div>
+          <div className="flex items-center">
+            <Bath className="mr-1 h-4 w-4" />
+            <span>2 Baths</span>
+          </div>
+          <div className="flex items-center">
+            <CarFront className="mr-1 h-4 w-4" />
+            <span>2 Garage</span>
+          </div>
+          <div className="flex items-center">
+            <Expand className="mr-1 h-4 w-4" />
+            <span>1,800 sqft</span>
           </div>
         </div>
       </div>
-      <div className="mt-4 border-t border-gray-300"></div>
-      <div className="flex justify-evenly py-4">
-        <div className="flex items-center text-sm text-gray-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="mr-1 h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-            />
-          </svg>
-
-          <span>7 beds</span>
-        </div>
-        <div className="flex items-center text-sm text-gray-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="mr-1 h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-            />
-          </svg>
-
-          <span>More Detail</span>
-        </div>
-        <div className="flex items-center text-sm text-gray-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="mr-1 h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-
-          <span>Price</span>
-        </div>
+      <div className="bg-gray-50 p-4">
+        <button className="w-full rounded-md bg-blue-600 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+          View Property
+        </button>
       </div>
     </div>
   </div>
 );
 
 export const ArticleCard: React.FC = () => (
-  <div className="mx-auto my-8 max-w-2xl rounded-lg border border-gray-900 bg-white p-6 md:flex">
-    <img
-      src="https://source.unsplash.com/random"
-      alt="News Image"
-      className="m-0 mb-4 h-48 w-full rounded-md object-cover md:mb-0 md:mr-4 md:w-1/3"
-    />
-    <div className="md:flex-1">
-      <p className="m-0 mb-2 text-2xl font-bold">Article Title</p>
-      <p className="m-0 mb-2 text-base text-gray-600">
-        Published on <span className="text-blue-500">March 1, 2024</span> by{" "}
-        <span className="text-blue-500">Author Name</span>
-      </p>
-      <p className="m-0 mb-4 text-base leading-7 text-gray-700">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
-        justo eu neque vulputate, a eleifend purus.
-      </p>
-      <div className="cursor-pointer text-base text-blue-500 hover:underline">
-        Read More
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-md overflow-hidden rounded-lg bg-white shadow-md">
+      <img
+        src="/placeholder.svg?height=200&width=400"
+        alt="Article thumbnail"
+        className="h-48 w-full object-cover"
+      />
+      <div className="p-4">
+        <span className="mb-2 inline-block rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-600">
+          Technology
+        </span>
+        <h2 className="mb-2 text-xl font-bold text-gray-800">
+          The Future of AI in Web Development
+        </h2>
+        <p className="mb-4 text-sm text-gray-600 line-clamp-2">
+          Explore how artificial intelligence is revolutionizing the way we
+          build and interact with websites...
+        </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <img
+              src="/placeholder.svg?height=32&width=32"
+              alt="Author"
+              className="h-8 w-8 rounded-full"
+            />
+            <span className="text-sm font-medium text-gray-700">John Doe</span>
+          </div>
+          <div className="flex items-center space-x-2 text-sm text-gray-500">
+            <Clock className="h-4 w-4" />
+            <span>5 min read</span>
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between bg-gray-50 p-4">
+        <div className="flex items-center space-x-1 text-sm text-gray-500">
+          <MessageCircle className="h-4 w-4" />
+          <span>24 comments</span>
+        </div>
+        <button className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+          Read More
+        </button>
       </div>
     </div>
   </div>
 );
 
 export const ForumCard: React.FC = () => (
-  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg ">
-    <div className="overflow-hidden bg-white sm:flex">
-      <div className="p-4 sm:flex-1">
-        <p className="m-0 text-lg font-semibold">Forum Topic Title</p>
-        <div className="mt-2 flex items-center">
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-md rounded-lg bg-white shadow-md">
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-4">
+          <span className="rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-600">
+            Discussion
+          </span>
+          <span className="text-xs text-gray-500">2 hours ago</span>
+        </div>
+        <h2 className="mb-2 text-lg font-bold text-gray-800">
+          Best practices for React hooks?
+        </h2>
+        <p className="mb-4 text-sm text-gray-600 line-clamp-2">
+          I'm new to React hooks and I'm wondering what are some best practices
+          when using them in larger applications...
+        </p>
+        <div className="flex items-center space-x-2">
           <img
-            src="https://source.unsplash.com/random/32x32"
-            alt="Avatar"
-            className="m-0 h-8 w-8 rounded-full"
+            src="/placeholder.svg?height=32&width=32"
+            alt="User"
+            className="h-8 w-8 rounded-full"
           />
-          <div className="ml-2">
-            <p className="m-0 text-base text-gray-600">
-              Posted by <span className="text-blue-500">John Doe</span>
-            </p>
-            <p className="m-0 text-sm text-gray-500">Member since 2020</p>
+          <span className="text-sm font-medium text-gray-700">Jane Smith</span>
+        </div>
+      </div>
+      <div className="flex items-center justify-between bg-gray-50 p-4">
+        <div className="flex space-x-4">
+          <div className="flex items-center space-x-1 text-sm text-gray-500">
+            <MessageCircle className="h-4 w-4" />
+            <span>15 replies</span>
+          </div>
+          <div className="flex items-center space-x-1 text-sm text-gray-500">
+            <ThumbsUp className="h-4 w-4" />
+            <span>23 likes</span>
+          </div>
+          <div className="flex items-center space-x-1 text-sm text-gray-500">
+            <Eye className="h-4 w-4" />
+            <span>102 views</span>
           </div>
         </div>
       </div>
-      <div className="flex-shrink-0 p-4">
-        <button className="rounded-full bg-gray-200 p-2 hover:bg-gray-300">
-          <svg
-            className="h-5 w-5 text-gray-600"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div className="flex justify-between bg-gray-100 px-4 py-2">
-      <p className="m-0 text-base text-gray-600">Last reply on March 5, 2024</p>
-      <p className="m-0 text-base text-gray-600">12 replies</p>
     </div>
   </div>
 );
 
 export const PodcastCard: React.FC = () => (
-  <div className="mx-auto mt-5 max-w-md overflow-hidden rounded-lg ">
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+  <div className="h-screen flex justify-center items-center">
+    <div className="w-full max-w-md rounded-lg bg-white shadow-md">
       <div className="relative">
         <img
-          src="https://source.unsplash.com/random/600x400"
-          alt="Podcast Image"
-          className="m-0 w-full h-48 object-cover"
+          src="/placeholder.svg?height=200&width=400"
+          alt="Podcast cover"
+          className="h-48 w-full object-cover rounded-t-lg"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-75"></div>
-        <div className="absolute inset-x-0 bottom-0 p-4">
-          <p className="m-0 text-lg font-semibold text-white">Podcast Title</p>
-          <p className="m-0 text-sm text-gray-300">Episode 12: Episode Name</p>
-        </div>
+        <span className="absolute left-2 top-2 rounded-full bg-red-500 px-2 py-1 text-xs font-semibold text-white">
+          New Episode
+        </span>
       </div>
       <div className="p-4">
-        <p className="m-0 text-base text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
-          justo eu neque vulputate, a eleifend purus tristique.
+        <h2 className="mb-2 text-xl font-bold text-gray-800">
+          The Web Dev Podcast
+        </h2>
+        <p className="mb-4 text-sm text-gray-600 line-clamp-2">
+          Episode 42: Mastering CSS Grid - Tips and Tricks from the Experts
         </p>
-        <div className="mt-4 flex items-center">
-          <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full mr-2">
-            Episode 12
+        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+          <div className="flex items-center space-x-2">
+            <Clock className="h-4 w-4" />
+            <span>45 min</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Headphones className="h-4 w-4" />
+            <span>10k listens</span>
+          </div>
+        </div>
+        <div className="flex items-center space-x-2">
+          <img
+            src="/placeholder.svg?height=24&width=24"
+            alt="Host 1"
+            className="h-6 w-6 rounded-full"
+          />
+          <img
+            src="/placeholder.svg?height=24&width=24"
+            alt="Host 2"
+            className="h-6 w-6 rounded-full"
+          />
+          <span className="text-sm font-medium text-gray-700">
+            Sarah & Mike
           </span>
-          <p className="m-0 text-base text-gray-600">1h 22m</p>
         </div>
       </div>
-      <div className="px-4 py-2 bg-gray-100 flex justify-between items-center">
-        <div className="flex items-center">
-          <img
-            src="https://source.unsplash.com/random/32x32"
-            alt="Avatar"
-            className="m-0 h-8 w-8 rounded-full"
-          />
-          <p className="m-0 text-base text-gray-600 ml-2">
-            Featuring <span className="text-blue-500">John Doe</span>
-          </p>
-        </div>
-        <button className="bg-blue-500 text-base text-white px-3 py-1 rounded-full">
-          Play
+      <div className="flex items-center justify-between bg-gray-50 p-4">
+        <button className="flex items-center justify-center w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+          <Headphones className="mr-2 h-4 w-4" />
+          Listen Now
+        </button>
+        <button className="flex items-center justify-center w-1/2 ml-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+          <Share2 className="mr-2 h-4 w-4" />
+          Share
         </button>
       </div>
     </div>
