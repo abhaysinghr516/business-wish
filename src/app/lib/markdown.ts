@@ -32,7 +32,7 @@ import { SearchableDropdown, DropdownwithIcons, SimpleDropdown } from "@/compone
 import { BasicFeatures } from "@/components/Features";
 import { CenteredwithBranding, DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
 import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch } from "@/components/Header";
-import { BentoHero, CenterContentHeroSection, CenterContentwithTrustedLogos, IsolatedComponentHero, SideImageHero, TypographyFocusedHero } from "@/components/Hero";
+import { CenterContentHeroSection, SideImageHero } from "@/components/Hero";
 import { Loaders } from "@/components/Loader";
 import { BasicPagination, PaginationwithDots, PaginationwithIcons, PaginationwithInputField } from "@/components/Pagination";
 import { BasicSettingsPage, SettingsPagewithTabs } from "@/components/Settings";
@@ -116,10 +116,6 @@ const components = {
     CenteredAlignedHeader,
     CenterContentHeroSection,
     SideImageHero,
-    IsolatedComponentHero,
-    BentoHero,
-    TypographyFocusedHero,
-    CenterContentwithTrustedLogos,
     Loaders,
     BasicPagination,
     PaginationwithIcons,
