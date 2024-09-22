@@ -12,8 +12,8 @@ export const MinimalCardTestimonial: React.FC = () => (
             Client Feedback
           </h3>
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-            "The product has streamlined our workflow, saving us countless
-            hours. It's an invaluable tool for our team."
+            &quot;The product has streamlined our workflow, saving us countless
+            hours. It&apos;s an invaluable tool for our team.&quot;
           </p>
           <div className="flex items-center">
             <img
@@ -64,7 +64,7 @@ export const TestimonialSectionwithGridlayout: React.FC = () => (
             className="bg-gray-50 rounded-2xl p-8 transition-all duration-300 hover:bg-gray-100"
           >
             <p className="mb-6 text-gray-700 italic text-lg leading-relaxed">
-              "{testimonial.quote}"
+              &quot;{testimonial.quote}&quot;
             </p>
             <p className="font-semibold text-gray-900">{testimonial.name}</p>
             <p className="text-sm text-gray-600">{testimonial.position}</p>
@@ -84,10 +84,10 @@ export const FullWidthTestimonial: React.FC = () => (
             A Game-Changing Experience
           </h3>
           <p className="mt-4 text-xl text-gray-700 leading-relaxed mb-8">
-            "We've seen a 50% increase in productivity since implementing this
-            solution. It's intuitive, powerful, and has become an essential part
-            of our daily operations. The impact on our business has been nothing
-            short of transformative."
+            &quot;We&apos;ve seen a 50% increase in productivity since
+            implementing this solution. It&apos;s intuitive, powerful, and has
+            become an essential part of our daily operations. The impact on our
+            business has been nothing short of transformative.&quot;
           </p>
           <div className="flex items-center">
             <img
@@ -158,7 +158,7 @@ export const SliderTestimonial: React.FC = () => {
               Transformative Impact
             </h3>
             <p className="mb-8 text-xl text-gray-700 italic leading-relaxed">
-              "{testimonials[currentIndex].quote}"
+              &quot;{testimonials[currentIndex].quote}&quot;
             </p>
             <div className="flex items-center">
               <img
