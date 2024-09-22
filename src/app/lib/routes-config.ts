@@ -94,10 +94,6 @@ export const ROUTES: EachRoute[] = [
                 href: "/pagination",
             },
             {
-                title: "Settings",
-                href: "/settings",
-            },
-            {
                 title: "Sidebar",
                 href: "/sidebar",
             },
@@ -114,7 +110,18 @@ export const ROUTES: EachRoute[] = [
                 href: "/testimonial",
             },
         ]
-    }
+    },
+    {
+        title: "Pages",
+        href: "/pages",
+        noLink: true,
+        items: [
+            {
+                title: "Settings",
+                href: "/settings",
+            },
+        ]
+    },
 ];
 
 type Page = { title: string; href: string };

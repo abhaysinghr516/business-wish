@@ -175,7 +175,7 @@ export const DetailedFooter: React.FC = () => (
           <h2 className="mb-4 text-lg font-bold">Your Brand</h2>
           <p className="mb-4">
             We are a cutting-edge AI company dedicated to pushing the boundaries
-            of what's possible with technology.
+            of what&apos;s possible with technology.
           </p>
           <div className="flex space-x-4">
             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
