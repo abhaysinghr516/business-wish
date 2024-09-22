@@ -282,8 +282,8 @@ export const ForumCard: React.FC = () => (
           Best practices for React hooks?
         </h2>
         <p className="mb-4 text-sm text-gray-600 line-clamp-2">
-          I'm new to React hooks and I'm wondering what are some best practices
-          when using them in larger applications...
+          I&apos;m new to React hooks and I&apos;m wondering what are some best
+          practices when using them in larger applications...
         </p>
         <div className="flex items-center space-x-2">
           <img
