@@ -29,7 +29,7 @@ import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
 import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
 import { SearchableDropdown, DropdownwithIcons, SimpleDropdown } from "@/components/Dropdown";
-import { AlternateFeatures, BasicFeatures, CarouselFeatures, FeatureswithBenefits, TabbedFeatures, VerticalFeatureList } from "@/components/Features";
+import { BasicFeatures } from "@/components/Features";
 import { CenteredwithBranding, DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
 import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch } from "@/components/Header";
 import { BentoHero, CenterContentHeroSection, CenterContentwithTrustedLogos, IsolatedComponentHero, SideImageHero, TypographyFocusedHero } from "@/components/Hero";
@@ -104,11 +104,6 @@ const components = {
     DropdownwithIcons,
     SearchableDropdown,
     BasicFeatures,
-    AlternateFeatures,
-    VerticalFeatureList,
-    TabbedFeatures,
-    FeatureswithBenefits,
-    CarouselFeatures,
     SimpleFooter,
     FooterwithMultipleSections,
     CenteredwithBranding,
