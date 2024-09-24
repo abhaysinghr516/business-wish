@@ -41,6 +41,7 @@ import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfi
 import { BasicTabs, TabswithBox, TabswithPill, TabswithUnderline } from "@/components/Tabs";
 import { FullWidthTestimonial, MinimalCardTestimonial, SliderTestimonial, TestimonialSectionwithGridlayout } from "@/components/Testimonials";
 import { Informative404Section, Interactive404Section, Minimal404Section, Playful404Section } from "@/components/Error404";
+import { DropdownSocialShare, FABSocialShare, ModalSocialShare } from "@/components/SocialShare";
 
 // add custom components
 const components = {
@@ -130,6 +131,9 @@ const components = {
     SkeletonLoadingforImageCard,
     SkeletonLoadingforUserProfile,
     SkeletonwithLoadedContent,
+    FABSocialShare,
+    DropdownSocialShare,
+    ModalSocialShare,
     BasicTabs,
     TabswithUnderline,
     TabswithPill,

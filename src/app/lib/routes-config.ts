@@ -94,6 +94,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/skeleton",
             },
             {
+                title: "Social Share",
+                href: "/social-share",
+            },
+            {
                 title: "Tabs",
                 href: "/tabs",
             },
