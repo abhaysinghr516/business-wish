@@ -109,7 +109,7 @@ export const ROUTES: EachRoute[] = [
         noLink: true,
         items: [
             {
-                title: "404 Not Found",
+                title: "Error Pages",
                 href: "/404",
             },
             {
