@@ -62,12 +62,25 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   );
 
   useEffect(() => {
-    updateIframeContent(iframeRef.current);
+    const iframe = iframeRef.current;
+    if (iframe) {
+      const onLoad = () => updateIframeContent(iframe);
+      iframe.addEventListener("load", onLoad);
+
+      updateIframeContent(iframe);
+
+      return () => {
+        iframe.removeEventListener("load", onLoad);
+      };
+    }
   }, [updateIframeContent, view]);
 
   useEffect(() => {
     if (isOpen) {
-      updateIframeContent(fullViewIframeRef.current);
+      const timer = setTimeout(() => {
+        updateIframeContent(fullViewIframeRef.current);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [isOpen, updateIframeContent, fullView]);
 
