@@ -37,7 +37,7 @@ export default function Home() {
             allowing you to create stunning interfaces with ease.
           </p>
           <Link
-            href="/docs/components/404"
+            href="/docs/components/accordion"
             className="inline-flex items-center text-lg font-semibold text-blue-600 hover:underline"
           >
             Explore Components

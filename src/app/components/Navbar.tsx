@@ -33,7 +33,7 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center space-x-6">
           <Link
-            href="/docs/components/404"
+            href="/docs/components/acccordion"
             className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
           >
             Components
@@ -72,7 +72,7 @@ const Navbar = () => {
             </SheetHeader>
             <ScrollArea className="flex-grow">
               <div className="flex flex-col gap-4 p-6">
-                <Link href="/docs/components/404" className="text-sm">
+                <Link href="/docs/components/accordion" className="text-sm">
                   Components
                 </Link>
                 <Link href="/templates" className="text-sm">

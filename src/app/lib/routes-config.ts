@@ -14,10 +14,6 @@ export const ROUTES: EachRoute[] = [
         noLink: true,
         items: [
             {
-                title: "404 Not Found",
-                href: "/404",
-            },
-            {
                 title: "Accordion",
                 href: "/accordion",
             },
@@ -36,10 +32,6 @@ export const ROUTES: EachRoute[] = [
             {
                 title: "Banner",
                 href: "/banner",
-            },
-            {
-                title: "Blog List",
-                href: "/blog-list",
             },
             {
                 title: "Bottom Navigation",
@@ -116,6 +108,14 @@ export const ROUTES: EachRoute[] = [
         href: "/pages",
         noLink: true,
         items: [
+            {
+                title: "404 Not Found",
+                href: "/404",
+            },
+            {
+                title: "Blog List",
+                href: "/blog-list",
+            },
             {
                 title: "Settings",
                 href: "/settings",
