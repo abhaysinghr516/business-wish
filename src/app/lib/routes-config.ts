@@ -66,6 +66,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/features",
             },
             {
+                title: "File Upload",
+                href: "/file-upload",
+            },
+            {
                 title: "Footer",
                 href: "/footer",
             },

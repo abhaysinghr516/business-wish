@@ -42,6 +42,7 @@ import { BasicTabs, TabswithBox, TabswithPill, TabswithUnderline } from "@/compo
 import { FullWidthTestimonial, MinimalCardTestimonial, SliderTestimonial, TestimonialSectionwithGridlayout } from "@/components/Testimonials";
 import { Informative404Section, Interactive404Section, Minimal404Section, Playful404Section } from "@/components/Error404";
 import { DropdownSocialShare, FABSocialShare, ModalSocialShare } from "@/components/SocialShare";
+import { DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePreviewFileUpload, MultiFileUpload } from "@/components/FileUpload";
 
 // add custom components
 const components = {
@@ -105,6 +106,11 @@ const components = {
     DropdownwithIcons,
     SearchableDropdown,
     BasicFeatures,
+    FileUpload,
+    MultiFileUpload,
+    ImagePreviewFileUpload,
+    FileTypeValidatorFileUpload,
+    DropzoneFileUpload,
     SimpleFooter,
     FooterwithMultipleSections,
     CenteredwithBranding,
