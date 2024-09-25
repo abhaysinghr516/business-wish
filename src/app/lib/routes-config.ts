@@ -109,6 +109,10 @@ export const ROUTES: EachRoute[] = [
                 title: "Testimonial",
                 href: "/testimonial",
             },
+            {
+                title: "Tooltip",
+                href: "/tooltip",
+            },
         ]
     },
     {

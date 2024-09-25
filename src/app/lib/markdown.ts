@@ -43,6 +43,7 @@ import { FullWidthTestimonial, MinimalCardTestimonial, SliderTestimonial, Testim
 import { Informative404Section, Interactive404Section, Minimal404Section, Playful404Section } from "@/components/Error404";
 import { DropdownSocialShare, FABSocialShare, ModalSocialShare } from "@/components/SocialShare";
 import { DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePreviewFileUpload, MultiFileUpload } from "@/components/FileUpload";
+import { AnimatedTooltip, ArrowTooltip, BasicTooltip, TooltipDemo } from "@/components/Tooltip";
 
 // add custom components
 const components = {
@@ -148,6 +149,10 @@ const components = {
     TestimonialSectionwithGridlayout,
     FullWidthTestimonial,
     SliderTestimonial,
+    BasicTooltip,
+    ArrowTooltip,
+    AnimatedTooltip,
+    TooltipDemo,
 };
 
 // can be used for other pages like blogs, Guides etc

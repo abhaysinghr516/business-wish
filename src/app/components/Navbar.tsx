@@ -33,7 +33,7 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center space-x-6">
           <Link
-            href="/docs/components/acccordion"
+            href="/docs/components/accordion"
             className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
           >
             Components
