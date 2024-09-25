@@ -46,7 +46,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/components"
+                  href="/docs/components/accordion"
                   className="hover:text-purple-400 transition duration-300"
                 >
                   Components
