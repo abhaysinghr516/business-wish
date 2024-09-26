@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
 import DocsMenu from "./docs-menu";
+import Search from "./search";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +33,7 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden md:flex items-center space-x-6">
+          <Search />
           <Link
             href="/docs/components/accordion"
             className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
@@ -71,6 +73,7 @@ const Navbar = () => {
               </SheetClose>
             </SheetHeader>
             <ScrollArea className="flex-grow">
+              <Search />
               <div className="flex flex-col gap-4 p-6">
                 <Link href="/docs/components/accordion" className="text-sm">
                   Components
