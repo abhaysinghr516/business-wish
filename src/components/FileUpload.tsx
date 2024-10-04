@@ -41,14 +41,16 @@ export const FileUpload: React.FC = () => {
     <div className="w-full max-w-md mx-auto">
       <div
         className={`border-2 border-dashed rounded-lg p-8 text-center ${
-          isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"
+          isDragging
+            ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
+            : "border-gray-300 dark:border-gray-600"
         }`}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400" />
-        <p className="mt-2 text-sm text-gray-600">
+        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
           Drag and drop your file here, or click to select a file
         </p>
         <input
@@ -65,7 +67,7 @@ export const FileUpload: React.FC = () => {
         </label>
       </div>
       {file && (
-        <div className="mt-4 text-sm text-gray-600">
+        <div className="mt-4 text-sm text-gray-600 dark:text-gray-300">
           Selected file: {file.name}
         </div>
       )}
@@ -112,9 +114,9 @@ export const MultiFileUpload: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400" />
-        <p className="mt-2 text-sm text-gray-600">
+      <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
+        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
           Select multiple files to upload
         </p>
         <input
@@ -133,9 +135,12 @@ export const MultiFileUpload: React.FC = () => {
       </div>
       <div className="mt-4 space-y-4">
         {files.map((file) => (
-          <div key={file.id} className="bg-gray-100 rounded-lg p-4">
+          <div
+            key={file.id}
+            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4"
+          >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-900 truncate">
+              <span className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                 {file.name}
               </span>
               <button
@@ -145,13 +150,13 @@ export const MultiFileUpload: React.FC = () => {
                 <XIcon className="h-5 w-5" />
               </button>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
               <div
                 className="bg-blue-600 h-2.5 rounded-full"
                 style={{ width: `${file.progress}%` }}
               ></div>
             </div>
-            <span className="text-xs text-gray-500 mt-1">
+            <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
               {file.progress}% uploaded
             </span>
           </div>
@@ -184,7 +189,7 @@ export const ImagePreviewFileUpload: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+      <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
         {image ? (
           <div className="relative">
             <img
@@ -201,8 +206,8 @@ export const ImagePreviewFileUpload: React.FC = () => {
           </div>
         ) : (
           <>
-            <UploadIcon className="mx-auto h-12 w-12 text-gray-400" />
-            <p className="mt-2 text-sm text-gray-600">
+            <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
               Upload an image to see a preview
             </p>
           </>
@@ -265,9 +270,9 @@ export const FileTypeValidatorFileUpload: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400" />
-        <p className="mt-2 text-sm text-gray-600">
+      <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
+        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
           Upload a PDF, DOC, DOCX, or TXT file (max 5MB)
         </p>
         <input
@@ -359,14 +364,16 @@ export const DropzoneFileUpload: React.FC = () => {
     <div className="w-full max-w-md mx-auto">
       <div
         className={`border-2 border-dashed rounded-lg p-8 text-center ${
-          isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"
+          isDragging
+            ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
+            : "border-gray-300 dark:border-gray-600"
         }`}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400" />
-        <p className="mt-2 text-sm text-gray-600">
+        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
           Drag and drop your files here, or click to select files
         </p>
         <input
@@ -385,20 +392,22 @@ export const DropzoneFileUpload: React.FC = () => {
       </div>
       {files.length > 0 && (
         <div className="mt-6">
-          <h3 className="text-lg font-medium text-gray-900">Uploaded Files</h3>
-          <ul className="mt-3 divide-y divide-gray-200">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+            Uploaded Files
+          </h3>
+          <ul className="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
             {files.map((file) => (
               <li
                 key={file.id}
                 className="py-3 flex items-center justify-between"
               >
                 <div className="flex items-center">
-                  <FileIcon className="h-5 w-5 text-gray-400 mr-3" />
+                  <FileIcon className="h-5 w-5 text-gray-400 dark:text-gray-200 mr-3" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       {file.name}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                       {formatFileSize(file.size)}
                     </p>
                   </div>

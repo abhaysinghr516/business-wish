@@ -13,19 +13,19 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100">
+    <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
       <div className="text-center px-4">
-        <p className="text-4xl sm:text-6xl lg:text-9xl font-bold text-gray-800">
+        <p className="text-4xl sm:text-6xl lg:text-9xl font-bold text-gray-800 dark:text-gray-200">
           404
         </p>
-        <p className="mt-4 text-xl sm:text-2xl font-semibold text-gray-600">
+        <p className="mt-4 text-xl sm:text-2xl font-semibold text-gray-600 dark:text-gray-400">
           Page not found
         </p>
-        <p className="mt-2 text-gray-500">
+        <p className="mt-2 text-gray-500 dark:text-gray-300">
           The page you are looking for might have been removed, had its name
           changed, or is temporarily unavailable.
         </p>
-        <div className="cursor-pointer mt-6 inline-block rounded-md bg-black px-6 py-2 text-sm font-semibold text-white">
+        <div className="cursor-pointer mt-6 inline-block rounded-md bg-black dark:bg-gray-700 px-6 py-2 text-sm font-semibold text-white">
           Go Back Home
         </div>
       </div>
@@ -45,24 +45,24 @@ export default Page;
 import { Ghost } from "lucide-react";
 import React from "react";
 
-const page = () => {
+const Page = () => {
   return (
-   <div className="flex flex-col h-screen items-center justify-center py-10 sm:py-16 lg:py-20">
-      <Ghost className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 text-black animate-bounce" />
-      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-6 sm:mt-8">
+    <div className="flex flex-col h-screen items-center justify-center py-10 sm:py-16 lg:py-20 bg-gray-100 dark:bg-gray-900">
+      <Ghost className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 text-black dark:text-white animate-bounce" />
+      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-6 sm:mt-8 text-black dark:text-white">
         Whoops! Page not found
       </p>
-      <p className="text-lg sm:text-xl mt-4">
+      <p className="text-lg sm:text-xl mt-4 text-gray-700 dark:text-gray-400">
         Looks like this page has vanished into thin air!
       </p>
-      <div className="cursor-pointer mt-6 bg-gray-900 text-sm font-semibold text-white py-2 px-6 rounded-md">
-        Let's go back home
+      <div className="cursor-pointer mt-6 bg-gray-900 dark:bg-gray-700 text-sm font-semibold text-white py-2 px-6 rounded-md">
+        Let&apos;s go back home
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;
 ```
 
 ### Informative 404 Page
@@ -76,25 +76,25 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="flex flex-col h-screen items-center justify-center py-10 sm:py-16 lg:py-20 px-4">
+    <div className="flex flex-col h-screen items-center justify-center py-10 sm:py-16 lg:py-20 px-4 bg-gray-100 dark:bg-gray-900">
       <AlertCircle className="w-16 h-16 sm:w-20 sm:h-20 text-red-500 mb-6 sm:mb-8" />
-      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200">
         404 - Page Not Found
       </p>
-      <p className="text-center text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-md">
+      <p className="text-center text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-md text-gray-500 dark:text-gray-400">
         The page you are looking for might have been removed, had its name
         changed, or is temporarily unavailable.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-xl">
-        <div className="flex items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+        <div className="flex items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
           <Home className="mr-2" />
           <span className="text-sm font-semibold">Go to Homepage</span>
         </div>
-        <div className="flex items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+        <div className="flex items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
           <Search className="mr-2" />
           <span className="text-sm font-semibold">Search our site</span>
         </div>
-        <div className="flex items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+        <div className="flex items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
           <HelpCircle className="mr-2" />
           <span className="text-sm font-semibold">Visit Help Center</span>
         </div>
@@ -128,41 +128,44 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center py-20 px-4">
-      <h1 className="text-4xl font-bold mb-4">Oops! Page not found</h1>
-      <p className="text-xl mb-8">
-        Let's see if we can find what you're looking for...
+    <div className="flex flex-col items-center h-screen justify-center py-20 px-4 bg-gray-100 dark:bg-gray-900">
+      <h1 className="text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+        Oops! Page not found
+      </h1>
+      <p className="text-xl mb-8 text-gray-600 dark:text-gray-400">
+        Let&apos;s see if we can find what you&apos;re looking for...
       </p>
       {!isSearching && !searchComplete && (
         <button
           onClick={handleSearch}
-          className="bg-gray-900 text-white py-2 px-6 rounded-md cursor-pointer"
+          className="bg-gray-900 dark:bg-gray-700 text-white py-2 px-6 rounded-md cursor-pointer"
         >
           Search for page
         </button>
       )}
       {isSearching && (
         <div className="flex items-center mb-4">
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          <Loader2 className="mr-2 h-4 w-4 animate-spin text-gray-800 dark:text-gray-200" />
           Searching...
         </div>
       )}
       {searchComplete && (
         <div className="text-center mb-8">
-          <p className="mb-4">
-            We couldn't find the exact page, but here are some helpful links:
+          <p className="mb-4 text-gray-700 dark:text-gray-400">
+            We couldn&apos;t find the exact page, but here are some helpful
+            links:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <button className="flex justify-center items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
               Home
             </button>
-            <button className="flex justify-center items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
               Sitemap
             </button>
-            <button className="flex justify-center items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
               Contact Us
             </button>
-            <button className="flex justify-center items-center border px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50">
+            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
               FAQ
             </button>
           </div>

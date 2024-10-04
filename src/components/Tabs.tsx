@@ -13,8 +13,8 @@ export const BasicTabs: React.FC = () => {
             key={tab}
             className={`px-4 py-2 ${
               activeTab === tab
-                ? "text-blue-600 font-semibold"
-                : "text-gray-600"
+                ? "text-blue-600 font-semibold dark:text-blue-400"
+                : "text-gray-600 dark:text-gray-300"
             }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -32,14 +32,14 @@ export const TabswithUnderline: React.FC = () => {
 
   return (
     <div>
-      <div className="flex space-x-4 border-b">
+      <div className="flex space-x-4 border-b dark:border-gray-700">
         {tabs.map((tab) => (
           <button
             key={tab}
             className={`px-4 py-2 ${
               activeTab === tab
-                ? "border-b-2 border-blue-500 text-blue-600 font-semibold"
-                : "text-gray-600"
+                ? "border-b-2 border-blue-500 text-blue-600 font-semibold dark:border-blue-400 dark:text-blue-400"
+                : "text-gray-600 dark:text-gray-300"
             }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -57,14 +57,14 @@ export const TabswithPill: React.FC = () => {
 
   return (
     <div>
-      <div className="flex space-x-2 bg-gray-100 p-1 rounded-full">
+      <div className="flex space-x-2 bg-gray-100 p-1 rounded-full dark:bg-gray-800">
         {tabs.map((tab) => (
           <button
             key={tab}
             className={`px-4 py-2 rounded-full ${
               activeTab === tab
-                ? "bg-white shadow text-blue-600 font-semibold"
-                : "text-gray-600"
+                ? "bg-white shadow text-blue-600 font-semibold dark:bg-gray-700 dark:text-blue-400"
+                : "text-gray-600 dark:text-gray-300"
             }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -86,12 +86,12 @@ export const TabswithBox: React.FC = () => {
         {tabs.map((tab, index) => (
           <button
             key={tab}
-            className={`px-4 py-2 border-t border-b border-r ${
+            className={`px-4 py-2 border-t border-b border-r dark:border-gray-700 ${
               index === 0 ? "rounded-l border-l" : ""
             } ${index === tabs.length - 1 ? "rounded-r" : ""} ${
               activeTab === tab
-                ? "bg-blue-600 text-white font-semibold"
-                : "bg-white text-gray-600"
+                ? "bg-blue-600 text-white font-semibold dark:bg-blue-500 dark:text-gray-300"
+                : "bg-white text-gray-600 dark:bg-gray-800 dark:text-gray-300"
             }`}
             onClick={() => setActiveTab(tab)}
           >

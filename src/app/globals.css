@@ -8,7 +8,7 @@
 }
 
 *::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -18,7 +18,7 @@
 *::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb);
   border-radius: 20px;
-  border: 3px solid var(--scrollbar-track);
+  border: 2px solid var(--scrollbar-track);
 }
 
 @layer base {
@@ -43,13 +43,15 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
-    --scrollbar-thumb: #a855f7;
-    --scrollbar-track: #f5f5f5;
+    --scrollbar-thumb: #a0aec0;
+    --scrollbar-track: #f7fafc;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --code-bg: 210 40% 96.1%;
+    --code-fg: 222.2 84% 4.9%;
   }
 
   .dark {
@@ -72,13 +74,15 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
-    --scrollbar-thumb: #6366f1;
-    --scrollbar-track: #1f2937;
+    --scrollbar-thumb: #4a5568;
+    --scrollbar-track: #2d3748;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --code-bg: 220 13% 18%;
+    --code-fg: 220 14% 71%;
   }
 }
 
@@ -98,48 +102,50 @@
 
 pre {
   padding: 0 !important;
-  width: inherit !important;
+  width: 100% !important;
   overflow-x: auto;
-  @apply bg-secondary dark:bg-secondary;
+  @apply bg-[hsl(var(--code-bg))] text-[hsl(var(--code-fg))];
   @apply rounded-md;
 }
 
 pre>code {
   display: grid;
-  max-width: inherit !important;
-  padding: 14px 0 !important;
+  width: 100%;
+  padding: 16px 0 !important;
   @apply text-sm;
 }
 
 .code-line {
-  padding: 0.75px 12.5px;
+  padding: 0 16px;
 }
 
 .line-number::before {
   display: inline-block;
   width: 1rem;
-  margin-right: 22px;
-  margin-left: -2px;
-  color: var(--muted-foreground);
+  margin-right: 16px;
+  color: hsl(var(--muted-foreground));
   content: attr(line);
-  font-size: 13.5px;
+  font-size: 12px;
   text-align: right;
+  user-select: none;
 }
 
 .highlight-line {
-  @apply bg-muted;
+  background-color: hsl(var(--muted) / 0.1);
 }
 
 .punctuation {
-  @apply text-muted-foreground;
+  color: hsl(var(--muted-foreground));
 }
 
 .comment {
-  @apply text-muted-foreground;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
 }
 
 .keyword {
-  @apply text-pink-600 dark:text-pink-400;
+  @apply text-purple-600 dark:text-purple-400;
+  font-weight: bold;
 }
 
 .function {
@@ -155,7 +161,7 @@ pre>code {
 }
 
 .attr-value {
-  @apply text-yellow-600 dark:text-yellow-400;
+  @apply text-yellow-600 dark:text-yellow-300;
 }
 
 .tag {

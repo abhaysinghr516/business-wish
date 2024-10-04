@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-6 transform transition-transform duration-300 ease-in-out ${
+    className={`h-6 w-6 transform transition-transform duration-300 ease-in-out dark:text-white ${
       isExpanded ? "rotate-180" : ""
     } ${isExpanded ? "animate-bounce-down" : "animate-bounce-up"}`}
     fill="none"
@@ -42,20 +42,24 @@ const BasicAccordion: React.FC = () => {
     <div className="max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
       <div className="rounded-lg overflow-hidden">
         <div
-          className="flex items-center justify-between cursor-pointer py-2 px-6 bg-gray-100"
+          className="flex items-center justify-between cursor-pointer py-2 px-6 bg-gray-100 dark:bg-gray-800"
           onClick={toggleAccordion}
         >
-          <div className="text-lg font-semibold">Accordion Title</div>
+          <div className="text-lg font-semibold text-gray-900 dark:text-gray-200">
+            Accordion Title
+          </div>
           <span>
             <AnimatedArrow isExpanded={isExpanded} />
           </span>
         </div>
         <div
-          className="transition-all duration-300 ease-in-out bg-gray-100"
+          className="transition-all duration-300 ease-in-out bg-gray-100 dark:bg-gray-800"
           style={{ height: height }}
         >
           <div ref={contentRef} className="px-6 py-4">
-            <p className="text-base">Accordion content goes here...</p>
+            <p className="text-base text-gray-700 dark:text-gray-300">
+              Accordion content goes here...
+            </p>
           </div>
         </div>
       </div>
@@ -82,14 +86,16 @@ const BorderedAccordion: React.FC = () => {
   };
 
   return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
+    <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
       <div>
         <div
           className={`border-b flex items-center justify-between cursor-pointer py-2 px-6 
-            ${isExpanded ? "border-b" : "border-none"}`}
+            ${isExpanded ? "border-b dark:border-gray-600" : "border-none"}`}
           onClick={toggleAccordion}
         >
-          <div className="text-lg font-semibold">Accordion Title</div>
+          <div className="text-lg font-semibold text-gray-900 dark:text-gray-200">
+            Accordion Title
+          </div>
           <span>
             <AnimatedArrow isExpanded={isExpanded} />
           </span>
@@ -99,7 +105,9 @@ const BorderedAccordion: React.FC = () => {
           style={{ height: height }}
         >
           <div ref={contentRef} className="px-6 py-4">
-            <p className="text-base">Accordion content goes here...</p>
+            <p className="text-base text-gray-700 dark:text-gray-300">
+              Accordion content goes here...
+            </p>
           </div>
         </div>
       </div>

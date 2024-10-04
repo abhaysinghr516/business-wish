@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { Smartphone, Monitor, Maximize2, Tablet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import ThemeToggle from "./theme-switch";
 
 interface PreviewProps {
   children: React.ReactNode;
@@ -71,6 +72,18 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                   50% { transform: rotate(180deg); border-radius: 50%; }
                   75% { transform: rotate(360deg); border-radius: 0%; }
                   100% { transform: rotate(360deg); border-radius: 50%; }
+                }
+                @media (prefers-color-scheme: dark) {
+                  body {
+                    background-color: #020817;
+                    color: #ffffff;
+                  }
+                }
+                @media (prefers-color-scheme: light) {
+                  body {
+                    background-color: #ffffff;
+                    color: #000000;
+                  }
                 }
               </style>
             </head>
@@ -209,7 +222,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                 <div className="flex-grow overflow-auto p-4 flex justify-center items-start">
                   <iframe
                     ref={fullViewIframeRef}
-                    className="border border-gray-300 rounded-lg w-full h-full"
+                    className="border border-gray-800 dark:border-gray-400 rounded-lg w-full h-full"
                     style={{
                       maxWidth: fullViewDimensions.width,
                       maxHeight: fullViewDimensions.height,
@@ -219,6 +232,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
               </div>
             </DialogContent>
           </Dialog>
+          <ThemeToggle />
         </div>
       )}
       <div
@@ -228,7 +242,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
       >
         <iframe
           ref={iframeRef}
-          className="border border-gray-300 rounded-lg"
+          className="border border-gray-800 dark:border-gray-400 rounded-lg"
           width={viewDimensions.width}
           height={viewDimensions.height}
           style={{

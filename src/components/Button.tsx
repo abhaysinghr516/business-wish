@@ -23,13 +23,15 @@ export const Button: React.FC<ButtonProps> = ({
     large: "px-6 py-3 text-base",
   };
   const variantClasses = {
-    primary: "bg-blue-500 hover:bg-blue-700 text-white",
-    secondary: "bg-gray-300 hover:bg-gray-400 text-gray-800",
+    primary:
+      "bg-blue-500 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-600",
+    secondary:
+      "bg-gray-300 hover:bg-gray-400 text-gray-800 dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white",
     outlined:
-      "bg-transparent border text-blue-700 hover:bg-blue-500 hover:text-white",
+      "bg-transparent border text-blue-700 hover:bg-blue-500 hover:text-white dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-800",
     danger:
-      "bg-transparent border text-red-700 hover:bg-red-500 hover:text-white",
-    icon: "inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white",
+      "bg-transparent border text-red-700 hover:bg-red-500 hover:text-white dark:text-red-400 dark:border-red-400 dark:hover:bg-red-800",
+    icon: "inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-600",
   };
 
   return (
@@ -68,7 +70,10 @@ export const ButtonSizes: React.FC = () => (
 );
 
 export const ButtonGroups: React.FC = () => (
-  <div className="inline-flex rounded-md shadow-sm" role="group">
+  <div
+    className="inline-flex rounded-md shadow-sm dark:shadow-gray-700"
+    role="group"
+  >
     <Button variant="outlined">Prev</Button>
     <Button variant="outlined">1</Button>
     <Button variant="outlined">2</Button>

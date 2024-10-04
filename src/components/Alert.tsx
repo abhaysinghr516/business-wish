@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 // Simple informational alert
 export const SimpleAlert: React.FC = () => (
   <div
-    className="bg-blue-50 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
+    className="bg-blue-50 dark:bg-gray-900 border-t-4 border-blue-500 rounded-b text-blue-900 dark:text-blue-100 px-4 py-3 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
     role="alert"
   >
     <div className="flex flex-col sm:flex-row">
@@ -38,15 +38,17 @@ export const DismissableAlert: React.FC = () => {
     <div className="max-w-md mx-auto sm:max-w-sm lg:max-w-lg">
       {isVisible ? (
         <div
-          className="relative border text-base border-red-400 text-red-500 px-4 py-3 rounded mb-4"
+          className="relative border text-base border-red-400 dark:border-red-600 text-red-500 dark:text-red-400 px-4 py-3 rounded mb-4 bg-white dark:bg-gray-950"
           role="alert"
         >
-          <strong className="font-bold text-red-500 mr-2">Error!</strong>
+          <strong className="font-bold text-red-500 dark:text-red-400 mr-2">
+            Error!
+          </strong>
           <span className="block sm:inline">
             Something went wrong, please try again.
           </span>
           <button
-            className="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-500 hover:text-red-700 focus:outline-none"
+            className="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:outline-none"
             onClick={dismissAlert}
             aria-label="Dismiss alert"
           >
@@ -54,7 +56,7 @@ export const DismissableAlert: React.FC = () => {
           </button>
         </div>
       ) : (
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
           Hang tight! The alert will reappear shortly for you to interact with
           it again.
         </div>
@@ -66,13 +68,13 @@ export const DismissableAlert: React.FC = () => {
 // Custom warning alert
 export const CustomAlert: React.FC = () => (
   <div
-    className="bg-yellow-50 border-l-4 border-yellow-400 p-4 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
+    className="bg-yellow-50 dark:bg-gray-900 border-l-4 border-yellow-400 p-4 max-w-md mx-auto sm:max-w-sm lg:max-w-lg"
     role="alert"
   >
     <div className="flex items-center">
-      <CircleAlert className="w-6 h-6 text-yellow-700" />
+      <CircleAlert className="w-6 h-6 text-yellow-700 dark:text-yellow-300" />
       <div className="ml-3">
-        <p className="text-sm text-yellow-700">
+        <p className="text-sm text-yellow-700 dark:text-yellow-200">
           Warning! There might be potential issues with your action.
         </p>
       </div>
@@ -83,7 +85,7 @@ export const CustomAlert: React.FC = () => (
 // Floating alert for success notification
 export const FloatingAlert: React.FC = () => (
   <div
-    className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center space-x-2"
+    className="fixed bottom-4 right-4 bg-green-500 dark:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center space-x-2"
     role="alert"
     aria-live="assertive"
   >

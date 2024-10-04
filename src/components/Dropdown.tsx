@@ -14,7 +14,7 @@ export const SimpleDropdown: React.FC = () => {
         <div>
           <button
             type="button"
-            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="inline-flex justify-center w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"
@@ -26,7 +26,7 @@ export const SimpleDropdown: React.FC = () => {
         </div>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white">
+          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800">
             <div
               className="py-1"
               role="menu"
@@ -37,7 +37,7 @@ export const SimpleDropdown: React.FC = () => {
                 <a
                   key={option}
                   href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                   role="menuitem"
                   onClick={() => {
                     setSelected(option);
@@ -70,7 +70,7 @@ export const DropdownwithIcons: React.FC = () => {
         <div>
           <button
             type="button"
-            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="inline-flex justify-center w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"
@@ -82,7 +82,7 @@ export const DropdownwithIcons: React.FC = () => {
         </div>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white">
+          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800">
             <div
               className="py-1"
               role="menu"
@@ -93,7 +93,7 @@ export const DropdownwithIcons: React.FC = () => {
                 <a
                   key={option.label}
                   href="#"
-                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                   role="menuitem"
                   onClick={(e) => {
                     e.preventDefault();
@@ -102,7 +102,7 @@ export const DropdownwithIcons: React.FC = () => {
                   }}
                 >
                   <option.icon
-                    className="mr-3 h-5 w-5 text-gray-400"
+                    className="mr-3 h-5 w-5 text-gray-400 dark:text-gray-300"
                     aria-hidden="true"
                   />
                   {option.label}
@@ -161,7 +161,7 @@ export const SearchableDropdown: React.FC = () => {
         <div>
           <button
             type="button"
-            className="inline-flex justify-between w-64 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="inline-flex justify-between w-64 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"
@@ -173,13 +173,13 @@ export const SearchableDropdown: React.FC = () => {
         </div>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white">
+          <div className="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white dark:bg-gray-800">
             <div className="p-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-2 border rounded-md text-sm"
+                  className="w-full pl-10 pr-4 py-2 border rounded-md text-sm dark:bg-gray-700 dark:border-gray-500 dark:text-gray-200"
                   placeholder="Search fruits..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -191,7 +191,7 @@ export const SearchableDropdown: React.FC = () => {
                 <a
                   key={option}
                   href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                   onClick={(e) => {
                     e.preventDefault();
                     setSelected(option);
@@ -208,69 +208,3 @@ export const SearchableDropdown: React.FC = () => {
     </div>
   );
 };
-
-export const DropdownwithHeaders: React.FC = () => (
-  <div className=" bg-gray-100 text-base pt-2 h-56 w-full flex justify-center">
-    <div className="relative inline-block">
-      <button className="inline-flex items-center rounded bg-gray-800 px-4 py-2 font-semibold text-white hover:bg-gray-700">
-        <span>Dropdown</span>
-        <svg className="ml-2 h-4 w-4 fill-current" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-        </svg>
-      </button>
-      <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg">
-        <div className="border-b bg-gray-100 px-4 py-2">
-          <span className="font-semibold text-gray-800">Header</span>
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 1
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 2
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-export const GroupedOptionsDropdown: React.FC = () => (
-  <div className=" bg-gray-100 text-base pt-2 h-96 w-full flex justify-center">
-    <div className="relative inline-block">
-      <button className="inline-flex items-center rounded bg-orange-500 px-4 py-2 font-semibold text-white hover:bg-orange-600">
-        <span>Dropdown</span>
-        <svg className="ml-2 h-4 w-4 fill-current" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-        </svg>
-      </button>
-      <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg">
-        <div className="px-4 py-2">
-          <span className="text-xs font-semibold uppercase text-gray-800">
-            Group 1
-          </span>
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 1
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 2
-        </div>
-        <div className="px-4 py-2">
-          <span className="text-xs font-semibold uppercase text-gray-800">
-            Group 2
-          </span>
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 3
-        </div>
-        <div className="px-4 py-2">
-          <span className="text-xs font-semibold uppercase text-gray-800">
-            Group 3
-          </span>
-        </div>
-        <div className="cursor-pointer block px-4 py-2 text-gray-800 hover:bg-gray-100">
-          Option 4
-        </div>
-      </div>
-    </div>
-  </div>
-);

@@ -2,7 +2,7 @@ import React from "react";
 import { Instagram, Twitter, Facebook, Linkedin, Sparkles } from "lucide-react";
 
 export const SimpleFooter: React.FC = () => (
-  <footer className="bg-gray-900 py-6 text-white">
+  <footer className="bg-gray-100 dark:bg-gray-900 py-6 text-gray-800 dark:text-white">
     <div className="container mx-auto text-center">
       <p>&copy; 2024 Your Company. All rights reserved.</p>
     </div>
@@ -10,14 +10,17 @@ export const SimpleFooter: React.FC = () => (
 );
 
 export const FooterwithMultipleSections: React.FC = () => (
-  <footer className="bg-gray-900 py-8 text-white">
+  <footer className="bg-gray-100 dark:bg-gray-900 py-8 text-gray-800 dark:text-white">
     <div className="container mx-auto grid gap-8 px-4 sm:grid-cols-3">
       <section>
         <h2 className="text-lg font-semibold">Your Company</h2>
         <address className="mt-2 not-italic">
           123 Street, Cityville
           <br />
-          <a href="mailto:info@example.com" className="hover:text-gray-400">
+          <a
+            href="mailto:info@example.com"
+            className="hover:text-gray-600 dark:hover:text-gray-400"
+          >
             info@example.com
           </a>
         </address>
@@ -27,7 +30,10 @@ export const FooterwithMultipleSections: React.FC = () => (
         <ul className="mt-2 space-y-2">
           {["About Us", "Careers", "Press"].map((item) => (
             <li key={item}>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+              >
                 {item}
               </a>
             </li>
@@ -40,14 +46,14 @@ export const FooterwithMultipleSections: React.FC = () => (
           <a
             href="#"
             aria-label="Follow on Instagram"
-            className="text-gray-400 hover:text-white"
+            className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
           >
             <Instagram size={24} />
           </a>
           <a
             href="#"
             aria-label="Follow on Twitter"
-            className="text-gray-400 hover:text-white"
+            className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
           >
             <Twitter size={24} />
           </a>
@@ -58,19 +64,23 @@ export const FooterwithMultipleSections: React.FC = () => (
 );
 
 export const CenteredwithBranding: React.FC = () => (
-  <footer className="bg-gray-900 py-8 text-center text-white">
+  <footer className="bg-gray-100 dark:bg-gray-900 py-8 text-center text-gray-800 dark:text-white">
     <div className="container mx-auto px-4">
       <h2 className="text-3xl font-bold">Company Name</h2>
       <p className="mt-2">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
-      <div className="my-6 border-t border-gray-700"></div>
+      <div className="my-6 border-t border-gray-300 dark:border-gray-700"></div>
       <nav
         className="flex flex-wrap justify-center"
         aria-label="Footer Navigation"
       >
         {["Home", "About", "Services", "Contact"].map((item) => (
-          <a key={item} href="#" className="mx-4 my-2 hover:text-gray-400">
+          <a
+            key={item}
+            href="#"
+            className="mx-4 my-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+          >
             {item}
           </a>
         ))}
@@ -80,9 +90,9 @@ export const CenteredwithBranding: React.FC = () => (
 );
 
 export const FooterwithNewsletter: React.FC = () => (
-  <footer className="bg-gray-900 text-white">
+  <footer className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
     <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col items-center justify-between border-b border-gray-700 pb-8 md:flex-row">
+      <div className="flex flex-col items-center justify-between border-b border-gray-300 dark:border-gray-700 pb-8 md:flex-row">
         <div className="mb-6 md:mb-0 md:w-1/2">
           <h2 className="text-lg font-semibold">Subscribe to our Newsletter</h2>
           <p className="mt-2 text-sm">
@@ -95,7 +105,7 @@ export const FooterwithNewsletter: React.FC = () => (
               type="email"
               id="newsletter-email"
               placeholder="Enter your email"
-              className="w-full rounded-l-md bg-gray-800 p-2 text-white"
+              className="w-full rounded-l-md bg-gray-200 p-2 text-gray-800 dark:bg-gray-800 dark:text-white"
               required
             />
             <button
@@ -115,7 +125,7 @@ export const FooterwithNewsletter: React.FC = () => (
 );
 
 export const FooterwithCTA: React.FC = () => (
-  <footer className="bg-gray-900 py-8 text-center text-white">
+  <footer className="bg-gray-100 dark:bg-gray-900 py-8 text-center text-gray-800 dark:text-white">
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-bold">Join our community</h2>
       <p className="mt-2">Get updates on our latest products and promotions.</p>
@@ -123,11 +133,11 @@ export const FooterwithCTA: React.FC = () => (
         Join Now
       </button>
       <div className="my-8 flex items-center justify-center">
-        <div className="flex-grow border-t border-gray-700"></div>
+        <div className="flex-grow border-t border-gray-300 dark:border-gray-700"></div>
         <span className="mx-4">
           <Sparkles className="h-6 w-6 text-purple-500" />
         </span>
-        <div className="flex-grow border-t border-gray-700"></div>
+        <div className="flex-grow border-t border-gray-300 dark:border-gray-700"></div>
       </div>
       <div className="grid gap-8 sm:grid-cols-3">
         <div>
@@ -140,7 +150,10 @@ export const FooterwithCTA: React.FC = () => (
           <ul className="mt-2 space-y-2">
             {["About Us", "Careers", "Press"].map((item) => (
               <li key={item}>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a
+                  href="#"
+                  className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+                >
                   {item}
                 </a>
               </li>
@@ -154,7 +167,7 @@ export const FooterwithCTA: React.FC = () => (
               <a
                 key={index}
                 href="#"
-                className="text-gray-400 hover:text-white"
+                className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
                 aria-label={`Follow on ${Icon.name}`}
               >
                 <Icon size={24} />
@@ -168,7 +181,7 @@ export const FooterwithCTA: React.FC = () => (
 );
 
 export const DetailedFooter: React.FC = () => (
-  <footer className="bg-gray-900 py-12 text-gray-300">
+  <footer className="bg-gray-100 dark:bg-gray-900 py-12 text-gray-800 dark:text-gray-300">
     <div className="container mx-auto px-4">
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
@@ -182,7 +195,7 @@ export const DetailedFooter: React.FC = () => (
               <a
                 key={index}
                 href="#"
-                className="text-gray-400 hover:text-white"
+                className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
                 aria-label={`Follow on ${Icon.name}`}
               >
                 <Icon size={24} />
@@ -195,7 +208,10 @@ export const DetailedFooter: React.FC = () => (
           <ul className="space-y-2">
             {["AI Models", "APIs", "Platforms", "Solutions"].map((item) => (
               <li key={item}>
-                <a href="#" className="hover:text-white">
+                <a
+                  href="#"
+                  className="hover:text-gray-600 dark:hover:text-gray-400"
+                >
                   {item}
                 </a>
               </li>
@@ -205,46 +221,38 @@ export const DetailedFooter: React.FC = () => (
         <div>
           <h2 className="mb-4 text-lg font-bold">Resources</h2>
           <ul className="space-y-2">
-            {["Blog", "Docs", "Research", "Tutorials"].map((item) => (
+            {["Documentation", "Case Studies", "Blog", "Support"].map(
+              (item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="hover:text-gray-600 dark:hover:text-gray-400"
+                  >
+                    {item}
+                  </a>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+        <div>
+          <h2 className="mb-4 text-lg font-bold">Company</h2>
+          <ul className="space-y-2">
+            {["About Us", "Careers", "Contact", "Press"].map((item) => (
               <li key={item}>
-                <a href="#" className="hover:text-white">
+                <a
+                  href="#"
+                  className="hover:text-gray-600 dark:hover:text-gray-400"
+                >
                   {item}
                 </a>
               </li>
             ))}
           </ul>
         </div>
-        <div>
-          <h2 className="mb-4 text-lg font-bold">Subscribe</h2>
-          <p className="mb-4">
-            Stay up to date with our latest news and updates.
-          </p>
-          <form className="flex">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full rounded-l-md bg-gray-800 p-2 text-white focus:outline-none"
-              required
-            />
-            <button
-              type="submit"
-              className="rounded-r-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
       </div>
-      <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm">
+      <div className="mt-12 border-t border-gray-300 dark:border-gray-700 pt-8 text-center">
         <p>&copy; 2023 Your Company. All rights reserved.</p>
-        <div className="mt-2 space-x-4">
-          <a href="#" className="hover:text-white">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:text-white">
-            Terms of Service
-          </a>
-        </div>
       </div>
     </div>
   </footer>

@@ -128,10 +128,10 @@ export const ROUTES: EachRoute[] = [
                 title: "Blog List",
                 href: "/blog-list",
             },
-            {
-                title: "Settings",
-                href: "/settings",
-            },
+            // {
+            //     title: "Settings",
+            //     href: "/settings",
+            // },
         ]
     },
 ];

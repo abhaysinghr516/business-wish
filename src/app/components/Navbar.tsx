@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
 import DocsMenu from "./docs-menu";
 import Search from "./search";
+import ThemeToggle from "./theme-switch";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +53,7 @@ const Navbar = () => {
           <Link href="https://x.com/abhaysinghr1">
             <FaXTwitter className="h-4 w-4" />
           </Link>
+          <ThemeToggle />
         </div>
 
         <Sheet>

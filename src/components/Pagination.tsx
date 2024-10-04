@@ -17,7 +17,7 @@ export const BasicPagination: React.FC = () => {
       <ul className="flex list-none">
         <li className="mx-1">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -30,7 +30,7 @@ export const BasicPagination: React.FC = () => {
               className={`px-4 py-2 rounded ${
                 currentPage === page
                   ? "text-white bg-purple-600 hover:bg-purple-700"
-                  : "text-gray-700 bg-gray-100 hover:bg-gray-200"
+                  : "text-gray-700 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
               }`}
               onClick={() => handlePageChange(page)}
             >
@@ -40,7 +40,7 @@ export const BasicPagination: React.FC = () => {
         ))}
         <li className="mx-1">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
@@ -67,7 +67,7 @@ export const PaginationwithIcons: React.FC = () => {
       <ul className="flex list-none">
         <li className="mx-1">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center"
+            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -81,7 +81,7 @@ export const PaginationwithIcons: React.FC = () => {
               className={`px-4 py-2 rounded ${
                 currentPage === page
                   ? "text-white bg-purple-600 hover:bg-purple-700"
-                  : "text-gray-700 bg-gray-100 hover:bg-gray-200"
+                  : "text-gray-700 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
               }`}
               onClick={() => handlePageChange(page)}
             >
@@ -91,7 +91,7 @@ export const PaginationwithIcons: React.FC = () => {
         ))}
         <li className="mx-1">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center"
+            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 flex items-center dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
@@ -131,7 +131,7 @@ export const PaginationwithInputField: React.FC = () => {
       <ul className="flex list-none items-center">
         <li className="mx-1">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -142,18 +142,18 @@ export const PaginationwithInputField: React.FC = () => {
           <form onSubmit={handleInputSubmit}>
             <input
               type="text"
-              className="px-4 py-2 border rounded w-16 text-center outline-purple-500"
+              className="px-4 py-2 border rounded w-16 text-center outline-purple-500 dark:border-gray-600 dark:text-gray-300 dark:bg-gray-800"
               value={inputValue}
               onChange={handleInputChange}
             />
           </form>
         </li>
         <li className="mx-1">
-          <span className="px-2">of {totalPages}</span>
+          <span className="px-2 dark:text-gray-300">of {totalPages}</span>
         </li>
         <li className="mx-1">
           <button
-            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200"
+            className="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
@@ -213,7 +213,7 @@ export const PaginationwithDots: React.FC = () => {
           className={`rounded px-4 py-2 ${
             number === currentPage
               ? "text-white bg-purple-600 hover:bg-purple-700"
-              : "text-gray-700 bg-gray-100 hover:bg-gray-200"
+              : "text-gray-700 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
           }`}
           onClick={() => number !== "..." && handlePageChange(Number(number))}
           disabled={number === "..."}
@@ -229,7 +229,7 @@ export const PaginationwithDots: React.FC = () => {
       <ul className="flex list-none">
         <li className="mx-1">
           <button
-            className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200"
+            className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -239,7 +239,7 @@ export const PaginationwithDots: React.FC = () => {
         {renderPageNumbers()}
         <li className="mx-1">
           <button
-            className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200"
+            className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >

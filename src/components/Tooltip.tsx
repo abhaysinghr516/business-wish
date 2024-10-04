@@ -20,7 +20,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
         {children}
       </div>
       {isVisible && (
-        <div className="absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2">
+        <div className="absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-800 rounded-lg shadow-sm bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2">
           {text}
         </div>
       )}
@@ -32,7 +32,7 @@ export function BasicTooltip() {
   return (
     <div className="flex items-center justify-center h-screen">
       <Tooltip text="This is a simple tooltip">
-        <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+        <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700">
           Hover me
         </button>
       </Tooltip>
@@ -98,12 +98,12 @@ const TooltipArrow: React.FC<TooltipProps> = ({
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm tooltip-${position}`}
+          className={`absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-800 rounded-lg shadow-sm tooltip-${position}`}
           style={{ whiteSpace: "nowrap" }}
         >
           {text}
           <div
-            className={`absolute w-2 h-2 bg-gray-900 transform rotate-45 ${
+            className={`absolute w-2 h-2 bg-gray-900 dark:bg-gray-800 transform rotate-45 ${
               position === "top"
                 ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"
                 : position === "right"
@@ -123,22 +123,22 @@ export function ArrowTooltip() {
   return (
     <div className="flex items-center justify-center space-x-4 h-64">
       <TooltipArrow text="Top tooltip" position="top">
-        <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+        <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700">
           Top
         </button>
       </TooltipArrow>
       <TooltipArrow text="Right tooltip" position="right">
-        <button className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">
+        <button className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700">
           Right
         </button>
       </TooltipArrow>
       <TooltipArrow text="Bottom tooltip" position="bottom">
-        <button className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
+        <button className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700">
           Bottom
         </button>
       </TooltipArrow>
       <TooltipArrow text="Left tooltip" position="left">
-        <button className="px-4 py-2 text-white bg-purple-500 rounded hover:bg-purple-600">
+        <button className="px-4 py-2 text-white bg-purple-500 rounded hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700">
           Left
         </button>
       </TooltipArrow>
@@ -159,7 +159,7 @@ const TooltipAnimated: React.FC<TooltipProps> = ({ text, children }) => {
       </div>
       <div
         className={`
-          absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm
+          absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-800 rounded-lg shadow-sm
           transition-all duration-700 ease-in-out
           ${isVisible ? "opacity-100 visible" : "opacity-0 invisible"}
           bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2
@@ -175,7 +175,7 @@ export function AnimatedTooltip() {
   return (
     <div className="flex items-center justify-center h-screen">
       <TooltipAnimated text="This tooltip fades in and out">
-        <button className="px-4 py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600">
+        <button className="px-4 py-2 text-white bg-indigo-500 rounded hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700">
           Hover for animated tooltip
         </button>
       </TooltipAnimated>
@@ -259,14 +259,11 @@ const TooltipAdaptive: React.FC<TooltipProps & { direction?: Direction }> = ({
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`
-            absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm
-            ${getTooltipStyles()}
-          `}
+          className={`absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-800 rounded-lg shadow-sm ${getTooltipStyles()}`}
         >
           {text}
           <div
-            className={`absolute w-2 h-2 bg-gray-900 transform rotate-45 ${
+            className={`absolute w-2 h-2 bg-gray-900 dark:bg-gray-800 transform rotate-45 ${
               currentDirection === "top"
                 ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"
                 : currentDirection === "right"
@@ -297,7 +294,7 @@ export function TooltipDemo() {
           className={`px-4 py-2 rounded ${
             globalDirection === "auto"
               ? "bg-blue-500 text-white"
-              : "bg-gray-200"
+              : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
           Auto
@@ -305,7 +302,9 @@ export function TooltipDemo() {
         <button
           onClick={() => setGlobalDirection("top")}
           className={`px-4 py-2 rounded ${
-            globalDirection === "top" ? "bg-blue-500 text-white" : "bg-gray-200"
+            globalDirection === "top"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
           Top
@@ -315,7 +314,7 @@ export function TooltipDemo() {
           className={`px-4 py-2 rounded ${
             globalDirection === "right"
               ? "bg-blue-500 text-white"
-              : "bg-gray-200"
+              : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
           Right
@@ -325,7 +324,7 @@ export function TooltipDemo() {
           className={`px-4 py-2 rounded ${
             globalDirection === "bottom"
               ? "bg-blue-500 text-white"
-              : "bg-gray-200"
+              : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
           Bottom
@@ -335,7 +334,7 @@ export function TooltipDemo() {
           className={`px-4 py-2 rounded ${
             globalDirection === "left"
               ? "bg-blue-500 text-white"
-              : "bg-gray-200"
+              : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
           Left
@@ -361,9 +360,9 @@ export function TooltipDemo() {
           </button>
         </TooltipAdaptive>
         <div className="flex items-center justify-center">
-          <span className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-gray-200">
             Current: {globalDirection}
-          </span>
+          </div>
         </div>
         <TooltipAdaptive
           text="Right tooltip"

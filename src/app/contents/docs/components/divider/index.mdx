@@ -10,9 +10,9 @@ description: Dividers are used to separate content in a list or a layout.
 
 ```jsx showLineNumbers
 export const BasicDivider: React.FC = () => (
-  <div className="mx-auto max-w-screen-xl p-6 text-base">
+  <div className="mx-auto max-w-screen-xl p-6 text-base dark:text-gray-300">
     Section
-    <hr className="my-4 border-t border-gray-300" />
+    <hr className="my-4 border-t border-gray-300 dark:border-gray-700" />
     Section
   </div>
 );
@@ -25,10 +25,10 @@ export const BasicDivider: React.FC = () => (
 
 ```jsx showLineNumbers
 export const VerticalDivider: React.FC = () => (
-  <div className="mx-auto text-base max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6 dark:text-gray-300">
     <div className="flex">
       <div className="flex-1 pr-4">Section</div>
-      <div className="w-px bg-gray-300"></div>
+      <div className="w-px bg-gray-300 dark:border-gray-700"></div>
       <div className="flex-1 pl-4">Section</div>
     </div>
   </div>
@@ -42,18 +42,18 @@ export const VerticalDivider: React.FC = () => (
 
 ```jsx showLineNumbers
 export const CustomDividerwithIcon: React.FC = () => (
-  <div className="mx-auto text-base max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6 dark:text-gray-300">
     Section
     <div className="my-4 flex items-center">
-      <div className="flex-1 border-t border-gray-300"></div>
-      <span className="mx-4 text-gray-500">
+      <div className="flex-1 border-t border-gray-300 dark:border-gray-700"></div>
+      <span className="mx-4 text-gray-500 dark:text-gray-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="h-6 w-6 text-purple-500"
+          className="h-6 w-6 text-purple-500 dark:text-purple-400"
         >
           <path
             stroke-linecap="round"
@@ -62,7 +62,7 @@ export const CustomDividerwithIcon: React.FC = () => (
           />
         </svg>
       </span>
-      <div className="flex-1 border-t border-gray-300"></div>
+      <div className="flex-1 border-t border-gray-300 dark:border-gray-700"></div>
     </div>
     Section
   </div>
@@ -76,9 +76,9 @@ export const CustomDividerwithIcon: React.FC = () => (
 
 ```jsx showLineNumbers
 export const GradientDivider: React.FC = () => (
-  <div className="mx-auto text-base max-w-screen-xl p-6">
+  <div className="mx-auto text-base max-w-screen-xl p-6 dark:text-gray-300">
     Section
-    <div className="my-4 h-0.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+    <div className="my-4 h-0.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400"></div>
     Section
   </div>
 );
