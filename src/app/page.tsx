@@ -211,8 +211,8 @@ export default function Component() {
                   Customizable
                 </h2>
                 <p className="dark:text-gray-400 mb-4">
-                  Easily customize components to match your brand's look and
-                  feel.
+                  Easily customize components to match your brand&apos;s look
+                  and feel.
                 </p>
               </div>
               <div className="mt-4 flex justify-center">
