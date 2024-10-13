@@ -201,7 +201,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      {!isMobileDevice && (
+      {!isMobileDevice ? (
         <div className="flex space-x-2 items-center">
           <ViewToggle currentView={view} setView={setView} />
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -232,6 +232,10 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
               </div>
             </DialogContent>
           </Dialog>
+          <ThemeToggle />
+        </div>
+      ) : (
+        <div className="w-full flex justify-end mb-2">
           <ThemeToggle />
         </div>
       )}
