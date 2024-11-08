@@ -17,15 +17,26 @@ export default function Component() {
                 Business Wish
               </span>
             </h1>
-            <p className="mt-6 text-base sm:text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Elevate your designs with our next-generation component library.
-              Built for the modern web, designed for visionaries like you.
+            <p className="mt-6 text-base sm:text-lg leading-8 max-w-[600px] mx-auto text-gray-600 dark:text-gray-300">
+              Build stunning interfaces in minutes, not hours. Accelerate your
+              project development with ready-to-use components.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/docs/components/accordion">
-                <Button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white"
+                >
                   Get started
                   <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link
+                href="https://github.com/abhaysinghr516/business-wish"
+                target="blank"
+              >
+                <Button size="lg" variant="outline">
+                  View on GitHub
                 </Button>
               </Link>
             </div>
