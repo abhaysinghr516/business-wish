@@ -84,8 +84,8 @@ export default function Component() {
               <CardGlass className="md:col-span-1">
                 <div className="flex justify-between items-start mb-20">
                   <span className="text-purple-700 dark:text-purple-200">
-                    Easily customize components to match your brand's look and
-                    feel.
+                    Easily customize components to match your brand&apos;s look
+                    and feel.
                   </span>
                   <ArrowUpRight className="text-purple-600 dark:text-purple-400" />
                 </div>
