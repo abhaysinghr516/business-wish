@@ -5,41 +5,37 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-950 border-t border-gray-800 text-gray-300 py-12 px-4 md:px-20">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* About section */}
-          <div className="md:col-span-2">
-            <div className="flex gap-x-5 mb-4">
+    <footer className="bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+      <div className="container mx-auto px-4 md:px-20 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center space-x-3">
               <img src="/logo2.png" alt="logo" className="h-8" />
-              <h2 className="text-2xl font-bold text-white mb-4">
-                {/* Business Wish */}
-              </h2>
             </div>
-            <p className="mb-4">
+            <p className="text-gray-600 dark:text-gray-400 max-w-md">
               Empowering developers with intuitive and efficient UI components.
             </p>
-            <p className="text-sm">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Created by{" "}
-              <Link href="https://x.com/abhaysinghr1">
-                <span className="text-purple-400 font-semibold">
-                  Abhay Singh Rathore
-                </span>
+              <Link
+                href="https://x.com/abhaysinghr1"
+                className="text-purple-600 dark:text-purple-400 font-medium hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+              >
+                Abhay Singh Rathore
               </Link>
               , a passionate Full-Stack Developer & UI/UX designer.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">
+          <div className="md:col-span-3">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">
               Quick Links
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               <li>
                 <Link
                   href="/"
-                  className="hover:text-purple-400 transition duration-300"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                 >
                   Home
                 </Link>
@@ -47,7 +43,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/docs/components/accordion"
-                  className="hover:text-purple-400 transition duration-300"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                 >
                   Components
                 </Link>
@@ -55,7 +51,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/templates"
-                  className="hover:text-purple-400 transition duration-300"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
                 >
                   Templates
                 </Link>
@@ -63,15 +59,16 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Socials</h3>
-            <div className="flex space-x-4 mt-4">
+          <div className="md:col-span-4">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">
+              Connect
+            </h3>
+            <div className="flex space-x-4">
               <a
                 href="https://github.com/abhaysinghr516/business-wish"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition duration-300"
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <Github size={20} />
               </a>
@@ -79,13 +76,13 @@ const Footer = () => {
                 href="https://linkedin.com/in/abhaysinghr516/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition duration-300"
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 href="mailto:rathoreabhay1234@gmail.com"
-                className="text-gray-400 hover:text-purple-400 transition duration-300"
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <Mail size={20} />
               </a>
@@ -93,9 +90,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm">
+        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
             © {currentYear} Business Wish. All rights reserved.
           </p>
         </div>
