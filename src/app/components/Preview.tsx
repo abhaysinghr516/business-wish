@@ -68,9 +68,9 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                 }
                 @keyframes hourglass {
                   0% { transform: rotate(0deg); border-radius: 50%; }
-                  25% { transform: rotate(180deg); border-radius: 0%; }
+                  25% { transform: rotate(180deg); border-radius: 4px; }
                   50% { transform: rotate(180deg); border-radius: 50%; }
-                  75% { transform: rotate(360deg); border-radius: 0%; }
+                  75% { transform: rotate(360deg); border-radius: 4px; }
                   100% { transform: rotate(360deg); border-radius: 50%; }
                 }
                 @media (prefers-color-scheme: dark) {
