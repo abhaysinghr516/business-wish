@@ -23,15 +23,17 @@ export const AvatarSizes: React.FC<AvatarSizesProps> = ({
 }) => {
   return (
     <div>
-      {/* Display all sizes */}
-      <div className="mt-8 flex gap-4">
+      <div className="mt-8 flex gap-6">
         {Object.keys(sizeClasses).map((sizeKey) => (
           <div key={sizeKey} className="text-center">
-            <h4 className="mb-2 text-sm font-medium capitalize">{sizeKey}</h4>
+            <h4 className="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400">
+              {sizeKey}
+            </h4>
             <div
-              className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-200 rounded-full ${
-                sizeClasses[sizeKey as keyof typeof sizeClasses]
-              } ${className}`}
+              className={`relative inline-flex items-center justify-center overflow-hidden 
+              bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900
+              rounded-full shadow-sm
+              ${sizeClasses[sizeKey as keyof typeof sizeClasses]} ${className}`}
             >
               {src ? (
                 <img
@@ -40,9 +42,11 @@ export const AvatarSizes: React.FC<AvatarSizesProps> = ({
                   className="w-full h-full object-cover"
                 />
               ) : initials ? (
-                <span className="text-gray-600 font-medium">{initials}</span>
+                <span className="text-gray-700 dark:text-gray-200 font-medium">
+                  {initials}
+                </span>
               ) : (
-                <User className="w-1/2 h-1/2 text-gray-600" />
+                <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
               )}
             </div>
           </div>
@@ -62,8 +66,12 @@ export const AvatarWithImage: React.FC<AvatarWithImageProps> = ({
   alt = "User avatar",
 }) => {
   return (
-    <div className="relative inline-flex items-center justify-center overflow-hidden bg-gray-200 rounded-full w-10 h-10">
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
+    <div
+      className="relative inline-flex items-center justify-center overflow-hidden 
+    bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
+    rounded-full shadow-sm w-10 h-10"
+    >
+      <img src="/pfp.jpg" alt={alt} className="w-full h-full object-cover" />
     </div>
   );
 };
@@ -83,30 +91,24 @@ export const AvatarWithNotification: React.FC<AvatarWithNotificationProps> = ({
 }) => {
   return (
     <div className="relative inline-block">
-      <div className="relative inline-flex items-center justify-center overflow-hidden bg-gray-200 rounded-full w-10 h-10 text-sm">
+      <div
+        className="relative inline-flex items-center justify-center overflow-hidden 
+      bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
+      rounded-full shadow-sm w-10 h-10 text-sm"
+      >
         {src ? (
           <img src={src} alt={alt} className="w-full h-full object-cover" />
         ) : initials ? (
-          <span className="text-gray-600 font-medium">{initials}</span>
+          <span className="text-gray-700 dark:text-gray-200 font-medium">
+            {initials}
+          </span>
         ) : (
-          <svg
-            className="w-1/2 h-1/2 text-gray-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
+          <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
         )}
       </div>
       <span
-        className={`absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ${notificationColor} ring-2 ring-white`}
+        className={`absolute top-0 right-0 block h-3 w-3 rounded-full ${notificationColor} 
+        ring-2 ring-white dark:ring-gray-900 shadow-sm`}
       />
     </div>
   );
@@ -127,30 +129,24 @@ export const AvatarWithActiveBadge: React.FC<AvatarWithActiveBadgeProps> = ({
 }) => {
   return (
     <div className="relative inline-block">
-      <div className="relative inline-flex items-center justify-center overflow-hidden bg-gray-200 rounded-full w-10 h-10 text-sm">
+      <div
+        className="relative inline-flex items-center justify-center overflow-hidden 
+      bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
+      rounded-full shadow-sm w-10 h-10 text-sm"
+      >
         {src ? (
           <img src={src} alt={alt} className="w-full h-full object-cover" />
         ) : initials ? (
-          <span className="text-gray-600 font-medium">{initials}</span>
+          <span className="text-gray-700 dark:text-gray-200 font-medium">
+            {initials}
+          </span>
         ) : (
-          <svg
-            className="w-1/2 h-1/2 text-gray-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
+          <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
         )}
       </div>
       <span
-        className={`absolute bottom-0 right-0 block h-3 w-3 rounded-full ${badgeColor} ring-2 ring-white`}
+        className={`absolute bottom-0 right-0 block h-3.5 w-3.5 rounded-full ${badgeColor} 
+        ring-2 ring-white dark:ring-gray-900 shadow-sm`}
       />
     </div>
   );
@@ -161,24 +157,26 @@ interface AvatarGroupProps {
 }
 
 export const AvatarGroup: React.FC<AvatarGroupProps> = ({ max = 3 }) => {
-  // Hardcoded avatar data
   const avatars = [
-    { src: "/api/placeholder/40/40", alt: "User 1" },
+    { src: "/pfp.jpg", alt: "User 1" },
     { initials: "JD" },
-    { src: "/api/placeholder/40/40", alt: "User 2" },
+    { src: "/pfp.jpg", alt: "User 2" },
     { initials: "AS" },
-    { src: "/api/placeholder/40/40", alt: "User 3" },
+    { src: "/pfp.jpg", alt: "User 3" },
   ];
 
   const visibleAvatars = avatars.slice(0, max);
   const remainingCount = Math.max(avatars.length - max, 0);
 
   return (
-    <div className="flex -space-x-4">
+    <div className="flex -space-x-3">
       {visibleAvatars.map((avatar, index) => (
         <div
           key={index}
-          className="relative inline-flex items-center justify-center overflow-hidden bg-gray-200 rounded-full ring-2 ring-white w-10 h-10 text-sm"
+          className="relative inline-flex items-center justify-center overflow-hidden 
+          bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
+          rounded-full ring-2 ring-white dark:ring-gray-900 shadow-sm
+          w-10 h-10 text-sm transition-transform hover:translate-y-0.5"
         >
           {avatar.src ? (
             <img
@@ -187,14 +185,22 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({ max = 3 }) => {
               className="w-full h-full object-cover"
             />
           ) : avatar.initials ? (
-            <span className="text-gray-600 font-medium">{avatar.initials}</span>
+            <span className="text-gray-700 dark:text-gray-200 font-medium">
+              {avatar.initials}
+            </span>
           ) : (
-            <User className="w-1/2 h-1/2 text-gray-600" />
+            <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
           )}
         </div>
       ))}
       {remainingCount > 0 && (
-        <div className="relative inline-flex items-center justify-center bg-gray-300 text-gray-600 font-medium rounded-full ring-2 ring-white w-10 h-10 text-sm">
+        <div
+          className="relative inline-flex items-center justify-center 
+        bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 
+        text-gray-600 dark:text-gray-300 font-medium rounded-full 
+        ring-2 ring-white dark:ring-gray-900 shadow-sm
+        w-10 h-10 text-sm transition-transform hover:translate-y-0.5"
+        >
           +{remainingCount}
         </div>
       )}
