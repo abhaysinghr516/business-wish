@@ -15,29 +15,68 @@ interface BadgeProps {
 }
 
 export const Badge: React.FC<BadgeProps> = ({ variant, icon, text }) => {
-  const baseClass = "px-2 py-1 rounded-full text-xs inline-flex items-center";
+  const baseClass = `
+    px-2.5 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1.5 transition-colors duration-200
+  `;
+
   const variantClasses = {
-    default: "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200",
-    primary: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-    success:
-      "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-    warning:
-      "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-    danger: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-    outlined:
-      "border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300",
+    default: `
+      bg-gray-100/80 text-gray-600 dark:bg-gray-800/80 dark:text-gray-300
+      shadow-sm shadow-gray-100/50 dark:shadow-gray-900/50
+    `,
+    primary: `
+      bg-blue-50/80 text-blue-600 dark:bg-blue-950/80 dark:text-blue-300
+      shadow-sm shadow-blue-100/50 dark:shadow-blue-900/50
+    `,
+    success: `
+      bg-green-50/80 text-green-600 dark:bg-green-950/80 dark:text-green-300
+      shadow-sm shadow-green-100/50 dark:shadow-green-900/50
+    `,
+    warning: `
+      bg-amber-50/80 text-amber-600 dark:bg-amber-950/80 dark:text-amber-300
+      shadow-sm shadow-amber-100/50 dark:shadow-amber-900/50
+    `,
+    danger: `
+      bg-red-50/80 text-red-600 dark:bg-red-950/80 dark:text-red-300
+      shadow-sm shadow-red-100/50 dark:shadow-red-900/50
+    `,
+    outlined: `
+      border border-gray-200/80 text-gray-600 bg-white/50
+      dark:border-gray-700/80 dark:text-gray-300 dark:bg-gray-900/50
+      shadow-sm shadow-gray-100/50 dark:shadow-gray-900/50
+    `,
+  };
+
+  const iconClasses = {
+    default: "text-gray-500 dark:text-gray-400",
+    primary: "text-blue-500 dark:text-blue-400",
+    success: "text-green-500 dark:text-green-400",
+    warning: "text-amber-500 dark:text-amber-400",
+    danger: "text-red-500 dark:text-red-400",
+    outlined: "text-gray-400 dark:text-gray-500",
   };
 
   return (
-    <span className={`${baseClass} ${variantClasses[variant]}`}>
-      {icon && <Check className="w-4 h-4 mr-1" />}
-      {text || variant.charAt(0).toUpperCase() + variant.slice(1)}
+    <span
+      className={`
+        ${baseClass} 
+        ${variantClasses[variant]}
+        hover:bg-opacity-90 dark:hover:bg-opacity-90
+      `}
+    >
+      {icon && (
+        <Check
+          className={`w-3.5 h-3.5 ${iconClasses[variant]}`}
+          strokeWidth={2.5}
+        />
+      )}
+      <span>{text || variant.charAt(0).toUpperCase() + variant.slice(1)}</span>
     </span>
   );
 };
 
 export const BadgeGroup: React.FC = () => (
-  <div className="flex flex-wrap items-center gap-2">
+  <div className="flex flex-wrap items-center gap-3 p-4">
     <Badge variant="primary" text="Primary" />
     <Badge variant="success" text="Success" />
     <Badge variant="warning" text="Warning" />
