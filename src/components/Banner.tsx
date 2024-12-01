@@ -1,37 +1,61 @@
 import React from "react";
+import { X, ChevronRight, Bell } from "lucide-react";
 
 export const BasicBanner: React.FC = () => (
-  <div className="bg-blue-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200 px-4 py-3 rounded-lg max-w-xl mx-auto">
-    <div className="text-sm">This is a basic banner component.</div>
+  <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 px-6 py-4 rounded-2xl max-w-xl mx-auto shadow-sm border border-gray-200 dark:border-gray-700 transform transition-all hover:scale-[1.02] duration-300">
+    <div className="flex items-center space-x-3">
+      <Bell className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+      <div className="text-sm font-medium">
+        This is a basic banner component.
+      </div>
+    </div>
   </div>
 );
 
 export const BannerwithActions: React.FC = () => (
-  <div className="bg-indigo-100 dark:bg-gray-900 text-indigo-800 dark:text-indigo-100 px-4 py-3 rounded-lg flex flex-col sm:flex-row items-center justify-between max-w-2xl mx-auto">
-    <div className="mb-2 sm:mb-0">
-      <p className="text-sm">This is a banner with actions.</p>
+  <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 px-6 py-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between max-w-2xl mx-auto shadow-sm border border-gray-200 dark:border-gray-700">
+    <div className="mb-4 sm:mb-0 flex items-center space-x-3">
+      <Bell className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+      <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+        This is a banner with actions.
+      </p>
     </div>
-    <div className="flex items-center justify-center sm:justify-end space-x-2">
-      <button className="bg-indigo-500 dark:bg-indigo-600 text-white px-3 py-2 rounded-md text-sm hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors">
-        Action 1
+    <div className="flex items-center justify-center sm:justify-end space-x-3">
+      <button className="group flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 active:bg-blue-700">
+        <span>Action 1</span>
+        <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
       </button>
-      <button className="bg-indigo-200 dark:bg-indigo-700 text-indigo-800 dark:text-indigo-200 px-3 py-2 rounded-md text-sm hover:bg-indigo-300 dark:hover:bg-indigo-600 transition-colors">
-        Action 2
+      <button className="group flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 active:bg-gray-300 dark:active:bg-gray-500">
+        <span>Action 2</span>
+        <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
       </button>
     </div>
   </div>
 );
 
 export const BannerwithHeadingAndButton: React.FC = () => (
-  <div className="bg-blue-200 dark:bg-gray-800 p-6 max-w-xl mx-auto rounded-lg">
-    <div className="mb-4 text-2xl font-bold text-blue-800 dark:text-blue-100">
-      Special Offer!
+  <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 p-8 max-w-xl mx-auto rounded-2xl shadow-sm border border-blue-200 dark:border-gray-700 overflow-hidden">
+    <div className="absolute top-4 right-4">
+      <button className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 transition-colors">
+        <X className="w-5 h-5" />
+      </button>
     </div>
-    <div className="text-base text-blue-700 dark:text-blue-200">
-      Get 20% off on selected items. Limited time only.
+    <div className="space-y-4">
+      <div className="flex items-center space-x-3">
+        <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+          <Bell className="w-6 h-6 text-white" />
+        </div>
+        <div className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+          Special Offer!
+        </div>
+      </div>
+      <div className="text-base text-gray-600 dark:text-gray-300 ml-15">
+        Get 20% off on selected items. Limited time only.
+      </div>
+      <button className="group flex items-center space-x-2 bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-600 active:bg-blue-700 shadow-md hover:shadow-lg">
+        <span>Shop Now</span>
+        <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+      </button>
     </div>
-    <button className="text-base mt-4 rounded bg-white dark:bg-blue-700 px-4 py-2 text-blue-600 dark:text-blue-100 hover:bg-blue-50 dark:hover:bg-blue-600 transition-colors">
-      Shop Now
-    </button>
   </div>
 );
