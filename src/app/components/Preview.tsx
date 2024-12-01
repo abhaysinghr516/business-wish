@@ -73,6 +73,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                   75% { transform: rotate(360deg); border-radius: 4px; }
                   100% { transform: rotate(360deg); border-radius: 50%; }
                 }
+                  @keyframes shimmer {
+          0% {
+            background-position: -1000px 0;
+          }
+          100% {
+            background-position: 1000px 0;
+          }
+        }
                 @media (prefers-color-scheme: dark) {
                   body {
                     background-color: #020817;
