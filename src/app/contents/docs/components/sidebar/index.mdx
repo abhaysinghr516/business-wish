@@ -11,39 +11,56 @@ description: Sidebar is a great way to show navigation links in a vertical manne
 ```jsx showLineNumbers
 import React, { useState } from "react";
 
-export function Sidebar() {
+const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
   return (
-    <div className="flex flex-col w-64 bg-gray-50 dark:bg-gray-800 h-screen justify-between text-gray-700 dark:text-gray-300">
-      <div className="overflow-y-auto p-4">
-        <div className="space-y-2">
-          <div className="flex items-center p-2">
-            <span className="font-bold text-xl">Logo</span>
+    <div className="flex flex-col w-72 bg-white dark:bg-gray-900 h-screen justify-between border-r border-gray-100 dark:border-gray-800 shadow-sm">
+      <div className="overflow-y-auto">
+        <div className="px-6 py-8">
+          <div className="flex items-center mb-8">
+            <span className="font-semibold text-2xl bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+              Fusion
+            </span>
           </div>
-          {["Dashboard", "Projects", "Team"].map((item) => (
-            <div
-              key={item}
-              className={`cursor-pointer flex items-center p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg ${
-                activeItem === item ? "bg-slate-200 dark:bg-slate-700" : ""
-              }`}
-              onClick={() => setActiveItem(item)}
-            >
-              <span>{item}</span>
-            </div>
-          ))}
+          <div className="space-y-1">
+            {["Dashboard", "Projects", "Team", "Reports"].map((item) => (
+              <div
+                key={item}
+                className={`cursor-pointer flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
+                  activeItem === item
+                    ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+                }`}
+                onClick={() => setActiveItem(item)}
+              >
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="p-4 flex items-center border-t border-gray-200 dark:border-gray-600">
-        <img
-          className="object-cover rounded-full h-9 w-9 mr-2"
-          src="/api/placeholder/32/32"
-          alt="avatar"
-        />
-        <span className="font-medium">John Doe</span>
+      <div className="p-6 border-t border-gray-100 dark:border-gray-800">
+        <div className="flex items-center space-x-3">
+          <img
+            className="object-cover rounded-full h-10 w-10 ring-2 ring-gray-100 dark:ring-gray-800"
+            src="/api/placeholder/40/40"
+            alt="avatar"
+          />
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+              John Doe
+            </span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              Product Designer
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
 ```
 
 ### Sidebar with Icons
@@ -52,49 +69,74 @@ export function Sidebar() {
 </Preview>
 
 ```jsx showLineNumbers
-import { Home, LayoutDashboard, Users } from "lucide-react";
 import React, { useState } from "react";
+import { Bell, Home, LayoutDashboard, Settings, Users } from "lucide-react";
 
-export function Sidebar() {
-  const [activeItem, setActiveItem] = useState("Home");
-
+const Sidebar = () => {
+  const [activeItem, setActiveItem] = useState("Dashboard");
   const menuItems = [
     { name: "Home", icon: Home },
     { name: "Dashboard", icon: LayoutDashboard },
     { name: "Team", icon: Users },
+    { name: "Settings", icon: Settings },
+    { name: "Notifications", icon: Bell },
   ];
   return (
-    <div className="flex flex-col w-64 bg-gray-50 dark:bg-gray-800 h-screen justify-between text-gray-700 dark:text-gray-300">
-      <div className="overflow-y-auto p-4">
-        <div className="space-y-2">
-          <div className="flex items-center p-2">
-            <span className="font-bold text-xl">Logo</span>
+    <div className="flex flex-col w-72 bg-white dark:bg-gray-900 h-screen justify-between border-r border-gray-100 dark:border-gray-800 shadow-sm">
+      <div className="overflow-y-auto">
+        <div className="px-6 py-8">
+          <div className="flex items-center mb-8">
+            <div className="h-8 w-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg mr-3" />
+            <span className="font-semibold text-xl text-gray-800 dark:text-gray-200">
+              Fusion
+            </span>
           </div>
-          {menuItems.map((item) => (
-            <div
-              key={item.name}
-              className={`cursor-pointer flex items-center p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg ${
-                activeItem === item.name ? "bg-slate-200 dark:hover:bg-slate-700" : ""
-              }`}
-              onClick={() => setActiveItem(item.name)}
-            >
-              <item.icon className="w-6 h-6" />
-              <span className="ml-3">{item.name}</span>
-            </div>
-          ))}
+          <div className="space-y-1">
+            {menuItems.map((item) => (
+              <div
+                key={item.name}
+                className={`cursor-pointer flex items-center px-4 py-3 rounded-xl transition-all duration-200 group ${
+                  activeItem === item.name
+                    ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+                }`}
+                onClick={() => setActiveItem(item.name)}
+              >
+                <item.icon
+                  className={`w-5 h-5 transition-colors ${
+                    activeItem === item.name
+                      ? "text-indigo-600 dark:text-indigo-400"
+                      : "text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                  }`}
+                />
+                <span className="ml-3 text-sm font-medium">{item.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="p-4 flex items-center border-t border-gray-200 dark:hover:bg-slate-600">
-        <img
-          className="object-cover rounded-full h-9 w-9 mr-2"
-          src="/api/placeholder/32/32"
-          alt="avatar"
-        />
-        <span className="font-medium">John Doe</span>
+      <div className="p-6 border-t border-gray-100 dark:border-gray-800">
+        <div className="flex items-center space-x-3">
+          <img
+            className="object-cover rounded-full h-10 w-10 ring-2 ring-gray-100 dark:ring-gray-800"
+            src="/api/placeholder/40/40"
+            alt="avatar"
+          />
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+              John Doe
+            </span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              Product Designer
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
 ```
 
 ### Collapse Sidebar
@@ -103,11 +145,19 @@ export function Sidebar() {
 </Preview>
 
 ```jsx showLineNumbers
-import { ChevronLeft, Home, LayoutDashboard, Menu, Users } from "lucide-react";
 import React, { useState } from "react";
+import {
+  Bell,
+  ChevronLeft,
+  Home,
+  LayoutDashboard,
+  Menu,
+  Settings,
+  Users,
+} from "lucide-react";
 
-export function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+const Sidebar = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
 
   const toggleSidebar = () => setIsCollapsed(!isCollapsed);
@@ -116,73 +166,80 @@ export function Sidebar() {
     { name: "Home", icon: Home },
     { name: "Dashboard", icon: LayoutDashboard },
     { name: "Team", icon: Users },
+    { name: "Settings", icon: Settings },
+    { name: "Notifications", icon: Bell },
   ];
   return (
     <div
-      className={`flex flex-col bg-gray-50 dark:bg-gray-800 h-screen text-gray-700 dark:text-gray-300 transition-all duration-300 shadow-lg ${
-        isCollapsed ? "w-20" : "w-64"
+      className={`flex flex-col bg-white dark:bg-gray-900 h-screen border-r border-gray-100 dark:border-gray-800 shadow-sm transition-all duration-300 ease-in-out ${
+        isCollapsed ? "w-20" : "w-72"
       }`}
     >
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-600">
+      <div className="flex items-center justify-between p-6">
         {!isCollapsed && (
-          <span className="font-bold text-lg tracking-wide text-gray-800 dark:text-gray-100">
-            MyApp
-          </span>
+          <div className="flex items-center">
+            <div className="h-8 w-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg mr-3" />
+            <span className="font-semibold text-xl text-gray-800 dark:text-gray-200">
+              Fusion
+            </span>
+          </div>
         )}
         <button
           onClick={toggleSidebar}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
+          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 text-gray-500 dark:text-gray-400"
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          {isCollapsed ? <Menu size={24} /> : <ChevronLeft size={24} />}
+          {isCollapsed ? <Menu size={20} /> : <ChevronLeft size={20} />}
         </button>
       </div>
       <div className="flex-grow overflow-y-auto py-4">
-        <nav className="space-y-2 px-3">
+        <nav className="px-4 space-y-1">
           {menuItems.map((item) => (
             <div
               key={item.name}
-              className={`flex items-center p-3 rounded-lg cursor-pointer transition-all duration-300 ${
+              className={`flex items-center cursor-pointer rounded-xl transition-all duration-200 group ${
                 activeItem === item.name
-                  ? "bg-indigo-500 text-white"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
+                  ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                  : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+              } ${isCollapsed ? "p-3 justify-center" : "px-4 py-3"}`}
               onClick={() => setActiveItem(item.name)}
             >
               <item.icon
-                className={`w-6 h-6 transition-all duration-300 ${
-                  activeItem === item.name ? "text-white" : "text-gray-500"
+                className={`w-5 h-5 transition-colors ${
+                  activeItem === item.name
+                    ? "text-indigo-600 dark:text-indigo-400"
+                    : "text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
                 }`}
               />
               {!isCollapsed && (
-                <span
-                  className={`ml-4 font-medium ${
-                    activeItem === item.name ? "text-white" : "text-gray-700 dark:text-gray-300"
-                  }`}
-                >
-                  {item.name}
-                </span>
+                <span className="ml-3 text-sm font-medium">{item.name}</span>
               )}
             </div>
           ))}
         </nav>
       </div>
-      <div className="p-4 border-t border-gray-200 dark:border-gray-600">
-        <div className="flex items-center">
+      <div className="p-6 border-t border-gray-100 dark:border-gray-800">
+        <div className="flex items-center space-x-3">
           <img
-            className="object-cover rounded-full h-10 w-10"
+            className="object-cover rounded-full h-10 w-10 ring-2 ring-gray-100 dark:ring-gray-800"
             src="/api/placeholder/40/40"
             alt="User Avatar"
           />
           {!isCollapsed && (
-            <div className="ml-4">
-              <span className="block font-medium text-gray-800 dark:text-gray-100">John Doe</span>
-              <span className="block text-sm text-gray-500 dark:text-gray-400">View Profile</span>
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                John Doe
+              </span>
+              <span className="text-xs text-gray-500 dark:text-gray-400">
+                Product Designer
+              </span>
             </div>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
 ```
