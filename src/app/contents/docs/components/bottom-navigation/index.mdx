@@ -9,39 +9,41 @@ description: Bottom Navigation component is used to navigate between different s
 </Preview>
 
 ```jsx
+import React, { useState } from "react";
 import { Bell, Home, Search, User } from "lucide-react";
+
 const BottomNavigation = () => {
+  const [active, setActive] = useState("home");
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-      <div className="flex justify-around">
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <Home className="h-6 w-6" />
-          <span className="text-xs mt-1">Home</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <Search className="h-6 w-6" />
-          <span className="text-xs mt-1">Search</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <Bell className="h-6 w-6" />
-          <span className="text-xs mt-1">Notifications</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <User className="h-6 w-6" />
-          <span className="text-xs mt-1">Profile</span>
-        </a>
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 border-t border-gray-200/50 dark:border-gray-800/50 px-2 pb-safe-area-inset-bottom">
+      <div className="flex justify-around max-w-md mx-auto">
+        {[
+          { id: "home", icon: Home, label: "Home" },
+          { id: "search", icon: Search, label: "Search" },
+          { id: "notifications", icon: Bell, label: "Notifications" },
+          { id: "profile", icon: User, label: "Profile" },
+        ].map(({ id, icon: Icon, label }) => (
+          <a
+            key={id}
+            href="#"
+            onClick={() => setActive(id)}
+            className={`flex flex-col items-center py-2 px-4 relative transition-all duration-300 ${
+              active === id
+                ? "text-blue-500 dark:text-blue-400 scale-105"
+                : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+            }`}
+          >
+            <Icon
+              className={`h-6 w-6 transition-all duration-300 ${
+                active === id ? "stroke-2" : "stroke-1"
+              }`}
+            />
+            <span className="text-xs mt-1 font-medium">{label}</span>
+            {active === id && (
+              <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-500 dark:bg-blue-400 rounded-full" />
+            )}
+          </a>
+        ))}
       </div>
     </nav>
   );
@@ -56,45 +58,46 @@ export default BottomNavigation;
 </Preview>
 
 ```jsx
-import { Heart, Home, Search, ShoppingBag } from "lucide-react";
-const BubbleNavigation = () => {
+import React, { useState } from "react";
+import { Heart, Home, Search, User } from "lucide-react";
+
+const BottomNavigation = () => {
+  const [active, setActive] = useState("home");
   return (
-    <nav className="fixed bottom-4 left-4 right-4 bg-gray-100 dark:bg-gray-700 rounded-full">
-      <div className="flex justify-around">
-        <a
-          href="#"
-          className="flex flex-col items-center p-3 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-pink-400"
-        >
-          <Home className="h-6 w-6" />
-          <span className="text-xs mt-1">Home</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-3 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-pink-400"
-        >
-          <Search className="h-6 w-6" />
-          <span className="text-xs mt-1">Search</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-3 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-pink-400"
-        >
-          <Heart className="h-6 w-6" />
-          <span className="text-xs mt-1">Favorites</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-3 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-pink-400"
-        >
-          <ShoppingBag className="h-6 w-6" />
-          <span className="text-xs mt-1">Cart</span>
-        </a>
+    <nav className="fixed bottom-4 left-4 right-4">
+      <div className="bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50 max-w-md mx-auto">
+        <div className="flex justify-around p-2">
+          {[
+            { id: "home", icon: Home, label: "Home" },
+            { id: "search", icon: Search, label: "Search" },
+            { id: "favorites", icon: Heart, label: "Favorites" },
+            { id: "user", icon: User, label: "Profile" },
+          ].map(({ id, icon: Icon, label }) => (
+            <a
+              key={id}
+              href="#"
+              onClick={() => setActive(id)}
+              className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
+                active === id
+                  ? "text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 scale-105"
+                  : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+              }`}
+            >
+              <Icon
+                className={`h-6 w-6 transition-all duration-300 ${
+                  active === id ? "stroke-2" : "stroke-1"
+                }`}
+              />
+              <span className="text-xs mt-1 font-medium">{label}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );
 };
 
-export default BubbleNavigation;
+export default BottomNavigation;
 ```
 
 ### FAB Navigation
@@ -103,46 +106,54 @@ export default BubbleNavigation;
 </Preview>
 
 ```jsx
+import React, { useState } from "react";
 import { Bell, Home, Plus, Search, User } from "lucide-react";
-const FabBottomNavigation = () => {
+
+const BottomNavigation = () => {
+  const [active, setActive] = useState("home");
+  const [fabHovered, setFabHovered] = useState(false);
   return (
     <nav className="fixed bottom-4 left-4 right-4">
-      <div className="relative flex justify-around items-center bg-gray-100 dark:bg-gray-700 rounded-full p-2">
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+      <div className="relative flex justify-around items-center bg-white/80 dark:bg-gray-900/80 rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-gray-800/50 max-w-md mx-auto">
+        {[
+          { id: "home", icon: Home, label: "Home" },
+          { id: "search", icon: Search, label: "Search" },
+          { id: "notifications", icon: Bell, label: "Notifications" },
+          { id: "profile", icon: User, label: "Profile" },
+        ].map(({ id, icon: Icon, label }) => (
+          <a
+            key={id}
+            href="#"
+            onClick={() => setActive(id)}
+            className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
+              active === id
+                ? "text-blue-500 dark:text-blue-400 scale-105"
+                : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+            }`}
+          >
+            <Icon
+              className={`h-6 w-6 transition-all duration-300 ${
+                active === id ? "stroke-2" : "stroke-1"
+              }`}
+            />
+            <span className="text-xs mt-1 font-medium">{label}</span>
+          </a>
+        ))}
+        <button
+          onMouseEnter={() => setFabHovered(true)}
+          onMouseLeave={() => setFabHovered(false)}
+          className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
         >
-          <Home className="h-6 w-6" />
-          <span className="text-xs mt-1">Home</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <Search className="h-6 w-6" />
-          <span className="text-xs mt-1">Search</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <Bell className="h-6 w-6" />
-          <span className="text-xs mt-1">Notifications</span>
-        </a>
-        <a
-          href="#"
-          className="flex flex-col items-center p-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-        >
-          <User className="h-6 w-6" />
-          <span className="text-xs mt-1">Profile</span>
-        </a>
-        <button className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-500 dark:bg-blue-600 text-white rounded-full p-3 shadow-lg hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors">
-          <Plus className="h-6 w-6" />
+          <Plus
+            className={`h-6 w-6 transition-all duration-300 ${
+              fabHovered ? "rotate-180" : ""
+            }`}
+          />
         </button>
       </div>
     </nav>
   );
 };
 
-export default FabBottomNavigation;
+export default BottomNavigation;
 ```
