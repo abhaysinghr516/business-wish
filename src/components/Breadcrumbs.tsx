@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { ChevronRight, ChevronDown, Home } from "lucide-react";
 
 export const BasicBreadcrumb: React.FC = () => {
   const breadcrumbs = [
@@ -11,20 +12,23 @@ export const BasicBreadcrumb: React.FC = () => {
 
   return (
     <nav aria-label="Breadcrumb" className="text-sm">
-      <ol className="list-none p-0 inline-flex">
+      <ol className="list-none p-0 inline-flex items-center bg-gray-50/50 dark:bg-gray-900/50 px-4 py-2 rounded-full border border-gray-200/50 dark:border-gray-800/50">
         {breadcrumbs.map((breadcrumb, index) => (
           <li key={breadcrumb.href} className="flex items-center">
+            {index === 0 && (
+              <Home className="w-4 h-4 text-gray-500 dark:text-gray-400 mr-2" />
+            )}
             {index > 0 && (
-              <span className="mx-2 text-gray-500 dark:text-gray-400">/</span>
+              <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" />
             )}
             {index === breadcrumbs.length - 1 ? (
-              <span className="text-gray-700 dark:text-gray-300">
+              <span className="text-gray-800 dark:text-gray-200 font-medium">
                 {breadcrumb.label}
               </span>
             ) : (
               <Link
                 href={breadcrumb.href}
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
               >
                 {breadcrumb.label}
               </Link>
@@ -47,49 +51,41 @@ export const DropdownBreadcrumb: React.FC = () => {
 
   return (
     <nav aria-label="Breadcrumb" className="text-sm">
-      <ol className="list-none p-0 inline-flex items-center">
+      <ol className="list-none p-0 inline-flex items-center bg-gray-50/50 dark:bg-gray-900/50 px-4 py-2 rounded-full border border-gray-200/50 dark:border-gray-800/50">
         <li className="flex items-center">
           <Link
             href="/"
-            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+            className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200 flex items-center"
           >
+            <Home className="w-4 h-4 mr-1" />
             Home
           </Link>
         </li>
         <li className="flex items-center ml-2">
-          <span className="mx-2 text-gray-500 dark:text-gray-400">/</span>
+          <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" />
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center focus:outline-none"
+              className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200 flex items-center gap-1 focus:outline-none"
+              aria-expanded={isOpen}
             >
-              ...
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <span>•••</span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
             </button>
             {isOpen && (
-              <div className="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                <div
-                  className="py-1"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="options-menu"
-                >
+              <div className="absolute z-10 mt-2 w-48 rounded-xl shadow-lg bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 transform transition-all duration-200">
+                <div className="py-1" role="menu" aria-orientation="vertical">
                   {breadcrumbs.slice(1, -1).map((breadcrumb) => (
                     <Link
                       key={breadcrumb.href}
                       href={breadcrumb.href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100/50 hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700/50 dark:hover:text-blue-400 transition-all duration-200"
                       role="menuitem"
+                      onClick={() => setIsOpen(false)}
                     >
                       {breadcrumb.label}
                     </Link>
@@ -100,8 +96,8 @@ export const DropdownBreadcrumb: React.FC = () => {
           </div>
         </li>
         <li className="flex items-center">
-          <span className="mx-2 text-gray-500 dark:text-gray-400">/</span>
-          <span className="text-gray-700 dark:text-gray-300">
+          <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" />
+          <span className="text-gray-800 dark:text-gray-200 font-medium">
             {breadcrumbs[breadcrumbs.length - 1].label}
           </span>
         </li>
@@ -115,38 +111,28 @@ export const BreadcrumbwithSeparators: React.FC = () => {
     { label: "Home", href: "#" },
     { label: "Electronics", href: "#" },
     { label: "Smartphones", href: "#" },
-    { label: "iPhone 12", href: "#" },
+    { label: "iPhone 16", href: "#" },
   ];
 
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className="text-sm bg-gray-100 dark:bg-gray-800 p-3 rounded-lg"
-    >
-      <ol className="list-none p-0 inline-flex">
+    <nav aria-label="Breadcrumb" className="text-sm">
+      <ol className="list-none p-0 inline-flex items-center bg-gray-50/50 dark:bg-gray-900/50 px-4 py-2 rounded-full border border-gray-200/50 dark:border-gray-800/50">
         {breadcrumbs.map((breadcrumb, index) => (
-          <li key={breadcrumb.href} className="flex items-center">
+          <li key={breadcrumb.href} className="flex items-center group">
+            {index === 0 && (
+              <Home className="w-4 h-4 text-gray-500 dark:text-gray-400 mr-2" />
+            )}
             {index > 0 && (
-              <svg
-                className="w-3 h-3 mx-2 text-gray-400 dark:text-gray-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500 transform transition-transform group-hover:translate-x-0.5" />
             )}
             {index === breadcrumbs.length - 1 ? (
-              <span className="text-gray-700 dark:text-gray-300 font-medium">
+              <span className="text-gray-800 dark:text-gray-200 font-medium px-2 py-1 rounded-md bg-gray-100/50 dark:bg-gray-800/50">
                 {breadcrumb.label}
               </span>
             ) : (
               <Link
                 href={breadcrumb.href}
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
               >
                 {breadcrumb.label}
               </Link>
