@@ -30,7 +30,7 @@ import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard,
 import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
 import { SearchableDropdown, DropdownwithIcons, SimpleDropdown } from "@/components/Dropdown";
 import { BasicFeatures } from "@/components/Features";
-import { CenteredwithBranding, DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
+import { DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
 import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch } from "@/components/Header";
 import { CenterContentHeroSection, SideImageHero } from "@/components/Hero";
 import { Loaders } from "@/components/Loader";
@@ -114,7 +114,6 @@ const components = {
     DropzoneFileUpload,
     SimpleFooter,
     FooterwithMultipleSections,
-    CenteredwithBranding,
     FooterwithNewsletter,
     FooterwithCTA,
     DetailedFooter,
