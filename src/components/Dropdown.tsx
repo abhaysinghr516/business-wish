@@ -1,4 +1,5 @@
 "use client";
+
 import { ChevronDown, LogOut, Mail, Search, Settings } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -9,43 +10,35 @@ export const SimpleDropdown: React.FC = () => {
   const options = ["Option 1", "Option 2", "Option 3"];
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center bg-gray-50/50 dark:bg-gray-900/50">
       <div className="relative inline-block text-left">
-        <div>
-          <button
-            type="button"
-            className="inline-flex justify-center w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
-            id="options-menu"
-            aria-haspopup="true"
-            aria-expanded="true"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {selected}
-            <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex justify-center items-center w-full rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 bg-white/80 dark:bg-gray-800/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {selected}
+          <ChevronDown
+            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800">
-            <div
-              className="py-1"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
+          <div className="absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white/90 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700 transform transition-all">
+            <div className="py-1 rounded-xl overflow-hidden">
               {options.map((option) => (
-                <a
+                <button
                   key={option}
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
-                  role="menuitem"
+                  className="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
                   onClick={() => {
                     setSelected(option);
                     setIsOpen(false);
                   }}
                 >
                   {option}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -61,52 +54,43 @@ export const DropdownwithIcons: React.FC = () => {
   const options = [
     { label: "Messages", icon: Mail },
     { label: "Settings", icon: Settings },
-    { label: "Logout", icon: LogOut },
+    {
+      label: "Logout",
+      icon: LogOut,
+      className: "text-red-500 dark:text-red-400",
+    },
   ];
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center bg-gray-50/50 dark:bg-gray-900/50">
       <div className="relative inline-block text-left">
-        <div>
-          <button
-            type="button"
-            className="inline-flex justify-center w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
-            id="options-menu"
-            aria-haspopup="true"
-            aria-expanded="true"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            Options
-            <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex justify-center items-center w-full rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 bg-white/80 dark:bg-gray-800/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          Options
+          <ChevronDown
+            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800">
-            <div
-              className="py-1"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
+          <div className="absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white/90 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700">
+            <div className="py-1 rounded-xl overflow-hidden">
               {options.map((option) => (
-                <a
+                <button
                   key={option.label}
-                  href="#"
-                  className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
-                  role="menuitem"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    // Handle option selection here
-                  }}
+                  className={`w-full text-left flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors ${
+                    option.className || ""
+                  }`}
+                  onClick={() => setIsOpen(false)}
                 >
-                  <option.icon
-                    className="mr-3 h-5 w-5 text-gray-400 dark:text-gray-300"
-                    aria-hidden="true"
-                  />
+                  <option.icon className="mr-3 h-4 w-4" aria-hidden="true" />
                   {option.label}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -150,57 +134,59 @@ export const SearchableDropdown: React.FC = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center bg-gray-50/50 dark:bg-gray-900/50">
       <div className="relative inline-block text-left" ref={dropdownRef}>
-        <div>
-          <button
-            type="button"
-            className="inline-flex justify-between w-64 rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
-            id="options-menu"
-            aria-haspopup="true"
-            aria-expanded="true"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {selected || "Select a fruit"}
-            <ChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex justify-between items-center w-64 rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 bg-white/80 dark:bg-gray-800/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {selected || "Select a fruit"}
+          <ChevronDown
+            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg bg-white dark:bg-gray-800">
+          <div className="absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white/90 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700">
             <div className="p-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300 h-4 w-4" />
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-2 border rounded-md text-sm dark:bg-gray-700 dark:border-gray-500 dark:text-gray-200"
+                  className="w-full pl-9 pr-4 py-2 rounded-lg text-sm bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
                   placeholder="Search fruits..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
-            <div className="max-h-60 overflow-y-auto">
-              {filteredOptions.map((option) => (
-                <a
-                  key={option}
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelected(option);
-                    setIsOpen(false);
-                  }}
-                >
-                  {option}
-                </a>
-              ))}
+            <div className="max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-700 px-1">
+              {filteredOptions.length > 0 ? (
+                filteredOptions.map((option) => (
+                  <button
+                    key={option}
+                    className="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
+                    onClick={() => {
+                      setSelected(option);
+                      setIsOpen(false);
+                      setSearchTerm("");
+                    }}
+                  >
+                    {option}
+                  </button>
+                ))
+              ) : (
+                <div className="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400">
+                  No results found
+                </div>
+              )}
             </div>
           </div>
         )}
