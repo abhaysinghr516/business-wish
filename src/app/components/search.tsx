@@ -96,14 +96,14 @@ export default function Search() {
         }}
       >
         <DialogTrigger asChild>
-          <div className="relative flex-1 max-w-md cursor-pointer">
-            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-500 dark:text-stone-400" />
+          <div className="relative flex-1 max-w-md cursor-pointer group">
+            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-500 dark:text-stone-400 transition-colors group-hover:text-stone-700 dark:group-hover:text-stone-200" />
             <Input
-              className="md:w-full rounded-md dark:bg-stone-950/95 bg-stone-50 border h-9 pl-10 pr-0 sm:pr-4 text-sm shadow-sm overflow-ellipsis"
+              className="md:w-full rounded-xl dark:bg-stone-900/90 bg-stone-50/90 border-stone-200 dark:border-stone-800 h-10 pl-10 pr-0 sm:pr-4 text-sm shadow-sm transition-all duration-200 hover:border-stone-300 dark:hover:border-stone-700 focus:ring-2 focus:ring-stone-200 dark:focus:ring-stone-800"
               placeholder="Search Components..."
               type="search"
             />
-            <div className="sm:flex hidden absolute top-1/2 -translate-y-1/2 right-2 text-xs font-medium font-mono items-center gap-0.5 dark:bg-stone-900 bg-stone-200/65 p-1 rounded-sm">
+            <div className="sm:flex hidden absolute top-1/2 -translate-y-1/2 right-2 text-xs font-medium font-mono items-center gap-0.5 dark:bg-stone-800/80 bg-stone-200/80 p-1.5 rounded-md">
               {isMac ? (
                 <>
                   <CommandIcon className="w-3 h-3" />
@@ -118,25 +118,36 @@ export default function Search() {
             </div>
           </div>
         </DialogTrigger>
-        <DialogContent className="p-0 max-w-[700px] sm:top-[38%] top-[45%] !rounded-md">
+        <DialogContent className="p-0 max-w-2xl sm:top-[38%] top-[45%] rounded-2xl border dark:border-stone-800 shadow-2xl dark:shadow-stone-950/50 dark:bg-stone-900/90 bg-stone-50/90">
           <DialogTitle className="sr-only">Search</DialogTitle>
           <DialogHeader>
-            <input
-              ref={inputRef}
-              value={searchedInput}
-              onChange={(e) => setSearchedInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type something to search..."
-              className="h-14 px-6 bg-transparent border-b text-[14px] outline-none"
-            />
+            <div className="relative">
+              <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-500 dark:text-stone-400" />
+              <input
+                ref={inputRef}
+                value={searchedInput}
+                onChange={(e) => setSearchedInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type something to search..."
+                className="h-16 w-full pl-14 pr-6 bg-transparent border-b border-stone-200 dark:border-stone-800 text-base outline-none focus:outline-none transition-colors placeholder:text-stone-500 dark:placeholder:text-stone-400 focus:border-stone-300 dark:focus:border-stone-700"
+              />
+            </div>
           </DialogHeader>
-          {filteredResults.length == 0 && searchedInput && (
-            <p className="text-muted-foreground mx-auto mt-2 text-sm">
-              No results found for{" "}
-              <span className="text-primary">{`"${searchedInput}"`}</span>
-            </p>
+          {filteredResults.length === 0 && searchedInput && (
+            <div className="flex flex-col items-center justify-center py-8 text-center">
+              <p className="text-stone-500 dark:text-stone-400 text-sm">
+                No results found for{" "}
+                <span className="text-stone-900 dark:text-stone-100 font-medium">{`"${searchedInput}"`}</span>
+              </p>
+              <p className="text-stone-400 dark:text-stone-500 text-sm mt-1">
+                Try adjusting your search term
+              </p>
+            </div>
           )}
-          <div className="max-h-[350px] overflow-y-auto" ref={containerRef}>
+          <div
+            className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800 scrollbar-track-transparent"
+            ref={containerRef}
+          >
             <div className="flex flex-col items-start overflow-y-auto sm:px-2 px-1 pb-4">
               {filteredResults.map((item, index) => {
                 const level = (item.href.split("/").slice(1).length -
@@ -151,20 +162,24 @@ export default function Search() {
                     }}
                     onClick={() => handleItemClick(item.href)}
                     className={cn(
-                      "dark:hover:bg-stone-900 hover:bg-stone-100 w-full px-3 rounded-sm text-sm flex items-center gap-2.5 cursor-pointer",
+                      "group w-full px-3 rounded-lg transition-colors duration-150",
                       paddingClass,
-                      index === selectedIndex &&
-                        "bg-stone-100 dark:bg-stone-800"
+                      index === selectedIndex
+                        ? "bg-stone-100 dark:bg-stone-800"
+                        : "hover:bg-stone-50 dark:hover:bg-stone-800/50"
                     )}
                   >
                     <div
                       className={cn(
-                        "flex items-center w-fit h-full py-3 gap-1.5 px-2",
-                        level > 1 && "border-l pl-4"
+                        "flex items-center w-fit h-full py-3 gap-1.5 px-2 transition-colors",
+                        level > 1 &&
+                          "border-l border-stone-200 dark:border-stone-700 pl-4"
                       )}
                     >
-                      <FileIcon className="h-[1.1rem] w-[1.1rem] mr-1" />{" "}
-                      {item.title}
+                      <FileIcon className="h-[1.1rem] w-[1.1rem] mr-1 text-stone-500 dark:text-stone-400 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-colors" />
+                      <span className="text-sm text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100">
+                        {item.title}
+                      </span>
                     </div>
                   </div>
                 );
