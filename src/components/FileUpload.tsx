@@ -322,7 +322,7 @@ export const FileTypeValidatorFileUpload: React.FC = () => {
         <div className="mt-4 flex items-center p-4 bg-green-50 dark:bg-green-900/30 rounded-xl">
           <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
           <span className="text-sm text-green-600 dark:text-green-400">
-            File "{file.name}" is ready to upload
+            File &quot;{file.name}&quot; is ready to upload
           </span>
         </div>
       )}
