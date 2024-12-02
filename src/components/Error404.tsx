@@ -20,8 +20,8 @@ export const Minimal404Section: React.FC = () => (
         Page not found
       </p>
       <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
-        The page you're looking for isn't available. Perhaps you'd like to try
-        returning home or exploring our features.
+        The page you&apos;re looking for isn&apos;t available. Perhaps
+        you&apos;d like to try returning home or exploring our features.
       </p>
       <div className="mt-10 group cursor-pointer inline-flex items-center space-x-2 text-sm font-medium text-gray-900 dark:text-gray-100">
         <span>Return to homepage</span>
@@ -58,8 +58,8 @@ export const Informative404Section: React.FC = () => (
       404 - Page Not Found
     </p>
     <p className="text-center text-lg mb-12 max-w-xl text-gray-500 dark:text-gray-400">
-      We couldn't find what you're looking for. Here are some helpful options to
-      get you back on track.
+      We couldn&apos;t find what you&apos;re looking for. Here are some helpful
+      options to get you back on track.
     </p>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl">
       <div className="group flex flex-col items-center p-6 rounded-2xl border border-gray-200 dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer">
@@ -103,7 +103,7 @@ export const Interactive404Section: React.FC = () => {
           Page not found
         </h1>
         <p className="text-xl text-gray-500 dark:text-gray-400 mb-12">
-          Let's help you find what you're looking for
+          Let&apos;s help you find what you&apos;re looking for
         </p>
 
         {!isSearching && !searchComplete && (
