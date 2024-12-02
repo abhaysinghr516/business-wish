@@ -417,53 +417,72 @@ export default Card;
 </Preview>
 
 ```jsx showLineNumbers
-import { Clock, Headphones, Share2 } from 'lucide-react'
+import React from "react";
+import { Clock, Headphones, Share, Share2 } from "lucide-react";
 
-export default function PodcastCard() {
+const Card = () => {
   return (
-    <div className="w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-md">
-      <div className="relative">
-        <img
-          src="/placeholder.svg?height=200&width=400"
-          alt="Podcast cover"
-          className="h-48 w-full object-cover rounded-t-lg"
-        />
-        <span className="absolute left-2 top-2 rounded-full bg-red-500 px-2 py-1 text-xs font-semibold text-white">
-          New Episode
-        </span>
-      </div>
-      <div className="p-4">
-        <h2 className="mb-2 text-xl font-bold text-gray-800 dark:text-white">The Web Dev Podcast</h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-          Episode 42: Mastering CSS Grid - Tips and Tricks from the Experts
-        </p>
-        <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
-          <div className="flex items-center space-x-2">
-            <Clock className="h-4 w-4" />
-            <span>45 min</span>
+    <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="w-full max-w-md rounded-2xl bg-white/70 dark:bg-gray-800/70 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
+        <div className="relative">
+          <img
+            src="/podcast.jpg"
+            alt="Podcast cover"
+            className="h-56 w-full object-cover rounded-t-2xl"
+          />
+          <span className="absolute left-4 top-4 rounded-full bg-red-500/90 px-3 py-1.5 text-xs font-medium text-white">
+            New Episode
+          </span>
+        </div>
+        <div className="p-6">
+          <h2 className="mb-3 text-xl font-semibold text-gray-800 dark:text-white">
+            The Web Dev Podcast
+          </h2>
+          <p className="mb-6 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+            Episode 42: Mastering CSS Grid - Tips and Tricks from the Experts
+          </p>
+          <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-6">
+            <div className="flex items-center space-x-2">
+              <Clock className="h-4 w-4" />
+              <span>45 min</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Headphones className="h-4 w-4" />
+              <span>10k listens</span>
+            </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <Headphones className="h-4 w-4" />
-            <span>10k listens</span>
+          <div className="flex items-center space-x-3">
+            <div className="flex -space-x-2">
+              <img
+                src="/pfp.jpg"
+                alt="Host 1"
+                className="h-6 w-6 rounded-full ring-2 ring-white dark:ring-gray-700"
+              />
+              <img
+                src="/pfp.jpg"
+                alt="Host 2"
+                className="h-6 w-6 rounded-full ring-2 ring-white dark:ring-gray-700"
+              />
+            </div>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+              Sarah & Mike
+            </span>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <img src="/placeholder.svg?height=24&width=24" alt="Host 1" className="h-6 w-6 rounded-full" />
-          <img src="/placeholder.svg?height=24&width=24" alt="Host 2" className="h-6 w-6 rounded-full" />
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Sarah & Mike</span>
+        <div className="flex items-center justify-between rounded-b-2xl bg-gray-50/80 dark:bg-gray-700/80 p-6">
+          <button className="flex items-center justify-center w-1/2 rounded-full bg-blue-600/90 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-all duration-200 dark:bg-blue-500 dark:hover:bg-blue-600">
+            <Headphones className="mr-2 h-4 w-4" />
+            Listen Now
+          </button>
+          <button className="flex items-center justify-center w-1/2 ml-4 rounded-full border border-gray-300/50 dark:border-gray-600/50 bg-white/50 dark:bg-gray-600/50 px-6 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500/80 transition-all duration-200">
+            <Share2 className="mr-2 h-4 w-4" />
+            Share
+          </button>
         </div>
-      </div>
-      <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-700 p-4">
-        <button className="flex items-center justify-center w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
-          <Headphones className="mr-2 h-4 w-4" />
-          Listen Now
-        </button>
-        <button className="flex items-center justify-center w-1/2 ml-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500">
-          <Share2 className="mr-2 h-4 w-4" />
-          Share
-        </button>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Card;
 ```
