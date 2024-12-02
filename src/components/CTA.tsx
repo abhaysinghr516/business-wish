@@ -1,17 +1,17 @@
 import React from "react";
 
 export const SimpleCTA: React.FC = () => (
-  <div className="bg-purple-50 dark:bg-gray-900 py-16">
-    <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-semibold text-gray-900 dark:text-white sm:text-4xl">
-        Join Us Today!
+  <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-24">
+    <div className="mx-auto max-w-4xl px-6 text-center">
+      <h2 className="text-4xl font-medium tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+        Join Us Today
       </h2>
-      <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
+      <p className="mt-6 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
         Sign up now to get exclusive offers and updates.
       </p>
-      <div className="mt-8">
-        <button className="rounded-md bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-400 dark:focus:ring-offset-purple-900">
-          Sign Up
+      <div className="mt-10">
+        <button className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-b from-purple-500 to-purple-600 px-8 py-4 text-base font-medium text-white shadow-lg shadow-purple-500/30 transition-all duration-200 hover:from-purple-600 hover:to-purple-700 hover:shadow-purple-600/40 focus:outline-none active:scale-95 dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800">
+          Get Started
         </button>
       </div>
     </div>
@@ -19,17 +19,17 @@ export const SimpleCTA: React.FC = () => (
 );
 
 export const CardStyleCTA: React.FC = () => (
-  <div className="bg-gray-50 dark:bg-gray-900 py-16">
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <div className="rounded-lg bg-white dark:bg-gray-800 p-8 shadow-sm dark:shadow-gray-700">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-          Get Started Today!
+  <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-24">
+    <div className="mx-auto max-w-4xl px-6">
+      <div className="overflow-hidden rounded-3xl bg-white/70 dark:bg-gray-800/70 p-12 shadow-xl dark:shadow-gray-900/50 ring-1 ring-gray-900/5 dark:ring-white/10">
+        <h2 className="text-3xl font-medium tracking-tight text-gray-900 dark:text-white">
+          Get Started Today
         </h2>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        <p className="mt-6 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
           Start your journey with us and enjoy exclusive benefits.
         </p>
-        <div className="mt-6">
-          <button className="rounded-md bg-purple-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-400 dark:focus:ring-offset-gray-800">
+        <div className="mt-8">
+          <button className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-b from-purple-500 to-purple-600 px-7 py-3.5 text-base font-medium text-white shadow-lg shadow-purple-500/30 transition-all duration-200 hover:from-purple-600 hover:to-purple-700 hover:shadow-purple-600/40 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 active:scale-95 dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800">
             Sign Up
           </button>
         </div>
@@ -39,24 +39,25 @@ export const CardStyleCTA: React.FC = () => (
 );
 
 export const CTAwithForm: React.FC = () => (
-  <div className="bg-white dark:bg-gray-900 py-16">
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-8 shadow-sm dark:shadow-gray-700">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+  <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-24">
+    <div className="mx-auto max-w-4xl px-6">
+      <div className="overflow-hidden rounded-3xl bg-white/70 dark:bg-gray-800/70 p-12 shadow-xl dark:shadow-gray-900/50 ring-1 ring-gray-900/5 dark:ring-white/10">
+        <h2 className="text-3xl font-medium tracking-tight text-gray-900 dark:text-white">
           Subscribe to Our Newsletter
         </h2>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+        <p className="mt-6 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
           Get the latest news and updates delivered straight to your inbox.
         </p>
-        <form className="mt-6 sm:flex sm:max-w-md">
+        <form className="mt-8 sm:flex sm:max-w-md">
           <input
             type="email"
-            className="w-full rounded-md border-gray-300 dark:border-gray-600 px-4 py-2 placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:focus:border-purple-400 dark:focus:ring-purple-400 sm:max-w-xs dark:bg-gray-700 dark:text-white"
-            placeholder="Your Email Address"
+            className="w-full rounded-xl border-gray-200 bg-gray-50/50 dark:bg-gray-700/50 px-4 py-3 text-base placeholder-gray-500 dark:placeholder-gray-400 shadow-sm transition-colors duration-200 focus:border-purple-500 focus:bg-white focus:ring-purple-500 dark:border-gray-600 dark:text-white dark:focus:border-purple-400 dark:focus:ring-purple-400 sm:max-w-xs"
+            placeholder="Your email address"
+            required
           />
           <button
             type="submit"
-            className="mt-3 w-full rounded-md bg-purple-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-400 dark:focus:ring-offset-gray-800"
+            className="mt-4 w-full rounded-xl bg-gradient-to-b from-purple-500 to-purple-600 px-6 py-3 text-base font-medium text-white shadow-lg shadow-purple-500/30 transition-all duration-200 hover:from-purple-600 hover:to-purple-700 hover:shadow-purple-600/40 focus:outline-none active:scale-95 sm:mt-0 sm:ml-4 sm:w-auto dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800"
           >
             Subscribe
           </button>
