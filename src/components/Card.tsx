@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Bath,
   Bed,
@@ -20,24 +21,24 @@ import {
 } from "lucide-react";
 
 export const JobCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-md mx-auto bg-white/70 dark:bg-gray-800/70 rounded-2xl shadow-lg overflow-hidden border border-gray-200/50 dark:border-gray-700/50">
+      <div className="p-8">
+        <div className="flex justify-between items-start mb-6">
           <div>
-            <h2 className="text-2xl font-bold mb-1 dark:text-white">
+            <h2 className="text-2xl font-semibold mb-2 dark:text-white">
               Software Engineer
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
-              <Building2 className="w-4 h-4 mr-1" />
+              <Building2 className="w-4 h-4 mr-2" />
               TechCorp Inc.
             </p>
           </div>
-          <span className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs font-semibold px-2 py-1 rounded">
+          <span className="bg-blue-100/80 text-blue-800 dark:bg-blue-900/80 dark:text-blue-200 text-xs font-medium px-3 py-1.5 rounded-full">
             Full-time
           </span>
         </div>
-        <div className="space-y-2 mb-4">
+        <div className="space-y-3 mb-6">
           <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
             <MapPin className="w-4 h-4 mr-2" />
             <span>San Francisco, CA (On-site)</span>
@@ -51,17 +52,17 @@ export const JobCard: React.FC = () => (
             <span>Posted 2 days ago</span>
           </div>
         </div>
-        <p className="mb-6 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+        <p className="mb-8 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
           We&apos;re seeking a talented Software Engineer to join our dynamic
           team. You&apos;ll work on cutting-edge projects, collaborate with
           cross-functional teams, and have the opportunity to make a significant
           impact on our products.
         </p>
         <div className="flex space-x-4">
-          <button className="w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+          <button className="w-1/2 rounded-full bg-blue-600/90 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-colors duration-200 dark:bg-blue-500 dark:hover:bg-blue-600">
             Apply Now
           </button>
-          <button className="w-1/2 ml-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <button className="w-1/2 rounded-full border border-gray-300/50 dark:border-gray-600/50 bg-white/50 dark:bg-gray-700/50 px-6 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600/80 transition-colors duration-200">
             View Details
           </button>
         </div>
@@ -71,23 +72,23 @@ export const JobCard: React.FC = () => (
 );
 
 export const ProductCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-sm mx-auto bg-white/70 dark:bg-gray-800/70 rounded-2xl shadow-lg overflow-hidden border border-gray-200/50 dark:border-gray-700/50">
       <div className="relative">
         <img
-          src="/placeholder.svg?height=200&width=300"
+          src="/headphone.jpg"
           alt="Wireless Headphones"
-          className="w-full h-48 object-cover"
+          className="w-full h-56 object-cover"
         />
-        <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+        <span className="absolute top-4 right-4 bg-red-500/90 text-white text-xs font-medium px-3 py-1.5 rounded-full">
           Sale
         </span>
       </div>
-      <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2 dark:text-white">
+      <div className="p-6">
+        <h2 className="text-xl font-semibold mb-3 dark:text-white">
           Wireless Noise-Cancelling Headphones
         </h2>
-        <div className="flex items-center mb-2">
+        <div className="flex items-center mb-3">
           {[...Array(4)].map((_, i) => (
             <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
           ))}
@@ -96,22 +97,24 @@ export const ProductCard: React.FC = () => (
             (4.0)
           </span>
         </div>
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+        <p className="text-gray-600 dark:text-gray-300 text-sm mb-6">
           Experience crystal-clear audio with our premium noise-cancelling
           headphones. Perfect for music lovers and frequent travelers.
         </p>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-6">
           <div>
-            <span className="text-2xl font-bold dark:text-white">$249.99</span>
+            <span className="text-2xl font-semibold dark:text-white">
+              $249.99
+            </span>
             <span className="text-sm text-gray-500 dark:text-gray-400 line-through ml-2">
               $299.99
             </span>
           </div>
-          <span className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs font-semibold px-2 py-1 rounded">
+          <span className="bg-green-100/80 text-green-800 dark:bg-green-900/80 dark:text-green-200 text-xs font-medium px-3 py-1.5 rounded-full">
             Save $50
           </span>
         </div>
-        <button className="flex items-center justify-center w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+        <button className="flex items-center justify-center w-full rounded-full bg-blue-600/90 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-all duration-200 dark:bg-blue-500 dark:hover:bg-blue-600">
           <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
         </button>
       </div>
@@ -120,59 +123,66 @@ export const ProductCard: React.FC = () => (
 );
 
 export const ProfileCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-      <div className="p-4 text-center">
-        <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-sm mx-4 bg-white/80 dark:bg-gray-800/80 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+      <div className="p-6 text-center">
+        <div className="relative w-28 h-28 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-white dark:ring-gray-700 shadow-lg">
           <img
-            src="/placeholder.svg?height=96&width=96"
+            src="/pfp.jpg"
             alt="Jane Doe"
             className="w-full h-full object-cover"
           />
         </div>
-        <h2 className="text-2xl font-bold mb-1 dark:text-white">Jane Doe</h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-3">
+
+        <h2 className="text-2xl font-semibold mb-1 dark:text-white tracking-tight">
+          Jane Doe
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm font-medium">
           Senior UX Designer
         </p>
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
+
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
           {["UI/UX", "Product Design", "Prototyping"].map((skill) => (
             <span
               key={skill}
-              className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs font-semibold px-2 py-1 rounded"
+              className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-medium px-3 py-1.5 rounded-full"
             >
               {skill}
             </span>
           ))}
         </div>
-        <div className="space-y-2 mb-4">
+
+        <div className="space-y-3 mb-6">
           <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
-            <MapPin className="w-4 h-4 mr-2" />
+            <MapPin className="w-4 h-4 mr-2 stroke-2" />
             San Francisco, CA
           </div>
           <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
-            <Briefcase className="w-4 h-4 mr-2" />
+            <Briefcase className="w-4 h-4 mr-2 stroke-2" />
             TechCorp Inc.
           </div>
           <div className="flex items-center justify-center text-sm">
-            <LinkIcon className="w-4 h-4 mr-2 text-gray-600 dark:text-gray-300" />
+            <LinkIcon className="w-4 h-4 mr-2 text-gray-600 dark:text-gray-300 stroke-2" />
             <a
               href="#"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 font-medium"
             >
               portfolio.com/janedoe
             </a>
           </div>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
           Passionate UX designer with 5+ years of experience creating intuitive
           and engaging digital experiences for global brands.
         </p>
       </div>
-      <div className="px-4 pb-4 flex gap-2">
-        <button className="flex items-center justify-center w-1/2 ml-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+      <div className="px-6 pb-6 flex gap-3">
+        <button className="flex-1 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/50 transition-colors">
           Message
         </button>
-        <button className="flex items-center justify-center w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+        <button className="flex-1 rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors">
           Connect
         </button>
       </div>
@@ -181,50 +191,50 @@ export const ProfileCard: React.FC = () => (
 );
 
 export const PropertyCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-sm overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
       <div className="relative">
         <img
-          src="/placeholder.svg?height=200&width=400"
+          src="/property.jpg"
           alt="Modern house exterior"
-          className="h-48 w-full object-cover"
+          className="h-56 w-full object-cover"
         />
-        <span className="absolute left-2 top-2 rounded-full bg-green-500 px-2 py-1 text-xs font-semibold text-white">
+        <span className="absolute left-4 top-4 rounded-full bg-green-500/90 px-3 py-1.5 text-xs font-medium text-white">
           For Sale
         </span>
-        <button className="absolute right-2 top-2 rounded-full bg-white/80 dark:bg-black/50 p-1 text-rose-500 hover:bg-white/90 dark:hover:bg-black/60 hover:text-rose-600">
+        <button className="absolute right-4 top-4 rounded-full bg-white/80 dark:bg-black/50 p-2 text-rose-500 hover:bg-white/90 dark:hover:bg-black/60 hover:text-rose-600 transition-colors duration-200">
           <Heart className="h-5 w-5" />
           <span className="sr-only">Add to favorites</span>
         </button>
       </div>
-      <div className="p-4">
-        <h2 className="mb-2 text-2xl font-bold text-gray-800 dark:text-white">
+      <div className="p-6">
+        <h2 className="mb-3 text-2xl font-semibold text-gray-800 dark:text-white">
           $450,000
         </h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
+        <p className="mb-6 text-sm text-gray-600 dark:text-gray-300">
           123 Modern Lane, Cityville, State 12345
         </p>
-        <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+        <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 dark:text-gray-400">
           <div className="flex items-center">
-            <Bed className="mr-1 h-4 w-4" />
+            <Bed className="mr-2 h-4 w-4" />
             <span>3 Beds</span>
           </div>
           <div className="flex items-center">
-            <Bath className="mr-1 h-4 w-4" />
+            <Bath className="mr-2 h-4 w-4" />
             <span>2 Baths</span>
           </div>
           <div className="flex items-center">
-            <CarFront className="mr-1 h-4 w-4" />
+            <CarFront className="mr-2 h-4 w-4" />
             <span>2 Garage</span>
           </div>
           <div className="flex items-center">
-            <Expand className="mr-1 h-4 w-4" />
+            <Expand className="mr-2 h-4 w-4" />
             <span>1,800 sqft</span>
           </div>
         </div>
       </div>
-      <div className="bg-gray-50 dark:bg-gray-700 p-4">
-        <button className="w-full rounded-md bg-blue-600 py-2 text-sm font-semibold text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+      <div className="bg-gray-50/80 dark:bg-gray-700/80 p-6">
+        <button className="w-full rounded-full bg-blue-600/90 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-all duration-200 dark:bg-blue-500 dark:hover:bg-blue-600">
           View Property
         </button>
       </div>
@@ -233,30 +243,30 @@ export const PropertyCard: React.FC = () => (
 );
 
 export const ArticleCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-md overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-md">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
       <img
-        src="/placeholder.svg?height=200&width=400"
+        src="/thumbnail.jpg"
         alt="Article thumbnail"
-        className="h-48 w-full object-cover"
+        className="h-56 w-full object-cover"
       />
-      <div className="p-4">
-        <span className="mb-2 inline-block rounded-full bg-blue-100 dark:bg-blue-900 px-2 py-1 text-xs font-semibold text-blue-600 dark:text-blue-200">
+      <div className="p-6">
+        <span className="mb-3 inline-block rounded-full bg-blue-100/80 px-3 py-1.5 text-xs font-medium text-blue-600 dark:bg-blue-900/80 dark:text-blue-200">
           Technology
         </span>
-        <h2 className="mb-2 text-xl font-bold text-gray-800 dark:text-white">
+        <h2 className="mb-3 text-xl font-semibold text-gray-800 dark:text-white">
           The Future of AI in Web Development
         </h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+        <p className="mb-6 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
           Explore how artificial intelligence is revolutionizing the way we
           build and interact with websites...
         </p>
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <img
               src="/placeholder.svg?height=32&width=32"
               alt="Author"
-              className="h-8 w-8 rounded-full"
+              className="h-8 w-8 rounded-full ring-2 ring-white dark:ring-gray-700"
             />
             <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
               John Doe
@@ -268,12 +278,12 @@ export const ArticleCard: React.FC = () => (
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-700 p-4">
-        <div className="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-between bg-gray-50/80 dark:bg-gray-700/80 p-6">
+        <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <MessageCircle className="h-4 w-4" />
           <span>24 comments</span>
         </div>
-        <button className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500">
+        <button className="rounded-full border border-gray-300/50 dark:border-gray-600/50 bg-white/50 dark:bg-gray-600/50 px-6 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500/80 transition-all duration-200">
           Read More
         </button>
       </div>
@@ -282,46 +292,46 @@ export const ArticleCard: React.FC = () => (
 );
 
 export const ForumCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-md">
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-4">
-          <span className="rounded-full bg-gray-100 dark:bg-gray-700 px-2 py-1 text-xs font-semibold text-gray-600 dark:text-gray-300">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-md rounded-2xl bg-white/70 dark:bg-gray-800/70 shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 hover:shadow-xl">
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-6">
+          <span className="rounded-full bg-gray-100/80 px-3 py-1.5 text-xs font-medium text-gray-600 dark:bg-gray-700/80 dark:text-gray-300">
             Discussion
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-400">
             2 hours ago
           </span>
         </div>
-        <h2 className="mb-2 text-lg font-bold text-gray-800 dark:text-white">
+        <h2 className="mb-3 text-lg font-semibold text-gray-800 dark:text-white">
           Best practices for React hooks?
         </h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+        <p className="mb-6 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
           I&apos;m new to React hooks and I&apos;m wondering what are some best
           practices when using them in larger applications...
         </p>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <img
-            src="/placeholder.svg?height=32&width=32"
+            src="/pfp.jpg"
             alt="User"
-            className="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full ring-2 ring-white dark:ring-gray-700"
           />
           <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
             Jane Smith
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-700 p-4">
-        <div className="flex space-x-4">
-          <div className="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-between rounded-b-2xl bg-gray-50/80 dark:bg-gray-700/80 p-6">
+        <div className="flex space-x-6">
+          <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <MessageCircle className="h-4 w-4" />
             <span>15 replies</span>
           </div>
-          <div className="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <ThumbsUp className="h-4 w-4" />
             <span>23 likes</span>
           </div>
-          <div className="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <Eye className="h-4 w-4" />
             <span>102 views</span>
           </div>
@@ -332,26 +342,26 @@ export const ForumCard: React.FC = () => (
 );
 
 export const PodcastCard: React.FC = () => (
-  <div className="h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-900">
-    <div className="w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-md">
+  <div className="h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="w-full max-w-md rounded-2xl bg-white/70 dark:bg-gray-800/70 shadow-lg border border-gray-200/50 dark:border-gray-700/50">
       <div className="relative">
         <img
-          src="/placeholder.svg?height=200&width=400"
+          src="/podcast.jpg"
           alt="Podcast cover"
-          className="h-48 w-full object-cover rounded-t-lg"
+          className="h-56 w-full object-cover rounded-t-2xl"
         />
-        <span className="absolute left-2 top-2 rounded-full bg-red-500 px-2 py-1 text-xs font-semibold text-white">
+        <span className="absolute left-4 top-4 rounded-full bg-red-500/90 px-3 py-1.5 text-xs font-medium text-white">
           New Episode
         </span>
       </div>
-      <div className="p-4">
-        <h2 className="mb-2 text-xl font-bold text-gray-800 dark:text-white">
+      <div className="p-6">
+        <h2 className="mb-3 text-xl font-semibold text-gray-800 dark:text-white">
           The Web Dev Podcast
         </h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+        <p className="mb-6 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
           Episode 42: Mastering CSS Grid - Tips and Tricks from the Experts
         </p>
-        <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-6">
           <div className="flex items-center space-x-2">
             <Clock className="h-4 w-4" />
             <span>45 min</span>
@@ -361,28 +371,30 @@ export const PodcastCard: React.FC = () => (
             <span>10k listens</span>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <img
-            src="/placeholder.svg?height=24&width=24"
-            alt="Host 1"
-            className="h-6 w-6 rounded-full"
-          />
-          <img
-            src="/placeholder.svg?height=24&width=24"
-            alt="Host 2"
-            className="h-6 w-6 rounded-full"
-          />
+        <div className="flex items-center space-x-3">
+          <div className="flex -space-x-2">
+            <img
+              src="/pfp.jpg"
+              alt="Host 1"
+              className="h-6 w-6 rounded-full ring-2 ring-white dark:ring-gray-700"
+            />
+            <img
+              src="/pfp.jpg"
+              alt="Host 2"
+              className="h-6 w-6 rounded-full ring-2 ring-white dark:ring-gray-700"
+            />
+          </div>
           <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
             Sarah & Mike
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-700 p-4">
-        <button className="flex items-center justify-center w-1/2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+      <div className="flex items-center justify-between rounded-b-2xl bg-gray-50/80 dark:bg-gray-700/80 p-6">
+        <button className="flex items-center justify-center w-1/2 rounded-full bg-blue-600/90 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-all duration-200 dark:bg-blue-500 dark:hover:bg-blue-600">
           <Headphones className="mr-2 h-4 w-4" />
           Listen Now
         </button>
-        <button className="flex items-center justify-center w-1/2 ml-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-600 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500">
+        <button className="flex items-center justify-center w-1/2 ml-4 rounded-full border border-gray-300/50 dark:border-gray-600/50 bg-white/50 dark:bg-gray-600/50 px-6 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500/80 transition-all duration-200">
           <Share2 className="mr-2 h-4 w-4" />
           Share
         </button>
