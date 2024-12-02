@@ -40,35 +40,40 @@ export const FileUpload: React.FC = () => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div
-        className={`border-2 border-dashed rounded-lg p-8 text-center ${
+        className={`relative overflow-hidden transition-all duration-300 ease-in-out border-2 border-dashed rounded-2xl p-8 text-center ${
           isDragging
-            ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
-            : "border-gray-300 dark:border-gray-600"
+            ? "border-blue-400 bg-blue-50/30 dark:bg-blue-900/30 scale-102"
+            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
         }`}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          Drag and drop your file here, or click to select a file
-        </p>
-        <input
-          type="file"
-          className="hidden"
-          onChange={onFileChange}
-          id="file-upload"
-        />
-        <label
-          htmlFor="file-upload"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Select File
-        </label>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50" />
+        <div className="relative z-10">
+          <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-300" />
+          <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+            Drag and drop your file here, or click to select
+          </p>
+          <input
+            type="file"
+            className="hidden"
+            onChange={onFileChange}
+            id="file-upload"
+          />
+          <label
+            htmlFor="file-upload"
+            className="mt-4 inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            Select File
+          </label>
+        </div>
       </div>
       {file && (
-        <div className="mt-4 text-sm text-gray-600 dark:text-gray-300">
-          Selected file: {file.name}
+        <div className="mt-4 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-sm">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-200">
+            Selected file: {file.name}
+          </p>
         </div>
       )}
     </div>
@@ -78,6 +83,7 @@ export const FileUpload: React.FC = () => {
 interface FileWithProgress extends File {
   id: string;
   progress: number;
+  name: string;
 }
 
 export const MultiFileUpload: React.FC = () => {
@@ -89,10 +95,10 @@ export const MultiFileUpload: React.FC = () => {
       ...file,
       id: Math.random().toString(36).substr(2, 9),
       progress: 0,
+      name: file.name,
     }));
     setFiles((prevFiles) => [...prevFiles, ...newFiles]);
 
-    // Simulate file upload progress
     newFiles.forEach((file) => {
       const interval = setInterval(() => {
         setFiles((prevFiles) =>
@@ -114,49 +120,54 @@ export const MultiFileUpload: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          Select multiple files to upload
-        </p>
-        <input
-          type="file"
-          className="hidden"
-          onChange={onFileChange}
-          id="file-upload"
-          multiple
-        />
-        <label
-          htmlFor="file-upload"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Select Files
-        </label>
+      <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 rounded-2xl p-8 text-center transition-all duration-300">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-2xl" />
+          <div className="relative z-10">
+            <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-300" />
+            <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+              Select multiple files to upload
+            </p>
+            <input
+              type="file"
+              className="hidden"
+              onChange={onFileChange}
+              id="file-upload"
+              multiple
+            />
+            <label
+              htmlFor="file-upload"
+              className="mt-4 inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Select Files
+            </label>
+          </div>
+        </div>
       </div>
-      <div className="mt-4 space-y-4">
+      <div className="mt-6 space-y-4">
         {files.map((file) => (
           <div
             key={file.id}
-            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4"
+            className="bg-white/50 dark:bg-gray-800/50 rounded-xl p-4 shadow-sm transition-all duration-200 hover:shadow-md"
           >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200 truncate">
                 {file.name}
               </span>
               <button
                 onClick={() => removeFile(file.id)}
-                className="text-red-500 hover:text-red-700"
+                className="text-gray-400 hover:text-red-500 transition-colors duration-200"
               >
                 <XIcon className="h-5 w-5" />
               </button>
             </div>
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+            <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
               <div
-                className="bg-blue-600 h-2.5 rounded-full"
+                className="bg-blue-500 h-1.5 rounded-full transition-all duration-300 ease-out"
                 style={{ width: `${file.progress}%` }}
               ></div>
             </div>
-            <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            <span className="text-xs text-gray-500 dark:text-gray-400 mt-2 inline-block">
               {file.progress}% uploaded
             </span>
           </div>
@@ -189,42 +200,47 @@ export const ImagePreviewFileUpload: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
-        {image ? (
-          <div className="relative">
-            <img
-              src={image}
-              alt="Uploaded preview"
-              className="mx-auto max-h-64 rounded-lg"
+      <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 rounded-2xl p-8 text-center transition-all duration-300">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-2xl" />
+          <div className="relative z-10">
+            {image ? (
+              <div className="relative">
+                <img
+                  src={image}
+                  alt="Uploaded preview"
+                  className="mx-auto max-h-64 rounded-xl shadow-lg transition-transform duration-300 hover:scale-102"
+                />
+                <button
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1.5 hover:bg-red-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+                >
+                  <XIcon className="h-4 w-4" />
+                </button>
+              </div>
+            ) : (
+              <>
+                <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-300" />
+                <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+                  Upload an image to see a preview
+                </p>
+              </>
+            )}
+            <input
+              type="file"
+              className="hidden"
+              onChange={onImageChange}
+              id="image-upload"
+              accept="image/*"
             />
-            <button
-              onClick={removeImage}
-              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            <label
+              htmlFor="image-upload"
+              className="mt-4 inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              <XIcon className="h-5 w-5" />
-            </button>
+              {image ? "Change Image" : "Select Image"}
+            </label>
           </div>
-        ) : (
-          <>
-            <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-              Upload an image to see a preview
-            </p>
-          </>
-        )}
-        <input
-          type="file"
-          className="hidden"
-          onChange={onImageChange}
-          id="image-upload"
-          accept="image/*"
-        />
-        <label
-          htmlFor="image-upload"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          {image ? "Change Image" : "Select Image"}
-        </label>
+        </div>
       </div>
     </div>
   );
@@ -270,36 +286,43 @@ export const FileTypeValidatorFileUpload: React.FC = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          Upload a PDF, DOC, DOCX, or TXT file (max 5MB)
-        </p>
-        <input
-          type="file"
-          className="hidden"
-          onChange={onFileChange}
-          id="file-upload"
-          accept=".pdf,.doc,.docx,.txt"
-        />
-        <label
-          htmlFor="file-upload"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Select File
-        </label>
+      <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 rounded-2xl p-8 text-center transition-all duration-300">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-2xl" />
+          <div className="relative z-10">
+            <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-300" />
+            <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+              Upload a PDF, DOC, DOCX, or TXT file (max 5MB)
+            </p>
+            <input
+              type="file"
+              className="hidden"
+              onChange={onFileChange}
+              id="file-upload"
+              accept=".pdf,.doc,.docx,.txt"
+            />
+            <label
+              htmlFor="file-upload"
+              className="mt-4 inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Select File
+            </label>
+          </div>
+        </div>
       </div>
       {error && (
-        <div className="mt-4 flex items-center text-red-500">
-          <AlertCircleIcon className="h-5 w-5 mr-2" />
-          <span className="text-sm">{error}</span>
+        <div className="mt-4 flex items-center p-4 bg-red-50 dark:bg-red-900/30 rounded-xl">
+          <AlertCircleIcon className="h-5 w-5 text-red-500 mr-2" />
+          <span className="text-sm text-red-600 dark:text-red-400">
+            {error}
+          </span>
         </div>
       )}
       {file && !error && (
-        <div className="mt-4 flex items-center text-green-500">
-          <CheckCircleIcon className="h-5 w-5 mr-2" />
-          <span className="text-sm">
-            File &quot;{file.name}&quot; is ready to upload
+        <div className="mt-4 flex items-center p-4 bg-green-50 dark:bg-green-900/30 rounded-xl">
+          <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+          <span className="text-sm text-green-600 dark:text-green-400">
+            File "{file.name}" is ready to upload
           </span>
         </div>
       )}
@@ -363,64 +386,65 @@ export const DropzoneFileUpload: React.FC = () => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div
-        className={`border-2 border-dashed rounded-lg p-8 text-center ${
+        className={`relative overflow-hidden transition-all duration-300 ease-in-out border-2 border-dashed rounded-2xl p-8 text-center ${
           isDragging
-            ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
-            : "border-gray-300 dark:border-gray-600"
+            ? "border-blue-400 bg-blue-50/30 dark:bg-blue-900/30 scale-102"
+            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
         }`}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
-        <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-200" />
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-          Drag and drop your files here, or click to select files
-        </p>
-        <input
-          type="file"
-          className="hidden"
-          onChange={onFileChange}
-          id="file-upload"
-          multiple
-        />
-        <label
-          htmlFor="file-upload"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Select Files
-        </label>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50" />
+        <div className="relative z-10">
+          <UploadIcon className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-300" />
+          <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-300">
+            Drag and drop your files here, or click to select
+          </p>
+          <input
+            type="file"
+            className="hidden"
+            onChange={onFileChange}
+            id="file-upload"
+            multiple
+          />
+          <label
+            htmlFor="file-upload"
+            className="mt-4 inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            Select Files
+          </label>
+        </div>
       </div>
+
       {files.length > 0 && (
-        <div className="mt-6">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-            Uploaded Files
-          </h3>
-          <ul className="mt-3 divide-y divide-gray-200 dark:divide-gray-700">
-            {files.map((file) => (
-              <li
-                key={file.id}
-                className="py-3 flex items-center justify-between"
-              >
-                <div className="flex items-center">
-                  <FileIcon className="h-5 w-5 text-gray-400 dark:text-gray-200 mr-3" />
+        <div className="mt-6 space-y-4">
+          {files.map((file) => (
+            <div
+              key={file.id}
+              className="bg-white/50 dark:bg-gray-800/50 rounded-xl p-4 shadow-sm transition-all duration-200 hover:shadow-md"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <FileIcon className="h-5 w-5 text-gray-400 dark:text-gray-300" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-200 truncate">
                       {file.name}
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       {formatFileSize(file.size)}
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => removeFile(file.id)}
-                  className="ml-4 text-sm font-medium text-red-600 hover:text-red-500"
+                  className="text-gray-400 hover:text-red-500 transition-colors duration-200"
                 >
                   <XIcon className="h-5 w-5" />
                 </button>
-              </li>
-            ))}
-          </ul>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
