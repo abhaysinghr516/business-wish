@@ -4,28 +4,30 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const MinimalCardTestimonial: React.FC = () => (
-  <div className="py-12 bg-gray-50 dark:bg-gray-800">
+  <div className="py-12 bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900">
     <div className="mx-auto max-w-md px-4">
-      <div className="rounded-2xl bg-white dark:bg-gray-700 border border-gray-100 dark:border-gray-600">
+      <div className="rounded-3xl bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70">
         <div className="p-8">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-4">
             Client Feedback
           </h3>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
             &quot;The product has streamlined our workflow, saving us countless
             hours. It&apos;s an invaluable tool for our team.&quot;
           </p>
           <div className="flex items-center">
-            <img
-              src="/api/placeholder/48/48"
-              alt="Avatar"
-              className="mr-4 h-12 w-12 rounded-full object-cover"
-            />
+            <div className="relative">
+              <img
+                src="/pfp.jpg"
+                alt="Avatar"
+                className="mr-4 h-12 w-12 rounded-full object-cover ring-2 ring-white dark:ring-gray-700"
+              />
+            </div>
             <div>
-              <p className="font-semibold text-gray-900 dark:text-white">
+              <p className="font-medium text-gray-900 dark:text-white">
                 Alex Chen
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Product Manager, TechCorp
               </p>
             </div>
@@ -37,9 +39,9 @@ export const MinimalCardTestimonial: React.FC = () => (
 );
 
 export const TestimonialSectionwithGridlayout: React.FC = () => (
-  <div className="bg-white dark:bg-gray-800 py-16">
+  <div className="bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16">
     <div className="mx-auto max-w-6xl px-4">
-      <h2 className="mb-12 text-center text-4xl font-bold text-gray-900 dark:text-white">
+      <h2 className="mb-12 text-center text-4xl font-medium text-gray-900 dark:text-white">
         What Our Clients Say
       </h2>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -65,15 +67,15 @@ export const TestimonialSectionwithGridlayout: React.FC = () => (
         ].map((testimonial, index) => (
           <div
             key={index}
-            className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-600"
+            className="bg-white bg-opacity-70 dark:bg-gray-800 dark:bg-opacity-70 rounded-3xl p-8 transition-all duration-300 hover:transform hover:scale-105"
           >
-            <p className="mb-6 text-gray-700 dark:text-gray-300 italic text-lg leading-relaxed">
+            <p className="mb-8 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
               &quot;{testimonial.quote}&quot;
             </p>
-            <p className="font-semibold text-gray-900 dark:text-white">
+            <p className="font-medium text-gray-900 dark:text-white">
               {testimonial.name}
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               {testimonial.position}
             </p>
           </div>
@@ -84,11 +86,11 @@ export const TestimonialSectionwithGridlayout: React.FC = () => (
 );
 
 export const FullWidthTestimonial: React.FC = () => (
-  <div className="bg-gray-50 dark:bg-gray-800 py-16">
+  <div className="bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 py-16">
     <div className="mx-auto max-w-5xl px-4">
-      <div className="overflow-hidden rounded-3xl bg-white dark:bg-gray-700 border border-gray-100 dark:border-gray-600">
+      <div className="overflow-hidden rounded-3xl bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70">
         <div className="p-12">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+          <h3 className="text-3xl font-medium text-gray-900 dark:text-white mb-6">
             A Game-Changing Experience
           </h3>
           <p className="mt-4 text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
@@ -98,16 +100,18 @@ export const FullWidthTestimonial: React.FC = () => (
             business has been nothing short of transformative.&quot;
           </p>
           <div className="flex items-center">
-            <img
-              src="/api/placeholder/64/64"
-              alt="Avatar"
-              className="mr-6 h-16 w-16 rounded-full object-cover"
-            />
+            <div className="relative">
+              <img
+                src="/pfp.jpg"
+                alt="Avatar"
+                className="mr-6 h-16 w-16 rounded-full object-cover ring-2 ring-white dark:ring-gray-700"
+              />
+            </div>
             <div>
-              <p className="font-semibold text-gray-900 dark:text-white text-lg">
+              <p className="font-medium text-gray-900 dark:text-white text-lg">
                 Sarah Johnson
               </p>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-500 dark:text-gray-400">
                 CTO, TechInnovate Inc.
               </p>
             </div>
@@ -160,27 +164,29 @@ export const SliderTestimonial: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 py-16">
+    <div className="bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16">
       <div className="mx-auto max-w-4xl px-4">
-        <div className="relative overflow-hidden rounded-3xl bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-600">
+        <div className="relative overflow-hidden rounded-3xl bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70">
           <div className="px-8 py-12 md:px-12 md:py-16">
-            <h3 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+            <h3 className="mb-6 text-3xl font-medium text-gray-900 dark:text-white">
               Transformative Impact
             </h3>
-            <p className="mb-8 text-xl text-gray-700 dark:text-gray-300 italic leading-relaxed">
+            <p className="mb-8 text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
               &quot;{testimonials[currentIndex].quote}&quot;
             </p>
             <div className="flex items-center">
-              <img
-                src="/api/placeholder/64/64"
-                alt="Avatar"
-                className="mr-6 h-16 w-16 rounded-full object-cover"
-              />
+              <div className="relative">
+                <img
+                  src="/pfp.jpg"
+                  alt="Avatar"
+                  className="mr-6 h-16 w-16 rounded-full object-cover ring-2 ring-white dark:ring-gray-700"
+                />
+              </div>
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white text-lg">
+                <p className="font-medium text-gray-900 dark:text-white text-lg">
                   {testimonials[currentIndex].name}
                 </p>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-500 dark:text-gray-400">
                   {testimonials[currentIndex].position}
                 </p>
               </div>
@@ -190,13 +196,13 @@ export const SliderTestimonial: React.FC = () => {
         <div className="mt-8 flex justify-center gap-4">
           <button
             onClick={goToPrevious}
-            className="rounded-full bg-gray-100 dark:bg-gray-600 p-3 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors"
+            className="rounded-full bg-white dark:bg-gray-700 p-3 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all duration-300"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={goToNext}
-            className="rounded-full bg-gray-100 dark:bg-gray-600 p-3 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors"
+            className="rounded-full bg-white dark:bg-gray-700 p-3 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all duration-300"
           >
             <ChevronRight size={24} />
           </button>
