@@ -29,8 +29,8 @@ const heroData = {
 
 export const CenterContentHeroSection: React.FC = () => (
   <section className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
-    <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-100 dark:bg-blue-900 rounded-full filter blur-3xl opacity-15 -translate-x-1/2 -translate-y-1/2"></div>
-    <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-100 dark:bg-purple-900 rounded-full filter blur-3xl opacity-15 translate-x-1/2 translate-y-1/2"></div>
+    <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-200 dark:bg-blue-800 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+    <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-200 dark:bg-purple-800 rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
 
     <div className="max-w-4xl w-full text-center relative z-10">
       <h1 className="text-6xl sm:text-7xl font-semibold mb-8 leading-[1.1] tracking-tighter text-gray-800 dark:text-white">

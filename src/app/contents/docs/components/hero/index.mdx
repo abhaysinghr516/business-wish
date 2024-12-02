@@ -12,36 +12,46 @@ description: Hero sections are a great way to introduce your users to your produ
 import React from "react";
 import { ChevronRight } from "lucide-react";
 
-export function Hero() {
+const Hero = () => {
   return (
-    <section className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen flex items-center justify-center px-4 py-16 relative overflow-hidden">
+        <section className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-200 dark:bg-blue-800 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-200 dark:bg-purple-800 rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
 
-      <div className="max-w-3xl w-full text-center relative z-10">
-        <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight tracking-tight">
+      <div className="max-w-4xl w-full text-center relative z-10">
+        <h1 className="text-6xl sm:text-7xl font-semibold mb-8 leading-[1.1] tracking-tighter text-gray-800 dark:text-white">
           Elevate Your UI with Simplicity
         </h1>
-        <p className="text-xl mb-10 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-2xl mb-12 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-light tracking-tight">
           Our UI components library embraces minimalism and flexibility,
           allowing you to create stunning interfaces with ease.
         </p>
         <a
           href="#"
-          className="inline-flex items-center text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+          className="inline-flex items-center text-xl font-medium text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-200 transition-colors duration-300 ease-in-out group"
         >
           Explore Components
-          <ChevronRight className="ml-1" size={20} />
+          <ChevronRight
+            className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+            size={24}
+          />
         </a>
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-12">
           {[
             { label: "Components", value: "100+" },
             { label: "Downloads", value: "50K+" },
             { label: "GitHub Stars", value: "5K+" },
           ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl font-bold mb-2">{stat.value}</div>
-              <div className="text-gray-600 dark:text-gray-400">{stat.label}</div>
+            <div
+              key={index}
+              className="text-center bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-md"
+            >
+              <div className="text-5xl font-semibold mb-3 text-gray-800 dark:text-white">
+                {stat.value}
+              </div>
+              <div className="text-gray-500 dark:text-gray-400 text-base tracking-wide font-medium">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
@@ -49,4 +59,6 @@ export function Hero() {
     </section>
   );
 }
+
+export default Hero;
 ```
