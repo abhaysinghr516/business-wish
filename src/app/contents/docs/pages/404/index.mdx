@@ -10,30 +10,32 @@ description: Error pages are displayed when a user tries to access a page that d
 
 ```jsx	showLineNumbers
 import React from "react";
+import { ArrowRight } from "lucide-react";
 
-const Page = () => {
+const Error404 = () => {
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="text-center px-4">
-        <p className="text-4xl sm:text-6xl lg:text-9xl font-bold text-gray-800 dark:text-gray-200">
+    <div className="flex h-screen items-center justify-center bg-white dark:bg-black">
+      <div className="text-center px-4 max-w-2xl mx-auto">
+        <p className="text-[180px] font-light leading-none text-gray-900 dark:text-gray-100">
           404
         </p>
-        <p className="mt-4 text-xl sm:text-2xl font-semibold text-gray-600 dark:text-gray-400">
+        <p className="mt-8 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
           Page not found
         </p>
-        <p className="mt-2 text-gray-500 dark:text-gray-300">
-          The page you are looking for might have been removed, had its name
-          changed, or is temporarily unavailable.
+        <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
+          The page you're looking for isn't available. Perhaps you'd like to try
+          returning home or exploring our features.
         </p>
-        <div className="cursor-pointer mt-6 inline-block rounded-md bg-black dark:bg-gray-700 px-6 py-2 text-sm font-semibold text-white">
-          Go Back Home
+        <div className="mt-10 group cursor-pointer inline-flex items-center space-x-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+          <span>Return to homepage</span>
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Error404;
 ```
 
 ### Playful 404 Page
@@ -42,27 +44,32 @@ export default Page;
 </Preview>
 
 ```jsx showLineNumbers
-import { Ghost } from "lucide-react";
 import React from "react";
+import { Ghost } from "lucide-react";
 
-const Page = () => {
+const Error404 = () => {
   return (
-    <div className="flex flex-col h-screen items-center justify-center py-10 sm:py-16 lg:py-20 bg-gray-100 dark:bg-gray-900">
-      <Ghost className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 text-black dark:text-white animate-bounce" />
-      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-6 sm:mt-8 text-black dark:text-white">
-        Whoops! Page not found
+    <div className="flex flex-col h-screen items-center justify-center bg-white dark:bg-black">
+      <div className="relative">
+        <Ghost className="w-32 h-32 text-gray-900 dark:text-gray-100 animate-bounce" />
+        <div className="absolute -bottom-4 w-20 h-1 bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent blur-sm" />
+      </div>
+      <p className="mt-12 text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+        Page not found
       </p>
-      <p className="text-lg sm:text-xl mt-4 text-gray-700 dark:text-gray-400">
-        Looks like this page has vanished into thin air!
+      <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
+        This page appears to have wandered off
       </p>
-      <div className="cursor-pointer mt-6 bg-gray-900 dark:bg-gray-700 text-sm font-semibold text-white py-2 px-6 rounded-md">
-        Let&apos;s go back home
+      <div className="mt-10 group cursor-pointer inline-flex items-center px-6 py-3 rounded-full bg-gray-900 dark:bg-gray-100 transition-transform hover:scale-105">
+        <span className="text-sm font-medium text-white dark:text-black">
+          Return home
+        </span>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Error404;
 ```
 
 ### Informative 404 Page
@@ -71,39 +78,45 @@ export default Page;
 </Preview>
 
 ```jsx showLineNumbers
-import { AlertCircle, Home, Search, HelpCircle } from "lucide-react";
 import React from "react";
+import { AlertCircle, HelpCircle, Home, Search } from "lucide-react";
 
-const Page = () => {
+const Error404 = () => {
   return (
-    <div className="flex flex-col h-screen items-center justify-center py-10 sm:py-16 lg:py-20 px-4 bg-gray-100 dark:bg-gray-900">
-      <AlertCircle className="w-16 h-16 sm:w-20 sm:h-20 text-red-500 mb-6 sm:mb-8" />
-      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+    <div className="flex flex-col h-screen items-center justify-center px-4 bg-white dark:bg-black">
+      <AlertCircle className="w-20 h-20 text-red-500 mb-8" />
+      <p className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-100 mb-4">
         404 - Page Not Found
       </p>
-      <p className="text-center text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-md text-gray-500 dark:text-gray-400">
-        The page you are looking for might have been removed, had its name
-        changed, or is temporarily unavailable.
+      <p className="text-center text-lg mb-12 max-w-xl text-gray-500 dark:text-gray-400">
+        We couldn't find what you're looking for. Here are some helpful options
+        to get you back on track.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-xl">
-        <div className="flex items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-          <Home className="mr-2" />
-          <span className="text-sm font-semibold">Go to Homepage</span>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl">
+        <div className="group flex flex-col items-center p-6 rounded-2xl border border-gray-200 dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer">
+          <Home className="w-8 h-8 mb-4 text-gray-900 dark:text-gray-100 transition-transform group-hover:scale-110" />
+          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+            Homepage
+          </span>
         </div>
-        <div className="flex items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-          <Search className="mr-2" />
-          <span className="text-sm font-semibold">Search our site</span>
+        <div className="group flex flex-col items-center p-6 rounded-2xl border border-gray-200 dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer">
+          <Search className="w-8 h-8 mb-4 text-gray-900 dark:text-gray-100 transition-transform group-hover:scale-110" />
+          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+            Search
+          </span>
         </div>
-        <div className="flex items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-          <HelpCircle className="mr-2" />
-          <span className="text-sm font-semibold">Visit Help Center</span>
+        <div className="group flex flex-col items-center p-6 rounded-2xl border border-gray-200 dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer">
+          <HelpCircle className="w-8 h-8 mb-4 text-gray-900 dark:text-gray-100 transition-transform group-hover:scale-110" />
+          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+            Help Center
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Error404;
 ```
 
 ### Interactive 404 Page
@@ -112,10 +125,10 @@ export default Page;
 </Preview>
 
 ```jsx showLineNumbers
-import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
+import { ArrowRight, Loader2, Search } from "lucide-react";
 
-const Page = () => {
+const Error404 = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchComplete, setSearchComplete] = useState(false);
 
@@ -128,52 +141,56 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center py-20 px-4 bg-gray-100 dark:bg-gray-900">
-      <h1 className="text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200">
-        Oops! Page not found
-      </h1>
-      <p className="text-xl mb-8 text-gray-600 dark:text-gray-400">
-        Let&apos;s see if we can find what you&apos;re looking for...
-      </p>
-      {!isSearching && !searchComplete && (
-        <button
-          onClick={handleSearch}
-          className="bg-gray-900 dark:bg-gray-700 text-white py-2 px-6 rounded-md cursor-pointer"
-        >
-          Search for page
-        </button>
-      )}
-      {isSearching && (
-        <div className="flex items-center mb-4">
-          <Loader2 className="mr-2 h-4 w-4 animate-spin text-gray-800 dark:text-gray-200" />
-          Searching...
-        </div>
-      )}
-      {searchComplete && (
-        <div className="text-center mb-8">
-          <p className="mb-4 text-gray-700 dark:text-gray-400">
-            We couldn&apos;t find the exact page, but here are some helpful
-            links:
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-              Home
-            </button>
-            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-              Sitemap
-            </button>
-            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-              Contact Us
-            </button>
-            <button className="flex justify-center items-center border border-gray-300 dark:border-gray-700 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
-              FAQ
-            </button>
+    <div className="flex flex-col items-center h-screen justify-center py-20 px-4 bg-white dark:bg-black">
+      <div className="max-w-2xl mx-auto text-center">
+        <h1 className="text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-100 mb-6">
+          Page not found
+        </h1>
+        <p className="text-xl text-gray-500 dark:text-gray-400 mb-12">
+          Let's help you find what you're looking for
+        </p>
+
+        {!isSearching && !searchComplete && (
+          <button
+            onClick={handleSearch}
+            className="inline-flex items-center px-8 py-4 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-black transition-transform hover:scale-105"
+          >
+            <Search className="w-5 h-5 mr-2" />
+            Search
+          </button>
+        )}
+
+        {isSearching && (
+          <div className="flex items-center justify-center space-x-3 text-gray-900 dark:text-gray-100">
+            <Loader2 className="h-5 w-5 animate-spin" />
+            <span className="text-lg">Searching...</span>
           </div>
-        </div>
-      )}
+        )}
+
+        {searchComplete && (
+          <div className="space-y-8">
+            <p className="text-lg text-gray-500 dark:text-gray-400">
+              Here are some suggested pages that might help:
+            </p>
+            <div className="grid grid-cols-2 gap-4 max-w-xl mx-auto">
+              {["Home", "Help", "Contact", "Support"].map((item) => (
+                <button
+                  key={item}
+                  className="group flex items-center justify-center p-4 rounded-2xl border border-gray-200 dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
+                >
+                  <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    {item}
+                  </span>
+                  <ArrowRight className="w-4 h-4 ml-2 text-gray-400 transition-transform group-hover:translate-x-1" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Page;
+export default Error404;
 ```
