@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { getDocsForSlug } from "@/app/lib/markdown";
 import { Typography } from "@/app/components/typography";
 import TOC from "@/app/components/TOC";
+import { Metadata } from "next";
+
 type PageProps = {
   params: { slug: string[] };
 };
@@ -32,15 +34,67 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
   );
 }
 
-export async function generateMetadata({ params: { slug = [] } }: PageProps) {
+export async function generateMetadata({
+  params: { slug = [] },
+}: PageProps): Promise<Metadata> {
   const pathName = slug.join("/");
   const res = await getDocsForSlug(pathName);
-  if (!res) return null;
+  if (!res) return {};
+
   const { frontmatter } = res;
+  const baseUrl = "https://business-wish.vercel.app";
+
   return {
-    title: frontmatter.title,
+    title: {
+      default: frontmatter.title,
+      template: `%s | Business Wish Docs`,
+    },
     description: frontmatter.description,
+    alternates: {
+      canonical: `${baseUrl}/docs/${pathName}`,
+    },
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      url: `${baseUrl}/docs/${pathName}`,
+      type: "article",
+      siteName: "Business Wish",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.title,
+      description: frontmatter.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    category: "web development",
+    keywords: [
+      "Tailwind CSS",
+      "UI components",
+      "web development",
+      "documentation",
+      ...extractKeywordsFromTitle(frontmatter.title),
+    ],
   };
+}
+
+function extractKeywordsFromTitle(title: string): string[] {
+  return title
+    .toLowerCase()
+    .split(" ")
+    .filter(
+      (word) => word.length > 2 && !["and", "the", "for", "with"].includes(word)
+    );
 }
 
 export function generateStaticParams() {
