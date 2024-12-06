@@ -9,30 +9,50 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Business Wish",
   metadataBase: new URL("https://business-wish.vercel.app"),
-  description: "Business Wish || Free Tailwind CSS UI components library",
-  keywords:
-    "Tailwind CSS, UI components, free components, web development, Business Wish",
+  title: {
+    default: "Business Wish - Free Tailwind CSS UI Components Library",
+    template: "%s | Business Wish",
+  },
+  description:
+    "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers. Boost your project's design and efficiency with our ready-to-use components.",
+  keywords: [
+    "Tailwind CSS",
+    "UI components",
+    "free web components",
+    "web development",
+    "responsive design",
+    "frontend library",
+    "open-source UI",
+    "web design resources",
+  ],
+  alternates: {
+    canonical: "https://business-wish.vercel.app",
+  },
   openGraph: {
-    title: "Business Wish",
-    description: "Free Tailwind CSS UI components library",
+    title: "Business Wish - Free Tailwind CSS UI Components Library",
+    description:
+      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
     type: "website",
     url: "https://business-wish.vercel.app",
+    siteName: "Business Wish",
+    locale: "en_US",
     images: [
       {
         url: "https://business-wish.vercel.app/home.png",
-        width: 800,
-        height: 600,
-        alt: "Business Wish Tailwind CSS UI Components",
+        width: 1200,
+        height: 630,
+        alt: "Business Wish - Free Tailwind CSS UI Components Library",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     site: "@abhaysinghr516",
-    title: "Business Wish",
-    description: "Free Tailwind CSS UI components library",
+    creator: "@abhaysinghr516",
+    title: "Business Wish - Free Tailwind CSS UI Components Library",
+    description:
+      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
     images: ["https://business-wish.vercel.app/home.png"],
   },
 };
@@ -55,8 +75,8 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-Y0FKJQ2T12" />
       </body>
-      <GoogleAnalytics gaId="G-Y0FKJQ2T12" />
     </html>
   );
 }

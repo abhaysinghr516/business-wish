@@ -1,14 +1,37 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
+    const baseUrl = "https://business-wish.vercel.app";
+
     return {
         rules: [
             {
                 userAgent: "*",
-                allow: "/",
-                disallow: ["/components", "/templates"],
+                allow: [
+                    "/",
+                    "/docs",
+                    "/blog",
+                ],
+                disallow: [
+                    "/templates",
+                    "/private",
+                    "/*.json$",
+                    "/*.xml$"
+                ],
             },
+            {
+                userAgent: "Googlebot",
+                allow: [
+                    "/docs",
+                    "/blog"
+                ],
+                disallow: [
+                    "/admin",
+                    "/private"
+                ]
+            }
         ],
-        sitemap: `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`,
+        sitemap: `${baseUrl}/sitemap.xml`,
+        host: baseUrl
     };
 }
