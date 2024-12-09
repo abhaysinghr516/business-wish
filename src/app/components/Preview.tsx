@@ -35,8 +35,17 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   const updateIframeContent = useCallback(
     (iframeElement: HTMLIFrameElement | null) => {
-      const iframeDoc = iframeElement?.contentDocument;
-      if (iframeDoc) {
+      if (!iframeElement) return;
+
+      if (iframeElement.contentDocument?.readyState !== "complete") {
+        iframeElement.onload = () => updateIframeContent(iframeElement);
+        return;
+      }
+
+      const iframeDoc = iframeElement.contentDocument;
+      const iframeWindow = iframeElement.contentWindow;
+
+      if (iframeDoc && iframeWindow) {
         iframeDoc.open();
         iframeDoc.write(`
           <!DOCTYPE html>
@@ -73,14 +82,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                   75% { transform: rotate(360deg); border-radius: 4px; }
                   100% { transform: rotate(360deg); border-radius: 50%; }
                 }
-                  @keyframes shimmer {
-          0% {
-            background-position: -1000px 0;
-          }
-          100% {
-            background-position: 1000px 0;
-          }
-        }
+                @keyframes shimmer {
+                  0% {
+                    background-position: -1000px 0;
+                  }
+                  100% {
+                    background-position: 1000px 0;
+                  }
+                }
                 @media (prefers-color-scheme: dark) {
                   body {
                     background-color: #020817;
@@ -102,11 +111,13 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
         `);
         iframeDoc.close();
 
-        const root = iframeDoc.getElementById("root");
-        if (root) {
-          const reactRoot = createRoot(root);
-          reactRoot.render(<>{children}</>);
-        }
+        setTimeout(() => {
+          const root = iframeDoc.getElementById("root");
+          if (root) {
+            const reactRoot = createRoot(root);
+            reactRoot.render(<>{children}</>);
+          }
+        }, 0);
       }
     },
     [children]
@@ -115,21 +126,26 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   useEffect(() => {
     const iframe = iframeRef.current;
     if (iframe) {
-      const onLoad = () => updateIframeContent(iframe);
-      iframe.addEventListener("load", onLoad);
-
-      updateIframeContent(iframe);
-
-      return () => {
-        iframe.removeEventListener("load", onLoad);
-      };
+      if (iframe.contentDocument?.readyState === "complete") {
+        updateIframeContent(iframe);
+      } else {
+        iframe.onload = () => updateIframeContent(iframe);
+      }
     }
   }, [updateIframeContent, view]);
 
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
-        updateIframeContent(fullViewIframeRef.current);
+        const fullViewIframe = fullViewIframeRef.current;
+        if (fullViewIframe) {
+          // Ensure iframe is fully loaded
+          if (fullViewIframe.contentDocument?.readyState === "complete") {
+            updateIframeContent(fullViewIframe);
+          } else {
+            fullViewIframe.onload = () => updateIframeContent(fullViewIframe);
+          }
+        }
       }, 0);
       return () => clearTimeout(timer);
     }
