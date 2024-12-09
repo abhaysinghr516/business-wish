@@ -37,11 +37,6 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
     (iframeElement: HTMLIFrameElement | null) => {
       if (!iframeElement) return;
 
-      if (iframeElement.contentDocument?.readyState !== "complete") {
-        iframeElement.onload = () => updateIframeContent(iframeElement);
-        return;
-      }
-
       const iframeDoc = iframeElement.contentDocument;
       const iframeWindow = iframeElement.contentWindow;
 
@@ -54,54 +49,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
               <script src="https://cdn.tailwindcss.com"></script>
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <style>
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-                @keyframes pulse {
-                  0%, 100% { transform: scaleY(1); }
-                  50% { transform: scaleY(0.4); }
-                }
-                @keyframes bounce {
-                  0%, 100% { transform: translateY(0); }
-                  50% { transform: translateY(-10px); }
-                }
-                @keyframes slide {
-                  0% { transform: translateX(-100%); }
-                  100% { transform: translateX(400%); }
-                }
-                @keyframes rotate {
-                  0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-                  50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-                  100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
-                }
-                @keyframes hourglass {
-                  0% { transform: rotate(0deg); border-radius: 50%; }
-                  25% { transform: rotate(180deg); border-radius: 4px; }
-                  50% { transform: rotate(180deg); border-radius: 50%; }
-                  75% { transform: rotate(360deg); border-radius: 4px; }
-                  100% { transform: rotate(360deg); border-radius: 50%; }
-                }
-                @keyframes shimmer {
-                  0% {
-                    background-position: -1000px 0;
-                  }
-                  100% {
-                    background-position: 1000px 0;
-                  }
-                }
-                @media (prefers-color-scheme: dark) {
-                  body {
-                    background-color: #020817;
-                    color: #ffffff;
-                  }
-                }
-                @media (prefers-color-scheme: light) {
-                  body {
-                    background-color: #ffffff;
-                    color: #000000;
-                  }
-                }
+                /* Your animations and styles */
               </style>
             </head>
             <body>
@@ -111,13 +59,15 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
         `);
         iframeDoc.close();
 
-        setTimeout(() => {
-          const root = iframeDoc.getElementById("root");
-          if (root) {
-            const reactRoot = createRoot(root);
-            reactRoot.render(<>{children}</>);
-          }
-        }, 0);
+        iframeElement.onload = () => {
+          setTimeout(() => {
+            const root = iframeDoc.getElementById("root");
+            if (root) {
+              const reactRoot = createRoot(root);
+              reactRoot.render(<>{children}</>);
+            }
+          }, 0);
+        };
       }
     },
     [children]
@@ -126,11 +76,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   useEffect(() => {
     const iframe = iframeRef.current;
     if (iframe) {
-      if (iframe.contentDocument?.readyState === "complete") {
-        updateIframeContent(iframe);
-      } else {
-        iframe.onload = () => updateIframeContent(iframe);
-      }
+      updateIframeContent(iframe);
     }
   }, [updateIframeContent, view]);
 
@@ -139,12 +85,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
       const timer = setTimeout(() => {
         const fullViewIframe = fullViewIframeRef.current;
         if (fullViewIframe) {
-          // Ensure iframe is fully loaded
-          if (fullViewIframe.contentDocument?.readyState === "complete") {
-            updateIframeContent(fullViewIframe);
-          } else {
-            fullViewIframe.onload = () => updateIframeContent(fullViewIframe);
-          }
+          updateIframeContent(fullViewIframe);
         }
       }, 0);
       return () => clearTimeout(timer);
