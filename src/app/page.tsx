@@ -156,7 +156,7 @@ export default function Component() {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="p-8 rounded-3xl border border-gray-200 dark:border-gray-800 hover:border-purple-500 dark:hover:border-purple-500 transition-all duration-300 bg-gray-50 dark:bg-gray-900"
+                className="p-8 rounded-3xl bg-gray-50 dark:bg-gray-900"
               >
                 <span className="text-4xl mb-4 block">{feature.icon}</span>
                 <h3 className="text-2xl font-medium mb-2 dark:text-white">
