@@ -44,6 +44,7 @@ import { Informative404Section, Interactive404Section, Minimal404Section, Playfu
 import { DropdownSocialShare, FABSocialShare, ModalSocialShare } from "@/components/SocialShare";
 import { DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePreviewFileUpload, MultiFileUpload } from "@/components/FileUpload";
 import { AnimatedTooltip, ArrowTooltip, BasicTooltip, TooltipDemo } from "@/components/Tooltip";
+import { CustomCalendarPicker, DropdownDatePicker, RangeDatePicker, SimpleDatePicker } from "@/components/DatePicker";
 
 // add custom components
 const components = {
@@ -99,6 +100,10 @@ const components = {
     ArticleCard,
     ForumCard,
     PodcastCard,
+    SimpleDatePicker,
+    CustomCalendarPicker,
+    DropdownDatePicker,
+    RangeDatePicker,
     BasicDivider,
     VerticalDivider,
     CustomDividerwithIcon,

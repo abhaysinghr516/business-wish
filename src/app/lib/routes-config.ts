@@ -54,6 +54,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/card",
             },
             {
+                title: "Date Picker",
+                href: "/date-picker",
+            },
+            {
                 title: "Divider",
                 href: "/divider",
             },
