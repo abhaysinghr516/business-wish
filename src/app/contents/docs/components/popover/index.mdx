@@ -1,0 +1,138 @@
+---
+title: Popover
+description: Popover is a non-modal dialog that floats around a trigger element. It's commonly used for complex interactions, custom menus, and contextual information.
+---
+
+### Basic Popover
+<Preview>
+<PopoverDemo />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { Settings2 } from "lucide-react";
+
+interface PopoverProps {
+  trigger: React.ReactNode;
+  content: React.ReactNode;
+  position?: "top" | "bottom" | "left" | "right";
+  width?: number;
+  showArrow?: boolean;
+  closeOnClickOutside?: boolean;
+  variant?: "default" | "menu" | "notification" | "minimal";
+  onClose?: () => void;
+}
+
+const Popover: React.FC<PopoverProps> = ({
+  trigger,
+  content,
+  position = "bottom",
+  width = 280,
+  showArrow = true,
+  closeOnClickOutside = true,
+  variant = "default",
+  onClose,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="relative inline-block">
+      <div onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
+        {trigger}
+      </div>
+      {isOpen && (
+        <div className="absolute z-50" style={{ width }}>
+          <div className="rounded-2xl bg-white/80 shadow-lg border border-gray-200/20">
+            {content}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const PopoverDemo = () => {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Popover
+        trigger={
+          <button className="p-2 text-sm font-medium bg-white/90 border border-gray-200/20 rounded-full hover:bg-gray-50">
+            <Settings2 className="w-5 h-5" />
+          </button>
+        }
+        content={
+          <div className="p-4">
+            <h3 className="font-medium">Settings</h3>
+            <p className="text-sm text-gray-600">Configure your preferences</p>
+          </div>
+        }
+      />
+    </div>
+  );
+};
+
+export default PopoverDemo;
+```
+
+### Menu Variant
+The menu variant is optimized for dropdown menus and navigation.
+
+```jsx
+<Popover
+  variant="menu"
+  position="bottom"
+  trigger={<button>Menu</button>}
+  content={
+    <div className="py-2">
+      <MenuButton icon={User}>Account Settings</MenuButton>
+      <MenuButton icon={Bell}>Notifications</MenuButton>
+      <MenuButton icon={Lock}>Privacy</MenuButton>
+      <div className="my-2 border-t border-gray-200/50" />
+      <MenuButton icon={LogOut} className="text-red-500">Sign Out</MenuButton>
+    </div>
+  }
+/>
+```
+
+### Notification Variant
+Designed for notification dropdowns and alerts.
+
+```jsx
+<Popover
+  variant="notification"
+  position="bottom"
+  width={320}
+  trigger={<button>Notifications</button>}
+  content={
+    <div>
+      <div className="px-4 py-3 border-b border-gray-200/50">
+        <h3 className="font-semibold">Notifications</h3>
+      </div>
+      <NotificationItem
+        title="New Feature Available"
+        description="Check out the new dashboard view."
+        time="1m ago"
+      />
+    </div>
+  }
+/>
+```
+
+### Minimal Variant
+A simplified version for basic tooltips and hints.
+
+```jsx
+<Popover
+  variant="minimal"
+  position="bottom"
+  width={200}
+  trigger={<button>More Info</button>}
+  content={
+    <div className="p-3">
+      <p className="text-sm text-gray-600">
+        Additional information appears here.
+      </p>
+    </div>
+  }
+/>
+```

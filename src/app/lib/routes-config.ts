@@ -94,6 +94,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/pagination",
             },
             {
+                title: "Popover",
+                href: "/popover",
+            },
+            {
                 title: "Sidebar",
                 href: "/sidebar",
             },

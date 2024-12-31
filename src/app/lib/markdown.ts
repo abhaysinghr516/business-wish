@@ -45,6 +45,7 @@ import { DropdownSocialShare, FABSocialShare, ModalSocialShare } from "@/compone
 import { DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePreviewFileUpload, MultiFileUpload } from "@/components/FileUpload";
 import { AnimatedTooltip, ArrowTooltip, BasicTooltip, TooltipDemo } from "@/components/Tooltip";
 import { CustomCalendarPicker, DropdownDatePicker, RangeDatePicker, SimpleDatePicker } from "@/components/DatePicker";
+import PopoverDemo from "@/components/Popover";
 
 // add custom components
 const components = {
@@ -153,6 +154,7 @@ const components = {
     FullWidthTestimonial,
     SliderTestimonial,
     BasicTooltip,
+    PopoverDemo,
     ArrowTooltip,
     AnimatedTooltip,
     TooltipDemo,
