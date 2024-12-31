@@ -1,20 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import {
-  Settings2,
-  Mail,
-  Bell,
-  LogOut,
-  ChevronRight,
-  User,
-  Lock,
-  Share2,
-  X,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Copy,
-} from "lucide-react";
+import { Settings2, Bell, LogOut, User, Lock, X } from "lucide-react";
 
 interface PopoverProps {
   trigger: React.ReactNode;
@@ -48,7 +34,7 @@ const MenuButton = ({
 }: MenuButtonProps) => (
   <button
     onClick={onClick}
-    className={`w-full px-3 py-2 text-left text-sm rounded-lg hover:bg-gray-100/80 transition-colors flex items-center space-x-2 ${className}`}
+    className={`w-full px-3 py-2 text-left text-sm rounded-lg hover:bg-gray-100/80 dark:hover:bg-gray-800/50 transition-colors flex items-center space-x-2 dark:text-gray-200 ${className}`}
   >
     {Icon && <Icon className="w-4 h-4" />}
     <span>{children}</span>
@@ -60,12 +46,14 @@ const NotificationItem = ({
   description,
   time,
 }: NotificationItemProps) => (
-  <div className="p-3 hover:bg-gray-50/80 transition-colors">
+  <div className="p-3 hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors">
     <div className="flex justify-between items-start">
-      <p className="font-medium text-sm">{title}</p>
-      <span className="text-xs text-gray-500">{time}</span>
+      <p className="font-medium text-sm dark:text-gray-200">{title}</p>
+      <span className="text-xs text-gray-500 dark:text-gray-400">{time}</span>
     </div>
-    <p className="text-sm text-gray-600 mt-1">{description}</p>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+      {description}
+    </p>
   </div>
 );
 
@@ -151,13 +139,13 @@ const Popover = ({
   const getVariantStyles = () => {
     switch (variant) {
       case "menu":
-        return "bg-white/95 shadow-xl border-0";
+        return "bg-white/95 dark:bg-gray-900/95 shadow-xl border-0";
       case "notification":
-        return "bg-white shadow-lg border border-gray-200/20";
+        return "bg-white dark:bg-gray-900 shadow-lg border border-gray-200/20 dark:border-gray-700/20";
       case "minimal":
-        return "bg-white/80 shadow-sm border border-gray-200/10";
+        return "bg-white/80 dark:bg-gray-900/80 shadow-sm border border-gray-200/10 dark:border-gray-700/10";
       default:
-        return "bg-white/80 shadow-lg border border-gray-200/20";
+        return "bg-white/80 dark:bg-gray-900/80 shadow-lg border border-gray-200/20 dark:border-gray-700/20";
     }
   };
 
@@ -185,7 +173,7 @@ const Popover = ({
             {showArrow && (
               <div
                 className={`
-                  absolute w-4 h-4 bg-inherit rotate-45 border border-gray-200/20
+                  absolute w-4 h-4 bg-inherit rotate-45 border border-gray-200/20 dark:border-gray-700/20
                   ${
                     position === "bottom"
                       ? "-top-2 left-1/2 -translate-x-1/2 border-b-0 border-r-0"
@@ -213,7 +201,7 @@ const Popover = ({
               {variant !== "minimal" && (
                 <button
                   onClick={handleClose}
-                  className="absolute top-2 right-2 p-1 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100/80 transition-colors"
+                  className="absolute top-2 right-2 p-1 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 rounded-full hover:bg-gray-100/80 dark:hover:bg-gray-800/50 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -242,8 +230,8 @@ export default function PopoverDemo() {
         variant="menu"
         position="bottom"
         trigger={
-          <button className="p-2 text-sm font-medium bg-white/90 border border-gray-200/20 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg">
-            <Settings2 className="w-5 h-5" />
+          <button className="p-2 text-sm font-medium bg-white/90 dark:bg-gray-800/90 border border-gray-200/20 dark:border-gray-700/20 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 shadow-md hover:shadow-lg">
+            <Settings2 className="w-5 h-5 dark:text-gray-200" />
           </button>
         }
         content={
@@ -251,8 +239,11 @@ export default function PopoverDemo() {
             <MenuButton icon={User}>Account Settings</MenuButton>
             <MenuButton icon={Bell}>Notifications</MenuButton>
             <MenuButton icon={Lock}>Privacy</MenuButton>
-            <div className="my-2 border-t border-gray-200/50" />
-            <MenuButton icon={LogOut} className="text-red-500">
+            <div className="my-2 border-t border-gray-200/50 dark:border-gray-700/50" />
+            <MenuButton
+              icon={LogOut}
+              className="text-red-500 dark:text-red-400"
+            >
               Sign Out
             </MenuButton>
           </div>
@@ -264,17 +255,19 @@ export default function PopoverDemo() {
         position="bottom"
         width={320}
         trigger={
-          <button className="relative p-2 text-sm font-medium bg-white/90 border border-gray-200/20 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg">
-            <Bell className="w-5 h-5" />
+          <button className="relative p-2 text-sm font-medium bg-white/90 dark:bg-gray-800/90 border border-gray-200/20 dark:border-gray-700/20 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 shadow-md hover:shadow-lg">
+            <Bell className="w-5 h-5 dark:text-gray-200" />
             <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
           </button>
         }
         content={
           <div>
-            <div className="px-4 py-3 border-b border-gray-200/50">
-              <h3 className="font-semibold">Notifications</h3>
+            <div className="px-4 py-3 border-b border-gray-200/50 dark:border-gray-700/50">
+              <h3 className="font-semibold dark:text-gray-200">
+                Notifications
+              </h3>
             </div>
-            <div className="divide-y divide-gray-200/50">
+            <div className="divide-y divide-gray-200/50 dark:divide-gray-700/50">
               <NotificationItem
                 title="New Feature Available"
                 description="Check out the new dashboard view. Pages now load faster."
@@ -286,8 +279,8 @@ export default function PopoverDemo() {
                 time="2h ago"
               />
             </div>
-            <div className="p-3 text-center border-t border-gray-200/50">
-              <button className="text-sm text-blue-500 hover:text-blue-600">
+            <div className="p-3 text-center border-t border-gray-200/50 dark:border-gray-700/50">
+              <button className="text-sm text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300">
                 View All
               </button>
             </div>
@@ -300,13 +293,13 @@ export default function PopoverDemo() {
         position="bottom"
         width={200}
         trigger={
-          <button className="px-3 py-1.5 text-sm font-medium bg-white/70 border border-gray-200/20 rounded-lg hover:bg-white/90 transition-all duration-300">
+          <button className="px-3 py-1.5 text-sm font-medium bg-white/70 dark:bg-gray-800/70 border border-gray-200/20 dark:border-gray-700/20 rounded-lg hover:bg-white/90 dark:hover:bg-gray-700/90 transition-all duration-300 dark:text-gray-200">
             More Info
           </button>
         }
         content={
           <div className="p-3">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Additional information about this feature will appear here.
             </p>
           </div>

@@ -1,13 +1,12 @@
 ---
 title: Popover
-description: Popover is a non-modal dialog that floats around a trigger element. It's commonly used for complex interactions, custom menus, and contextual information.
+description: Popover is a non-modal dialog that floats around a trigger element. It's commonly used for complex interactions, custom menus, and contextual information. Supports both light and dark modes.
 ---
 
 ### Basic Popover
 <Preview>
 <PopoverDemo />
 </Preview>
-
 ```jsx showLineNumbers
 import React, { useState } from "react";
 import { Settings2 } from "lucide-react";
@@ -42,7 +41,7 @@ const Popover: React.FC<PopoverProps> = ({
       </div>
       {isOpen && (
         <div className="absolute z-50" style={{ width }}>
-          <div className="rounded-2xl bg-white/80 shadow-lg border border-gray-200/20">
+          <div className="rounded-2xl bg-white/80 dark:bg-gray-900/80 shadow-lg border border-gray-200/20 dark:border-gray-700/20">
             {content}
           </div>
         </div>
@@ -53,17 +52,17 @@ const Popover: React.FC<PopoverProps> = ({
 
 const PopoverDemo = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <Popover
         trigger={
-          <button className="p-2 text-sm font-medium bg-white/90 border border-gray-200/20 rounded-full hover:bg-gray-50">
-            <Settings2 className="w-5 h-5" />
+          <button className="p-2 text-sm font-medium bg-white/90 dark:bg-gray-800/90 border border-gray-200/20 dark:border-gray-700/20 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700/50">
+            <Settings2 className="w-5 h-5 dark:text-gray-200" />
           </button>
         }
         content={
           <div className="p-4">
-            <h3 className="font-medium">Settings</h3>
-            <p className="text-sm text-gray-600">Configure your preferences</p>
+            <h3 className="font-medium dark:text-gray-200">Settings</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Configure your preferences</p>
           </div>
         }
       />
@@ -76,7 +75,6 @@ export default PopoverDemo;
 
 ### Menu Variant
 The menu variant is optimized for dropdown menus and navigation.
-
 ```jsx
 <Popover
   variant="menu"
@@ -87,8 +85,8 @@ The menu variant is optimized for dropdown menus and navigation.
       <MenuButton icon={User}>Account Settings</MenuButton>
       <MenuButton icon={Bell}>Notifications</MenuButton>
       <MenuButton icon={Lock}>Privacy</MenuButton>
-      <div className="my-2 border-t border-gray-200/50" />
-      <MenuButton icon={LogOut} className="text-red-500">Sign Out</MenuButton>
+      <div className="my-2 border-t border-gray-200/50 dark:border-gray-700/50" />
+      <MenuButton icon={LogOut} className="text-red-500 dark:text-red-400">Sign Out</MenuButton>
     </div>
   }
 />
@@ -96,7 +94,6 @@ The menu variant is optimized for dropdown menus and navigation.
 
 ### Notification Variant
 Designed for notification dropdowns and alerts.
-
 ```jsx
 <Popover
   variant="notification"
@@ -105,8 +102,8 @@ Designed for notification dropdowns and alerts.
   trigger={<button>Notifications</button>}
   content={
     <div>
-      <div className="px-4 py-3 border-b border-gray-200/50">
-        <h3 className="font-semibold">Notifications</h3>
+      <div className="px-4 py-3 border-b border-gray-200/50 dark:border-gray-700/50">
+        <h3 className="font-semibold dark:text-gray-200">Notifications</h3>
       </div>
       <NotificationItem
         title="New Feature Available"
@@ -120,7 +117,6 @@ Designed for notification dropdowns and alerts.
 
 ### Minimal Variant
 A simplified version for basic tooltips and hints.
-
 ```jsx
 <Popover
   variant="minimal"
@@ -129,7 +125,7 @@ A simplified version for basic tooltips and hints.
   trigger={<button>More Info</button>}
   content={
     <div className="p-3">
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-600 dark:text-gray-400">
         Additional information appears here.
       </p>
     </div>
