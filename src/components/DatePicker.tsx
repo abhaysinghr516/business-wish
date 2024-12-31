@@ -6,11 +6,11 @@ export const SimpleDatePicker: React.FC = () => {
   const [date, setDate] = useState("");
 
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
+    <div className="flex justify-center items-center h-[calc(100vh-4rem)] dark:bg-gray-900">
       <div className="w-64">
         <label
           htmlFor="date"
-          className="block text-sm font-medium text-gray-800 mb-2"
+          className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-2"
         >
           Select a date
         </label>
@@ -19,10 +19,10 @@ export const SimpleDatePicker: React.FC = () => {
           id="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="block w-full px-4 py-3 text-gray-800 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none hover:bg-gray-100"
+          className="block w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700"
         />
         {date && (
-          <p className="mt-3 text-sm text-gray-600">
+          <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
             Selected date: {new Date(date).toLocaleDateString()}
           </p>
         )}
@@ -83,30 +83,30 @@ export const CustomCalendarPicker: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
-      <div className="w-72 bg-gray-50 shadow-lg rounded-2xl overflow-hidden border border-gray-100">
-        <div className="flex justify-between items-center bg-white p-4 border-b border-gray-100">
+    <div className="flex justify-center items-center h-[calc(100vh-4rem)] dark:bg-gray-900">
+      <div className="w-72 bg-gray-50 dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+        <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 border-b border-gray-100 dark:border-gray-700">
           <button
             onClick={prevMonth}
-            className="p-2 hover:bg-gray-50 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-full transition-colors"
           >
-            <ChevronLeftIcon className="w-5 h-5 text-gray-600" />
+            <ChevronLeftIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
-          <span className="font-semibold text-gray-800">
+          <span className="font-semibold text-gray-800 dark:text-gray-200">
             {months[currentDate.getMonth()]} {currentDate.getFullYear()}
           </span>
           <button
             onClick={nextMonth}
-            className="p-2 hover:bg-gray-50 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-full transition-colors"
           >
-            <ChevronRightIcon className="w-5 h-5 text-gray-600" />
+            <ChevronRightIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
         <div className="grid grid-cols-7 gap-1 p-4">
           {daysOfWeek.map((day) => (
             <div
               key={day}
-              className="text-center text-sm font-medium text-gray-400 mb-2"
+              className="text-center text-sm font-medium text-gray-400 dark:text-gray-500 mb-2"
             >
               {day}
             </div>
@@ -128,7 +128,7 @@ export const CustomCalendarPicker: React.FC = () => {
                 ${
                   isSelected
                     ? "bg-blue-500 text-white font-semibold shadow-md"
-                    : "hover:bg-gray-100 text-gray-700"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                 }`}
               >
                 {day}
@@ -137,8 +137,8 @@ export const CustomCalendarPicker: React.FC = () => {
           })}
         </div>
         {selectedDate && (
-          <div className="border-t border-gray-100 bg-white">
-            <p className="text-center p-3 text-sm text-gray-600">
+          <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <p className="text-center p-3 text-sm text-gray-600 dark:text-gray-400">
               Selected: {selectedDate.toLocaleDateString()}
             </p>
           </div>
@@ -178,10 +178,10 @@ export const DropdownDatePicker: React.FC = () => {
     };
 
   const selectClassName =
-    "block w-full px-4 py-3 text-gray-800 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none appearance-none cursor-pointer";
+    "block w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none appearance-none cursor-pointer";
 
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
+    <div className="flex justify-center items-center h-[calc(100vh-4rem)] dark:bg-gray-900">
       <div className="w-72 space-y-3">
         <select
           value={month}
@@ -220,7 +220,7 @@ export const DropdownDatePicker: React.FC = () => {
           ))}
         </select>
         {day && month && year && (
-          <p className="text-sm text-gray-600 mt-3">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
             Selected date: {`${day}/${month}/${year}`}
           </p>
         )}
@@ -312,30 +312,30 @@ export const RangeDatePicker: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
-      <div className="w-80 bg-gray-50 shadow-lg rounded-2xl overflow-hidden border border-gray-100">
-        <div className="bg-white p-4 flex justify-between items-center border-b border-gray-100">
+    <div className="flex justify-center items-center h-[calc(100vh-4rem)] dark:bg-gray-900">
+      <div className="w-80 bg-gray-50 dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 p-4 flex justify-between items-center border-b border-gray-100 dark:border-gray-700">
           <button
             onClick={() => changeMonth(-1)}
-            className="p-2 hover:bg-gray-50 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-full transition-colors"
           >
-            <ChevronLeftIcon className="w-5 h-5 text-gray-600" />
+            <ChevronLeftIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
-          <h2 className="text-lg font-semibold text-gray-800">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
             {MONTHS[currentMonth.getMonth()]} {currentMonth.getFullYear()}
           </h2>
           <button
             onClick={() => changeMonth(1)}
-            className="p-2 hover:bg-gray-50 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-full transition-colors"
           >
-            <ChevronRightIcon className="w-5 h-5 text-gray-600" />
+            <ChevronRightIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
         <div className="grid grid-cols-7 gap-1 p-4">
           {DAYS.map((day) => (
             <div
               key={day}
-              className="text-center text-sm font-medium text-gray-400 mb-2"
+              className="text-center text-sm font-medium text-gray-400 dark:text-gray-500 mb-2"
             >
               {day}
             </div>
@@ -350,10 +350,10 @@ export const RangeDatePicker: React.FC = () => {
                   ? "bg-blue-500 text-white font-semibold shadow-md"
                   : ""
               }
-              ${isInRange(date) ? "bg-blue-100" : ""}
+              ${isInRange(date) ? "bg-blue-100 dark:bg-blue-900" : ""}
               ${
                 !isSelected(date) && !isInRange(date)
-                  ? "hover:bg-gray-100 text-gray-700"
+                  ? "hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                   : ""
               }
             `}
@@ -362,15 +362,15 @@ export const RangeDatePicker: React.FC = () => {
             </button>
           ))}
         </div>
-        <div className="border-t border-gray-100 bg-white">
+        <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
           <div className="p-4 space-y-1">
             {startDate && (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Start: {formatDate(startDate)}
               </p>
             )}
             {endDate && (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 End: {formatDate(endDate)}
               </p>
             )}
