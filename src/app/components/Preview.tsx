@@ -255,8 +255,8 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
         </div>
       )}
       <div
-        className={`w-full overflow-hidden ${
-          isMobileDevice ? "h-full" : "h-[405px]"
+        className={`w-full ${
+          isMobileDevice ? "h-[calc(100vh-80px)]" : "h-[405px]"
         }`}
       >
         <iframe
@@ -267,7 +267,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           style={{
             transformOrigin: "top left",
             transform: isMobileDevice
-              ? "none"
+              ? "scale(1)"
               : `scale(${Math.min(
                   720 / viewDimensions.width,
                   405 / viewDimensions.height
