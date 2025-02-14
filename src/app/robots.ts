@@ -21,6 +21,7 @@ export default function robots(): MetadataRoute.Robots {
             },
             {
                 userAgent: "Googlebot",
+                crawlDelay: 10,
                 allow: [
                     "/docs",
                     "/blog"
