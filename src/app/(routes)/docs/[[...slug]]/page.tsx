@@ -84,7 +84,17 @@ export async function generateMetadata({
       "web development",
       "documentation",
       ...extractKeywordsFromTitle(frontmatter.title),
+      "Tailwind CSS" + frontmatter.title,
     ],
+    other: {
+      "script:ld+json": JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name: frontmatter.title,
+        description: frontmatter.description,
+        codeRepository: "https://github.com/abhaysinghr516/business-wish",
+      }),
+    },
   };
 }
 
