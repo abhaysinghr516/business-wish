@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     "frontend library",
     "open-source UI",
     "web design resources",
+    "React components",
+    "UI kit",
+    "component library",
+    "design system",
+    "developer tools",
+    "web UI",
+    "modern UI components",
   ],
   alternates: {
     canonical: "https://business-wish.vercel.app",
@@ -56,6 +63,28 @@ export const metadata: Metadata = {
       "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
     images: ["https://business-wish.vercel.app/home.png"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "uQcaV8ZQFPXkjD2cRYUgc6FBb4zxPEUAD3JzILLljWA",
+  },
+  authors: [
+    {
+      name: "Abhay Singh Rathore",
+      url: "https://abhay-singh-rathore.vercel.app/",
+    },
+  ],
+  category: "Technology",
+  classification: "UI Components Library",
 };
 
 export default function RootLayout({
