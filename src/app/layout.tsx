@@ -18,21 +18,62 @@ export const metadata: Metadata = {
   description:
     "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers. Boost your project's design and efficiency with our ready-to-use components.",
   keywords: [
+    // Primary Keywords
     "Tailwind CSS",
     "UI components",
-    "free web components",
-    "web development",
-    "responsive design",
-    "frontend library",
-    "open-source UI",
-    "web design resources",
     "React components",
-    "UI kit",
+    "Business Wish",
     "component library",
+
+    // Feature Keywords
+    "free UI components",
+    "open source components",
+    "responsive design",
+    "typescript components",
+    "dark mode components",
+
+    // Technical Keywords
+    "web development",
+    "frontend development",
+    "React UI",
+    "UI design system",
+    "Next.js components",
+    "TailwindCSS library",
+
+    // Use-case Keywords
+    "web development tools",
+    "developer resources",
+    "UI kit",
     "design system",
-    "developer tools",
-    "web UI",
-    "modern UI components",
+    "frontend library",
+
+    // Specific Component Keywords
+    "Tailwind buttons",
+    "Tailwind forms",
+    "Tailwind navigation",
+    "Tailwind cards",
+    "Tailwind layouts",
+
+    // Long-tail Keywords
+    "modern web development components",
+    "responsive Tailwind components",
+    "free React UI library",
+    "accessible UI components",
+    "customizable UI components",
+    "enterprise UI components",
+
+    // Framework Integration
+    "Next.js UI library",
+    "React TypeScript components",
+    "modern UI framework",
+    "responsive web design",
+
+    // Business Value Keywords
+    "rapid prototyping",
+    "development efficiency",
+    "production-ready components",
+    "professional UI design",
+    "custom web interfaces",
   ],
   alternates: {
     canonical: "https://business-wish.vercel.app",
