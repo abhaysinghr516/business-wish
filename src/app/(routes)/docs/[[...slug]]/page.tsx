@@ -44,6 +44,17 @@ export async function generateMetadata({
   const { frontmatter } = res;
   const baseUrl = "https://business-wish.vercel.app";
 
+  function generateComponentKeywords(componentName: string): string[] {
+    return [
+      componentName,
+      `Tailwind CSS ${componentName}`,
+      `Tailwind ${componentName}`,
+      `${componentName} in Tailwind CSS`,
+      `free Tailwind CSS ${componentName} components`,
+      `how to use Tailwind CSS ${componentName}`,
+    ];
+  }
+
   return {
     title: {
       default: frontmatter.title,
@@ -83,28 +94,30 @@ export async function generateMetadata({
       "UI components",
       "web development",
       "documentation",
-      ...extractKeywordsFromTitle(frontmatter.title),
-      "Tailwind CSS" + frontmatter.title,
+      ...generateComponentKeywords(frontmatter.title),
     ],
     other: {
       "script:ld+json": JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        name: frontmatter.title,
+        "@type": "TechArticle",
+        headline: frontmatter.title,
         description: frontmatter.description,
-        codeRepository: "https://github.com/abhaysinghr516/business-wish",
+        url: `${baseUrl}/docs/${pathName}`,
+        author: {
+          "@type": "Person",
+          name: "Abhay Singh Rathore",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Business Wish",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://business-wish.vercel.app/logo.png",
+          },
+        },
       }),
     },
   };
-}
-
-function extractKeywordsFromTitle(title: string): string[] {
-  return title
-    .toLowerCase()
-    .split(" ")
-    .filter(
-      (word) => word.length > 2 && !["and", "the", "for", "with"].includes(word)
-    );
 }
 
 export function generateStaticParams() {
