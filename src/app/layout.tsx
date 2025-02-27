@@ -9,6 +9,16 @@ import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
+// JSON-LD schema data
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Business Wish",
+  url: "https://business-wish.vercel.app",
+  description: "Free Tailwind CSS UI components library for web developers.",
+  keywords: "Tailwind CSS, UI components, React, Next.js, free, open source",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://business-wish.vercel.app"),
   title: {
@@ -95,18 +105,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "Business Wish",
-              "url": "https://business-wish.vercel.app",
-              "description": "Free Tailwind CSS UI components library for web developers.",
-              "keywords": "Tailwind CSS, UI components, React, Next.js, free, open source"
-            }
-          `}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider
