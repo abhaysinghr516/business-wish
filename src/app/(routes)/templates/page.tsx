@@ -119,9 +119,365 @@ const Page = () => {
                   className="group bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-lg transition-all duration-300"
                 >
                   <div className="aspect-video bg-gray-100 dark:bg-gray-900 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <IconComponent className="h-12 w-12 text-gray-400 dark:text-gray-600" />
-                    </div>
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 400 225"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {/* Background */}
+                      <rect
+                        width="400"
+                        height="225"
+                        fill="currentColor"
+                        className="text-gray-50 dark:text-gray-800"
+                      />
+
+                      {/* Template-specific mockup */}
+                      {template.id === "landing-page" && (
+                        <>
+                          <rect
+                            x="20"
+                            y="20"
+                            width="360"
+                            height="40"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="20"
+                            y="80"
+                            width="200"
+                            height="20"
+                            rx="2"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="20"
+                            y="110"
+                            width="280"
+                            height="12"
+                            rx="2"
+                            fill="currentColor"
+                            className="text-gray-300 dark:text-gray-600"
+                          />
+                          <rect
+                            x="20"
+                            y="130"
+                            width="240"
+                            height="12"
+                            rx="2"
+                            fill="currentColor"
+                            className="text-gray-300 dark:text-gray-600"
+                          />
+                          <rect
+                            x="20"
+                            y="160"
+                            width="120"
+                            height="30"
+                            rx="4"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                        </>
+                      )}
+
+                      {template.id === "e-commerce" && (
+                        <>
+                          <rect
+                            x="20"
+                            y="20"
+                            width="360"
+                            height="30"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="20"
+                            y="70"
+                            width="110"
+                            height="80"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="145"
+                            y="70"
+                            width="110"
+                            height="80"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="270"
+                            y="70"
+                            width="110"
+                            height="80"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="20"
+                            y="160"
+                            width="80"
+                            height="8"
+                            rx="2"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="145"
+                            y="160"
+                            width="80"
+                            height="8"
+                            rx="2"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="270"
+                            y="160"
+                            width="80"
+                            height="8"
+                            rx="2"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                        </>
+                      )}
+
+                      {template.id === "blog" && (
+                        <>
+                          <rect
+                            x="20"
+                            y="20"
+                            width="360"
+                            height="25"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="20"
+                            y="60"
+                            width="250"
+                            height="40"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="20"
+                            y="110"
+                            width="200"
+                            height="8"
+                            rx="2"
+                            fill="currentColor"
+                            className="text-gray-300 dark:text-gray-600"
+                          />
+                          <rect
+                            x="20"
+                            y="125"
+                            width="180"
+                            height="8"
+                            rx="2"
+                            fill="currentColor"
+                            className="text-gray-300 dark:text-gray-600"
+                          />
+                          <rect
+                            x="20"
+                            y="145"
+                            width="80"
+                            height="20"
+                            rx="2"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="290"
+                            y="60"
+                            width="90"
+                            height="120"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                        </>
+                      )}
+
+                      {template.id === "dashboard" && (
+                        <>
+                          <rect
+                            x="20"
+                            y="20"
+                            width="60"
+                            height="185"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="100"
+                            y="20"
+                            width="280"
+                            height="30"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="100"
+                            y="70"
+                            width="130"
+                            height="60"
+                            rx="4"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="250"
+                            y="70"
+                            width="130"
+                            height="60"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="100"
+                            y="150"
+                            width="280"
+                            height="55"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                        </>
+                      )}
+
+                      {template.id === "portfolio" && (
+                        <>
+                          <rect
+                            x="20"
+                            y="20"
+                            width="360"
+                            height="30"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <circle
+                            cx="200"
+                            cy="90"
+                            r="25"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="150"
+                            y="125"
+                            width="100"
+                            height="8"
+                            rx="2"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="160"
+                            y="140"
+                            width="80"
+                            height="6"
+                            rx="2"
+                            fill="currentColor"
+                            className="text-gray-300 dark:text-gray-600"
+                          />
+                          <rect
+                            x="50"
+                            y="170"
+                            width="80"
+                            height="40"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="160"
+                            y="170"
+                            width="80"
+                            height="40"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="270"
+                            y="170"
+                            width="80"
+                            height="40"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                        </>
+                      )}
+
+                      {template.id === "saas" && (
+                        <>
+                          <rect
+                            x="20"
+                            y="20"
+                            width="360"
+                            height="35"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="20"
+                            y="75"
+                            width="100"
+                            height="130"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="140"
+                            y="75"
+                            width="240"
+                            height="40"
+                            rx="4"
+                            fill="currentColor"
+                            className={template.color}
+                          />
+                          <rect
+                            x="140"
+                            y="130"
+                            width="240"
+                            height="25"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                          <rect
+                            x="140"
+                            y="170"
+                            width="240"
+                            height="35"
+                            rx="4"
+                            fill="currentColor"
+                            className="text-gray-200 dark:text-gray-700"
+                          />
+                        </>
+                      )}
+                    </svg>
+
                     <div className="absolute top-4 right-4">
                       <span className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 text-xs font-medium px-3 py-1 rounded-full">
                         {template.status}
