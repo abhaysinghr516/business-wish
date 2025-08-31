@@ -37,3 +37,4 @@ next-env.d.ts
 
 src/app/(routes)/test/page.tsx
 src/app/(routes)/preview/page.tsx
+.env
