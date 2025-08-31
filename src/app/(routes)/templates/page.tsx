@@ -103,7 +103,7 @@ const Page = () => {
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-light text-black dark:text-white mb-4">
-              What's coming
+              What&apos;s coming
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400">
               Six carefully crafted templates for every use case
@@ -531,8 +531,8 @@ const Page = () => {
             Start building now
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-            Don't wait for templates. Our component library has everything you
-            need to build these designs yourself.
+            Don&apos;t wait for templates. Our component library has everything
+            you need to build these designs yourself.
           </p>
           <Link href="/docs/components/accordion">
             <button className="px-8 py-4 bg-black dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-black rounded-lg text-base font-medium inline-flex items-center">
