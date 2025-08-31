@@ -8,8 +8,20 @@ export default function DocsLayout({
   return (
     <div className="container mx-auto w-[88vw] h-auto">
       <div className="flex items-start gap-14">
-        <Leftbar key="leftbar" />
-        <div className="flex-[4]">{children}</div>{" "}
+        <aside
+          className="flex-[1]"
+          aria-label="Documentation navigation"
+          role="navigation"
+        >
+          <Leftbar key="leftbar" />
+        </aside>
+        <main
+          className="flex-[4] min-w-0"
+          role="main"
+          aria-label="Documentation content"
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

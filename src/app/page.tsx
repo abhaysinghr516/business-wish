@@ -2,10 +2,27 @@
 import { ArrowRight, Copy, Palette, Zap, Github } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import {
+  generateWebsiteSchema,
+  generateSoftwareApplicationSchema,
+} from "@/lib/seo";
 
-export default function Component() {
+const websiteSchema = generateWebsiteSchema();
+const softwareSchema = generateSoftwareApplicationSchema();
+
+export default function HomePage() {
   return (
     <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">

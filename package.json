@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "build:analyze": "ANALYZE=true npm run build",
+    "sitemap": "next build && node scripts/generate-sitemap.js",
+    "seo:check": "node scripts/seo-check.js",
+    "lighthouse": "lighthouse https://business-wish.vercel.app --output=html --output-path=./lighthouse-report.html"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.9.0",

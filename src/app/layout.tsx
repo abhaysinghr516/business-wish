@@ -6,18 +6,20 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import {
+  generateWebsiteSchema,
+  generateSoftwareApplicationSchema,
+} from "../lib/seo";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
-// JSON-LD schema data
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Business Wish",
-  url: "https://business-wish.vercel.app",
-  description: "Free Tailwind CSS UI components library for web developers.",
-  keywords: "Tailwind CSS, UI components, React, Next.js, free, open source",
-};
+// Enhanced JSON-LD schema data
+const websiteSchema = generateWebsiteSchema();
+const softwareSchema = generateSoftwareApplicationSchema();
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://business-wish.vercel.app"),
@@ -103,12 +105,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://vercel.live" />
+
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
+
+        {/* Preload critical resources */}
+        <link rel="preload" href="/logo.webp" as="image" type="image/webp" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -118,7 +137,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
         </ThemeProvider>
         <GoogleAnalytics gaId="G-Y0FKJQ2T12" />

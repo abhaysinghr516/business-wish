@@ -1,0 +1,39 @@
+# Business Wish - Tailwind CSS UI Components Library
+
+> Business Wish is a comprehensive, free library of high-quality Tailwind CSS UI components designed for modern web developers. Built with React, Next.js, and TypeScript, it provides copy-paste ready components with dark mode support and accessibility features.
+
+## Key Features
+
+- **50+ Components**: Comprehensive collection including buttons, cards, forms, navigation, data display, and layout components
+- **Copy-Paste Ready**: One-click copy functionality with syntax highlighting
+- **Dark Mode Support**: All components include built-in dark mode variants
+- **Accessibility First**: WCAG compliant components with proper ARIA attributes
+- **TypeScript Support**: Full type safety and IntelliSense support
+- **Framework Agnostic**: Works with Next.js, Vite, Create React App, and other React frameworks
+
+## Documentation
+
+- [Getting Started Guide](https://business-wish.vercel.app/docs/getting-started.html.md): Quick setup and installation instructions
+- [Component Categories](https://business-wish.vercel.app/docs/components.html.md): Organized by Layout, Data Display, Form Controls, Feedback, Overlays, Content, and Utilities
+- [Design System](https://business-wish.vercel.app/docs/design-system.html.md): Colors, typography, spacing, and accessibility guidelines
+- [Migration Guide](https://business-wish.vercel.app/docs/migration.html.md): Version upgrade instructions and breaking changes
+
+## Popular Components
+
+- [Button Component](https://business-wish.vercel.app/docs/components/button.html.md): Multiple variants, sizes, and states
+- [Card Component](https://business-wish.vercel.app/docs/components/card.html.md): Flexible content containers with various layouts
+- [Data Table](https://business-wish.vercel.app/docs/components/data-table.html.md): Sortable, filterable tables with pagination
+- [Hero Sections](https://business-wish.vercel.app/docs/components/hero.html.md): Landing page hero components
+- [Navigation](https://business-wish.vercel.app/docs/components/header.html.md): Responsive navigation bars and menus
+
+## Examples
+
+- [Blog List Components](https://business-wish.vercel.app/docs/pages/blog-list.html.md): Various blog layout patterns
+- [Error Pages](https://business-wish.vercel.app/docs/pages/404.html.md): Custom 404 and error page designs
+- [Form Examples](https://business-wish.vercel.app/docs/components/form.html.md): Complete form implementations with validation
+
+## Optional
+
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs): Official Tailwind CSS reference
+- [Radix UI Primitives](https://www.radix-ui.com/primitives): Underlying accessible component primitives
+- [Lucide React Icons](https://lucide.dev/guide/packages/lucide-react): Icon library used throughout components

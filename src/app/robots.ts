@@ -9,27 +9,53 @@ export default function robots(): MetadataRoute.Robots {
                 userAgent: "*",
                 allow: [
                     "/",
-                    "/docs",
-                    "/blog",
+                    "/docs/",
+                    "/docs/components/",
+                    "/docs/pages/",
+                    "/llms.txt",
                 ],
                 disallow: [
-                    "/templates",
-                    "/private",
+                    "/api/",
+                    "/templates/",
+                    "/private/",
+                    "/_next/",
+                    "/node_modules/",
                     "/*.json$",
-                    "/*.xml$"
+                    "/*.xml$",
+                    "/admin/",
                 ],
+                crawlDelay: 1,
             },
             {
                 userAgent: "Googlebot",
-                crawlDelay: 10,
                 allow: [
-                    "/docs",
-                    "/blog"
+                    "/",
+                    "/docs/",
+                    "/docs/components/",
+                    "/docs/pages/",
+                    "/llms.txt",
                 ],
                 disallow: [
-                    "/admin",
-                    "/private"
-                ]
+                    "/api/",
+                    "/admin/",
+                    "/private/",
+                    "/_next/",
+                ],
+                crawlDelay: 1,
+            },
+            {
+                userAgent: "Bingbot",
+                allow: [
+                    "/",
+                    "/docs/",
+                    "/llms.txt",
+                ],
+                disallow: [
+                    "/api/",
+                    "/admin/",
+                    "/private/",
+                ],
+                crawlDelay: 2,
             }
         ],
         sitemap: `${baseUrl}/sitemap.xml`,
