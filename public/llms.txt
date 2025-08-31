@@ -13,24 +13,24 @@
 
 ## Documentation
 
-- [Getting Started Guide](https://business-wish.vercel.app/docs/getting-started.html.md): Quick setup and installation instructions
-- [Component Categories](https://business-wish.vercel.app/docs/components.html.md): Organized by Layout, Data Display, Form Controls, Feedback, Overlays, Content, and Utilities
-- [Design System](https://business-wish.vercel.app/docs/design-system.html.md): Colors, typography, spacing, and accessibility guidelines
-- [Migration Guide](https://business-wish.vercel.app/docs/migration.html.md): Version upgrade instructions and breaking changes
+- [Getting Started Guide](https://www.businesswish.tech/docs/getting-started.html.md): Quick setup and installation instructions
+- [Component Categories](https://www.businesswish.tech/docs/components.html.md): Organized by Layout, Data Display, Form Controls, Feedback, Overlays, Content, and Utilities
+- [Design System](https://www.businesswish.tech/docs/design-system.html.md): Colors, typography, spacing, and accessibility guidelines
+- [Migration Guide](https://www.businesswish.tech/docs/migration.html.md): Version upgrade instructions and breaking changes
 
 ## Popular Components
 
-- [Button Component](https://business-wish.vercel.app/docs/components/button.html.md): Multiple variants, sizes, and states
-- [Card Component](https://business-wish.vercel.app/docs/components/card.html.md): Flexible content containers with various layouts
-- [Data Table](https://business-wish.vercel.app/docs/components/data-table.html.md): Sortable, filterable tables with pagination
-- [Hero Sections](https://business-wish.vercel.app/docs/components/hero.html.md): Landing page hero components
-- [Navigation](https://business-wish.vercel.app/docs/components/header.html.md): Responsive navigation bars and menus
+- [Button Component](https://www.businesswish.tech/docs/components/button.html.md): Multiple variants, sizes, and states
+- [Card Component](https://www.businesswish.tech/docs/components/card.html.md): Flexible content containers with various layouts
+- [Data Table](https://www.businesswish.tech/docs/components/data-table.html.md): Sortable, filterable tables with pagination
+- [Hero Sections](https://www.businesswish.tech/docs/components/hero.html.md): Landing page hero components
+- [Navigation](https://www.businesswish.tech/docs/components/header.html.md): Responsive navigation bars and menus
 
 ## Examples
 
-- [Blog List Components](https://business-wish.vercel.app/docs/pages/blog-list.html.md): Various blog layout patterns
-- [Error Pages](https://business-wish.vercel.app/docs/pages/404.html.md): Custom 404 and error page designs
-- [Form Examples](https://business-wish.vercel.app/docs/components/form.html.md): Complete form implementations with validation
+- [Blog List Components](https://www.businesswish.tech/docs/pages/blog-list.html.md): Various blog layout patterns
+- [Error Pages](https://www.businesswish.tech/docs/pages/404.html.md): Custom 404 and error page designs
+- [Form Examples](https://www.businesswish.tech/docs/components/form.html.md): Complete form implementations with validation
 
 ## Optional
 

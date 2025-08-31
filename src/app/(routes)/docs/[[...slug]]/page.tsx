@@ -24,12 +24,12 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
 
   // Generate breadcrumb structured data
   const breadcrumbItems = [
-    { name: "Home", url: "https://business-wish.vercel.app" },
-    { name: "Docs", url: "https://business-wish.vercel.app/docs" },
+    { name: "Home", url: "https://www.businesswish.tech" },
+    { name: "Docs", url: "https://www.businesswish.tech/docs" },
     ...slug.map((segment, index) => ({
       name:
         segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " "),
-      url: `https://business-wish.vercel.app/docs/${slug
+      url: `https://www.businesswish.tech/docs/${slug
         .slice(0, index + 1)
         .join("/")}`,
     })),

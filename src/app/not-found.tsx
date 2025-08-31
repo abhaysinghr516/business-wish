@@ -22,7 +22,7 @@ export default function NotFound() {
             name: "Page Not Found - 404 Error",
             description:
               "The requested page could not be found on Business Wish.",
-            url: "https://business-wish.vercel.app/404",
+            url: "https://www.businesswish.tech/404",
             mainEntity: {
               "@type": "Thing",
               name: "404 Error",

@@ -14,7 +14,7 @@ export interface SEOProps {
     tags?: string[];
 }
 
-const baseUrl = "https://business-wish.vercel.app";
+const baseUrl = "https://www.businesswish.tech";
 const defaultImage = `${baseUrl}/home.png`;
 
 export function generateSEO({

@@ -1,4 +1,4 @@
-# [Business Wish](https://business-wish.vercel.app) - Free Tailwind CSS UI Components
+# [Business Wish](https://www.businesswish.tech) - Free Tailwind CSS UI Components
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/abhaysinghr516/business-wish.svg)](https://github.com/abhaysinghr516/business-wish/stargazers)
@@ -19,30 +19,30 @@ A comprehensive library of **50+ production-ready Tailwind CSS components** desi
 
 ## 📚 Documentation
 
-Visit our comprehensive documentation at [business-wish.vercel.app](https://business-wish.vercel.app)
+Visit our comprehensive documentation at [businesswish.tech](https://www.businesswish.tech)
 
 ### Quick Links
 
-- [Getting Started](https://business-wish.vercel.app/docs/getting-started)
-- [Component Library](https://business-wish.vercel.app/docs/components)
-- [Design System](https://business-wish.vercel.app/docs/design-system)
-- [Migration Guide](https://business-wish.vercel.app/docs/migration)
+- [Getting Started](https://www.businesswish.tech/docs/getting-started)
+- [Component Library](https://www.businesswish.tech/docs/components)
+- [Design System](https://www.businesswish.tech/docs/design-system)
+- [Migration Guide](https://www.businesswish.tech/docs/migration)
 
 ## 🎯 Popular Components
 
-| Component         | Description                          | Link                                                                  |
-| ----------------- | ------------------------------------ | --------------------------------------------------------------------- |
-| **Button**        | Multiple variants, sizes, and states | [View →](https://business-wish.vercel.app/docs/components/button)     |
-| **Card**          | Flexible content containers          | [View →](https://business-wish.vercel.app/docs/components/card)       |
-| **Data Table**    | Sortable, filterable tables          | [View →](https://business-wish.vercel.app/docs/components/data-table) |
-| **Hero Sections** | Landing page heroes                  | [View →](https://business-wish.vercel.app/docs/components/hero)       |
-| **Navigation**    | Responsive nav bars                  | [View →](https://business-wish.vercel.app/docs/components/header)     |
+| Component         | Description                          | Link                                                               |
+| ----------------- | ------------------------------------ | ------------------------------------------------------------------ |
+| **Button**        | Multiple variants, sizes, and states | [View →](https://www.businesswish.tech/docs/components/button)     |
+| **Card**          | Flexible content containers          | [View →](https://www.businesswish.tech/docs/components/card)       |
+| **Data Table**    | Sortable, filterable tables          | [View →](https://www.businesswish.tech/docs/components/data-table) |
+| **Hero Sections** | Landing page heroes                  | [View →](https://www.businesswish.tech/docs/components/hero)       |
+| **Navigation**    | Responsive nav bars                  | [View →](https://www.businesswish.tech/docs/components/header)     |
 
 ## 🛠️ Installation
 
 ### Option 1: Copy & Paste (Recommended)
 
-Simply visit our [component library](https://business-wish.vercel.app/docs/components), find the component you need, and copy the code directly into your project.
+Simply visit our [component library](https://www.businesswish.tech/docs/components), find the component you need, and copy the code directly into your project.
 
 ### Option 2: Clone Repository
 
@@ -55,7 +55,7 @@ npm run dev
 
 ## 🏗️ Usage
 
-1. **Browse Components**: Visit [business-wish.vercel.app/docs/components](https://business-wish.vercel.app/docs/components)
+1. **Browse Components**: Visit [businesswish.tech/docs/components](https://www.businesswish.tech/docs/components)
 2. **Copy Code**: Click the copy button on any component
 3. **Paste & Customize**: Add to your project and customize as needed
 
@@ -140,8 +140,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔗 Links
 
-- **Website**: [business-wish.vercel.app](https://business-wish.vercel.app)
-- **Documentation**: [business-wish.vercel.app/docs](https://business-wish.vercel.app/docs)
+- **Website**: [businesswish.tech](https://www.businesswish.tech)
+- **Documentation**: [businesswish.tech/docs](https://www.businesswish.tech/docs)
 - **GitHub**: [github.com/abhaysinghr516/business-wish](https://github.com/abhaysinghr516/business-wish)
 - **Issues**: [github.com/abhaysinghr516/business-wish/issues](https://github.com/abhaysinghr516/business-wish/issues)
 

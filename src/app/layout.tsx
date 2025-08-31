@@ -22,7 +22,7 @@ const websiteSchema = generateWebsiteSchema();
 const softwareSchema = generateSoftwareApplicationSchema();
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://business-wish.vercel.app"),
+  metadataBase: new URL("https://www.businesswish.tech"),
   title: {
     default: "Business Wish - Free Tailwind CSS UI Components Library",
     template: "%s | Business Wish",
@@ -47,19 +47,19 @@ export const metadata: Metadata = {
     "updated Tailwind CSS components",
   ],
   alternates: {
-    canonical: "https://business-wish.vercel.app",
+    canonical: "https://www.businesswish.tech",
   },
   openGraph: {
     title: "Business Wish - Free Tailwind CSS UI Components Library",
     description:
       "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
     type: "website",
-    url: "https://business-wish.vercel.app",
+    url: "https://www.businesswish.tech",
     siteName: "Business Wish",
     locale: "en_US",
     images: [
       {
-        url: "https://business-wish.vercel.app/home.png",
+        url: "https://www.businesswish.tech/home.png",
         width: 1200,
         height: 630,
         alt: "Business Wish - Free Tailwind CSS UI Components Library",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: "Business Wish - Free Tailwind CSS UI Components Library",
     description:
       "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
-    images: ["https://business-wish.vercel.app/home.png"],
+    images: ["https://www.businesswish.tech/home.png"],
   },
   robots: {
     index: true,

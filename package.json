@@ -12,7 +12,7 @@
     "build:analyze": "ANALYZE=true npm run build",
     "sitemap": "next build && node scripts/generate-sitemap.js",
     "seo:check": "node scripts/seo-check.js",
-    "lighthouse": "lighthouse https://business-wish.vercel.app --output=html --output-path=./lighthouse-report.html"
+    "lighthouse": "lighthouse https://www.businesswish.tech --output=html --output-path=./lighthouse-report.html"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.9.0",

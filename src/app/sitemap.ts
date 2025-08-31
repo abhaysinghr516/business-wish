@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { page_routes } from "./lib/routes-config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://business-wish.vercel.app";
+    const baseUrl = "https://www.businesswish.tech";
     const currentDate = new Date().toISOString();
 
     // Static high-priority pages
