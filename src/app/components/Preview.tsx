@@ -24,7 +24,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   useEffect(() => {
     const checkMobileDevice = () => {
-      setIsMobileDevice(window.innerWidth <= 768);
+      setIsMobileDevice(window.innerWidth < 1024); // Updated to match mobile optimization breakpoint
     };
 
     checkMobileDevice();
@@ -153,6 +153,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
     }
   };
 
+  const getMobileContainerHeight = () => {
+    if (typeof window !== "undefined") {
+      // Account for mobile browser UI and ensure proper viewport usage
+      return Math.min(window.innerHeight * 0.7, 600);
+    }
+    return 400;
+  };
+
   const viewDimensions = getViewportDimensions(
     isMobileDevice ? "mobile" : view
   );
@@ -215,7 +223,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   );
 
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-4 w-full">
       {!isMobileDevice ? (
         <div className="flex space-x-2 items-center">
           <ViewToggle currentView={view} setView={setView} />
@@ -250,13 +258,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           <ThemeToggle />
         </div>
       ) : (
-        <div className="w-full flex justify-end mb-2">
+        // Mobile: Only show theme toggle, no view toggle buttons
+        <div className="w-full flex justify-end px-2">
           <ThemeToggle />
         </div>
       )}
       <div
         className={`w-full ${
-          isMobileDevice ? "h-[calc(100vh-80px)]" : "h-[405px]"
+          isMobileDevice ? `h-[${getMobileContainerHeight()}px]` : "h-[405px]"
         }`}
       >
         <iframe

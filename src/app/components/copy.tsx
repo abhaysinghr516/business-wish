@@ -17,12 +17,21 @@ export default function Copy({ content }: { content: string }) {
   }
 
   return (
-    <Button variant="secondary" size="sm" onClick={handleCopy}>
+    <Button
+      variant="secondary"
+      size="sm"
+      onClick={handleCopy}
+      className="h-8 w-8 p-0 sm:h-9 sm:w-auto sm:px-3"
+      aria-label={isCopied ? "Copied!" : "Copy code"}
+    >
       {isCopied ? (
         <CheckIcon className="w-3 h-3" />
       ) : (
         <CopyIcon className="w-3 h-3" />
       )}
+      <span className="sr-only sm:not-sr-only sm:ml-2 text-xs">
+        {isCopied ? "Copied!" : "Copy"}
+      </span>
     </Button>
   );
 }

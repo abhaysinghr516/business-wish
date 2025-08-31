@@ -53,14 +53,18 @@ export default function TocObserver({ data }: Props) {
           <Link
             key={href}
             href={href}
-            className={clsx({
-              "pl-0": level == 2,
-              "pl-4": level == 3,
-              "pl-8 ": level == 4,
-              "font-medium text-primary": activeId == href.slice(1),
-            })}
+            className={clsx(
+              "py-1.5 px-2 -mx-2 rounded-md transition-colors hover:bg-muted/50 block",
+              {
+                "pl-2": level == 2,
+                "pl-6": level == 3,
+                "pl-10": level == 4,
+                "font-medium text-primary bg-muted/30":
+                  activeId == href.slice(1),
+              }
+            )}
           >
-            {text}
+            <span className="line-clamp-2">{text}</span>
           </Link>
         );
       })}

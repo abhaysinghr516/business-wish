@@ -9,26 +9,33 @@ export function Typography({ children }: PropsWithChildren) {
       dark:prose-invert
       
       /* Base width and responsiveness */
-      w-[85vw]
-      sm:w-full
+      w-full
+      max-w-none
       mx-auto
       !min-w-full
       
       /* Spacing and layout */
-      pt-4
-      px-4
-      sm:px-0
+      pt-0
+      px-0
       
-      /* Headings */
+      /* Headings - Mobile optimized */
       prose-headings:scroll-m-20
       prose-headings:font-semibold
       prose-headings:tracking-tight
-      prose-h1:text-4xl
+      prose-h1:text-2xl
+      sm:prose-h1:text-3xl
+      lg:prose-h1:text-4xl
       prose-h1:leading-tight
-      prose-h2:text-3xl
+      prose-h2:text-xl
+      sm:prose-h2:text-2xl
+      lg:prose-h2:text-3xl
       prose-h2:leading-tight
-      prose-h3:text-2xl
-      prose-h4:text-xl
+      prose-h3:text-lg
+      sm:prose-h3:text-xl
+      lg:prose-h3:text-2xl
+      prose-h4:text-base
+      sm:prose-h4:text-lg
+      lg:prose-h4:text-xl
       
       /* Paragraph */
       prose-p:leading-relaxed

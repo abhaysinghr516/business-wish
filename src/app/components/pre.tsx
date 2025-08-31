@@ -7,8 +7,8 @@ export default function Pre({
   ...rest
 }: ComponentProps<"pre"> & { raw?: string }) {
   return (
-    <div className="my-5 relative">
-      <div className="absolute top-3 right-2.5 z-10 sm:block hidden">
+    <div className="my-4 sm:my-5 relative">
+      <div className="absolute top-2 right-2 z-10">
         <Copy content={raw!} />
       </div>
       <div className="relative">

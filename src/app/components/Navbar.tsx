@@ -20,16 +20,16 @@ import GitHubStarButton from "./github-star-button";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-4 px-6 sticky top-0 z-50">
+    <nav className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-3 sm:py-4 px-4 sm:px-6 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link
           href="/"
-          className="text-xl font-medium text-black dark:text-white"
+          className="text-lg sm:text-xl font-medium text-black dark:text-white"
         >
           Business Wish
         </Link>
 
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           <Search />
           <Link
             href="/docs/components/accordion"
@@ -55,9 +55,15 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Mobile/Tablet Search and Theme Toggle */}
+        <div className="flex lg:hidden items-center space-x-3">
+          <Search />
+          <ThemeToggle />
+        </div>
+
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button variant="ghost" size="icon" className="lg:hidden">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>

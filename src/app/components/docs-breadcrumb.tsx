@@ -10,7 +10,7 @@ import { Fragment } from "react";
 
 export default function DocsBreadcrumb({ paths }: { paths: string[] }) {
   return (
-    <div className="pb-5">
+    <div className="hidden sm:block pb-5">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

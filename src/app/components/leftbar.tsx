@@ -15,8 +15,8 @@ import DocsMenu from "./docs-menu";
 
 export function Leftbar() {
   return (
-    <aside className="md:flex hidden flex-[1] min-w-[230px] sticky top-16 flex-col h-[92.75vh] overflow-y-auto">
-      <ScrollArea className="py-4">
+    <aside className="lg:flex hidden flex-[1] min-w-[230px] max-w-[280px] sticky top-16 flex-col h-[92.75vh] overflow-y-auto">
+      <ScrollArea className="py-4 pr-2">
         <DocsMenu />
       </ScrollArea>
     </aside>
@@ -27,25 +27,29 @@ export function SheetLeftbar() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden flex">
-          <AlignLeftIcon />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden flex"
+          aria-label="Open navigation menu"
+        >
+          <AlignLeftIcon className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col gap-4 px-0" side="left">
-        <DialogTitle className="sr-only">Menu</DialogTitle>
+      <SheetContent
+        className="flex flex-col gap-4 px-0 w-[300px] sm:w-[350px]"
+        side="left"
+      >
+        <DialogTitle className="sr-only">Documentation Navigation</DialogTitle>
         <SheetHeader>
           <SheetClose className="px-5" asChild>
-            {/* <Logo /> */}
+            <div className="text-lg font-semibold">Documentation</div>
           </SheetClose>
         </SheetHeader>
-        <ScrollArea className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2.5 mt-3 mx-2 px-5">
-            {/* <NavMenu isSheet /> */}
-          </div>
-          <div className="mx-2 px-5">
+        <ScrollArea className="flex flex-col gap-4 flex-1">
+          <div className="mx-2 px-3">
             <DocsMenu isSheet />
           </div>
-          <div className="p-6 pb-4 flex gap-2.5">{/* <FooterButtons /> */}</div>
         </ScrollArea>
       </SheetContent>
     </Sheet>
