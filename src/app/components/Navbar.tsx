@@ -16,6 +16,7 @@ import { DialogTitle } from "@/components/ui/dialog";
 import DocsMenu from "./docs-menu";
 import Search from "./search";
 import ThemeToggle from "./theme-switch";
+import GitHubStarButton from "./github-star-button";
 
 const Navbar = () => {
   return (
@@ -43,12 +44,7 @@ const Navbar = () => {
             Templates
           </Link>
           <div className="flex items-center space-x-4">
-            <Link
-              href="https://github.com/abhaysinghr516/business-wish"
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-            >
-              <Github className="h-4 w-4" />
-            </Link>
+            <GitHubStarButton repo="abhaysinghr516/business-wish" />
             <Link
               href="https://x.com/abhaysinghr1"
               className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
@@ -92,12 +88,7 @@ const Navbar = () => {
                   Templates
                 </Link>
                 <div className="flex items-center gap-4 pt-4">
-                  <Link
-                    href="https://github.com/abhaysinghr516/business-wish"
-                    className="text-sm"
-                  >
-                    GitHub
-                  </Link>
+                  <GitHubStarButton repo="abhaysinghr516/business-wish" />
                   <Link href="https://x.com/abhaysinghr1" className="text-sm">
                     Twitter
                   </Link>
