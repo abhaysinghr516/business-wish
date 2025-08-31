@@ -24,22 +24,18 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   useEffect(() => {
     const checkMobileDevice = () => {
-      setIsMobileDevice(window.innerWidth < 1024); // Updated to match mobile optimization breakpoint
+      setIsMobileDevice(window.innerWidth <= 1024);
     };
-
     checkMobileDevice();
     window.addEventListener("resize", checkMobileDevice);
-
     return () => window.removeEventListener("resize", checkMobileDevice);
   }, []);
 
   const updateIframeContent = useCallback(
     (iframeElement: HTMLIFrameElement | null) => {
       if (!iframeElement) return;
-
       const iframeDoc = iframeElement.contentDocument;
       const iframeWindow = iframeElement.contentWindow;
-
       if (iframeDoc && iframeWindow) {
         iframeDoc.open();
         iframeDoc.write(`
@@ -48,58 +44,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
             <head>
               <script src="https://cdn.tailwindcss.com"></script>
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-               <style>
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-                @keyframes pulse {
-                  0%, 100% { transform: scaleY(1); }
-                  50% { transform: scaleY(0.4); }
-                }
-                @keyframes bounce {
-                  0%, 100% { transform: translateY(0); }
-                  50% { transform: translateY(-10px); }
-                }
-                @keyframes slide {
-                  0% { transform: translateX(-100%); }
-                  100% { transform: translateX(400%); }
-                }
-                @keyframes rotate {
-                  0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
-                  50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
-                  100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
-                }
-                @keyframes hourglass {
-                  0% { transform: rotate(0deg); border-radius: 50%; }
-                  25% { transform: rotate(180deg); border-radius: 4px; }
-                  50% { transform: rotate(180deg); border-radius: 50%; }
-                  75% { transform: rotate(360deg); border-radius: 4px; }
-                  100% { transform: rotate(360deg); border-radius: 50%; }
-                }
-                @keyframes shimmer {
-                  0% {
-                    background-position: -1000px 0;
-                  }
-                  100% {
-                    background-position: 1000px 0;
-                  }
-                }
+              <style>
                 @media (prefers-color-scheme: dark) {
-                  body {
-                    background-color: #020817;
-                    color: #ffffff;
-                  }
+                  body { background-color: #020817; color: #ffffff; }
                 }
                 @media (prefers-color-scheme: light) {
-                  body {
-                    background-color: #ffffff;
-                    color: #000000;
-                  }
+                  body { background-color: #ffffff; color: #000000; }
                 }
-                body, html {
-                  animation: none !important;
-                }
+                body, html { margin:0; padding:0; }
               </style>
             </head>
             <body>
@@ -108,7 +60,6 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           </html>
         `);
         iframeDoc.close();
-
         iframeElement.onload = () => {
           setTimeout(() => {
             const root = iframeDoc.getElementById("root");
@@ -125,18 +76,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   useEffect(() => {
     const iframe = iframeRef.current;
-    if (iframe) {
-      updateIframeContent(iframe);
-    }
+    if (iframe) updateIframeContent(iframe);
   }, [updateIframeContent, view]);
 
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
         const fullViewIframe = fullViewIframeRef.current;
-        if (fullViewIframe) {
-          updateIframeContent(fullViewIframe);
-        }
+        if (fullViewIframe) updateIframeContent(fullViewIframe);
       }, 0);
       return () => clearTimeout(timer);
     }
@@ -155,10 +102,9 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   const getMobileContainerHeight = () => {
     if (typeof window !== "undefined") {
-      // Account for mobile browser UI and ensure proper viewport usage
-      return Math.min(window.innerHeight * 0.7, 600);
+      return Math.min(window.innerHeight * 0.8, 700);
     }
-    return 400;
+    return 500;
   };
 
   const viewDimensions = getViewportDimensions(
@@ -176,16 +122,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
         variant={currentView === "desktop" ? "default" : "outline"}
         size="sm"
       >
-        <Monitor className="mr-2 h-4 w-4" />
-        Desktop
+        <Monitor className="mr-2 h-4 w-4" /> Desktop
       </Button>
       <Button
         onClick={() => setView("mobile")}
         variant={currentView === "mobile" ? "default" : "outline"}
         size="sm"
       >
-        <Smartphone className="mr-2 h-4 w-4" />
-        Mobile
+        <Smartphone className="mr-2 h-4 w-4" /> Mobile
       </Button>
     </div>
   );
@@ -200,24 +144,21 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
         variant={currentView === "desktop" ? "default" : "outline"}
         size="sm"
       >
-        <Monitor className="mr-2 h-4 w-4" />
-        Desktop
+        <Monitor className="mr-2 h-4 w-4" /> Desktop
       </Button>
       <Button
         onClick={() => setView("tablet")}
         variant={currentView === "tablet" ? "default" : "outline"}
         size="sm"
       >
-        <Tablet className="mr-2 h-4 w-4" />
-        Tablet
+        <Tablet className="mr-2 h-4 w-4" /> Tablet
       </Button>
       <Button
         onClick={() => setView("mobile")}
         variant={currentView === "mobile" ? "default" : "outline"}
         size="sm"
       >
-        <Smartphone className="mr-2 h-4 w-4" />
-        Mobile
+        <Smartphone className="mr-2 h-4 w-4" /> Mobile
       </Button>
     </div>
   );
@@ -230,8 +171,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <Button variant="outline" size="sm">
-                <Maximize2 className="mr-2 h-4 w-4" />
-                Full View
+                <Maximize2 className="mr-2 h-4 w-4" /> Full View
               </Button>
             </DialogTrigger>
             <DialogContent className="w-screen h-screen max-w-full max-h-full p-0">
@@ -258,15 +198,15 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           <ThemeToggle />
         </div>
       ) : (
-        // Mobile: Only show theme toggle, no view toggle buttons
         <div className="w-full flex justify-end px-2">
           <ThemeToggle />
         </div>
       )}
       <div
-        className={`w-full ${
-          isMobileDevice ? `h-[${getMobileContainerHeight()}px]` : "h-[405px]"
-        }`}
+        className={`w-full ${isMobileDevice ? "" : "h-[405px]"}`}
+        style={{
+          height: isMobileDevice ? getMobileContainerHeight() : undefined,
+        }}
       >
         <iframe
           ref={iframeRef}
