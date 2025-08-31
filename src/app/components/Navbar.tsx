@@ -2,9 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaBars } from "react-icons/fa";
-import { FiGithub } from "react-icons/fi";
-import { FaXTwitter } from "react-icons/fa6";
+import { Menu, Github, Twitter } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
@@ -20,46 +18,57 @@ import Search from "./search";
 import ThemeToggle from "./theme-switch";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <nav className="bg-gray-50 dark:bg-gray-950 border-b border-gray-800 py-4 px-4 md:px-20 sticky top-0 z-50 backdrop-filter backdrop-blur-xl bg-opacity-5">
-      <div className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="ml-2 text-xl font-bold text-white">
-          <img src="/logo2.png" alt="logo" className="h-5" />
+    <nav className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-4 px-6 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <Link
+          href="/"
+          className="text-xl font-medium text-black dark:text-white"
+        >
+          Business Wish
         </Link>
 
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-8">
           <Search />
           <Link
+            href="/docs/getting-started"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+          >
+            Docs
+          </Link>
+          <Link
             href="/docs/components/accordion"
-            className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
           >
             Components
           </Link>
           <Link
             href="/templates"
-            className="relative text-sm after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-gray-900 after:transition-all after:duration-300 hover:text-gray-900 hover:after:scale-x-100"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
           >
             Templates
           </Link>
-          <Link href="https://github.com/abhaysinghr516/business-wish">
-            <FiGithub className="h-4 w-4" />
-          </Link>
-          <Link href="https://x.com/abhaysinghr1">
-            <FaXTwitter className="h-4 w-4" />
-          </Link>
-          <ThemeToggle />
+          <div className="flex items-center space-x-4">
+            <Link
+              href="https://github.com/abhaysinghr516/business-wish"
+              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+            >
+              <Github className="h-4 w-4" />
+            </Link>
+            <Link
+              href="https://x.com/abhaysinghr1"
+              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+            >
+              <Twitter className="h-4 w-4" />
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden flex">
-              <FaBars className="h-6 w-6" />
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
           <SheetContent
@@ -69,31 +78,42 @@ const Navbar = () => {
             <DialogTitle className="sr-only">Menu</DialogTitle>
             <SheetHeader>
               <SheetClose className="px-5" asChild>
-                <Link href="/" className="ml-2 text-xl font-bold text-white">
-                  <img src="/logo2.png" alt="logo" className="h-5" />
+                <Link
+                  href="/"
+                  className="text-xl font-medium text-black dark:text-white"
+                >
+                  Business Wish
                 </Link>
               </SheetClose>
             </SheetHeader>
             <ScrollArea className="flex-grow">
-              <Search />
-              <div className="flex flex-col gap-4 p-6">
+              <div className="px-5 mb-4">
+                <Search />
+              </div>
+              <div className="flex flex-col gap-4 px-5">
+                <Link href="/docs/getting-started" className="text-sm">
+                  Docs
+                </Link>
                 <Link href="/docs/components/accordion" className="text-sm">
                   Components
                 </Link>
                 <Link href="/templates" className="text-sm">
                   Templates
                 </Link>
-                <Link
-                  href="https://github.com/abhaysinghr516/business-wish"
-                  className="text-sm"
-                >
-                  GitHub
-                </Link>
-                <Link href="https://x.com/abhaysinghr1" className="text-sm">
-                  Twitter
-                </Link>
+                <div className="flex items-center gap-4 pt-4">
+                  <Link
+                    href="https://github.com/abhaysinghr516/business-wish"
+                    className="text-sm"
+                  >
+                    GitHub
+                  </Link>
+                  <Link href="https://x.com/abhaysinghr1" className="text-sm">
+                    Twitter
+                  </Link>
+                  <ThemeToggle />
+                </div>
               </div>
-              <div className="px-6">
+              <div className="px-5 mt-6">
                 <DocsMenu isSheet />
               </div>
             </ScrollArea>

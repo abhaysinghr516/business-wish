@@ -1,0 +1,160 @@
+"use client";
+import React from "react";
+
+const people = [
+  {
+    name: "John Doe",
+    title: "Frontend Developer",
+    email: "john.doe@example.com",
+    role: "Member",
+  },
+  {
+    name: "Jane Smith",
+    title: "Backend Developer",
+    email: "jane.smith@example.com",
+    role: "Admin",
+  },
+  {
+    name: "Samuel Brown",
+    title: "UI/UX Designer",
+    email: "samuel.brown@example.com",
+    role: "Member",
+  },
+  {
+    name: "Sara Wilson",
+    title: "Project Manager",
+    email: "sara.wilson@example.com",
+    role: "Owner",
+  },
+];
+
+const BasicDataTable: React.FC = () => {
+  return (
+    <div className="max-w-4xl mx-auto my-4">
+      <div className="overflow-x-auto">
+        <div className="inline-block min-w-full align-middle">
+          <div className="overflow-hidden rounded-xl bg-white dark:bg-gray-900 shadow-sm">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-800">
+                <tr>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Title
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Role
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {people.map((person) => (
+                  <tr key={person.email}>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
+                      {person.name}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      {person.title}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      {person.email}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      {person.role}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const StripedDataTable: React.FC = () => {
+  return (
+    <div className="max-w-4xl mx-auto my-4">
+      <div className="overflow-x-auto">
+        <div className="inline-block min-w-full align-middle">
+          <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-800">
+                <tr>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Title
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  >
+                    Role
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
+                {people.map((person, index) => (
+                  <tr
+                    key={person.email}
+                    className={
+                      index % 2 === 0
+                        ? undefined
+                        : "bg-gray-50 dark:bg-gray-800/50"
+                    }
+                  >
+                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
+                      {person.name}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      {person.title}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      {person.email}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      {person.role}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export { BasicDataTable, StripedDataTable };

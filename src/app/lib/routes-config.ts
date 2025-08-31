@@ -54,6 +54,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/card",
             },
             {
+                title: "Data Table",
+                href: "/data-table",
+            },
+            {
                 title: "Date Picker",
                 href: "/date-picker",
             },
@@ -96,6 +100,10 @@ export const ROUTES: EachRoute[] = [
             {
                 title: "Popover",
                 href: "/popover",
+            },
+            {
+                title: "Progress",
+                href: "/progress",
             },
             {
                 title: "Sidebar",

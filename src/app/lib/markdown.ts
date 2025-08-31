@@ -46,6 +46,8 @@ import { DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePrevi
 import { AnimatedTooltip, ArrowTooltip, BasicTooltip, TooltipDemo } from "@/components/Tooltip";
 import { CustomCalendarPicker, DropdownDatePicker, RangeDatePicker, SimpleDatePicker } from "@/components/DatePicker";
 import PopoverDemo from "@/components/Popover";
+import { BasicDataTable, StripedDataTable } from "@/components/DataTable";
+import { AnimatedProgress, BasicProgress, ProgressWithLabel } from "@/components/Progress";
 
 // add custom components
 const components = {
@@ -158,6 +160,11 @@ const components = {
     ArrowTooltip,
     AnimatedTooltip,
     TooltipDemo,
+    BasicDataTable,
+    StripedDataTable,
+    BasicProgress,
+    AnimatedProgress,
+    ProgressWithLabel,
 };
 
 // can be used for other pages like blogs, Guides etc
