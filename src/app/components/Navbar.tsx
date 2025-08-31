@@ -31,12 +31,6 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-8">
           <Search />
           <Link
-            href="/docs/getting-started"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-          >
-            Docs
-          </Link>
-          <Link
             href="/docs/components/accordion"
             className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
           >
@@ -91,9 +85,6 @@ const Navbar = () => {
                 <Search />
               </div>
               <div className="flex flex-col gap-4 px-5">
-                <Link href="/docs/getting-started" className="text-sm">
-                  Docs
-                </Link>
                 <Link href="/docs/components/accordion" className="text-sm">
                   Components
                 </Link>
