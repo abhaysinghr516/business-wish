@@ -175,76 +175,202 @@ pre>code {
   border-left: 2px solid hsl(var(--primary));
 }
 
-/* Minimal neutral syntax highlighting */
 .punctuation {
-  color: hsl(var(--muted-foreground));
+  color: hsl(220 14% 71%);
   font-weight: 400;
 }
 
+.dark .punctuation {
+  color: hsl(220 14% 45%);
+}
+
 .comment {
-  color: hsl(var(--muted-foreground));
+  color: hsl(220 10% 50%);
   font-style: italic;
-  opacity: 0.6;
+  opacity: 0.8;
+}
+
+.dark .comment {
+  color: hsl(220 10% 60%);
 }
 
 .keyword {
-  color: hsl(0 0% 20%);
+  color: hsl(221 87% 60%);
   font-weight: 600;
 }
 
 .dark .keyword {
-  color: hsl(0 0% 80%);
+  color: hsl(221 87% 70%);
 }
 
 .function {
-  color: hsl(0 0% 25%);
+  color: hsl(266 85% 58%);
   font-weight: 500;
 }
 
 .dark .function {
-  color: hsl(0 0% 75%);
+  color: hsl(266 85% 68%);
 }
 
-.string,
-.constant,
-.annotation,
-.boolean,
-.number {
-  color: hsl(0 0% 30%);
+.string {
+  color: hsl(142 76% 36%);
+  font-weight: 400;
 }
 
-.dark .string,
-.dark .constant,
-.dark .annotation,
-.dark .boolean,
-.dark .number {
-  color: hsl(0 0% 70%);
+.dark .string {
+  color: hsl(142 76% 46%);
 }
 
-.attr-value {
-  color: hsl(0 0% 35%);
-}
-
-.dark .attr-value {
-  color: hsl(0 0% 65%);
-}
-
-.tag {
-  color: hsl(0 0% 20%);
+.constant {
+  color: hsl(35 99% 36%);
   font-weight: 500;
 }
 
+.dark .constant {
+  color: hsl(35 99% 46%);
+}
+
+.annotation {
+  color: hsl(204 70% 53%);
+  font-weight: 500;
+}
+
+.dark .annotation {
+  color: hsl(204 70% 63%);
+}
+
+.boolean {
+  color: hsl(5 74% 59%);
+  font-weight: 600;
+}
+
+.dark .boolean {
+  color: hsl(5 74% 69%);
+}
+
+.number {
+  color: hsl(35 99% 36%);
+  font-weight: 500;
+}
+
+.dark .number {
+  color: hsl(35 99% 46%);
+}
+
+.attr-value {
+  color: hsl(142 76% 36%);
+  font-weight: 400;
+}
+
+.dark .attr-value {
+  color: hsl(142 76% 46%);
+}
+
+.tag {
+  color: hsl(5 74% 59%);
+  font-weight: 600;
+}
+
 .dark .tag {
-  color: hsl(0 0% 80%);
+  color: hsl(5 74% 69%);
 }
 
 .attr-name {
-  color: hsl(0 0% 25%);
+  color: hsl(204 70% 53%);
   font-weight: 500;
 }
 
 .dark .attr-name {
-  color: hsl(0 0% 75%);
+  color: hsl(204 70% 63%);
+}
+
+.variable {
+  color: hsl(266 85% 58%);
+  font-weight: 400;
+}
+
+.dark .variable {
+  color: hsl(266 85% 68%);
+}
+
+.operator {
+  color: hsl(221 87% 60%);
+  font-weight: 500;
+}
+
+.dark .operator {
+  color: hsl(221 87% 70%);
+}
+
+.class-name {
+  color: hsl(35 99% 36%);
+  font-weight: 600;
+}
+
+.dark .class-name {
+  color: hsl(35 99% 46%);
+}
+
+.property {
+  color: hsl(204 70% 53%);
+  font-weight: 400;
+}
+
+.dark .property {
+  color: hsl(204 70% 63%);
+}
+
+.regex {
+  color: hsl(142 76% 36%);
+  font-weight: 400;
+  background-color: hsl(142 76% 36% / 0.1);
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+
+.dark .regex {
+  color: hsl(142 76% 46%);
+  background-color: hsl(142 76% 46% / 0.1);
+}
+
+.url {
+  color: hsl(204 70% 53%);
+  text-decoration: underline;
+  text-decoration-color: hsl(204 70% 53% / 0.5);
+}
+
+.dark .url {
+  color: hsl(204 70% 63%);
+  text-decoration-color: hsl(204 70% 63% / 0.5);
+}
+
+.important {
+  color: hsl(5 74% 59%);
+  font-weight: 700;
+}
+
+.dark .important {
+  color: hsl(5 74% 69%);
+}
+
+.deleted {
+  color: hsl(5 74% 59%);
+  background-color: hsl(5 74% 59% / 0.1);
+}
+
+.dark .deleted {
+  color: hsl(5 74% 69%);
+  background-color: hsl(5 74% 69% / 0.1);
+}
+
+.inserted {
+  color: hsl(142 76% 36%);
+  background-color: hsl(142 76% 36% / 0.1);
+}
+
+.dark .inserted {
+  color: hsl(142 76% 46%);
+  background-color: hsl(142 76% 46% / 0.1);
 }
 
 /* Enhanced code title */
