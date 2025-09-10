@@ -1,6 +1,6 @@
 # [Business Wish](https://www.businesswish.tech) - Free Tailwind CSS UI Components
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache-2](https://img.shields.io/badge/License-Apache-red.svg)](https://opensource.org/license/apache-2-0)
 [![GitHub stars](https://img.shields.io/github/stars/abhaysinghr516/business-wish.svg)](https://github.com/abhaysinghr516/business-wish/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/abhaysinghr516/business-wish.svg)](https://github.com/abhaysinghr516/business-wish/issues)
 

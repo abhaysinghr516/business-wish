@@ -4,8 +4,10 @@ import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { ConditionalFooter } from "./components/conditional-footer";
 import { Analytics } from "@vercel/analytics/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   generateWebsiteSchema,
   generateSoftwareApplicationSchema,
@@ -147,7 +149,19 @@ export default function RootLayout({
         >
           <Navbar />
           <main id="main-content">{children}</main>
-          <Footer />
+          <ConditionalFooter />
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </ThemeProvider>
         <GoogleAnalytics gaId="G-Y0FKJQ2T12" />
         <Analytics />

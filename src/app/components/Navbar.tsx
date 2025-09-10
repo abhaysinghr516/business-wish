@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { DialogTitle } from "@/components/ui/dialog";
-import DocsMenu from "./docs-menu";
+
 import Search from "./search";
 import ThemeToggle from "./theme-switch";
 import GitHubStarButton from "./github-star-button";

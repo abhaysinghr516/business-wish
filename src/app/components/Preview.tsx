@@ -18,18 +18,8 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   const [view, setView] = useState<ViewType>("desktop");
   const [fullView, setFullView] = useState<FullViewType>("desktop");
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const fullViewIframeRef = useRef<HTMLIFrameElement>(null);
-
-  useEffect(() => {
-    const checkMobileDevice = () => {
-      setIsMobileDevice(window.innerWidth <= 1024);
-    };
-    checkMobileDevice();
-    window.addEventListener("resize", checkMobileDevice);
-    return () => window.removeEventListener("resize", checkMobileDevice);
-  }, []);
 
   const updateIframeContent = useCallback(
     (iframeElement: HTMLIFrameElement | null) => {
@@ -37,8 +27,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
       const iframeDoc = iframeElement.contentDocument;
       const iframeWindow = iframeElement.contentWindow;
       if (iframeDoc && iframeWindow) {
-        iframeDoc.open();
-        iframeDoc.write(`
+        const htmlContent = `
           <!DOCTYPE html>
           <html>
             <head>
@@ -104,7 +93,9 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
               <div id="root"></div>
             </body>
           </html>
-        `);
+        `;
+        iframeDoc.open();
+        iframeDoc.write(htmlContent);
         iframeDoc.close();
         iframeElement.onload = () => {
           setTimeout(() => {
@@ -138,44 +129,45 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   const getViewportDimensions = (viewType: ViewType | FullViewType) => {
     switch (viewType) {
       case "mobile":
-        return { width: 375, height: 667 };
+        return { width: 375, height: 600 };
       case "tablet":
-        return { width: 768, height: 1024 };
+        return { width: 768, height: 600 };
       default:
-        return { width: 1280, height: 720 };
+        return { width: "100%", height: 500 };
     }
   };
 
-  const getMobileContainerHeight = () => {
-    if (typeof window !== "undefined") {
-      return Math.min(window.innerHeight * 0.8, 700);
-    }
-    return 500;
-  };
-
-  const viewDimensions = getViewportDimensions(
-    isMobileDevice ? "mobile" : view
-  );
+  const viewDimensions = getViewportDimensions(view);
   const fullViewDimensions = getViewportDimensions(fullView);
 
   const ViewToggle: React.FC<{
     currentView: ViewType;
     setView: (view: ViewType) => void;
   }> = ({ currentView, setView }) => (
-    <div className="flex space-x-2">
+    <div className="flex space-x-1">
       <Button
         onClick={() => setView("desktop")}
-        variant={currentView === "desktop" ? "default" : "outline"}
+        variant={currentView === "desktop" ? "default" : "ghost"}
         size="sm"
+        className="h-8 px-2"
       >
-        <Monitor className="mr-2 h-4 w-4" /> Desktop
+        <Monitor className="h-3 w-3" />
+      </Button>
+      <Button
+        onClick={() => setView("tablet")}
+        variant={currentView === "tablet" ? "default" : "ghost"}
+        size="sm"
+        className="h-8 px-2"
+      >
+        <Tablet className="h-3 w-3" />
       </Button>
       <Button
         onClick={() => setView("mobile")}
-        variant={currentView === "mobile" ? "default" : "outline"}
+        variant={currentView === "mobile" ? "default" : "ghost"}
         size="sm"
+        className="h-8 px-2"
       >
-        <Smartphone className="mr-2 h-4 w-4" /> Mobile
+        <Smartphone className="h-3 w-3" />
       </Button>
     </div>
   );
@@ -210,65 +202,101 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
   );
 
   return (
-    <div className="flex flex-col items-center space-y-4 w-full">
-      {!isMobileDevice ? (
-        <div className="flex space-x-2 items-center">
-          <ViewToggle currentView={view} setView={setView} />
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm">
-                <Maximize2 className="mr-2 h-4 w-4" /> Full View
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="w-screen h-screen max-w-full max-h-full p-0">
-              <div className="flex flex-col h-full">
-                <div className="flex justify-between items-center p-4 border-b">
-                  <FullViewToggle
-                    currentView={fullView}
-                    setView={setFullView}
-                  />
+    <div className="not-prose my-6">
+      <div className="relative border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-gray-950">
+        {/* Header with controls */}
+        <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 overflow-x-auto">
+          {/* Hide view toggle buttons on mobile screens */}
+          <div className="hidden sm:flex items-center space-x-2 flex-shrink-0">
+            <ViewToggle currentView={view} setView={setView} />
+          </div>
+          {/* Show empty div on mobile to maintain layout */}
+          <div className="sm:hidden"></div>
+          <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+            {/* Hide fullscreen button on mobile screens */}
+            <Dialog open={isOpen} onOpenChange={setIsOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden sm:inline-flex h-8 px-2"
+                >
+                  <Maximize2 className="h-3 w-3" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="w-screen h-screen max-w-full max-h-full p-0">
+                <div className="flex flex-col h-full">
+                  <div className="flex justify-between items-center p-4 border-b">
+                    <FullViewToggle
+                      currentView={fullView}
+                      setView={setFullView}
+                    />
+                  </div>
+                  <div className="flex-grow overflow-auto p-4 flex justify-center items-start">
+                    {fullView === "desktop" ? (
+                      <iframe
+                        ref={fullViewIframeRef}
+                        className="border border-gray-200 dark:border-gray-800 rounded-lg w-full h-full"
+                        style={{
+                          minHeight: "600px",
+                        }}
+                      />
+                    ) : (
+                      <div className="flex justify-center items-start h-full">
+                        <iframe
+                          ref={fullViewIframeRef}
+                          className="border border-gray-200 dark:border-gray-800 rounded-lg"
+                          style={{
+                            width: fullViewDimensions.width,
+                            height: "80vh",
+                            minHeight: "600px",
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="flex-grow overflow-auto p-4 flex justify-center items-start">
-                  <iframe
-                    ref={fullViewIframeRef}
-                    className="border border-gray-800 dark:border-gray-400 rounded-lg w-full h-full"
-                    style={{
-                      maxWidth: fullViewDimensions.width,
-                      maxHeight: fullViewDimensions.height,
-                    }}
-                  />
-                </div>
+              </DialogContent>
+            </Dialog>
+            <ThemeToggle />
+          </div>
+        </div>
+
+        {/* Preview content */}
+        <div className="p-2 sm:p-4 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+          {view === "desktop" ? (
+            <div className="bg-white dark:bg-gray-950 rounded border border-gray-200 dark:border-gray-800 overflow-hidden">
+              <iframe
+                ref={iframeRef}
+                className="w-full border-0"
+                style={{
+                  height: viewDimensions.height,
+                  minHeight: "400px",
+                }}
+              />
+            </div>
+          ) : (
+            <div className="flex justify-center overflow-x-auto">
+              <div
+                className="bg-white dark:bg-gray-950 rounded border border-gray-200 dark:border-gray-800 overflow-hidden flex-shrink-0"
+                style={{
+                  width: view === "tablet" ? "768px" : "375px",
+                  maxWidth: view === "mobile" ? "calc(100vw - 2rem)" : "100%",
+                  minWidth: view === "mobile" ? "320px" : "375px",
+                }}
+              >
+                <iframe
+                  ref={iframeRef}
+                  className="w-full border-0"
+                  style={{
+                    height: viewDimensions.height,
+                    minHeight: "400px",
+                  }}
+                />
               </div>
-            </DialogContent>
-          </Dialog>
-          <ThemeToggle />
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="w-full flex justify-end px-2">
-          <ThemeToggle />
-        </div>
-      )}
-      <div
-        className={`w-full ${isMobileDevice ? "" : "h-[405px]"}`}
-        style={{
-          height: isMobileDevice ? getMobileContainerHeight() : undefined,
-        }}
-      >
-        <iframe
-          ref={iframeRef}
-          className="border border-gray-800 dark:border-gray-400 rounded-lg"
-          width={viewDimensions.width}
-          height={viewDimensions.height}
-          style={{
-            transformOrigin: "top left",
-            transform: isMobileDevice
-              ? "scale(1)"
-              : `scale(${Math.min(
-                  720 / viewDimensions.width,
-                  405 / viewDimensions.height
-                )})`,
-          }}
-        />
       </div>
     </div>
   );

@@ -107,6 +107,10 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
@@ -426,6 +430,15 @@ pre>code {
     font-size: 15px;
     line-height: 1.6;
     padding: 0 0.5rem;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Prevent horizontal overflow */
+  .prose * {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .prose h1,
@@ -459,6 +472,21 @@ pre>code {
     margin: 1.5em -0.5rem;
     border-radius: 0.5rem;
     font-size: 13px;
+    overflow-x: auto;
+    max-width: calc(100vw - 2rem);
+    white-space: pre;
+    word-wrap: normal;
+  }
+
+  .prose code {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Inline code should break */
+  .prose :not(pre)>code {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   /* Mobile tables */
@@ -531,5 +559,58 @@ pre>code {
 
   .prose li {
     margin: 0.5rem 0;
+  }
+}
+
+/* Additional overflow prevention for docs */
+.docs-content {
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.docs-content * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure Preview components don't overflow */
+.not-prose {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Mobile-specific Preview fixes */
+@media (max-width: 640px) {
+  .not-prose {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Ensure all content respects viewport bounds */
+@media (max-width: 1023px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  main {
+    overflow-x: hidden;
+    min-width: 0;
+  }
+
+  /* Fix for very wide content */
+  * {
+    max-width: 100vw;
+  }
+
+  /* Exception for elements that should be able to scroll */
+  pre,
+  code,
+  .overflow-x-auto,
+  [data-radix-scroll-area-viewport] {
+    max-width: none;
   }
 }

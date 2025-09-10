@@ -13,6 +13,7 @@ export function Typography({ children }: PropsWithChildren) {
       max-w-none
       mx-auto
       !min-w-full
+      overflow-hidden
       
       /* Spacing and layout */
       pt-0
@@ -42,14 +43,29 @@ export function Typography({ children }: PropsWithChildren) {
       prose-p:text-gray-700
       dark:prose-p:text-gray-300
       
-      /* Code blocks */
+      /* Code blocks - Mobile responsive */
       prose-code:font-code
-      prose-code:text-sm
+      prose-code:text-xs
+      sm:prose-code:text-sm
       prose-code:leading-6
       prose-code:p-1.5
       prose-code:rounded-lg
       prose-code:before:content-none
       prose-code:after:content-none
+      prose-code:break-words
+      prose-code:whitespace-pre-wrap
+      
+      /* Pre blocks - Mobile overflow handling */
+      prose-pre:overflow-x-auto
+      prose-pre:max-w-full
+      prose-pre:text-xs
+      sm:prose-pre:text-sm
+      prose-pre:leading-6
+      prose-pre:p-3
+      sm:prose-pre:p-4
+      prose-pre:rounded-lg
+      prose-pre:whitespace-pre
+      prose-pre:break-words
       
       /* Light mode code styling */
       prose-code:bg-gray-50
@@ -97,13 +113,25 @@ export function Typography({ children }: PropsWithChildren) {
       prose-th:bg-gray-50
       dark:prose-th:bg-neutral-900
       
-      /* Images */
+      /* Images - Mobile responsive */
       prose-img:rounded-lg
       prose-img:shadow-md
+      prose-img:max-w-full
+      prose-img:h-auto
       
       /* HR */
       prose-hr:border-gray-200
       dark:prose-hr:border-gray-800
+      
+      /* Mobile overflow prevention */
+      prose-pre:scrollbar-thin
+      prose-pre:scrollbar-thumb-gray-300
+      dark:prose-pre:scrollbar-thumb-gray-600
+      prose-pre:scrollbar-track-transparent
+      
+      /* Ensure all content respects container bounds */
+      [&_*]:max-w-full
+      [&_*]:overflow-x-auto
       
       /* Selection */
       selection:bg-blue-100

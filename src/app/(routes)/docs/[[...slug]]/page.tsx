@@ -1,17 +1,13 @@
-import Pagination from "@/app/components/pagination";
-import { page_routes } from "@/app/lib/routes-config";
 import { notFound } from "next/navigation";
 import { getDocsForSlug, getDocsTocs } from "@/app/lib/markdown";
-import { Typography } from "@/app/components/typography";
-import TOC from "@/app/components/TOC";
-import MobileTOC from "@/app/components/mobile-toc";
-import { SheetLeftbar } from "@/app/components/leftbar";
+import { page_routes } from "@/app/lib/routes-config";
 import { Metadata } from "next";
 import {
   generateSEO,
   generateArticleSchema,
   generateBreadcrumbSchema,
 } from "@/lib/seo";
+import { DocsPageContent } from "@/app/components/docs-page-content";
 
 type PageProps = {
   params: { slug: string[] };
@@ -23,10 +19,10 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
 
   if (!res) notFound();
 
-  // Get TOC data for mobile component
+  // Get TOC data
   const tocs = await getDocsTocs(pathName);
 
-  // Generate breadcrumb structured data
+  // Generate structured data
   const breadcrumbItems = [
     { name: "Home", url: "https://www.businesswish.tech" },
     { name: "Docs", url: "https://www.businesswish.tech/docs" },
@@ -58,42 +54,14 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
-      {/* Mobile Navigation */}
-      <div className="lg:hidden mb-4 px-2 sm:px-0">
-        <SheetLeftbar />
-      </div>
-
-      <div className="flex items-start gap-6 xl:gap-12">
-        {/* Main Article Content */}
-        <article className="flex-1 xl:flex-[3] w-full min-w-0 pt-2 lg:pt-6">
-          <Typography>
-            <header className="mb-6 lg:mb-8">
-              <h1 className="scroll-m-20 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight">
-                {res.frontmatter.title}
-              </h1>
-              <p className="mt-3 lg:mt-4 text-muted-foreground text-base sm:text-[16.5px] leading-relaxed">
-                {res.frontmatter.description}
-              </p>
-            </header>
-
-            {/* Mobile TOC */}
-            <MobileTOC tocs={tocs} />
-
-            <div className="prose prose-gray dark:prose-invert max-w-none prose-sm sm:prose-base lg:prose-lg">
-              {res.content}
-            </div>
-            <Pagination pathname={pathName} />
-          </Typography>
-        </article>
-
-        {/* Desktop TOC - Hidden on mobile/tablet */}
-        <aside
-          className="hidden xl:flex flex-[1] max-w-[240px]"
-          aria-label="Table of contents"
-        >
-          <TOC path={pathName} />
-        </aside>
-      </div>
+      <DocsPageContent
+        title={res.frontmatter.title}
+        description={res.frontmatter.description}
+        content={res.content}
+        tocs={tocs}
+        pathname={pathName}
+        slug={slug}
+      />
     </>
   );
 }
