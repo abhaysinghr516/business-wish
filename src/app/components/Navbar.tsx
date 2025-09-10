@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Menu, Twitter } from "lucide-react";
+import { Menu } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
@@ -47,12 +47,6 @@ const Navbar = () => {
           </Link>
           <div className="flex items-center space-x-4">
             <GitHubStarButton repo="abhaysinghr516/business-wish" />
-            <Link
-              href="https://x.com/abhaysinghr1"
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-            >
-              <Twitter size={18} />
-            </Link>
             <ThemeToggle />
           </div>
         </div>
@@ -98,12 +92,6 @@ const Navbar = () => {
                   </nav>
                   <div className="flex items-center space-x-4">
                     <GitHubStarButton repo="abhaysinghr516/business-wish" />
-                    <Link
-                      href="https://x.com/abhaysinghr1"
-                      className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-                    >
-                      <Twitter size={18} />
-                    </Link>
                     <ThemeToggle />
                   </div>
                 </div>

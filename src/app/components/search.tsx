@@ -270,7 +270,7 @@ export default function Search({
             <SearchIcon className="h-12 w-12 text-stone-300 dark:text-stone-600 mb-4" />
             <p>
               No results for{" "}
-              <span className="font-medium">"{searchedInput}"</span>
+              <span className="font-medium">&quot;{searchedInput}&quot;</span>
             </p>
             <p className="text-sm mt-1">Try adjusting your search term</p>
           </div>
