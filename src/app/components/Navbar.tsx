@@ -45,6 +45,12 @@ const Navbar = () => {
           >
             Templates
           </Link>
+          <Link
+            href="/tools"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+          >
+            Tools
+          </Link>
           <div className="flex items-center space-x-4">
             <GitHubStarButton repo="abhaysinghr516/business-wish" />
             <ThemeToggle />
@@ -87,6 +93,14 @@ const Navbar = () => {
                         className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
                       >
                         Templates
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="/tools"
+                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+                      >
+                        Tools
                       </Link>
                     </SheetClose>
                   </nav>
