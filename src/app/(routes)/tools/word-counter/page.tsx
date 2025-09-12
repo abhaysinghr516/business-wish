@@ -466,7 +466,7 @@ Report generated on ${new Date().toLocaleString()}`;
                               Longest word:
                             </span>
                             <span className="font-medium text-slate-900">
-                              "{stats.longestWord}"
+                              &quot;{stats.longestWord}&quot;
                             </span>
                           </div>
                           <div className="flex justify-between">
