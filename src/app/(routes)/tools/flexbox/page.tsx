@@ -731,7 +731,7 @@ export default function FlexboxGenerator() {
                   </div>
                   <div className="p-4 bg-gray-900 text-gray-100 rounded-b-lg">
                     <pre className="text-xs bg-gray-900 text-gray-100 font-mono break-all">
-                      className="{generateTailwindCSS()}"
+                      className=&quot;{generateTailwindCSS()}&quot;
                     </pre>
                   </div>
                 </div>
