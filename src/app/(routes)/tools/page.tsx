@@ -307,10 +307,10 @@ const tools: Tool[] = [
           {"{"}
         </text>
         <text x="16" y="24" fill="#dc3545" fontSize="5" fontFamily="monospace">
-          "key":
+          &quot;key&quot;:
         </text>
         <text x="16" y="30" fill="#28a745" fontSize="5" fontFamily="monospace">
-          "value"
+          &quot;value&quot;
         </text>
         <text x="12" y="36" fill="#6f42c1" fontSize="6" fontFamily="monospace">
           {"}"}
@@ -539,7 +539,7 @@ const tools: Tool[] = [
           fontSize="2.5"
           fontFamily="monospace"
         >
-          "key"
+          &quot;key&quot;
         </text>
         <text
           x="31"
