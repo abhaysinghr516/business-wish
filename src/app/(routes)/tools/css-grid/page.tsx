@@ -999,7 +999,7 @@ ${html}
                     </button>
                   </div>
                   <div className="p-4 bg-gray-900 text-gray-100 rounded-b-lg">
-                    <pre className="text-xs font-mono whitespace-pre-wrap overflow-auto max-h-80">
+                    <pre className="text-xs bg-gray-900 text-gray-100 font-mono whitespace-pre-wrap overflow-auto max-h-80">
                       {generateCSS()}
                     </pre>
                   </div>
@@ -1028,8 +1028,8 @@ ${html}
                     </button>
                   </div>
                   <div className="p-4 bg-gray-900 text-gray-100 rounded-b-lg">
-                    <pre className="text-xs font-mono break-all">
-                      className="{generateTailwindCSS()}"
+                    <pre className="text-xs bg-gray-900 text-gray-100 font-mono break-all">
+                      className=&quot;{generateTailwindCSS()}&quot;
                     </pre>
                     {gridItems.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-gray-700">
