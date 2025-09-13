@@ -357,7 +357,7 @@ export default function ImageCompressor() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                  Smart Image Compressor
+                  Image Compressor
                 </h1>
                 <p className="text-gray-600">
                   Professional image optimization with advanced controls

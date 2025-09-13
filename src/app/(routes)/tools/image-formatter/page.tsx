@@ -8,11 +8,18 @@ import {
   Download,
   Upload,
   RefreshCw,
-  Settings,
   FileImage,
   ArrowRight,
+  Info,
+  Zap,
+  Shield,
+  Layers,
+  X,
+  Eye,
+  EyeOff,
+  Copy,
+  Check,
 } from "lucide-react";
-import { toast } from "react-toastify";
 
 type ImageFormat = "png" | "jpeg" | "webp";
 
@@ -23,6 +30,7 @@ interface ConvertedImage {
   targetFormat: ImageFormat;
   originalSize: number;
   convertedSize: number;
+  dimensions: { width: number; height: number };
 }
 
 export default function ImageFormatter() {
@@ -30,12 +38,40 @@ export default function ImageFormatter() {
   const [targetFormat, setTargetFormat] = useState<ImageFormat>("webp");
   const [quality, setQuality] = useState(0.9);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [showComparison, setShowComparison] = useState(true);
+  const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+
+    const files = Array.from(e.dataTransfer.files);
+    if (files.length > 0) {
+      processFiles(files);
+    }
+  };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || []);
     if (files.length === 0) return;
+    processFiles(files);
+  };
 
+  const processFiles = (files: File[]) => {
     const validFiles = files.filter(
       (file) =>
         file.type.startsWith("image/") &&
@@ -49,7 +85,7 @@ export default function ImageFormatter() {
     );
 
     if (validFiles.length !== files.length) {
-      toast.error("Some files were skipped. Only image files are supported.");
+      console.error("Some files were skipped. Only image files are supported.");
     }
 
     if (validFiles.length > 0) {
@@ -67,7 +103,6 @@ export default function ImageFormatter() {
         converted.push(convertedImage);
       } catch (error) {
         console.error(`Error converting ${file.name}:`, error);
-        toast.error(`Failed to convert ${file.name}`);
       }
     }
 
@@ -75,7 +110,7 @@ export default function ImageFormatter() {
     setIsProcessing(false);
 
     if (converted.length > 0) {
-      toast.success(`Converted ${converted.length} image(s) successfully!`);
+      console.log(`Converted ${converted.length} image(s) successfully!`);
     }
   };
 
@@ -89,10 +124,8 @@ export default function ImageFormatter() {
         canvas.width = img.width;
         canvas.height = img.height;
 
-        // Draw image on canvas
         ctx?.drawImage(img, 0, 0);
 
-        // Convert to target format
         const mimeType = `image/${targetFormat}`;
         const qualityValue = targetFormat === "png" ? undefined : quality;
 
@@ -114,6 +147,7 @@ export default function ImageFormatter() {
                 targetFormat,
                 originalSize: file.size,
                 convertedSize: blob.size,
+                dimensions: { width: img.width, height: img.height },
               });
             };
             reader.readAsDataURL(blob);
@@ -136,13 +170,22 @@ export default function ImageFormatter() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    toast.success("Image downloaded successfully!");
   };
 
   const downloadAll = () => {
     images.forEach((image, index) => {
       setTimeout(() => downloadImage(image, index), index * 100);
     });
+  };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy to clipboard");
+    }
   };
 
   const formatFileSize = (bytes: number) => {
@@ -160,66 +203,109 @@ export default function ImageFormatter() {
     }
   };
 
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const getFormatColor = (format: string) => {
     switch (format.toLowerCase()) {
       case "png":
-        return "bg-blue-100 text-blue-800";
+        return "bg-blue-50 text-blue-700 border-blue-200";
       case "jpeg":
       case "jpg":
-        return "bg-orange-100 text-orange-800";
+        return "bg-orange-50 text-orange-700 border-orange-200";
       case "webp":
-        return "bg-green-100 text-green-800";
+        return "bg-emerald-50 text-emerald-700 border-emerald-200";
       case "gif":
-        return "bg-purple-100 text-purple-800";
+        return "bg-purple-50 text-purple-700 border-purple-200";
       case "bmp":
-        return "bg-red-100 text-red-800";
+        return "bg-red-50 text-red-700 border-red-200";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gray-50 text-gray-700 border-gray-200";
     }
   };
 
+  const getTotalStats = () => {
+    const totalOriginal = images.reduce(
+      (sum, img) => sum + img.originalSize,
+      0
+    );
+    const totalConverted = images.reduce(
+      (sum, img) => sum + img.convertedSize,
+      0
+    );
+    const savings = totalOriginal - totalConverted;
+    const savingsPercentage =
+      totalOriginal > 0 ? (savings / totalOriginal) * 100 : 0;
+
+    return { totalOriginal, totalConverted, savings, savingsPercentage };
+  };
+
+  const stats = getTotalStats();
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 py-4">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-gray-500 text-sm mb-3"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
           </Link>
 
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-xl">
-              <ImageIcon className="h-5 w-5 text-white" />
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg">
+                <ImageIcon className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-semibold text-gray-900">
+                  Image Formatter
+                </h1>
+                <p className="text-gray-600 text-sm">
+                  Convert between PNG, JPEG & WebP with quality control
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-light text-gray-900">
-                Image Formatter
-              </h1>
-              <p className="text-gray-500 text-sm">
-                Convert between image formats (PNG, JPEG, WebP) with quality
-                settings
-              </p>
-            </div>
+
+            {images.length > 0 && (
+              <div className="text-right">
+                <div className="text-sm text-gray-600">
+                  {images.length} image{images.length !== 1 ? "s" : ""}{" "}
+                  converted
+                </div>
+                {stats.savings !== 0 && (
+                  <div
+                    className={`text-sm font-medium ${
+                      stats.savings > 0 ? "text-emerald-600" : "text-red-600"
+                    }`}
+                  >
+                    {stats.savings > 0 ? "↓" : "↑"}{" "}
+                    {formatFileSize(Math.abs(stats.savings))}(
+                    {Math.abs(stats.savingsPercentage).toFixed(1)}%)
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-6">
+      <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Controls */}
-        <div className="bg-gray-50 rounded-2xl p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div>
+        <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
+            <div className="lg:col-span-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Target Format
               </label>
               <select
                 value={targetFormat}
                 onChange={(e) => setTargetFormat(e.target.value as ImageFormat)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-300"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               >
                 <option value="png">PNG (Lossless)</option>
                 <option value="jpeg">JPEG (Lossy)</option>
@@ -228,7 +314,7 @@ export default function ImageFormatter() {
             </div>
 
             {targetFormat !== "png" && (
-              <div>
+              <div className="lg:col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Quality: {Math.round(quality * 100)}%
                 </label>
@@ -239,37 +325,34 @@ export default function ImageFormatter() {
                   step="0.1"
                   value={quality}
                   onChange={(e) => setQuality(parseFloat(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  className="w-full"
                 />
               </div>
             )}
 
-            <div className="flex items-end">
+            <div className="lg:col-span-2">
               <div className="text-sm text-gray-600">
                 <div className="font-medium mb-1">Format Benefits:</div>
                 {targetFormat === "png" && (
-                  <div>
-                    • Lossless compression
-                    <br />• Transparency support
+                  <div className="text-xs">
+                    Lossless • Transparency • Graphics
                   </div>
                 )}
                 {targetFormat === "jpeg" && (
-                  <div>
-                    • Small file sizes
-                    <br />• Wide compatibility
+                  <div className="text-xs">
+                    Small sizes • Wide compatibility • Photos
                   </div>
                 )}
                 {targetFormat === "webp" && (
-                  <div>
-                    • Best compression
-                    <br />• Modern browsers
+                  <div className="text-xs">
+                    Best compression • Modern • 25-35% smaller
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2">
             <input
               ref={fileInputRef}
               type="file"
@@ -281,7 +364,7 @@ export default function ImageFormatter() {
             <button
               onClick={() => fileInputRef.current?.click()}
               disabled={isProcessing}
-              className="flex items-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-sm font-medium disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium disabled:opacity-50"
             >
               <Upload className="h-4 w-4" />
               {isProcessing ? "Processing..." : "Select Images"}
@@ -291,53 +374,139 @@ export default function ImageFormatter() {
               <>
                 <button
                   onClick={downloadAll}
-                  className="flex items-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm"
                 >
                   <Download className="h-4 w-4" />
                   Download All
                 </button>
                 <button
                   onClick={clearAll}
-                  className="flex items-center gap-2 px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg text-sm"
                 >
                   <RefreshCw className="h-4 w-4" />
                   Clear All
+                </button>
+                <button
+                  onClick={() => setShowComparison(!showComparison)}
+                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm"
+                >
+                  {showComparison ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                  {showComparison ? "Hide" : "Show"} Details
                 </button>
               </>
             )}
           </div>
         </div>
 
+        {/* Upload Area */}
+        {images.length === 0 && !isProcessing && (
+          <div
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current?.click()}
+            className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
+              dragActive
+                ? "border-emerald-400 bg-emerald-50"
+                : "border-gray-300 hover:border-gray-400"
+            }`}
+          >
+            <div className="max-w-sm mx-auto">
+              <FileImage className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                {dragActive ? "Drop images here" : "Select or drop images"}
+              </h3>
+              <p className="text-gray-500 text-sm mb-4">
+                PNG, JPEG, WebP, GIF, BMP supported
+              </p>
+              <div className="flex justify-center gap-1 flex-wrap">
+                {["PNG", "JPEG", "WebP", "GIF", "BMP"].map((format) => (
+                  <span
+                    key={format}
+                    className={`px-2 py-1 rounded text-xs font-medium ${getFormatColor(
+                      format.toLowerCase()
+                    )}`}
+                  >
+                    {format}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Results */}
         {images.length > 0 && (
           <div className="space-y-4">
-            <h2 className="text-lg font-medium text-gray-900">
-              Converted Images ({images.length})
-            </h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Converted Images
+              </h2>
+              <div className="text-sm text-gray-600">
+                {images.length} image{images.length !== 1 ? "s" : ""}
+              </div>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200 rounded-xl p-4"
+                  className="bg-white border border-gray-200 rounded-lg overflow-hidden"
                 >
-                  <div className="aspect-video bg-gray-100 rounded-lg mb-4 overflow-hidden">
+                  {/* Image Preview */}
+                  <div className="aspect-video bg-gray-50 relative group">
                     <img
                       src={image.converted}
                       alt={image.original.name}
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center">
+                      <button
+                        onClick={() => setPreviewImage(image.converted)}
+                        className="opacity-0 group-hover:opacity-100 bg-white rounded-full p-2 transition-opacity"
+                      >
+                        <Eye className="h-4 w-4 text-gray-700" />
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => removeImage(index)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
                   </div>
 
-                  <div className="space-y-3">
-                    <h3 className="font-medium text-gray-900 truncate">
-                      {image.original.name}
-                    </h3>
+                  {/* Image Info */}
+                  <div className="p-3 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-medium text-gray-900 text-sm truncate flex-1 mr-2">
+                        {image.original.name}
+                      </h3>
+                      <button
+                        onClick={() => copyToClipboard(image.original.name)}
+                        className="p-1 text-gray-400"
+                      >
+                        {copied ? (
+                          <Check className="h-3 w-3" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
+
+                    <div className="text-xs text-gray-500">
+                      {image.dimensions.width} × {image.dimensions.height}
+                    </div>
 
                     {/* Format Conversion */}
                     <div className="flex items-center justify-center gap-2">
                       <span
-                        className={`px-2 py-1 rounded text-xs font-medium ${getFormatColor(
+                        className={`px-2 py-1 rounded text-xs font-medium border ${getFormatColor(
                           image.originalFormat
                         )}`}
                       >
@@ -345,7 +514,7 @@ export default function ImageFormatter() {
                       </span>
                       <ArrowRight className="h-3 w-3 text-gray-400" />
                       <span
-                        className={`px-2 py-1 rounded text-xs font-medium ${getFormatColor(
+                        className={`px-2 py-1 rounded text-xs font-medium border ${getFormatColor(
                           image.targetFormat
                         )}`}
                       >
@@ -353,51 +522,64 @@ export default function ImageFormatter() {
                       </span>
                     </div>
 
-                    {/* File Sizes */}
-                    <div className="flex justify-between text-sm text-gray-600">
-                      <span>
-                        Original: {formatFileSize(image.originalSize)}
-                      </span>
-                      <span>
-                        Converted: {formatFileSize(image.convertedSize)}
-                      </span>
-                    </div>
+                    {showComparison && (
+                      <>
+                        {/* File Sizes */}
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div className="text-center p-2 bg-gray-50 rounded">
+                            <div className="font-medium text-gray-900">
+                              Original
+                            </div>
+                            <div className="text-gray-600">
+                              {formatFileSize(image.originalSize)}
+                            </div>
+                          </div>
+                          <div className="text-center p-2 bg-gray-50 rounded">
+                            <div className="font-medium text-gray-900">
+                              Converted
+                            </div>
+                            <div className="text-gray-600">
+                              {formatFileSize(image.convertedSize)}
+                            </div>
+                          </div>
+                        </div>
 
-                    {/* Size Change */}
-                    <div className="flex items-center justify-between">
-                      <span
-                        className={`text-sm font-medium ${
-                          image.convertedSize < image.originalSize
-                            ? "text-green-600"
+                        {/* Size Change */}
+                        <div
+                          className={`text-center text-xs font-medium p-2 rounded ${
+                            image.convertedSize < image.originalSize
+                              ? "bg-emerald-50 text-emerald-700"
+                              : image.convertedSize > image.originalSize
+                              ? "bg-red-50 text-red-700"
+                              : "bg-gray-50 text-gray-700"
+                          }`}
+                        >
+                          {image.convertedSize < image.originalSize && "↓ "}
+                          {image.convertedSize > image.originalSize && "↑ "}
+                          {Math.round(
+                            Math.abs(
+                              ((image.convertedSize - image.originalSize) /
+                                image.originalSize) *
+                                100
+                            )
+                          )}
+                          %
+                          {image.convertedSize < image.originalSize
+                            ? " smaller"
                             : image.convertedSize > image.originalSize
-                            ? "text-red-600"
-                            : "text-gray-600"
-                        }`}
-                      >
-                        {image.convertedSize < image.originalSize && "-"}
-                        {image.convertedSize > image.originalSize && "+"}
-                        {Math.round(
-                          Math.abs(
-                            ((image.convertedSize - image.originalSize) /
-                              image.originalSize) *
-                              100
-                          )
-                        )}
-                        %
-                        {image.convertedSize < image.originalSize
-                          ? " smaller"
-                          : image.convertedSize > image.originalSize
-                          ? " larger"
-                          : " same size"}
-                      </span>
-                      <button
-                        onClick={() => downloadImage(image, index)}
-                        className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
-                      >
-                        <Download className="h-3 w-3" />
-                        Download
-                      </button>
-                    </div>
+                            ? " larger"
+                            : " same"}
+                        </div>
+                      </>
+                    )}
+
+                    <button
+                      onClick={() => downloadImage(image, index)}
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download
+                    </button>
                   </div>
                 </div>
               ))}
@@ -405,117 +587,75 @@ export default function ImageFormatter() {
           </div>
         )}
 
-        {/* Upload Area */}
-        {images.length === 0 && !isProcessing && (
-          <div
-            onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center cursor-pointer hover:border-gray-400 transition-colors"
-          >
-            <FileImage className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              Drop images here or click to select
-            </h3>
-            <p className="text-gray-500 mb-4">
-              Supports PNG, JPEG, WebP, GIF, and BMP formats
-            </p>
-            <div className="flex justify-center gap-2">
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                PNG
-              </span>
-              <span className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-medium">
-                JPEG
-              </span>
-              <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                WebP
-              </span>
-              <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">
-                GIF
-              </span>
-              <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">
-                BMP
-              </span>
+        {/* Image Preview Modal */}
+        {previewImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="max-w-4xl max-h-full bg-white rounded-lg overflow-hidden">
+              <div className="flex items-center justify-between p-4 border-b">
+                <h3 className="font-medium">Image Preview</h3>
+                <button
+                  onClick={() => setPreviewImage(null)}
+                  className="p-1 hover:bg-gray-100 rounded"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="p-4">
+                <img
+                  src={previewImage}
+                  alt="Preview"
+                  className="max-w-full max-h-96 object-contain mx-auto"
+                />
+              </div>
             </div>
           </div>
         )}
 
         {/* Format Comparison */}
-        <div className="mt-12 bg-gray-50 rounded-2xl p-8">
-          <h3 className="text-lg font-medium text-gray-900 mb-6">
-            Format Comparison
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-blue-600 font-bold text-sm">PNG</span>
-                </div>
-                <h4 className="font-medium text-gray-900">PNG Format</h4>
+        <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Info className="h-5 w-5 text-blue-500" />
+            <h3 className="text-lg font-semibold text-gray-900">
+              Format Comparison
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex items-center gap-2 mb-3">
+                <Shield className="h-4 w-4 text-blue-600" />
+                <h4 className="font-medium text-blue-900">PNG</h4>
               </div>
-              <ul className="text-sm text-gray-600 space-y-2">
+              <ul className="text-sm text-blue-800 space-y-1">
                 <li>• Lossless compression</li>
                 <li>• Transparency support</li>
-                <li>• Best for graphics, logos</li>
+                <li>• Best for graphics & logos</li>
                 <li>• Larger file sizes</li>
-                <li>• Universal browser support</li>
               </ul>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <span className="text-orange-600 font-bold text-sm">JPG</span>
-                </div>
-                <h4 className="font-medium text-gray-900">JPEG Format</h4>
+            <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+              <div className="flex items-center gap-2 mb-3">
+                <Layers className="h-4 w-4 text-orange-600" />
+                <h4 className="font-medium text-orange-900">JPEG</h4>
               </div>
-              <ul className="text-sm text-gray-600 space-y-2">
+              <ul className="text-sm text-orange-800 space-y-1">
                 <li>• Lossy compression</li>
                 <li>• Small file sizes</li>
                 <li>• Best for photographs</li>
-                <li>• No transparency</li>
                 <li>• Universal compatibility</li>
               </ul>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                  <span className="text-green-600 font-bold text-sm">WebP</span>
-                </div>
-                <h4 className="font-medium text-gray-900">WebP Format</h4>
+            <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+              <div className="flex items-center gap-2 mb-3">
+                <Zap className="h-4 w-4 text-emerald-600" />
+                <h4 className="font-medium text-emerald-900">WebP</h4>
               </div>
-              <ul className="text-sm text-gray-600 space-y-2">
+              <ul className="text-sm text-emerald-800 space-y-1">
                 <li>• Superior compression</li>
-                <li>• Lossless & lossy modes</li>
-                <li>• Transparency support</li>
                 <li>• 25-35% smaller than JPEG</li>
+                <li>• Lossless & lossy modes</li>
                 <li>• Modern browser support</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Features */}
-        <div className="mt-8 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Features</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-medium text-gray-800 mb-2">
-                Format Conversion
-              </h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Convert between PNG, JPEG, and WebP formats</li>
-                <li>• Adjustable quality settings for lossy formats</li>
-                <li>• Batch processing for multiple images</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-800 mb-2">
-                Smart Processing
-              </h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Preserve image dimensions and quality</li>
-                <li>• Real-time file size comparison</li>
-                <li>• Individual and bulk download options</li>
               </ul>
             </div>
           </div>
