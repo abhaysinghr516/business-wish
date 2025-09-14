@@ -4,7 +4,7 @@ import { ArrowUpRight, CheckCircle } from "lucide-react";
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900/30">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50/30 dark:from-gray-950 dark:via-gray-950 dark:to-gray-950/30">
       {/* Hero Section */}
       <section className="pt-16 pb-8 px-4">
         <div className="max-w-7xl mx-auto">
@@ -57,7 +57,7 @@ export default function ToolsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {tools.map((tool, index) => (
               <Link key={tool.name} href={tool.href} className="group block">
-                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-100/80 dark:border-gray-700/80 hover:border-gray-200/80 dark:hover:border-gray-600/80 rounded-xl p-5 transition-all duration-300 overflow-hidden">
+                <div className="relative bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border border-gray-100/80 dark:border-gray-700/80 hover:border-gray-200/80 dark:hover:border-gray-600/80 rounded-xl p-5 transition-all duration-300 overflow-hidden">
                   {/* Subtle gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-50/0 via-gray-50/0 to-gray-100/20 dark:from-gray-900/0 dark:via-gray-900/0 dark:to-gray-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
