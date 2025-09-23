@@ -2,121 +2,71 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle } from "lucide-react";
 
-export default function ToolsPage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50/30 dark:from-gray-950 dark:via-gray-950 dark:to-gray-950/30">
-      {/* Hero Section */}
-      <section className="pt-16 pb-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8881_1px,transparent_1px),linear-gradient(to_bottom,#8881_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-
-          {/* Status indicator */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/70 dark:bg-black/70 border border-gray-200 dark:border-gray-800 rounded-full text-xs text-gray-600 dark:text-gray-400 backdrop-blur-sm">
-              <CheckCircle className="w-3 h-3 text-green-500" />
-              <span>All systems operational</span>
-            </div>
-          </div>
-
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white mb-4 leading-tight">
-              Tools that work
-              <br />
-              <span className="font-medium bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                completely offline
-              </span>
-            </h1>
-
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Professional utilities that run entirely in your browser. No APIs,
-              no dependencies, pure functionality.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-1.5">
-                <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-                {tools.length} tools
-              </span>
-              <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-1.5">
-                <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-                100% local
-              </span>
-              <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-1.5">
-                <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-                Zero tracking
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tools Grid */}
-      <section className="pb-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {tools.map((tool, index) => (
-              <Link key={tool.name} href={tool.href} className="group block">
-                <div className="relative bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border border-gray-100/80 dark:border-gray-700/80 hover:border-gray-200/80 dark:hover:border-gray-600/80 rounded-xl p-5 transition-all duration-300 overflow-hidden">
-                  {/* Subtle gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50/0 via-gray-50/0 to-gray-100/20 dark:from-gray-900/0 dark:via-gray-900/0 dark:to-gray-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  <div className="relative">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-start gap-3">
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 group-hover:text-black dark:group-hover:text-white transition-colors leading-tight mb-0.5 truncate">
-                            {tool.name}
-                          </h3>
-                        </div>
-                      </div>
-                      <ArrowUpRight className="h-4 w-4 text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0 mt-0.5" />
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
-                      {tool.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1">
-                      {tool.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center px-2 py-0.5 bg-gray-100/80 dark:bg-gray-700/80 group-hover:bg-gray-200/80 dark:group-hover:bg-gray-600/80 text-gray-600 dark:text-gray-400 rounded-md text-xs font-medium transition-all duration-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {tool.tags.length > 3 && (
-                        <span className="inline-flex items-center px-2 py-0.5 text-gray-500 dark:text-gray-400 rounded-md text-xs">
-                          +{tool.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Footer note */}
-          <div className="text-center mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              All tools process data locally in your browser for maximum privacy
-              and security
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
-const metadata: Metadata = {
-  title: "Developer Tools | Practical Utilities for Web Development",
+// Enhanced SEO metadata for tools page
+export const metadata: Metadata = {
+  title: "Free Developer Tools | Online Utilities for Web Development",
   description:
-    "A comprehensive collection of developer tools including color utilities, formatters, and calculators.",
+    "17+ professional developer tools that work completely offline. Color palette generators, CSS utilities, formatters, converters, and productivity tools for web developers.",
+  keywords: [
+    "developer tools",
+    "web development tools",
+    "online tools",
+    "color palette generator",
+    "CSS tools",
+    "JSON formatter",
+    "image compressor",
+    "QR code generator",
+    "gradient generator",
+    "flexbox generator",
+    "accessibility tools",
+    "contrast checker",
+    "color blindness simulator",
+    "productivity tools",
+    "pomodoro timer",
+    "word counter",
+    "CSV to JSON converter",
+    "free developer utilities",
+    "offline tools",
+    "browser-based tools",
+    "no signup required",
+    "privacy-focused tools",
+  ],
+  openGraph: {
+    title: "Free Developer Tools | 17+ Online Utilities for Web Development",
+    description:
+      "Professional developer tools that work completely offline. Color generators, CSS utilities, formatters, and productivity tools for web developers.",
+    type: "website",
+    url: "https://www.businesswish.tech/tools",
+    images: [
+      {
+        url: "https://www.businesswish.tech/tools-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Business Wish Developer Tools - Free Online Utilities",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Developer Tools | 17+ Online Utilities",
+    description:
+      "Professional developer tools that work completely offline. Color generators, CSS utilities, formatters, and productivity tools.",
+    images: ["https://www.businesswish.tech/tools-preview.png"],
+  },
+  alternates: {
+    canonical: "https://www.businesswish.tech/tools",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 type Tool = {
@@ -247,3 +197,195 @@ const tools: Tool[] = [
     tags: ["image", "convert", "format"],
   },
 ];
+
+// Structured data for tools page
+const toolsPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Developer Tools Collection",
+  description:
+    "A comprehensive collection of 17+ professional developer tools that work completely offline",
+  url: "https://www.businesswish.tech/tools",
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: tools.length,
+    itemListElement: tools.map((tool, index) => ({
+      "@type": "SoftwareApplication",
+      position: index + 1,
+      name: tool.name,
+      description: tool.description,
+      url: `https://www.businesswish.tech${tool.href}`,
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "Web Browser",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      keywords: tool.tags.join(", "),
+    })),
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Business Wish",
+    url: "https://www.businesswish.tech",
+  },
+};
+
+export default function ToolsPage() {
+  return (
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolsPageSchema) }}
+      />
+
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50/30 dark:from-gray-950 dark:via-gray-950 dark:to-gray-950/30">
+        {/* Hero Section */}
+        <section
+          className="pt-16 pb-8 px-4"
+          itemScope
+          itemType="https://schema.org/WebPageElement"
+        >
+          <div className="max-w-7xl mx-auto">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8881_1px,transparent_1px),linear-gradient(to_bottom,#8881_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+            {/* Status indicator */}
+            <div className="flex items-center justify-center mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/70 dark:bg-black/70 border border-gray-200 dark:border-gray-800 rounded-full text-xs text-gray-600 dark:text-gray-400 backdrop-blur-sm">
+                <CheckCircle className="w-3 h-3 text-green-500" />
+                <span>All systems operational</span>
+              </div>
+            </div>
+
+            <div className="text-center max-w-4xl mx-auto">
+              <h1
+                className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white mb-4 leading-tight"
+                itemProp="headline"
+              >
+                Free Developer Tools
+                <br />
+                <span className="font-medium bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                  that work offline
+                </span>
+              </h1>
+
+              <p
+                className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed"
+                itemProp="description"
+              >
+                17+ professional developer utilities that run entirely in your
+                browser. Color generators, CSS tools, formatters, converters,
+                and productivity tools. No APIs, no signup, complete privacy.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-1.5">
+                  <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                  {tools.length} tools
+                </span>
+                <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-1.5">
+                  <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                  100% local
+                </span>
+                <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 gap-1.5">
+                  <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+                  Zero tracking
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tools Grid */}
+        <section
+          className="pb-16 px-4"
+          itemScope
+          itemType="https://schema.org/ItemList"
+        >
+          <div className="max-w-7xl mx-auto">
+            <h2 className="sr-only">Available Developer Tools</h2>
+            <meta itemProp="numberOfItems" content={tools.length.toString()} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {tools.map((tool, index) => (
+                <Link
+                  key={tool.name}
+                  href={tool.href}
+                  className="group block"
+                  itemProp="itemListElement"
+                  itemScope
+                  itemType="https://schema.org/SoftwareApplication"
+                >
+                  <meta itemProp="name" content={tool.name} />
+                  <meta itemProp="description" content={tool.description} />
+                  <meta
+                    itemProp="url"
+                    content={`https://www.businesswish.tech${tool.href}`}
+                  />
+                  <meta
+                    itemProp="applicationCategory"
+                    content="DeveloperApplication"
+                  />
+                  <meta itemProp="operatingSystem" content="Web Browser" />
+                  <div className="relative bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border border-gray-100/80 dark:border-gray-700/80 hover:border-gray-200/80 dark:hover:border-gray-600/80 rounded-xl p-5 transition-all duration-300 overflow-hidden">
+                    {/* Subtle gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-50/0 via-gray-50/0 to-gray-100/20 dark:from-gray-900/0 dark:via-gray-900/0 dark:to-gray-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    <div className="relative">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start gap-3">
+                          <div className="flex-1 min-w-0">
+                            <h3
+                              className="text-base font-semibold text-gray-900 dark:text-gray-100 group-hover:text-black dark:group-hover:text-white transition-colors leading-tight mb-0.5 truncate"
+                              itemProp="headline"
+                            >
+                              {tool.name}
+                            </h3>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="h-4 w-4 text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0 mt-0.5" />
+                      </div>
+
+                      {/* Description */}
+                      <p
+                        className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2"
+                        itemProp="abstract"
+                      >
+                        {tool.description}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-1">
+                        {tool.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="inline-flex items-center px-2 py-0.5 bg-gray-100/80 dark:bg-gray-700/80 group-hover:bg-gray-200/80 dark:group-hover:bg-gray-600/80 text-gray-600 dark:text-gray-400 rounded-md text-xs font-medium transition-all duration-300"
+                            itemProp="keywords"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {tool.tags.length > 3 && (
+                          <span className="inline-flex items-center px-2 py-0.5 text-gray-500 dark:text-gray-400 rounded-md text-xs">
+                            +{tool.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Footer note */}
+            <div className="text-center mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                All tools process data locally in your browser for maximum
+                privacy and security
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}

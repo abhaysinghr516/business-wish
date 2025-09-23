@@ -120,8 +120,8 @@ export function generateWebsiteSchema() {
         "@type": "WebSite",
         name: "Business Wish",
         url: baseUrl,
-        description: "Free Tailwind CSS UI components library for web developers.",
-        keywords: "Tailwind CSS, UI components, React, Next.js, free, open source",
+        description: "Free Tailwind CSS UI components library and developer tools for web developers.",
+        keywords: "Tailwind CSS, UI components, React, Next.js, developer tools, free, open source, color palette generator, CSS tools, JSON formatter",
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
@@ -131,12 +131,29 @@ export function generateWebsiteSchema() {
             "@type": "Organization",
             name: "Business Wish",
             url: baseUrl,
+            logo: {
+                "@type": "ImageObject",
+                url: `${baseUrl}/logo.png`,
+                width: 192,
+                height: 192,
+            },
+            sameAs: [
+                "https://github.com/abhaysinghr516/business-wish",
+                "https://twitter.com/abhaysinghr516",
+            ],
         },
-        potentialAction: {
-            "@type": "SearchAction",
-            target: `${baseUrl}/docs?search={search_term_string}`,
-            "query-input": "required name=search_term_string",
-        },
+        potentialAction: [
+            {
+                "@type": "SearchAction",
+                target: `${baseUrl}/docs?search={search_term_string}`,
+                "query-input": "required name=search_term_string",
+            },
+            {
+                "@type": "SearchAction",
+                target: `${baseUrl}/tools?search={search_term_string}`,
+                "query-input": "required name=search_term_string",
+            },
+        ],
     };
 }
 
@@ -144,35 +161,56 @@ export function generateSoftwareApplicationSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        name: "Business Wish UI Components",
+        name: "Business Wish UI Components & Developer Tools",
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web Browser",
-        description: "A comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
+        description: "A comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
         url: baseUrl,
         downloadUrl: `${baseUrl}/docs`,
-        softwareVersion: "2.3.0",
+        softwareVersion: "2.4.0",
         datePublished: "2024-01-01",
         dateModified: new Date().toISOString(),
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
+            url: "https://abhay-singh-rathore.vercel.app/",
         },
         publisher: {
             "@type": "Organization",
             name: "Business Wish",
+            url: baseUrl,
+            logo: {
+                "@type": "ImageObject",
+                url: `${baseUrl}/logo.png`,
+            },
         },
         offers: {
             "@type": "Offer",
             price: "0",
             priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
         },
         aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: "4.8",
-            ratingCount: "150",
+            ratingCount: "200",
             bestRating: "5",
             worstRating: "1",
         },
+        featureList: [
+            "Free Tailwind CSS UI Components",
+            "17+ Developer Tools",
+            "Color Palette Generator",
+            "CSS Grid & Flexbox Generators",
+            "JSON Formatter & Validator",
+            "Image Compression Tools",
+            "QR Code Generator",
+            "Accessibility Tools",
+            "Dark Mode Support",
+            "Copy-Paste Ready Code",
+            "No Registration Required",
+            "Privacy-Focused (Offline Tools)",
+        ],
     };
 }
 
@@ -236,5 +274,99 @@ export function generateArticleSchema({
             "@type": "WebPage",
             "@id": `${baseUrl}${url}`,
         },
+    };
+}
+
+export function generateOrganizationSchema() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Business Wish",
+        url: baseUrl,
+        logo: {
+            "@type": "ImageObject",
+            url: `${baseUrl}/logo.png`,
+            width: 192,
+            height: 192,
+        },
+        description: "Free Tailwind CSS UI components library and developer tools for web developers.",
+        foundingDate: "2024-01-01",
+        founder: {
+            "@type": "Person",
+            name: "Abhay Singh Rathore",
+            url: "https://abhay-singh-rathore.vercel.app/",
+        },
+        sameAs: [
+            "https://github.com/abhaysinghr516/business-wish",
+            "https://twitter.com/abhaysinghr516",
+        ],
+        contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            availableLanguage: "English",
+        },
+        knowsAbout: [
+            "Tailwind CSS",
+            "React Components",
+            "Next.js",
+            "Web Development",
+            "UI/UX Design",
+            "Frontend Development",
+            "Developer Tools",
+            "Color Theory",
+            "CSS Grid",
+            "Flexbox",
+            "Accessibility",
+            "Web Standards",
+        ],
+    };
+}
+
+export function generateFAQSchema(faqs: Array<{ question: string; answer: string }>) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(faq => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+            },
+        })),
+    };
+}
+
+export function generateHowToSchema({
+    name,
+    description,
+    steps,
+    totalTime,
+    image = defaultImage,
+}: {
+    name: string;
+    description: string;
+    steps: Array<{ name: string; text: string }>;
+    totalTime?: string;
+    image?: string;
+}) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name,
+        description,
+        image: {
+            "@type": "ImageObject",
+            url: image,
+        },
+        totalTime: totalTime || "PT5M",
+        supply: [],
+        tool: [],
+        step: steps.map((step, index) => ({
+            "@type": "HowToStep",
+            position: index + 1,
+            name: step.name,
+            text: step.text,
+        })),
     };
 }

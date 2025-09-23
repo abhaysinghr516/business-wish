@@ -12,6 +12,7 @@ export default function robots(): MetadataRoute.Robots {
                     "/docs/",
                     "/docs/components/",
                     "/docs/pages/",
+                    "/tools/",
                     "/llms.txt",
                 ],
                 disallow: [
@@ -33,6 +34,7 @@ export default function robots(): MetadataRoute.Robots {
                     "/docs/",
                     "/docs/components/",
                     "/docs/pages/",
+                    "/tools/",
                     "/llms.txt",
                 ],
                 disallow: [
@@ -48,6 +50,7 @@ export default function robots(): MetadataRoute.Robots {
                 allow: [
                     "/",
                     "/docs/",
+                    "/tools/",
                     "/llms.txt",
                 ],
                 disallow: [

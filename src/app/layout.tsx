@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   generateWebsiteSchema,
   generateSoftwareApplicationSchema,
+  generateOrganizationSchema,
 } from "../lib/seo";
 
 const inter = Inter({
@@ -22,6 +23,7 @@ const inter = Inter({
 // Enhanced JSON-LD schema data
 const websiteSchema = generateWebsiteSchema();
 const softwareSchema = generateSoftwareApplicationSchema();
+const organizationSchema = generateOrganizationSchema();
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.businesswish.tech"),
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Business Wish",
   },
   description:
-    "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers. Boost your project's design and efficiency with our ready-to-use components.",
+    "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers. Boost your project's design and efficiency with our ready-to-use components and offline utilities.",
   keywords: [
     "Tailwind CSS components",
     "free Tailwind CSS components",
@@ -39,6 +41,15 @@ export const metadata: Metadata = {
     "React UI components",
     "Next.js components",
     "dark mode components",
+    "developer tools",
+    "web development tools",
+    "color palette generator",
+    "CSS tools",
+    "JSON formatter",
+    "QR code generator",
+    "image compressor",
+    "gradient generator",
+    "flexbox generator",
     "Tailwind CSS button",
     "Tailwind CSS form",
     "Tailwind CSS navigation bar",
@@ -47,14 +58,17 @@ export const metadata: Metadata = {
     "best free Tailwind CSS component library",
     "Tailwind CSS component examples",
     "updated Tailwind CSS components",
+    "offline developer tools",
+    "browser-based utilities",
+    "privacy-focused tools",
   ],
   alternates: {
     canonical: "https://www.businesswish.tech",
   },
   openGraph: {
-    title: "Business Wish - Free Tailwind CSS UI Components Library",
+    title: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
     description:
-      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
+      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
     type: "website",
     url: "https://www.businesswish.tech",
     siteName: "Business Wish",
@@ -64,7 +78,7 @@ export const metadata: Metadata = {
         url: "https://www.businesswish.tech/home.png",
         width: 1200,
         height: 630,
-        alt: "Business Wish - Free Tailwind CSS UI Components Library",
+        alt: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
       },
     ],
   },
@@ -72,9 +86,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@abhaysinghr516",
     creator: "@abhaysinghr516",
-    title: "Business Wish - Free Tailwind CSS UI Components Library",
+    title: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
     description:
-      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers.",
+      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
     images: ["https://www.businesswish.tech/home.png"],
   },
   robots: {
@@ -135,6 +149,12 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
 
         {/* Preload critical resources */}

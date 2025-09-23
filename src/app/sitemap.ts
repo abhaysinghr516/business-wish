@@ -31,6 +31,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "weekly",
             priority: 0.8,
         },
+        {
+            url: `${baseUrl}/tools`,
+            lastModified: currentDate,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
     ];
 
     // Dynamic component and page routes
@@ -47,6 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Component pages get higher priority than other pages
         if (route.href.startsWith('/components')) {
             priority = Math.max(priority, 0.7);
+        } else if (route.href.startsWith('/tools')) {
+            priority = 0.8;
+            changeFrequency = "weekly";
         } else if (route.href.startsWith('/pages')) {
             priority = 0.6;
             changeFrequency = "monthly";
