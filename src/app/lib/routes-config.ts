@@ -150,6 +150,81 @@ export const ROUTES: EachRoute[] = [
             // },
         ]
     },
+    {
+        title: "Tools",
+        href: "/tools",
+        noLink: true,
+        items: [
+            {
+                title: "Palette Generator",
+                href: "/palette-generator",
+            },
+            {
+                title: "Contrast Checker",
+                href: "/contrast-checker",
+            },
+            {
+                title: "Blindness Simulator",
+                href: "/blindness-simulator",
+            },
+            {
+                title: "Color Converter",
+                href: "/format-converter",
+            },
+            {
+                title: "Image Color Picker",
+                href: "/image-extractor",
+            },
+            {
+                title: "JSON Formatter",
+                href: "/json-formatter",
+            },
+            {
+                title: "QR Code Generator",
+                href: "/qr-generator",
+            },
+            {
+                title: "CSS Box Shadow",
+                href: "/box-shadow",
+            },
+            {
+                title: "CSS Gradient",
+                href: "/gradient",
+            },
+            {
+                title: "Flexbox Generator",
+                href: "/flexbox",
+            },
+            {
+                title: "CSV to JSON",
+                href: "/csv-to-json",
+            },
+            {
+                title: "Word Counter",
+                href: "/word-counter",
+            },
+            {
+                title: "Image Compressor",
+                href: "/image-compressor",
+            },
+            {
+                title: "CSS Grid Generator",
+                href: "/css-grid",
+            },
+            {
+                title: "Pomodoro Timer",
+                href: "/pomodoro-timer",
+            },
+            {
+                title: "Animation Easing",
+                href: "/animation-easing",
+            },
+            {
+                title: "Image Formatter",
+                href: "/image-formatter",
+            },
+        ]
+    },
 ];
 
 type Page = { title: string; href: string };

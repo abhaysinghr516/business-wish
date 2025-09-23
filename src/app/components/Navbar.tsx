@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, ComponentIcon, BookOpenIcon, WrenchIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
@@ -20,93 +20,129 @@ import GitHubStarButton from "./github-star-button";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-3 sm:py-4 px-4 sm:px-6 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="bg-white/90 dark:bg-stone-950/90 backdrop-blur-xl border-b border-stone-200/50 dark:border-stone-800/50 py-3 px-4 sm:px-6 sticky top-0 z-50 shadow-sm dark:shadow-stone-950/20">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         {/* Brand */}
         <Link
           href="/"
-          className="text-lg sm:text-xl font-medium text-black dark:text-white"
+          className="text-lg sm:text-xl font-semibold text-stone-900 dark:text-stone-100 hover:text-stone-700 dark:hover:text-stone-300 transition-colors flex-shrink-0"
         >
           Business Wish
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center space-x-8">
-          <Search />
-          <Link
-            href="/docs/components/accordion"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-          >
-            Components
-          </Link>
-          <Link
-            href="/templates"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-          >
-            Templates
-          </Link>
-          <Link
-            href="/tools"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-          >
-            Tools
-          </Link>
-          <div className="flex items-center space-x-4">
-            <GitHubStarButton repo="abhaysinghr516/business-wish" />
-            <ThemeToggle />
+        <div className="hidden lg:flex items-center gap-6 flex-1 justify-center max-w-4xl">
+          <div className="flex-1 max-w-md">
+            <Search />
+          </div>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/docs/components/accordion"
+              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+            >
+              Components
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="/templates"
+              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+            >
+              Templates
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-500 transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="/tools"
+              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+            >
+              Tools
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+            </Link>
           </div>
         </div>
 
+        {/* Desktop actions */}
+        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+          <GitHubStarButton repo="abhaysinghr516/business-wish" />
+          <ThemeToggle />
+        </div>
+
         {/* Mobile menu */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex items-center gap-2">
           <Sheet>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+                className="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-all duration-200 rounded-lg"
               >
-                <Menu />
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="p-0">
-              <SheetHeader className="px-4 py-3 border-b border-gray-200 dark:border-gray-800">
-                <DialogTitle className="text-left font-semibold text-gray-900 dark:text-gray-100">
-                  Menu
+            <SheetContent side="right" className="p-0 w-80">
+              <SheetHeader className="px-6 py-4 border-b border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/50">
+                <DialogTitle className="text-left font-semibold text-stone-900 dark:text-stone-100">
+                  Navigation
                 </DialogTitle>
               </SheetHeader>
               <ScrollArea className="h-full">
-                <div className="px-4 py-6 space-y-6">
-                  <Search hideTrigger triggerOnly />
-                  <nav className="flex flex-col space-y-4">
+                <div className="px-6 py-6 space-y-8">
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+                      Search
+                    </p>
+                    <Search hideTrigger triggerOnly />
+                  </div>
+
+                  <nav className="space-y-1">
+                    <p className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-3">
+                      Navigation
+                    </p>
                     <SheetClose asChild>
                       <Link
                         href="/docs/components/accordion"
-                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
                       >
+                        <ComponentIcon className="h-4 w-4 text-blue-500 dark:text-blue-400" />
                         Components
+                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
+                          UI Library
+                        </span>
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
                         href="/templates"
-                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
                       >
+                        <BookOpenIcon className="h-4 w-4 text-green-500 dark:text-green-400" />
                         Templates
+                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
+                          Pages
+                        </span>
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
                         href="/tools"
-                        className="text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
                       >
+                        <WrenchIcon className="h-4 w-4 text-orange-500 dark:text-orange-400" />
                         Tools
+                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
+                          Utilities
+                        </span>
                       </Link>
                     </SheetClose>
                   </nav>
-                  <div className="flex items-center space-x-4">
-                    <GitHubStarButton repo="abhaysinghr516/business-wish" />
-                    <ThemeToggle />
+
+                  <div className="pt-4 border-t border-stone-200 dark:border-stone-800">
+                    <p className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-3">
+                      Actions
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <GitHubStarButton repo="abhaysinghr516/business-wish" />
+                      <ThemeToggle />
+                    </div>
                   </div>
                 </div>
               </ScrollArea>

@@ -9,6 +9,7 @@ import {
   BookOpenIcon,
   FolderIcon,
   SparklesIcon,
+  WrenchIcon,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -129,6 +130,10 @@ export default function Search({
       return (
         <ComponentIcon className="h-4 w-4 text-blue-500 dark:text-blue-400" />
       );
+    if (path.includes("/tools/"))
+      return (
+        <WrenchIcon className="h-4 w-4 text-orange-500 dark:text-orange-400" />
+      );
     if (path.includes("/pages/") || path.includes("/docs/"))
       return (
         <BookOpenIcon className="h-4 w-4 text-green-500 dark:text-green-400" />
@@ -157,7 +162,7 @@ export default function Search({
         <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-500 dark:text-stone-400 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-all duration-200 group-hover:scale-110" />
         <Input
           className="md:w-full rounded-xl dark:bg-stone-900/90 bg-stone-50/90 border-stone-200 dark:border-stone-800 h-10 pl-10 pr-0 sm:pr-4 text-sm shadow-sm"
-          placeholder="Search Components..."
+          placeholder="Search components, tools, pages..."
           type="search"
           readOnly
         />
@@ -197,7 +202,7 @@ export default function Search({
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-500 dark:text-stone-400 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-all duration-200 group-hover:scale-110" />
             <Input
               className="md:w-full rounded-xl dark:bg-stone-900/90 bg-stone-50/90 border-stone-200 dark:border-stone-800 h-10 pl-10 pr-0 sm:pr-4 text-sm shadow-sm"
-              placeholder="Search Components..."
+              placeholder="Search components, tools, pages..."
               type="search"
               readOnly
             />
@@ -218,7 +223,7 @@ export default function Search({
         </DialogTrigger>
       )}
       <DialogContent className="p-0 max-w-2xl sm:top-[38%] top-[45%] rounded-2xl border dark:border-stone-800 shadow-2xl dark:shadow-stone-950/50 dark:bg-stone-900/90 bg-stone-50/90">
-        <DialogTitle className="sr-only">Search Components</DialogTitle>
+        <DialogTitle className="sr-only">Search</DialogTitle>
         <DialogHeader>
           <div className="relative">
             <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-500 dark:text-stone-400" />
@@ -227,7 +232,7 @@ export default function Search({
               value={searchedInput}
               onChange={(e) => setSearchedInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search components or browse all..."
+              placeholder="Search components, tools, pages..."
               className="h-16 w-full pl-14 pr-12 bg-transparent border-b border-stone-200 dark:border-stone-800 text-base outline-none placeholder:text-stone-500 dark:placeholder:text-stone-400"
             />
             {searchedInput && (
@@ -266,25 +271,89 @@ export default function Search({
 
         {/* Results */}
         {filteredResults.length === 0 && searchedInput && (
-          <div className="flex flex-col items-center py-8 text-center text-stone-500 dark:text-stone-400">
-            <SearchIcon className="h-12 w-12 text-stone-300 dark:text-stone-600 mb-4" />
-            <p>
+          <div className="flex flex-col items-center py-12 text-center text-stone-500 dark:text-stone-400">
+            <div className="relative mb-6">
+              <SearchIcon className="h-16 w-16 text-stone-300 dark:text-stone-600" />
+              <div className="absolute -top-1 -right-1 w-6 h-6 bg-stone-200 dark:bg-stone-700 rounded-full flex items-center justify-center">
+                <XIcon className="h-3 w-3 text-stone-400 dark:text-stone-500" />
+              </div>
+            </div>
+            <h3 className="font-medium text-stone-700 dark:text-stone-300 mb-2">
+              No results found
+            </h3>
+            <p className="text-sm mb-1">
               No results for{" "}
-              <span className="font-medium">&quot;{searchedInput}&quot;</span>
+              <span className="font-medium text-stone-600 dark:text-stone-400">
+                &quot;{searchedInput}&quot;
+              </span>
             </p>
-            <p className="text-sm mt-1">Try adjusting your search term</p>
+            <p className="text-sm">
+              Try searching for components, tools, or pages
+            </p>
           </div>
         )}
+        {/* Quick access when empty */}
+        {filteredResults.length === 0 && !searchedInput && (
+          <div className="px-4 py-3">
+            <div className="mb-4">
+              <h3 className="text-sm font-medium text-stone-700 dark:text-stone-300 mb-3">
+                Quick Access
+              </h3>
+              <div className="grid grid-cols-1 gap-1">
+                {[
+                  {
+                    title: "Button",
+                    href: "/components/button",
+                    icon: ComponentIcon,
+                    color: "text-blue-500 dark:text-blue-400",
+                  },
+                  {
+                    title: "Card",
+                    href: "/components/card",
+                    icon: ComponentIcon,
+                    color: "text-blue-500 dark:text-blue-400",
+                  },
+                  {
+                    title: "Color Palette Generator",
+                    href: "/tools/color-palette",
+                    icon: WrenchIcon,
+                    color: "text-orange-500 dark:text-orange-400",
+                  },
+                  {
+                    title: "Blog List",
+                    href: "/pages/blog-list",
+                    icon: BookOpenIcon,
+                    color: "text-green-500 dark:text-green-400",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={item.href}
+                    onClick={() => handleItemClick(item.href)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer transition-colors group"
+                  >
+                    <item.icon className={`h-4 w-4 ${item.color}`} />
+                    <span className="text-sm font-medium text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100">
+                      {item.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {filteredResults.length > 0 && (
           <div
             className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800 scrollbar-track-transparent"
             ref={containerRef}
           >
-            <div className="flex flex-col items-start overflow-y-auto sm:px-2 px-1 pb-4">
+            <div className="flex flex-col items-start overflow-y-auto px-2 pb-2">
               {filteredResults.map((item, index) => {
                 const level = (item.href.split("/").slice(1).length -
                   1) as keyof typeof paddingMap;
                 const paddingClass = paddingMap[level];
+                const isCategory = level === 1;
+
                 return (
                   <div
                     key={item.href}
@@ -294,30 +363,49 @@ export default function Search({
                     }}
                     onClick={() => handleItemClick(item.href)}
                     className={cn(
-                      "group w-full px-3 rounded-lg transition-colors cursor-pointer",
+                      "group w-full rounded-lg transition-all duration-200 cursor-pointer",
                       paddingClass,
                       index === selectedIndex
-                        ? "bg-stone-100 dark:bg-stone-800"
-                        : "hover:bg-stone-50 dark:hover:bg-stone-800/50"
+                        ? "bg-blue-50 dark:bg-blue-950/50 ring-1 ring-blue-200 dark:ring-blue-800"
+                        : "hover:bg-stone-50 dark:hover:bg-stone-800/50",
+                      isCategory && "mt-1"
                     )}
                     role="option"
                     aria-selected={index === selectedIndex}
                   >
                     <div
                       className={cn(
-                        "flex items-center w-fit h-full py-3 gap-1.5 px-2",
+                        "flex items-center w-full py-2.5 px-3 gap-3",
                         level > 1 &&
-                          "border-l border-stone-200 dark:border-stone-700 pl-4"
+                          "border-l-2 border-stone-200 dark:border-stone-700 ml-2 pl-4"
                       )}
                     >
-                      <div className="mr-2 flex-shrink-0">
+                      <div className="flex-shrink-0">
                         {getItemIcon(item.href, item.title)}
                       </div>
-                      <span className="text-sm font-medium truncate text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100">
-                        {item.title}
-                      </span>
+                      <div className="flex-1 min-w-0">
+                        <span
+                          className={cn(
+                            "block truncate transition-colors",
+                            isCategory
+                              ? "text-sm font-semibold text-stone-900 dark:text-stone-100"
+                              : "text-sm font-medium text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100"
+                          )}
+                        >
+                          {item.title}
+                        </span>
+                        {isCategory && (
+                          <span className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                            {item.href.includes("/components") &&
+                              "UI Components"}
+                            {item.href.includes("/tools") &&
+                              "Development Tools"}
+                            {item.href.includes("/pages") && "Page Templates"}
+                          </span>
+                        )}
+                      </div>
                       {index === selectedIndex && (
-                        <div className="ml-auto flex-shrink-0 w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+                        <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                       )}
                     </div>
                   </div>
