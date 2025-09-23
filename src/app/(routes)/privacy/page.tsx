@@ -174,8 +174,8 @@ export default function PrivacyPage() {
                     Google Analytics
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
-                    For website analytics. Google's privacy policy applies to
-                    this data.
+                    For website analytics. Google&apos;s privacy policy applies
+                    to this data.
                   </p>
                 </div>
 
@@ -250,7 +250,7 @@ export default function PrivacyPage() {
               <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
                 We may update this privacy policy from time to time. We will
                 notify users of any material changes by posting the new policy
-                on this page with an updated "Last modified" date.
+                on this page with an updated &quot;Last modified&quot; date.
               </p>
             </section>
 

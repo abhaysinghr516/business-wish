@@ -239,11 +239,11 @@ export default function TermsPage() {
 
               <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
                 In accordance with the Apache License 2.0, Business Wish and its
-                contributors provide the service "AS IS" without warranties of
-                any kind. We shall not be liable for any direct, indirect,
-                incidental, special, or consequential damages resulting from the
-                use or inability to use our service, even if we have been
-                advised of the possibility of such damages.
+                contributors provide the service &quot;AS IS&quot; without
+                warranties of any kind. We shall not be liable for any direct,
+                indirect, incidental, special, or consequential damages
+                resulting from the use or inability to use our service, even if
+                we have been advised of the possibility of such damages.
               </p>
             </section>
 
@@ -272,8 +272,9 @@ export default function TermsPage() {
               <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
                 We reserve the right to modify these terms at any time. We will
                 notify users of material changes by posting the updated terms on
-                this page with a new "Last updated" date. Continued use of the
-                service after changes constitutes acceptance of the new terms.
+                this page with a new &quot;Last updated&quot; date. Continued
+                use of the service after changes constitutes acceptance of the
+                new terms.
               </p>
             </section>
 
