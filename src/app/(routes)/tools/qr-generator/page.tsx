@@ -53,7 +53,14 @@ export default function QRGenerator() {
         tempCanvas.width = options.size;
         tempCanvas.height = options.size;
 
-        ctx.drawImage(canvas, 0, 0, options.size, options.size);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+        const qrSize = Math.min(tempCanvas.width, tempCanvas.height) * 0.9;
+        const x = (tempCanvas.width - qrSize) / 2;
+        const y = (tempCanvas.height - qrSize) / 2;
+
+        ctx.drawImage(canvas, x, y, qrSize, qrSize);
 
         const link = document.createElement("a");
         link.download = `qr-${
@@ -71,13 +78,12 @@ export default function QRGenerator() {
   const hasContent = content.trim().length > 0;
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 mb-4"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -88,10 +94,10 @@ export default function QRGenerator() {
               <QrCode className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-medium text-gray-900">
+              <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                 QR Code Generator
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Generate, customize, and download QR codes instantly
               </p>
             </div>
@@ -100,16 +106,15 @@ export default function QRGenerator() {
       </div>
 
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-8">
-        {/* Input Section */}
-        <div className="bg-gray-50 rounded-xl p-6 space-y-6">
-          <h2 className="text-lg font-medium text-gray-900">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-6 space-y-6">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
             QR Code Settings
           </h2>
 
           <div>
             <label
               htmlFor="url-input"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
               Enter URL or Text
             </label>
@@ -119,15 +124,15 @@ export default function QRGenerator() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="https://example.com or any text"
-              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none"
+              className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none text-gray-900 dark:text-gray-100"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Size:{" "}
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-gray-900 dark:text-gray-100">
                   {options.size}px
                 </span>
               </label>
@@ -146,14 +151,14 @@ export default function QRGenerator() {
                 disabled={!hasContent}
                 className="w-full disabled:opacity-40"
               />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <div className="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-1">
                 <span>256px</span>
                 <span>2048px</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Error Correction Level
               </label>
               <select
@@ -165,7 +170,7 @@ export default function QRGenerator() {
                   }))
                 }
                 disabled={!hasContent}
-                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none disabled:opacity-40"
+                className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none disabled:opacity-40 text-gray-900 dark:text-gray-200"
               >
                 <option value="L">Low (7%)</option>
                 <option value="M">Medium (15%)</option>
@@ -176,30 +181,30 @@ export default function QRGenerator() {
           </div>
         </div>
 
-        {/* Preview & Info */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Preview */}
-          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
-            <div className="p-4 border-b border-gray-100">
-              <h3 className="text-sm font-medium text-gray-900">Preview</h3>
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-800">
+              <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                Preview
+              </h3>
             </div>
 
             <div className="p-6 flex flex-col items-center">
               <div
                 ref={qrRef}
-                className="w-64 h-64 flex items-center justify-center bg-gray-50 rounded-lg"
+                className="w-64 h-64 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-lg"
               >
                 {hasContent ? (
                   <QRCodeCanvas
                     value={formattedContent}
                     size={240}
-                    bgColor="#F9FAFB"
-                    fgColor="#111827"
+                    bgColor="transparent"
+                    fgColor="#FFFFFF"
                     level={options.errorCorrection}
                     marginSize={2}
                   />
                 ) : (
-                  <div className="text-center text-gray-400">
+                  <div className="text-center text-gray-400 dark:text-gray-600">
                     <Smartphone className="h-12 w-12 mx-auto mb-3" />
                     <p className="text-sm">QR code will appear here</p>
                   </div>
@@ -208,7 +213,7 @@ export default function QRGenerator() {
 
               {hasContent && (
                 <>
-                  <div className="mt-4 text-xs text-gray-500 space-y-1 text-center">
+                  <div className="mt-4 text-xs text-gray-500 dark:text-gray-400 space-y-1 text-center">
                     <p>Content: {formattedContent}</p>
                     <p>
                       Size: {options.size}px • Level: {options.errorCorrection}
@@ -217,14 +222,14 @@ export default function QRGenerator() {
                   <div className="mt-5 space-y-3 w-full">
                     <button
                       onClick={downloadQR}
-                      className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gray-900 text-white text-sm rounded-lg"
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-gray-900 dark:bg-gray-50 text-white dark:text-black text-sm rounded-lg font-medium"
                     >
                       <Download className="h-4 w-4" />
                       Download PNG
                     </button>
                     <button
                       onClick={() => copyToClipboard(formattedContent)}
-                      className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-white text-gray-700 text-sm rounded-lg border border-gray-200"
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       {isCopied ? (
                         <>
@@ -244,12 +249,11 @@ export default function QRGenerator() {
             </div>
           </div>
 
-          {/* Info */}
-          <div className="bg-white border border-gray-200 rounded-xl p-6">
-            <h3 className="text-sm font-medium text-gray-900 mb-3">
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">
               How it Works
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-400">
               <ul className="space-y-2">
                 <li>• Enter any URL or text</li>
                 <li>• Preview updates instantly</li>

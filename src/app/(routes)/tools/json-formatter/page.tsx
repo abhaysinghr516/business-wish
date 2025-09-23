@@ -92,7 +92,7 @@ export default function JSONFormatter() {
       isActive: true,
       balance: 1250.5,
     };
-    setInput(JSON.stringify(sample));
+    setInput(JSON.stringify(sample, null, 2));
   };
 
   const swapInputOutput = () => {
@@ -102,13 +102,12 @@ export default function JSONFormatter() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 text-sm"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -119,10 +118,10 @@ export default function JSONFormatter() {
               <Code className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 JSON Formatter
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Format, validate, and minify JSON data
               </p>
             </div>
@@ -130,19 +129,17 @@ export default function JSONFormatter() {
         </div>
       </div>
 
-      {/* Body */}
       <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Controls */}
-        <div className="bg-gray-50 rounded-xl p-5 mb-8 space-y-4">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-5 mb-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Indent:
               </label>
               <select
                 value={indentSize}
                 onChange={(e) => setIndentSize(Number(e.target.value))}
-                className="px-3 py-1.5 border border-gray-200 rounded-md text-sm focus:outline-none"
+                className="px-3 py-1.5 border border-gray-200 dark:border-gray-700 rounded-md text-sm focus:outline-none bg-white dark:bg-gray-800 dark:text-gray-200"
               >
                 <option value={2}>2 spaces</option>
                 <option value={4}>4 spaces</option>
@@ -152,13 +149,13 @@ export default function JSONFormatter() {
             <div className="flex gap-2">
               <button
                 onClick={loadSample}
-                className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-2"
+                className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <Upload className="h-3 w-3" /> Load Sample
               </button>
               <button
                 onClick={swapInputOutput}
-                className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-2"
+                className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <ArrowRightLeft className="h-3 w-3" /> Swap
               </button>
@@ -168,31 +165,31 @@ export default function JSONFormatter() {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={formatJSON}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-md text-sm flex items-center gap-2"
             >
               <Maximize2 className="h-3 w-3" /> Format
             </button>
             <button
               onClick={minifyJSON}
-              className="px-4 py-2 bg-gray-700 text-white rounded-md text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700 text-white rounded-md text-sm flex items-center gap-2"
             >
               <Minimize2 className="h-3 w-3" /> Minify
             </button>
             <button
               onClick={validateJSON}
-              className="px-4 py-2 bg-green-600 text-white rounded-md text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white rounded-md text-sm flex items-center gap-2"
             >
               <Check className="h-3 w-3" /> Validate
             </button>
             <button
               onClick={() => setInput("")}
-              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               <X className="h-3 w-3" /> Clear Input
             </button>
             <button
               onClick={() => setOutput("")}
-              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               <X className="h-3 w-3" /> Clear Output
             </button>
@@ -200,13 +197,12 @@ export default function JSONFormatter() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Input */}
-          <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-3">
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-semibold text-gray-800">
+              <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">
                 Input JSON
               </h2>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
                 {input.length} chars
               </span>
             </div>
@@ -214,20 +210,23 @@ export default function JSONFormatter() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Paste your JSON here..."
-              className="w-full h-96 px-3 py-2 bg-white border border-gray-200 rounded-md font-mono text-sm focus:outline-none resize-none"
+              className="w-full h-96 px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md font-mono text-sm focus:outline-none resize-none text-gray-900 dark:text-gray-100"
             />
             {error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-red-700 text-sm font-semibold">Error</p>
-                <p className="text-red-600 text-sm">{error}</p>
+              <div className="p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-md">
+                <p className="text-red-700 dark:text-red-400 text-sm font-semibold">
+                  Error
+                </p>
+                <p className="text-red-600 dark:text-red-300 text-sm">
+                  {error}
+                </p>
               </div>
             )}
           </div>
 
-          {/* Output */}
-          <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-3">
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-semibold text-gray-800">
+              <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">
                 Formatted Output
               </h2>
               <div className="flex gap-2">
@@ -235,10 +234,10 @@ export default function JSONFormatter() {
                   <>
                     <button
                       onClick={() => copyToClipboard(output, "JSON")}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-1"
+                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       {copiedText === "JSON" ? (
-                        <Check className="h-3 w-3 text-green-600" />
+                        <Check className="h-3 w-3 text-green-600 dark:text-green-500" />
                       ) : (
                         <Copy className="h-3 w-3" />
                       )}
@@ -246,13 +245,13 @@ export default function JSONFormatter() {
                     </button>
                     <button
                       onClick={() => downloadJSON(false)}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-1"
+                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <Download className="h-3 w-3" /> JSON
                     </button>
                     <button
                       onClick={() => downloadJSON(true)}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-1"
+                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <Download className="h-3 w-3" /> TXT
                     </button>
@@ -264,24 +263,23 @@ export default function JSONFormatter() {
               value={output}
               readOnly
               placeholder="Formatted JSON will appear here..."
-              className="w-full h-96 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md font-mono text-sm resize-none"
+              className="w-full h-96 px-3 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md font-mono text-sm resize-none text-gray-900 dark:text-gray-100"
             />
             {output && (
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {output.length} chars • {output.split("\n").length} lines
               </p>
             )}
           </div>
         </div>
 
-        {/* Features */}
-        <div className="mt-10 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6">
-          <h3 className="text-base font-semibold text-gray-800 mb-3">
+        <div className="mt-10 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-xl p-6">
+          <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-3">
             Features
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600 dark:text-gray-400">
             <div>
-              <h4 className="font-medium text-gray-700 mb-2">
+              <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Format & Beautify
               </h4>
               <ul className="space-y-1">
@@ -291,7 +289,7 @@ export default function JSONFormatter() {
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-gray-700 mb-2">
+              <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Validate & Minify
               </h4>
               <ul className="space-y-1">

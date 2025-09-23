@@ -23,7 +23,6 @@ interface EasingFunction {
 }
 
 const easingFunctions: EasingFunction[] = [
-  // Linear
   {
     name: "Linear",
     value: "linear",
@@ -31,8 +30,6 @@ const easingFunctions: EasingFunction[] = [
     category: "Linear",
     intensity: "gentle",
   },
-
-  // Ease
   {
     name: "Ease",
     value: "ease",
@@ -61,8 +58,6 @@ const easingFunctions: EasingFunction[] = [
     category: "Ease",
     intensity: "moderate",
   },
-
-  // Sine
   {
     name: "Ease In Sine",
     value: "cubic-bezier(0.12, 0, 0.39, 0)",
@@ -84,8 +79,6 @@ const easingFunctions: EasingFunction[] = [
     category: "Sine",
     intensity: "gentle",
   },
-
-  // Quad
   {
     name: "Ease In Quad",
     value: "cubic-bezier(0.11, 0, 0.5, 0)",
@@ -107,8 +100,6 @@ const easingFunctions: EasingFunction[] = [
     category: "Quad",
     intensity: "moderate",
   },
-
-  // Cubic
   {
     name: "Ease In Cubic",
     value: "cubic-bezier(0.32, 0, 0.67, 0)",
@@ -130,8 +121,6 @@ const easingFunctions: EasingFunction[] = [
     category: "Cubic",
     intensity: "strong",
   },
-
-  // Quart
   {
     name: "Ease In Quart",
     value: "cubic-bezier(0.5, 0, 0.75, 0)",
@@ -153,8 +142,6 @@ const easingFunctions: EasingFunction[] = [
     category: "Quart",
     intensity: "strong",
   },
-
-  // Back
   {
     name: "Ease In Back",
     value: "cubic-bezier(0.36, 0, 0.66, -0.56)",
@@ -213,12 +200,10 @@ export default function AnimationEasing() {
       ? easingFunctions
       : easingFunctions.filter((f) => f.category === activeCategory);
 
-  // Calculate track width on mount and resize
   useEffect(() => {
     const updateTrackWidth = () => {
       if (trackRef.current) {
         const rect = trackRef.current.getBoundingClientRect();
-        // Account for padding (24px on each side) and ball width (24px)
         setTrackWidth(rect.width - 48 - 24);
       }
     };
@@ -284,7 +269,6 @@ export default function AnimationEasing() {
   transition: all ${duration}ms ${easingValue};
 }
 
-/* Keyframe Animation */
 @keyframes slideAnimation {
   from { transform: translateX(0); }
   to { transform: translateX(${trackWidth}px); }
@@ -293,26 +277,6 @@ export default function AnimationEasing() {
 .slide-animation {
   animation: slideAnimation ${duration}ms ${easingValue} forwards;
 }`;
-  };
-
-  const generateReactSpring = (easingValue: string) => {
-    const bezier = parseCubicBezier(easingValue);
-    if (!bezier) return "// Only works with cubic-bezier functions";
-
-    return `import { useSpring, animated } from '@react-spring/web'
-
-const MyComponent = () => {
-  const styles = useSpring({
-    from: { x: 0 },
-    to: { x: ${trackWidth} },
-    config: {
-      duration: ${duration},
-      easing: t => /* Custom easing function needed */
-    }
-  });
-
-  return <animated.div style={styles} />;
-};`;
   };
 
   const parseCubicBezier = (value: string) => {
@@ -338,14 +302,13 @@ const MyComponent = () => {
     const size = 180;
 
     return (
-      <div className="bg-white border border-gray-200 rounded-lg p-3">
+      <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-3">
         <svg
           width={size}
           height={size}
           viewBox="0 0 180 180"
           className="rounded-lg"
         >
-          {/* Grid */}
           <defs>
             <pattern
               id="grid"
@@ -356,20 +319,19 @@ const MyComponent = () => {
               <path
                 d="M 18 0 L 0 0 0 18"
                 fill="none"
-                stroke="#f9fafb"
+                className="stroke-gray-50 dark:stroke-gray-800"
                 strokeWidth="1"
               />
             </pattern>
           </defs>
           <rect width="180" height="180" fill="url(#grid)" />
 
-          {/* Axes */}
           <line
             x1="0"
             y1="180"
             x2="180"
             y2="180"
-            stroke="#e5e7eb"
+            className="stroke-gray-200 dark:stroke-gray-700"
             strokeWidth="2"
           />
           <line
@@ -377,11 +339,10 @@ const MyComponent = () => {
             y1="180"
             x2="0"
             y2="0"
-            stroke="#e5e7eb"
+            className="stroke-gray-200 dark:stroke-gray-700"
             strokeWidth="2"
           />
 
-          {/* Control lines */}
           <line
             x1="0"
             y1="180"
@@ -403,7 +364,6 @@ const MyComponent = () => {
             opacity="0.7"
           />
 
-          {/* Bezier curve */}
           <path
             d={`M 0 180 C ${x1 * 180} ${180 - y1 * 180} ${x2 * 180} ${
               180 - y2 * 180
@@ -414,20 +374,17 @@ const MyComponent = () => {
             strokeLinecap="round"
           />
 
-          {/* Control points */}
           <circle cx={x1 * 180} cy={180 - y1 * 180} r="3" fill="#f87171" />
           <circle cx={x2 * 180} cy={180 - y2 * 180} r="3" fill="#f87171" />
 
-          {/* Start and end points */}
           <circle cx="0" cy="180" r="3" fill="#3b82f6" />
           <circle cx="180" cy="0" r="3" fill="#3b82f6" />
 
-          {/* Coordinate labels */}
           <text
             x="8"
             y="174"
             fontSize="10"
-            fill="#9ca3af"
+            className="fill-gray-400"
             fontFamily="monospace"
           >
             0,1
@@ -436,7 +393,7 @@ const MyComponent = () => {
             x="155"
             y="12"
             fontSize="10"
-            fill="#9ca3af"
+            className="fill-gray-400"
             fontFamily="monospace"
           >
             1,0
@@ -449,24 +406,23 @@ const MyComponent = () => {
   const getIntensityColor = (intensity?: string) => {
     switch (intensity) {
       case "gentle":
-        return "bg-green-100 text-green-700 border-green-200";
+        return "bg-green-100 text-green-700 border-green-200 dark:bg-green-950 dark:text-green-300 dark:border-green-800";
       case "moderate":
-        return "bg-yellow-100 text-yellow-700 border-yellow-200";
+        return "bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-300 dark:border-yellow-800";
       case "strong":
-        return "bg-red-100 text-red-700 border-red-200";
+        return "bg-red-100 text-red-700 border-red-200 dark:bg-red-950 dark:text-red-300 dark:border-red-800";
       default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
+        return "bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700";
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 text-sm mb-4"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -478,16 +434,16 @@ const MyComponent = () => {
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Animation Easing Studio
                 </h1>
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
                   Interactive CSS timing functions with live preview
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 text-sm text-gray-500">
+            <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-1">
                 <TrendingUp className="h-4 w-4" />
                 <span>{animationCount} tests</span>
@@ -499,17 +455,17 @@ const MyComponent = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="grid grid-cols-12 gap-6">
-          {/* Easing Functions Sidebar */}
           <div className="col-span-12 lg:col-span-4 space-y-4">
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-medium text-gray-900">Easing Functions</h3>
-                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                  Easing Functions
+                </h3>
+                <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
                   {filteredEasings.length} functions
                 </span>
               </div>
 
-              {/* Category Filter */}
               <div className="flex flex-wrap gap-1 mb-4">
                 {categories.map((category) => (
                   <button
@@ -518,7 +474,7 @@ const MyComponent = () => {
                     className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
                       activeCategory === category
                         ? "bg-blue-600 text-white"
-                        : "bg-gray-100 text-gray-600"
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
                     }`}
                   >
                     {category}
@@ -526,22 +482,21 @@ const MyComponent = () => {
                 ))}
               </div>
 
-              {/* Easing List */}
               <div className="space-y-1 max-h-80 overflow-y-auto pr-1">
                 {filteredEasings.map((easing, index) => (
                   <div
                     key={index}
                     className={`group relative p-2 rounded-lg border transition-colors cursor-pointer ${
                       selectedEasing.name === easing.name
-                        ? "bg-blue-50 border-blue-200"
-                        : "bg-white border-gray-200"
+                        ? "bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
+                        : "bg-white dark:bg-black border-gray-200 dark:border-gray-800"
                     }`}
                     onClick={() => setSelectedEasing(easing)}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <div className="font-medium text-sm text-gray-900">
+                          <div className="font-medium text-sm text-gray-900 dark:text-gray-100">
                             {easing.name}
                           </div>
                           {easing.intensity && (
@@ -554,10 +509,10 @@ const MyComponent = () => {
                             </span>
                           )}
                         </div>
-                        <div className="text-xs text-gray-500 mt-1">
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                           {easing.description}
                         </div>
-                        <div className="text-xs font-mono text-gray-400 mt-1 truncate">
+                        <div className="text-xs font-mono text-gray-400 dark:text-gray-500 mt-1 truncate">
                           {easing.value}
                         </div>
                       </div>
@@ -567,13 +522,14 @@ const MyComponent = () => {
               </div>
             </div>
 
-            {/* Custom Easing */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
-              <h3 className="font-medium text-gray-900 mb-3">Custom Easing</h3>
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3">
+                Custom Easing
+              </h3>
 
               <div className="space-y-3">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Cubic Bezier Function
                   </label>
                   <input
@@ -581,7 +537,7 @@ const MyComponent = () => {
                     value={customEasing}
                     onChange={(e) => setCustomEasing(e.target.value)}
                     placeholder="cubic-bezier(0.25, 0.1, 0.25, 1)"
-                    className="w-full px-2 py-1.5 border border-gray-200 rounded text-xs font-mono focus:outline-none focus:border-blue-300"
+                    className="w-full px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded text-xs font-mono focus:outline-none focus:border-blue-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   />
                 </div>
 
@@ -597,16 +553,14 @@ const MyComponent = () => {
             </div>
           </div>
 
-          {/* Main Preview Area */}
           <div className="col-span-12 lg:col-span-8 space-y-4">
-            {/* Animation Demo */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="font-medium text-gray-900">
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100">
                     Animation Preview
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                     {selectedEasing.name} • {selectedEasing.description}
                   </p>
                 </div>
@@ -629,10 +583,9 @@ const MyComponent = () => {
                 </div>
               </div>
 
-              {/* Duration Controls */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-2">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Duration: {duration}ms
                   </label>
                   <input
@@ -642,11 +595,11 @@ const MyComponent = () => {
                     step="50"
                     value={duration}
                     onChange={(e) => setDuration(parseInt(e.target.value))}
-                    className="w-full h-1 bg-gray-200 rounded appearance-none"
+                    className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded appearance-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-2">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Quick Presets
                   </label>
                   <div className="flex gap-1">
@@ -656,8 +609,8 @@ const MyComponent = () => {
                         onClick={() => setDuration(preset.value)}
                         className={`px-2 py-1 text-xs rounded transition-colors ${
                           duration === preset.value
-                            ? "bg-blue-100 text-blue-700"
-                            : "bg-gray-100 text-gray-600"
+                            ? "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300"
+                            : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
                         }`}
                       >
                         {preset.label}
@@ -667,57 +620,51 @@ const MyComponent = () => {
                 </div>
               </div>
 
-              {/* Animation Track */}
-              <div className="bg-gray-50 p-6 rounded-lg border">
+              <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border dark:border-gray-800">
                 <div
                   ref={trackRef}
-                  className="relative h-16 bg-white rounded border overflow-hidden min-w-0"
+                  className="relative h-16 bg-white dark:bg-black rounded border dark:border-gray-800 overflow-hidden min-w-0"
                 >
-                  {/* Track */}
                   <div className="absolute inset-0 flex items-center px-6">
-                    <div className="w-full h-0.5 bg-gray-300"></div>
+                    <div className="w-full h-0.5 bg-gray-300 dark:bg-gray-700"></div>
                   </div>
 
-                  {/* Progress indicators */}
                   <div className="absolute left-6 top-1/2 transform -translate-y-1/2 w-1 h-4 bg-green-400 rounded-full"></div>
                   <div className="absolute right-6 top-1/2 transform -translate-y-1/2 w-1 h-4 bg-red-400 rounded-full"></div>
 
-                  {/* Animated Ball */}
                   <div className="absolute left-6 top-1/2 transform -translate-y-1/2">
                     <div
                       ref={ballRef}
-                      className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full shadow-md border-2 border-white"
+                      className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full shadow-md border-2 border-white dark:border-black"
                     ></div>
                   </div>
                 </div>
 
-                <div className="flex justify-between text-xs text-gray-500 mt-2 px-6">
+                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-2 px-6">
                   <span>Start (0%)</span>
                   <span className="font-mono">{selectedEasing.value}</span>
                   <span>End (100%)</span>
                 </div>
               </div>
 
-              {/* Animation Info */}
               {trackWidth > 0 && (
-                <div className="mt-4 text-xs text-gray-500 text-center">
+                <div className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
                   Animation distance: {trackWidth}px • Duration: {duration}ms
                 </div>
               )}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Bezier Curve */}
               {parseCubicBezier(selectedEasing.value) && (
-                <div className="bg-white rounded-lg border border-gray-200 p-4">
-                  <h3 className="font-medium text-gray-900 mb-3">
+                <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4">
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3">
                     Timing Curve
                   </h3>
                   <div className="flex justify-center">
                     {drawBezierCurve(selectedEasing.value)}
                   </div>
                   <div className="mt-3 text-center">
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       Visual representation of animation timing
                     </div>
                   </div>
@@ -725,19 +672,20 @@ const MyComponent = () => {
               )}
             </div>
 
-            {/* Code Output */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <Code2 className="h-4 w-4 text-gray-600" />
-                  <h3 className="font-medium text-gray-900">Generated Code</h3>
+                  <Code2 className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                    Generated Code
+                  </h3>
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() =>
                       copyToClipboard(generateCSS(selectedEasing.value), "CSS")
                     }
-                    className="flex items-center gap-1 px-2 py-1 bg-gray-100 border border-gray-200 rounded text-xs"
+                    className="flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-xs text-gray-700 dark:text-gray-300"
                   >
                     {copiedText === "CSS" ? (
                       <Check className="h-3 w-3 text-green-600" />
@@ -758,19 +706,20 @@ const MyComponent = () => {
           </div>
         </div>
 
-        {/* Enhanced Features Section */}
-        <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-6">
+        <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-lg border border-blue-200 dark:border-blue-800 p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Palette className="h-5 w-5 text-blue-600" />
-            <h3 className="font-medium text-gray-900">Enhanced Features</h3>
+            <Palette className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <h3 className="font-medium text-gray-900 dark:text-gray-100">
+              Enhanced Features
+            </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
                 Interactive Testing
               </h4>
-              <ul className="text-gray-600 space-y-1">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• Real-time animation preview</li>
                 <li>• Adjustable duration controls</li>
                 <li>• Quick preset durations</li>
@@ -778,10 +727,10 @@ const MyComponent = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
                 Advanced Visualization
               </h4>
-              <ul className="text-gray-600 space-y-1">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• Bezier curve visualization</li>
                 <li>• Intensity indicators</li>
                 <li>• Category organization</li>
@@ -789,10 +738,10 @@ const MyComponent = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
                 Code Generation
               </h4>
-              <ul className="text-gray-600 space-y-1">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• CSS transitions & keyframes</li>
                 <li>• Custom cubic-bezier testing</li>
                 <li>• Copy-ready code snippets</li>

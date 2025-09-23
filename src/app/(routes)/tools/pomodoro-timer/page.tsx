@@ -90,6 +90,9 @@ export default function PomodoroTimer() {
 
   const handleTimerComplete = () => {
     setIsActive(false);
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
 
     if (mode === "work") {
       const newCompleted = completedPomodoros + 1;
@@ -185,23 +188,23 @@ export default function PomodoroTimer() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link
             href="/tools"
-            className="flex items-center gap-2 text-gray-500 text-sm"
+            className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back
           </Link>
-          <h1 className="text-xl font-medium text-gray-800">Pomodoro Timer</h1>
+          <h1 className="text-xl font-medium text-gray-800 dark:text-gray-200">
+            Pomodoro Timer
+          </h1>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-10 space-y-10">
-        {/* Timer */}
         <section className="text-center">
           <div className="relative inline-block">
             <svg className="w-72 h-72 -rotate-90" viewBox="0 0 120 120">
@@ -210,7 +213,7 @@ export default function PomodoroTimer() {
                 cy="60"
                 r="54"
                 fill="none"
-                stroke="#e5e7eb"
+                className="stroke-gray-200 dark:stroke-gray-700"
                 strokeWidth="8"
               />
               <circle
@@ -264,16 +267,15 @@ export default function PomodoroTimer() {
                   ? "Short Break"
                   : "Long Break"}
               </div>
-              <div className="text-5xl font-light text-gray-900 my-3">
+              <div className="text-5xl font-light text-gray-900 dark:text-gray-100 my-3">
                 {formatTime(timeLeft)}
               </div>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Session {completedPomodoros + 1}
               </p>
             </div>
           </div>
         </section>
-        {/* Controls */}
         <section className="flex justify-center gap-3">
           <button
             onClick={toggleTimer}
@@ -288,27 +290,26 @@ export default function PomodoroTimer() {
           </button>
           <button
             onClick={resetTimer}
-            className="flex items-center gap-2 px-5 py-3 bg-gray-600 text-white rounded-xl text-sm"
+            className="flex items-center gap-2 px-5 py-3 bg-gray-600 dark:bg-gray-700 text-white rounded-xl text-sm"
           >
             <RotateCcw className="h-4 w-4" />
             Reset
           </button>
           <button
             onClick={() => setShowSettings(!showSettings)}
-            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-700"
+            className="flex items-center gap-2 px-5 py-3 bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-xl text-sm text-gray-700 dark:text-gray-300"
           >
             <Settings className="h-4 w-4" />
             Settings
           </button>
         </section>
-        {/* Mode Switcher */}
         <section className="flex justify-center gap-2">
           <button
             onClick={() => switchMode("work")}
             className={`px-4 py-2 rounded-lg text-sm ${
               mode === "work"
-                ? "bg-red-100 text-red-700 border border-red-200"
-                : "bg-gray-100 text-gray-600"
+                ? "bg-red-100 text-red-700 border border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
             }`}
           >
             Work ({settings.workDuration}m)
@@ -317,8 +318,8 @@ export default function PomodoroTimer() {
             onClick={() => switchMode("shortBreak")}
             className={`px-4 py-2 rounded-lg text-sm ${
               mode === "shortBreak"
-                ? "bg-green-100 text-green-700 border border-green-200"
-                : "bg-gray-100 text-gray-600"
+                ? "bg-green-100 text-green-700 border border-green-200 dark:bg-green-950 dark:text-green-400 dark:border-green-800"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
             }`}
           >
             Short Break ({settings.shortBreakDuration}m)
@@ -327,51 +328,57 @@ export default function PomodoroTimer() {
             onClick={() => switchMode("longBreak")}
             className={`px-4 py-2 rounded-lg text-sm ${
               mode === "longBreak"
-                ? "bg-blue-100 text-blue-700 border border-blue-200"
-                : "bg-gray-100 text-gray-600"
+                ? "bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-950 dark:text-blue-400 dark:border-blue-800"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
             }`}
           >
             Long Break ({settings.longBreakDuration}m)
           </button>
         </section>
-        {/* Stats */}
-        <section className="bg-white border border-gray-200 rounded-xl p-6">
-          <h3 className="text-base font-medium text-gray-800 mb-4 text-center">
+        <section className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+          <h3 className="text-base font-medium text-gray-800 dark:text-gray-200 mb-4 text-center">
             Today&apos;s Progress
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div>
-              <p className="text-2xl font-light text-red-600">
+              <p className="text-2xl font-light text-red-600 dark:text-red-400">
                 {completedPomodoros}
               </p>
-              <p className="text-xs text-gray-600">Completed Pomodoros</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Completed Pomodoros
+              </p>
             </div>
             <div>
-              <p className="text-2xl font-light text-green-600">
+              <p className="text-2xl font-light text-green-600 dark:text-green-400">
                 {Math.floor(completedPomodoros / settings.longBreakInterval)}
               </p>
-              <p className="text-xs text-gray-600">Long Breaks Earned</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Long Breaks Earned
+              </p>
             </div>
             <div>
-              <p className="text-2xl font-light text-blue-600">
+              <p className="text-2xl font-light text-blue-600 dark:text-blue-400">
                 {Math.round(
                   ((completedPomodoros * settings.workDuration) / 60) * 10
                 ) / 10}
                 h
               </p>
-              <p className="text-xs text-gray-600">Focus Time</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Focus Time
+              </p>
             </div>
           </div>
         </section>
-        {/* Settings */}
         {showSettings && (
-          <section className="bg-white border border-gray-200 rounded-xl p-6 space-y-6">
-            <h3 className="text-base font-medium text-gray-800">Settings</h3>
+          <section className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-6 space-y-6">
+            <h3 className="text-base font-medium text-gray-800 dark:text-gray-200">
+              Settings
+            </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Work Duration: {settings.workDuration} min
                   </label>
                   <input
@@ -389,7 +396,7 @@ export default function PomodoroTimer() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Short Break: {settings.shortBreakDuration} min
                   </label>
                   <input
@@ -407,7 +414,7 @@ export default function PomodoroTimer() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Long Break: {settings.longBreakDuration} min
                   </label>
                   <input
@@ -425,7 +432,7 @@ export default function PomodoroTimer() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Long Break Interval: Every {settings.longBreakInterval}{" "}
                     pomodoros
                   </label>
@@ -446,7 +453,7 @@ export default function PomodoroTimer() {
               </div>
 
               <div className="space-y-4">
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                   <input
                     type="checkbox"
                     checked={settings.autoStartBreaks}
@@ -460,7 +467,7 @@ export default function PomodoroTimer() {
                   Auto-start breaks
                 </label>
 
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                   <input
                     type="checkbox"
                     checked={settings.autoStartWork}
@@ -478,7 +485,7 @@ export default function PomodoroTimer() {
                   onClick={() => {
                     setCompletedPomodoros(0);
                   }}
-                  className="px-4 py-2 bg-red-500 text-white text-xs rounded-lg"
+                  className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-xs rounded-lg"
                 >
                   Reset Statistics
                 </button>
@@ -486,43 +493,54 @@ export default function PomodoroTimer() {
             </div>
           </section>
         )}
-        {/* Features */}{" "}
-        <div className="mt-12 bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-8">
-          {" "}
-          <h3 className="text-lg font-medium text-gray-900 mb-4">
+        <div className="mt-12 bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950 dark:to-pink-950 rounded-2xl p-8">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
             Features
-          </h3>{" "}
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {" "}
             <div>
-              {" "}
-              <h4 className="font-medium text-gray-800 mb-2">
-                {" "}
-                Customizable Timer{" "}
-              </h4>{" "}
-              <ul className="text-sm text-gray-600 space-y-1">
-                {" "}
-                <li>• Adjustable work and break durations</li>{" "}
-                <li>• Visual progress ring with smooth animations</li>{" "}
-                <li>• Auto-start options for seamless workflow</li>{" "}
-              </ul>{" "}
-            </div>{" "}
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
+                Customizable Timer
+              </h4>
+              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Adjustable work and break durations</li>
+                <li>• Visual progress ring with smooth animations</li>
+                <li>• Auto-start options for seamless workflow</li>
+              </ul>
+            </div>
             <div>
-              {" "}
-              <h4 className="font-medium text-gray-800 mb-2">
-                {" "}
-                Progress Tracking{" "}
-              </h4>{" "}
-              <ul className="text-sm text-gray-600 space-y-1">
-                {" "}
-                <li>• Daily pomodoro completion tracking</li>{" "}
-                <li>• Focus time calculation and statistics</li>{" "}
-                <li>• Persistent settings and progress storage</li>{" "}
-              </ul>{" "}
-            </div>{" "}
-          </div>{" "}
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
+                Progress Tracking
+              </h4>
+              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Daily pomodoro completion tracking</li>
+                <li>• Focus time calculation and statistics</li>
+                <li>• Persistent settings and progress storage</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </main>
+      <style jsx>{`
+        .stop-red-500 {
+          stop-color: #ef4444;
+        }
+        .stop-pink-500 {
+          stop-color: #ec4899;
+        }
+        .stop-green-500 {
+          stop-color: #22c55e;
+        }
+        .stop-emerald-500 {
+          stop-color: #10b981;
+        }
+        .stop-blue-500 {
+          stop-color: #3b82f6;
+        }
+        .stop-cyan-500 {
+          stop-color: #06b6d4;
+        }
+      `}</style>
     </div>
   );
 }

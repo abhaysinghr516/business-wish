@@ -12,7 +12,6 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { toast } from "react-toastify";
 
 interface Shadow {
   id: string;
@@ -29,17 +28,17 @@ export default function BoxShadowGenerator() {
   const [shadows, setShadows] = useState<Shadow[]>([
     {
       id: "1",
-      x: 0,
-      y: 4,
-      blur: 6,
-      spread: -1,
-      color: "#000000",
+      x: 6,
+      y: 6,
+      blur: 20,
+      spread: 10,
+      color: "#ff0000",
       inset: false,
       opacity: 25,
     },
   ]);
   const [copiedText, setCopiedText] = useState("");
-  const [expandedShadow, setExpandedShadow] = useState<string | null>(null);
+  const [expandedShadow, setExpandedShadow] = useState<string | null>("1");
 
   const addShadow = () => {
     const newShadow: Shadow = {
@@ -98,7 +97,10 @@ export default function BoxShadowGenerator() {
       };
       const colorWithOpacity = hexToRgba(color, opacity);
       const insetStr = inset ? "inset_" : "";
-      return `${insetStr}${x}px_${y}px_${blur}px_${spread}px_${colorWithOpacity}`;
+      return `${insetStr}${x}px_${y}px_${blur}px_${spread}px_${colorWithOpacity.replace(
+        /\s/g,
+        ""
+      )}`;
     });
 
     return `shadow-[${shadowStrings.join(",")}]`;
@@ -108,21 +110,19 @@ export default function BoxShadowGenerator() {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedText(label);
-      toast.success(`Copied ${label}`);
       setTimeout(() => setCopiedText(""), 2000);
     } catch {
-      toast.error("Failed to copy");
+      // handle error
     }
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 text-sm"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -133,10 +133,10 @@ export default function BoxShadowGenerator() {
               <Zap className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 CSS Box Shadow Generator
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Create layered, customizable box shadows with live preview
               </p>
             </div>
@@ -145,15 +145,14 @@ export default function BoxShadowGenerator() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
-        {/* Controls */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-medium text-gray-900">
+            <h2 className="font-medium text-gray-900 dark:text-gray-100">
               Shadows ({shadows.length})
             </h2>
             <button
               onClick={addShadow}
-              className="flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white text-sm rounded-md"
+              className="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white text-sm rounded-md"
             >
               <Plus className="h-4 w-4" />
               Add Shadow
@@ -163,9 +162,8 @@ export default function BoxShadowGenerator() {
           {shadows.map((shadow, index) => (
             <div
               key={shadow.id}
-              className="bg-gray-50 rounded-xl border border-gray-200"
+              className="bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800"
             >
-              {/* Header */}
               <div
                 className="flex items-center justify-between px-4 py-3 cursor-pointer"
                 onClick={() =>
@@ -174,7 +172,7 @@ export default function BoxShadowGenerator() {
                   )
                 }
               >
-                <h3 className="text-sm font-medium text-gray-800">
+                <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200">
                   Shadow {index + 1}
                 </h3>
                 <div className="flex items-center gap-3">
@@ -184,23 +182,22 @@ export default function BoxShadowGenerator() {
                         e.stopPropagation();
                         removeShadow(shadow.id);
                       }}
-                      className="text-red-500"
+                      className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
                   )}
                   {expandedShadow === shadow.id ? (
-                    <ChevronUp className="h-4 w-4 text-gray-500" />
+                    <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                   ) : (
-                    <ChevronDown className="h-4 w-4 text-gray-500" />
+                    <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                   )}
                 </div>
               </div>
 
-              {/* Expanded Controls */}
               {expandedShadow === shadow.id && (
-                <div className="px-4 pb-4 space-y-4 text-sm">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="px-4 pb-4 space-y-4 text-sm border-t border-gray-200 dark:border-gray-800">
+                  <div className="grid grid-cols-2 gap-4 pt-4">
                     {[
                       { key: "x", label: "X Offset", min: -50, max: 50 },
                       { key: "y", label: "Y Offset", min: -50, max: 50 },
@@ -209,7 +206,7 @@ export default function BoxShadowGenerator() {
                       { key: "opacity", label: "Opacity", min: 0, max: 100 },
                     ].map(({ key, label, min, max }) => (
                       <div key={key}>
-                        <label className="block mb-1 text-gray-700">
+                        <label className="block mb-1 text-gray-700 dark:text-gray-300">
                           {label}: {shadow[key as keyof Shadow]}px
                         </label>
                         <input
@@ -228,7 +225,6 @@ export default function BoxShadowGenerator() {
                     ))}
                   </div>
 
-                  {/* Color + Inset */}
                   <div className="flex items-center gap-3">
                     <input
                       type="color"
@@ -236,7 +232,7 @@ export default function BoxShadowGenerator() {
                       onChange={(e) =>
                         updateShadow(shadow.id, { color: e.target.value })
                       }
-                      className="w-10 h-10 rounded border border-gray-200"
+                      className="w-10 h-10 rounded border border-gray-200 dark:border-gray-700"
                     />
                     <input
                       type="text"
@@ -244,9 +240,9 @@ export default function BoxShadowGenerator() {
                       onChange={(e) =>
                         updateShadow(shadow.id, { color: e.target.value })
                       }
-                      className="flex-1 px-2 py-1 border border-gray-200 rounded font-mono"
+                      className="flex-1 px-2 py-1 border border-gray-200 dark:border-gray-700 rounded font-mono bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
-                    <label className="flex items-center gap-2 text-gray-700">
+                    <label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                       <input
                         type="checkbox"
                         checked={shadow.inset}
@@ -263,26 +259,27 @@ export default function BoxShadowGenerator() {
           ))}
         </div>
 
-        {/* Preview & Code */}
         <div className="space-y-6">
-          {/* Preview */}
-          <div className="bg-gray-50 rounded-xl p-8">
-            <h3 className="font-medium text-gray-900 mb-4">Preview</h3>
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-8">
+            <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-4">
+              Preview
+            </h3>
             <div className="flex items-center justify-center min-h-[220px]">
               <div
-                className="w-56 h-40 bg-white rounded-lg flex items-center justify-center"
+                className="w-56 h-40 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center"
                 style={{
                   boxShadow: generateCSS()
                     .replace("box-shadow: ", "")
                     .replace(";", ""),
                 }}
               >
-                <span className="text-gray-600 text-sm">Preview Box</span>
+                <span className="text-gray-600 dark:text-gray-400 text-sm">
+                  Preview Box
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Code Blocks */}
           {[
             { label: "CSS Code", code: generateCSS() },
             {
@@ -292,18 +289,18 @@ export default function BoxShadowGenerator() {
           ].map((block) => (
             <div
               key={block.label}
-              className="bg-white border border-gray-200 rounded-xl overflow-hidden"
+              className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden"
             >
-              <div className="px-4 py-2 flex items-center justify-between border-b border-gray-100">
-                <h4 className="font-medium text-gray-900 text-sm">
+              <div className="px-4 py-2 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                   {block.label}
                 </h4>
                 <button
                   onClick={() => copyToClipboard(block.code, block.label)}
-                  className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 rounded-md"
+                  className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md"
                 >
                   {copiedText === block.label ? (
-                    <Check className="h-3 w-3 text-green-600" />
+                    <Check className="h-3 w-3 text-green-600 dark:text-green-500" />
                   ) : (
                     <Copy className="h-3 w-3" />
                   )}

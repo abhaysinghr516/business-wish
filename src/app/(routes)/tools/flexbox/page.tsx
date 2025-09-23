@@ -14,7 +14,6 @@ import {
   Code,
   Palette,
 } from "lucide-react";
-import { toast } from "react-toastify";
 
 interface FlexConfig {
   direction: "row" | "row-reverse" | "column" | "column-reverse";
@@ -157,10 +156,9 @@ export default function FlexboxGenerator() {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedText(label);
-      toast.success(`Copied ${label}`);
       setTimeout(() => setCopiedText(""), 2000);
     } catch (err) {
-      toast.error("Failed to copy");
+      // toast.error("Failed to copy"); // Removed toast dependency as per instructions
     }
   };
 
@@ -177,6 +175,14 @@ export default function FlexboxGenerator() {
     setContainerHeight(200);
     setSelectedItem(null);
     setShowItemControls(false);
+    setItemConfigs(
+      Array.from({ length: 8 }, () => ({
+        flexGrow: 0,
+        flexShrink: 1,
+        flexBasis: "auto",
+        alignSelf: "auto",
+      }))
+    );
   };
 
   const loadPreset = (
@@ -243,13 +249,12 @@ export default function FlexboxGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-600 text-sm mb-2 transition-colors"
+            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm mb-2 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -261,10 +266,10 @@ export default function FlexboxGenerator() {
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Flexbox Generator
                 </h1>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Create responsive flexbox layouts with live preview and
                   advanced controls
                 </p>
@@ -272,7 +277,7 @@ export default function FlexboxGenerator() {
             </div>
             <button
               onClick={resetConfig}
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-lg transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               <RotateCcw className="h-4 w-4" />
               Reset
@@ -283,11 +288,9 @@ export default function FlexboxGenerator() {
 
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          {/* Controls Sidebar */}
           <div className="xl:col-span-1 space-y-4">
-            {/* Presets */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-              <h3 className="font-medium text-gray-900 mb-3 text-sm">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 shadow-sm">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                 Quick Presets
               </h3>
               <div className="grid grid-cols-2 gap-2">
@@ -302,7 +305,7 @@ export default function FlexboxGenerator() {
                   <button
                     key={preset.key}
                     onClick={() => loadPreset(preset.key as any)}
-                    className="px-2 py-1.5 bg-gray-50 border border-gray-200 rounded-md text-xs font-medium transition-colors"
+                    className="px-2 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-xs font-medium transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     {preset.label}
                   </button>
@@ -310,17 +313,15 @@ export default function FlexboxGenerator() {
               </div>
             </div>
 
-            {/* Container Properties */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-              <h3 className="font-medium text-gray-900 mb-3 text-sm">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 shadow-sm">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                 Container Properties
               </h3>
 
               <div className="space-y-3">
                 <div className="grid grid-cols-2 gap-3">
-                  {/* Direction */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Direction
                     </label>
                     <select
@@ -328,7 +329,7 @@ export default function FlexboxGenerator() {
                       onChange={(e) =>
                         updateConfig("direction", e.target.value)
                       }
-                      className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs bg-white"
+                      className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     >
                       <option value="row">Row</option>
                       <option value="row-reverse">Row Reverse</option>
@@ -337,15 +338,14 @@ export default function FlexboxGenerator() {
                     </select>
                   </div>
 
-                  {/* Wrap */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Wrap
                     </label>
                     <select
                       value={config.wrap}
                       onChange={(e) => updateConfig("wrap", e.target.value)}
-                      className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs bg-white"
+                      className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     >
                       <option value="nowrap">No Wrap</option>
                       <option value="wrap">Wrap</option>
@@ -354,9 +354,8 @@ export default function FlexboxGenerator() {
                   </div>
                 </div>
 
-                {/* Justify Content */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Justify Content
                   </label>
                   <select
@@ -364,7 +363,7 @@ export default function FlexboxGenerator() {
                     onChange={(e) =>
                       updateConfig("justifyContent", e.target.value)
                     }
-                    className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs bg-white"
+                    className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   >
                     <option value="flex-start">Flex Start</option>
                     <option value="flex-end">Flex End</option>
@@ -375,15 +374,14 @@ export default function FlexboxGenerator() {
                   </select>
                 </div>
 
-                {/* Align Items */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Align Items
                   </label>
                   <select
                     value={config.alignItems}
                     onChange={(e) => updateConfig("alignItems", e.target.value)}
-                    className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs bg-white"
+                    className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   >
                     <option value="stretch">Stretch</option>
                     <option value="flex-start">Flex Start</option>
@@ -393,10 +391,9 @@ export default function FlexboxGenerator() {
                   </select>
                 </div>
 
-                {/* Align Content */}
                 {config.wrap !== "nowrap" && (
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Align Content
                     </label>
                     <select
@@ -404,7 +401,7 @@ export default function FlexboxGenerator() {
                       onChange={(e) =>
                         updateConfig("alignContent", e.target.value)
                       }
-                      className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs bg-white"
+                      className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     >
                       <option value="stretch">Stretch</option>
                       <option value="flex-start">Flex Start</option>
@@ -416,13 +413,12 @@ export default function FlexboxGenerator() {
                   </div>
                 )}
 
-                {/* Gap */}
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="text-xs font-medium text-gray-700">
+                    <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                       Gap
                     </label>
-                    <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                       {config.gap}px
                     </span>
                   </div>
@@ -435,17 +431,16 @@ export default function FlexboxGenerator() {
                     onChange={(e) =>
                       updateConfig("gap", Number(e.target.value))
                     }
-                    className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
                 </div>
 
-                {/* Container Height */}
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="text-xs font-medium text-gray-700">
+                    <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                       Container Height
                     </label>
-                    <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                       {containerHeight}px
                     </span>
                   </div>
@@ -456,29 +451,28 @@ export default function FlexboxGenerator() {
                     step="20"
                     value={containerHeight}
                     onChange={(e) => setContainerHeight(Number(e.target.value))}
-                    className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
                 </div>
 
-                {/* Item Count */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs font-medium text-gray-700">
+                    <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                       Items
                     </label>
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => setItemCount(Math.max(1, itemCount - 1))}
-                        className="p-1 bg-gray-100 rounded transition-colors"
+                        className="p-1 bg-gray-100 dark:bg-gray-800 rounded transition-colors dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                       >
                         <Minus className="h-3 w-3" />
                       </button>
-                      <span className="text-xs font-medium text-gray-700 w-6 text-center">
+                      <span className="text-xs font-medium text-gray-700 dark:text-gray-300 w-6 text-center">
                         {itemCount}
                       </span>
                       <button
                         onClick={() => setItemCount(Math.min(8, itemCount + 1))}
-                        className="p-1 bg-gray-100 rounded transition-colors"
+                        className="p-1 bg-gray-100 dark:bg-gray-800 rounded transition-colors dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                       >
                         <Plus className="h-3 w-3" />
                       </button>
@@ -488,14 +482,13 @@ export default function FlexboxGenerator() {
               </div>
             </div>
 
-            {/* Item Controls Toggle */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 shadow-sm">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                     Item Controls
                   </h3>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
                     Configure individual flex items
                   </p>
                 </div>
@@ -503,8 +496,8 @@ export default function FlexboxGenerator() {
                   onClick={() => setShowItemControls(!showItemControls)}
                   className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
                     showItemControls
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-gray-100 text-gray-700"
+                      ? "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300"
+                      : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
                   }`}
                 >
                   {showItemControls ? "Hide" : "Show"}
@@ -512,13 +505,13 @@ export default function FlexboxGenerator() {
               </div>
 
               {showItemControls && selectedItem !== null && (
-                <div className="mt-3 pt-3 border-t border-gray-200 space-y-2">
-                  <h4 className="text-xs font-medium text-gray-700">
+                <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-800 space-y-2">
+                  <h4 className="text-xs font-medium text-gray-700 dark:text-gray-300">
                     Item {selectedItem + 1}
                   </h4>
 
                   <div>
-                    <label className="block text-xs text-gray-600 mb-1">
+                    <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                       Flex Grow
                     </label>
                     <input
@@ -533,12 +526,12 @@ export default function FlexboxGenerator() {
                           Number(e.target.value)
                         )
                       }
-                      className="w-full px-2 py-1 border border-gray-300 rounded text-xs"
+                      className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs text-gray-600 mb-1">
+                    <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                       Flex Shrink
                     </label>
                     <input
@@ -553,12 +546,12 @@ export default function FlexboxGenerator() {
                           Number(e.target.value)
                         )
                       }
-                      className="w-full px-2 py-1 border border-gray-300 rounded text-xs"
+                      className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs text-gray-600 mb-1">
+                    <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                       Align Self
                     </label>
                     <select
@@ -570,7 +563,7 @@ export default function FlexboxGenerator() {
                           e.target.value
                         )
                       }
-                      className="w-full px-2 py-1 border border-gray-300 rounded text-xs bg-white"
+                      className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     >
                       <option value="auto">Auto</option>
                       <option value="stretch">Stretch</option>
@@ -585,11 +578,9 @@ export default function FlexboxGenerator() {
             </div>
           </div>
 
-          {/* Main Content */}
           <div className="xl:col-span-2 space-y-4">
-            {/* Tabs */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-              <div className="border-b border-gray-200 px-4 py-2">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+              <div className="border-b border-gray-200 dark:border-gray-800 px-4 py-2">
                 <div className="flex items-center gap-1">
                   {[
                     { key: "preview", label: "Preview", icon: Eye },
@@ -603,8 +594,8 @@ export default function FlexboxGenerator() {
                         onClick={() => setActiveTab(tab.key as any)}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                           activeTab === tab.key
-                            ? "bg-blue-100 text-blue-700"
-                            : "text-gray-600"
+                            ? "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300"
+                            : "text-gray-600 dark:text-gray-400"
                         }`}
                       >
                         <Icon className="h-3.5 w-3.5" />
@@ -615,11 +606,10 @@ export default function FlexboxGenerator() {
                 </div>
               </div>
 
-              {/* Preview Tab */}
               {activeTab === "preview" && (
                 <div className="p-4">
                   <div
-                    className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-3 overflow-auto"
+                    className="bg-gray-50 dark:bg-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-3 overflow-auto"
                     style={{
                       display: "flex",
                       flexDirection: config.direction,
@@ -641,7 +631,7 @@ export default function FlexboxGenerator() {
                           }
                           className={`bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg p-2 text-white text-xs font-medium text-center cursor-pointer min-w-12 transition-all ${
                             selectedItem === i
-                              ? "ring-2 ring-blue-500 ring-offset-2 shadow-lg"
+                              ? "ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-950 shadow-lg"
                               : "shadow-sm"
                           }`}
                           style={{
@@ -674,26 +664,25 @@ export default function FlexboxGenerator() {
                     })}
                   </div>
                   {showItemControls && (
-                    <p className="text-xs text-gray-600 mt-2">
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
                       Click on items to configure their individual properties
                     </p>
                   )}
                 </div>
               )}
 
-              {/* CSS Tab */}
               {activeTab === "css" && (
                 <div>
-                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-900">
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       CSS Code
                     </h3>
                     <button
                       onClick={() => copyToClipboard(generateCSS(), "CSS code")}
-                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 rounded-md text-xs font-medium transition-colors"
+                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-xs font-medium transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                     >
                       {copiedText === "CSS code" ? (
-                        <Check className="h-3 w-3 text-green-600" />
+                        <Check className="h-3 w-3 text-green-600 dark:text-green-500" />
                       ) : (
                         <Copy className="h-3 w-3" />
                       )}
@@ -708,21 +697,20 @@ export default function FlexboxGenerator() {
                 </div>
               )}
 
-              {/* Tailwind Tab */}
               {activeTab === "tailwind" && (
                 <div>
-                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-900">
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       Tailwind CSS
                     </h3>
                     <button
                       onClick={() =>
                         copyToClipboard(generateTailwindCSS(), "Tailwind CSS")
                       }
-                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 rounded-md text-xs font-medium transition-colors"
+                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-xs font-medium transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                     >
                       {copiedText === "Tailwind CSS" ? (
-                        <Check className="h-3 w-3 text-green-600" />
+                        <Check className="h-3 w-3 text-green-600 dark:text-green-500" />
                       ) : (
                         <Copy className="h-3 w-3" />
                       )}
@@ -738,15 +726,14 @@ export default function FlexboxGenerator() {
               )}
             </div>
 
-            {/* Quick Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
               <div className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5 flex-shrink-0"></div>
+                <div className="w-1.5 h-1.5 bg-blue-400 dark:bg-blue-600 rounded-full mt-1.5 flex-shrink-0"></div>
                 <div>
-                  <h4 className="text-xs font-medium text-blue-900">
+                  <h4 className="text-xs font-medium text-blue-900 dark:text-blue-200">
                     Current Layout
                   </h4>
-                  <p className="text-xs text-blue-800 mt-0.5">
+                  <p className="text-xs text-blue-800 dark:text-blue-300 mt-0.5">
                     {config.direction} • {config.wrap} • justify-
                     {config.justifyContent} • items-{config.alignItems}
                     {config.gap > 0 && ` • gap ${config.gap}px`}

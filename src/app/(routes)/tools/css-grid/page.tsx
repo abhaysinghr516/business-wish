@@ -408,13 +408,12 @@ ${html}
   const selectedItemData = gridItems.find((item) => item.id === selectedItem);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-600 text-sm mb-2 transition-colors"
+            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm mb-2 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -426,10 +425,10 @@ ${html}
                 <Grid3X3 className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   CSS Grid Generator
                 </h1>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Create responsive grid layouts with advanced controls and
                   templates
                 </p>
@@ -440,8 +439,8 @@ ${html}
                 onClick={() => setShowTemplates(!showTemplates)}
                 className={`flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg transition-colors ${
                   showTemplates
-                    ? "bg-indigo-100 text-indigo-700"
-                    : "text-gray-600 bg-gray-100"
+                    ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"
+                    : "text-gray-600 bg-gray-100 dark:text-gray-300 dark:bg-gray-800"
                 }`}
               >
                 <Layout className="h-4 w-4" />
@@ -449,7 +448,7 @@ ${html}
               </button>
               <button
                 onClick={resetGrid}
-                className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-lg transition-colors dark:text-gray-300 dark:bg-gray-800"
               >
                 <RotateCcw className="h-4 w-4" />
                 Reset
@@ -460,10 +459,9 @@ ${html}
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
-        {/* Templates */}
         {showTemplates && (
-          <div className="mb-6 bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-            <h3 className="font-medium text-gray-900 mb-3 text-sm">
+          <div className="mb-6 bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 shadow-sm">
+            <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
               Quick Templates
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -471,12 +469,12 @@ ${html}
                 <button
                   key={template.name}
                   onClick={() => loadTemplate(template)}
-                  className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-left transition-colors"
+                  className="p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
-                  <h4 className="font-medium text-gray-900 text-sm">
+                  <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                     {template.name}
                   </h4>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                     {template.rows}×{template.columns} • {template.items.length}{" "}
                     items
                   </p>
@@ -487,25 +485,24 @@ ${html}
         )}
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          {/* Controls */}
           <div className="xl:col-span-1 space-y-4">
-            {/* Grid Settings */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-              <h3 className="font-medium text-gray-900 mb-3 text-sm">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 shadow-sm">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                 Grid Settings
               </h3>
 
               <div className="space-y-3">
-                {/* Auto-fill Toggle */}
                 <div className="flex items-center justify-between">
                   <label className="flex items-center gap-2 text-sm">
                     <input
                       type="checkbox"
                       checked={autoFill}
                       onChange={(e) => setAutoFill(e.target.checked)}
-                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="rounded border-gray-300 dark:border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-gray-100 dark:bg-gray-900"
                     />
-                    <span className="text-gray-700">Auto-fit columns</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Auto-fit columns
+                    </span>
                   </label>
                   <Zap className="h-4 w-4 text-indigo-500" />
                 </div>
@@ -513,10 +510,10 @@ ${html}
                 {autoFill ? (
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-xs font-medium text-gray-700">
+                      <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                         Min Item Size
                       </label>
-                      <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                         {minItemSize}px
                       </span>
                     </div>
@@ -527,24 +524,24 @@ ${html}
                       step="20"
                       value={minItemSize}
                       onChange={(e) => setMinItemSize(parseInt(e.target.value))}
-                      className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                      className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                     />
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <label className="text-xs font-medium text-gray-700">
+                        <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                           Columns
                         </label>
-                        <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                        <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                           {columns}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setColumns(Math.max(1, columns - 1))}
-                          className="p-1 bg-gray-100 border border-gray-200 rounded"
+                          className="p-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-700 dark:text-gray-300"
                         >
                           <Minus className="h-3 w-3" />
                         </button>
@@ -554,11 +551,11 @@ ${html}
                           max="12"
                           value={columns}
                           onChange={(e) => setColumns(parseInt(e.target.value))}
-                          className="flex-1 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                          className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                         />
                         <button
                           onClick={() => setColumns(Math.min(12, columns + 1))}
-                          className="p-1 bg-gray-100 border border-gray-200 rounded"
+                          className="p-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-700 dark:text-gray-300"
                         >
                           <Plus className="h-3 w-3" />
                         </button>
@@ -567,17 +564,17 @@ ${html}
 
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <label className="text-xs font-medium text-gray-700">
+                        <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                           Rows
                         </label>
-                        <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                        <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                           {rows}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setRows(Math.max(1, rows - 1))}
-                          className="p-1 bg-gray-100 border border-gray-200 rounded"
+                          className="p-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-700 dark:text-gray-300"
                         >
                           <Minus className="h-3 w-3" />
                         </button>
@@ -587,11 +584,11 @@ ${html}
                           max="12"
                           value={rows}
                           onChange={(e) => setRows(parseInt(e.target.value))}
-                          className="flex-1 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                          className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                         />
                         <button
                           onClick={() => setRows(Math.min(12, rows + 1))}
-                          className="p-1 bg-gray-100 border border-gray-200 rounded"
+                          className="p-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded text-gray-700 dark:text-gray-300"
                         >
                           <Plus className="h-3 w-3" />
                         </button>
@@ -600,9 +597,8 @@ ${html}
                   </div>
                 )}
 
-                {/* Grid Unit */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Grid Unit
                   </label>
                   <select
@@ -610,7 +606,7 @@ ${html}
                     onChange={(e) =>
                       setGridUnit(e.target.value as "fr" | "px" | "%")
                     }
-                    className="w-full px-2 py-1 border border-gray-300 rounded-md text-xs bg-white"
+                    className="w-full px-2 py-1 border border-gray-300 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   >
                     <option value="fr">Fractional (fr)</option>
                     <option value="px">Pixels (px)</option>
@@ -618,26 +614,27 @@ ${html}
                   </select>
                 </div>
 
-                {/* Gap Controls */}
                 <div>
                   <label className="flex items-center gap-2 text-sm mb-2">
                     <input
                       type="checkbox"
                       checked={useIndividualGaps}
                       onChange={(e) => setUseIndividualGaps(e.target.checked)}
-                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="rounded border-gray-300 dark:border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-gray-100 dark:bg-gray-900"
                     />
-                    <span className="text-gray-700">Individual gaps</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Individual gaps
+                    </span>
                   </label>
 
                   {useIndividualGaps ? (
                     <div className="space-y-2">
                       <div>
                         <div className="flex items-center justify-between mb-1">
-                          <label className="text-xs text-gray-600">
+                          <label className="text-xs text-gray-600 dark:text-gray-400">
                             Row Gap
                           </label>
-                          <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                          <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                             {rowGap}px
                           </span>
                         </div>
@@ -648,15 +645,15 @@ ${html}
                           step="4"
                           value={rowGap}
                           onChange={(e) => setRowGap(parseInt(e.target.value))}
-                          className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                          className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                         />
                       </div>
                       <div>
                         <div className="flex items-center justify-between mb-1">
-                          <label className="text-xs text-gray-600">
+                          <label className="text-xs text-gray-600 dark:text-gray-400">
                             Column Gap
                           </label>
-                          <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                          <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                             {columnGap}px
                           </span>
                         </div>
@@ -669,15 +666,17 @@ ${html}
                           onChange={(e) =>
                             setColumnGap(parseInt(e.target.value))
                           }
-                          className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                          className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                         />
                       </div>
                     </div>
                   ) : (
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <label className="text-xs text-gray-600">Gap</label>
-                        <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                        <label className="text-xs text-gray-600 dark:text-gray-400">
+                          Gap
+                        </label>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                           {gap}px
                         </span>
                       </div>
@@ -688,19 +687,18 @@ ${html}
                         step="4"
                         value={gap}
                         onChange={(e) => setGap(parseInt(e.target.value))}
-                        className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                        className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                       />
                     </div>
                   )}
                 </div>
 
-                {/* Container Height */}
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="text-xs font-medium text-gray-700">
+                    <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                       Container Height
                     </label>
-                    <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">
                       {containerHeight}px
                     </span>
                   </div>
@@ -713,7 +711,7 @@ ${html}
                     onChange={(e) =>
                       setContainerHeight(parseInt(e.target.value))
                     }
-                    className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
                 </div>
               </div>
@@ -736,11 +734,10 @@ ${html}
               </div>
             </div>
 
-            {/* Grid Items */}
             {gridItems.length > 0 && (
-              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+              <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-medium text-gray-900 text-sm">
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                     Grid Items
                   </h3>
                   <Settings className="h-4 w-4 text-gray-400" />
@@ -750,15 +747,15 @@ ${html}
                   {gridItems.map((item, index) => (
                     <div
                       key={item.id}
-                      className={`p-2.5 bg-gray-50 border rounded-lg cursor-pointer transition-all ${
+                      className={`p-2.5 bg-gray-50 dark:bg-gray-900 border rounded-lg cursor-pointer transition-all ${
                         selectedItem === item.id
-                          ? "border-indigo-300 bg-indigo-50"
-                          : "border-gray-200"
+                          ? "border-indigo-300 bg-indigo-50 dark:border-indigo-700 dark:bg-indigo-950"
+                          : "border-gray-200 dark:border-gray-700"
                       }`}
                       onClick={() => setSelectedItem(item.id)}
                     >
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="font-medium text-sm">
+                        <span className="font-medium text-sm text-gray-900 dark:text-gray-100">
                           Item {index + 1}
                         </span>
                         <button
@@ -771,7 +768,7 @@ ${html}
                           Remove
                         </button>
                       </div>
-                      <div className="text-xs text-gray-600">
+                      <div className="text-xs text-gray-600 dark:text-gray-400">
                         R:{item.rowStart}-{item.rowEnd} | C:{item.colStart}-
                         {item.colEnd}
                       </div>
@@ -780,11 +777,13 @@ ${html}
                 </div>
 
                 {selectedItemData && (
-                  <div className="mt-3 p-3 bg-white border border-gray-200 rounded-lg">
-                    <h4 className="font-medium text-sm mb-2">Edit Item</h4>
+                  <div className="mt-3 p-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <h4 className="font-medium text-sm mb-2 text-gray-900 dark:text-gray-100">
+                      Edit Item
+                    </h4>
                     <div className="space-y-2">
                       <div>
-                        <label className="block text-xs text-gray-600 mb-1">
+                        <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                           Content
                         </label>
                         <input
@@ -795,12 +794,12 @@ ${html}
                               content: e.target.value,
                             })
                           }
-                          className="w-full px-2 py-1 border border-gray-200 rounded text-xs"
+                          className="w-full px-2 py-1 border border-gray-200 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                         />
                       </div>
                       <div className="grid grid-cols-2 gap-2">
                         <div>
-                          <label className="block text-xs text-gray-600 mb-1">
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Row Start
                           </label>
                           <input
@@ -813,11 +812,11 @@ ${html}
                                 rowStart: parseInt(e.target.value),
                               })
                             }
-                            className="w-full px-2 py-1 border border-gray-200 rounded text-xs"
+                            className="w-full px-2 py-1 border border-gray-200 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 mb-1">
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Row End
                           </label>
                           <input
@@ -830,11 +829,11 @@ ${html}
                                 rowEnd: parseInt(e.target.value),
                               })
                             }
-                            className="w-full px-2 py-1 border border-gray-200 rounded text-xs"
+                            className="w-full px-2 py-1 border border-gray-200 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 mb-1">
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Col Start
                           </label>
                           <input
@@ -847,11 +846,11 @@ ${html}
                                 colStart: parseInt(e.target.value),
                               })
                             }
-                            className="w-full px-2 py-1 border border-gray-200 rounded text-xs"
+                            className="w-full px-2 py-1 border border-gray-200 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 mb-1">
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
                             Col End
                           </label>
                           <input
@@ -864,7 +863,7 @@ ${html}
                                 colEnd: parseInt(e.target.value),
                               })
                             }
-                            className="w-full px-2 py-1 border border-gray-200 rounded text-xs"
+                            className="w-full px-2 py-1 border border-gray-200 dark:border-gray-700 rounded text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                           />
                         </div>
                       </div>
@@ -875,11 +874,9 @@ ${html}
             )}
           </div>
 
-          {/* Main Content */}
           <div className="xl:col-span-2 space-y-4">
-            {/* Tabs */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-              <div className="border-b border-gray-200 px-4 py-2">
+            <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+              <div className="border-b border-gray-200 dark:border-gray-800 px-4 py-2">
                 <div className="flex items-center gap-1">
                   {[
                     { key: "preview", label: "Preview", icon: Eye },
@@ -893,8 +890,8 @@ ${html}
                         onClick={() => setActiveTab(tab.key as any)}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                           activeTab === tab.key
-                            ? "bg-indigo-100 text-indigo-700"
-                            : "text-gray-600"
+                            ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"
+                            : "text-gray-600 dark:text-gray-400"
                         }`}
                       >
                         <Icon className="h-3.5 w-3.5" />
@@ -905,11 +902,10 @@ ${html}
                 </div>
               </div>
 
-              {/* Preview Tab */}
               {activeTab === "preview" && (
                 <div className="p-4">
                   <div
-                    className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-3 overflow-hidden"
+                    className="bg-gray-50 dark:bg-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-3 overflow-hidden"
                     style={{
                       display: "grid",
                       gridTemplateColumns: autoFill
@@ -931,7 +927,7 @@ ${html}
                             key={item.id}
                             className={`bg-gradient-to-br from-indigo-400 to-purple-500 rounded-lg p-3 text-white text-xs font-medium text-center cursor-pointer transition-all ${
                               selectedItem === item.id
-                                ? "ring-2 ring-indigo-500 ring-offset-2 shadow-lg scale-105"
+                                ? "ring-2 ring-indigo-500 ring-offset-2 dark:ring-offset-gray-950 shadow-lg scale-105"
                                 : "shadow-sm"
                             }`}
                             style={{
@@ -952,7 +948,7 @@ ${html}
                           (_, i) => (
                             <div
                               key={i}
-                              className="bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-300 rounded-lg flex items-center justify-center text-xs font-medium text-gray-600"
+                              className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg flex items-center justify-center text-xs font-medium text-gray-600 dark:text-gray-400"
                             >
                               Item {i + 1}
                             </div>
@@ -960,8 +956,7 @@ ${html}
                         )}
                   </div>
 
-                  {/* Grid Info */}
-                  <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
+                  <div className="mt-3 flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
                     <div className="flex items-center gap-4">
                       <span>
                         {autoFill ? "Auto-fit" : `${columns}×${rows}`} Grid
@@ -979,16 +974,15 @@ ${html}
                 </div>
               )}
 
-              {/* CSS Tab */}
               {activeTab === "css" && (
                 <div>
-                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-900">
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       CSS Code
                     </h3>
                     <button
                       onClick={() => copyToClipboard(generateCSS(), "CSS code")}
-                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 rounded-md text-xs font-medium transition-colors"
+                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-xs font-medium transition-colors text-gray-700 dark:text-gray-300"
                     >
                       {copiedText === "CSS code" ? (
                         <Check className="h-3 w-3 text-green-600" />
@@ -1006,18 +1000,17 @@ ${html}
                 </div>
               )}
 
-              {/* Tailwind Tab */}
               {activeTab === "tailwind" && (
                 <div>
-                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-900">
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
                       Tailwind CSS
                     </h3>
                     <button
                       onClick={() =>
                         copyToClipboard(generateTailwindCSS(), "Tailwind CSS")
                       }
-                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 rounded-md text-xs font-medium transition-colors"
+                      className="flex items-center gap-1.5 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-xs font-medium transition-colors text-gray-700 dark:text-gray-300"
                     >
                       {copiedText === "Tailwind CSS" ? (
                         <Check className="h-3 w-3 text-green-600" />
@@ -1051,11 +1044,10 @@ ${html}
                 </div>
               )}
 
-              {/* HTML Preview */}
-              <div className="border-t border-gray-200 px-4 py-2">
+              <div className="border-t border-gray-200 dark:border-gray-800 px-4 py-2">
                 <button
                   onClick={() => copyToClipboard(generateHTML(), "HTML code")}
-                  className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded-md text-xs text-gray-600 transition-colors"
+                  className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 dark:bg-gray-800 rounded-md text-xs text-gray-600 dark:text-gray-300 transition-colors"
                 >
                   {copiedText === "HTML code" ? (
                     <Check className="h-3 w-3 text-green-600" />
@@ -1067,16 +1059,15 @@ ${html}
               </div>
             </div>
 
-            {/* Quick Actions */}
-            <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
+            <div className="bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-start gap-2">
                   <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-1.5 flex-shrink-0"></div>
                   <div>
-                    <h4 className="text-xs font-medium text-indigo-900">
+                    <h4 className="text-xs font-medium text-indigo-900 dark:text-indigo-200">
                       Current Layout
                     </h4>
-                    <p className="text-xs text-indigo-800 mt-0.5">
+                    <p className="text-xs text-indigo-800 dark:text-indigo-300 mt-0.5">
                       {autoFill
                         ? `Auto-fit (min: ${minItemSize}px)`
                         : `${columns}×${rows} ${gridUnit}`}
@@ -1090,7 +1081,7 @@ ${html}
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => copyToClipboard(generateCSS(), "Full CSS")}
-                    className="px-2 py-1 bg-white border border-indigo-200 rounded text-xs font-medium text-indigo-700 transition-colors"
+                    className="px-2 py-1 bg-white dark:bg-indigo-800 border border-indigo-200 dark:border-indigo-700 rounded text-xs font-medium text-indigo-700 dark:text-indigo-200 transition-colors"
                   >
                     Copy CSS
                   </button>
@@ -1106,49 +1097,48 @@ ${html}
           </div>
         </div>
 
-        {/* Features Section */}
-        <div className="mt-8 bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <h3 className="font-medium text-gray-900 mb-4 text-sm">
+        <div className="mt-8 bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-6 shadow-sm">
+          <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-4 text-sm">
             Advanced Features
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Zap className="h-4 w-4 text-indigo-600" />
+              <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Zap className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               </div>
               <div>
-                <h4 className="font-medium text-gray-800 text-sm mb-1">
+                <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm mb-1">
                   Auto-fit Grids
                 </h4>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 dark:text-gray-400">
                   Responsive grids that automatically adjust column count based
                   on available space and minimum item size.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Layout className="h-4 w-4 text-purple-600" />
+              <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Layout className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h4 className="font-medium text-gray-800 text-sm mb-1">
+                <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm mb-1">
                   Layout Templates
                 </h4>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 dark:text-gray-400">
                   Pre-built templates for common layouts like Holy Grail,
                   Dashboard, and Magazine layouts.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Settings className="h-4 w-4 text-green-600" />
+              <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Settings className="h-4 w-4 text-green-600 dark:text-green-400" />
               </div>
               <div>
-                <h4 className="font-medium text-gray-800 text-sm mb-1">
+                <h4 className="font-medium text-gray-800 dark:text-gray-200 text-sm mb-1">
                   Advanced Controls
                 </h4>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 dark:text-gray-400">
                   Individual gap controls, multiple grid units, custom spanning,
                   and exportable code.
                 </p>

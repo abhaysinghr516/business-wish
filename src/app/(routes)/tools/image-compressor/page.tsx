@@ -111,7 +111,6 @@ export default function ImageCompressor() {
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize comparison mode to true for all images
   useEffect(() => {
     if (images.length > 0) {
       const newComparison: { [key: number]: boolean } = {};
@@ -221,7 +220,6 @@ export default function ImageCompressor() {
         canvas.height = height;
         ctx?.drawImage(img, 0, 0, width, height);
 
-        // Create original data URL
         const originalCanvas = document.createElement("canvas");
         const originalCtx = originalCanvas.getContext("2d");
         originalCanvas.width = img.width;
@@ -341,11 +339,10 @@ export default function ImageCompressor() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <button className="inline-flex items-center gap-2 text-gray-600 text-sm mb-3 px-3 py-1 rounded-full bg-gray-100">
+          <button className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm mb-3 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800">
             <ArrowLeft className="h-3 w-3" />
             Back to Tools
           </button>
@@ -356,10 +353,10 @@ export default function ImageCompressor() {
                 <Minimize2 className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
                   Image Compressor
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Professional image optimization with advanced controls
                 </p>
               </div>
@@ -367,9 +364,9 @@ export default function ImageCompressor() {
 
             {images.length > 0 && (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 px-3 py-2 bg-green-50 rounded-lg">
-                  <BarChart3 className="h-4 w-4 text-green-600" />
-                  <span className="text-sm font-medium text-green-700">
+                <div className="flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-950 rounded-lg">
+                  <BarChart3 className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  <span className="text-sm font-medium text-green-700 dark:text-green-300">
                     {totalSavings.toFixed(1)}% saved
                   </span>
                 </div>
@@ -380,12 +377,11 @@ export default function ImageCompressor() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-6">
-        {/* Quick Presets */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-200 p-5 mb-6 shadow-sm">
+        <div className="bg-white/90 dark:bg-black/90 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-800 p-5 mb-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Sliders className="h-4 w-4 text-gray-600" />
-              <h3 className="font-semibold text-gray-900">
+              <Sliders className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                 Compression Presets
               </h3>
             </div>
@@ -393,8 +389,8 @@ export default function ImageCompressor() {
               onClick={() => setShowAdvanced(!showAdvanced)}
               className={`flex items-center gap-2 px-3 py-1 text-sm rounded-lg transition-colors ${
                 showAdvanced
-                  ? "bg-blue-100 text-blue-700"
-                  : "bg-gray-100 text-gray-600"
+                  ? "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
               }`}
             >
               <Settings className="h-3 w-3" />
@@ -409,17 +405,17 @@ export default function ImageCompressor() {
                 onClick={() => applyPreset(preset)}
                 className={`p-4 text-left rounded-xl border-2 transition-all ${
                   selectedPreset === preset.name
-                    ? "border-blue-500 bg-blue-50 shadow-md"
-                    : "border-gray-200 bg-white"
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-950 shadow-md"
+                    : "border-gray-200 dark:border-gray-800 bg-white dark:bg-black"
                 }`}
               >
-                <div className="font-medium text-sm text-gray-900 mb-1">
+                <div className="font-medium text-sm text-gray-900 dark:text-gray-100 mb-1">
                   {preset.name}
                 </div>
-                <div className="text-xs text-gray-600 leading-relaxed">
+                <div className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                   {preset.description}
                 </div>
-                <div className="text-xs text-gray-500 mt-2">
+                <div className="text-xs text-gray-500 dark:text-gray-500 mt-2">
                   {Math.round(preset.quality * 100)}% • {preset.maxWidth}px
                 </div>
               </button>
@@ -427,16 +423,15 @@ export default function ImageCompressor() {
           </div>
         </div>
 
-        {/* Advanced Controls */}
         {showAdvanced && (
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-gray-200 p-5 mb-6">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white/90 dark:bg-black/90 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-800 p-5 mb-6">
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
               <Settings className="h-4 w-4" />
               Advanced Settings
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="space-y-3">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Quality: {Math.round(quality * 100)}%
                 </label>
                 <input
@@ -449,16 +444,16 @@ export default function ImageCompressor() {
                     setQuality(parseFloat(e.target.value));
                     setSelectedPreset("Custom");
                   }}
-                  className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer"
+                  className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer"
                 />
-                <div className="flex justify-between text-xs text-gray-500">
+                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                   <span>Lower size</span>
                   <span>Higher quality</span>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Max Width (px)
                 </label>
                 <input
@@ -468,12 +463,12 @@ export default function ImageCompressor() {
                     setMaxWidth(parseInt(e.target.value) || 1920);
                     setSelectedPreset("Custom");
                   }}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 />
               </div>
 
               <div className="space-y-3">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Max Height (px)
                 </label>
                 <input
@@ -483,12 +478,12 @@ export default function ImageCompressor() {
                     setMaxHeight(parseInt(e.target.value) || 1080);
                     setSelectedPreset("Custom");
                   }}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 />
               </div>
 
               <div className="space-y-3">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Output Format
                 </label>
                 <select
@@ -497,7 +492,7 @@ export default function ImageCompressor() {
                     setFormat(e.target.value as "jpeg" | "webp");
                     setSelectedPreset("Custom");
                   }}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 >
                   <option value="jpeg">JPEG (.jpg)</option>
                   <option value="webp">WebP (.webp)</option>
@@ -507,7 +502,6 @@ export default function ImageCompressor() {
           </div>
         )}
 
-        {/* Action Bar */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <input
@@ -538,7 +532,7 @@ export default function ImageCompressor() {
                 </button>
                 <button
                   onClick={clearAll}
-                  className="flex items-center gap-2 px-4 py-3 text-gray-600 rounded-xl border border-gray-300 bg-white"
+                  className="flex items-center gap-2 px-4 py-3 text-gray-600 rounded-xl border border-gray-300 bg-white dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700"
                 >
                   <X className="h-4 w-4" />
                   Clear All
@@ -548,12 +542,12 @@ export default function ImageCompressor() {
           </div>
 
           {images.length > 0 && (
-            <div className="flex items-center gap-6 text-sm text-gray-600">
-              <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
+            <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
                 <Target className="h-4 w-4" />
                 <span className="font-medium">{images.length} images</span>
               </div>
-              <div className="text-gray-500">
+              <div className="text-gray-500 dark:text-gray-500">
                 {formatFileSize(totalOriginalSize)} →{" "}
                 {formatFileSize(totalCompressedSize)}
               </div>
@@ -561,17 +555,16 @@ export default function ImageCompressor() {
           )}
         </div>
 
-        {/* Results */}
         {images.length > 0 && (
           <div className="space-y-4">
             <div className={"grid gap-6 grid-cols-1"}>
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-5"
+                  className="bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-5"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-medium text-gray-900 truncate flex-1 mr-3">
+                    <h3 className="font-medium text-gray-900 dark:text-gray-100 truncate flex-1 mr-3">
                       {image.original.name}
                     </h3>
                     <div className="flex items-center gap-1">
@@ -585,14 +578,14 @@ export default function ImageCompressor() {
                             format,
                           });
                         }}
-                        className="p-2 text-gray-500 rounded-lg"
+                        className="p-2 text-gray-500 dark:text-gray-400 rounded-lg"
                         title="Retry with different settings"
                       >
                         <RefreshCw className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => removeImage(index)}
-                        className="p-2 text-gray-500 rounded-lg"
+                        className="p-2 text-gray-500 dark:text-gray-400 rounded-lg"
                         title="Remove image"
                       >
                         <X className="h-4 w-4" />
@@ -600,13 +593,12 @@ export default function ImageCompressor() {
                     </div>
                   </div>
 
-                  {/* Always show comparison */}
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                      <div className="text-sm font-medium text-gray-700 mb-2">
+                      <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Original
                       </div>
-                      <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative cursor-crosshair">
+                      <div className="aspect-video bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden relative cursor-crosshair">
                         <img
                           src={
                             image.originalDataUrl ||
@@ -616,23 +608,23 @@ export default function ImageCompressor() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="text-sm text-gray-600 mt-2 text-center font-medium">
+                      <div className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center font-medium">
                         {formatFileSize(image.originalSize)}
                       </div>
                     </div>
 
                     <div>
-                      <div className="text-sm font-medium text-gray-700 mb-2">
+                      <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Compressed
                       </div>
-                      <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden relative cursor-crosshair">
+                      <div className="aspect-video bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden relative cursor-crosshair">
                         <img
                           src={image.compressed}
                           alt={image.original.name}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="text-sm text-gray-600 mt-2 text-center font-medium">
+                      <div className="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center font-medium">
                         {formatFileSize(image.compressedSize)}
                       </div>
                     </div>
@@ -640,13 +632,13 @@ export default function ImageCompressor() {
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-lg">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium text-green-700">
+                      <div className="flex items-center gap-2 px-3 py-1 bg-green-50 dark:bg-green-950 rounded-lg">
+                        <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                        <span className="text-sm font-medium text-green-700 dark:text-green-300">
                           -{Math.round(image.compressionRatio)}%
                         </span>
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-500 dark:text-gray-500">
                         {formatFileSize(
                           image.originalSize - image.compressedSize
                         )}{" "}
@@ -667,14 +659,15 @@ export default function ImageCompressor() {
           </div>
         )}
 
-        {/* Retry Modal */}
         {selectedImageForRetry !== null && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl p-6 max-w-md w-full">
-              <h3 className="text-lg font-semibold mb-4">Retry Compression</h3>
+            <div className="bg-white dark:bg-black rounded-2xl p-6 max-w-md w-full border border-gray-200 dark:border-gray-800">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                Retry Compression
+              </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Quality: {Math.round(retrySettings.quality * 100)}%
                   </label>
                   <input
@@ -689,12 +682,12 @@ export default function ImageCompressor() {
                         quality: parseFloat(e.target.value),
                       }))
                     }
-                    className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer"
+                    className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Width
                     </label>
                     <input
@@ -706,11 +699,11 @@ export default function ImageCompressor() {
                           maxWidth: parseInt(e.target.value) || 1920,
                         }))
                       }
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Height
                     </label>
                     <input
@@ -722,12 +715,12 @@ export default function ImageCompressor() {
                           maxHeight: parseInt(e.target.value) || 1080,
                         }))
                       }
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Format
                   </label>
                   <select
@@ -738,7 +731,7 @@ export default function ImageCompressor() {
                         format: e.target.value as "jpeg" | "webp",
                       }))
                     }
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   >
                     <option value="jpeg">JPEG</option>
                     <option value="webp">WebP</option>
@@ -748,7 +741,7 @@ export default function ImageCompressor() {
               <div className="flex gap-3 mt-6">
                 <button
                   onClick={() => setSelectedImageForRetry(null)}
-                  className="flex-1 px-4 py-2 text-gray-600 border border-gray-200 rounded-lg"
+                  className="flex-1 px-4 py-2 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800"
                 >
                   Cancel
                 </button>
@@ -764,23 +757,22 @@ export default function ImageCompressor() {
           </div>
         )}
 
-        {/* Upload Area */}
         {images.length === 0 && !isProcessing && (
           <div
             onClick={() => fileInputRef.current?.click()}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            className="border-2 border-dashed border-gray-300 rounded-2xl p-16 text-center cursor-pointer bg-white/50 backdrop-blur-sm transition-all hover:border-blue-400 hover:bg-blue-50/30"
+            className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-2xl p-16 text-center cursor-pointer bg-white/50 dark:bg-black/50 backdrop-blur-sm transition-all hover:border-blue-400 dark:hover:border-blue-600 hover:bg-blue-50/30 dark:hover:bg-blue-950/30"
           >
             <div className="max-w-md mx-auto">
-              <FileImage className="h-16 w-16 text-gray-400 mx-auto mb-6" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+              <FileImage className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-6" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">
                 Drop images here or click to select
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Supports JPEG, PNG, WebP, and GIF formats
               </p>
-              <div className="grid grid-cols-2 gap-4 text-sm text-gray-500">
+              <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 dark:text-gray-500">
                 <div className="flex items-center justify-center gap-2">
                   <Upload className="h-4 w-4" />
                   Batch Upload
@@ -802,68 +794,74 @@ export default function ImageCompressor() {
           </div>
         )}
 
-        {/* Processing Indicator */}
         {isProcessing && (
-          <div className="fixed bottom-6 right-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-4">
+          <div className="fixed bottom-6 right-6 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <div className="flex items-center gap-3">
               <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-sm font-medium text-gray-900">
+              <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 Processing images...
               </span>
             </div>
           </div>
         )}
 
-        {/* Statistics Panel */}
         {images.length > 0 && (
-          <div className="mt-8 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
+          <div className="mt-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-2xl p-6 border border-blue-100 dark:border-blue-900">
             <div className="flex items-center gap-3 mb-6">
-              <BarChart3 className="h-5 w-5 text-blue-600" />
-              <h3 className="font-semibold text-gray-900">
+              <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                 Compression Statistics
               </h3>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 mb-1">
+                <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
                   {images.length}
                 </div>
-                <div className="text-sm text-gray-600">Images Processed</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Images Processed
+                </div>
               </div>
 
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600 mb-1">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
                   {totalSavings.toFixed(1)}%
                 </div>
-                <div className="text-sm text-gray-600">Average Savings</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Average Savings
+                </div>
               </div>
 
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600 mb-1">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">
                   {formatFileSize(totalOriginalSize - totalCompressedSize)}
                 </div>
-                <div className="text-sm text-gray-600">Space Saved</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Space Saved
+                </div>
               </div>
 
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600 mb-1">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">
                   {format.toUpperCase()}
                 </div>
-                <div className="text-sm text-gray-600">Output Format</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Output Format
+                </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-blue-200">
+            <div className="mt-6 pt-6 border-t border-blue-200 dark:border-blue-800">
               <div className="flex justify-between items-center text-sm">
-                <span className="text-gray-600">
+                <span className="text-gray-600 dark:text-gray-400">
                   Original: {formatFileSize(totalOriginalSize)}
                 </span>
-                <span className="text-gray-600">
+                <span className="text-gray-600 dark:text-gray-400">
                   Compressed: {formatFileSize(totalCompressedSize)}
                 </span>
               </div>
-              <div className="mt-2 bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div className="mt-2 bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                 <div
                   className="bg-gradient-to-r from-green-500 to-blue-500 h-full transition-all duration-500"
                   style={{
@@ -877,22 +875,21 @@ export default function ImageCompressor() {
           </div>
         )}
 
-        {/* Features */}
-        <div className="mt-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
+        <div className="mt-8 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-2xl p-8 border border-gray-200 dark:border-gray-800">
           <div className="flex items-center gap-3 mb-6">
-            <Info className="h-5 w-5 text-gray-600" />
-            <h3 className="font-semibold text-gray-900 text-lg">
+            <Info className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-lg">
               Advanced Features
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-4">
-              <h4 className="font-semibold text-gray-800 flex items-center gap-2">
+              <h4 className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                 <Zap className="h-4 w-4 text-blue-500" />
                 Smart Compression
               </h4>
-              <ul className="text-gray-600 space-y-2 text-sm leading-relaxed">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm leading-relaxed">
                 <li>• Intelligent quality optimization</li>
                 <li>• Automatic aspect ratio preservation</li>
                 <li>• Multiple format support (JPEG, WebP)</li>
@@ -901,11 +898,11 @@ export default function ImageCompressor() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-semibold text-gray-800 flex items-center gap-2">
+              <h4 className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                 <Eye className="h-4 w-4 text-green-500" />
                 Visual Tools
               </h4>
-              <ul className="text-gray-600 space-y-2 text-sm leading-relaxed">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm leading-relaxed">
                 <li>• Real-time before/after comparison</li>
                 <li>• Grid and list view modes</li>
                 <li>• Instant compression feedback</li>
@@ -913,11 +910,11 @@ export default function ImageCompressor() {
             </div>
 
             <div className="space-y-4">
-              <h4 className="font-semibold text-gray-800 flex items-center gap-2">
+              <h4 className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                 <Target className="h-4 w-4 text-purple-500" />
                 Professional Controls
               </h4>
-              <ul className="text-gray-600 space-y-2 text-sm leading-relaxed">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-2 text-sm leading-relaxed">
                 <li>• Batch processing support</li>
                 <li>• Retry with different settings</li>
                 <li>• Preset configurations</li>
@@ -927,38 +924,6 @@ export default function ImageCompressor() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          height: 18px;
-          width: 18px;
-          background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-          cursor: pointer;
-          border-radius: 50%;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .slider::-moz-range-thumb {
-          height: 18px;
-          width: 18px;
-          background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-          cursor: pointer;
-          border-radius: 50%;
-          border: none;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="range"] {
-          background: linear-gradient(
-            to right,
-            #3b82f6 0%,
-            #3b82f6 ${quality * 100}%,
-            #e5e7eb ${quality * 100}%,
-            #e5e7eb 100%
-          );
-        }
-      `}</style>
     </div>
   );
 }

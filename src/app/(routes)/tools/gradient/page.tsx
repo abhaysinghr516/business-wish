@@ -10,9 +10,7 @@ import {
   Plus,
   Trash2,
   Shuffle,
-  Eye,
   Settings,
-  Palette,
   Image as ImageIcon,
 } from "lucide-react";
 
@@ -137,7 +135,7 @@ export default function GradientGenerator() {
       (_, i) => ({
         id: Date.now().toString() + i,
         color: colors[Math.floor(Math.random() * colors.length)],
-        position: (i * 100) / (Math.floor(Math.random() * 3) + 1),
+        position: Math.round((i * 100) / (Math.floor(Math.random() * 2) + 1)),
       })
     );
 
@@ -251,13 +249,12 @@ export default function GradientGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 sticky top-0 z-10">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950">
+      <div className="bg-white/80 dark:bg-black/80 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 py-3">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 mb-3 text-sm"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 mb-3 text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -269,10 +266,10 @@ export default function GradientGenerator() {
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   CSS Gradient Generator
                 </h1>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Create beautiful gradients with live preview
                 </p>
               </div>
@@ -281,14 +278,14 @@ export default function GradientGenerator() {
             <div className="flex items-center gap-2">
               <button
                 onClick={randomizeGradient}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-700 rounded-md text-sm font-medium"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium"
               >
                 <Shuffle className="h-4 w-4" />
                 Random
               </button>
               <button
                 onClick={downloadGradientAsImage}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 text-white rounded-md text-sm font-medium shadow-sm"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md text-sm font-medium shadow-sm"
               >
                 <ImageIcon className="h-4 w-4" />
                 Export PNG
@@ -298,14 +295,11 @@ export default function GradientGenerator() {
         </div>
       </div>
 
-      {/* Content */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
-          {/* Controls */}
           <div className="xl:col-span-2 space-y-5">
-            {/* Gradient Type */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-gray-200/50 shadow-sm">
-              <h3 className="font-medium text-gray-900 mb-3 text-sm">
+            <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-lg p-4 border border-gray-200/50 dark:border-gray-800/50 shadow-sm">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                 Gradient Type
               </h3>
               <div className="grid grid-cols-2 gap-2">
@@ -318,7 +312,7 @@ export default function GradientGenerator() {
                     className={`px-3 py-2 rounded-md text-sm font-medium ${
                       config.type === type
                         ? "bg-indigo-600 text-white"
-                        : "bg-gray-50 text-gray-700 border border-gray-200"
+                        : "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
                     }`}
                   >
                     {type[0].toUpperCase() + type.slice(1)}
@@ -327,13 +321,12 @@ export default function GradientGenerator() {
               </div>
             </div>
 
-            {/* Angle */}
-            <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-lg p-4 shadow-sm">
+            <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-4 shadow-sm">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-medium text-gray-900 text-sm">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                   {config.type === "linear" ? "Direction" : "Angle"}
                 </h3>
-                <span className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded font-mono">
+                <span className="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded font-mono">
                   {config.angle}°
                 </span>
               </div>
@@ -348,15 +341,14 @@ export default function GradientGenerator() {
                     angle: Number(e.target.value),
                   }))
                 }
-                className="w-full h-2 bg-gray-200 rounded-full cursor-pointer"
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer"
               />
             </div>
 
-            {/* Radial Options */}
             {config.type === "radial" && (
-              <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-lg p-4 shadow-sm space-y-3">
+              <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-4 shadow-sm space-y-3">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Shape
                   </label>
                   <select
@@ -367,14 +359,14 @@ export default function GradientGenerator() {
                         radialShape: e.target.value as any,
                       }))
                     }
-                    className="w-full px-2 py-1.5 border border-gray-200 rounded-md text-xs"
+                    className="w-full px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200"
                   >
                     <option value="circle">Circle</option>
                     <option value="ellipse">Ellipse</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Size
                   </label>
                   <select
@@ -385,7 +377,7 @@ export default function GradientGenerator() {
                         radialSize: e.target.value as any,
                       }))
                     }
-                    className="w-full px-2 py-1.5 border border-gray-200 rounded-md text-xs"
+                    className="w-full px-2 py-1.5 border border-gray-200 dark:border-gray-700 rounded-md text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200"
                   >
                     <option value="closest-side">Closest Side</option>
                     <option value="closest-corner">Closest Corner</option>
@@ -396,15 +388,14 @@ export default function GradientGenerator() {
               </div>
             )}
 
-            {/* Color Stops */}
-            <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-lg p-4 shadow-sm">
+            <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-4 shadow-sm">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-medium text-gray-900 text-sm">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                   Color Stops
                 </h3>
                 <button
                   onClick={addColorStop}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 text-white rounded-md text-xs font-medium"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md text-xs font-medium"
                 >
                   <Plus className="h-3.5 w-3.5" />
                   Add
@@ -415,7 +406,7 @@ export default function GradientGenerator() {
                 {config.colorStops.map((stop) => (
                   <div
                     key={stop.id}
-                    className="flex items-center gap-2 p-2 bg-gray-50 rounded-md"
+                    className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-900 rounded-md"
                   >
                     <input
                       type="color"
@@ -423,7 +414,7 @@ export default function GradientGenerator() {
                       onChange={(e) =>
                         updateColorStop(stop.id, { color: e.target.value })
                       }
-                      className="w-8 h-8 rounded-md border border-gray-200 cursor-pointer"
+                      className="w-8 h-8 rounded-md border border-gray-200 dark:border-gray-700 cursor-pointer"
                     />
                     <input
                       type="text"
@@ -431,7 +422,7 @@ export default function GradientGenerator() {
                       onChange={(e) =>
                         updateColorStop(stop.id, { color: e.target.value })
                       }
-                      className="flex-1 px-2 py-1 border border-gray-200 rounded-md font-mono text-xs"
+                      className="flex-1 px-2 py-1 border border-gray-200 dark:border-gray-700 rounded-md font-mono text-xs bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
                     <input
                       type="number"
@@ -443,12 +434,12 @@ export default function GradientGenerator() {
                           position: Number(e.target.value),
                         })
                       }
-                      className="w-14 px-1.5 py-1 border border-gray-200 rounded-md text-xs text-center"
+                      className="w-14 px-1.5 py-1 border border-gray-200 dark:border-gray-700 rounded-md text-xs text-center bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                     />
                     {config.colorStops.length > 2 && (
                       <button
                         onClick={() => removeColorStop(stop.id)}
-                        className="p-1 text-red-500 rounded"
+                        className="p-1 text-red-500 dark:text-red-400 rounded"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
@@ -458,17 +449,16 @@ export default function GradientGenerator() {
               </div>
             </div>
 
-            {/* Advanced */}
-            <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-lg p-4 shadow-sm">
+            <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-4 shadow-sm">
               <button
                 onClick={() => setShowAdvanced(!showAdvanced)}
                 className="flex items-center justify-between w-full mb-2"
               >
-                <h3 className="font-medium text-gray-900 text-sm">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                   Advanced Settings
                 </h3>
                 <Settings
-                  className={`h-4 w-4 text-gray-500 ${
+                  className={`h-4 w-4 text-gray-500 dark:text-gray-400 ${
                     showAdvanced ? "rotate-90" : ""
                   }`}
                 />
@@ -476,7 +466,7 @@ export default function GradientGenerator() {
               {showAdvanced && (
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Opacity: {opacity}%
                     </label>
                     <input
@@ -485,11 +475,11 @@ export default function GradientGenerator() {
                       max="100"
                       value={opacity}
                       onChange={(e) => setOpacity(Number(e.target.value))}
-                      className="w-full h-2 bg-gray-200 rounded-full cursor-pointer"
+                      className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Preview Size
                     </label>
                     <div className="grid grid-cols-3 gap-2">
@@ -500,7 +490,7 @@ export default function GradientGenerator() {
                           className={`px-2 py-1 rounded-md text-xs font-medium ${
                             previewSize === size
                               ? "bg-indigo-600 text-white"
-                              : "bg-gray-50 text-gray-700 border border-gray-200"
+                              : "bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
                           }`}
                         >
                           {size[0].toUpperCase() + size.slice(1)}
@@ -512,11 +502,9 @@ export default function GradientGenerator() {
               )}
             </div>
           </div>
-          {/* Preview & CSS */}
           <div className="xl:col-span-3 space-y-5">
-            {/* Preview */}
             <div
-              className={`w-full ${previewHeights[previewSize]} rounded-lg border border-gray-200/50 shadow-sm`}
+              className={`w-full ${previewHeights[previewSize]} rounded-lg border border-gray-200/50 dark:border-gray-800/50 shadow-sm`}
               style={{
                 background: generateCSS()
                   .split(";")[0]
@@ -524,13 +512,14 @@ export default function GradientGenerator() {
                 opacity: opacity / 100,
               }}
             ></div>
-            {/* CSS Output */}
-            <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-lg p-4 shadow-sm">
+            <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-4 shadow-sm">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-medium text-gray-900 text-sm">CSS Code</h3>
+                <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                  CSS Code
+                </h3>
                 <button
                   onClick={() => copyToClipboard(generateCSS(), "CSS Code")}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 text-white rounded-md text-xs font-medium"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md text-xs font-medium"
                 >
                   {copiedText === "CSS Code" ? (
                     <>
@@ -546,16 +535,13 @@ export default function GradientGenerator() {
                 </button>
               </div>
               <div className="p-6 bg-gray-900 rounded-lg">
-                {" "}
                 <code className="text-sm font-mono text-gray-100 break-all leading-relaxed">
-                  {" "}
-                  {generateCSS()}{" "}
-                </code>{" "}
+                  {generateCSS()}
+                </code>
               </div>
             </div>
-            {/* Presets */}
-            <div className="bg-white/70 backdrop-blur-sm border border-gray-200/50 rounded-lg p-4 shadow-sm">
-              <h3 className="font-medium text-gray-900 mb-3 text-sm">
+            <div className="bg-white/70 dark:bg-black/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-lg p-4 shadow-sm">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                 Presets
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -572,7 +558,7 @@ export default function GradientGenerator() {
                   <button
                     key={preset.key}
                     onClick={() => loadPreset(preset.key as any)}
-                    className="w-full px-3 py-2 bg-gray-50 text-gray-700 rounded-md text-xs font-medium"
+                    className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md text-xs font-medium"
                   >
                     {preset.name}
                   </button>

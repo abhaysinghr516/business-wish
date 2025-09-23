@@ -27,7 +27,6 @@ interface ColorPalette {
   description: string;
 }
 
-// Color utility functions
 const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
@@ -229,7 +228,6 @@ const generateTetradicPalette = (baseColor: Color): Color[] => {
   return colors;
 };
 
-// Get contrast ratio for accessibility
 const getContrastRatio = (color1: string, color2: string): number => {
   const getLuminance = (hex: string) => {
     const rgb = hexToRgb(hex);
@@ -301,7 +299,6 @@ export default function ColorPaletteGenerator() {
 
     setPalettes(newPalettes);
 
-    // Add to color history
     setColorHistory((prev) => {
       const newHistory = [baseColor, ...prev.filter((c) => c !== baseColor)];
       return newHistory.slice(0, 8);
@@ -392,13 +389,12 @@ export default function ColorPaletteGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-1.5 text-gray-500 hover:text-gray-700 text-sm mb-3"
+            className="inline-flex items-center gap-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm mb-3"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to Tools
@@ -410,10 +406,10 @@ export default function ColorPaletteGenerator() {
                 <Palette className="h-4 w-4 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Color Palette Generator
                 </h1>
-                <p className="text-gray-500 text-xs">
+                <p className="text-gray-500 dark:text-gray-400 text-xs">
                   Create harmonious color schemes using color theory
                 </p>
               </div>
@@ -422,7 +418,7 @@ export default function ColorPaletteGenerator() {
             <div className="flex items-center gap-2">
               <button
                 onClick={exportAllPalettes}
-                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-900 text-white rounded-lg text-sm font-medium"
+                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-lg text-sm font-medium"
               >
                 <Download className="h-3.5 w-3.5" />
                 Export All
@@ -433,22 +429,20 @@ export default function ColorPaletteGenerator() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-5">
-        <div className="bg-white rounded-xl border border-gray-200 p-4 mb-5 shadow-sm">
+        <div className="bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800 p-4 mb-5 shadow-sm">
           <div className="flex items-start gap-4">
-            {/* Large Color Preview */}
             <div className="relative">
               <div
-                className="w-20 h-20 rounded-xl border-3 border-white shadow-lg cursor-pointer"
+                className="w-20 h-20 rounded-xl border-3 border-white dark:border-gray-950 shadow-lg cursor-pointer"
                 style={{ backgroundColor: baseColor }}
                 onClick={() => colorInputRef.current?.click()}
               />
             </div>
 
-            {/* Color Input Controls */}
             <div className="flex-1 space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-700">
+                  <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                     Color Value
                   </label>
                   <div className="flex items-center gap-2">
@@ -457,31 +451,31 @@ export default function ColorPaletteGenerator() {
                       type="color"
                       value={baseColor}
                       onChange={(e) => setBaseColor(e.target.value)}
-                      className="w-8 h-8 rounded-lg border-2 border-gray-200 cursor-pointer"
+                      className="w-8 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer"
                     />
                     <input
                       type="text"
                       value={baseColor}
                       onChange={(e) => setBaseColor(e.target.value)}
-                      className="flex-1 px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-indigo-300 focus:bg-white"
+                      className="flex-1 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-indigo-400 dark:focus:border-indigo-500 focus:bg-white dark:focus:bg-gray-900"
                       placeholder="#6366F1"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-700">
+                  <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                     Format
                   </label>
-                  <div className="flex bg-gray-100 rounded-lg p-0.5">
+                  <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5">
                     {(["hex", "rgb", "hsl"] as const).map((format) => (
                       <button
                         key={format}
                         onClick={() => setActiveFormat(format)}
                         className={`flex-1 px-2 py-1 rounded text-xs font-medium transition-colors ${
                           activeFormat === format
-                            ? "bg-white text-gray-900 shadow-sm"
-                            : "text-gray-500"
+                            ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm"
+                            : "text-gray-500 dark:text-gray-400"
                         }`}
                       >
                         {format.toUpperCase()}
@@ -491,13 +485,13 @@ export default function ColorPaletteGenerator() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-700">
+                  <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                     Actions
                   </label>
                   <div className="flex gap-1.5">
                     <button
                       onClick={generateRandomBaseColor}
-                      className="flex items-center justify-center gap-1.5 px-2.5 py-1.5 bg-gray-900 text-white rounded-lg text-xs font-medium"
+                      className="flex items-center justify-center gap-1.5 px-2.5 py-1.5 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-lg text-xs font-medium"
                     >
                       <Shuffle className="h-3.5 w-3.5" />
                       Random
@@ -506,11 +500,12 @@ export default function ColorPaletteGenerator() {
                 </div>
               </div>
 
-              {/* Color Details */}
-              <div className="grid grid-cols-3 gap-4 pt-2 border-t border-gray-100">
+              <div className="grid grid-cols-3 gap-4 pt-2 border-t border-gray-100 dark:border-gray-800">
                 <div className="text-center">
-                  <div className="text-xs text-gray-500">Brightness</div>
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    Brightness
+                  </div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     {Math.round(
                       hexToRgb(baseColor)!.r * 0.299 +
                         hexToRgb(baseColor)!.g * 0.587 +
@@ -519,16 +514,18 @@ export default function ColorPaletteGenerator() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
                     Contrast (vs White)
                   </div>
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     {getContrastRatio(baseColor, "#ffffff").toFixed(1)}:1
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-gray-500">Temperature</div>
-                  <div className="text-sm font-medium text-gray-900 flex items-center justify-center gap-1">
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    Temperature
+                  </div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100 flex items-center justify-center gap-1">
                     {hexToRgb(baseColor)!.b > hexToRgb(baseColor)!.r ? (
                       <>
                         <Sun className="h-3.5 w-3.5 text-blue-500" />
@@ -546,10 +543,9 @@ export default function ColorPaletteGenerator() {
             </div>
           </div>
 
-          {/* Color History */}
           {colorHistory.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-gray-100">
-              <div className="text-xs font-medium text-gray-700 mb-2">
+            <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800">
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Recent Colors
               </div>
               <div className="flex gap-1.5">
@@ -557,7 +553,7 @@ export default function ColorPaletteGenerator() {
                   <button
                     key={index}
                     onClick={() => setBaseColor(color)}
-                    className="w-6 h-6 rounded border-2 border-gray-200"
+                    className="w-6 h-6 rounded border-2 border-gray-200 dark:border-gray-700"
                     style={{ backgroundColor: color }}
                     title={color}
                   />
@@ -567,30 +563,32 @@ export default function ColorPaletteGenerator() {
           )}
         </div>
 
-        {/* Palettes */}
         <div className={"grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"}>
           {palettes.map((palette, index) => (
             <div
               key={palette.name}
               className={
-                "bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm p-0"
+                "bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm p-0"
               }
             >
-              {/* Palette Header */}
-              <div className={"p-3 border-b border-gray-100 bg-gray-50"}>
+              <div
+                className={
+                  "p-3 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900"
+                }
+              >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium text-gray-900 text-sm">
+                    <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                       {palette.name}
                     </h3>
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                       {palette.description}
                     </p>
                   </div>
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => exportPalette(palette)}
-                      className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg"
+                      className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
                     >
                       <Download className="h-3.5 w-3.5" />
                     </button>
@@ -598,7 +596,6 @@ export default function ColorPaletteGenerator() {
                 </div>
               </div>
 
-              {/* Color Swatches */}
               <div className="p-3">
                 <div className="grid grid-cols-5 gap-1.5 mb-3">
                   {palette.colors.map((color, colorIndex) => (
@@ -613,7 +610,7 @@ export default function ColorPaletteGenerator() {
                       }
                     >
                       <div
-                        className="aspect-square rounded-lg border border-gray-200"
+                        className="aspect-square rounded-lg border border-gray-200 dark:border-gray-700"
                         style={{ backgroundColor: color.hex }}
                       />
                       {copiedColor === color.hex && (
@@ -625,26 +622,25 @@ export default function ColorPaletteGenerator() {
                   ))}
                 </div>
 
-                {/* Color Values */}
                 <div className="space-y-1">
                   {palette.colors.map((color, colorIndex) => {
                     const colorValue = formatColor(color, activeFormat);
                     return (
                       <div
                         key={colorIndex}
-                        className="flex items-center justify-between p-1.5 bg-gray-50 rounded-lg"
+                        className="flex items-center justify-between p-1.5 bg-gray-50 dark:bg-gray-900 rounded-lg"
                       >
                         <div className="flex items-center gap-2">
                           <div
-                            className="w-3 h-3 rounded border border-gray-300"
+                            className="w-3 h-3 rounded border border-gray-300 dark:border-gray-600"
                             style={{ backgroundColor: color.hex }}
                           />
-                          <span className="font-mono text-xs text-gray-700">
+                          <span className="font-mono text-xs text-gray-700 dark:text-gray-300">
                             {colorValue}
                           </span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
                             {getContrastRatio(color.hex, "#ffffff").toFixed(1)}
                             :1
                           </span>
@@ -652,7 +648,7 @@ export default function ColorPaletteGenerator() {
                             onClick={() =>
                               copyToClipboard(colorValue, color.hex)
                             }
-                            className="p-1 text-gray-400 hover:text-gray-600"
+                            className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
                           >
                             {copiedColor === color.hex ? (
                               <Check className="h-3 w-3 text-green-600" />
@@ -670,7 +666,6 @@ export default function ColorPaletteGenerator() {
           ))}
         </div>
 
-        {/* Color Theory Guide */}
         <div className="mt-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 border border-indigo-100">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="h-4 w-4 text-indigo-600" />
@@ -723,7 +718,7 @@ export default function ColorPaletteGenerator() {
             ].map((theory) => (
               <div
                 key={theory.name}
-                className="bg-white rounded-lg p-3 border border-white/50"
+                className="bg-white/60 rounded-lg p-3 border border-white/50"
               >
                 <div className="flex items-center gap-2 mb-1">
                   {theory.icon}
@@ -739,7 +734,6 @@ export default function ColorPaletteGenerator() {
             ))}
           </div>
 
-          {/* Accessibility Note */}
           <div className="mt-4 pt-3 border-t border-indigo-200">
             <div className="flex items-start gap-2">
               <div className="p-1 bg-indigo-100 rounded">

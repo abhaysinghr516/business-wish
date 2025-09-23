@@ -55,7 +55,6 @@ export default function CSVToJSON() {
           .map((h) => h.trim().replace(/"/g, ""));
         dataLines = lines.slice(1);
       } else {
-        // Generate generic headers
         const firstLine = lines[0].split(delimiter);
         headers = firstLine.map((_, index) => `column_${index + 1}`);
       }
@@ -69,12 +68,9 @@ export default function CSVToJSON() {
         headers.forEach((header, index) => {
           let value: any = values[index] || "";
 
-          // Try to parse as number
-          if (value && !isNaN(value) && !isNaN(parseFloat(value))) {
+          if (value && !isNaN(Number(value)) && !isNaN(parseFloat(value))) {
             value = parseFloat(value);
-          }
-          // Try to parse as boolean
-          else if (value.toLowerCase() === "true") {
+          } else if (value.toLowerCase() === "true") {
             value = true;
           } else if (value.toLowerCase() === "false") {
             value = false;
@@ -175,13 +171,12 @@ Bob Johnson,35,Chicago,true`;
   const outputObjectCount = jsonOutput ? JSON.parse(jsonOutput).length : 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-600 text-sm mb-3"
+            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm mb-3"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -192,10 +187,10 @@ Bob Johnson,35,Chicago,true`;
               <FileText className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 CSV to JSON Converter
               </h1>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 Transform CSV data into structured JSON format with smart type
                 detection
               </p>
@@ -205,33 +200,32 @@ Bob Johnson,35,Chicago,true`;
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-6">
-        {/* Error Alert */}
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
-            <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0" />
-            <span className="text-sm text-red-800">{error}</span>
+          <div className="mb-4 p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-2">
+            <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 flex-shrink-0" />
+            <span className="text-sm text-red-800 dark:text-red-300">
+              {error}
+            </span>
           </div>
         )}
 
-        {/* Controls Panel */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+        <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 p-4 mb-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left Side - Settings */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200">
                 <Settings className="h-4 w-4" />
                 Configuration
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Delimiter
                   </label>
                   <select
                     value={delimiter}
                     onChange={(e) => setDelimiter(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   >
                     <option value=",">Comma (,)</option>
                     <option value=";">Semicolon (;)</option>
@@ -246,17 +240,18 @@ Bob Johnson,35,Chicago,true`;
                       type="checkbox"
                       checked={hasHeader}
                       onChange={(e) => setHasHeader(e.target.checked)}
-                      className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                      className="rounded border-gray-300 dark:border-gray-600 text-emerald-600 focus:ring-emerald-500 bg-gray-100 dark:bg-gray-900"
                     />
-                    <span className="text-gray-700">First row is header</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      First row is header
+                    </span>
                   </label>
                 </div>
               </div>
             </div>
 
-            {/* Right Side - Actions */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200">
                 <File className="h-4 w-4" />
                 File Upload
               </div>
@@ -271,21 +266,21 @@ Bob Johnson,35,Chicago,true`;
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
+                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 >
                   <Upload className="h-4 w-4" />
                   Upload CSV
                 </button>
                 <button
                   onClick={loadSample}
-                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
+                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 >
                   <FileText className="h-4 w-4" />
                   Sample Data
                 </button>
                 <button
                   onClick={clearAll}
-                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 border border-gray-300 rounded-md"
+                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 >
                   <RefreshCw className="h-4 w-4" />
                   Clear All
@@ -294,22 +289,21 @@ Bob Johnson,35,Chicago,true`;
             </div>
           </div>
 
-          {/* File Info */}
           {uploadedFile && (
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <File className="h-4 w-4 text-blue-600" />
-                  <span className="text-sm text-blue-800">
+                  <File className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  <span className="text-sm text-blue-800 dark:text-blue-200">
                     {uploadedFile.name}
                   </span>
-                  <span className="text-xs text-blue-600">
+                  <span className="text-xs text-blue-600 dark:text-blue-400">
                     ({(uploadedFile.size / 1024).toFixed(1)} KB)
                   </span>
                 </div>
                 <button
                   onClick={removeFile}
-                  className="p-1 text-blue-600 rounded"
+                  className="p-1 text-blue-600 dark:text-blue-400 rounded"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -317,12 +311,11 @@ Bob Johnson,35,Chicago,true`;
             </div>
           )}
 
-          {/* Convert Button */}
           <div className="mt-4">
             <button
               onClick={convertCSVToJSON}
               disabled={isProcessing || !csvInput.trim()}
-              className="flex items-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-md font-medium text-sm disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md font-medium text-sm disabled:bg-gray-400 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
             >
               {isProcessing ? (
                 <RefreshCw className="h-4 w-4 animate-spin" />
@@ -334,14 +327,14 @@ Bob Johnson,35,Chicago,true`;
           </div>
         </div>
 
-        {/* Data Processing Area */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          {/* CSV Input */}
-          <div className="bg-white rounded-lg border border-gray-200">
-            <div className="p-4 border-b border-gray-200">
+          <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-800">
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-900">CSV Input</h3>
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                  CSV Input
+                </h3>
+                <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                   <span>{inputRowCount} rows</span>
                   <span>{csvInput.length} chars</span>
                 </div>
@@ -353,26 +346,27 @@ Bob Johnson,35,Chicago,true`;
                 value={csvInput}
                 onChange={(e) => setCsvInput(e.target.value)}
                 placeholder="Paste your CSV data here or upload a file..."
-                className="w-full h-80 px-3 py-2 text-sm font-mono bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                className="w-full h-80 px-3 py-2 text-sm font-mono bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none text-gray-900 dark:text-gray-100"
               />
             </div>
           </div>
 
-          {/* JSON Output */}
-          <div className="bg-white rounded-lg border border-gray-200">
-            <div className="p-4 border-b border-gray-200">
+          <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-800">
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-900">JSON Output</h3>
+                <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                  JSON Output
+                </h3>
                 <div className="flex items-center gap-2">
                   {jsonOutput && (
                     <>
-                      <div className="flex items-center gap-4 text-xs text-gray-500 mr-2">
+                      <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mr-2">
                         <span>{outputObjectCount} objects</span>
                         <span>{jsonOutput.length} chars</span>
                       </div>
                       <button
                         onClick={() => copyToClipboard(jsonOutput, "JSON")}
-                        className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 border border-gray-300 rounded"
+                        className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded text-gray-700 dark:text-gray-300"
                       >
                         {copiedText === "JSON" ? (
                           <Check className="h-3 w-3 text-green-600" />
@@ -383,7 +377,7 @@ Bob Johnson,35,Chicago,true`;
                       </button>
                       <button
                         onClick={downloadJSON}
-                        className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 border border-gray-300 rounded"
+                        className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded text-gray-700 dark:text-gray-300"
                       >
                         <Download className="h-3 w-3" />
                         Download
@@ -399,27 +393,26 @@ Bob Johnson,35,Chicago,true`;
                 value={jsonOutput}
                 readOnly
                 placeholder="JSON output will appear here..."
-                className="w-full h-80 px-3 py-2 text-sm font-mono bg-gray-50 border border-gray-200 rounded-md resize-none"
+                className="w-full h-80 px-3 py-2 text-sm font-mono bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md resize-none text-gray-900 dark:text-gray-100"
               />
             </div>
           </div>
         </div>
 
-        {/* Features Info */}
-        <div className="mt-8 bg-gradient-to-r from-emerald-50 to-green-50 rounded-lg border border-emerald-200 p-6">
+        <div className="mt-8 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950 dark:to-green-950 rounded-lg border border-emerald-200 dark:border-emerald-800 p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Info className="h-5 w-5 text-emerald-600" />
-            <h3 className="font-medium text-gray-900">
+            <Info className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+            <h3 className="font-medium text-gray-900 dark:text-gray-100">
               Features & Capabilities
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
                 Smart Processing
               </h4>
-              <ul className="text-gray-600 space-y-1">
+              <ul className="text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• Automatic data type detection</li>
                 <li>• Multiple delimiter support</li>
                 <li>• Header row handling</li>
@@ -428,8 +421,10 @@ Bob Johnson,35,Chicago,true`;
             </div>
 
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">File Support</h4>
-              <ul className="text-gray-600 space-y-1">
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
+                File Support
+              </h4>
+              <ul className="text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• CSV file upload</li>
                 <li>• Text file support</li>
                 <li>• Drag & drop ready</li>
@@ -438,8 +433,10 @@ Bob Johnson,35,Chicago,true`;
             </div>
 
             <div>
-              <h4 className="font-medium text-gray-800 mb-2">Export Options</h4>
-              <ul className="text-gray-600 space-y-1">
+              <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-2">
+                Export Options
+              </h4>
+              <ul className="text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• One-click copy to clipboard</li>
                 <li>• Direct JSON download</li>
                 <li>• Real-time preview</li>

@@ -149,13 +149,12 @@ export default function ImageColorExtractor() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 text-sm"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -165,10 +164,10 @@ export default function ImageColorExtractor() {
               <Pipette className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-medium text-gray-900">
+              <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                 Image Color Picker
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Pick exact colors from any image
               </p>
             </div>
@@ -176,22 +175,21 @@ export default function ImageColorExtractor() {
         </div>
       </div>
 
-      {/* Body */}
       <div className="max-w-6xl mx-auto px-6 py-8">
         {!selectedImage ? (
           <div className="text-center py-16">
             <div
-              className="border-2 border-dashed border-gray-300 rounded-xl p-12 cursor-pointer"
+              className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-12 cursor-pointer"
               onClick={() => fileInputRef.current?.click()}
             >
-              <ImageIcon className="h-10 w-10 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900">
+              <ImageIcon className="h-10 w-10 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                 Upload an Image
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
                 Click to select an image file or drag and drop
               </p>
-              <button className="inline-flex items-center gap-2 px-5 py-2 bg-gray-900 text-white rounded-md text-sm">
+              <button className="inline-flex items-center gap-2 px-5 py-2 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-md text-sm font-medium">
                 <Upload className="h-4 w-4" /> Choose Image
               </button>
             </div>
@@ -205,15 +203,19 @@ export default function ImageColorExtractor() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Image Section */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-semibold text-gray-800">Image</h2>
-                <button onClick={clearImage} className="p-2 text-gray-400">
+                <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">
+                  Image
+                </h2>
+                <button
+                  onClick={clearImage}
+                  className="p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                >
                   <X className="h-4 w-4" />
                 </button>
               </div>
-              <div className="bg-gray-50 rounded-xl p-3 relative">
+              <div className="bg-white dark:bg-black rounded-xl p-3 relative border border-gray-200 dark:border-gray-800">
                 <img
                   ref={imageRef}
                   src={selectedImage}
@@ -225,7 +227,7 @@ export default function ImageColorExtractor() {
                 {pickedColors.map((color) => (
                   <div
                     key={color.id}
-                    className="absolute w-4 h-4 border-2 border-white rounded-full shadow -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    className="absolute w-4 h-4 border-2 border-white dark:border-gray-900 rounded-full shadow -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                     style={{
                       left: `${color.position.x}%`,
                       top: `${color.position.y}%`,
@@ -233,35 +235,34 @@ export default function ImageColorExtractor() {
                     }}
                   />
                 ))}
-                <p className="text-xs text-gray-500 mt-2 text-center">
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
                   Click anywhere on the image to pick a color
                 </p>
               </div>
             </div>
 
-            {/* Picked Colors */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-semibold text-gray-800">
+                <h2 className="text-base font-semibold text-gray-800 dark:text-gray-200">
                   Picked Colors ({pickedColors.length})
                 </h2>
                 {pickedColors.length > 0 && (
                   <div className="flex gap-2">
                     <button
                       onClick={exportPalette}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-1"
+                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <Download className="h-3 w-3" /> Export
                     </button>
                     <button
                       onClick={copyAllColors}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-md text-sm flex items-center gap-1"
+                      className="px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <Copy className="h-3 w-3" /> Copy All
                     </button>
                     <button
                       onClick={clearAllColors}
-                      className="px-3 py-1.5 bg-red-50 text-red-600 border border-red-200 rounded-md text-sm flex items-center gap-1"
+                      className="px-3 py-1.5 bg-red-50 dark:bg-red-950 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800 rounded-md text-sm flex items-center gap-1"
                     >
                       <Trash2 className="h-3 w-3" /> Clear
                     </button>
@@ -270,9 +271,9 @@ export default function ImageColorExtractor() {
               </div>
 
               {pickedColors.length === 0 ? (
-                <div className="bg-gray-50 rounded-xl p-10 text-center">
-                  <Pipette className="h-6 w-6 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-500 text-sm">
+                <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-10 text-center">
+                  <Pipette className="h-6 w-6 text-gray-400 dark:text-gray-600 mx-auto mb-3" />
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
                     Click on the image to start picking colors
                   </p>
                 </div>
@@ -281,34 +282,34 @@ export default function ImageColorExtractor() {
                   {pickedColors.map((color) => (
                     <div
                       key={color.id}
-                      className="bg-white border border-gray-200 rounded-lg p-3 flex items-center gap-4"
+                      className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg p-3 flex items-center gap-4"
                     >
                       <div
-                        className="w-12 h-12 rounded border border-gray-200"
+                        className="w-12 h-12 rounded border border-gray-200 dark:border-gray-700"
                         style={{ backgroundColor: color.hex }}
                       />
                       <div className="flex-1 min-w-0">
-                        <div className="font-mono text-sm text-gray-900">
+                        <div className="font-mono text-sm text-gray-900 dark:text-gray-100">
                           {color.hex}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-gray-500 dark:text-gray-400">
                           RGB({color.rgb.r}, {color.rgb.g}, {color.rgb.b})
                         </div>
                       </div>
                       <div className="flex gap-1">
                         <button
                           onClick={() => copyToClipboard(color.hex, "HEX")}
-                          className="p-1.5 text-gray-400 rounded-md"
+                          className="p-1.5 text-gray-400 dark:text-gray-500 rounded-md hover:text-gray-600 dark:hover:text-gray-300"
                         >
                           {copiedColor === color.hex ? (
-                            <Check className="h-4 w-4 text-green-600" />
+                            <Check className="h-4 w-4 text-green-600 dark:text-green-500" />
                           ) : (
                             <Copy className="h-4 w-4" />
                           )}
                         </button>
                         <button
                           onClick={() => removeColor(color.id)}
-                          className="p-1.5 text-gray-400 rounded-md"
+                          className="p-1.5 text-gray-400 dark:text-gray-500 rounded-md hover:text-gray-600 dark:hover:text-gray-300"
                         >
                           <X className="h-4 w-4" />
                         </button>
@@ -321,7 +322,6 @@ export default function ImageColorExtractor() {
           </div>
         )}
 
-        {/* Hidden canvas */}
         <canvas ref={canvasRef} className="hidden" />
       </div>
     </div>

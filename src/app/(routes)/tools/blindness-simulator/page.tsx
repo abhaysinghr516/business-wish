@@ -75,7 +75,6 @@ export default function ColorBlindnessSimulator() {
 
   const [newColor, setNewColor] = useState("#000000");
 
-  // Color transformation functions for different types of color blindness
   const simulateColorBlindness = useCallback(
     (hex: string, type: string): string => {
       const hexToRgb = (hex: string) => {
@@ -103,15 +102,15 @@ export default function ColorBlindnessSimulator() {
 
       switch (type) {
         case "protanopia":
-          return rgbToHex(0, g, b);
+          return rgbToHex(g * 0.9, g, b);
         case "protanomaly":
-          return rgbToHex(r * 0.567 + g * 0.433, g, b);
+          return rgbToHex(r * 0.8 + g * 0.2, g * 0.9 + r * 0.1, b);
         case "deuteranopia":
-          return rgbToHex(r, 0, b);
+          return rgbToHex(r, g * 0.9, b);
         case "deuteranomaly":
-          return rgbToHex(r, g * 0.567 + r * 0.433, b);
+          return rgbToHex(r * 0.9 + g * 0.1, g * 0.8 + r * 0.2, b);
         case "tritanopia":
-          return rgbToHex(r, g, 0);
+          return rgbToHex(r, g, b * 0.9);
         case "achromatopsia":
           const gray = 0.299 * r + 0.587 * g + 0.114 * b;
           return rgbToHex(gray, gray, gray);
@@ -125,11 +124,11 @@ export default function ColorBlindnessSimulator() {
   const getSeverityColor = (severity: "mild" | "moderate" | "severe") => {
     switch (severity) {
       case "mild":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-300 dark:border-yellow-800";
       case "moderate":
-        return "bg-orange-100 text-orange-800 border-orange-200";
+        return "bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-950 dark:text-orange-300 dark:border-orange-800";
       case "severe":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-red-100 text-red-800 border-red-200 dark:bg-red-950 dark:text-red-400 dark:border-red-800";
     }
   };
 
@@ -144,13 +143,12 @@ export default function ColorBlindnessSimulator() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -161,10 +159,10 @@ export default function ColorBlindnessSimulator() {
               <Eye className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-light text-gray-900">
+              <h1 className="text-2xl font-light text-gray-900 dark:text-gray-100">
                 Color Blindness Simulator
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 See how colors appear to different users
               </p>
             </div>
@@ -173,9 +171,8 @@ export default function ColorBlindnessSimulator() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-6">
-        {/* Vision Type Selector */}
         <div className="mb-6">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
             Select Vision Type
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
@@ -185,12 +182,12 @@ export default function ColorBlindnessSimulator() {
                 onClick={() => setSelectedType(key)}
                 className={`p-3 rounded-xl border text-left transition-all text-sm ${
                   selectedType === key
-                    ? "border-blue-300 bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300 bg-white"
+                    ? "border-blue-400 dark:border-blue-600 bg-blue-50 dark:bg-blue-950"
+                    : "border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 bg-white dark:bg-black"
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-medium text-gray-900 text-xs">
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100 text-xs">
                     {type.name}
                   </h3>
                   <div
@@ -201,35 +198,37 @@ export default function ColorBlindnessSimulator() {
                     {type.severity}
                   </div>
                 </div>
-                <p className="text-xs text-gray-600 mb-1">{type.description}</p>
-                <p className="text-xs text-gray-500">{type.prevalence}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                  {type.description}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-500">
+                  {type.prevalence}
+                </p>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Current Selection Info */}
-        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-4 mb-6">
+        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-2xl p-4 mb-6">
           <div className="flex items-center gap-3">
-            <Info className="h-4 w-4 text-blue-600" />
+            <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <div>
-              <h3 className="font-medium text-gray-900">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100">
                 {colorBlindnessTypes[selectedType].name}
               </h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 {colorBlindnessTypes[selectedType].description}
               </p>
             </div>
-            <div className="ml-auto text-right text-sm text-gray-600">
+            <div className="ml-auto text-right text-sm text-gray-600 dark:text-gray-400">
               <div>Affects: {colorBlindnessTypes[selectedType].prevalence}</div>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Color Test Grid */}
           <div>
-            <h2 className="text-lg font-medium text-gray-900 mb-4">
+            <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
               Color Simulation
             </h2>
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3 mb-4">
@@ -241,39 +240,37 @@ export default function ColorBlindnessSimulator() {
                 return (
                   <div
                     key={index}
-                    className="bg-white border border-gray-200 rounded-xl p-3 relative"
+                    className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-3 relative"
                   >
                     <button
                       onClick={() => handleRemoveColor(color)}
-                      className="absolute top-2 right-2 text-gray-400 hover:text-red-500"
+                      className="absolute top-2 right-2 text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400"
                     >
                       <X className="h-3 w-3" />
                     </button>
                     <div className="space-y-2">
-                      {/* Original Color */}
                       <div>
-                        <div className="text-xs text-gray-500 mb-1">
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                           Original
                         </div>
                         <div
-                          className="w-full h-12 rounded-lg border border-gray-200"
+                          className="w-full h-12 rounded-lg border border-gray-200 dark:border-gray-700"
                           style={{ backgroundColor: color }}
                         />
-                        <div className="text-xs font-mono text-gray-600 mt-1">
+                        <div className="text-xs font-mono text-gray-600 dark:text-gray-400 mt-1">
                           {color}
                         </div>
                       </div>
 
-                      {/* Simulated Color */}
                       <div>
-                        <div className="text-xs text-gray-500 mb-1">
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                           Simulated
                         </div>
                         <div
-                          className="w-full h-12 rounded-lg border border-gray-200"
+                          className="w-full h-12 rounded-lg border border-gray-200 dark:border-gray-700"
                           style={{ backgroundColor: simulatedColor }}
                         />
-                        <div className="text-xs font-mono text-gray-600 mt-1">
+                        <div className="text-xs font-mono text-gray-600 dark:text-gray-400 mt-1">
                           {simulatedColor}
                         </div>
                       </div>
@@ -283,17 +280,16 @@ export default function ColorBlindnessSimulator() {
               })}
             </div>
 
-            {/* Custom Color Picker */}
             <div className="flex items-center gap-3">
               <input
                 type="color"
                 value={newColor}
                 onChange={(e) => setNewColor(e.target.value)}
-                className="h-10 w-16 rounded border border-gray-300 cursor-pointer"
+                className="h-10 w-16 rounded border border-gray-300 dark:border-gray-700 cursor-pointer"
               />
               <button
                 onClick={handleAddColor}
-                className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm"
+                className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm"
               >
                 <Plus className="h-4 w-4" />
                 Add Color
@@ -301,15 +297,13 @@ export default function ColorBlindnessSimulator() {
             </div>
           </div>
 
-          {/* UI Examples */}
           <div>
-            <h2 className="text-lg font-medium text-gray-900 mb-4">
+            <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
               UI Element Examples
             </h2>
             <div className="space-y-4">
-              {/* Original UI */}
-              <div className="bg-white border border-gray-200 rounded-xl p-4">
-                <h3 className="font-medium text-gray-900 mb-3 text-sm">
+              <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-4">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                   Original Design
                 </h3>
                 <div className="space-y-3">
@@ -325,22 +319,27 @@ export default function ColorBlindnessSimulator() {
                     </button>
                   </div>
 
-                  <div className="p-3 bg-blue-50 border-l-4 border-blue-500 rounded text-sm">
-                    <p className="text-blue-800">Informational message</p>
+                  <div className="p-3 bg-blue-50 dark:bg-blue-950 border-l-4 border-blue-500 dark:border-blue-400 rounded text-sm">
+                    <p className="text-blue-800 dark:text-blue-200">
+                      Informational message
+                    </p>
                   </div>
 
                   <div className="flex items-center gap-2 text-sm">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-gray-700">Online</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Online
+                    </span>
                     <div className="w-2 h-2 bg-red-500 rounded-full ml-4"></div>
-                    <span className="text-gray-700">Offline</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Offline
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Simulated UI */}
-              <div className="bg-white border border-gray-200 rounded-xl p-4">
-                <h3 className="font-medium text-gray-900 mb-3 text-sm">
+              <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-4">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-3 text-sm">
                   {colorBlindnessTypes[selectedType].name} View
                 </h3>
                 <div className="space-y-3">
@@ -412,7 +411,9 @@ export default function ColorBlindnessSimulator() {
                         ),
                       }}
                     ></div>
-                    <span className="text-gray-700">Online</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Online
+                    </span>
                     <div
                       className="w-2 h-2 rounded-full ml-4"
                       style={{
@@ -422,12 +423,13 @@ export default function ColorBlindnessSimulator() {
                         ),
                       }}
                     ></div>
-                    <span className="text-gray-700">Offline</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Offline
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Statistics */}
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
                 <h3 className="font-medium text-gray-900 mb-3 text-sm">
                   Impact Statistics

@@ -210,18 +210,18 @@ export default function ImageFormatter() {
   const getFormatColor = (format: string) => {
     switch (format.toLowerCase()) {
       case "png":
-        return "bg-blue-50 text-blue-700 border-blue-200";
+        return "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800";
       case "jpeg":
       case "jpg":
-        return "bg-orange-50 text-orange-700 border-orange-200";
+        return "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950 dark:text-orange-300 dark:border-orange-800";
       case "webp":
-        return "bg-emerald-50 text-emerald-700 border-emerald-200";
+        return "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800";
       case "gif":
-        return "bg-purple-50 text-purple-700 border-purple-200";
+        return "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800";
       case "bmp":
-        return "bg-red-50 text-red-700 border-red-200";
+        return "bg-red-50 text-red-700 border-red-200 dark:bg-red-950 dark:text-red-300 dark:border-red-800";
       default:
-        return "bg-gray-50 text-gray-700 border-gray-200";
+        return "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700";
     }
   };
 
@@ -244,13 +244,12 @@ export default function ImageFormatter() {
   const stats = getTotalStats();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-100">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-black border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 text-sm mb-3"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-3"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -262,10 +261,10 @@ export default function ImageFormatter() {
                 <ImageIcon className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Image Formatter
                 </h1>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Convert between PNG, JPEG & WebP with quality control
                 </p>
               </div>
@@ -273,7 +272,7 @@ export default function ImageFormatter() {
 
             {images.length > 0 && (
               <div className="text-right">
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 dark:text-gray-400">
                   {images.length} image{images.length !== 1 ? "s" : ""}{" "}
                   converted
                 </div>
@@ -295,17 +294,16 @@ export default function ImageFormatter() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-6">
-        {/* Controls */}
-        <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
+        <div className="bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800 p-5 mb-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
             <div className="lg:col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Target Format
               </label>
               <select
                 value={targetFormat}
                 onChange={(e) => setTargetFormat(e.target.value as ImageFormat)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               >
                 <option value="png">PNG (Lossless)</option>
                 <option value="jpeg">JPEG (Lossy)</option>
@@ -315,7 +313,7 @@ export default function ImageFormatter() {
 
             {targetFormat !== "png" && (
               <div className="lg:col-span-1">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Quality: {Math.round(quality * 100)}%
                 </label>
                 <input
@@ -331,7 +329,7 @@ export default function ImageFormatter() {
             )}
 
             <div className="lg:col-span-2">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-gray-600 dark:text-gray-400">
                 <div className="font-medium mb-1">Format Benefits:</div>
                 {targetFormat === "png" && (
                   <div className="text-xs">
@@ -388,7 +386,7 @@ export default function ImageFormatter() {
                 </button>
                 <button
                   onClick={() => setShowComparison(!showComparison)}
-                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm"
+                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800"
                 >
                   {showComparison ? (
                     <EyeOff className="h-4 w-4" />
@@ -402,7 +400,6 @@ export default function ImageFormatter() {
           </div>
         </div>
 
-        {/* Upload Area */}
         {images.length === 0 && !isProcessing && (
           <div
             onDragEnter={handleDrag}
@@ -412,16 +409,16 @@ export default function ImageFormatter() {
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
               dragActive
-                ? "border-emerald-400 bg-emerald-50"
-                : "border-gray-300 hover:border-gray-400"
+                ? "border-emerald-400 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950"
+                : "border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600"
             }`}
           >
             <div className="max-w-sm mx-auto">
-              <FileImage className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <FileImage className="h-12 w-12 text-gray-400 dark:text-gray-600 mx-auto mb-3" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
                 {dragActive ? "Drop images here" : "Select or drop images"}
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
                 PNG, JPEG, WebP, GIF, BMP supported
               </p>
               <div className="flex justify-center gap-1 flex-wrap">
@@ -440,14 +437,13 @@ export default function ImageFormatter() {
           </div>
         )}
 
-        {/* Results */}
         {images.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                 Converted Images
               </h2>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-gray-600 dark:text-gray-400">
                 {images.length} image{images.length !== 1 ? "s" : ""}
               </div>
             </div>
@@ -456,10 +452,9 @@ export default function ImageFormatter() {
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden"
+                  className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden"
                 >
-                  {/* Image Preview */}
-                  <div className="aspect-video bg-gray-50 relative group">
+                  <div className="aspect-video bg-gray-50 dark:bg-gray-900 relative group">
                     <img
                       src={image.converted}
                       alt={image.original.name}
@@ -468,9 +463,9 @@ export default function ImageFormatter() {
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center">
                       <button
                         onClick={() => setPreviewImage(image.converted)}
-                        className="opacity-0 group-hover:opacity-100 bg-white rounded-full p-2 transition-opacity"
+                        className="opacity-0 group-hover:opacity-100 bg-white dark:bg-gray-800 rounded-full p-2 transition-opacity"
                       >
-                        <Eye className="h-4 w-4 text-gray-700" />
+                        <Eye className="h-4 w-4 text-gray-700 dark:text-gray-300" />
                       </button>
                     </div>
                     <button
@@ -481,29 +476,27 @@ export default function ImageFormatter() {
                     </button>
                   </div>
 
-                  {/* Image Info */}
                   <div className="p-3 space-y-3">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-medium text-gray-900 text-sm truncate flex-1 mr-2">
+                      <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm truncate flex-1 mr-2">
                         {image.original.name}
                       </h3>
                       <button
                         onClick={() => copyToClipboard(image.original.name)}
-                        className="p-1 text-gray-400"
+                        className="p-1 text-gray-400 dark:text-gray-500"
                       >
                         {copied ? (
-                          <Check className="h-3 w-3" />
+                          <Check className="h-3 w-3 text-green-500" />
                         ) : (
                           <Copy className="h-3 w-3" />
                         )}
                       </button>
                     </div>
 
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       {image.dimensions.width} × {image.dimensions.height}
                     </div>
 
-                    {/* Format Conversion */}
                     <div className="flex items-center justify-center gap-2">
                       <span
                         className={`px-2 py-1 rounded text-xs font-medium border ${getFormatColor(
@@ -512,7 +505,7 @@ export default function ImageFormatter() {
                       >
                         {image.originalFormat.toUpperCase()}
                       </span>
-                      <ArrowRight className="h-3 w-3 text-gray-400" />
+                      <ArrowRight className="h-3 w-3 text-gray-400 dark:text-gray-500" />
                       <span
                         className={`px-2 py-1 rounded text-xs font-medium border ${getFormatColor(
                           image.targetFormat
@@ -524,34 +517,32 @@ export default function ImageFormatter() {
 
                     {showComparison && (
                       <>
-                        {/* File Sizes */}
                         <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="text-center p-2 bg-gray-50 rounded">
-                            <div className="font-medium text-gray-900">
+                          <div className="text-center p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                            <div className="font-medium text-gray-900 dark:text-gray-100">
                               Original
                             </div>
-                            <div className="text-gray-600">
+                            <div className="text-gray-600 dark:text-gray-400">
                               {formatFileSize(image.originalSize)}
                             </div>
                           </div>
-                          <div className="text-center p-2 bg-gray-50 rounded">
-                            <div className="font-medium text-gray-900">
+                          <div className="text-center p-2 bg-gray-50 dark:bg-gray-800 rounded">
+                            <div className="font-medium text-gray-900 dark:text-gray-100">
                               Converted
                             </div>
-                            <div className="text-gray-600">
+                            <div className="text-gray-600 dark:text-gray-400">
                               {formatFileSize(image.convertedSize)}
                             </div>
                           </div>
                         </div>
 
-                        {/* Size Change */}
                         <div
                           className={`text-center text-xs font-medium p-2 rounded ${
                             image.convertedSize < image.originalSize
-                              ? "bg-emerald-50 text-emerald-700"
+                              ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
                               : image.convertedSize > image.originalSize
-                              ? "bg-red-50 text-red-700"
-                              : "bg-gray-50 text-gray-700"
+                              ? "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300"
+                              : "bg-gray-50 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                           }`}
                         >
                           {image.convertedSize < image.originalSize && "↓ "}
@@ -587,15 +578,16 @@ export default function ImageFormatter() {
           </div>
         )}
 
-        {/* Image Preview Modal */}
         {previewImage && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="max-w-4xl max-h-full bg-white rounded-lg overflow-hidden">
-              <div className="flex items-center justify-between p-4 border-b">
-                <h3 className="font-medium">Image Preview</h3>
+            <div className="max-w-4xl max-h-full bg-white dark:bg-black rounded-lg overflow-hidden">
+              <div className="flex items-center justify-between p-4 border-b dark:border-gray-800">
+                <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                  Image Preview
+                </h3>
                 <button
                   onClick={() => setPreviewImage(null)}
-                  className="p-1 hover:bg-gray-100 rounded"
+                  className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded text-gray-700 dark:text-gray-300"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -611,21 +603,22 @@ export default function ImageFormatter() {
           </div>
         )}
 
-        {/* Format Comparison */}
-        <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
+        <div className="mt-8 bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <Info className="h-5 w-5 text-blue-500" />
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               Format Comparison
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-2 mb-3">
-                <Shield className="h-4 w-4 text-blue-600" />
-                <h4 className="font-medium text-blue-900">PNG</h4>
+                <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <h4 className="font-medium text-blue-900 dark:text-blue-200">
+                  PNG
+                </h4>
               </div>
-              <ul className="text-sm text-blue-800 space-y-1">
+              <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1">
                 <li>• Lossless compression</li>
                 <li>• Transparency support</li>
                 <li>• Best for graphics & logos</li>
@@ -633,12 +626,14 @@ export default function ImageFormatter() {
               </ul>
             </div>
 
-            <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+            <div className="p-4 bg-orange-50 dark:bg-orange-950 rounded-lg border border-orange-200 dark:border-orange-800">
               <div className="flex items-center gap-2 mb-3">
-                <Layers className="h-4 w-4 text-orange-600" />
-                <h4 className="font-medium text-orange-900">JPEG</h4>
+                <Layers className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                <h4 className="font-medium text-orange-900 dark:text-orange-200">
+                  JPEG
+                </h4>
               </div>
-              <ul className="text-sm text-orange-800 space-y-1">
+              <ul className="text-sm text-orange-800 dark:text-orange-300 space-y-1">
                 <li>• Lossy compression</li>
                 <li>• Small file sizes</li>
                 <li>• Best for photographs</li>
@@ -646,12 +641,14 @@ export default function ImageFormatter() {
               </ul>
             </div>
 
-            <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+            <div className="p-4 bg-emerald-50 dark:bg-emerald-950 rounded-lg border border-emerald-200 dark:border-emerald-800">
               <div className="flex items-center gap-2 mb-3">
-                <Zap className="h-4 w-4 text-emerald-600" />
-                <h4 className="font-medium text-emerald-900">WebP</h4>
+                <Zap className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <h4 className="font-medium text-emerald-900 dark:text-emerald-200">
+                  WebP
+                </h4>
               </div>
-              <ul className="text-sm text-emerald-800 space-y-1">
+              <ul className="text-sm text-emerald-800 dark:text-emerald-300 space-y-1">
                 <li>• Superior compression</li>
                 <li>• 25-35% smaller than JPEG</li>
                 <li>• Lossless & lossy modes</li>

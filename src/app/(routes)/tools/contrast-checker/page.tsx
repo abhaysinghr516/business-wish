@@ -22,15 +22,14 @@ interface ContrastResult {
 }
 
 export default function ContrastChecker() {
-  const [foregroundColor, setForegroundColor] = useState("#000000");
-  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
+  const [foregroundColor, setForegroundColor] = useState("#FFFFFF");
+  const [backgroundColor, setBackgroundColor] = useState("#000000");
   const [contrastResult, setContrastResult] = useState<ContrastResult | null>(
     null
   );
   const [copiedText, setCopiedText] = useState("");
   const [previewSize, setPreviewSize] = useState<"sm" | "md" | "lg">("md");
 
-  // Calculate relative luminance
   const getLuminance = (hex: string): number => {
     const rgb = parseInt(hex.slice(1), 16);
     const r = (rgb >> 16) & 0xff;
@@ -45,7 +44,6 @@ export default function ContrastChecker() {
     return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
   };
 
-  // Calculate contrast ratio
   const getContrastRatio = useCallback((fg: string, bg: string): number => {
     const l1 = getLuminance(fg);
     const l2 = getLuminance(bg);
@@ -54,7 +52,6 @@ export default function ContrastChecker() {
     return (lighter + 0.05) / (darker + 0.05);
   }, []);
 
-  // Check WCAG compliance
   const checkWCAGCompliance = useCallback(() => {
     const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
@@ -98,7 +95,7 @@ export default function ContrastChecker() {
 
   const getComplianceIcon = (isCompliant: boolean) => {
     return isCompliant ? (
-      <CheckCircle className="h-4 w-4 text-green-600" />
+      <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-500" />
     ) : (
       <AlertTriangle className="h-4 w-4 text-red-500" />
     );
@@ -106,18 +103,17 @@ export default function ContrastChecker() {
 
   const getComplianceColor = (isCompliant: boolean) => {
     return isCompliant
-      ? "text-green-700 bg-green-50 border-green-200"
-      : "text-red-700 bg-red-50 border-red-200";
+      ? "text-green-700 bg-green-50 border-green-200 dark:text-green-300 dark:bg-green-950 dark:border-green-800"
+      : "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800";
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto px-6 py-5">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-700 text-sm mb-3"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm mb-3"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -128,10 +124,10 @@ export default function ContrastChecker() {
               <Eye className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-gray-900">
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 Color Contrast Checker
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Test colors & ensure WCAG compliance
               </p>
             </div>
@@ -141,15 +137,13 @@ export default function ContrastChecker() {
 
       <div className="max-w-6xl mx-auto px-6 py-6">
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
-          {/* Left - Controls */}
           <div className="space-y-4">
-            {/* Foreground */}
-            <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
-              <h3 className="font-medium text-gray-800 mb-2 text-sm">
+            <div className="bg-white dark:bg-black rounded-xl p-4 border border-gray-200 dark:border-gray-800">
+              <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-2 text-sm">
                 Foreground
               </h3>
               <div
-                className="w-full h-12 rounded-lg mb-3 border border-gray-200"
+                className="w-full h-12 rounded-lg mb-3 border border-gray-200 dark:border-gray-700"
                 style={{ backgroundColor: foregroundColor }}
               />
               <div className="flex items-center gap-2">
@@ -157,19 +151,19 @@ export default function ContrastChecker() {
                   type="color"
                   value={foregroundColor}
                   onChange={(e) => setForegroundColor(e.target.value)}
-                  className="w-8 h-8 rounded-md border border-gray-200 cursor-pointer"
+                  className="w-8 h-8 rounded-md border border-gray-200 dark:border-gray-700 cursor-pointer"
                 />
                 <input
                   type="text"
                   value={foregroundColor}
                   onChange={(e) => setForegroundColor(e.target.value)}
-                  className="flex-1 px-2 py-1 bg-white border border-gray-200 rounded-md font-mono text-sm focus:border-blue-300"
+                  className="flex-1 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900"
                 />
                 <button
                   onClick={() =>
                     copyToClipboard(foregroundColor, "foreground color")
                   }
-                  className="p-1.5 text-gray-400 hover:text-gray-600 rounded-md"
+                  className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-md"
                 >
                   {copiedText === "foreground color" ? (
                     <Check className="h-3 w-3 text-green-600" />
@@ -180,13 +174,12 @@ export default function ContrastChecker() {
               </div>
             </div>
 
-            {/* Background */}
-            <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
-              <h3 className="font-medium text-gray-800 mb-2 text-sm">
+            <div className="bg-white dark:bg-black rounded-xl p-4 border border-gray-200 dark:border-gray-800">
+              <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-2 text-sm">
                 Background
               </h3>
               <div
-                className="w-full h-12 rounded-lg mb-3 border border-gray-200"
+                className="w-full h-12 rounded-lg mb-3 border border-gray-200 dark:border-gray-700"
                 style={{ backgroundColor: backgroundColor }}
               />
               <div className="flex items-center gap-2">
@@ -194,19 +187,19 @@ export default function ContrastChecker() {
                   type="color"
                   value={backgroundColor}
                   onChange={(e) => setBackgroundColor(e.target.value)}
-                  className="w-8 h-8 rounded-md border border-gray-200 cursor-pointer"
+                  className="w-8 h-8 rounded-md border border-gray-200 dark:border-gray-700 cursor-pointer"
                 />
                 <input
                   type="text"
                   value={backgroundColor}
                   onChange={(e) => setBackgroundColor(e.target.value)}
-                  className="flex-1 px-2 py-1 bg-white border border-gray-200 rounded-md font-mono text-sm focus:border-blue-300"
+                  className="flex-1 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900"
                 />
                 <button
                   onClick={() =>
                     copyToClipboard(backgroundColor, "background color")
                   }
-                  className="p-1.5 text-gray-400 hover:text-gray-600 rounded-md"
+                  className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-md"
                 >
                   {copiedText === "background color" ? (
                     <Check className="h-3 w-3 text-green-600" />
@@ -217,47 +210,46 @@ export default function ContrastChecker() {
               </div>
             </div>
 
-            {/* Actions */}
             <div className="flex gap-2">
               <button
                 onClick={generateRandomColors}
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-md text-xs"
+                className="flex-1 flex items-center justify-center gap-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-lg text-xs font-medium"
               >
                 <Shuffle className="h-3 w-3" />
                 Random
               </button>
               <button
                 onClick={swapColors}
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-md text-xs"
+                className="flex-1 flex items-center justify-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg text-xs font-medium"
               >
                 <ArrowDownUp className="h-3 w-3" />
                 Swap
               </button>
             </div>
 
-            {/* Contrast Ratio */}
             {contrastResult && (
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-3 text-center border border-blue-100">
-                <h3 className="font-medium text-gray-800 mb-1 text-sm">
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-xl p-3 text-center border border-blue-100 dark:border-blue-900">
+                <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-1 text-sm">
                   Contrast Ratio
                 </h3>
-                <div className="text-2xl font-light text-gray-900">
+                <div className="text-2xl font-light text-gray-900 dark:text-gray-100">
                   {contrastResult.ratio.toFixed(2)} : 1
                 </div>
               </div>
             )}
           </div>
 
-          {/* Middle - Preview */}
-          <div className="bg-white border border-gray-200 rounded-xl p-5">
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-5">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-medium text-gray-800 text-sm">Preview</h3>
+              <h3 className="font-medium text-gray-800 dark:text-gray-300 text-sm">
+                Preview
+              </h3>
               <select
                 value={previewSize}
                 onChange={(e) =>
                   setPreviewSize(e.target.value as "sm" | "md" | "lg")
                 }
-                className="text-xs border border-gray-200 rounded-md px-2 py-1"
+                className="text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 bg-white dark:bg-gray-800 dark:text-gray-200 focus:outline-none"
               >
                 <option value="sm">Small</option>
                 <option value="md">Normal</option>
@@ -265,7 +257,7 @@ export default function ContrastChecker() {
               </select>
             </div>
             <div
-              className="rounded-lg p-4 border border-gray-100"
+              className="rounded-lg p-4 border border-gray-200 dark:border-gray-800"
               style={{
                 backgroundColor: backgroundColor,
                 color: foregroundColor,
@@ -301,10 +293,9 @@ export default function ContrastChecker() {
             </div>
           </div>
 
-          {/* Right - WCAG Compliance */}
           {contrastResult && (
-            <div className="bg-white border border-gray-200 rounded-xl p-5">
-              <h3 className="font-medium text-gray-800 mb-3 text-sm">
+            <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-5">
+              <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-3 text-sm">
                 WCAG Compliance
               </h3>
               <div className="space-y-2">
@@ -342,11 +333,11 @@ export default function ContrastChecker() {
                 </div>
               </div>
 
-              <div className="mt-4 p-3 bg-gray-50 rounded-md">
-                <h4 className="font-medium text-gray-800 mb-1 text-xs">
+              <div className="mt-4 p-3 bg-gray-100 dark:bg-gray-900 rounded-md">
+                <h4 className="font-medium text-gray-800 dark:text-gray-300 mb-1 text-xs">
                   Quick Guide
                 </h4>
-                <ul className="text-xs text-gray-600 space-y-0.5">
+                <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-0.5">
                   <li>• AA: 4.5:1 minimum for text</li>
                   <li>• AAA: 7:1 for enhanced readability</li>
                   <li>• Large text has lower thresholds</li>

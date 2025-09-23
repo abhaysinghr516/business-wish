@@ -10,9 +10,7 @@ import {
   RefreshCw,
   Hash,
   AlertCircle,
-  Droplet,
 } from "lucide-react";
-import { toast } from "react-toastify";
 
 interface ColorFormats {
   hex: string;
@@ -30,7 +28,6 @@ export default function ColorFormatConverter() {
   const [copiedFormat, setCopiedFormat] = useState("");
   const [inputError, setInputError] = useState("");
 
-  // --- Parsing Logic (unchanged) ---
   const parseColorInput = (
     input: string,
     format: "hex" | "rgb" | "hsl"
@@ -87,7 +84,6 @@ export default function ColorFormatConverter() {
     return hslToRgb(h, s, l);
   };
 
-  // --- Utility conversion functions (unchanged) ---
   const hslToRgb = (h: number, s: number, l: number) => {
     h /= 360;
     s /= 100;
@@ -221,7 +217,6 @@ export default function ColorFormatConverter() {
       })
       .join("");
 
-  // --- Conversion ---
   const convertColor = useCallback(
     (input: string, format: "hex" | "rgb" | "hsl"): ColorFormats | null => {
       const rgb = parseColorInput(input, format);
@@ -256,10 +251,9 @@ export default function ColorFormatConverter() {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedFormat(format);
-      toast.success(`Copied ${format} format`);
       setTimeout(() => setCopiedFormat(""), 2000);
     } catch {
-      toast.error("Failed to copy");
+      // handle error
     }
   };
 
@@ -290,13 +284,12 @@ export default function ColorFormatConverter() {
     : null;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="border-b bg-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <header className="border-b bg-white dark:bg-black border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 text-sm"
+            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
@@ -306,10 +299,10 @@ export default function ColorFormatConverter() {
               <Hash className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-medium text-gray-900">
+              <h1 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                 Color Format Converter
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Convert and explore color values in multiple formats
               </p>
             </div>
@@ -317,29 +310,26 @@ export default function ColorFormatConverter() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-        {/* Input Section */}
-        <section className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <section className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="flex items-center gap-6">
               {colorFormats && (
                 <div
-                  className="w-20 h-20 rounded-xl border border-gray-200 shadow-inner"
+                  className="w-20 h-20 rounded-xl border border-gray-200 dark:border-gray-700 shadow-inner"
                   style={{ backgroundColor: colorFormats.hex }}
                 />
               )}
               <div className="flex flex-col gap-3">
-                {/* Format Selector */}
-                <div className="flex bg-gray-100 rounded-lg p-1 w-fit">
+                <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1 w-fit">
                   {(["hex", "rgb", "hsl"] as const).map((format) => (
                     <button
                       key={format}
                       onClick={() => setInputFormat(format)}
                       className={`px-3 py-1.5 rounded-md text-xs font-medium ${
                         inputFormat === format
-                          ? "bg-white text-indigo-600 shadow-sm"
-                          : "text-gray-500"
+                          ? "bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm"
+                          : "text-gray-500 dark:text-gray-400"
                       }`}
                     >
                       {format.toUpperCase()}
@@ -347,26 +337,27 @@ export default function ColorFormatConverter() {
                   ))}
                 </div>
 
-                {/* Inputs */}
                 <div className="flex gap-3 items-center">
                   <input
                     type="text"
                     value={inputColor}
                     onChange={(e) => setInputColor(e.target.value)}
                     placeholder={getPlaceholder()}
-                    className={`w-64 px-3 py-2 border rounded-lg font-mono text-sm focus:outline-none ${
-                      inputError ? "border-red-300" : "border-gray-200"
+                    className={`w-64 px-3 py-2 border rounded-lg font-mono text-sm focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 ${
+                      inputError
+                        ? "border-red-400 dark:border-red-600"
+                        : "border-gray-200 dark:border-gray-700"
                     }`}
                   />
                   <input
                     type="color"
                     value={colorFormats?.hex ?? "#3B82F6"}
                     onChange={(e) => setInputColor(e.target.value)}
-                    className="w-10 h-10 rounded-md border border-gray-300 cursor-pointer"
+                    className="w-10 h-10 rounded-md border border-gray-300 dark:border-gray-700 cursor-pointer"
                   />
                 </div>
                 {inputError && (
-                  <div className="flex items-center gap-2 text-red-600 text-xs">
+                  <div className="flex items-center gap-2 text-red-600 dark:text-red-500 text-xs">
                     <AlertCircle className="h-3 w-3" />
                     {inputError}
                   </div>
@@ -374,11 +365,10 @@ export default function ColorFormatConverter() {
               </div>
             </div>
 
-            {/* Buttons */}
             <div className="flex gap-3">
               <button
                 onClick={generateRandomColor}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm"
               >
                 <Shuffle className="h-3 w-3" />
                 Random
@@ -387,7 +377,7 @@ export default function ColorFormatConverter() {
                 onClick={() =>
                   setColorFormats(convertColor(inputColor, inputFormat))
                 }
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded-lg text-sm"
               >
                 <RefreshCw className="h-3 w-3" />
                 Convert
@@ -396,7 +386,6 @@ export default function ColorFormatConverter() {
           </div>
         </section>
 
-        {/* Results Section */}
         {formatStrings && (
           <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries({
@@ -417,13 +406,13 @@ export default function ColorFormatConverter() {
             }).map(([label, value]) => (
               <div
                 key={label}
-                className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between shadow-sm"
+                className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-4 flex flex-col justify-between shadow-sm"
               >
                 <div className="mb-3">
-                  <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">
                     {label}
                   </span>
-                  <p className="font-mono text-sm mt-1 text-gray-800 break-all">
+                  <p className="font-mono text-sm mt-1 text-gray-800 dark:text-gray-200 break-all">
                     {value}
                   </p>
                 </div>
@@ -433,8 +422,8 @@ export default function ColorFormatConverter() {
                   className={`self-end flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg border transition-all duration-150
                     ${
                       copiedFormat === label
-                        ? "bg-green-100 text-green-700 border-green-300"
-                        : "bg-gray-50 hover:bg-gray-100 text-gray-600 border-gray-200"
+                        ? "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300 border-green-300 dark:border-green-800"
+                        : "bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700"
                     }
                   `}
                 >
