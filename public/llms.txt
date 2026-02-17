@@ -1,39 +1,105 @@
-# Business Wish - Tailwind CSS UI Components Library
+# Business Wish
 
-> Business Wish is a comprehensive, free library of high-quality Tailwind CSS UI components designed for modern web developers. Built with React, Next.js, and TypeScript, it provides copy-paste ready components with dark mode support and accessibility features.
+> Free, production-ready Tailwind CSS UI components and developer tools for modern web developers.
 
-## Key Features
+Business Wish is an open-source library of **50+ copy-paste ready Tailwind CSS components**, **13 motion/animation components**, and **17 developer tools**. All components support dark mode, are fully accessible (WCAG compliant), responsive, and framework-agnostic (Next.js, Vite, CRA, etc.).
 
-- **50+ Components**: Comprehensive collection including buttons, cards, forms, navigation, data display, and layout components
-- **Copy-Paste Ready**: One-click copy functionality with syntax highlighting
-- **Dark Mode Support**: All components include built-in dark mode variants
-- **Accessibility First**: WCAG compliant components with proper ARIA attributes
-- **TypeScript Support**: Full type safety and IntelliSense support
-- **Framework Agnostic**: Works with Next.js, Vite, Create React App, and other React frameworks
+- Website: https://www.businesswish.tech
+- GitHub: https://github.com/abhaysinghr516/business-wish
+- License: Apache-2.0
 
 ## Documentation
 
-- [Getting Started Guide](https://www.businesswish.tech/docs/getting-started.html.md): Quick setup and installation instructions
-- [Component Categories](https://www.businesswish.tech/docs/components.html.md): Organized by Layout, Data Display, Form Controls, Feedback, Overlays, Content, and Utilities
-- [Design System](https://www.businesswish.tech/docs/design-system.html.md): Colors, typography, spacing, and accessibility guidelines
-- [Migration Guide](https://www.businesswish.tech/docs/migration.html.md): Version upgrade instructions and breaking changes
+- [Getting Started](https://www.businesswish.tech/docs/getting-started): How to install and use components in your project
+- [Component Library](https://www.businesswish.tech/docs/components): Browse all UI components
+- [Motion Components](https://www.businesswish.tech/docs/motion): Animated and interactive components
+- [Page Templates](https://www.businesswish.tech/docs/pages): Full page template examples
 
-## Popular Components
+## UI Components
 
-- [Button Component](https://www.businesswish.tech/docs/components/button.html.md): Multiple variants, sizes, and states
-- [Card Component](https://www.businesswish.tech/docs/components/card.html.md): Flexible content containers with various layouts
-- [Data Table](https://www.businesswish.tech/docs/components/data-table.html.md): Sortable, filterable tables with pagination
-- [Hero Sections](https://www.businesswish.tech/docs/components/hero.html.md): Landing page hero components
-- [Navigation](https://www.businesswish.tech/docs/components/header.html.md): Responsive navigation bars and menus
+Copy-paste ready Tailwind CSS components with dark mode, accessibility, and responsive design built-in.
 
-## Examples
+- [Accordion](https://www.businesswish.tech/docs/components/accordion): Collapsible content sections
+- [Alert](https://www.businesswish.tech/docs/components/alert): Notification and feedback messages
+- [Avatar](https://www.businesswish.tech/docs/components/avatar): User profile images and placeholders
+- [Badge](https://www.businesswish.tech/docs/components/badge): Status indicators and labels
+- [Banner](https://www.businesswish.tech/docs/components/banner): Top and inline banners
+- [Bottom Navigation](https://www.businesswish.tech/docs/components/bottom-navigation): Mobile bottom nav bars
+- [Breadcrumb](https://www.businesswish.tech/docs/components/breadcrumb): Navigation breadcrumbs
+- [Button](https://www.businesswish.tech/docs/components/button): Multiple variants, sizes, and states
+- [Call to Action](https://www.businesswish.tech/docs/components/call-to-action): CTA sections
+- [Card](https://www.businesswish.tech/docs/components/card): Flexible content containers
+- [Data Table](https://www.businesswish.tech/docs/components/data-table): Sortable, filterable tables
+- [Date Picker](https://www.businesswish.tech/docs/components/date-picker): Date selection components
+- [Divider](https://www.businesswish.tech/docs/components/divider): Horizontal and vertical dividers
+- [Dropdown](https://www.businesswish.tech/docs/components/dropdown): Dropdown menus and selectors
+- [Features](https://www.businesswish.tech/docs/components/features): Feature showcase sections
+- [File Upload](https://www.businesswish.tech/docs/components/file-upload): File upload and drag-drop zones
+- [Footer](https://www.businesswish.tech/docs/components/footer): Page footer layouts
+- [Header](https://www.businesswish.tech/docs/components/header): Responsive navigation bars
+- [Hero](https://www.businesswish.tech/docs/components/hero): Landing page hero sections
+- [Loader](https://www.businesswish.tech/docs/components/loader): Loading spinners and skeletons
+- [Pagination](https://www.businesswish.tech/docs/components/pagination): Page navigation controls
+- [Popover](https://www.businesswish.tech/docs/components/popover): Floating content overlays
+- [Progress](https://www.businesswish.tech/docs/components/progress): Progress bars and indicators
+- [Sidebar](https://www.businesswish.tech/docs/components/sidebar): Side navigation panels
+- [Skeleton](https://www.businesswish.tech/docs/components/skeleton): Content loading placeholders
+- [Social Share](https://www.businesswish.tech/docs/components/social-share): Social media sharing buttons
+- [Tabs](https://www.businesswish.tech/docs/components/tabs): Tabbed content navigation
+- [Testimonial](https://www.businesswish.tech/docs/components/testimonial): User testimonial sections
+- [Tooltip](https://www.businesswish.tech/docs/components/tooltip): Hover/focus tooltip overlays
 
-- [Blog List Components](https://www.businesswish.tech/docs/pages/blog-list.html.md): Various blog layout patterns
-- [Error Pages](https://www.businesswish.tech/docs/pages/404.html.md): Custom 404 and error page designs
-- [Form Examples](https://www.businesswish.tech/docs/components/form.html.md): Complete form implementations with validation
+## Motion Components
+
+Animated, interactive components built with Framer Motion. Install and use in React/Next.js projects.
+
+- [Text Reveal](https://www.businesswish.tech/docs/motion/text-reveal): Animated text reveal on scroll
+- [Number Ticker](https://www.businesswish.tech/docs/motion/number-ticker): Animated counting numbers
+- [Card Spotlight](https://www.businesswish.tech/docs/motion/card-spotlight): Cards with spotlight hover effect
+- [Shimmer Button](https://www.businesswish.tech/docs/motion/shimmer-button): Buttons with shimmer animation
+- [Gradient Text](https://www.businesswish.tech/docs/motion/gradient-text): Animated gradient text
+- [Fade In](https://www.businesswish.tech/docs/motion/fade-in): Fade-in animation wrapper
+- [Morphing Text](https://www.businesswish.tech/docs/motion/morphing-text): Smooth text morphing transitions
+- [Magnetic Element](https://www.businesswish.tech/docs/motion/magnetic-element): Elements that attract to cursor
+- [Text Shimmer](https://www.businesswish.tech/docs/motion/text-shimmer): Shimmering text effect
+- [Word Rotate](https://www.businesswish.tech/docs/motion/word-rotate): Rotating word animations
+- [Dock](https://www.businesswish.tech/docs/motion/dock): macOS-style dock with magnification
+- [Split Text](https://www.businesswish.tech/docs/motion/split-text): Split text animation
+- [Blur Reveal](https://www.businesswish.tech/docs/motion/blur-reveal): Blur-to-clear reveal animation
+
+## Page Templates
+
+Full page layout templates ready to use.
+
+- [Error Pages (404)](https://www.businesswish.tech/docs/pages/404): Custom 404 error page designs
+- [Blog List](https://www.businesswish.tech/docs/pages/blog-list): Blog listing page templates
+
+## Developer Tools
+
+Free browser-based tools for developers — no installation required.
+
+- [Tools Home](https://www.businesswish.tech/tools): Browse all developer tools
+- [Palette Generator](https://www.businesswish.tech/tools/palette-generator): Generate color palettes
+- [Contrast Checker](https://www.businesswish.tech/tools/contrast-checker): Check color contrast ratios (WCAG)
+- [Color Blindness Simulator](https://www.businesswish.tech/tools/blindness-simulator): Simulate color blindness
+- [Format Converter](https://www.businesswish.tech/tools/format-converter): Convert between color formats
+- [Image Extractor](https://www.businesswish.tech/tools/image-extractor): Extract colors from images
+- [JSON Formatter](https://www.businesswish.tech/tools/json-formatter): Format and validate JSON
+- [QR Code Generator](https://www.businesswish.tech/tools/qr-generator): Generate QR codes
+- [Box Shadow Generator](https://www.businesswish.tech/tools/box-shadow): Create CSS box shadows visually
+- [Gradient Generator](https://www.businesswish.tech/tools/gradient): Create CSS gradients
+- [Flexbox Playground](https://www.businesswish.tech/tools/flexbox): Interactive CSS Flexbox tool
+- [CSS Grid Playground](https://www.businesswish.tech/tools/css-grid): Interactive CSS Grid tool
+- [CSV to JSON](https://www.businesswish.tech/tools/csv-to-json): Convert CSV data to JSON
+- [Word Counter](https://www.businesswish.tech/tools/word-counter): Count words and characters
+- [Image Compressor](https://www.businesswish.tech/tools/image-compressor): Compress images in browser
+- [Pomodoro Timer](https://www.businesswish.tech/tools/pomodoro-timer): Focus timer with Pomodoro technique
+- [Animation Easing](https://www.businesswish.tech/tools/animation-easing): Preview CSS easing curves
+- [Image Formatter](https://www.businesswish.tech/tools/image-formatter): Convert image formats
 
 ## Optional
 
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs): Official Tailwind CSS reference
-- [Radix UI Primitives](https://www.radix-ui.com/primitives): Underlying accessible component primitives
-- [Lucide React Icons](https://lucide.dev/guide/packages/lucide-react): Icon library used throughout components
+- [Privacy Policy](https://www.businesswish.tech/privacy)
+- [Terms of Service](https://www.businesswish.tech/terms)
+- [Cookie Policy](https://www.businesswish.tech/cookie-policy)
+- [Accessibility Statement](https://www.businesswish.tech/accessibility)
