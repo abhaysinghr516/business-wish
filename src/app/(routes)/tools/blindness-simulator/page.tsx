@@ -102,17 +102,17 @@ export default function ColorBlindnessSimulator() {
 
       switch (type) {
         case "protanopia":
-          return rgbToHex(g * 0.9, g, b);
+          return rgbToHex(0.567 * r + 0.433 * g, 0.558 * r + 0.442 * g, 0.242 * g + 0.758 * b);
         case "protanomaly":
-          return rgbToHex(r * 0.8 + g * 0.2, g * 0.9 + r * 0.1, b);
+          return rgbToHex(0.817 * r + 0.183 * g, 0.333 * r + 0.667 * g, 0.125 * g + 0.875 * b);
         case "deuteranopia":
-          return rgbToHex(r, g * 0.9, b);
+          return rgbToHex(0.625 * r + 0.375 * g, 0.7 * r + 0.3 * g, 0.3 * g + 0.7 * b);
         case "deuteranomaly":
-          return rgbToHex(r * 0.9 + g * 0.1, g * 0.8 + r * 0.2, b);
+          return rgbToHex(0.8 * r + 0.2 * g, 0.258 * r + 0.742 * g, 0.142 * g + 0.858 * b);
         case "tritanopia":
-          return rgbToHex(r, g, b * 0.9);
+          return rgbToHex(0.95 * r + 0.05 * g, 0.433 * g + 0.567 * b, 0.475 * g + 0.525 * b);
         case "achromatopsia":
-          const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+          const gray = 0.2126 * r + 0.7152 * g + 0.0722 * b;
           return rgbToHex(gray, gray, gray);
         default:
           return hex;

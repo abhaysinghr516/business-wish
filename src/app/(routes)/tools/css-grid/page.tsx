@@ -261,12 +261,12 @@ export default function CSSGridGenerator() {
 
  if (useIndividualGaps) {
  if (rowGap === columnGap) {
- classes.push(`gap-${rowGap / 4}`);
+ classes.push(rowGap % 4 === 0 ? `gap-${rowGap / 4}` : `gap-[${rowGap}px]`);
  } else {
- classes.push(`gap-x-${columnGap / 4}`, `gap-y-${rowGap / 4}`);
+ classes.push(columnGap % 4 === 0 ? `gap-x-${columnGap / 4}` : `gap-x-[${columnGap}px]`, rowGap % 4 === 0 ? `gap-y-${rowGap / 4}` : `gap-y-[${rowGap}px]`);
  }
  } else {
- classes.push(`gap-${gap / 4}`);
+ classes.push(gap % 4 === 0 ? `gap-${gap / 4}` : `gap-[${gap}px]`);
  }
 
  return classes.join(" ");

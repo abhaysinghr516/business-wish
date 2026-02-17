@@ -86,7 +86,8 @@ export default function PomodoroTimer() {
  return () => {
  if (intervalRef.current) clearInterval(intervalRef.current);
  };
- }, [isActive, timeLeft]);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, timeLeft]);
 
  const handleTimerComplete = () => {
  setIsActive(false);

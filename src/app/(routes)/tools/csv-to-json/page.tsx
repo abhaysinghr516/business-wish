@@ -28,6 +28,26 @@ export default function CSVToJSON() {
  const [isProcessing, setIsProcessing] = useState(false);
  const fileInputRef = useRef<HTMLInputElement>(null);
 
+ const parseCSVLine = (line: string, delim: string): string[] => {
+  const result: string[] = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+   const char = line[i];
+   const next = line[i + 1];
+   if (inQuotes) {
+    if (char === '"' && next === '"') { current += '"'; i++; }
+    else if (char === '"') { inQuotes = false; }
+    else { current += char; }
+   } else {
+    if (char === '"') { inQuotes = true; }
+    else if (char === delim) { result.push(current.trim()); current = ""; }
+    else { current += char; }
+   }
+  }
+  result.push(current.trim());
+  return result;
+ };
  const convertCSVToJSON = () => {
  try {
  setIsProcessing(true);
@@ -50,19 +70,15 @@ export default function CSVToJSON() {
  let dataLines = lines;
 
  if (hasHeader) {
- headers = lines[0]
- .split(delimiter)
- .map((h) => h.trim().replace(/"/g, ""));
+ headers = parseCSVLine(lines[0], delimiter);
  dataLines = lines.slice(1);
  } else {
- const firstLine = lines[0].split(delimiter);
+ const firstLine = parseCSVLine(lines[0], delimiter);
  headers = firstLine.map((_, index) => `column_${index + 1}`);
  }
 
  const result = dataLines.map((line) => {
- const values = line
- .split(delimiter)
- .map((v) => v.trim().replace(/"/g, ""));
+ const values = parseCSVLine(line, delimiter);
  const obj: Record<string, any> = {};
 
  headers.forEach((header, index) => {

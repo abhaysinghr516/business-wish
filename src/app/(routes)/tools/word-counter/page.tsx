@@ -449,7 +449,7 @@ Report generated on ${new Date().toLocaleString()}`;
  </div>
  </div>
 
- <div className="mt-6 p-4 bg-stone-50 rounded-lg">
+ <div className="mt-6 p-4 bg-stone-50 dark:bg-stone-900 rounded-lg">
  <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100 mb-3">
  Text Composition
  </h4>
@@ -582,7 +582,7 @@ Report generated on ${new Date().toLocaleString()}`;
  </div>
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
- <div className="p-4 bg-stone-50 rounded-lg">
+ <div className="p-4 bg-stone-50 dark:bg-stone-900 rounded-lg">
  <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100 mb-3">
  Word Distribution
  </h4>
@@ -617,7 +617,7 @@ Report generated on ${new Date().toLocaleString()}`;
  </div>
  </div>
 
- <div className="p-4 bg-stone-50 rounded-lg">
+ <div className="p-4 bg-stone-50 dark:bg-stone-900 rounded-lg">
  <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100 mb-3">
  Sentence Structure
  </h4>

@@ -130,7 +130,7 @@ export default function FlexboxGenerator() {
  config.alignContent !== "stretch"
  ? `content-${config.alignContent.replace("flex-", "")}`
  : "",
- config.gap > 0 ? `gap-${config.gap / 4}` : "",
+ config.gap > 0 ? (config.gap % 4 === 0 ? `gap-${config.gap / 4}` : `gap-[${config.gap}px]`) : "",
  ].filter(Boolean);
 
  return classes.join(" ");

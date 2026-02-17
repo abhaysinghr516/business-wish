@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
+import Link from "next/link";
 import {
  ArrowLeft,
  Download,
@@ -342,10 +343,13 @@ export default function ImageCompressor() {
  <div className="min-h-screen bg-white dark:bg-stone-950">
  <div className="bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-10">
  <div className="max-w-6xl mx-auto px-6 py-4">
- <button className="inline-flex items-center gap-2 text-stone-600 dark:text-stone-400 text-sm mb-3 px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800">
- <ArrowLeft className="h-3 w-3" />
+ <Link
+ href="/tools"
+ className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400 text-sm mb-3"
+ >
+ <ArrowLeft className="h-4 w-4" />
  Back to Tools
- </button>
+ </Link>
 
  <div className="flex items-center justify-between">
  <div className="flex items-center gap-4">
