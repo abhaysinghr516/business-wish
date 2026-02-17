@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { ConditionalFooter } from "./components/conditional-footer";
 import { Analytics } from "@vercel/analytics/react";
+import AnalyticsProvider from "./components/AnalyticsProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -139,6 +140,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://vercel.live" />
 
         {/* Google AdSense */}
@@ -192,6 +194,7 @@ export default function RootLayout({
         </ThemeProvider>
         <GoogleAnalytics gaId="G-Y0FKJQ2T12" />
         <Analytics />
+        <AnalyticsProvider />
       </body>
     </html>
   );

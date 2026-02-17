@@ -1,0 +1,91 @@
+---
+title: Fade In
+description: A scroll-triggered fade-in wrapper with directional options and a stagger variant for lists.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useInView, Variants } from "framer-motion";
+
+interface FadeInProps {
+  children: React.ReactNode;
+  direction?: "up" | "down" | "left" | "right" | "none";
+  delay?: number;
+  duration?: number;
+  className?: string;
+  distance?: number;
+}
+
+export const FadeIn: React.FC<FadeInProps> = ({
+  children, direction = "up", delay = 0, duration = 0.5,
+  className = "", distance = 24,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const directionOffset = {
+    up: { y: distance }, down: { y: -distance },
+    left: { x: distance }, right: { x: -distance }, none: {},
+  };
+
+  const variants: Variants = {
+    hidden: { opacity: 0, ...directionOffset[direction] },
+    visible: {
+      opacity: 1, x: 0, y: 0,
+      transition: { duration, delay, ease: [0.25, 0.1, 0.25, 1] },
+    },
+  };
+
+  return (
+    <motion.div ref={ref} initial="hidden"
+      animate={isInView ? "visible" : "hidden"} variants={variants} className={className}>
+      {children}
+    </motion.div>
+  );
+};
+```
+
+## Usage
+
+### Directional Fade In
+
+<MotionPreview>
+<FadeInDemo />
+</MotionPreview>
+
+```jsx
+<FadeIn direction="up">
+  <Card>Fade Up</Card>
+</FadeIn>
+<FadeIn direction="left" delay={0.15}>
+  <Card>From Left</Card>
+</FadeIn>
+```
+
+### Staggered List
+
+<MotionPreview>
+<StaggerFadeInDemo />
+</MotionPreview>
+
+```jsx
+<StaggerFadeIn direction="up" staggerDelay={0.12}>
+  <Card>Step 1: Install</Card>
+  <Card>Step 2: Import</Card>
+  <Card>Step 3: Use</Card>
+</StaggerFadeIn>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Content to animate |
+| `direction` | `"up" \| "down" \| "left" \| "right" \| "none"` | `"up"` | Fade direction |
+| `delay` | `number` | `0` | Delay in seconds |
+| `duration` | `number` | `0.5` | Animation duration |
+| `distance` | `number` | `24` | Offset in pixels |
+| `className` | `string` | `""` | Additional CSS classes |

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Menu, ComponentIcon, BookOpenIcon, WrenchIcon } from "lucide-react";
+import { Menu, ComponentIcon, BookOpenIcon, WrenchIcon, Sparkles } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
@@ -49,6 +49,13 @@ const Navbar = () => {
             >
               Templates
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-500 transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="/docs/motion/text-reveal"
+              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+            >
+              Motion
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link
               href="/tools"
@@ -130,6 +137,18 @@ const Navbar = () => {
                         Tools
                         <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
                           Utilities
+                        </span>
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="/docs/motion/text-reveal"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
+                      >
+                        <Sparkles className="h-4 w-4 text-purple-500 dark:text-purple-400" />
+                        Motion
+                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
+                          Animations
                         </span>
                       </Link>
                     </SheetClose>

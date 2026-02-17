@@ -1,0 +1,84 @@
+---
+title: Morphing Text
+description: Text that smoothly morphs between different phrases with blur transitions. Perfect for hero sections and taglines.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+interface MorphingTextProps {
+  texts: string[];
+  className?: string;
+  interval?: number;
+}
+
+export const MorphingText: React.FC<MorphingTextProps> = ({
+  texts, className = "", interval = 3000,
+}) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % texts.length);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [texts.length, interval]);
+
+  return (
+    <div className={`relative inline-block overflow-hidden ${className}`}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={texts[index]}
+          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          className="inline-block"
+        >
+          {texts[index]}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Inline Morphing
+
+<MotionPreview>
+<MorphingTextDemo />
+</MotionPreview>
+
+```jsx
+<p>
+  Build <MorphingText texts={["beautiful", "accessible", "performant"]} /> interfaces.
+</p>
+```
+
+### Standalone
+
+<MotionPreview>
+<MorphingTextStandaloneDemo />
+</MotionPreview>
+
+```jsx
+<MorphingText
+  texts={["Think different.", "Stay hungry.", "Stay foolish."]}
+  interval={3000}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `texts` | `string[]` | — | Array of phrases to cycle through |
+| `className` | `string` | `""` | Additional CSS classes |
+| `interval` | `number` | `3000` | Time between transitions (ms) |

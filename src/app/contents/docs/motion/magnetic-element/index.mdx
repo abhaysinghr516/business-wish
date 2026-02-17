@@ -1,0 +1,85 @@
+---
+title: Magnetic Element
+description: Elements that are attracted toward the cursor with spring-based physics. Ideal for interactive buttons and navigation items.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
+
+interface MagneticProps {
+  children: React.ReactNode;
+  className?: string;
+  strength?: number;
+}
+
+export const Magnetic: React.FC<MagneticProps> = ({
+  children, className = "", strength = 0.3,
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    setPosition({
+      x: (e.clientX - centerX) * strength,
+      y: (e.clientY - centerY) * strength,
+    });
+  };
+
+  return (
+    <motion.div ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setPosition({ x: 0, y: 0 })}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className={className}>
+      {children}
+    </motion.div>
+  );
+};
+```
+
+## Usage
+
+### Magnetic Buttons
+
+<MotionPreview>
+<MagneticDemo />
+</MotionPreview>
+
+```jsx
+<Magnetic strength={0.3}>
+  <button>Hover me</button>
+</Magnetic>
+<Magnetic strength={0.5}>
+  <div className="rounded-full">→</div>
+</Magnetic>
+```
+
+### Strong Pull
+
+<MotionPreview>
+<MagneticStrongDemo />
+</MotionPreview>
+
+```jsx
+<Magnetic strength={0.6}>
+  <Card>Strong pull →</Card>
+</Magnetic>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Content to make magnetic |
+| `className` | `string` | `""` | Additional CSS classes |
+| `strength` | `number` | `0.3` | Attraction intensity (0–1) |

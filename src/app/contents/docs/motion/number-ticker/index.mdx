@@ -1,0 +1,90 @@
+---
+title: Number Ticker
+description: An animated number counter that ticks up or down when the element enters the viewport. Ideal for stats sections and dashboards.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
+
+interface NumberTickerProps {
+  value: number;
+  direction?: "up" | "down";
+  delay?: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+  className?: string;
+  decimalPlaces?: number;
+}
+
+export const NumberTicker: React.FC<NumberTickerProps> = ({
+  value, direction = "up", delay = 0, duration = 2,
+  prefix = "", suffix = "", className = "", decimalPlaces = 0,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const spring = useSpring(direction === "down" ? value : 0, {
+    stiffness: 50, damping: 30, duration,
+  });
+  const display = useTransform(spring, (current) =>
+    decimalPlaces > 0 ? current.toFixed(decimalPlaces)
+      : Math.round(current).toLocaleString()
+  );
+
+  useEffect(() => {
+    if (isInView) {
+      setTimeout(() => spring.set(direction === "down" ? 0 : value), delay * 1000);
+    }
+  }, [isInView, spring, value, direction, delay]);
+
+  return (
+    <span ref={ref} className={`inline-flex items-baseline tabular-nums ${className}`}>
+      {prefix && <span>{prefix}</span>}
+      <motion.span>{display}</motion.span>
+      {suffix && <span>{suffix}</span>}
+    </span>
+  );
+};
+```
+
+## Usage
+
+### Stats Counter
+
+<MotionPreview>
+<NumberTickerDemo />
+</MotionPreview>
+
+```jsx
+<NumberTicker value={2400} />
+<NumberTicker value={99.9} suffix="%" decimalPlaces={1} delay={0.2} />
+<NumberTicker value={58} suffix="+" delay={0.4} />
+```
+
+### Countdown
+
+<MotionPreview>
+<NumberTickerCountdownDemo />
+</MotionPreview>
+
+```jsx
+<NumberTicker value={100} direction="down" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Target number to animate to |
+| `direction` | `"up" \| "down"` | `"up"` | Count direction |
+| `delay` | `number` | `0` | Delay in seconds |
+| `duration` | `number` | `2` | Animation duration |
+| `prefix` | `string` | `""` | Text before number |
+| `suffix` | `string` | `""` | Text after number |
+| `decimalPlaces` | `number` | `0` | Decimal places |
+| `className` | `string` | `""` | Additional CSS classes |

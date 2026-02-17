@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Star, Github } from "lucide-react";
+import { trackGitHubStar } from "@/lib/analytics";
 
 interface GitHubStarButtonProps {
   repo: string; // Format: "owner/repo"
@@ -69,6 +70,7 @@ export default function GitHubStarButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Star ${repo} on GitHub`}
+      onClick={() => trackGitHubStar()}
       className={`inline-flex items-center rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 ${className}`}
     >
       <div className="flex items-center gap-1 border-r border-gray-300 px-3 py-1.5 dark:border-gray-700">
@@ -79,3 +81,4 @@ export default function GitHubStarButton({
     </Link>
   );
 }
+

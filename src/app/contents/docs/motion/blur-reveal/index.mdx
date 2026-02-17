@@ -1,0 +1,74 @@
+---
+title: Blur Reveal
+description: Elements transition from blurred to sharp with a directional offset on scroll. Includes a Group variant for staggered reveals.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+export const BlurReveal = ({ children, delay = 0, duration = 0.6, direction = "up", blur = 10 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const offsets = { up: { y: 30 }, down: { y: -30 }, left: { x: 30 }, right: { x: -30 } };
+
+  return (
+    <motion.div ref={ref}
+      initial={{ opacity: 0, filter: `blur(${blur}px)`, ...offsets[direction] }}
+      animate={isInView
+        ? { opacity: 1, filter: "blur(0px)", x: 0, y: 0 }
+        : { opacity: 0, filter: `blur(${blur}px)`, ...offsets[direction] }}
+      transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}>
+      {children}
+    </motion.div>
+  );
+};
+```
+
+## Usage
+
+### Hero Content
+
+<MotionPreview>
+<BlurRevealDemo />
+</MotionPreview>
+
+```jsx
+<BlurReveal>
+  <p className="text-sm uppercase tracking-widest">Introducing</p>
+</BlurReveal>
+<BlurReveal delay={0.15} blur={12}>
+  <h1>Content that reveals with clarity.</h1>
+</BlurReveal>
+<BlurReveal delay={0.3}>
+  <p>Elements blur-to-sharp, drawing the eye naturally.</p>
+</BlurReveal>
+```
+
+### Staggered Group
+
+<MotionPreview>
+<BlurRevealGroupDemo />
+</MotionPreview>
+
+```jsx
+<BlurRevealGroup staggerDelay={0.12} direction="up">
+  <Card>01 — Research</Card>
+  <Card>02 — Design</Card>
+  <Card>03 — Ship</Card>
+</BlurRevealGroup>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Content to reveal |
+| `delay` | `number` | `0` | Animation delay (seconds) |
+| `duration` | `number` | `0.6` | Animation duration |
+| `direction` | `"up" \| "down" \| "left" \| "right"` | `"up"` | Blur offset direction |
+| `blur` | `number` | `10` | Starting blur amount (px) |

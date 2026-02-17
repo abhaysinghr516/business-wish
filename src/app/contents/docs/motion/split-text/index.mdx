@@ -1,0 +1,73 @@
+---
+title: Split Text
+description: Animates text letter-by-letter with staggered timing. Supports multiple animation presets including fadeUp, scale, and slideDown.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useInView, Variants } from "framer-motion";
+
+const presets = {
+  fadeUp: { hidden: { opacity: 0, y: 12, filter: "blur(4px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)" } },
+  fadeIn: { hidden: { opacity: 0 }, visible: { opacity: 1 } },
+  scale: { hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 1, scale: 1 } },
+  slideDown: { hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } },
+};
+
+export const SplitText = ({ text, animation = "fadeUp", delay = 0, staggerDelay = 0.03 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
+  return (
+    <motion.span ref={ref}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: staggerDelay, delayChildren: delay } } }}
+      initial="hidden" animate={isInView ? "visible" : "hidden"}>
+      {text.split("").map((char, i) => (
+        <motion.span key={`${char}-${i}`}
+          variants={{ hidden: presets[animation].hidden, visible: { ...presets[animation].visible, transition: { duration: 0.35 } } }}
+          className="inline-block" style={{ whiteSpace: char === " " ? "pre" : "normal" }}>
+          {char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
+```
+
+## Usage
+
+### Default (Fade Up)
+
+<MotionPreview>
+<SplitTextDemo />
+</MotionPreview>
+
+```jsx
+<SplitText text="Letter by letter." />
+```
+
+### Animation Variants
+
+<MotionPreview>
+<SplitTextVariantsDemo />
+</MotionPreview>
+
+```jsx
+<SplitText text="Every detail matters" animation="fadeUp" />
+<SplitText text="Subtle and refined" animation="scale" delay={0.4} />
+<SplitText text="Crafted with care" animation="slideDown" delay={0.8} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | Text to split and animate |
+| `animation` | `"fadeUp" \| "fadeIn" \| "scale" \| "slideDown"` | `"fadeUp"` | Animation preset |
+| `delay` | `number` | `0` | Initial delay (seconds) |
+| `staggerDelay` | `number` | `0.03` | Delay between each letter |
+| `className` | `string` | `""` | Additional CSS classes |

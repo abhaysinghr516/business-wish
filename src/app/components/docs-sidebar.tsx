@@ -13,6 +13,8 @@ import {
   FileText,
   Layers,
   Palette,
+  Sparkles,
+  Wrench,
 } from "lucide-react";
 import { ROUTES } from "@/app/lib/routes-config";
 import { cn } from "@/lib/utils";
@@ -33,6 +35,8 @@ export function DocsSidebar({
   >({
     components: true,
     pages: true,
+    motion: true,
+    tools: true,
   });
 
   const toggleSection = (sectionId: string) => {
@@ -45,8 +49,10 @@ export function DocsSidebar({
   const getIcon = (title: string) => {
     const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes("component")) return Package;
+    if (lowerTitle.includes("motion")) return Sparkles;
     if (lowerTitle.includes("page")) return FileText;
     if (lowerTitle.includes("template")) return Palette;
+    if (lowerTitle.includes("tool")) return Wrench;
     return Layers;
   };
 
@@ -54,8 +60,11 @@ export function DocsSidebar({
     const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes("component"))
       return <Package className="h-4 w-4" />;
+    if (lowerTitle.includes("motion"))
+      return <Sparkles className="h-4 w-4" />;
     if (lowerTitle.includes("page")) return <FileText className="h-4 w-4" />;
     if (lowerTitle.includes("template")) return <Palette className="h-4 w-4" />;
+    if (lowerTitle.includes("tool")) return <Wrench className="h-4 w-4" />;
     return <Layers className="h-4 w-4" />;
   };
 

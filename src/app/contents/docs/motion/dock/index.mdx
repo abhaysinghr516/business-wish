@@ -1,0 +1,90 @@
+---
+title: Dock
+description: A macOS-inspired dock with spring-based magnification on hover. Icons scale up based on cursor proximity.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+export const Dock = ({ children, magnification = 60, distance = 140 }) => {
+  const mouseX = useMotionValue(Infinity);
+
+  return (
+    <motion.div
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+      className={cn(
+        "flex items-end gap-2 px-3 py-2.5 rounded-2xl",
+        "border border-gray-200 dark:border-gray-800",
+        "bg-white/80 dark:bg-gray-950/80 backdrop-blur-md"
+      )}>
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(child, { mouseX, magnification, distance })
+          : child
+      )}
+    </motion.div>
+  );
+};
+
+export const DockItem = ({ children, mouseX, magnification, distance }) => {
+  const ref = useRef(null);
+  const distanceCalc = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+  const width = useSpring(
+    useTransform(distanceCalc, [-distance, 0, distance], [40, magnification, 40]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
+
+  return (
+    <motion.div ref={ref} style={{ width, height: width }}
+      className="flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 cursor-pointer aspect-square">
+      {children}
+    </motion.div>
+  );
+};
+```
+
+## Usage
+
+### macOS Dock
+
+<MotionPreview>
+<DockDemo />
+</MotionPreview>
+
+```jsx
+<Dock magnification={60} distance={140}>
+  <DockItem><HomeIcon /></DockItem>
+  <DockItem><SearchIcon /></DockItem>
+  <DockItem><SparklesIcon /></DockItem>
+  <DockItem><HeartIcon /></DockItem>
+  <DockItem><SettingsIcon /></DockItem>
+  <DockItem><UserIcon /></DockItem>
+</Dock>
+```
+
+## Props
+
+### Dock
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | DockItem components |
+| `magnification` | `number` | `60` | Max size of magnified item (px) |
+| `distance` | `number` | `140` | Cursor distance for magnification |
+
+### DockItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Icon or content |
+| `className` | `string` | `""` | Additional CSS classes |

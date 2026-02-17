@@ -3,6 +3,7 @@
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { trackComponentCopy } from "@/lib/analytics";
 
 export default function Copy({ content }: { content: string }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -10,6 +11,11 @@ export default function Copy({ content }: { content: string }) {
   async function handleCopy() {
     await navigator.clipboard.writeText(content);
     setIsCopied(true);
+
+    // Track the copy event — extract a meaningful name from the content
+    const firstLine = content.split("\n")[0]?.trim() || "unknown";
+    const componentName = firstLine.replace(/^(import|export|const|function)\s+/, "").slice(0, 50);
+    trackComponentCopy(componentName);
 
     setTimeout(() => {
       setIsCopied(false);
@@ -35,3 +41,4 @@ export default function Copy({ content }: { content: string }) {
     </Button>
   );
 }
+

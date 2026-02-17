@@ -1,0 +1,69 @@
+---
+title: Text Shimmer
+description: A text component with a continuous shimmer highlight sweep effect. Great for headings and announcements.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React from "react";
+import { cn } from "@/lib/utils";
+
+interface TextShimmerProps {
+  children: string;
+  className?: string;
+  duration?: number;
+  spread?: number;
+}
+
+export const TextShimmer: React.FC<TextShimmerProps> = ({
+  children, className = "", duration = 2.5, spread = 2,
+}) => (
+  <span className={cn("inline-block bg-clip-text text-transparent", className)}
+    style={{
+      backgroundImage: `linear-gradient(110deg, currentColor 35%,
+        rgba(156,163,175,0.5) ${45 + spread}%, currentColor ${55 + spread * 2}%)`,
+      backgroundSize: "250% 100%",
+      animation: `text-shimmer ${duration}s ease-in-out infinite`,
+      color: "inherit",
+    }}>
+    {children}
+  </span>
+);
+```
+
+## Usage
+
+### Default Shimmer
+
+<MotionPreview>
+<TextShimmerDemo />
+</MotionPreview>
+
+```jsx
+<TextShimmer className="text-4xl font-semibold">
+  Introducing Motion
+</TextShimmer>
+```
+
+### Custom Duration & Spread
+
+<MotionPreview>
+<TextShimmerCustomDemo />
+</MotionPreview>
+
+```jsx
+<TextShimmer duration={2} spread={3}>Fast shimmer, wide spread</TextShimmer>
+<TextShimmer duration={4} spread={1}>Slow shimmer, tight spread</TextShimmer>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `string` | — | Text content |
+| `className` | `string` | `""` | Additional CSS classes |
+| `duration` | `number` | `2.5` | Animation duration (seconds) |
+| `spread` | `number` | `2` | Width of the shimmer highlight |

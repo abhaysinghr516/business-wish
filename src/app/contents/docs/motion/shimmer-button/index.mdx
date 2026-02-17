@@ -1,0 +1,78 @@
+---
+title: Shimmer Button
+description: A button with a subtle shimmering sweep animation. Ideal for call-to-action buttons and hero sections.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React from "react";
+import { cn } from "@/lib/utils";
+
+interface ShimmerButtonProps {
+  children: React.ReactNode;
+  className?: string;
+  shimmerColor?: string;
+  borderRadius?: string;
+  shimmerDuration?: string;
+  background?: string;
+  onClick?: () => void;
+}
+
+export const ShimmerButton: React.FC<ShimmerButtonProps> = ({
+  children, className = "",
+  shimmerColor = "rgba(255,255,255,0.12)",
+  borderRadius = "10px", shimmerDuration = "2.5s",
+  background = "#1d1d1f", onClick,
+}) => {
+  return (
+    <button onClick={onClick} className={cn(
+      "group relative inline-flex items-center justify-center overflow-hidden",
+      "whitespace-nowrap px-5 py-2.5 text-[14px] font-medium text-white",
+      "transition-transform duration-200 active:scale-[0.98]", className)}
+      style={{ borderRadius }}>
+      <div className="absolute inset-0 overflow-hidden" style={{ borderRadius }}>
+        <div className="absolute inset-0" style={{ background }} />
+        <div className="absolute inset-0 animate-shimmer-slide" style={{
+          background: `linear-gradient(120deg, transparent 30%, ${shimmerColor} 45%,
+            ${shimmerColor} 55%, transparent 70%)`,
+          backgroundSize: "250% 100%", animationDuration: shimmerDuration,
+        }} />
+      </div>
+      <span className="relative z-10">{children}</span>
+    </button>
+  );
+};
+```
+
+## Usage
+
+### Shimmer Buttons
+
+<MotionPreview>
+<ShimmerButtonDemo />
+</MotionPreview>
+
+```jsx
+<ShimmerButton>Get started</ShimmerButton>
+<ShimmerButton background="#0071e3">Learn more</ShimmerButton>
+<ShimmerButton
+  background="linear-gradient(135deg, #1d1d1f, #434343)"
+  borderRadius="100px">
+  Try it free →
+</ShimmerButton>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Button content |
+| `shimmerColor` | `string` | `"rgba(255,255,255,0.12)"` | Shimmer color |
+| `background` | `string` | `"#1d1d1f"` | Button background |
+| `borderRadius` | `string` | `"10px"` | Border radius |
+| `shimmerDuration` | `string` | `"2.5s"` | Animation duration |
+| `className` | `string` | `""` | Additional CSS classes |
+| `onClick` | `() => void` | — | Click handler |

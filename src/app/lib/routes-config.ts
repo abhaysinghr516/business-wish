@@ -151,77 +151,61 @@ export const ROUTES: EachRoute[] = [
         ]
     },
     {
-        title: "Tools",
-        href: "/tools",
+        title: "Motion",
+        href: "/motion",
         noLink: true,
         items: [
             {
-                title: "Palette Generator",
-                href: "/palette-generator",
+                title: "Text Reveal",
+                href: "/text-reveal",
             },
             {
-                title: "Contrast Checker",
-                href: "/contrast-checker",
+                title: "Number Ticker",
+                href: "/number-ticker",
             },
             {
-                title: "Blindness Simulator",
-                href: "/blindness-simulator",
+                title: "Card Spotlight",
+                href: "/card-spotlight",
             },
             {
-                title: "Color Converter",
-                href: "/format-converter",
+                title: "Shimmer Button",
+                href: "/shimmer-button",
             },
             {
-                title: "Image Color Picker",
-                href: "/image-extractor",
+                title: "Gradient Text",
+                href: "/gradient-text",
             },
             {
-                title: "JSON Formatter",
-                href: "/json-formatter",
+                title: "Fade In",
+                href: "/fade-in",
             },
             {
-                title: "QR Code Generator",
-                href: "/qr-generator",
+                title: "Morphing Text",
+                href: "/morphing-text",
             },
             {
-                title: "CSS Box Shadow",
-                href: "/box-shadow",
+                title: "Magnetic Element",
+                href: "/magnetic-element",
             },
             {
-                title: "CSS Gradient",
-                href: "/gradient",
+                title: "Text Shimmer",
+                href: "/text-shimmer",
             },
             {
-                title: "Flexbox Generator",
-                href: "/flexbox",
+                title: "Word Rotate",
+                href: "/word-rotate",
             },
             {
-                title: "CSV to JSON",
-                href: "/csv-to-json",
+                title: "Dock",
+                href: "/dock",
             },
             {
-                title: "Word Counter",
-                href: "/word-counter",
+                title: "Split Text",
+                href: "/split-text",
             },
             {
-                title: "Image Compressor",
-                href: "/image-compressor",
-            },
-            {
-                title: "CSS Grid Generator",
-                href: "/css-grid",
-            },
-            {
-                title: "Pomodoro Timer",
-                href: "/pomodoro-timer",
-            },
-            {
-                title: "Animation Easing",
-                href: "/animation-easing",
-            },
-            {
-                title: "Image Formatter",
-                href: "/image-formatter",
+                title: "Blur Reveal",
+                href: "/blur-reveal",
             },
         ]
     },

@@ -48,6 +48,20 @@ import { CustomCalendarPicker, DropdownDatePicker, RangeDatePicker, SimpleDatePi
 import PopoverDemo from "@/components/Popover";
 import { BasicDataTable, StripedDataTable } from "@/components/DataTable";
 import { AnimatedProgress, BasicProgress, ProgressWithLabel } from "@/components/Progress";
+import { TextRevealDemo, TextRevealCustomDemo } from "@/components/motion/TextReveal";
+import { NumberTickerDemo, NumberTickerCountdownDemo } from "@/components/motion/NumberTicker";
+import { CardSpotlightDemo } from "@/components/motion/CardSpotlight";
+import { ShimmerButtonDemo } from "@/components/motion/ShimmerButton";
+import { GradientTextDemo, GradientTextCustomDemo } from "@/components/motion/GradientText";
+import { FadeInDemo, StaggerFadeInDemo } from "@/components/motion/FadeIn";
+import { MorphingTextDemo, MorphingTextStandaloneDemo } from "@/components/motion/MorphingText";
+import { MagneticDemo, MagneticStrongDemo } from "@/components/motion/MagneticElement";
+import { TextShimmerDemo, TextShimmerCustomDemo } from "@/components/motion/TextShimmer";
+import { WordRotateDemo, WordRotateStackedDemo } from "@/components/motion/WordRotate";
+import { DockDemo } from "@/components/motion/Dock";
+import { SplitTextDemo, SplitTextVariantsDemo } from "@/components/motion/SplitText";
+import { BlurRevealDemo, BlurRevealGroupDemo } from "@/components/motion/BlurReveal";
+import MotionPreview from "@/app/components/MotionPreview";
 
 // add custom components
 const components = {
@@ -165,6 +179,32 @@ const components = {
     BasicProgress,
     AnimatedProgress,
     ProgressWithLabel,
+    // Motion components
+    MotionPreview,
+    TextRevealDemo,
+    TextRevealCustomDemo,
+    NumberTickerDemo,
+    NumberTickerCountdownDemo,
+    CardSpotlightDemo,
+    ShimmerButtonDemo,
+    GradientTextDemo,
+    GradientTextCustomDemo,
+    FadeInDemo,
+    StaggerFadeInDemo,
+    // Advanced motion components
+    MorphingTextDemo,
+    MorphingTextStandaloneDemo,
+    MagneticDemo,
+    MagneticStrongDemo,
+    TextShimmerDemo,
+    TextShimmerCustomDemo,
+    WordRotateDemo,
+    WordRotateStackedDemo,
+    DockDemo,
+    SplitTextDemo,
+    SplitTextVariantsDemo,
+    BlurRevealDemo,
+    BlurRevealGroupDemo
 };
 
 // can be used for other pages like blogs, Guides etc

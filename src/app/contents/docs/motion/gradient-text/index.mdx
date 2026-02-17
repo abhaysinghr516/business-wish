@@ -1,0 +1,77 @@
+---
+title: Gradient Text
+description: Animated gradient text with a flowing color effect. Supports custom palettes and animation speeds.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React from "react";
+import { cn } from "@/lib/utils";
+
+interface GradientTextProps {
+  children: React.ReactNode;
+  className?: string;
+  colors?: string[];
+  animationSpeed?: number;
+}
+
+export const GradientText: React.FC<GradientTextProps> = ({
+  children, className = "",
+  colors = ["#1d1d1f", "#6e6e73", "#1d1d1f"],
+  animationSpeed = 5,
+}) => {
+  const gradientColors = colors.join(", ");
+
+  return (
+    <span className={cn("inline-block bg-clip-text text-transparent animate-gradient-flow", className)}
+      style={{
+        backgroundImage: `linear-gradient(90deg, ${gradientColors})`,
+        backgroundSize: "200% 100%",
+        animationDuration: `${animationSpeed}s`,
+      }}>
+      {children}
+    </span>
+  );
+};
+```
+
+## Usage
+
+### Default Gradient
+
+<MotionPreview>
+<GradientTextDemo />
+</MotionPreview>
+
+```jsx
+<GradientText className="text-5xl font-semibold tracking-tight">
+  Think different.
+</GradientText>
+```
+
+### Custom Palettes
+
+<MotionPreview>
+<GradientTextCustomDemo />
+</MotionPreview>
+
+```jsx
+<GradientText colors={["#0071e3", "#40a9ff", "#0071e3"]} animationSpeed={4}>
+  Intelligence
+</GradientText>
+<GradientText colors={["#bf4800", "#ff9500", "#bf4800"]} animationSpeed={6}>
+  Performance
+</GradientText>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Text content |
+| `className` | `string` | `""` | Additional CSS classes |
+| `colors` | `string[]` | `["#1d1d1f", "#6e6e73", "#1d1d1f"]` | Color stops |
+| `animationSpeed` | `number` | `5` | Duration in seconds |

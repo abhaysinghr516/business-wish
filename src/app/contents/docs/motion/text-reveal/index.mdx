@@ -1,0 +1,85 @@
+---
+title: Text Reveal
+description: An animated text component that reveals words one-by-one with a blur-to-clear effect as the element enters the viewport.
+---
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+interface TextRevealProps {
+  text: string;
+  className?: string;
+  delay?: number;
+}
+
+export const TextReveal: React.FC<TextRevealProps> = ({
+  text,
+  className = "",
+  delay = 0,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const words = text.split(" ");
+
+  return (
+    <div ref={ref} className={`flex flex-wrap ${className}`}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0, filter: "blur(0px)" }
+              : { opacity: 0, y: 10, filter: "blur(4px)" }
+          }
+          transition={{
+            duration: 0.4,
+            delay: delay + i * 0.06,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
+          className="mr-[0.3em] inline-block"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Basic Text Reveal
+
+<MotionPreview>
+<TextRevealDemo />
+</MotionPreview>
+
+```jsx
+<TextReveal text="Every pixel matters." />
+```
+
+### Staggered Multi-line Reveal
+
+<MotionPreview>
+<TextRevealCustomDemo />
+</MotionPreview>
+
+```jsx
+<TextReveal text="Design is not just" delay={0} />
+<TextReveal text="what it looks like and feels like." delay={0.3} />
+<TextReveal text="Design is how it works." delay={0.7} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `text` | `string` | — | The text to reveal word-by-word |
+| `className` | `string` | `""` | Additional CSS classes |
+| `delay` | `number` | `0` | Delay in seconds before animation starts |
