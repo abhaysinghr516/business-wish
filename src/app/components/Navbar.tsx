@@ -21,7 +21,7 @@ import GitHubStarButton from "./github-star-button";
 const Navbar = () => {
   return (
     <nav className="bg-white/90 dark:bg-stone-950/90 backdrop-blur-xl border-b border-stone-200/50 dark:border-stone-800/50 py-3 px-4 sm:px-6 sticky top-0 z-50 shadow-sm dark:shadow-stone-950/20">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
         {/* Brand */}
         <Link
           href="/"

@@ -16,7 +16,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-b from-white to-gray-50/50 dark:from-black dark:to-gray-950/50 border-t border-gray-200/60 dark:border-gray-800/60">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-6xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
