@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
-  Zap,
+  Layers,
   Copy,
   Check,
   Plus,
@@ -117,42 +117,46 @@ export default function BoxShadowGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+    <div className="min-h-screen bg-white dark:bg-stone-950">
+      {/* Header */}
+      <div className="border-b border-stone-200 dark:border-stone-800">
+        <div className="max-w-6xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
+            className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400 text-sm mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Tools
           </Link>
 
-          <div className="flex items-center gap-3 mt-4">
-            <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg">
-              <Zap className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                CSS Box Shadow Generator
-              </h1>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Create layered, customizable box shadows with live preview
-              </p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-stone-900 dark:bg-stone-100 rounded-lg">
+                <Layers className="h-5 w-5 text-white dark:text-stone-900" />
+              </div>
+              <div>
+                <h1 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
+                  CSS Box Shadow Generator
+                </h1>
+                <p className="text-stone-500 dark:text-stone-400 text-sm">
+                  Create layered, customizable box shadows with live preview
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div className="space-y-6">
+      <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Controls */}
+        <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-medium text-gray-900 dark:text-gray-100">
+            <h2 className="text-sm font-medium text-stone-900 dark:text-stone-100">
               Shadows ({shadows.length})
             </h2>
             <button
               onClick={addShadow}
-              className="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white text-sm rounded-md"
+              className="flex items-center gap-2 px-3 py-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm rounded-lg font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
             >
               <Plus className="h-4 w-4" />
               Add Shadow
@@ -162,17 +166,17 @@ export default function BoxShadowGenerator() {
           {shadows.map((shadow, index) => (
             <div
               key={shadow.id}
-              className="bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800"
+              className="border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden"
             >
               <div
-                className="flex items-center justify-between px-4 py-3 cursor-pointer"
+                className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
                 onClick={() =>
                   setExpandedShadow(
                     expandedShadow === shadow.id ? null : shadow.id
                   )
                 }
               >
-                <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                <h3 className="text-sm font-medium text-stone-900 dark:text-stone-100">
                   Shadow {index + 1}
                 </h3>
                 <div className="flex items-center gap-3">
@@ -182,21 +186,21 @@ export default function BoxShadowGenerator() {
                         e.stopPropagation();
                         removeShadow(shadow.id);
                       }}
-                      className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                      className="text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
                   )}
                   {expandedShadow === shadow.id ? (
-                    <ChevronUp className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                    <ChevronUp className="h-4 w-4 text-stone-400 dark:text-stone-500" />
                   ) : (
-                    <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                    <ChevronDown className="h-4 w-4 text-stone-400 dark:text-stone-500" />
                   )}
                 </div>
               </div>
 
               {expandedShadow === shadow.id && (
-                <div className="px-4 pb-4 space-y-4 text-sm border-t border-gray-200 dark:border-gray-800">
+                <div className="px-4 pb-4 space-y-4 text-sm border-t border-stone-200 dark:border-stone-800">
                   <div className="grid grid-cols-2 gap-4 pt-4">
                     {[
                       { key: "x", label: "X Offset", min: -50, max: 50 },
@@ -206,8 +210,9 @@ export default function BoxShadowGenerator() {
                       { key: "opacity", label: "Opacity", min: 0, max: 100 },
                     ].map(({ key, label, min, max }) => (
                       <div key={key}>
-                        <label className="block mb-1 text-gray-700 dark:text-gray-300">
-                          {label}: {shadow[key as keyof Shadow]}px
+                        <label className="block mb-1 text-xs text-stone-700 dark:text-stone-300">
+                          {label}: {shadow[key as keyof Shadow]}
+                          {key === "opacity" ? "%" : "px"}
                         </label>
                         <input
                           type="range"
@@ -225,14 +230,14 @@ export default function BoxShadowGenerator() {
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 pt-2 border-t border-stone-100 dark:border-stone-800">
                     <input
                       type="color"
                       value={shadow.color}
                       onChange={(e) =>
                         updateShadow(shadow.id, { color: e.target.value })
                       }
-                      className="w-10 h-10 rounded border border-gray-200 dark:border-gray-700"
+                      className="w-10 h-10 rounded-lg border border-stone-200 dark:border-stone-700 cursor-pointer"
                     />
                     <input
                       type="text"
@@ -240,15 +245,16 @@ export default function BoxShadowGenerator() {
                       onChange={(e) =>
                         updateShadow(shadow.id, { color: e.target.value })
                       }
-                      className="flex-1 px-2 py-1 border border-gray-200 dark:border-gray-700 rounded font-mono bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                      className="flex-1 px-3 py-2 border border-stone-200 dark:border-stone-700 rounded-lg font-mono text-sm bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400"
                     />
-                    <label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                    <label className="flex items-center gap-2 text-xs text-stone-700 dark:text-stone-300">
                       <input
                         type="checkbox"
                         checked={shadow.inset}
                         onChange={(e) =>
                           updateShadow(shadow.id, { inset: e.target.checked })
                         }
+                        className="rounded"
                       />
                       Inset
                     </label>
@@ -259,27 +265,30 @@ export default function BoxShadowGenerator() {
           ))}
         </div>
 
-        <div className="space-y-6">
-          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-8">
-            <h3 className="font-medium text-gray-900 dark:text-gray-100 mb-4">
+        {/* Preview + Code Output */}
+        <div className="space-y-4">
+          {/* Preview */}
+          <div className="border border-stone-200 dark:border-stone-800 rounded-lg p-8">
+            <h3 className="text-sm font-medium text-stone-900 dark:text-stone-100 mb-6">
               Preview
             </h3>
-            <div className="flex items-center justify-center min-h-[220px]">
+            <div className="flex items-center justify-center min-h-[200px]">
               <div
-                className="w-56 h-40 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center"
+                className="w-56 h-40 bg-white dark:bg-stone-800 rounded-lg flex items-center justify-center border border-stone-100 dark:border-stone-700"
                 style={{
                   boxShadow: generateCSS()
                     .replace("box-shadow: ", "")
                     .replace(";", ""),
                 }}
               >
-                <span className="text-gray-600 dark:text-gray-400 text-sm">
+                <span className="text-stone-500 dark:text-stone-400 text-sm">
                   Preview Box
                 </span>
               </div>
             </div>
           </div>
 
+          {/* Code Blocks */}
           {[
             { label: "CSS Code", code: generateCSS() },
             {
@@ -289,25 +298,25 @@ export default function BoxShadowGenerator() {
           ].map((block) => (
             <div
               key={block.label}
-              className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden"
+              className="border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden"
             >
-              <div className="px-4 py-2 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
-                <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+              <div className="px-4 py-3 flex items-center justify-between border-b border-stone-200 dark:border-stone-800">
+                <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100">
                   {block.label}
                 </h4>
                 <button
                   onClick={() => copyToClipboard(block.code, block.label)}
-                  className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
                 >
                   {copiedText === block.label ? (
-                    <Check className="h-3 w-3 text-green-600 dark:text-green-500" />
+                    <Check className="h-3 w-3 text-green-600 dark:text-green-400" />
                   ) : (
                     <Copy className="h-3 w-3" />
                   )}
-                  Copy
+                  {copiedText === block.label ? "Copied" : "Copy"}
                 </button>
               </div>
-              <div className="p-4 bg-gray-900 text-gray-100 text-xs font-mono break-words">
+              <div className="p-4 bg-stone-900 dark:bg-stone-900 text-stone-100 text-xs font-mono break-words leading-relaxed">
                 {block.code}
               </div>
             </div>

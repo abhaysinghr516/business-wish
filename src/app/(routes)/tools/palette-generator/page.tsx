@@ -9,7 +9,7 @@ import {
   Check,
   ArrowLeft,
   Shuffle,
-  Zap,
+  Info,
   Sun,
   Moon,
   Contrast,
@@ -389,60 +389,58 @@ export default function ColorPaletteGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 py-4">
+    <div className="min-h-screen bg-white dark:bg-stone-950">
+      {/* Header */}
+      <div className="border-b border-stone-200 dark:border-stone-800">
+        <div className="max-w-6xl mx-auto px-6 py-6">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm mb-3"
+            className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400 text-sm mb-4"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <ArrowLeft className="h-4 w-4" />
             Back to Tools
           </Link>
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
-                <Palette className="h-4 w-4 text-white" />
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-stone-900 dark:bg-stone-100 rounded-lg">
+                <Palette className="h-5 w-5 text-white dark:text-stone-900" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                <h1 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
                   Color Palette Generator
                 </h1>
-                <p className="text-gray-500 dark:text-gray-400 text-xs">
+                <p className="text-stone-500 dark:text-stone-400 text-sm">
                   Create harmonious color schemes using color theory
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={exportAllPalettes}
-                className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-lg text-sm font-medium"
-              >
-                <Download className="h-3.5 w-3.5" />
-                Export All
-              </button>
-            </div>
+            <button
+              onClick={exportAllPalettes}
+              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg text-sm font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              Export All
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-5">
-        <div className="bg-white dark:bg-black rounded-xl border border-gray-200 dark:border-gray-800 p-4 mb-5 shadow-sm">
-          <div className="flex items-start gap-4">
-            <div className="relative">
-              <div
-                className="w-20 h-20 rounded-xl border-3 border-white dark:border-gray-950 shadow-lg cursor-pointer"
-                style={{ backgroundColor: baseColor }}
-                onClick={() => colorInputRef.current?.click()}
-              />
-            </div>
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        {/* Controls */}
+        <div className="border border-stone-200 dark:border-stone-800 rounded-lg p-5 mb-8">
+          <div className="flex items-start gap-5">
+            <div
+              className="w-20 h-20 rounded-lg border border-stone-200 dark:border-stone-700 cursor-pointer flex-shrink-0"
+              style={{ backgroundColor: baseColor }}
+              onClick={() => colorInputRef.current?.click()}
+            />
 
-            <div className="flex-1 space-y-3">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
+            <div className="flex-1 space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-stone-700 dark:text-stone-300 mb-1.5">
                     Color Value
                   </label>
                   <div className="flex items-center gap-2">
@@ -451,31 +449,31 @@ export default function ColorPaletteGenerator() {
                       type="color"
                       value={baseColor}
                       onChange={(e) => setBaseColor(e.target.value)}
-                      className="w-8 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer"
+                      className="w-8 h-8 rounded-lg border border-stone-200 dark:border-stone-700 cursor-pointer"
                     />
                     <input
                       type="text"
                       value={baseColor}
                       onChange={(e) => setBaseColor(e.target.value)}
-                      className="flex-1 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-indigo-400 dark:focus:border-indigo-500 focus:bg-white dark:focus:bg-gray-900"
+                      className="flex-1 px-3 py-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-lg font-mono text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 dark:focus:border-stone-500"
                       placeholder="#6366F1"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                <div>
+                  <label className="block text-xs font-medium text-stone-700 dark:text-stone-300 mb-1.5">
                     Format
                   </label>
-                  <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5">
+                  <div className="flex border border-stone-200 dark:border-stone-700 rounded-lg p-0.5">
                     {(["hex", "rgb", "hsl"] as const).map((format) => (
                       <button
                         key={format}
                         onClick={() => setActiveFormat(format)}
-                        className={`flex-1 px-2 py-1 rounded text-xs font-medium transition-colors ${
+                        className={`flex-1 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                           activeFormat === format
-                            ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm"
-                            : "text-gray-500 dark:text-gray-400"
+                            ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900"
+                            : "text-stone-500 dark:text-stone-400"
                         }`}
                       >
                         {format.toUpperCase()}
@@ -484,28 +482,27 @@ export default function ColorPaletteGenerator() {
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                <div>
+                  <label className="block text-xs font-medium text-stone-700 dark:text-stone-300 mb-1.5">
                     Actions
                   </label>
-                  <div className="flex gap-1.5">
-                    <button
-                      onClick={generateRandomBaseColor}
-                      className="flex items-center justify-center gap-1.5 px-2.5 py-1.5 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-lg text-xs font-medium"
-                    >
-                      <Shuffle className="h-3.5 w-3.5" />
-                      Random
-                    </button>
-                  </div>
+                  <button
+                    onClick={generateRandomBaseColor}
+                    className="flex items-center gap-2 px-4 py-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg text-xs font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
+                  >
+                    <Shuffle className="h-3.5 w-3.5" />
+                    Random Color
+                  </button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 pt-2 border-t border-gray-100 dark:border-gray-800">
+              {/* Color Stats */}
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-stone-200 dark:border-stone-800">
                 <div className="text-center">
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <div className="text-xs text-stone-500 dark:text-stone-400">
                     Brightness
                   </div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                  <div className="text-sm font-medium text-stone-900 dark:text-stone-100 mt-0.5">
                     {Math.round(
                       hexToRgb(baseColor)!.r * 0.299 +
                         hexToRgb(baseColor)!.g * 0.587 +
@@ -514,26 +511,26 @@ export default function ColorPaletteGenerator() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <div className="text-xs text-stone-500 dark:text-stone-400">
                     Contrast (vs White)
                   </div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                  <div className="text-sm font-medium text-stone-900 dark:text-stone-100 mt-0.5">
                     {getContrastRatio(baseColor, "#ffffff").toFixed(1)}:1
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <div className="text-xs text-stone-500 dark:text-stone-400">
                     Temperature
                   </div>
-                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100 flex items-center justify-center gap-1">
+                  <div className="text-sm font-medium text-stone-900 dark:text-stone-100 flex items-center justify-center gap-1 mt-0.5">
                     {hexToRgb(baseColor)!.b > hexToRgb(baseColor)!.r ? (
                       <>
-                        <Sun className="h-3.5 w-3.5 text-blue-500" />
+                        <Sun className="h-3.5 w-3.5 text-stone-400" />
                         Cool
                       </>
                     ) : (
                       <>
-                        <Moon className="h-3.5 w-3.5 text-orange-500" />
+                        <Moon className="h-3.5 w-3.5 text-stone-400" />
                         Warm
                       </>
                     )}
@@ -543,9 +540,10 @@ export default function ColorPaletteGenerator() {
             </div>
           </div>
 
+          {/* Color History */}
           {colorHistory.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <div className="mt-4 pt-4 border-t border-stone-200 dark:border-stone-800">
+              <div className="text-xs font-medium text-stone-700 dark:text-stone-300 mb-2">
                 Recent Colors
               </div>
               <div className="flex gap-1.5">
@@ -553,7 +551,7 @@ export default function ColorPaletteGenerator() {
                   <button
                     key={index}
                     onClick={() => setBaseColor(color)}
-                    className="w-6 h-6 rounded border-2 border-gray-200 dark:border-gray-700"
+                    className="w-6 h-6 rounded border border-stone-200 dark:border-stone-700 transition-transform hover:scale-110"
                     style={{ backgroundColor: color }}
                     title={color}
                   />
@@ -563,45 +561,37 @@ export default function ColorPaletteGenerator() {
           )}
         </div>
 
-        <div className={"grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"}>
-          {palettes.map((palette, index) => (
+        {/* Palette Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+          {palettes.map((palette) => (
             <div
               key={palette.name}
-              className={
-                "bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm p-0"
-              }
+              className="border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden"
             >
-              <div
-                className={
-                  "p-3 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900"
-                }
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
-                      {palette.name}
-                    </h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                      {palette.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button
-                      onClick={() => exportPalette(palette)}
-                      className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                    >
-                      <Download className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
+              <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-medium text-stone-900 dark:text-stone-100">
+                    {palette.name}
+                  </h3>
+                  <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                    {palette.description}
+                  </p>
                 </div>
+                <button
+                  onClick={() => exportPalette(palette)}
+                  className="p-1.5 text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                </button>
               </div>
 
-              <div className="p-3">
+              <div className="p-4">
+                {/* Swatch Row */}
                 <div className="grid grid-cols-5 gap-1.5 mb-3">
                   {palette.colors.map((color, colorIndex) => (
                     <div
                       key={colorIndex}
-                      className="group relative cursor-pointer"
+                      className="relative cursor-pointer group"
                       onClick={() =>
                         copyToClipboard(
                           formatColor(color, activeFormat),
@@ -610,11 +600,11 @@ export default function ColorPaletteGenerator() {
                       }
                     >
                       <div
-                        className="aspect-square rounded-lg border border-gray-200 dark:border-gray-700"
+                        className="aspect-square rounded-lg border border-stone-200 dark:border-stone-700"
                         style={{ backgroundColor: color.hex }}
                       />
                       {copiedColor === color.hex && (
-                        <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
+                        <div className="absolute inset-0 bg-stone-950/50 rounded-lg flex items-center justify-center">
                           <Check className="h-4 w-4 text-white" />
                         </div>
                       )}
@@ -622,25 +612,26 @@ export default function ColorPaletteGenerator() {
                   ))}
                 </div>
 
-                <div className="space-y-1">
+                {/* Color Detail Rows */}
+                <div className="divide-y divide-stone-100 dark:divide-stone-800">
                   {palette.colors.map((color, colorIndex) => {
                     const colorValue = formatColor(color, activeFormat);
                     return (
                       <div
                         key={colorIndex}
-                        className="flex items-center justify-between p-1.5 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                        className="flex items-center justify-between py-1.5"
                       >
                         <div className="flex items-center gap-2">
                           <div
-                            className="w-3 h-3 rounded border border-gray-300 dark:border-gray-600"
+                            className="w-3 h-3 rounded border border-stone-300 dark:border-stone-600"
                             style={{ backgroundColor: color.hex }}
                           />
-                          <span className="font-mono text-xs text-gray-700 dark:text-gray-300">
+                          <span className="font-mono text-xs text-stone-700 dark:text-stone-300">
                             {colorValue}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs text-stone-400 dark:text-stone-500 tabular-nums">
                             {getContrastRatio(color.hex, "#ffffff").toFixed(1)}
                             :1
                           </span>
@@ -648,10 +639,10 @@ export default function ColorPaletteGenerator() {
                             onClick={() =>
                               copyToClipboard(colorValue, color.hex)
                             }
-                            className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+                            className="p-1 text-stone-400 dark:text-stone-500 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
                           >
                             {copiedColor === color.hex ? (
-                              <Check className="h-3 w-3 text-green-600" />
+                              <Check className="h-3 w-3 text-green-600 dark:text-green-400" />
                             ) : (
                               <Copy className="h-3 w-3" />
                             )}
@@ -666,88 +657,70 @@ export default function ColorPaletteGenerator() {
           ))}
         </div>
 
-        <div className="mt-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 border border-indigo-100">
-          <div className="flex items-center gap-2 mb-3">
-            <Zap className="h-4 w-4 text-indigo-600" />
-            <h2 className="font-semibold text-gray-900 text-sm">
+        {/* Color Theory Guide */}
+        <div className="mt-8 border border-stone-200 dark:border-stone-800 rounded-lg divide-y divide-stone-200 dark:divide-stone-800">
+          <div className="px-4 py-3 flex items-center gap-2">
+            <Info className="h-4 w-4 text-stone-500 dark:text-stone-400" />
+            <h2 className="text-sm font-medium text-stone-900 dark:text-stone-100">
               Color Theory Quick Guide
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200 dark:divide-stone-800">
             {[
               {
                 name: "Complementary",
                 desc: "High contrast, vibrant looks",
-                icon: <Contrast className="h-3.5 w-3.5 text-pink-600" />,
                 use: "Headlines, CTAs",
               },
               {
                 name: "Triadic",
                 desc: "Vibrant yet balanced palettes",
-                icon: (
-                  <div className="w-3.5 h-3.5 bg-yellow-500 rounded-full" />
-                ),
                 use: "Illustrations, logos",
               },
               {
                 name: "Analogous",
                 desc: "Serene, comfortable designs",
-                icon: <div className="w-3.5 h-3.5 bg-green-500 rounded-full" />,
                 use: "Backgrounds, nature",
               },
               {
                 name: "Monochromatic",
                 desc: "Elegant, cohesive looks",
-                icon: <div className="w-3.5 h-3.5 bg-blue-500 rounded-full" />,
                 use: "Minimalist, professional",
               },
               {
                 name: "Split Complementary",
                 desc: "High contrast, less tension",
-                icon: (
-                  <div className="w-3.5 h-3.5 bg-purple-500 rounded-full" />
-                ),
                 use: "Web interfaces",
               },
               {
                 name: "Tetradic",
                 desc: "Rich, complex palettes",
-                icon: <div className="w-3.5 h-3.5 bg-red-500 rounded-full" />,
                 use: "Art, creative projects",
               },
             ].map((theory) => (
-              <div
-                key={theory.name}
-                className="bg-white/60 rounded-lg p-3 border border-white/50"
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  {theory.icon}
-                  <div className="font-medium text-gray-900 text-xs">
-                    {theory.name}
-                  </div>
+              <div key={theory.name} className="px-4 py-3">
+                <div className="text-xs font-medium text-stone-900 dark:text-stone-100">
+                  {theory.name}
                 </div>
-                <div className="text-xs text-gray-600 mb-1">{theory.desc}</div>
-                <div className="text-xs text-indigo-600 font-medium">
+                <div className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                  {theory.desc}
+                </div>
+                <div className="text-xs text-stone-700 dark:text-stone-300 font-medium mt-1">
                   Best for: {theory.use}
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="mt-4 pt-3 border-t border-indigo-200">
+          <div className="px-4 py-3 bg-stone-50 dark:bg-stone-900">
             <div className="flex items-start gap-2">
-              <div className="p-1 bg-indigo-100 rounded">
-                <Contrast className="h-3 w-3 text-indigo-600" />
-              </div>
-              <div>
-                <div className="font-medium text-gray-900 text-xs mb-1">
-                  Accessibility Tip
-                </div>
-                <div className="text-xs text-gray-600">
-                  Aim for contrast ratios of 4.5:1 for normal text and 3:1 for
-                  large text to ensure readability.
-                </div>
-              </div>
+              <Contrast className="h-3.5 w-3.5 text-stone-500 dark:text-stone-400 mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+                <strong className="text-stone-700 dark:text-stone-300">
+                  Accessibility Tip:
+                </strong>{" "}
+                Aim for contrast ratios of 4.5:1 for normal text and 3:1 for
+                large text to ensure readability.
+              </p>
             </div>
           </div>
         </div>

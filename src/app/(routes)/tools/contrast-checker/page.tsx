@@ -3,350 +3,331 @@
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
-  Eye,
-  AlertTriangle,
-  CheckCircle,
-  Shuffle,
-  Copy,
-  Check,
-  ArrowDownUp,
+ ArrowLeft,
+ Eye,
+ AlertTriangle,
+ CheckCircle,
+ Shuffle,
+ Copy,
+ Check,
+ ArrowDownUp,
 } from "lucide-react";
 
 interface ContrastResult {
-  ratio: number;
-  wcagAA: boolean;
-  wcagAAA: boolean;
-  wcagAALarge: boolean;
-  wcagAAALarge: boolean;
+ ratio: number;
+ wcagAA: boolean;
+ wcagAAA: boolean;
+ wcagAALarge: boolean;
+ wcagAAALarge: boolean;
 }
 
 export default function ContrastChecker() {
-  const [foregroundColor, setForegroundColor] = useState("#FFFFFF");
-  const [backgroundColor, setBackgroundColor] = useState("#000000");
-  const [contrastResult, setContrastResult] = useState<ContrastResult | null>(
-    null
-  );
-  const [copiedText, setCopiedText] = useState("");
-  const [previewSize, setPreviewSize] = useState<"sm" | "md" | "lg">("md");
+ const [foregroundColor, setForegroundColor] = useState("#FFFFFF");
+ const [backgroundColor, setBackgroundColor] = useState("#000000");
+ const [contrastResult, setContrastResult] = useState<ContrastResult | null>(
+ null
+ );
+ const [copiedText, setCopiedText] = useState("");
 
-  const getLuminance = (hex: string): number => {
-    const rgb = parseInt(hex.slice(1), 16);
-    const r = (rgb >> 16) & 0xff;
-    const g = (rgb >> 8) & 0xff;
-    const b = (rgb >> 0) & 0xff;
+ const getLuminance = (hex: string): number => {
+ const rgb = parseInt(hex.slice(1), 16);
+ const r = (rgb >> 16) & 0xff;
+ const g = (rgb >> 8) & 0xff;
+ const b = (rgb >> 0) & 0xff;
 
-    const [rs, gs, bs] = [r, g, b].map((c) => {
-      c = c / 255;
-      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-    });
+ const [rs, gs, bs] = [r, g, b].map((c) => {
+ c = c / 255;
+ return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+ });
 
-    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
-  };
+ return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+ };
 
-  const getContrastRatio = useCallback((fg: string, bg: string): number => {
-    const l1 = getLuminance(fg);
-    const l2 = getLuminance(bg);
-    const lighter = Math.max(l1, l2);
-    const darker = Math.min(l1, l2);
-    return (lighter + 0.05) / (darker + 0.05);
-  }, []);
+ const getContrastRatio = useCallback((fg: string, bg: string): number => {
+ const l1 = getLuminance(fg);
+ const l2 = getLuminance(bg);
+ const lighter = Math.max(l1, l2);
+ const darker = Math.min(l1, l2);
+ return (lighter + 0.05) / (darker + 0.05);
+ }, []);
 
-  const checkWCAGCompliance = useCallback(() => {
-    const ratio = getContrastRatio(foregroundColor, backgroundColor);
+ const checkWCAGCompliance = useCallback(() => {
+ const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
-    setContrastResult({
-      ratio,
-      wcagAA: ratio >= 4.5,
-      wcagAAA: ratio >= 7,
-      wcagAALarge: ratio >= 3,
-      wcagAAALarge: ratio >= 4.5,
-    });
-  }, [foregroundColor, backgroundColor, getContrastRatio]);
+ setContrastResult({
+ ratio,
+ wcagAA: ratio >= 4.5,
+ wcagAAA: ratio >= 7,
+ wcagAALarge: ratio >= 3,
+ wcagAAALarge: ratio >= 4.5,
+ });
+ }, [foregroundColor, backgroundColor, getContrastRatio]);
 
-  useEffect(() => {
-    checkWCAGCompliance();
-  }, [checkWCAGCompliance]);
+ useEffect(() => {
+ checkWCAGCompliance();
+ }, [checkWCAGCompliance]);
 
-  const generateRandomColors = () => {
-    const randomHex = () =>
-      "#" +
-      Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, "0");
-    setForegroundColor(randomHex());
-    setBackgroundColor(randomHex());
-  };
+ const generateRandomColors = () => {
+ const randomHex = () =>
+ "#" +
+ Math.floor(Math.random() * 16777215)
+ .toString(16)
+ .padStart(6, "0");
+ setForegroundColor(randomHex());
+ setBackgroundColor(randomHex());
+ };
 
-  const swapColors = () => {
-    setForegroundColor(backgroundColor);
-    setBackgroundColor(foregroundColor);
-  };
+ const swapColors = () => {
+ setForegroundColor(backgroundColor);
+ setBackgroundColor(foregroundColor);
+ };
 
-  const copyToClipboard = async (text: string, label: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedText(label);
-      setTimeout(() => setCopiedText(""), 2000);
-    } catch {
-      // Handle error if needed
-    }
-  };
+ const copyToClipboard = async (text: string, label: string) => {
+ try {
+ await navigator.clipboard.writeText(text);
+ setCopiedText(label);
+ setTimeout(() => setCopiedText(""), 2000);
+ } catch {
+ // Handle error if needed
+ }
+ };
 
-  const getComplianceIcon = (isCompliant: boolean) => {
-    return isCompliant ? (
-      <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-500" />
-    ) : (
-      <AlertTriangle className="h-4 w-4 text-red-500" />
-    );
-  };
+ return (
+ <div className="min-h-screen bg-white dark:bg-stone-950">
+ {/* Header */}
+ <div className="border-b border-stone-200 dark:border-stone-800">
+ <div className="max-w-6xl mx-auto px-6 py-6">
+ <Link
+ href="/tools"
+ className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400 text-sm mb-4"
+ >
+ <ArrowLeft className="h-4 w-4" />
+ Back to Tools
+ </Link>
 
-  const getComplianceColor = (isCompliant: boolean) => {
-    return isCompliant
-      ? "text-green-700 bg-green-50 border-green-200 dark:text-green-300 dark:bg-green-950 dark:border-green-800"
-      : "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800";
-  };
+ <div className="flex items-center gap-3">
+ <div className="p-2 bg-stone-900 dark:bg-stone-100 rounded-lg">
+ <Eye className="h-5 w-5 text-white dark:text-stone-900" />
+ </div>
+ <div>
+ <h1 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
+ Color Contrast Checker
+ </h1>
+ <p className="text-stone-500 dark:text-stone-400 text-sm">
+ Test color pairs against WCAG accessibility standards
+ </p>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-      <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto px-6 py-5">
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm mb-3"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Tools
-          </Link>
+ {/* Content */}
+ <div className="max-w-6xl mx-auto px-6 py-8">
+ <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+ {/* Controls */}
+ <div className="space-y-4">
+ {/* Foreground */}
+ <div className="border border-stone-200 dark:border-stone-800 rounded-lg p-4">
+ <label className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+ Foreground
+ </label>
+ <div
+ className="w-full h-14 rounded-md mt-2 mb-3 border border-stone-200 dark:border-stone-800"
+ style={{ backgroundColor: foregroundColor }}
+ />
+ <div className="flex items-center gap-2">
+ <input
+ type="color"
+ value={foregroundColor}
+ onChange={(e) => setForegroundColor(e.target.value)}
+ className="w-8 h-8 rounded border border-stone-200 dark:border-stone-700 cursor-pointer"
+ />
+ <input
+ type="text"
+ value={foregroundColor}
+ onChange={(e) => setForegroundColor(e.target.value)}
+ className="flex-1 px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-md font-mono text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 dark:focus:border-stone-500"
+ />
+ <button
+ onClick={() =>
+ copyToClipboard(foregroundColor, "foreground")
+ }
+ className="p-2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+ >
+ {copiedText === "foreground" ? (
+ <Check className="h-3.5 w-3.5" />
+ ) : (
+ <Copy className="h-3.5 w-3.5" />
+ )}
+ </button>
+ </div>
+ </div>
 
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg">
-              <Eye className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                Color Contrast Checker
-              </h1>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Test colors & ensure WCAG compliance
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+ {/* Background */}
+ <div className="border border-stone-200 dark:border-stone-800 rounded-lg p-4">
+ <label className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+ Background
+ </label>
+ <div
+ className="w-full h-14 rounded-md mt-2 mb-3 border border-stone-200 dark:border-stone-800"
+ style={{ backgroundColor: backgroundColor }}
+ />
+ <div className="flex items-center gap-2">
+ <input
+ type="color"
+ value={backgroundColor}
+ onChange={(e) => setBackgroundColor(e.target.value)}
+ className="w-8 h-8 rounded border border-stone-200 dark:border-stone-700 cursor-pointer"
+ />
+ <input
+ type="text"
+ value={backgroundColor}
+ onChange={(e) => setBackgroundColor(e.target.value)}
+ className="flex-1 px-3 py-2 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-md font-mono text-sm text-stone-900 dark:text-stone-100 focus:outline-none focus:border-stone-400 dark:focus:border-stone-500"
+ />
+ <button
+ onClick={() =>
+ copyToClipboard(backgroundColor, "background")
+ }
+ className="p-2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+ >
+ {copiedText === "background" ? (
+ <Check className="h-3.5 w-3.5" />
+ ) : (
+ <Copy className="h-3.5 w-3.5" />
+ )}
+ </button>
+ </div>
+ </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
-          <div className="space-y-4">
-            <div className="bg-white dark:bg-black rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-              <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-2 text-sm">
-                Foreground
-              </h3>
-              <div
-                className="w-full h-12 rounded-lg mb-3 border border-gray-200 dark:border-gray-700"
-                style={{ backgroundColor: foregroundColor }}
-              />
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  value={foregroundColor}
-                  onChange={(e) => setForegroundColor(e.target.value)}
-                  className="w-8 h-8 rounded-md border border-gray-200 dark:border-gray-700 cursor-pointer"
-                />
-                <input
-                  type="text"
-                  value={foregroundColor}
-                  onChange={(e) => setForegroundColor(e.target.value)}
-                  className="flex-1 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900"
-                />
-                <button
-                  onClick={() =>
-                    copyToClipboard(foregroundColor, "foreground color")
-                  }
-                  className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-md"
-                >
-                  {copiedText === "foreground color" ? (
-                    <Check className="h-3 w-3 text-green-600" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
-                </button>
-              </div>
-            </div>
+ {/* Actions */}
+ <div className="flex gap-2">
+ <button
+ onClick={swapColors}
+ className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 border border-stone-200 dark:border-stone-800 rounded-lg text-sm font-medium text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
+ >
+ <ArrowDownUp className="h-3.5 w-3.5" />
+ Swap
+ </button>
+ <button
+ onClick={generateRandomColors}
+ className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg text-sm font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
+ >
+ <Shuffle className="h-3.5 w-3.5" />
+ Random
+ </button>
+ </div>
 
-            <div className="bg-white dark:bg-black rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-              <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-2 text-sm">
-                Background
-              </h3>
-              <div
-                className="w-full h-12 rounded-lg mb-3 border border-gray-200 dark:border-gray-700"
-                style={{ backgroundColor: backgroundColor }}
-              />
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  value={backgroundColor}
-                  onChange={(e) => setBackgroundColor(e.target.value)}
-                  className="w-8 h-8 rounded-md border border-gray-200 dark:border-gray-700 cursor-pointer"
-                />
-                <input
-                  type="text"
-                  value={backgroundColor}
-                  onChange={(e) => setBackgroundColor(e.target.value)}
-                  className="flex-1 px-2.5 py-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-gray-900"
-                />
-                <button
-                  onClick={() =>
-                    copyToClipboard(backgroundColor, "background color")
-                  }
-                  className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 rounded-md"
-                >
-                  {copiedText === "background color" ? (
-                    <Check className="h-3 w-3 text-green-600" />
-                  ) : (
-                    <Copy className="h-3 w-3" />
-                  )}
-                </button>
-              </div>
-            </div>
+ {/* Contrast Ratio */}
+ {contrastResult && (
+ <div className="border border-stone-200 dark:border-stone-800 rounded-lg p-5 text-center">
+ <div className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1">
+ Contrast Ratio
+ </div>
+ <div className="text-3xl font-light text-stone-900 dark:text-stone-100 tabular-nums">
+ {contrastResult.ratio.toFixed(2)}
+ <span className="text-stone-400 dark:text-stone-500">
+ {" "}
+ : 1
+ </span>
+ </div>
+ </div>
+ )}
+ </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={generateRandomColors}
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-50 text-white dark:text-black rounded-lg text-xs font-medium"
-              >
-                <Shuffle className="h-3 w-3" />
-                Random
-              </button>
-              <button
-                onClick={swapColors}
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 rounded-lg text-xs font-medium"
-              >
-                <ArrowDownUp className="h-3 w-3" />
-                Swap
-              </button>
-            </div>
+ {/* Preview */}
+ <div className="border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden">
+ <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800">
+ <h3 className="text-sm font-medium text-stone-900 dark:text-stone-100">
+ Preview
+ </h3>
+ </div>
+ <div
+ className="p-6"
+ style={{
+ backgroundColor: backgroundColor,
+ color: foregroundColor,
+ }}
+ >
+ <h2 className="text-2xl font-semibold mb-3">Heading Text</h2>
+ <p className="text-base mb-3 leading-relaxed">
+ The quick brown fox jumps over the lazy dog. This demonstrates body text
+ readability at normal size.
+ </p>
+ <p className="text-sm mb-4 leading-relaxed">
+ Small text like captions and footnotes need higher contrast to remain
+ accessible.
+ </p>
+ <div className="flex gap-2">
+ <button
+ className="px-4 py-2 border rounded-md text-sm font-medium"
+ style={{ borderColor: foregroundColor }}
+ >
+ Button
+ </button>
+ <a
+ href="#"
+ className="px-4 py-2 text-sm font-medium underline"
+ onClick={(e) => e.preventDefault()}
+ >
+ Link Text
+ </a>
+ </div>
+ </div>
+ </div>
 
-            {contrastResult && (
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-xl p-3 text-center border border-blue-100 dark:border-blue-900">
-                <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-1 text-sm">
-                  Contrast Ratio
-                </h3>
-                <div className="text-2xl font-light text-gray-900 dark:text-gray-100">
-                  {contrastResult.ratio.toFixed(2)} : 1
-                </div>
-              </div>
-            )}
-          </div>
+ {/* WCAG Results */}
+ {contrastResult && (
+ <div className="border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden">
+ <div className="px-4 py-3 border-b border-stone-200 dark:border-stone-800">
+ <h3 className="text-sm font-medium text-stone-900 dark:text-stone-100">
+ WCAG Compliance
+ </h3>
+ </div>
+ <div className="divide-y divide-stone-200 dark:divide-stone-800">
+ {[
+ { label: "AA Normal Text", threshold: "4.5 : 1", pass: contrastResult.wcagAA },
+ { label: "AA Large Text", threshold: "3.0 : 1", pass: contrastResult.wcagAALarge },
+ { label: "AAA Normal Text", threshold: "7.0 : 1", pass: contrastResult.wcagAAA },
+ { label: "AAA Large Text", threshold: "4.5 : 1", pass: contrastResult.wcagAAALarge },
+ ].map((item) => (
+ <div
+ key={item.label}
+ className="flex items-center justify-between px-4 py-3"
+ >
+ <div>
+ <div className="text-sm font-medium text-stone-900 dark:text-stone-100">
+ {item.label}
+ </div>
+ <div className="text-xs text-stone-500 dark:text-stone-400">
+ min {item.threshold}
+ </div>
+ </div>
+ {item.pass ? (
+ <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-950 px-2.5 py-1 rounded-full">
+ <CheckCircle className="h-3.5 w-3.5" />
+ Pass
+ </span>
+ ) : (
+ <span className="inline-flex items-center gap-1.5 text-xs font-medium text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950 px-2.5 py-1 rounded-full">
+ <AlertTriangle className="h-3.5 w-3.5" />
+ Fail
+ </span>
+ )}
+ </div>
+ ))}
+ </div>
 
-          <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-5">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-medium text-gray-800 dark:text-gray-300 text-sm">
-                Preview
-              </h3>
-              <select
-                value={previewSize}
-                onChange={(e) =>
-                  setPreviewSize(e.target.value as "sm" | "md" | "lg")
-                }
-                className="text-xs border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1 bg-white dark:bg-gray-800 dark:text-gray-200 focus:outline-none"
-              >
-                <option value="sm">Small</option>
-                <option value="md">Normal</option>
-                <option value="lg">Large</option>
-              </select>
-            </div>
-            <div
-              className="rounded-lg p-4 border border-gray-200 dark:border-gray-800"
-              style={{
-                backgroundColor: backgroundColor,
-                color: foregroundColor,
-              }}
-            >
-              <h2
-                className={`font-semibold mb-2 ${
-                  previewSize === "sm"
-                    ? "text-base"
-                    : previewSize === "md"
-                    ? "text-lg"
-                    : "text-xl"
-                }`}
-              >
-                Sample Heading
-              </h2>
-              <p className="mb-2 text-sm">
-                This paragraph shows how your colors work together for
-                readability.
-              </p>
-              <p className="text-xs mb-3">
-                Small text requires higher contrast for accessibility.
-              </p>
-              <button
-                className="px-3 py-1.5 border rounded-md font-medium text-xs"
-                style={{
-                  borderColor: foregroundColor,
-                  color: foregroundColor,
-                }}
-              >
-                Sample Button
-              </button>
-            </div>
-          </div>
-
-          {contrastResult && (
-            <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl p-5">
-              <h3 className="font-medium text-gray-800 dark:text-gray-300 mb-3 text-sm">
-                WCAG Compliance
-              </h3>
-              <div className="space-y-2">
-                <div
-                  className={`flex items-center justify-between p-2 rounded-md border text-xs ${getComplianceColor(
-                    contrastResult.wcagAA
-                  )}`}
-                >
-                  <span>AA Normal (4.5:1)</span>
-                  {getComplianceIcon(contrastResult.wcagAA)}
-                </div>
-                <div
-                  className={`flex items-center justify-between p-2 rounded-md border text-xs ${getComplianceColor(
-                    contrastResult.wcagAALarge
-                  )}`}
-                >
-                  <span>AA Large (3:1)</span>
-                  {getComplianceIcon(contrastResult.wcagAALarge)}
-                </div>
-                <div
-                  className={`flex items-center justify-between p-2 rounded-md border text-xs ${getComplianceColor(
-                    contrastResult.wcagAAA
-                  )}`}
-                >
-                  <span>AAA Normal (7:1)</span>
-                  {getComplianceIcon(contrastResult.wcagAAA)}
-                </div>
-                <div
-                  className={`flex items-center justify-between p-2 rounded-md border text-xs ${getComplianceColor(
-                    contrastResult.wcagAAALarge
-                  )}`}
-                >
-                  <span>AAA Large (4.5:1)</span>
-                  {getComplianceIcon(contrastResult.wcagAAALarge)}
-                </div>
-              </div>
-
-              <div className="mt-4 p-3 bg-gray-100 dark:bg-gray-900 rounded-md">
-                <h4 className="font-medium text-gray-800 dark:text-gray-300 mb-1 text-xs">
-                  Quick Guide
-                </h4>
-                <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-0.5">
-                  <li>• AA: 4.5:1 minimum for text</li>
-                  <li>• AAA: 7:1 for enhanced readability</li>
-                  <li>• Large text has lower thresholds</li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+ {/* Quick Guide */}
+ <div className="px-4 py-3 bg-stone-50 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800">
+ <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+ <strong className="text-stone-700 dark:text-stone-300">AA</strong> is the minimum standard. <strong className="text-stone-700 dark:text-stone-300">AAA</strong> is enhanced. Large text is 18px+ bold or 24px+ normal.
+ </p>
+ </div>
+ </div>
+ )}
+ </div>
+ </div>
+ </div>
+ );
 }
