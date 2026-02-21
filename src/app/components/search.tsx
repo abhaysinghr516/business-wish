@@ -162,7 +162,7 @@ export default function Search({
         <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-500 dark:text-stone-400 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-all duration-200 group-hover:scale-110" />
         <Input
           className="md:w-full rounded-xl dark:bg-stone-900/90 bg-stone-50/90 border-stone-200 dark:border-stone-800 h-10 pl-10 pr-0 sm:pr-4 text-sm shadow-sm"
-          placeholder="Search components, tools, pages..."
+          placeholder="Search"
           type="search"
           readOnly
         />
@@ -202,7 +202,7 @@ export default function Search({
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-500 dark:text-stone-400 group-hover:text-stone-700 dark:group-hover:text-stone-200 transition-all duration-200 group-hover:scale-110" />
             <Input
               className="md:w-full rounded-xl dark:bg-stone-900/90 bg-stone-50/90 border-stone-200 dark:border-stone-800 h-10 pl-10 pr-0 sm:pr-4 text-sm shadow-sm"
-              placeholder="Search components, tools, pages..."
+              placeholder="Search"
               type="search"
               readOnly
             />
@@ -232,7 +232,7 @@ export default function Search({
               value={searchedInput}
               onChange={(e) => setSearchedInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search components, tools, pages..."
+              placeholder="Search"
               className="h-16 w-full pl-14 pr-12 bg-transparent border-b border-stone-200 dark:border-stone-800 text-base outline-none placeholder:text-stone-500 dark:placeholder:text-stone-400"
             />
             {searchedInput && (

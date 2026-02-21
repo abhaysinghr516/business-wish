@@ -20,49 +20,46 @@ import GitHubStarButton from "./github-star-button";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white/90 dark:bg-stone-950/90 backdrop-blur-xl border-b border-stone-200/50 dark:border-stone-800/50 py-3 px-4 sm:px-6 sticky top-0 z-50 shadow-sm dark:shadow-stone-950/20">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+    <nav className="bg-white/70 dark:bg-[#050505]/70 backdrop-blur-2xl border-b border-neutral-200/50 dark:border-white/[0.08] py-4 px-4 sm:px-6 sticky top-0 z-50 transition-all duration-300">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         {/* Brand */}
         <Link
           href="/"
-          className="text-lg sm:text-xl font-semibold text-stone-900 dark:text-stone-100 hover:text-stone-700 dark:hover:text-stone-300 transition-colors flex-shrink-0"
+          className="text-lg font-medium tracking-tight text-neutral-900 dark:text-white hover:opacity-80 transition-opacity flex-shrink-0"
         >
           Business Wish
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-6 flex-1 justify-center max-w-4xl">
-          <div className="flex-1 max-w-md">
+        <div className="hidden lg:flex items-center gap-4 flex-1 justify-center max-w-4xl">
+          <div className="flex-1 max-w-[320px] mr-4 transition-all duration-300">
             <Search />
           </div>
-          <div className="flex items-center gap-6">
+          
+          <div className="flex items-center space-x-1.5 bg-neutral-100/60 dark:bg-white/[0.03] p-1.5 rounded-full border border-neutral-200/60 dark:border-white/5 transition-all">
             <Link
               href="/docs/components/accordion"
-              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+              className="px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white rounded-full hover:bg-white dark:hover:bg-white/10 hover:shadow-sm transition-all duration-300"
             >
               Components
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link
               href="/templates"
-              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+              className="px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white rounded-full hover:bg-white dark:hover:bg-white/10 hover:shadow-sm transition-all duration-300"
             >
               Templates
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-500 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link
               href="/docs/motion/text-reveal"
-              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+              className="px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white rounded-full hover:bg-white dark:hover:bg-white/10 hover:shadow-sm transition-all duration-300"
             >
               Motion
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-200 group-hover:w-full"></span>
             </Link>
             <Link
               href="/tools"
-              className="text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-all duration-200 hover:scale-105 relative group"
+              className="px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white rounded-full hover:bg-white dark:hover:bg-white/10 hover:shadow-sm transition-all duration-300"
             >
               Tools
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
             </Link>
           </div>
         </div>
@@ -74,91 +71,74 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu */}
-        <div className="lg:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-3">
+          <Search />
           <Sheet>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-all duration-200 rounded-lg"
+                className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white focus:bg-neutral-100 dark:focus:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200 rounded-full h-9 w-9 p-0 flex items-center justify-center border border-transparent dark:hover:border-white/10"
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="p-0 w-80">
-              <SheetHeader className="px-6 py-4 border-b border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/50">
-                <DialogTitle className="text-left font-semibold text-stone-900 dark:text-stone-100">
-                  Navigation
+            <SheetContent side="right" className="p-0 w-[300px] border-l border-neutral-200 dark:border-white/10 bg-white/95 dark:bg-[#050505]/95 backdrop-blur-2xl">
+              <SheetHeader className="px-6 py-5 border-b border-neutral-100 dark:border-white/5 bg-transparent">
+                <DialogTitle className="text-left font-medium tracking-tight text-neutral-900 dark:text-white">
+                  Menu
                 </DialogTitle>
               </SheetHeader>
               <ScrollArea className="h-full">
-                <div className="px-6 py-6 space-y-8">
-                  <div className="space-y-2">
-                    <p className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                      Search
-                    </p>
-                    <Search hideTrigger triggerOnly />
-                  </div>
+                <div className="px-5 py-6 space-y-8">
 
-                  <nav className="space-y-1">
-                    <p className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-3">
-                      Navigation
+                  <nav className="space-y-1.5">
+                    <p className="text-[10px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest mb-4 px-1">
+                      Explore
                     </p>
                     <SheetClose asChild>
                       <Link
                         href="/docs/components/accordion"
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
+                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 rounded-xl transition-all duration-200 group"
                       >
-                        <ComponentIcon className="h-4 w-4 text-blue-500 dark:text-blue-400" />
+                        <ComponentIcon className="h-4 w-4 text-neutral-400 group-hover:text-blue-500 transition-colors" />
                         Components
-                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
-                          UI Library
-                        </span>
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
                         href="/templates"
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
+                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 rounded-xl transition-all duration-200 group"
                       >
-                        <BookOpenIcon className="h-4 w-4 text-green-500 dark:text-green-400" />
+                        <BookOpenIcon className="h-4 w-4 text-neutral-400 group-hover:text-emerald-500 transition-colors" />
                         Templates
-                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
-                          Pages
-                        </span>
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
                         href="/tools"
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
+                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 rounded-xl transition-all duration-200 group"
                       >
-                        <WrenchIcon className="h-4 w-4 text-orange-500 dark:text-orange-400" />
+                        <WrenchIcon className="h-4 w-4 text-neutral-400 group-hover:text-amber-500 transition-colors" />
                         Tools
-                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
-                          Utilities
-                        </span>
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
                         href="/docs/motion/text-reveal"
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-all duration-200 group"
+                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/5 rounded-xl transition-all duration-200 group"
                       >
-                        <Sparkles className="h-4 w-4 text-purple-500 dark:text-purple-400" />
+                        <Sparkles className="h-4 w-4 text-neutral-400 group-hover:text-purple-500 transition-colors" />
                         Motion
-                        <span className="ml-auto text-xs text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400">
-                          Animations
-                        </span>
                       </Link>
                     </SheetClose>
                   </nav>
 
-                  <div className="pt-4 border-t border-stone-200 dark:border-stone-800">
-                    <p className="text-xs font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-3">
+                  <div className="pt-6 border-t border-neutral-100 dark:border-white/5">
+                    <p className="text-[10px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest mb-4 px-1">
                       Actions
                     </p>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 px-1">
                       <GitHubStarButton repo="abhaysinghr516/business-wish" />
                       <ThemeToggle />
                     </div>

@@ -1,7 +1,6 @@
 "use client";
 
-import { CheckIcon, CopyIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Check, CopyIcon } from "lucide-react";
 import { useState } from "react";
 import { trackComponentCopy } from "@/lib/analytics";
 
@@ -12,7 +11,6 @@ export default function Copy({ content }: { content: string }) {
     await navigator.clipboard.writeText(content);
     setIsCopied(true);
 
-    // Track the copy event — extract a meaningful name from the content
     const firstLine = content.split("\n")[0]?.trim() || "unknown";
     const componentName = firstLine.replace(/^(import|export|const|function)\s+/, "").slice(0, 50);
     trackComponentCopy(componentName);
@@ -23,22 +21,16 @@ export default function Copy({ content }: { content: string }) {
   }
 
   return (
-    <Button
-      variant="secondary"
-      size="sm"
+    <button
       onClick={handleCopy}
-      className="h-8 w-8 p-0 sm:h-9 sm:w-auto sm:px-3"
+      className="flex items-center justify-center p-2 rounded-lg bg-neutral-100/80 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:hover:bg-neutral-700/80 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white backdrop-blur-sm border border-neutral-200/50 dark:border-white/5 transition-all duration-200 active:scale-95"
       aria-label={isCopied ? "Copied!" : "Copy code"}
     >
       {isCopied ? (
-        <CheckIcon className="w-3 h-3" />
+        <Check className="w-4 h-4" />
       ) : (
-        <CopyIcon className="w-3 h-3" />
+        <CopyIcon className="w-4 h-4" />
       )}
-      <span className="sr-only sm:not-sr-only sm:ml-2 text-xs">
-        {isCopied ? "Copied!" : "Copy"}
-      </span>
-    </Button>
+    </button>
   );
 }
-

@@ -80,7 +80,8 @@ export default function TocObserver({ data }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-0.5 text-sm dark:text-neutral-300/85 text-neutral-800 ml-0.5">
+    <div className="flex flex-col gap-0.5 text-[13px] ml-1 relative">
+      <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-neutral-200/50 dark:bg-white/5" />
       {data.map(({ href, level, text }) => {
         const isActive = activeId === href.slice(1);
         return (
@@ -89,17 +90,19 @@ export default function TocObserver({ data }: Props) {
             href={href}
             onClick={(e) => handleClick(e, href)}
             className={clsx(
-              "py-1.5 px-2 -mx-2 rounded-md transition-all duration-200 hover:bg-muted/50 block border-l-2",
+              "relative block py-1.5 pr-3 transition-all duration-300",
               {
-                "pl-2": level === 2,
-                "pl-6": level === 3,
-                "pl-10": level === 4,
-                "font-medium text-primary bg-muted/30 border-blue-600":
-                  isActive,
-                "border-transparent": !isActive,
+                "pl-4": level === 2,
+                "pl-8": level === 3,
+                "pl-12": level === 4,
+                "text-neutral-900 dark:text-white font-medium": isActive,
+                "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white": !isActive,
               }
             )}
           >
+            {isActive && (
+              <span className="absolute left-[0.5px] top-1/2 -translate-y-1/2 h-4 w-[2px] rounded-full bg-neutral-900 dark:bg-white transition-all duration-300" />
+            )}
             <span className="line-clamp-2">{text}</span>
           </Link>
         );

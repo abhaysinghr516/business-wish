@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Star, Github } from "lucide-react";
 import { trackGitHubStar } from "@/lib/analytics";
+import { cn } from "@/app/lib/utils";
 
 interface GitHubStarButtonProps {
   repo: string; // Format: "owner/repo"
@@ -71,13 +72,18 @@ export default function GitHubStarButton({
       rel="noopener noreferrer"
       aria-label={`Star ${repo} on GitHub`}
       onClick={() => trackGitHubStar()}
-      className={`inline-flex items-center rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 ${className}`}
+      className={cn(
+        "group inline-flex items-center rounded-full bg-neutral-100/80 dark:bg-neutral-800/50 text-[13px] font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white shadow-sm border border-neutral-200/50 dark:border-white/5 transition-all duration-200 active:scale-95 backdrop-blur-sm",
+        className
+      )}
     >
-      <div className="flex items-center gap-1 border-r border-gray-300 px-3 py-1.5 dark:border-gray-700">
-        <Github className="h-4 w-4" />
+      <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-neutral-200/50 dark:border-white/5 transition-colors group-hover:bg-neutral-200/50 dark:group-hover:bg-white/[0.02] rounded-l-full">
+        <Github className="h-[14px] w-[14px] opacity-70 group-hover:opacity-100 transition-opacity" />
         <span>Star</span>
       </div>
-      <div className="px-3 py-1.5">{renderStarCount()}</div>
+      <div className="px-3 py-1.5 min-w-[3.5rem] text-center transition-colors group-hover:bg-neutral-200/30 dark:group-hover:bg-white/[0.01] rounded-r-full font-semibold">
+        {renderStarCount()}
+      </div>
     </Link>
   );
 }

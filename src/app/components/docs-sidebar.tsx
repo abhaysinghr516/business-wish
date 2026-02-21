@@ -46,26 +46,17 @@ export function DocsSidebar({
     }));
   };
 
-  const getIcon = (title: string) => {
-    const lowerTitle = title.toLowerCase();
-    if (lowerTitle.includes("component")) return Package;
-    if (lowerTitle.includes("motion")) return Sparkles;
-    if (lowerTitle.includes("page")) return FileText;
-    if (lowerTitle.includes("template")) return Palette;
-    if (lowerTitle.includes("tool")) return Wrench;
-    return Layers;
-  };
-
   const getSectionIcon = (title: string) => {
     const lowerTitle = title.toLowerCase();
+    const className = "h-4 w-4 mr-2 text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors";
     if (lowerTitle.includes("component"))
-      return <Package className="h-4 w-4" />;
+      return <Package className={className} />;
     if (lowerTitle.includes("motion"))
-      return <Sparkles className="h-4 w-4" />;
-    if (lowerTitle.includes("page")) return <FileText className="h-4 w-4" />;
-    if (lowerTitle.includes("template")) return <Palette className="h-4 w-4" />;
-    if (lowerTitle.includes("tool")) return <Wrench className="h-4 w-4" />;
-    return <Layers className="h-4 w-4" />;
+      return <Sparkles className={className} />;
+    if (lowerTitle.includes("page")) return <FileText className={className} />;
+    if (lowerTitle.includes("template")) return <Palette className={className} />;
+    if (lowerTitle.includes("tool")) return <Wrench className={className} />;
+    return <Layers className={className} />;
   };
 
   const filteredRoutes = ROUTES.map((section) => ({
@@ -83,7 +74,7 @@ export function DocsSidebar({
   return (
     <aside
       className={cn(
-        "border-r border-border/50 bg-muted/20",
+        "border-r border-neutral-200/50 dark:border-white/[0.05] bg-neutral-50/50 dark:bg-transparent",
         isMobile
           ? "w-full h-full"
           : "hidden lg:block fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 xl:w-72"
@@ -91,8 +82,8 @@ export function DocsSidebar({
     >
       <div className="flex flex-col h-full">
         {/* Navigation */}
-        <ScrollArea className="flex-1 px-4 py-4">
-          <nav className="space-y-2">
+        <ScrollArea className="flex-1 px-4 py-6">
+          <nav className="space-y-6">
             {filteredRoutes.map((section) => {
               const sectionId = section.title
                 .toLowerCase()
@@ -100,33 +91,33 @@ export function DocsSidebar({
               const isExpanded = expandedSections[sectionId];
 
               return (
-                <div key={section.title} className="space-y-1">
+                <div key={section.title} className="space-y-2">
                   {/* Section Header */}
                   <Button
                     variant="ghost"
-                    className="w-full justify-between h-9 px-3 font-medium text-sm"
+                    className="w-full flex items-center justify-between h-8 px-2 text-[11px] font-semibold tracking-widest uppercase text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors hover:bg-transparent group"
                     onClick={() => toggleSection(sectionId)}
                   >
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center">
                       {getSectionIcon(section.title)}
                       <span>{section.title}</span>
                       <Badge
-                        variant="default"
-                        className="text-xs px-1.5 py-0.5 h-5"
+                        variant="secondary"
+                        className="ml-2 bg-neutral-200/50 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 text-[9px] px-1.5 py-0 rounded-md border-none font-medium h-4"
                       >
                         {section.items?.length || 0}
                       </Badge>
                     </div>
                     {isExpanded ? (
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
                     ) : (
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRight className="h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
                     )}
                   </Button>
 
                   {/* Section Items */}
                   {isExpanded && section.items && (
-                    <div className="ml-6 space-y-1">
+                    <div className="space-y-0.5 ml-3 pl-3 border-l border-neutral-200/50 dark:border-white/5">
                       {section.items.map((item) => {
                         const href = `/docs${section.href}${item.href}`;
                         const isActive = pathname === href;
@@ -137,17 +128,21 @@ export function DocsSidebar({
                             href={href}
                             onClick={onItemClick}
                             className={cn(
-                              "flex items-center space-x-2 px-3 py-2 text-sm rounded-md transition-all duration-200 group",
+                              "flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 group border border-transparent",
                               isActive
-                                ? "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800"
-                                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                ? "bg-neutral-100 dark:bg-white/10 text-neutral-900 dark:text-white"
+                                : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/50 dark:hover:bg-white/5"
                             )}
                           >
-                            <span className="flex-1">{item.title}</span>
+                            <span className="flex-1 truncate relative">
+                              {isActive && (
+                                <span className="absolute -left-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-neutral-900 dark:bg-white" />
+                              )}
+                              {item.title}
+                            </span>
                             {item.title.toLowerCase().includes("new") && (
                               <Badge
-                                variant="secondary"
-                                className="text-xs px-1.5 py-0.5 h-4 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                                className="text-[9px] px-1.5 py-0 h-4 bg-emerald-100/80 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400 border-none font-semibold rounded-md uppercase tracking-wider ml-2"
                               >
                                 New
                               </Badge>
@@ -164,11 +159,9 @@ export function DocsSidebar({
         </ScrollArea>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-border/50 bg-muted/10">
-          <div className="space-y-3">
-            <div className="text-xs text-muted-foreground">
-              <p>v2.1.0</p>
-            </div>
+        <div className="px-6 py-4 border-t border-neutral-200/50 dark:border-white/[0.05]">
+          <div className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+            v2.1.0
           </div>
         </div>
       </div>

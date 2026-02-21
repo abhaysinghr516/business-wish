@@ -63,28 +63,28 @@
     --chart-5: 0 0% 70%;
 
     --code-bg: 0 0% 98%;
-    --code-fg: 0 0% 15%;
+    --code-fg: 0 0% 40%;
   }
 
   .dark {
-    --background: 0 0% 8%;
+    --background: 0 0% 5%;
     --foreground: 0 0% 90%;
-    --card: 0 0% 8%;
+    --card: 0 0% 5%;
     --card-foreground: 0 0% 90%;
-    --popover: 0 0% 8%;
+    --popover: 0 0% 5%;
     --popover-foreground: 0 0% 90%;
     --primary: 0 0% 85%;
     --primary-foreground: 0 0% 10%;
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 85%;
-    --muted: 0 0% 12%;
+    --muted: 0 0% 10%;
     --muted-foreground: 0 0% 60%;
-    --accent: 0 0% 12%;
+    --accent: 0 0% 10%;
     --accent-foreground: 0 0% 85%;
     --destructive: 0 50% 50%;
     --destructive-foreground: 0 0% 90%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
     --ring: 0 0% 85%;
 
     --scrollbar-thumb: rgba(255, 255, 255, 0.15);
@@ -97,8 +97,8 @@
     --chart-4: 0 0% 40%;
     --chart-5: 0 0% 30%;
 
-    --code-bg: 0 0% 6%;
-    --code-fg: 0 0% 85%;
+    --code-bg: 0 0% 4%;
+    --code-fg: 0 0% 70%;
   }
 }
 
@@ -121,15 +121,18 @@
   margin: 0 !important;
 }
 
-/* Enhanced pre styling - Mobile optimized */
 pre {
   padding: 0 !important;
   width: 100% !important;
   overflow-x: auto;
-  @apply bg-[hsl(var(--code-bg))] text-[hsl(var(--code-fg))];
-  @apply rounded-lg sm:rounded-xl;
+  @apply text-[hsl(var(--code-fg))];
+  @apply rounded-xl border-none shadow-none bg-transparent;
   transition: all 0.2s ease;
   font-size: 13px;
+}
+
+.dark pre {
+  @apply border-none shadow-none bg-transparent;
 }
 
 @media (min-width: 640px) {
@@ -141,8 +144,8 @@ pre {
 pre>code {
   display: grid;
   width: 100%;
-  padding: 12px 0 !important;
-  @apply text-xs sm:text-sm leading-relaxed;
+  padding: 16px 0 !important;
+  @apply text-[13px] sm:text-sm leading-[1.6];
 }
 
 @media (min-width: 640px) {

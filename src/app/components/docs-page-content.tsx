@@ -122,32 +122,32 @@ export function DocsPageContent({
   return (
     <div className="w-full">
       {/* ─── Page header ─── */}
-      <div className="px-4 sm:px-6 py-6 sm:py-8 border-b border-border/40">
+      <div className="px-4 sm:px-6 py-10 sm:py-16 border-b border-neutral-200/50 dark:border-white/[0.05]">
         <div className="max-w-4xl">
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex-1 min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight break-words">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter text-neutral-900 dark:text-white break-words leading-tight">
                   {title}
                 </h1>
                 {isComponent && (
                   <Badge
-                    variant="outline"
-                    className="font-mono text-xs self-start"
+                    variant="secondary"
+                    className="font-mono text-[10px] self-start bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 px-2 py-0.5"
                   >
                     Component
                   </Badge>
                 )}
                 {isMotion && (
                   <Badge
-                    variant="outline"
-                    className="font-mono text-xs self-start bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800"
+                    variant="secondary"
+                    className="font-mono text-[10px] self-start bg-purple-100/50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 px-2 py-0.5"
                   >
                     Motion
                   </Badge>
                 )}
               </div>
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
                 {description}
               </p>
             </div>
@@ -157,32 +157,35 @@ export function DocsPageContent({
 
       {/* ─── Mobile TOC (collapsible) — below header ─── */}
       {hasToc && (
-        <div className="xl:hidden px-4 sm:px-6 py-3 border-b border-border/40 bg-muted/10">
+        <div className="xl:hidden px-4 sm:px-6 py-4 border-b border-neutral-200/50 dark:border-white/[0.05] bg-neutral-50/50 dark:bg-transparent">
           <details className="group">
             <summary className="flex items-center justify-between cursor-pointer list-none">
-              <div className="flex items-center space-x-2">
-                <List className="h-4 w-4 text-blue-600" />
-                <h3 className="font-semibold text-sm">On this page</h3>
-              </div>
-              <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">On this page</span>
+              <ChevronDown className="h-4 w-4 text-neutral-400 transition-transform group-open:rotate-180" />
             </summary>
-            <div className="mt-3 space-y-0.5 max-h-64 overflow-y-auto">
-              {tocs.map(({ href, level, text }) => (
-                <a
-                  key={href}
-                  href={href}
-                  onClick={(e) => handleTocClick(e, href)}
-                  className={cn(
-                    "block py-1.5 px-3 text-sm rounded-md hover:bg-muted/50 transition-colors",
-                    level === 2 ? "ml-0" : level === 3 ? "ml-4" : "ml-8",
-                    activeId === href.slice(1)
-                      ? "bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 font-medium"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  <span className="truncate">{text}</span>
-                </a>
-              ))}
+            <div className="mt-4 space-y-1 max-h-64 overflow-y-auto pl-2 border-l border-neutral-200/50 dark:border-white/5 relative">
+              {tocs.map(({ href, level, text }) => {
+                const isActive = activeId === href.slice(1);
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={(e) => handleTocClick(e, href)}
+                    className={cn(
+                      "relative block py-1.5 pr-3 text-[13px] transition-all duration-300",
+                      level === 2 ? "pl-3" : level === 3 ? "pl-6" : "pl-9",
+                      isActive
+                        ? "text-neutral-900 dark:text-white font-medium"
+                        : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                    )}
+                  >
+                    {isActive && (
+                      <span className="absolute left-[-1px] top-0 bottom-0 w-[2px] rounded-full bg-neutral-900 dark:bg-white" />
+                    )}
+                    <span className="truncate">{text}</span>
+                  </a>
+                );
+              })}
             </div>
           </details>
         </div>
@@ -193,53 +196,53 @@ export function DocsPageContent({
         className={cn(
           "relative",
           hasToc
-            ? "xl:grid xl:grid-cols-[1fr_220px] xl:gap-0"
+            ? "xl:grid xl:grid-cols-[1fr_240px] xl:gap-12"
             : ""
         )}
       >
         {/* Main prose */}
-        <div className="min-w-0 px-4 sm:px-6 py-6 sm:py-8">
+        <div className="min-w-0 px-4 sm:px-6 py-8 sm:py-12">
           <div className="max-w-4xl min-w-0 docs-content">
             <Typography>
-              <div className="prose prose-gray dark:prose-invert max-w-none prose-sm sm:prose-base lg:prose-lg">
+              <div className="prose prose-neutral dark:prose-invert max-w-none prose-sm sm:prose-base">
                 {content}
               </div>
             </Typography>
 
             {/* Prev / Next navigation */}
-            <div className="mt-12 pt-6 border-t border-border/40">
-              <div className="flex items-center justify-between">
+            <div className="mt-20 pt-8 border-t border-neutral-200/50 dark:border-white/[0.05]">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                 {prevPage ? (
                   <Link
                     href={`/docs${prevPage.href}`}
-                    className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="group flex flex-col gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors w-full sm:w-auto text-left"
                   >
-                    <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                    <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground">
-                        Previous
-                      </span>
-                      <span className="font-medium">{prevPage.title}</span>
+                    <span className="text-[10px] uppercase tracking-widest font-semibold text-neutral-400">
+                      Previous
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                      <span className="font-medium text-[15px]">{prevPage.title}</span>
                     </div>
                   </Link>
                 ) : (
-                  <div />
+                  <div className="w-full sm:w-auto" />
                 )}
                 {nextPage ? (
                   <Link
                     href={`/docs${nextPage.href}`}
-                    className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors text-right"
+                    className="group flex flex-col gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors w-full sm:w-auto text-right items-end"
                   >
-                    <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground">
-                        Next
-                      </span>
-                      <span className="font-medium">{nextPage.title}</span>
+                    <span className="text-[10px] uppercase tracking-widest font-semibold text-neutral-400">
+                      Next
+                    </span>
+                    <div className="flex items-center justify-end gap-2">
+                       <span className="font-medium text-[15px]">{nextPage.title}</span>
+                       <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
-                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 ) : (
-                  <div />
+                  <div className="w-full sm:w-auto" />
                 )}
               </div>
             </div>
@@ -248,15 +251,15 @@ export function DocsPageContent({
 
         {/* ─── Desktop TOC — sticky ─── */}
         {hasToc && (
-          <div className="hidden xl:block border-l border-border/40">
-            <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-6 px-4">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <List className="h-4 w-4 text-blue-600" />
-                  <h3 className="font-semibold text-sm">On this page</h3>
-                </div>
+          <div className="hidden xl:block pl-8 pr-4">
+            <div className="sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto py-8">
+              <div className="space-y-6">
+                <h3 className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                  On this page
+                </h3>
 
-                <nav className="space-y-0.5">
+                <nav className="space-y-1 relative">
+                  <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-neutral-200/50 dark:bg-white/5" />
                   {tocs.map(({ href, level, text }) => {
                     const isActive = activeId === href.slice(1);
                     return (
@@ -265,17 +268,20 @@ export function DocsPageContent({
                         href={href}
                         onClick={(e) => handleTocClick(e, href)}
                         className={cn(
-                          "block py-1.5 px-3 text-[13px] leading-snug rounded-md transition-all duration-200 border-l-2",
+                          "relative block py-1.5 pr-3 text-[13px] leading-relaxed transition-all duration-300",
                           isActive
-                            ? "bg-blue-50 dark:bg-blue-950/30 border-blue-600 text-blue-700 dark:text-blue-300 font-medium"
-                            : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50 hover:border-blue-600/30",
+                            ? "text-neutral-900 dark:text-white font-medium"
+                            : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white",
                           level === 2
-                            ? "ml-0"
+                            ? "pl-4"
                             : level === 3
-                            ? "ml-3"
-                            : "ml-6"
+                            ? "pl-8"
+                            : "pl-12"
                         )}
                       >
+                        {isActive && (
+                           <span className="absolute left-[-0.5px] top-1/2 -translate-y-1/2 h-4 w-[2px] rounded-full bg-neutral-900 dark:bg-white transition-all duration-300" />
+                        )}
                         <span className="line-clamp-2">{text}</span>
                       </a>
                     );
