@@ -1,48 +1,53 @@
 "use client";
 
-import { ChevronDown, LogOut, Mail, Search, Settings } from "lucide-react";
+import { ChevronDown, LogOut, Mail, Search, Settings, User, Command, CreditCard, LifeBuoy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export const SimpleDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Choose an option");
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const options = ["Option 1", "Option 2", "Option 3"];
+  const options = ["Product Design", "Engineering", "Marketing", "Customer Support"];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-50/50 dark:bg-gray-900/50">
-      <div className="relative inline-block text-left">
+    <div className="h-[60vh] flex justify-center items-center dark:bg-neutral-950">
+      <div className="relative inline-block text-left w-64" ref={dropdownRef}>
         <button
           type="button"
-          className="inline-flex justify-center items-center w-full rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 bg-white/80 dark:bg-gray-800/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
+          className={`inline-flex justify-between items-center w-full px-5 py-3.5 bg-white dark:bg-neutral-900 border ${isOpen ? 'border-neutral-300 dark:border-white/20' : 'border-neutral-200/80 dark:border-white/10'} rounded-[1.25rem] text-[15px] font-medium tracking-tight text-neutral-900 dark:text-white transition-all shadow-sm hover:border-neutral-300 dark:hover:border-white/20`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {selected}
-          <ChevronDown
-            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
+          <ChevronDown className={`ml-2 h-4 w-4 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
         </button>
 
-        {isOpen && (
-          <div className="absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white/90 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700 transform transition-all">
-            <div className="py-1 rounded-xl overflow-hidden">
-              {options.map((option) => (
-                <button
-                  key={option}
-                  className="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
-                  onClick={() => {
-                    setSelected(option);
-                    setIsOpen(false);
-                  }}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+        <div className={`absolute right-0 top-full mt-2 w-full rounded-[1.5rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-neutral-200/50 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] overflow-hidden transition-all duration-200 origin-top ${isOpen ? "opacity-100 scale-100 visible translate-y-0" : "opacity-0 scale-95 invisible -translate-y-2"}`}>
+          <div className="px-1.5 py-1.5 flex flex-col gap-0.5">
+            {options.map((option) => (
+              <button
+                key={option}
+                className="w-full text-left px-4 py-2.5 rounded-xl text-[14px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center"
+                onClick={() => {
+                  setSelected(option);
+                  setIsOpen(false);
+                }}
+              >
+                {option}
+              </button>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -50,51 +55,60 @@ export const SimpleDropdown: React.FC = () => {
 
 export const DropdownwithIcons: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const options = [
-    { label: "Messages", icon: Mail },
+    { label: "Inbox", icon: Mail },
+    { label: "Profile", icon: User },
     { label: "Settings", icon: Settings },
-    {
-      label: "Logout",
-      icon: LogOut,
-      className: "text-red-500 dark:text-red-400",
-    },
+    { type: "divider" },
+    { label: "Log out", icon: LogOut, danger: true },
   ];
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-50/50 dark:bg-gray-900/50">
-      <div className="relative inline-block text-left">
+    <div className="h-[60vh] flex justify-center items-center dark:bg-neutral-950">
+      <div className="relative inline-block text-left w-64" ref={dropdownRef}>
         <button
-          type="button"
-          className="inline-flex justify-center items-center w-full rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 bg-white/80 dark:bg-gray-800/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
+          className={`inline-flex justify-between items-center w-full px-5 py-3.5 bg-white dark:bg-neutral-900 border ${isOpen ? 'border-neutral-300 dark:border-white/20' : 'border-neutral-200/80 dark:border-white/10'} rounded-[1.25rem] text-[15px] font-medium tracking-tight text-neutral-900 dark:text-white transition-all shadow-sm hover:border-neutral-300 dark:hover:border-white/20`}
           onClick={() => setIsOpen(!isOpen)}
         >
           Options
-          <ChevronDown
-            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
+          <ChevronDown className={`ml-2 h-4 w-4 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
         </button>
 
-        {isOpen && (
-          <div className="absolute right-0 mt-2 w-56 rounded-xl shadow-lg bg-white/90 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700">
-            <div className="py-1 rounded-xl overflow-hidden">
-              {options.map((option) => (
+        <div className={`absolute right-0 top-full mt-2 w-full rounded-[1.5rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-neutral-200/50 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] overflow-hidden transition-all duration-200 origin-top ${isOpen ? "opacity-100 scale-100 visible translate-y-0" : "opacity-0 scale-95 invisible -translate-y-2"}`}>
+          <div className="px-1.5 py-1.5 flex flex-col gap-0.5">
+            {options.map((option, idx) => {
+              if (option.type === "divider") {
+                return <div key={idx} className="h-px w-full bg-neutral-200/80 dark:bg-neutral-800 my-1" />;
+              }
+              const Icon = option.icon;
+              return (
                 <button
                   key={option.label}
-                  className={`w-full text-left flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors ${
-                    option.className || ""
-                  }`}
+                  className={`w-full text-left px-4 py-2.5 rounded-xl text-[14px] font-medium transition-colors flex items-center group
+                    ${option.danger 
+                      ? 'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10' 
+                      : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white'}`}
                   onClick={() => setIsOpen(false)}
                 >
-                  <option.icon className="mr-3 h-4 w-4" aria-hidden="true" />
+                  {Icon && <Icon className={`mr-3 h-4 w-4 ${option.danger ? 'text-red-600 dark:text-red-400' : 'text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300'}`} />}
                   {option.label}
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -107,89 +121,127 @@ export const SearchableDropdown: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const options = [
-    "Apple",
-    "Banana",
-    "Cherry",
-    "Date",
-    "Elderberry",
-    "Fig",
-    "Grape",
-    "Honeydew",
-    "Kiwi",
-    "Lemon",
+    "Apple", "Banana", "Cherry", "Date", "Elderberry",
+    "Fig", "Grape", "Honeydew", "Kiwi", "Lemon", "Mango", "Papaya"
   ];
 
-  const filteredOptions = options.filter((option) =>
+  const filteredOptions = options.filter(option =>
     option.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-50/50 dark:bg-gray-900/50">
-      <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className="h-[70vh] flex justify-center items-center dark:bg-neutral-950">
+      <div className="relative inline-block text-left w-64" ref={dropdownRef}>
         <button
-          type="button"
-          className="inline-flex justify-between items-center w-64 rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 bg-white/80 dark:bg-gray-800/80 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md"
+          className={`inline-flex justify-between items-center w-full px-5 py-3.5 bg-white dark:bg-neutral-900 border ${isOpen ? 'border-neutral-300 dark:border-white/20' : 'border-neutral-200/80 dark:border-white/10'} rounded-[1.25rem] text-[15px] font-medium tracking-tight text-neutral-900 dark:text-white transition-all shadow-sm hover:border-neutral-300 dark:hover:border-white/20`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {selected || "Select a fruit"}
-          <ChevronDown
-            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
+          <ChevronDown className={`ml-2 h-4 w-4 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
         </button>
 
-        {isOpen && (
-          <div className="absolute right-0 mt-2 w-64 rounded-xl shadow-lg bg-white/90 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700">
-            <div className="p-2">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300 h-4 w-4" />
-                <input
-                  type="text"
-                  className="w-full pl-9 pr-4 py-2 rounded-lg text-sm bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-                  placeholder="Search fruits..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-700 px-1">
-              {filteredOptions.length > 0 ? (
-                filteredOptions.map((option) => (
-                  <button
-                    key={option}
-                    className="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors"
-                    onClick={() => {
-                      setSelected(option);
-                      setIsOpen(false);
-                      setSearchTerm("");
-                    }}
-                  >
-                    {option}
-                  </button>
-                ))
-              ) : (
-                <div className="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400">
-                  No results found
-                </div>
-              )}
+        <div className={`absolute right-0 top-full mt-2 w-full rounded-[1.5rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-neutral-200/50 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] overflow-hidden transition-all duration-200 origin-top ${isOpen ? "opacity-100 scale-100 visible translate-y-0" : "opacity-0 scale-95 invisible -translate-y-2"}`}>
+          <div className="p-2 border-b border-neutral-200/50 dark:border-neutral-800">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400 h-4 w-4" />
+              <input
+                type="text"
+                className="w-full pl-9 pr-4 py-2 rounded-xl text-[14px] bg-neutral-100 dark:bg-neutral-800 border-none text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/10 transition-all placeholder:text-neutral-400"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
           </div>
-        )}
+          <div className="max-h-56 overflow-y-auto px-1.5 py-1.5 scrollbar-thin scrollbar-thumb-neutral-200 dark:scrollbar-thumb-neutral-800 flex flex-col gap-0.5">
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((option) => (
+                <button
+                  key={option}
+                  className="w-full text-left px-4 py-2.5 rounded-xl text-[14px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                  onClick={() => {
+                    setSelected(option);
+                    setIsOpen(false);
+                    setSearchTerm("");
+                  }}
+                >
+                  {option}
+                </button>
+              ))
+            ) : (
+              <div className="px-4 py-3 text-[14px] font-medium text-center text-neutral-500">
+                No results found
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const GroupedDropdown: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="h-[80vh] flex justify-center items-center dark:bg-neutral-950">
+      <div className="relative inline-block text-left w-64" ref={dropdownRef}>
+        <button
+          className={`inline-flex justify-between items-center w-full px-5 py-3.5 bg-white dark:bg-neutral-900 border ${isOpen ? 'border-neutral-300 dark:border-white/20' : 'border-neutral-200/80 dark:border-white/10'} rounded-[1.25rem] text-[15px] font-medium tracking-tight text-neutral-900 dark:text-white transition-all shadow-sm hover:border-neutral-300 dark:hover:border-white/20`}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          Menu
+          <ChevronDown className={`ml-2 h-4 w-4 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+        </button>
+
+        <div className={`absolute right-0 top-full mt-2 w-full rounded-[1.5rem] bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-neutral-200/50 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] overflow-hidden transition-all duration-200 origin-top flex flex-col ${isOpen ? "opacity-100 scale-100 visible translate-y-0" : "opacity-0 scale-95 invisible -translate-y-2"}`}>
+          
+          <div className="px-5 py-3 border-b border-neutral-200/50 dark:border-neutral-800">
+            <p className="text-[13px] font-medium text-neutral-500 dark:text-neutral-400 tracking-tight">Signed in as</p>
+            <p className="text-[14px] font-semibold text-neutral-900 dark:text-white truncate">steve@apple.com</p>
+          </div>
+          
+          <div className="px-1.5 py-1.5 flex flex-col gap-0.5">
+            <span className="px-3 py-1.5 text-[11px] font-semibold tracking-wider text-neutral-400 uppercase mt-1">Workspace</span>
+            <button className="w-full text-left px-4 py-2 rounded-xl text-[14px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center group">
+              <Command className="mr-3 h-4 w-4 text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300" />
+              Keyboard shortcuts
+            </button>
+            <button className="w-full text-left px-4 py-2 rounded-xl text-[14px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center group">
+              <CreditCard className="mr-3 h-4 w-4 text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300" />
+              Billing
+            </button>
+            
+            <div className="h-px w-full bg-neutral-200/80 dark:bg-neutral-800 my-1" />
+            
+            <span className="px-3 py-1.5 text-[11px] font-semibold tracking-wider text-neutral-400 uppercase mt-1">Support</span>
+            <button className="w-full text-left px-4 py-2 rounded-xl text-[14px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center group">
+              <LifeBuoy className="mr-3 h-4 w-4 text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300" />
+              Help & Feedback
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

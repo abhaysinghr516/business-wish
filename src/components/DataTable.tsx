@@ -30,59 +30,33 @@ const people = [
 
 const BasicDataTable: React.FC = () => {
   return (
-    <div className="max-w-4xl mx-auto my-4">
-      <div className="overflow-x-auto">
-        <div className="inline-block min-w-full align-middle">
-          <div className="overflow-hidden rounded-xl bg-white dark:bg-gray-900 shadow-sm">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Title
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Email
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Role
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {people.map((person) => (
-                  <tr key={person.email}>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
-                      {person.name}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                      {person.title}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                      {person.email}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+    <div className="w-full max-w-5xl mx-auto my-8">
+      <div className="overflow-hidden rounded-[2rem] border border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead>
+              <tr className="border-b border-neutral-200/60 dark:border-white/10 bg-neutral-50/50 dark:bg-neutral-900/50 text-neutral-500 dark:text-neutral-400">
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Name</th>
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Title</th>
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Email</th>
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide text-right">Role</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-neutral-200/60 dark:divide-white/10">
+              {people.map((person) => (
+                <tr key={person.email} className="transition-colors">
+                  <td className="px-8 py-5 font-medium text-neutral-900 dark:text-white">{person.name}</td>
+                  <td className="px-8 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
+                  <td className="px-8 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
+                  <td className="px-8 py-5 text-right">
+                    <span className="inline-flex items-center rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900 px-3 py-1 text-xs font-medium text-neutral-800 dark:text-neutral-200">
                       {person.role}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -91,70 +65,84 @@ const BasicDataTable: React.FC = () => {
 
 const StripedDataTable: React.FC = () => {
   return (
-    <div className="max-w-4xl mx-auto my-4">
-      <div className="overflow-x-auto">
-        <div className="inline-block min-w-full align-middle">
-          <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-800">
-                <tr>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Title
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Email
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 px-6 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
-                  >
-                    Role
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
-                {people.map((person, index) => (
-                  <tr
-                    key={person.email}
-                    className={
-                      index % 2 === 0
-                        ? undefined
-                        : "bg-gray-50 dark:bg-gray-800/50"
-                    }
-                  >
-                    <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
-                      {person.name}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                      {person.title}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                      {person.email}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
+    <div className="w-full max-w-5xl mx-auto my-8">
+      <div className="overflow-hidden rounded-[2rem] border border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead>
+              <tr className="border-b border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Name</th>
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Title</th>
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Email</th>
+                <th scope="col" className="px-8 py-5 font-medium tracking-wide text-right">Role</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white dark:bg-neutral-950">
+              {people.map((person, index) => (
+                <tr
+                  key={person.email}
+                  className={index % 2 === 0 ? "bg-white dark:bg-neutral-950" : "bg-neutral-50/80 dark:bg-neutral-900/40"}
+                >
+                  <td className="px-8 py-5 font-medium text-neutral-900 dark:text-white">{person.name}</td>
+                  <td className="px-8 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
+                  <td className="px-8 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
+                  <td className="px-8 py-5 text-right">
+                    <span className="inline-flex items-center rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
                       {person.role}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 };
 
-export { BasicDataTable, StripedDataTable };
+const ModernDataTable: React.FC = () => {
+  return (
+    <div className="w-full max-w-5xl mx-auto my-8">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-sm whitespace-nowrap">
+          <thead>
+            <tr className="border-b border-neutral-200/80 dark:border-white/10 text-neutral-400 dark:text-neutral-500">
+              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px]">Name</th>
+              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px]">Title</th>
+              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px]">Email</th>
+              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px] text-right">Role</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-neutral-100 dark:divide-white/5">
+            {people.map((person) => (
+              <tr key={person.email} className="group hover:bg-neutral-50/50 dark:hover:bg-neutral-900/30 transition-colors duration-200 rounded-2xl">
+                <td className="px-4 py-5 font-semibold text-neutral-900 dark:text-white">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-medium text-neutral-600 dark:text-neutral-300">
+                      {person.name.charAt(0)}
+                    </div>
+                    {person.name}
+                  </div>
+                </td>
+                <td className="px-4 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
+                <td className="px-4 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
+                <td className="px-4 py-5 text-right">
+                  <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${
+                    person.role === 'Admin' || person.role === 'Owner' 
+                      ? 'bg-neutral-900 text-white ring-neutral-900 dark:bg-white dark:text-neutral-900 dark:ring-white' 
+                      : 'bg-neutral-50 text-neutral-700 ring-neutral-200 dark:bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800'
+                  }`}>
+                    {person.role}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export { BasicDataTable, StripedDataTable, ModernDataTable };

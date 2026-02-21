@@ -1,6 +1,6 @@
 ---
 title: Hero Section
-description: Hero sections are a great way to introduce your users to your product or service.
+description: Hero sections are the primary focal point of a landing page, redesigned with premium Apple-level aesthetics and dynamic interactions.
 ---
 
 ### Center Content Hero Section
@@ -10,55 +10,210 @@ description: Hero sections are a great way to introduce your users to your produ
 
 ```jsx showLineNumbers
 import React from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 
-const Hero = () => {
-  return (
-        <section className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-200 dark:bg-blue-800 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-200 dark:bg-purple-800 rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+const CenterContentHeroSection = () => (
+  <section className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-[90vh] flex flex-col items-center justify-center px-6 py-24 relative overflow-hidden">
+    {/* Subtle Glow Background */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-neutral-100 dark:bg-white/5 blur-[120px] rounded-full opacity-60 pointer-events-none"></div>
 
-      <div className="max-w-4xl w-full text-center relative z-10">
-        <h1 className="text-6xl sm:text-7xl font-semibold mb-8 leading-[1.1] tracking-tighter text-gray-800 dark:text-white">
-          Elevate Your UI with Simplicity
-        </h1>
-        <p className="text-2xl mb-12 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-light tracking-tight">
-          Our UI components library embraces minimalism and flexibility,
-          allowing you to create stunning interfaces with ease.
-        </p>
+    <div className="max-w-4xl w-full text-center relative z-10 flex flex-col items-center">
+      <div className="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[13px] font-medium text-neutral-600 dark:text-neutral-300 shadow-sm">
+        <Sparkles className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+        <span>Introducing the new UI framework</span>
+      </div>
+      
+      <h1 className="text-6xl sm:text-7xl md:text-8xl font-semibold mb-8 leading-[1.05] tracking-tighter text-neutral-900 dark:text-white">
+        Design at the <br className="hidden sm:block" />
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-500">
+          speed of thought.
+        </span>
+      </h1>
+      
+      <p className="text-xl sm:text-2xl mb-12 text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto font-normal leading-relaxed tracking-tight">
+        A beautifully crafted, minimalist component library designed to help you build interfaces that look and feel entirely premium.
+      </p>
+      
+      <div className="flex flex-col sm:flex-row items-center gap-4">
         <a
           href="#"
-          className="inline-flex items-center text-xl font-medium text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-200 transition-colors duration-300 ease-in-out group"
+          className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-[15px] font-medium text-white bg-neutral-900 dark:bg-white dark:text-neutral-900 rounded-full hover:scale-105 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-300 ease-out shadow-lg shadow-neutral-900/10 dark:shadow-white/10"
         >
           Explore Components
-          <ChevronRight
-            className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-            size={24}
-          />
         </a>
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-12">
-          {[
-            { label: "Components", value: "100+" },
-            { label: "Downloads", value: "50K+" },
-            { label: "GitHub Stars", value: "5K+" },
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="text-center bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-md"
-            >
-              <div className="text-5xl font-semibold mb-3 text-gray-800 dark:text-white">
-                {stat.value}
-              </div>
-              <div className="text-gray-500 dark:text-gray-400 text-base tracking-wide font-medium">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
+        <a
+          href="#"
+          className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-[15px] font-medium text-neutral-700 dark:text-neutral-300 bg-transparent rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300 group"
+        >
+          View Documentation
+          <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+        </a>
       </div>
-    </section>
-  );
-}
 
-export default Hero;
+      <div className="mt-24 w-full grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-neutral-100 dark:border-neutral-900">
+        {[
+          { label: "Components", value: "150+" },
+          { label: "Designers", value: "20K+" },
+          { label: "Downloads", value: "1M+" },
+          { label: "Rating", value: "4.9/5" },
+        ].map((stat, index) => (
+          <div key={index} className="flex flex-col items-center justify-center">
+            <span className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">{stat.value}</span>
+            <span className="text-[13px] font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+export default CenterContentHeroSection;
+```
+
+### Soft Gradient Hero Section
+<Preview>
+<GradientHeroSection />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { ArrowRight, Play } from "lucide-react";
+
+const GradientHeroSection = () => (
+  <section className="bg-[#fafafa] dark:bg-[#0a0a0a] min-h-[90vh] flex flex-col items-center justify-center px-6 py-24 relative overflow-hidden">
+    {/* Colorful Orbs */}
+    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/20 dark:bg-blue-600/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+    <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+
+    <div className="max-w-3xl w-full text-center relative z-10 flex flex-col items-center">
+      <h1 className="text-5xl md:text-7xl font-semibold mb-6 tracking-tighter text-neutral-900 dark:text-white leading-tight">
+        Build faster with intelligent tools.
+      </h1>
+      <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 mb-10 max-w-xl font-normal leading-relaxed">
+        Everything you need to launch your next idea. Beautifully designed, perfectly optimized, and ready for production.
+      </p>
+      
+      <div className="flex items-center gap-3">
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+          <button className="relative px-8 py-3.5 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[14px] font-semibold rounded-full flex items-center gap-2 transition-transform hover:scale-[1.02]">
+            Get API Keys <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+        <button className="px-8 py-3.5 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 text-[14px] font-semibold rounded-full flex items-center gap-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors shadow-sm">
+          <Play className="w-4 h-4 fill-current" /> Watch Demo
+        </button>
+      </div>
+
+      <div className="mt-16 w-full max-w-2xl h-64 md:h-80 bg-white/50 dark:bg-black/50 backdrop-blur-xl rounded-2xl border border-neutral-200/50 dark:border-white/10 shadow-2xl flex items-center justify-center relative overflow-hidden">
+         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-300 dark:via-white/20 to-transparent"></div>
+         <p className="text-neutral-400 dark:text-neutral-500 text-sm font-medium">✨ UI Preview Placeholder</p>
+      </div>
+    </div>
+  </section>
+);
+
+export default GradientHeroSection;
+```
+
+### Ultra Minimal Typography Hero
+<Preview>
+<MinimalTypographyHero />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { ArrowRight } from "lucide-react";
+
+const MinimalTypographyHero = () => (
+  <section className="bg-white dark:bg-neutral-950 min-h-[85vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 py-20 relative">
+    <div className="max-w-5xl relative z-10 space-y-8">
+      <h1 className="text-6xl sm:text-7xl md:text-9xl font-medium tracking-tighter text-neutral-900 dark:text-white leading-[0.9]">
+        Simplicity is <br />
+        <span className="text-neutral-400 dark:text-neutral-600">the ultimate</span> <br />
+        sophistication.
+      </h1>
+      
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 pt-12 md:pt-24">
+        <p className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 max-w-md font-normal leading-relaxed">
+          Create timeless digital experiences with a framework that removes the noise and focuses entirely on the essence of your content.
+        </p>
+        
+        <a
+          href="#"
+          className="group inline-flex items-center text-[15px] font-semibold text-neutral-900 dark:text-white uppercase tracking-wider pb-1 border-b-2 border-neutral-900 dark:border-white transition-all hover:pr-4"
+        >
+          Discover our vision
+          <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 absolute right-0" />
+        </a>
+      </div>
+    </div>
+  </section>
+);
+
+export default MinimalTypographyHero;
+```
+
+### Split Side-Image Hero
+<Preview>
+<SideImageHeroSection />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { Play } from "lucide-react";
+
+const SideImageHeroSection = () => (
+  <section className="bg-white dark:bg-neutral-950 min-h-screen flex items-center px-6 py-24 relative overflow-hidden">
+    <div className="container mx-auto max-w-7xl">
+      <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+        
+        {/* Text Content */}
+        <div className="max-w-2xl space-y-8 relative z-10">
+          <div className="inline-block">
+            <span className="bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-white text-[12px] font-bold uppercase tracking-widest px-3 py-1.5 rounded">
+              v2.0 Now Available
+            </span>
+          </div>
+          
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-tighter text-neutral-900 dark:text-white leading-[1.1]">
+            Empower your creative process.
+          </h1>
+          
+          <p className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 font-normal leading-relaxed">
+            Eliminate friction between design and engineering. Build scalable systems that adapt to your brand perfectly right out of the box.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button className="px-8 py-3.5 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[15px] font-medium rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors shadow-xl shadow-neutral-900/10 dark:shadow-white/10 text-center">
+              Start Building
+            </button>
+            <button className="px-8 py-3.5 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 text-[15px] font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors text-center">
+              Read the Docs
+            </button>
+          </div>
+        </div>
+
+        {/* Abstract Image/Art Container */}
+        <div className="relative w-full h-[500px] lg:h-[600px] bg-neutral-100 dark:bg-neutral-900 rounded-3xl overflow-hidden border border-neutral-200/50 dark:border-white/5 shadow-2xl group">
+          {/* Subtle grid pattern inside */}
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "24px 24px" }}></div>
+          
+          {/* Decorative floating elements simulating an interface or 3D scene */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white dark:bg-neutral-800 rounded-full blur-3xl opacity-50 group-hover:scale-110 transition-transform duration-1000"></div>
+          
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-64 bg-white/40 dark:bg-white/10 backdrop-blur-md rounded-2xl border border-white/40 dark:border-white/20 shadow-xl rotate-12 group-hover:rotate-6 transition-transform duration-700 ease-out"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-64 bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-2xl border border-white/50 dark:border-white/20 shadow-xl -rotate-6 group-hover:rotate-0 transition-transform duration-700 ease-out flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full border border-neutral-200 dark:border-white/20 p-2 flex items-center justify-center">
+              <Play className="w-4 h-4 text-neutral-900 dark:text-white pl-0.5" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+);
+
+export default SideImageHeroSection;
 ```

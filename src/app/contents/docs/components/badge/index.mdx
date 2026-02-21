@@ -1,14 +1,16 @@
 ---
 title: Badge
-description: Badge component is used to show a badge with a text or icon.
+description: Badge component is used to show a small indicator or label with text or an icon.
 ---
 
 ### Badge Group
+A collection of soft, flat badges featuring various semantic colors, a `ghost` variant, and new `pill` and `dot` props.
 <Preview>
 <BadgeGroup />
 </Preview>
 
 ```jsx showLineNumbers
+import React from "react";
 import { Check } from "lucide-react";
 
 type Variant =
@@ -17,62 +19,93 @@ type Variant =
   | "success"
   | "warning"
   | "danger"
-  | "outlined";
+  | "outlined"
+  | "ghost";
 
 interface BadgeProps {
-  variant: Variant;
+  variant?: Variant;
   icon?: boolean;
   text?: string;
+  pill?: boolean;
+  dot?: boolean;
+  className?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ variant, icon, text }) => {
-  const baseClass = "px-2.5 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1.5 transition-colors duration-200";
+export const Badge: React.FC<BadgeProps> = ({ 
+  variant = "default", 
+  icon = false, 
+  text, 
+  pill = false,
+  dot = false,
+  className = "" 
+}) => {
+  const baseClass = `
+    inline-flex items-center gap-1.5 px-2.5 py-1 text-[13px] font-medium tracking-tight border
+  `;
+
+  // Determine border radius based on 'pill' prop
+  const radiusClass = pill ? "rounded-full" : "rounded-md";
+
   const variantClasses = {
     default: `
-      bg-gray-100/80 text-gray-600 dark:bg-gray-800/80 dark:text-gray-300
-      shadow-sm shadow-gray-100/50 dark:shadow-gray-900/50
+      bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border-transparent
     `,
     primary: `
-      bg-blue-50/80 text-blue-600 dark:bg-blue-950/80 dark:text-blue-300
-      shadow-sm shadow-blue-100/50 dark:shadow-blue-900/50
+      bg-blue-50/80 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-transparent
     `,
     success: `
-      bg-green-50/80 text-green-600 dark:bg-green-950/80 dark:text-green-300
-      shadow-sm shadow-green-100/50 dark:shadow-green-900/50
+      bg-emerald-50/80 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border-transparent
     `,
     warning: `
-      bg-amber-50/80 text-amber-600 dark:bg-amber-950/80 dark:text-amber-300
-      shadow-sm shadow-amber-100/50 dark:shadow-amber-900/50
+      bg-amber-50/80 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-transparent
     `,
     danger: `
-      bg-red-50/80 text-red-600 dark:bg-red-950/80 dark:text-red-300
-      shadow-sm shadow-red-100/50 dark:shadow-red-900/50
+      bg-red-50/80 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-transparent
     `,
     outlined: `
-      border border-gray-200/80 text-gray-600 bg-white/50
-      dark:border-gray-700/80 dark:text-gray-300 dark:bg-gray-900/50
-      shadow-sm shadow-gray-100/50 dark:shadow-gray-900/50
+      bg-transparent text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800
     `,
+    ghost: `
+      bg-transparent text-neutral-600 dark:text-neutral-400 border-transparent
+    `
   };
 
   const iconClasses = {
-    default: "text-gray-500 dark:text-gray-400",
+    default: "text-neutral-500 dark:text-neutral-400",
     primary: "text-blue-500 dark:text-blue-400",
-    success: "text-green-500 dark:text-green-400",
+    success: "text-emerald-500 dark:text-emerald-400",
     warning: "text-amber-500 dark:text-amber-400",
     danger: "text-red-500 dark:text-red-400",
-    outlined: "text-gray-400 dark:text-gray-500",
+    outlined: "text-neutral-400 dark:text-neutral-500",
+    ghost: "text-neutral-500 dark:text-neutral-400",
+  };
+  
+  const dotClasses = {
+    default: "bg-neutral-500 dark:bg-neutral-400",
+    primary: "bg-blue-500 dark:bg-blue-400",
+    success: "bg-emerald-500 dark:bg-emerald-400",
+    warning: "bg-amber-500 dark:bg-amber-400",
+    danger: "bg-red-500 dark:bg-red-400",
+    outlined: "bg-neutral-400 dark:bg-neutral-500",
+    ghost: "bg-neutral-500 dark:bg-neutral-400",
   };
 
   return (
     <span
       className={`
         ${baseClass} 
+        ${radiusClass}
         ${variantClasses[variant]}
-        hover:bg-opacity-90 dark:hover:bg-opacity-90
+        ${className}
       `}
     >
-      {icon && (
+      {dot && !icon && (
+        <span className="relative flex h-2 w-2">
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${dotClasses[variant]}`}></span>
+            <span className={`relative inline-flex rounded-full h-2 w-2 ${dotClasses[variant]}`}></span>
+        </span>
+      )}
+      {icon && !dot && (
         <Check
           className={`w-3.5 h-3.5 ${iconClasses[variant]}`}
           strokeWidth={2.5}
@@ -86,15 +119,54 @@ export const Badge: React.FC<BadgeProps> = ({ variant, icon, text }) => {
 
 ## Usage
     
-```jsx
+```jsx showLineNumbers
+import { Badge } from "@/components/Badge";
+
 export const BadgeGroup: React.FC = () => (
-  <div className="flex flex-wrap items-center gap-3 p-4">
-    <Badge variant="primary" text="Primary" />
-    <Badge variant="success" text="Success" />
-    <Badge variant="warning" text="Warning" />
-    <Badge variant="danger" text="Danger" />
-    <Badge variant="outlined" text="Outlined" />
-    <Badge variant="success" icon text="With Icon" />
+  <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-wrap items-center gap-3">
+        <span className="text-sm text-neutral-500 dark:text-neutral-400 w-24">Default</span>
+        <Badge variant="default" text="Default" />
+        <Badge variant="primary" text="Primary" />
+        <Badge variant="success" text="Success" />
+        <Badge variant="warning" text="Warning" />
+        <Badge variant="danger" text="Danger" />
+        <Badge variant="outlined" text="Outlined" />
+        <Badge variant="ghost" text="Ghost" />
+    </div>
+    
+    <div className="flex flex-wrap items-center gap-3">
+        <span className="text-sm text-neutral-500 dark:text-neutral-400 w-24">Pill Shape</span>
+        <Badge pill variant="default" text="Default" />
+        <Badge pill variant="primary" text="Primary" />
+        <Badge pill variant="success" text="Success" />
+        <Badge pill variant="warning" text="Warning" />
+        <Badge pill variant="danger" text="Danger" />
+        <Badge pill variant="outlined" text="Outlined" />
+        <Badge pill variant="ghost" text="Ghost" />
+    </div>
+
+    <div className="flex flex-wrap items-center gap-3">
+        <span className="text-sm text-neutral-500 dark:text-neutral-400 w-24">With Dot</span>
+        <Badge dot variant="default" text="Default" />
+        <Badge dot variant="primary" text="Primary" />
+        <Badge dot variant="success" text="Success" />
+        <Badge dot variant="warning" text="Warning" />
+        <Badge dot variant="danger" text="Danger" />
+        <Badge dot variant="outlined" text="Outlined" />
+        <Badge dot variant="ghost" text="Ghost" />
+    </div>
+
+    <div className="flex flex-wrap items-center gap-3">
+        <span className="text-sm text-neutral-500 dark:text-neutral-400 w-24">With Icon</span>
+        <Badge icon variant="default" text="Default" />
+        <Badge icon variant="primary" text="Primary" />
+        <Badge icon variant="success" text="Success" />
+        <Badge icon variant="warning" text="Warning" />
+        <Badge icon variant="danger" text="Danger" />
+        <Badge icon variant="outlined" text="Outlined" />
+        <Badge icon variant="ghost" text="Ghost" />
+    </div>
   </div>
 );
 ```

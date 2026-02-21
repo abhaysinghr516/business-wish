@@ -1,6 +1,6 @@
 ---
-title: Socail Share
-description: Social Share is a great way to share your content on social media platforms.
+title: Social Share
+description: Social Share components are an elegant way to let users distribute your content across social media platforms.
 ---
 
 ### Floating Social Share
@@ -9,49 +9,61 @@ description: Social Share is a great way to share your content on social media p
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useState } from "react";
 import { Facebook, Link, Linkedin, Share, Twitter, X } from "lucide-react";
+import { useState } from "react";
 
 const SocialShare = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="fixed bottom-4 right-4 z-50">
-      <button
-        className="rounded-full p-4 bg-white/90 shadow-lg hover:bg-white/95 transform transition-all duration-300 ease-in-out hover:scale-105 dark:bg-gray-800/90 dark:hover:bg-gray-800/95"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close share menu" : "Open share menu"}
-      >
-        {isOpen ? (
-          <X className="h-6 w-6 text-gray-700 dark:text-gray-200" />
-        ) : (
-          <Share className="h-6 w-6 text-gray-700 dark:text-gray-200" />
-        )}
-      </button>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       <div
-        className={`absolute bottom-16 right-0 transform transition-all duration-300 ease-in-out ${
+        className={`transform transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-bottom-right ${
           isOpen
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
+            ? "opacity-100 scale-100 translate-y-0 mb-4"
+            : "opacity-0 scale-90 translate-y-4 pointer-events-none absolute bottom-0 right-0"
         }`}
       >
-        <div className="bg-white/90 shadow-xl rounded-2xl p-3 space-y-2 dark:bg-gray-800/90 min-w-[200px]">
+        <div className="bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/50 dark:border-white/10 rounded-[24px] p-2 space-y-1 min-w-[220px]">
           {[
-            { icon: Facebook, label: "Facebook", color: "text-blue-600" },
-            { icon: Twitter, label: "Twitter", color: "text-blue-400" },
-            { icon: Linkedin, label: "LinkedIn", color: "text-blue-700" },
-            { icon: Link, label: "Copy Link", color: "text-gray-600" },
-          ].map(({ icon: Icon, label, color }) => (
+            { icon: Facebook, label: "Share to Facebook" },
+            { icon: Twitter, label: "Share to Twitter" },
+            { icon: Linkedin, label: "Share to LinkedIn" },
+            { icon: Link, label: "Copy Link" },
+          ].map(({ icon: Icon, label }) => (
             <button
               key={label}
-              className="flex items-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50/90 rounded-xl transition-colors duration-200 dark:text-gray-200 dark:hover:bg-gray-700/50"
-              aria-label={`Share on ${label}`}
+              className="flex items-center w-full px-4 py-3 text-[14px] font-medium text-neutral-700 hover:text-neutral-900 bg-transparent hover:bg-white dark:hover:bg-neutral-800 dark:text-neutral-300 dark:hover:text-white rounded-[16px] transition-all duration-200 group"
+              aria-label={label}
             >
-              <Icon className={`mr-3 h-5 w-5 ${color}`} />
-              <span className="font-medium">{label}</span>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-colors mr-3">
+                <Icon className="h-4 w-4" />
+              </div>
+              <span className="tracking-tight">{label}</span>
             </button>
           ))}
         </div>
       </div>
+      <button
+        className="relative flex items-center justify-center h-14 w-14 rounded-full bg-white dark:bg-[#0A0A0A] shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-neutral-200/50 dark:border-white/10 transform transition-transform duration-300 hover:scale-105 active:scale-95"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close share menu" : "Open share menu"}
+      >
+        <span
+          className={`absolute transition-all duration-300 ${
+            isOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
+          }`}
+        >
+          <X className="h-5 w-5 text-neutral-900 dark:text-white" />
+        </span>
+        <span
+          className={`absolute transition-all duration-300 ${
+            isOpen ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
+          }`}
+        >
+          <Share className="h-5 w-5 text-neutral-900 dark:text-white" />
+        </span>
+      </button>
     </div>
   );
 };
@@ -66,8 +78,8 @@ export default SocialShare;
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useEffect, useRef, useState } from "react";
-import { Facebook, Link, Linkedin, Share, Twitter, X } from "lucide-react";
+import { Facebook, Link, Linkedin, Share, Twitter } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const SocialShare = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,43 +98,44 @@ const SocialShare = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center flex-col items-center py-20">
       <div className="relative inline-block text-left" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex items-center px-6 py-3 rounded-full bg-white/90 shadow-md hover:bg-white/95 transform transition-all duration-300 ease-in-out hover:scale-105 dark:bg-gray-800/90 dark:hover:bg-gray-800/95"
+          className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-white dark:bg-[#0A0A0A] border border-neutral-200/80 dark:border-neutral-800 shadow-sm hover:shadow-md hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-200 active:scale-[0.98]"
           aria-haspopup="true"
           aria-expanded={isOpen}
         >
-          <Share className="mr-2 h-5 w-5 text-gray-700 dark:text-gray-200" />
-          <span className="text-gray-700 font-medium dark:text-gray-200">
+          <Share className="mr-2 h-4 w-4 text-neutral-700 dark:text-neutral-300" />
+          <span className="text-[14px] font-semibold text-neutral-900 dark:text-white tracking-tight">
             Share
           </span>
         </button>
 
         <div
-          className={`transform transition-all duration-300 ease-in-out absolute right-0 mt-2 w-56 ${
+          className={`absolute right-0 mt-3 w-56 transform origin-top-right transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-50 ${
             isOpen
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-4 pointer-events-none"
+              ? "opacity-100 scale-100 translate-y-0"
+              : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
           }`}
         >
-          <div className="rounded-2xl shadow-xl bg-white/90 ring-1 ring-black/5 dark:bg-gray-800/90">
-            <div className="py-2" role="menu" aria-orientation="vertical">
+          <div className="rounded-[20px] shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.2)] bg-white/95 dark:bg-[#0A0A0A]/95 backdrop-blur-md border border-neutral-200/60 dark:border-white/10 overflow-hidden p-1.5">
+            <div className="flex flex-col gap-0.5" role="menu" aria-orientation="vertical">
               {[
-                { icon: Facebook, label: "Facebook", color: "text-blue-600" },
-                { icon: Twitter, label: "Twitter", color: "text-blue-400" },
-                { icon: Linkedin, label: "LinkedIn", color: "text-blue-700" },
-                { icon: Link, label: "Copy Link", color: "text-gray-600" },
-              ].map(({ icon: Icon, label, color }) => (
+                { icon: Facebook, label: "Facebook" },
+                { icon: Twitter, label: "Twitter" },
+                { icon: Linkedin, label: "LinkedIn" },
+                { icon: Link, label: "Copy Link" },
+              ].map(({ icon: Icon, label }) => (
                 <button
                   key={label}
-                  className="flex items-center w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50/90 transition-colors duration-200 dark:text-gray-200 dark:hover:bg-gray-700/50"
+                  className="flex items-center w-full px-3 py-2.5 text-[14px] font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/80 dark:hover:bg-neutral-800/80 rounded-[14px] transition-colors"
                   role="menuitem"
                 >
-                  <Icon className={`mr-3 h-5 w-5 ${color}`} />
-                  <span className="font-medium">{label}</span>
+                  <Icon className="mr-3 h-[18px] w-[18px]" strokeWidth={2.5} />
+                  <span>{label}</span>
                 </button>
               ))}
             </div>
@@ -142,12 +155,15 @@ export default SocialShare;
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useEffect, useRef, useState } from "react";
-import { Copy, Facebook, Linkedin, Share, Twitter, X } from "lucide-react";
+import { Check, Copy, Facebook, Linkedin, Share, Twitter, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const SocialShare = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  
+  const link = "https://www.businesswish.tech/";
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -165,72 +181,169 @@ const SocialShare = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(link);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center py-20">
         <button
           onClick={() => setIsOpen(true)}
-          className="inline-flex items-center px-6 py-3 rounded-full bg-white/90 shadow-md hover:bg-white/95 transform transition-all duration-300 ease-in-out hover:scale-105 dark:bg-gray-800/90 dark:hover:bg-gray-800/95"
+          className="inline-flex items-center h-12 px-8 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] transform transition-all duration-200 hover:-translate-y-0.5"
         >
-          <Share className="mr-2 h-5 w-5 text-gray-700 dark:text-gray-200" />
-          <span className="text-gray-700 font-medium dark:text-gray-200">
-            Share
+          <Share className="mr-2.5 h-[18px] w-[18px]" />
+          <span className="text-[15px] font-semibold tracking-wide">
+            Spread the word
           </span>
         </button>
       </div>
 
       <div
-        className={`fixed inset-0 bg-black/40 flex items-center justify-center p-4 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 bg-neutral-900/40 dark:bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
         <div
           ref={modalRef}
-          className={`bg-white/90 rounded-3xl shadow-2xl max-w-md w-full transform transition-all duration-300 dark:bg-gray-800/90 ${
-            isOpen ? "scale-100" : "scale-95"
+          className={`bg-white dark:bg-[#0A0A0A] rounded-[32px] shadow-2xl max-w-md w-full border border-neutral-200/50 dark:border-white/10 transform transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-8"
           }`}
         >
-          <div className="flex justify-between items-center p-6">
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
-              Share this content
-            </h3>
+          <div className="flex justify-between items-center p-7 pb-4">
+            <div>
+              <h3 className="text-[20px] font-bold text-neutral-900 dark:text-white tracking-tight">
+                Share this page
+              </h3>
+              <p className="text-[14px] text-neutral-500 mt-1">
+                Anyone with the link can view this content.
+              </p>
+            </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-gray-400 hover:text-gray-500 transition-colors duration-200"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-500 transition-colors"
             >
-              <X className="h-6 w-6" />
+              <X className="h-4 w-4" />
             </button>
           </div>
-          <div className="px-6 pb-6">
-            <div className="flex items-center space-x-2 mb-6">
-              <input
-                type="text"
-                value="https://www.businesswish.tech/"
-                readOnly
-                className="flex-grow px-4 py-3 rounded-xl border border-gray-200 bg-gray-50/50 text-gray-700 dark:border-gray-700 dark:bg-gray-900/50 dark:text-gray-300"
-              />
-              <button className="p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-200 dark:bg-gray-900 dark:hover:bg-gray-800">
-                <Copy className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-              </button>
-            </div>
-            <div className="flex justify-center space-x-6">
+          
+          <div className="px-7 pb-7 space-y-6">
+            <div className="flex justify-between gap-3 pt-2">
               {[
-                { icon: Facebook, color: "bg-blue-600" },
-                { icon: Twitter, color: "bg-blue-400" },
-                { icon: Linkedin, color: "bg-blue-700" },
-              ].map(({ icon: Icon, color }, index) => (
+                { icon: Facebook, color: "bg-[#1877F2] text-white", name: "Facebook" },
+                { icon: Twitter, color: "bg-black dark:bg-white dark:text-black text-white", name: "X" },
+                { icon: Linkedin, color: "bg-[#0A66C2] text-white", name: "LinkedIn" },
+              ].map(({ icon: Icon, color, name }, index) => (
                 <button
                   key={index}
-                  className={`p-4 ${color} text-white rounded-2xl transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg`}
+                  className="flex flex-col gap-2 items-center flex-1 group"
                 >
-                  <Icon className="h-6 w-6" />
+                  <div className={`flex items-center justify-center w-14 h-14 rounded-full ${color} transform transition-transform duration-300 group-hover:-translate-y-1 shadow-sm group-hover:shadow-md`}>
+                    <Icon className="h-6 w-6" fill={name !== "X" ? "currentColor" : "none"} />
+                  </div>
+                  <span className="text-[12px] font-medium text-neutral-600 dark:text-neutral-400">{name}</span>
                 </button>
               ))}
+            </div>
+
+            <div className="relative flex items-center">
+              <input
+                type="text"
+                value={link}
+                readOnly
+                className="w-full h-14 pl-4 pr-16 rounded-[20px] bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-[14px] text-neutral-700 dark:text-neutral-300 outline-none focus:ring-2 focus:ring-neutral-200 dark:focus:ring-neutral-800 transition-all"
+              />
+              <button 
+                onClick={handleCopy}
+                className="absolute right-2 flex items-center justify-center h-10 px-4 rounded-[14px] bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-[13px] font-semibold text-neutral-900 dark:text-white shadow-sm hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+              >
+                {copied ? <Check className="h-4 w-4 mr-1.5" /> : <Copy className="h-4 w-4 mr-1.5" />}
+                {copied ? "Copied" : "Copy"}
+              </button>
             </div>
           </div>
         </div>
       </div>
     </>
+  );
+};
+
+export default SocialShare;
+```
+
+### Inline Social Share
+<Preview>
+<InlineSocialShare />
+</Preview>
+
+```jsx showLineNumbers
+import { Facebook, Link, Linkedin, Twitter } from "lucide-react";
+
+const SocialShare = () => {
+  return (
+    <div className="flex items-center gap-4 p-6 bg-white dark:bg-[#0A0A0A] rounded-[24px] border border-neutral-200/60 dark:border-white/10 shadow-sm max-w-fit mx-auto">
+      <span className="text-[14px] font-bold text-neutral-900 dark:text-white tracking-tight mr-2">
+        Share article:
+      </span>
+      <div className="flex items-center gap-2">
+        {[
+          { icon: Twitter, label: "Twitter" },
+          { icon: Linkedin, label: "LinkedIn" },
+          { icon: Facebook, label: "Facebook" },
+          { icon: Link, label: "Copy Link" },
+        ].map(({ icon: Icon, label }) => (
+          <button
+            key={label}
+            title={label}
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-all duration-200"
+          >
+            <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default SocialShare;
+```
+
+### Pill Social Share
+<Preview>
+<PillSocialShare />
+</Preview>
+
+```jsx showLineNumbers
+import { Facebook, Link, Linkedin, Share, Twitter } from "lucide-react";
+
+const SocialShare = () => {
+  return (
+    <div className="flex justify-center py-10">
+      <div className="group relative flex items-center h-14 bg-white dark:bg-[#0A0A0A] border border-neutral-200/80 dark:border-neutral-800 rounded-full shadow-sm hover:shadow-md transition-all duration-400 overflow-hidden pr-2 cursor-pointer w-[60px] hover:w-[240px]">
+        <div className="absolute left-0 flex items-center justify-center w-[60px] h-full z-10 bg-white dark:bg-[#0A0A0A]">
+           <Share className="h-5 w-5 text-neutral-900 dark:text-white transform group-hover:-rotate-12 transition-transform duration-300" />
+        </div>
+        
+        <div className="absolute left-[60px] flex items-center gap-1 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-400 delay-75">
+          {[
+            { icon: Twitter, label: "Twitter" },
+            { icon: Facebook, label: "Facebook" },
+            { icon: Linkedin, label: "LinkedIn" },
+            { icon: Link, label: "Copy Link" },
+          ].map(({ icon: Icon, label }) => (
+            <button
+              key={label}
+              title={label}
+              className="flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-neutral-800 transition-colors"
+            >
+              <Icon className="h-[18px] w-[18px]" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

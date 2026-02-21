@@ -6,7 +6,6 @@ import {
   Home,
   Plus,
   Search,
-  ShoppingBag,
   User,
 } from "lucide-react";
 
@@ -14,35 +13,53 @@ export const BottomNavigation: React.FC = () => {
   const [active, setActive] = useState("home");
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 border-t border-gray-200/50 dark:border-gray-800/50 px-2 pb-safe-area-inset-bottom">
-      <div className="flex justify-around max-w-md mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border-t border-neutral-200/50 dark:border-neutral-800/50 pb-safe-area-inset-bottom z-50 transition-colors duration-300">
+      <div className="flex justify-around items-center max-w-md mx-auto px-4 h-16">
         {[
           { id: "home", icon: Home, label: "Home" },
           { id: "search", icon: Search, label: "Search" },
-          { id: "notifications", icon: Bell, label: "Notifications" },
+          { id: "notifications", icon: Bell, label: "Alerts" },
           { id: "profile", icon: User, label: "Profile" },
-        ].map(({ id, icon: Icon, label }) => (
-          <a
-            key={id}
-            href="#"
-            onClick={() => setActive(id)}
-            className={`flex flex-col items-center py-2 px-4 relative transition-all duration-300 ${
-              active === id
-                ? "text-blue-500 dark:text-blue-400 scale-105"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
-            }`}
-          >
-            <Icon
-              className={`h-6 w-6 transition-all duration-300 ${
-                active === id ? "stroke-2" : "stroke-1"
-              }`}
-            />
-            <span className="text-xs mt-1 font-medium">{label}</span>
-            {active === id && (
-              <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-500 dark:bg-blue-400 rounded-full" />
-            )}
-          </a>
-        ))}
+        ].map(({ id, icon: Icon, label }) => {
+          const isActive = active === id;
+          return (
+            <a
+              key={id}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActive(id);
+              }}
+              className="group flex flex-col items-center justify-center w-16 h-full relative"
+            >
+              <div 
+                className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${
+                  isActive 
+                    ? "bg-neutral-100 dark:bg-neutral-800" 
+                    : "bg-transparent group-hover:bg-neutral-50 dark:group-hover:bg-neutral-800/50"
+                }`}
+              >
+                <Icon
+                  className={`w-5 h-5 transition-all duration-300 ${
+                    isActive 
+                      ? "text-neutral-900 dark:text-neutral-100 scale-110" 
+                      : "text-neutral-500 dark:text-neutral-400"
+                  }`}
+                  strokeWidth={isActive ? 2.5 : 2}
+                />
+              </div>
+              <span 
+                className={`absolute bottom-1.5 text-[10px] font-medium tracking-wide transition-all duration-300 ${
+                  isActive 
+                    ? "text-neutral-900 dark:text-neutral-100 opacity-100 translate-y-0" 
+                    : "text-neutral-500 dark:text-neutral-400 opacity-0 translate-y-1"
+                }`}
+              >
+                {label}
+              </span>
+            </a>
+          );
+        })}
       </div>
     </nav>
   );
@@ -52,33 +69,44 @@ export const BubbleNavigation: React.FC = () => {
   const [active, setActive] = useState("home");
 
   return (
-    <nav className="fixed bottom-4 left-4 right-4">
-      <div className="bg-white/80 dark:bg-gray-900/80 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50 max-w-md mx-auto">
-        <div className="flex justify-around p-2">
+    <nav className="fixed bottom-6 left-0 right-0 z-50 pointer-events-none">
+      <div className="flex justify-center px-4 w-full">
+        <div className="pointer-events-auto bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-neutral-200/50 dark:border-neutral-800/50 p-1.5 flex items-center gap-1 transition-colors duration-300">
           {[
             { id: "home", icon: Home, label: "Home" },
             { id: "search", icon: Search, label: "Search" },
-            { id: "favorites", icon: Heart, label: "Favorites" },
+            { id: "favorites", icon: Heart, label: "Likes" },
             { id: "user", icon: User, label: "Profile" },
-          ].map(({ id, icon: Icon, label }) => (
-            <a
-              key={id}
-              href="#"
-              onClick={() => setActive(id)}
-              className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
-                active === id
-                  ? "text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 scale-105"
-                  : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50"
-              }`}
-            >
-              <Icon
-                className={`h-6 w-6 transition-all duration-300 ${
-                  active === id ? "stroke-2" : "stroke-1"
+          ].map(({ id, icon: Icon, label }) => {
+            const isActive = active === id;
+            return (
+              <a
+                key={id}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActive(id);
+                }}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-md"
+                    : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50"
                 }`}
-              />
-              <span className="text-xs mt-1 font-medium">{label}</span>
-            </a>
-          ))}
+              >
+                <Icon
+                  className={`w-4 h-4 transition-transform duration-300 ${
+                    isActive ? "scale-105" : "scale-100"
+                  }`}
+                  strokeWidth={isActive ? 2.5 : 2}
+                />
+                {isActive && (
+                  <span className="text-[13px] font-medium tracking-tight whitespace-nowrap overflow-hidden animate-in slide-in-from-left-2 duration-300">
+                    {label}
+                  </span>
+                )}
+              </a>
+            );
+          })}
         </div>
       </div>
     </nav>
@@ -90,43 +118,76 @@ export const FabNavigation: React.FC = () => {
   const [fabHovered, setFabHovered] = useState(false);
 
   return (
-    <nav className="fixed bottom-4 left-4 right-4">
-      <div className="relative flex justify-around items-center bg-white/80 dark:bg-gray-900/80 rounded-2xl p-2 shadow-lg border border-gray-200/50 dark:border-gray-800/50 max-w-md mx-auto">
-        {[
-          { id: "home", icon: Home, label: "Home" },
-          { id: "search", icon: Search, label: "Search" },
-          { id: "notifications", icon: Bell, label: "Notifications" },
-          { id: "profile", icon: User, label: "Profile" },
-        ].map(({ id, icon: Icon, label }) => (
-          <a
-            key={id}
-            href="#"
-            onClick={() => setActive(id)}
-            className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
-              active === id
-                ? "text-blue-500 dark:text-blue-400 scale-105"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
-            }`}
+    <nav className="fixed bottom-6 left-0 right-0 z-50 pointer-events-none">
+      <div className="flex justify-center px-4 w-full h-[72px] items-end">
+        <div className="pointer-events-auto relative bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] border border-neutral-200/50 dark:border-neutral-800/50 w-full max-w-sm px-6 h-16 flex items-center justify-between transition-colors duration-300">
+          
+          <div className="flex gap-4">
+            {[
+              { id: "home", icon: Home },
+              { id: "search", icon: Search },
+            ].map(({ id, icon: Icon }) => {
+              const isActive = active === id;
+              return (
+                <a
+                  key={id}
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActive(id);
+                  }}
+                  className={`p-2.5 rounded-full transition-all duration-300 ${
+                    isActive 
+                      ? "bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100" 
+                      : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                  }`}
+                >
+                  <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
+                </a>
+              );
+            })}
+          </div>
+
+          <button
+            onMouseEnter={() => setFabHovered(true)}
+            onMouseLeave={() => setFabHovered(false)}
+            className="absolute left-1/2 -top-6 transform -translate-x-1/2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-full p-3.5 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 ring-[6px] ring-neutral-50/50 dark:ring-neutral-900/50"
           >
-            <Icon
-              className={`h-6 w-6 transition-all duration-300 ${
-                active === id ? "stroke-2" : "stroke-1"
+            <Plus
+              className={`w-6 h-6 transition-transform duration-300 ${
+                fabHovered ? "rotate-90" : ""
               }`}
+              strokeWidth={2.5}
             />
-            <span className="text-xs mt-1 font-medium">{label}</span>
-          </a>
-        ))}
-        <button
-          onMouseEnter={() => setFabHovered(true)}
-          onMouseLeave={() => setFabHovered(false)}
-          className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95"
-        >
-          <Plus
-            className={`h-6 w-6 transition-all duration-300 ${
-              fabHovered ? "rotate-180" : ""
-            }`}
-          />
-        </button>
+          </button>
+
+          <div className="flex gap-4">
+            {[
+              { id: "notifications", icon: Bell },
+              { id: "profile", icon: User },
+            ].map(({ id, icon: Icon }) => {
+              const isActive = active === id;
+              return (
+                <a
+                  key={id}
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActive(id);
+                  }}
+                  className={`p-2.5 rounded-full transition-all duration-300 ${
+                    isActive 
+                      ? "bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100" 
+                      : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                  }`}
+                >
+                  <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
+                </a>
+              );
+            })}
+          </div>
+
+        </div>
       </div>
     </nav>
   );

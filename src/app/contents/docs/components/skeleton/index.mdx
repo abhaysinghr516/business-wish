@@ -1,6 +1,6 @@
 ---
 title: Skeleton Loading
-description: Skeleton loading is a great way to show users that content is loading.
+description: Skeleton loading is a great way to show users that content is loading while maintaining a beautiful layout.
 ---
 
 ### Basic Skeleton
@@ -13,23 +13,23 @@ import React from "react";
 
 const Skeleton = () => {
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800">
+    <div className="max-w-3xl mx-auto p-8 bg-white dark:bg-[#0A0A0A] rounded-[24px] shadow-sm border border-neutral-200/60 dark:border-white/10">
       <div className="space-y-6">
         <div className="space-y-4 animate-pulse">
           <div className="flex space-x-3">
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-24"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-16"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-20"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-24"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-16"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-20"></div>
           </div>
           <div className="space-y-3">
-            <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-3/4"></div>
-            <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-full"></div>
-            <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-2/3"></div>
+            <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-3/4"></div>
+            <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-full"></div>
+            <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-2/3"></div>
           </div>
           <div className="space-y-3 pt-4">
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-full"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-5/6"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-3/4"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-full"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-5/6"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-3/4"></div>
           </div>
         </div>
       </div>
@@ -50,18 +50,18 @@ import React from "react";
 
 const Skeleton = () => {
   return (
-    <div className="max-w-md mx-auto overflow-hidden bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800">
+    <div className="max-w-md mx-auto overflow-hidden bg-white dark:bg-[#0A0A0A] rounded-[24px] shadow-sm border border-neutral-200/60 dark:border-white/10">
       <div className="animate-pulse">
-        <div className="h-48 bg-gray-200 dark:bg-gray-800"></div>
+        <div className="h-52 bg-neutral-100 dark:bg-neutral-800/80"></div>
         <div className="p-6 space-y-4">
-          <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-2/3"></div>
-          <div className="space-y-2">
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-full"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-5/6"></div>
+          <div className="h-5 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-2/3"></div>
+          <div className="space-y-2.5 pt-2">
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-full"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-5/6"></div>
           </div>
-          <div className="flex justify-between pt-4">
-            <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-lg w-24"></div>
-            <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-lg w-16"></div>
+          <div className="flex justify-between pt-6">
+            <div className="h-9 bg-neutral-100 dark:bg-neutral-800/80 rounded-xl w-28"></div>
+            <div className="h-9 bg-neutral-100 dark:bg-neutral-800/80 rounded-xl w-20"></div>
           </div>
         </div>
       </div>
@@ -82,28 +82,28 @@ import React from "react";
 
 const Skeleton = () => {
   return (
-    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800">
+    <div className="max-w-md mx-auto p-6 bg-white dark:bg-[#0A0A0A] rounded-[28px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-neutral-200/60 dark:border-white/10">
       <div className="animate-pulse">
         <div className="flex items-center space-x-4">
-          <div className="relative">
-            <div className="w-16 h-16 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 bg-gray-200 dark:bg-gray-800 rounded-full border-2 border-white dark:border-gray-900"></div>
+          <div className="relative flex-shrink-0">
+            <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-800/80 rounded-full"></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 bg-neutral-200 dark:bg-neutral-700 rounded-full border-2 border-white dark:border-[#0A0A0A]"></div>
           </div>
-          <div className="flex-1">
-            <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-48 mb-3"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-32"></div>
+          <div className="flex-1 min-w-0">
+            <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-32 mb-3"></div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-24"></div>
           </div>
-          <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-lg w-20"></div>
+          <div className="h-9 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-20"></div>
         </div>
-        <div className="mt-6 space-y-2">
-          <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-full"></div>
-          <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-5/6"></div>
+        <div className="mt-8 space-y-3">
+          <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-full"></div>
+          <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-5/6"></div>
         </div>
-        <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="mt-8 grid grid-cols-3 gap-3">
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="h-20 bg-gray-200 dark:bg-gray-800 rounded-xl"
+              className="h-24 bg-neutral-100 dark:bg-neutral-800/80 rounded-[20px]"
             ></div>
           ))}
         </div>
@@ -128,57 +128,179 @@ const Skeleton = () => {
     <div className="max-w-3xl mx-auto p-6">
       <style jsx>{`
         @keyframes shimmer {
-          0% {
-            background-position: -1000px 0;
-          }
           100% {
-            background-position: 1000px 0;
+            transform: translateX(100%);
           }
         }
+        .shimmer-wrapper {
+          position: relative;
+          overflow: hidden;
+        }
+        .shimmer-wrapper::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          transform: translateX(-100%);
+          background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.4) 20%,
+            rgba(255, 255, 255, 0.6) 60%,
+            rgba(255, 255, 255, 0)
+          );
+          animation: shimmer 2s infinite;
+          content: "";
+        }
+        .dark .shimmer-wrapper::after {
+          background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.05) 20%,
+            rgba(255, 255, 255, 0.08) 60%,
+            rgba(255, 255, 255, 0)
+          );
+        }
       `}</style>
-      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
-        <div
-          className="animate-pulse p-6"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.05) 50%, transparent 100%)",
-            backgroundSize: "1000px 100%",
-            animation: "shimmer 2s infinite linear",
-          }}
-        >
-          <div className="flex items-center space-x-4 mb-6">
-            <div className="relative">
-              <div className="w-14 h-14 bg-gray-200 dark:bg-gray-800 rounded-full"></div>
-              <div className="absolute bottom-0 right-0 w-4 h-4 bg-gray-200 dark:bg-gray-800 rounded-full border-2 border-white dark:border-gray-900"></div>
-            </div>
+      <div className="bg-white dark:bg-[#0A0A0A] rounded-[24px] shadow-sm border border-neutral-200/60 dark:border-white/10 overflow-hidden">
+        <div className="p-6 shimmer-wrapper bg-neutral-50/50 dark:bg-neutral-900/20">
+          <div className="flex items-center space-x-4 mb-8">
+            <div className="w-14 h-14 bg-neutral-200/80 dark:bg-neutral-800 rounded-full"></div>
             <div className="flex-1">
-              <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full w-40 mb-2"></div>
-              <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-24"></div>
+              <div className="h-4 bg-neutral-200/80 dark:bg-neutral-800 rounded-full w-40 mb-3"></div>
+              <div className="h-3 bg-neutral-200/80 dark:bg-neutral-800 rounded-full w-24"></div>
             </div>
-            <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded-lg w-20"></div>
+            <div className="h-9 bg-neutral-200/80 dark:bg-neutral-800 rounded-xl w-24"></div>
           </div>
-          <div className="space-y-3 mb-6">
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-full"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-5/6"></div>
-            <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full w-4/6"></div>
+          <div className="space-y-3 mb-8">
+            <div className="h-3 bg-neutral-200/80 dark:bg-neutral-800 rounded-full w-full"></div>
+            <div className="h-3 bg-neutral-200/80 dark:bg-neutral-800 rounded-full w-5/6"></div>
+            <div className="h-3 bg-neutral-200/80 dark:bg-neutral-800 rounded-full w-4/6"></div>
           </div>
           <div className="grid grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="h-16 bg-gray-200 dark:bg-gray-800 rounded-xl"
+                className="h-20 bg-neutral-200/80 dark:bg-neutral-800 rounded-[16px]"
               ></div>
             ))}
           </div>
         </div>
-        <div className="p-6 border-t border-gray-100 dark:border-gray-800">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+        <div className="p-8 border-t border-neutral-200/60 dark:border-white/10">
+          <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3 tracking-tight">
             Your Content
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-[15px] text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Skeleton;
+```
+
+### Minimalist Table Skeleton
+<Preview>
+<MinimalistTableSkeleton />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+
+const Skeleton = () => {
+  return (
+    <div className="max-w-4xl mx-auto w-full bg-white dark:bg-[#0A0A0A] rounded-[24px] shadow-sm border border-neutral-200/60 dark:border-white/10 overflow-hidden">
+      <div className="px-6 py-5 border-b border-neutral-200/60 dark:border-white/10 flex items-center justify-between">
+        <div className="h-5 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-32 animate-pulse"></div>
+        <div className="h-8 bg-neutral-100 dark:bg-neutral-800/80 rounded-lg w-24 animate-pulse"></div>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-neutral-200/60 dark:border-white/5 bg-neutral-50/50 dark:bg-neutral-900/20">
+              {[1, 2, 3, 4].map((i) => (
+                <th key={`th-${i}`} className="px-6 py-4 text-left">
+                  <div className="h-3 bg-neutral-200 dark:bg-neutral-800 rounded-full w-20 animate-pulse"></div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-neutral-200/40 dark:divide-white/5">
+            {[1, 2, 3, 4, 5].map((row) => (
+              <tr key={`tr-${row}`}>
+                <td className="px-6 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800/80 animate-pulse"></div>
+                    <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-32 animate-pulse"></div>
+                  </div>
+                </td>
+                <td className="px-6 py-4">
+                  <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-24 animate-pulse"></div>
+                </td>
+                <td className="px-6 py-4">
+                  <div className="h-4 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-16 animate-pulse"></div>
+                </td>
+                <td className="px-6 py-4">
+                  <div className="h-8 bg-neutral-100 dark:bg-neutral-800/80 rounded-lg w-20 animate-pulse"></div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default Skeleton;
+```
+
+### Dashboard Widget Skeleton
+<Preview>
+<DashboardWidgetSkeleton />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+
+const Skeleton = () => {
+  return (
+    <div className="max-w-sm w-full mx-auto p-6 bg-white dark:bg-[#0A0A0A] rounded-[28px] shadow-sm border border-neutral-200/60 dark:border-white/10">
+      <div className="animate-pulse">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-20 mb-3"></div>
+            <div className="h-6 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-32"></div>
+          </div>
+          <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-800/80 rounded-xl"></div>
+        </div>
+        
+        <div className="flex justify-center mb-8">
+          <div className="relative w-40 h-40">
+            <div className="absolute inset-0 rounded-full border-[12px] border-neutral-100 dark:border-neutral-800/80 opacity-60"></div>
+            <div className="absolute inset-0 rounded-full border-[12px] border-neutral-200 dark:border-neutral-700/80 border-t-transparent border-r-transparent rotate-45"></div>
+            <div className="absolute inset-0 flex items-center justify-center flex-col">
+              <div className="h-5 bg-neutral-200 dark:bg-neutral-700 rounded-full w-16 mb-2"></div>
+              <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-10"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
+                <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-24"></div>
+              </div>
+              <div className="h-3 bg-neutral-100 dark:bg-neutral-800/80 rounded-full w-12"></div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

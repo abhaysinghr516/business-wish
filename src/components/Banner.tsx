@@ -1,61 +1,127 @@
-import React from "react";
-import { X, ChevronRight, Bell } from "lucide-react";
+"use client";
+import React, { useState } from "react";
+import { X, ChevronRight, Bell, Cookie } from "lucide-react";
 
 export const BasicBanner: React.FC = () => (
-  <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 px-6 py-4 rounded-2xl max-w-xl mx-auto shadow-sm border border-gray-200 dark:border-gray-700 transform transition-all hover:scale-[1.02] duration-300">
+  <div className="bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 px-6 py-4 rounded-2xl max-w-xl mx-auto border border-neutral-200/60 dark:border-neutral-800 transition-colors duration-300">
     <div className="flex items-center space-x-3">
-      <Bell className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-      <div className="text-sm font-medium">
-        This is a basic banner component.
+      <Bell className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+      <div className="text-[14px] font-medium tracking-tight">
+        A new software update is available.
       </div>
     </div>
   </div>
 );
 
 export const BannerwithActions: React.FC = () => (
-  <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 px-6 py-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between max-w-2xl mx-auto shadow-sm border border-gray-200 dark:border-gray-700">
+  <div className="bg-neutral-50 dark:bg-neutral-900 px-5 py-3.5 rounded-2xl flex flex-col sm:flex-row items-center justify-between max-w-2xl mx-auto border border-neutral-200/60 dark:border-neutral-800 transition-colors duration-300">
     <div className="mb-4 sm:mb-0 flex items-center space-x-3">
-      <Bell className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-      <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
-        This is a banner with actions.
+      <Bell className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+      <p className="text-[14px] font-medium tracking-tight text-neutral-800 dark:text-neutral-200">
+        Review your security settings.
       </p>
     </div>
-    <div className="flex items-center justify-center sm:justify-end space-x-3">
-      <button className="group flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-600 active:bg-blue-700">
-        <span>Action 1</span>
-        <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+    <div className="flex items-center justify-center sm:justify-end space-x-2">
+      <button className="group flex items-center space-x-1.5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 px-3.5 py-2 rounded-xl text-[13px] font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
+        <span>Review</span>
+        <ChevronRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
       </button>
-      <button className="group flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 active:bg-gray-300 dark:active:bg-gray-500">
-        <span>Action 2</span>
-        <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+      <button className="group flex items-center space-x-1.5 bg-transparent text-neutral-600 dark:text-neutral-400 px-3.5 py-2 rounded-xl text-[13px] font-medium hover:bg-neutral-200/50 dark:hover:bg-neutral-800 transition-colors">
+        <span>Dismiss</span>
       </button>
     </div>
   </div>
 );
 
 export const BannerwithHeadingAndButton: React.FC = () => (
-  <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 p-8 max-w-xl mx-auto rounded-2xl shadow-sm border border-blue-200 dark:border-gray-700 overflow-hidden">
-    <div className="absolute top-4 right-4">
-      <button className="text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400 transition-colors">
-        <X className="w-5 h-5" />
+  <div className="relative bg-white dark:bg-[#0a0a0a] p-8 max-w-xl mx-auto rounded-3xl border border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
+    <div className="absolute top-5 right-5">
+      <button className="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors p-1 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-900">
+        <X className="w-4 h-4" />
       </button>
     </div>
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="flex items-center space-x-3">
-        <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
-          <Bell className="w-6 h-6 text-white" />
+        <div className="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center">
+          <Bell className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
         </div>
-        <div className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-          Special Offer!
+        <div className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+          Unlock Premium
         </div>
       </div>
-      <div className="text-base text-gray-600 dark:text-gray-300 ml-15">
-        Get 20% off on selected items. Limited time only.
+      <div className="text-[15px] text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-[90%]">
+        Get access to advanced features and priority support. Upgrade today and save 20% on the annual plan.
       </div>
-      <button className="group flex items-center space-x-2 bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-600 active:bg-blue-700 shadow-md hover:shadow-lg">
-        <span>Shop Now</span>
-        <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-      </button>
+      <div className="pt-2">
+        <button className="group flex items-center space-x-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-5 py-2.5 rounded-xl text-[14px] font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
+          <span>Upgrade Now</span>
+          <ChevronRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
+        </button>
+      </div>
     </div>
   </div>
 );
+
+export const CookieBanner: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(true);
+
+    if (!isVisible) return null;
+
+    return (
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-[calc(100%-3rem)] max-w-3xl z-50">
+            <div className="bg-neutral-900/95 dark:bg-neutral-100/95 backdrop-blur-md px-6 py-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between shadow-2xl border border-white/10 dark:border-black/10 transition-colors duration-300">
+                <div className="mb-4 sm:mb-0 flex items-start sm:items-center space-x-3 text-neutral-100 dark:text-neutral-900">
+                    <Cookie className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 opacity-80" />
+                    <p className="text-[14px] font-medium tracking-tight leading-relaxed max-w-md">
+                        We use cookies to improve your experience and analyze our traffic. 
+                    </p>
+                </div>
+                <div className="flex items-center w-full sm:w-auto justify-end space-x-3">
+                    <button 
+                        onClick={() => setIsVisible(false)}
+                        className="text-neutral-300 dark:text-neutral-600 px-3 py-2 rounded-xl text-[13px] font-medium hover:text-white dark:hover:text-black hover:bg-white/5 dark:hover:bg-black/5 transition-colors"
+                    >
+                        Decline
+                    </button>
+                    <button 
+                        onClick={() => setIsVisible(false)}
+                        className="bg-white dark:bg-black text-neutral-900 dark:text-white px-4 py-2 rounded-xl text-[13px] font-medium hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors shadow-sm"
+                    >
+                        Accept All
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const FloatingTopBanner: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(true);
+
+    if (!isVisible) return null;
+
+    return (
+        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-lg px-4 space-y-4">
+            <div className="bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-4 py-2.5 rounded-full flex items-center justify-between shadow-lg mx-auto w-fit transition-all duration-300 animate-in slide-in-from-top-4">
+                <div className="flex items-center space-x-2 pl-2">
+                    <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <p className="text-[13px] font-medium tracking-tight">
+                        App version 2.0 is now live!
+                    </p>
+                    <a href="#" className="text-[13px] font-medium opacity-70 hover:opacity-100 underline decoration-white/30 dark:decoration-black/30 underline-offset-2 transition-opacity pl-2">
+                        Read more
+                    </a>
+                </div>
+                <button 
+                    onClick={() => setIsVisible(false)}
+                    className="ml-4 p-1 rounded-full text-neutral-400 hover:text-white dark:text-neutral-500 dark:hover:text-black hover:bg-white/10 dark:hover:bg-black/10 transition-colors"
+                >
+                    <X className="w-3.5 h-3.5" />
+                </button>
+            </div>
+        </div>
+    );
+};

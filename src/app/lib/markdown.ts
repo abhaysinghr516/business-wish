@@ -15,39 +15,44 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Stepper, StepperItem } from "@/components/ui/stepper";
 import Pre from "../components/pre";
 import Note from "../components/note";
-import { BasicAccordion, BorderedAccordion } from "@/components/Accordion";
-import { CustomAlert, DismissableAlert, FloatingAlert, SimpleAlert } from "@/components/Alert";
-import { AvatarGroup, AvatarSizes, AvatarWithActiveBadge, AvatarWithImage, AvatarWithNotification } from "@/components/Avatar";
+import { BasicAccordion, BorderedAccordion, GhostAccordion } from "@/components/Accordion";
+import { CustomAlert, DismissableAlert, FloatingAlert, SimpleAlert, GhostAlert, OutlineAlert } from "@/components/Alert";
+import { AvatarGroup, AvatarSizes, AvatarWithActiveBadge, AvatarWithImage, AvatarWithNotification, SquareAvatar, StatusRingAvatar } from "@/components/Avatar";
 import { BadgeGroup } from "@/components/Badge";
-import { BannerwithActions, BannerwithHeadingAndButton, BasicBanner } from "@/components/Banner";
+import { BannerwithActions, BannerwithHeadingAndButton, BasicBanner, CookieBanner, FloatingTopBanner } from "@/components/Banner";
 import Preview from "../components/Preview";
-import { BasicBlogList, HorizontalCardBlogList, MinimalCardBlogList, TimelineLayoutBlogList } from "@/components/BlogList";
+import { BasicBlogList, HorizontalCardBlogList, MinimalCardBlogList, TimelineLayoutBlogList, GridMagazineBlogList } from "@/components/BlogList";
 import { BottomNavigation, BubbleNavigation, FabNavigation } from "@/components/BottomNavigation";
 import { BasicBreadcrumb, DropdownBreadcrumb, BreadcrumbwithSeparators } from "@/components/Breadcrumbs";
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
 import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
 import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
-import { SearchableDropdown, DropdownwithIcons, SimpleDropdown } from "@/components/Dropdown";
-import { BasicFeatures } from "@/components/Features";
-import { DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter } from "@/components/Footer";
-import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch } from "@/components/Header";
-import { CenterContentHeroSection } from "@/components/Hero";
+import {
+    SimpleDropdown,
+    DropdownwithIcons,
+    SearchableDropdown,
+    GroupedDropdown,
+} from "@/components/Dropdown";
+import { BasicFeatures, MinimalFeatures, HoverFeatures } from "@/components/Features";
+import { DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter, UltraMinimalFooter } from "@/components/Footer";
+import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch, FloatingHeader, MinimalStickyHeader } from "@/components/Header";
+import { CenterContentHeroSection, GradientHeroSection, MinimalTypographyHero, SideImageHeroSection } from "@/components/Hero";
 import { Loaders } from "@/components/Loader";
-import { BasicPagination, PaginationwithDots, PaginationwithIcons, PaginationwithInputField } from "@/components/Pagination";
+import { BasicPagination, PaginationwithDots, PaginationwithIcons, PaginationwithInputField, MinimalPagination, RoundedGhostPagination } from "@/components/Pagination";
 import { BasicSettingsPage, SettingsPagewithTabs } from "@/components/Settings";
-import { BasicSidebar, CollapseSidebar, SidebarwithIcons } from "@/components/Sidebar";
-import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfile, SkeletonwithLoadedContent } from "@/components/Skeleton";
-import { BasicTabs, TabswithBox, TabswithPill, TabswithUnderline } from "@/components/Tabs";
-import { FullWidthTestimonial, MinimalCardTestimonial, SliderTestimonial, TestimonialSectionwithGridlayout } from "@/components/Testimonials";
-import { Informative404Section, Interactive404Section, Minimal404Section, Playful404Section } from "@/components/Error404";
-import { DropdownSocialShare, FABSocialShare, ModalSocialShare } from "@/components/SocialShare";
-import { DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePreviewFileUpload, MultiFileUpload } from "@/components/FileUpload";
-import { AnimatedTooltip, ArrowTooltip, BasicTooltip, TooltipDemo } from "@/components/Tooltip";
+import { BasicSidebar, CollapseSidebar, SidebarwithIcons, FloatingIslandSidebar, ExpandableNestedSidebar } from "@/components/Sidebar";
+import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfile, SkeletonwithLoadedContent, MinimalistTableSkeleton, DashboardWidgetSkeleton } from "@/components/Skeleton";
+import { BasicTabs, TabswithBox, TabswithUnderline, VerticalMinimalTabs } from "@/components/Tabs";
+import { FullWidthTestimonial, MinimalCardTestimonial, SliderTestimonial, TestimonialSectionwithGridlayout, MarqueeTestimonial, BentoGridTestimonial } from "@/components/Testimonials";
+import { Informative404Section, Interactive404Section, Minimal404Section, Playful404Section, Grid404Section } from "@/components/Error404";
+import { DropdownSocialShare, FABSocialShare, ModalSocialShare, InlineSocialShare, PillSocialShare } from "@/components/SocialShare";
+import { AvatarUpload, DropzoneFileUpload, FileTypeValidatorFileUpload, FileUpload, ImagePreviewFileUpload, MinimalDropzoneFileUpload, MultiFileUpload } from "@/components/FileUpload";
+import { AnimatedTooltip, ArrowTooltip, BasicTooltip, OffsetTooltip, TooltipDemo } from "@/components/Tooltip";
 import { CustomCalendarPicker, DropdownDatePicker, RangeDatePicker, SimpleDatePicker } from "@/components/DatePicker";
-import PopoverDemo from "@/components/Popover";
-import { BasicDataTable, StripedDataTable } from "@/components/DataTable";
-import { AnimatedProgress, BasicProgress, ProgressWithLabel } from "@/components/Progress";
+import { BasicPopover, MenuPopover, NotificationPopover, RichProfilePopover, CommandPopover } from "@/components/Popover";
+import { BasicDataTable, StripedDataTable, ModernDataTable } from "@/components/DataTable";
+import { AnimatedProgress, BasicProgress, ProgressWithLabel, CircularProgress, SegmentsProgress, IndeterminateProgress } from "@/components/Progress";
 import { TextRevealDemo, TextRevealCustomDemo } from "@/components/motion/TextReveal";
 import { NumberTickerDemo, NumberTickerCountdownDemo } from "@/components/motion/NumberTicker";
 import { CardSpotlightDemo } from "@/components/motion/CardSpotlight";
@@ -78,25 +83,34 @@ const components = {
     Playful404Section,
     Informative404Section,
     Interactive404Section,
+    Grid404Section,
     BasicAccordion,
     BorderedAccordion,
+    GhostAccordion,
     SimpleAlert,
     DismissableAlert,
     CustomAlert,
     FloatingAlert,
+    GhostAlert,
+    OutlineAlert,
     AvatarSizes,
     AvatarWithImage,
     AvatarWithNotification,
     AvatarWithActiveBadge,
     AvatarGroup,
+    SquareAvatar,
+    StatusRingAvatar,
     BadgeGroup,
     BasicBanner,
     BannerwithActions,
     BannerwithHeadingAndButton,
+    CookieBanner,
+    FloatingTopBanner,
     BasicBlogList,
     MinimalCardBlogList,
     HorizontalCardBlogList,
     TimelineLayoutBlogList,
+    GridMagazineBlogList,
     BottomNavigation,
     BubbleNavigation,
     FabNavigation,
@@ -128,57 +142,87 @@ const components = {
     SimpleDropdown,
     DropdownwithIcons,
     SearchableDropdown,
+    GroupedDropdown,
     BasicFeatures,
+    MinimalFeatures,
+    HoverFeatures,
     FileUpload,
     MultiFileUpload,
     ImagePreviewFileUpload,
     FileTypeValidatorFileUpload,
     DropzoneFileUpload,
+    AvatarUpload,
+    MinimalDropzoneFileUpload,
     SimpleFooter,
     FooterwithMultipleSections,
     FooterwithNewsletter,
     FooterwithCTA,
     DetailedFooter,
+    UltraMinimalFooter,
     BasicHeader,
     HeaderwithSearch,
     HeaderwithAnimation,
     CenteredAlignedHeader,
+    FloatingHeader,
+    MinimalStickyHeader,
     CenterContentHeroSection,
+    GradientHeroSection,
+    MinimalTypographyHero,
+    SideImageHeroSection,
     Loaders,
     BasicPagination,
     PaginationwithIcons,
     PaginationwithInputField,
     PaginationwithDots,
+    MinimalPagination,
+    RoundedGhostPagination,
     BasicSettingsPage,
     SettingsPagewithTabs,
+    BasicPopover,
+    MenuPopover,
+    NotificationPopover,
+    RichProfilePopover,
+    CommandPopover,
     BasicSidebar,
     SidebarwithIcons,
     CollapseSidebar,
+    FloatingIslandSidebar,
+    ExpandableNestedSidebar,
     BasicSkeleton,
     SkeletonLoadingforImageCard,
     SkeletonLoadingforUserProfile,
     SkeletonwithLoadedContent,
+    MinimalistTableSkeleton,
+    DashboardWidgetSkeleton,
     FABSocialShare,
     DropdownSocialShare,
     ModalSocialShare,
+    InlineSocialShare,
+    PillSocialShare,
     BasicTabs,
     TabswithUnderline,
-    TabswithPill,
     TabswithBox,
+    VerticalMinimalTabs,
     MinimalCardTestimonial,
     TestimonialSectionwithGridlayout,
     FullWidthTestimonial,
     SliderTestimonial,
+    MarqueeTestimonial,
+    BentoGridTestimonial,
     BasicTooltip,
-    PopoverDemo,
     ArrowTooltip,
     AnimatedTooltip,
     TooltipDemo,
+    OffsetTooltip,
     BasicDataTable,
     StripedDataTable,
+    ModernDataTable,
     BasicProgress,
     AnimatedProgress,
     ProgressWithLabel,
+    CircularProgress,
+    IndeterminateProgress,
+    SegmentsProgress,
     // Motion components
     MotionPreview,
     TextRevealDemo,

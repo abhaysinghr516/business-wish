@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Star } from "lucide-react";
 
 interface Post {
   id: number;
@@ -11,68 +11,66 @@ interface Post {
 const posts: Post[] = [
   {
     id: 1,
-    title: "Boost Your Conversion Rate",
+    title: "The Art of Minimalist UI",
     excerpt:
-      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.",
-    date: "Mar 16, 2023",
+      "Explore how removing the non-essential elevates the user experience and creates interfaces that feel both intuitive and premium at first glance.",
+    date: "Dec 12, 2024",
   },
   {
     id: 2,
-    title: "How to Use SEO to Drive Sales",
+    title: "Mastering Fluid Typography",
     excerpt:
-      "Optio consequatur ed illo super consectetur ratione. Ducimus quia dolorem voluptas ea repellat saepe. Quasi in deleniti eligendi fuga aut eum reiciendis rerum veritatis aut.",
-    date: "Mar 10, 2023",
+      "A deep dive into structural scaling, CSS clamp(), and creating breathtaking reading experiences across any device size without media query bloat.",
+    date: "Jan 04, 2025",
   },
   {
     id: 3,
-    title: "Improve Your Customer Experience",
+    title: "Interactive State Animations",
     excerpt:
-      "Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis. Nostrud sint anim sunt aliqua. Nulla eu labore irure incididunt velit cillum quis magna dolore.",
-    date: "Feb 12, 2023",
+      "Micro-animations breathe life into your application. Learn to use spring physics for hover states that feel organically connected to user intents.",
+    date: "Feb 18, 2025",
   },
 ];
 
 export const BasicBlogList: React.FC = () => {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
-      <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white tracking-tight">
-        Latest Blog Posts
+    <div className="max-w-3xl mx-auto px-6 py-20 bg-white dark:bg-black">
+      <h2 className="text-4xl font-medium tracking-tight mb-16 text-neutral-900 dark:text-white">
+        Latest Notes
       </h2>
-      <ul className="space-y-12">
+      <ul className="space-y-16">
         {posts.map((post) => (
           <li
             key={post.id}
-            className="group border-b pb-12 border-gray-100 dark:border-gray-800 transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-700"
+            className="group pb-10 border-b border-neutral-100 dark:border-white/5 transition-all duration-300 hover:border-neutral-300 dark:hover:border-white/20"
           >
             <article>
-              <div className="space-y-4 md:grid md:grid-cols-4 md:items-baseline md:space-y-0">
-                <time className="text-sm font-medium leading-6 text-gray-400 dark:text-gray-500 tracking-tight">
+              <div className="space-y-3 md:flex md:items-baseline md:space-y-0 md:justify-between mb-4">
+                <time className="text-sm font-medium tracking-widest text-neutral-400 dark:text-neutral-500 uppercase">
                   {post.date}
                 </time>
-                <div className="space-y-6 md:col-span-3">
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-semibold leading-tight tracking-tight">
-                      <Link
-                        href="#"
-                        className="text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
-                      >
-                        {post.title}
-                      </Link>
-                    </h3>
-                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                  </div>
-                  <div className="text-sm font-medium">
-                    <Link
-                      href="#"
-                      className="inline-flex items-center text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
-                      aria-label={`Read more about "${post.title}"`}
-                    >
-                      Read article
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Link>
-                  </div>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-2xl sm:text-3xl font-semibold leading-tight tracking-tight">
+                  <Link
+                    href="#"
+                    className="text-neutral-900 dark:text-white group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors duration-300"
+                  >
+                    {post.title}
+                  </Link>
+                </h3>
+                <p className="text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-2xl">
+                  {post.excerpt}
+                </p>
+                <div className="pt-2">
+                  <Link
+                    href="#"
+                    className="inline-flex items-center text-sm font-semibold tracking-wide text-neutral-900 dark:text-white group-hover:text-neutral-500 dark:group-hover:text-neutral-400 transition-colors duration-300"
+                    aria-label={`Read more about "${post.title}"`}
+                  >
+                    Read article
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </Link>
                 </div>
               </div>
             </article>
@@ -85,40 +83,38 @@ export const BasicBlogList: React.FC = () => {
 
 export const MinimalCardBlogList: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16">
-      <h2 className="text-4xl font-bold text-gray-900 mb-12 dark:text-white tracking-tight">
-        Featured Articles
+    <div className="max-w-7xl mx-auto px-6 py-20 bg-[#F9F9F9] dark:bg-[#050505]">
+      <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 mb-12 dark:text-white">
+        Featured Writing
       </h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
-          <div
+          <Link
+            href="#"
             key={post.id}
-            className="group bg-gray-50 dark:bg-gray-800/50 rounded-2xl overflow-hidden"
+            className="group block rounded-3xl overflow-hidden bg-white dark:bg-[#111] border border-neutral-200/50 dark:border-white/5 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_40px_-15px_rgba(255,255,255,0.02)] hover:-translate-y-1"
           >
-            <div className="p-8 flex flex-col h-full">
+            <div className="p-8 sm:p-10 flex flex-col h-full">
               <div className="flex-grow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white tracking-tight">
+                <div className="flex items-center text-xs font-medium text-neutral-400 dark:text-neutral-500 mb-6 uppercase tracking-wider">
+                  <Clock className="w-3.5 h-3.5 mr-2" />
+                  {post.date}
+                </div>
+                <h3 className="text-2xl font-semibold text-neutral-900 mb-4 dark:text-white tracking-tight leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                <p className="text-neutral-500 dark:text-neutral-400 leading-relaxed mb-8">
                   {post.excerpt}
                 </p>
               </div>
-              <div className="flex justify-between items-center pt-6 border-t border-gray-100 dark:border-gray-700">
-                <span className="text-sm text-gray-400 dark:text-gray-500">
-                  {post.date}
-                </span>
-                <Link
-                  href="#"
-                  className="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
-                  aria-label={`Read more about ${post.title}`}
-                >
+              <div className="flex justify-between items-center pt-6 border-t border-neutral-100 dark:border-white/5">
+                <span className="inline-flex items-center text-sm font-semibold text-neutral-900 dark:text-white transition-colors duration-300">
                   Read more
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
+                </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -127,51 +123,51 @@ export const MinimalCardBlogList: React.FC = () => {
 
 export const HorizontalCardBlogList: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16">
-      <h2 className="text-4xl font-bold text-gray-900 mb-12 dark:text-white tracking-tight">
-        Popular Posts
+    <div className="max-w-6xl mx-auto px-6 py-20 bg-white dark:bg-black">
+      <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 mb-14 dark:text-white">
+        Trending Stories
       </h2>
-      <div className="space-y-8">
+      <div className="space-y-10">
         {posts.map((post) => (
-          <div
+          <article
             key={post.id}
-            className="group bg-gray-50 dark:bg-gray-800/50 rounded-2xl overflow-hidden"
+            className="group flex flex-col md:flex-row gap-8 items-center bg-transparent transition-all"
           >
-            <div className="md:flex">
-              <div className="md:flex-shrink-0">
-                <img
-                  className="h-48 w-full object-cover md:h-full md:w-64 transition-transform duration-300 group-hover:scale-105"
-                  src="/thumbnail.jpg"
-                  alt=""
-                />
+            <div className="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-3xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 relative">
+              <img
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470&auto=format&fit=crop"
+                alt="Blog thumbnail"
+              />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+            </div>
+            
+            <div className="w-full md:w-3/5 flex flex-col justify-center py-2 md:pr-8">
+              <div className="flex items-center space-x-4 mb-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-400 tracking-wide uppercase">Design</span>
+                <span className="w-1 h-1 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                <time className="text-sm font-medium text-neutral-400 dark:text-neutral-500 tracking-tight">
+                  {post.date}
+                </time>
               </div>
-              <div className="p-8 md:flex-1 flex flex-col">
-                <div className="flex-grow">
-                  <div className="text-sm text-gray-400 dark:text-gray-500 mb-3 tracking-tight">
-                    {post.date}
-                  </div>
-                  <Link
-                    href="#"
-                    className="block mb-4 text-2xl leading-tight font-semibold text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
-                  >
-                    {post.title}
-                  </Link>
-                  <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                </div>
-                <div className="mt-6">
-                  <Link
-                    href="#"
-                    className="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
-                  >
-                    Read article
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
-                </div>
+              <Link href="#">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight text-neutral-900 dark:text-white mb-4 group-hover:opacity-80 transition-opacity">
+                  {post.title}
+                </h3>
+              </Link>
+              <p className="text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed mb-6 max-w-2xl">
+                {post.excerpt}
+              </p>
+              <div>
+                <Link
+                  href="#"
+                  className="inline-flex items-center justify-center px-6 py-2.5 rounded-full border border-neutral-200 dark:border-white/10 text-sm font-medium text-neutral-900 dark:text-white hover:bg-neutral-50 dark:hover:bg-white/5 transition-all duration-300"
+                >
+                  Read full story
+                </Link>
               </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </div>
@@ -179,36 +175,36 @@ export const HorizontalCardBlogList: React.FC = () => {
 };
 
 export const TimelineLayoutBlogList: React.FC = () => (
-  <div className="max-w-4xl mx-auto px-6 py-16">
-    <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white tracking-tight">
-      Blog Timeline
+  <div className="max-w-4xl mx-auto px-6 py-20 bg-[#FAFAFA] dark:bg-[#0A0A0A]">
+    <h2 className="text-3xl font-semibold mb-16 text-neutral-900 dark:text-white tracking-tight">
+      Changelog & Updates
     </h2>
-    <div className="relative border-l-2 border-gray-100 dark:border-gray-800">
+    <div className="relative border-l border-neutral-200 dark:border-white/10 ml-3 md:ml-6">
       {posts.map((post) => (
-        <div key={post.id} className="relative mb-12 ml-6">
-          <div className="absolute w-4 h-4 -left-[32.5px] bg-white dark:bg-gray-900 rounded-full mt-1.5 border-2 border-gray-200 dark:border-gray-700 transition-colors duration-300 group-hover:border-gray-300 dark:group-hover:border-gray-600"></div>
-          <div className="group">
-            <time className="mb-2 text-sm font-medium text-gray-400 dark:text-gray-500 tracking-tight">
+        <div key={post.id} className="relative mb-16 pl-8 md:pl-12 group">
+          <div className="absolute w-3 h-3 -left-[6.5px] top-1.5 bg-neutral-300 dark:bg-neutral-600 rounded-full ring-4 ring-[#FAFAFA] dark:ring-[#0A0A0A] group-hover:bg-black dark:group-hover:bg-white transition-colors duration-500" />
+          
+          <div className="transition-all duration-300 group-hover:translate-x-2">
+            <time className="block mb-3 text-sm font-semibold tracking-widest uppercase text-neutral-400 dark:text-neutral-500">
               {post.date}
             </time>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 tracking-tight">
+            <h3 className="text-2xl font-medium text-neutral-900 dark:text-white mb-3 tracking-tight">
               <Link
                 href="#"
-                className="group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
+                className="group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300"
               >
                 {post.title}
               </Link>
             </h3>
-            <p className="mb-6 text-gray-500 dark:text-gray-400 leading-relaxed">
+            <p className="text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed mb-6 max-w-2xl">
               {post.excerpt}
             </p>
             <Link
               href="#"
-              className="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300"
-              aria-label={`Read more about ${post.title}`}
+              className="inline-flex items-center text-sm font-medium text-neutral-800 dark:text-neutral-200 group-hover:opacity-70 transition-opacity"
             >
-              Read article
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              Explore details
+              <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -216,3 +212,71 @@ export const TimelineLayoutBlogList: React.FC = () => (
     </div>
   </div>
 );
+
+export const GridMagazineBlogList: React.FC = () => {
+    return (
+      <div className="max-w-7xl mx-auto px-6 py-20 bg-white dark:bg-black">
+        <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                Editorial Picks
+            </h2>
+            <Link href="#" className="text-sm font-semibold uppercase tracking-wider text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+                View all
+            </Link>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[300px]">
+          {/* Featured Large Post */}
+          <Link href="#" className="group relative col-span-1 md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden block">
+            <img 
+                src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1470&auto=format&fit=crop" 
+                alt="Workspace" 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 flex flex-col justify-end">
+                <div className="flex items-center gap-3 mb-4">
+                    <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold text-white tracking-wide uppercase">Workspace</span>
+                    <span className="text-xs font-medium text-white/70 tracking-widest">{posts[0].date}</span>
+                </div>
+                <h3 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4 tracking-tighter">
+                    {posts[0].title}
+                </h3>
+            </div>
+          </Link>
+  
+          {/* Side Small Posts */}
+          <Link href="#" className="group relative col-span-1 md:col-span-2 row-span-1 rounded-3xl overflow-hidden bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-white/5 flex items-center p-6 sm:p-8 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors">
+             <div className="flex-1 pr-6">
+                <span className="text-xs font-medium text-neutral-400 uppercase tracking-widest mb-3 block">{posts[1].date}</span>
+                <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white leading-snug tracking-tight mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {posts[1].title}
+                </h3>
+                <p className="text-sm text-neutral-500 line-clamp-2">{posts[1].excerpt}</p>
+             </div>
+             <div className="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 rounded-2xl overflow-hidden">
+                <img 
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1364&auto=format&fit=crop" 
+                    alt="Abstract design" 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+             </div>
+          </Link>
+  
+          <Link href="#" className="group relative col-span-1 md:col-span-2 row-span-1 rounded-3xl overflow-hidden bg-neutral-900 text-white flex items-center p-6 sm:p-8 hover:bg-black transition-colors">
+             <div className="flex-1 pr-6 relative z-10">
+                <span className="text-xs font-medium text-neutral-400 uppercase tracking-widest mb-3 block">{posts[2].date}</span>
+                <h3 className="text-xl sm:text-2xl font-semibold leading-snug tracking-tight mb-2 group-hover:text-amber-400 transition-colors">
+                    {posts[2].title}
+                </h3>
+                <p className="text-sm text-neutral-400 line-clamp-2">{posts[2].excerpt}</p>
+             </div>
+             <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-amber-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+             <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center relative z-10 group-hover:bg-white transition-colors duration-300">
+                <ArrowRight className="w-5 h-5 text-white group-hover:text-black transition-colors" />
+             </div>
+          </Link>
+        </div>
+      </div>
+    );
+};

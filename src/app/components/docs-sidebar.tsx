@@ -161,7 +161,7 @@ export function DocsSidebar({
         {/* Sidebar Footer */}
         <div className="px-6 py-4 border-t border-neutral-200/50 dark:border-white/[0.05]">
           <div className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
-            v2.1.0
+            v2.2.0
           </div>
         </div>
       </div>

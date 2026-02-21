@@ -1,12 +1,14 @@
 ---
 title: Avatar
-description: Avatar component is used to show user profile image.
+description: Avatar component is used to show a user profile image.
 ---
 
 ### Avatar with Initials
+A flat, cleanly spaced avatar sizing scale, removing inset shadows for a pure look.
 <Preview>
 <AvatarSizes />
 </Preview>
+
 ```jsx showLineNumbers
 import React from "react";
 import { User } from "lucide-react";
@@ -25,7 +27,7 @@ const sizeClasses = {
   lg: "w-12 h-12 text-base",
 };
 
-const Avatar: React.FC<AvatarProps> = ({
+const AvatarSizes: React.FC<AvatarProps> = ({
   src,
   alt = "User avatar",
   initials,
@@ -33,16 +35,16 @@ const Avatar: React.FC<AvatarProps> = ({
 }) => {
   return (
     <div>
-      <div className="mt-8 flex gap-6">
+      <div className="mt-8 flex gap-6 items-end">
         {Object.keys(sizeClasses).map((sizeKey) => (
-          <div key={sizeKey} className="text-center">
-            <h4 className="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <div key={sizeKey} className="text-center flex flex-col items-center">
+            <h4 className="mb-3 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">
               {sizeKey}
             </h4>
             <div
               className={`relative inline-flex items-center justify-center overflow-hidden 
-              bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900
-              rounded-full shadow-sm
+              bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300
+              rounded-full transition-colors duration-300
               ${sizeClasses[sizeKey as keyof typeof sizeClasses]} ${className}`}
             >
               {src ? (
@@ -52,11 +54,11 @@ const Avatar: React.FC<AvatarProps> = ({
                   className="w-full h-full object-cover"
                 />
               ) : initials ? (
-                <span className="text-gray-700 dark:text-gray-200 font-medium">
+                <span className="font-medium tracking-tight">
                   {initials}
                 </span>
               ) : (
-                <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
+                <User className="w-1/2 h-1/2 opacity-70" strokeWidth={2} />
               )}
             </div>
           </div>
@@ -66,10 +68,11 @@ const Avatar: React.FC<AvatarProps> = ({
   );
 };
 
-export default Avatar;
+export default AvatarSizes;
 ```
 
 ### Avatar with Image
+A simple, flat avatar utilizing soft neutral backgrounds when loading images.
 <Preview>
 <AvatarWithImage />
 </Preview>
@@ -78,26 +81,34 @@ export default Avatar;
 import React from "react";
 
 interface AvatarProps {
-  src: string;
+  size?: "sm" | "md" | "lg";
+  src?: string;
   alt?: string;
+  initials?: string;
+  className?: string;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ src, alt = "User avatar" }) => {
+const AvatarWithImage: React.FC<AvatarProps> = ({
+  src = "/pfp.jpg",
+  alt = "User avatar",
+  className = "",
+}) => {
   return (
     <div
-      className="relative inline-flex items-center justify-center overflow-hidden 
-    bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
-    rounded-full shadow-sm w-10 h-10"
+      className={`relative inline-flex items-center justify-center overflow-hidden 
+      bg-neutral-100 dark:bg-neutral-800 
+      rounded-full w-10 h-10 transition-colors duration-300 ${className}`}
     >
       <img src={src} alt={alt} className="w-full h-full object-cover" />
     </div>
   );
 };
 
-export default Avatar;
+export default AvatarWithImage;
 ```
 
 ### Avatar with Notification Badge
+A sleek avatar featuring a seamlessly integrated top-right notification dot with a dark-mode optimized ring.
 <Preview>
 <AvatarWithNotification />
 </Preview>
@@ -107,47 +118,54 @@ import React from "react";
 import { User } from "lucide-react";
 
 interface AvatarProps {
+  size?: "sm" | "md" | "lg";
   src?: string;
   alt?: string;
   initials?: string;
-  notificationColor?: string;
+  className?: string;
 }
 
-const Avatar: React.FC<AvatarProps> = ({
+interface AvatarWithIndicatorProps extends AvatarProps {
+  indicatorColor?: string;
+}
+
+const AvatarWithNotification: React.FC<AvatarWithIndicatorProps> = ({
   src,
   alt = "User avatar",
   initials,
-  notificationColor = "bg-red-500",
+  indicatorColor = "bg-red-500",
+  className = "",
 }) => {
   return (
     <div className="relative inline-block">
       <div
-        className="relative inline-flex items-center justify-center overflow-hidden 
-      bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
-      rounded-full shadow-sm w-10 h-10 text-sm"
+        className={`relative inline-flex items-center justify-center overflow-hidden 
+        bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300
+        rounded-full w-10 h-10 text-sm transition-colors duration-300 ${className}`}
       >
         {src ? (
           <img src={src} alt={alt} className="w-full h-full object-cover" />
         ) : initials ? (
-          <span className="text-gray-700 dark:text-gray-200 font-medium">
+          <span className="font-medium tracking-tight">
             {initials}
           </span>
         ) : (
-          <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
+          <User className="w-1/2 h-1/2 opacity-70" strokeWidth={2} />
         )}
       </div>
       <span
-        className={`absolute top-0 right-0 block h-3 w-3 rounded-full ${notificationColor} 
-        ring-2 ring-white dark:ring-gray-900 shadow-sm`}
+        className={`absolute top-0 right-0 block h-2.5 w-2.5 rounded-full ${indicatorColor} 
+        ring-2 ring-white dark:ring-[#0a0a0a] transition-colors duration-300`}
       />
     </div>
   );
 };
 
-export default Avatar;
+export default AvatarWithNotification;
 ```
 
 ### Avatar with Active Badge
+An avatar featuring a larger bottom-right active dot (e.g. online presence).
 <Preview>
 <AvatarWithActiveBadge />
 </Preview>
@@ -157,47 +175,54 @@ import React from "react";
 import { User } from "lucide-react";
 
 interface AvatarProps {
+  size?: "sm" | "md" | "lg";
   src?: string;
   alt?: string;
   initials?: string;
-  badgeColor?: string;
+  className?: string;
 }
 
-const Avatar: React.FC<AvatarProps> = ({
+interface AvatarWithIndicatorProps extends AvatarProps {
+  indicatorColor?: string;
+}
+
+const AvatarWithActiveBadge: React.FC<AvatarWithIndicatorProps> = ({
   src,
   alt = "User avatar",
   initials,
-  badgeColor = "bg-green-500",
+  indicatorColor = "bg-emerald-500",
+  className = "",
 }) => {
   return (
     <div className="relative inline-block">
       <div
-        className="relative inline-flex items-center justify-center overflow-hidden 
-      bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
-      rounded-full shadow-sm w-10 h-10 text-sm"
+        className={`relative inline-flex items-center justify-center overflow-hidden 
+        bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300
+        rounded-full w-10 h-10 text-sm transition-colors duration-300 ${className}`}
       >
         {src ? (
           <img src={src} alt={alt} className="w-full h-full object-cover" />
         ) : initials ? (
-          <span className="text-gray-700 dark:text-gray-200 font-medium">
+          <span className="font-medium tracking-tight">
             {initials}
           </span>
         ) : (
-          <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
+          <User className="w-1/2 h-1/2 opacity-70" strokeWidth={2} />
         )}
       </div>
       <span
-        className={`absolute bottom-0 right-0 block h-3.5 w-3.5 rounded-full ${badgeColor} 
-        ring-2 ring-white dark:ring-gray-900 shadow-sm`}
+        className={`absolute bottom-0 right-0 block h-3 w-3 rounded-full ${indicatorColor} 
+        ring-2 ring-white dark:ring-[#0a0a0a] transition-colors duration-300`}
       />
     </div>
   );
 };
 
-export default Avatar;
+export default AvatarWithActiveBadge;
 ```
 
 ### Avatar Group
+A refined stack of avatars using a subtle interactive hover elevation.
 <Preview>
 <AvatarGroup />
 </Preview>
@@ -212,25 +237,25 @@ interface AvatarGroupProps {
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({ max = 3 }) => {
   const avatars = [
-    { src: "/img", alt: "User 1" },
+    { src: "/pfp.jpg", alt: "User 1" },
     { initials: "JD" },
-    { src: "/img", alt: "User 2" },
+    { src: "/pfp.jpg", alt: "User 2" },
     { initials: "AS" },
-    { src: "/img", alt: "User 3" },
+    { src: "/pfp.jpg", alt: "User 3" },
   ];
 
   const visibleAvatars = avatars.slice(0, max);
   const remainingCount = Math.max(avatars.length - max, 0);
 
   return (
-    <div className="flex -space-x-3">
+    <div className="flex -space-x-2.5">
       {visibleAvatars.map((avatar, index) => (
         <div
           key={index}
           className="relative inline-flex items-center justify-center overflow-hidden 
-          bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
-          rounded-full ring-2 ring-white dark:ring-gray-900 shadow-sm
-          w-10 h-10 text-sm transition-transform hover:translate-y-0.5"
+          bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300
+          rounded-full ring-[2px] ring-white dark:ring-[#0a0a0a]
+          w-10 h-10 text-sm transition-transform hover:z-10 hover:-translate-y-1 duration-300"
         >
           {avatar.src ? (
             <img
@@ -239,21 +264,21 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({ max = 3 }) => {
               className="w-full h-full object-cover"
             />
           ) : avatar.initials ? (
-            <span className="text-gray-700 dark:text-gray-200 font-medium">
+            <span className="font-medium tracking-tight">
               {avatar.initials}
             </span>
           ) : (
-            <User className="w-1/2 h-1/2 text-gray-600 dark:text-gray-300" />
+            <User className="w-1/2 h-1/2 opacity-70" strokeWidth={2} />
           )}
         </div>
       ))}
       {remainingCount > 0 && (
         <div
           className="relative inline-flex items-center justify-center 
-        bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 
-        text-gray-600 dark:text-gray-300 font-medium rounded-full 
-        ring-2 ring-white dark:ring-gray-900 shadow-sm
-        w-10 h-10 text-sm transition-transform hover:translate-y-0.5"
+          bg-neutral-50 dark:bg-neutral-900 
+          text-neutral-500 dark:text-neutral-400 font-medium rounded-full 
+          ring-[2px] ring-white dark:ring-[#0a0a0a] border border-neutral-200 dark:border-neutral-800
+          w-10 h-10 text-[13px] tracking-tight transition-transform hover:z-10 hover:-translate-y-1 duration-300"
         >
           +{remainingCount}
         </div>
@@ -263,4 +288,105 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({ max = 3 }) => {
 };
 
 export default AvatarGroup;
+```
+
+### Square Avatar
+A modern, slightly rounded square variant perfect for logos or distinguishing organizations from standard users.
+<Preview>
+<SquareAvatar />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { User } from "lucide-react";
+
+interface AvatarProps {
+  size?: "sm" | "md" | "lg";
+  src?: string;
+  alt?: string;
+  initials?: string;
+  className?: string;
+}
+
+const SquareAvatar: React.FC<AvatarProps> = ({
+  src,
+  alt = "User avatar",
+  initials,
+  className = "",
+}) => {
+  return (
+    <div
+      className={`relative inline-flex items-center justify-center overflow-hidden 
+      bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300
+      rounded-xl w-12 h-12 text-sm transition-colors duration-300 ${className}`}
+    >
+      {src ? (
+        <img src={src} alt={alt} className="w-full h-full object-cover" />
+      ) : initials ? (
+        <span className="font-medium tracking-tight text-base">
+          {initials}
+        </span>
+      ) : (
+        <User className="w-1/2 h-1/2 opacity-70" strokeWidth={2} />
+      )}
+    </div>
+  );
+};
+
+export default SquareAvatar;
+```
+
+### Status Ring Avatar
+A premium avatar utilizing an elegant outer border to indicate status (e.g. streaming, highlighting), detached from the core image via a padding gap.
+<Preview>
+<StatusRingAvatar />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { User } from "lucide-react";
+
+interface AvatarProps {
+  size?: "sm" | "md" | "lg";
+  src?: string;
+  alt?: string;
+  initials?: string;
+  className?: string;
+}
+
+interface StatusRingAvatarProps extends AvatarProps {
+  statusColor?: string;
+  isOnline?: boolean;
+}
+
+const StatusRingAvatar: React.FC<StatusRingAvatarProps> = ({
+  src,
+  alt = "User avatar",
+  initials,
+  statusColor = "border-emerald-500",
+  isOnline = true,
+  className = "",
+}) => {
+  return (
+    <div className={`relative inline-block ${isOnline ? statusColor : 'border-neutral-300 dark:border-neutral-700'} border-2 rounded-full p-[2px] transition-colors duration-300`}>
+      <div
+        className={`relative inline-flex items-center justify-center overflow-hidden 
+        bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300
+        rounded-full w-10 h-10 text-sm transition-colors duration-300 ${className}`}
+      >
+        {src ? (
+          <img src={src} alt={alt} className="w-full h-full object-cover" />
+        ) : initials ? (
+          <span className="font-medium tracking-tight">
+            {initials}
+          </span>
+        ) : (
+          <User className="w-1/2 h-1/2 opacity-70" strokeWidth={2} />
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default StatusRingAvatar;
 ```

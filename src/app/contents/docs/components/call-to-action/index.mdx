@@ -8,22 +8,26 @@ description: Call to Action is a component that encourages users to take a speci
 <SimpleCTA />
 </Preview>
 
-```jsx	showLineNumbers
+```tsx	showLineNumbers
 import React from "react";
 
 const CTA = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-24">
-      <div className="mx-auto max-w-4xl px-6 text-center">
-        <h2 className="text-4xl font-medium tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+    <div className="relative overflow-hidden bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-neutral-50 to-transparent dark:from-neutral-900"></div>
+      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+        <h2 className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-5xl lg:text-6xl">
           Join Us Today
         </h2>
-        <p className="mt-6 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
-          Sign up now to get exclusive offers and updates.
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+          Sign up now to get exclusive offers, product updates, and early access to our latest features.
         </p>
-        <div className="mt-10">
-          <button className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-b from-purple-500 to-purple-600 px-8 py-4 text-base font-medium text-white shadow-lg shadow-purple-500/30 transition-all duration-200 hover:from-purple-600 hover:to-purple-700 hover:shadow-purple-600/40 focus:outline-none active:scale-95 dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800">
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-neutral-900 px-8 py-3.5 text-sm font-medium text-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-300 hover:scale-105 hover:bg-neutral-800 hover:shadow-[0_8px_16px_rgba(0,0,0,0.1)] focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 active:scale-95 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 dark:focus:ring-white dark:focus:ring-offset-neutral-950">
             Get Started
+          </button>
+          <button className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-transparent px-8 py-3.5 text-sm font-medium text-neutral-900 transition-all duration-300 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 active:scale-95 dark:text-white dark:hover:bg-neutral-800 dark:focus:ring-white dark:focus:ring-offset-neutral-950">
+            Learn More
           </button>
         </div>
       </div>
@@ -39,24 +43,29 @@ export default CTA;
 <CardStyleCTA />
 </Preview>
 
-```jsx	showLineNumbers
+```tsx	showLineNumbers
 import React from "react";
 
 const CTA = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-24">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="overflow-hidden rounded-3xl bg-white/70 dark:bg-gray-800/70 p-12 shadow-xl dark:shadow-gray-900/50 ring-1 ring-gray-900/5 dark:ring-white/10">
-          <h2 className="text-3xl font-medium tracking-tight text-gray-900 dark:text-white">
-            Get Started Today
-          </h2>
-          <p className="mt-6 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
-            Start your journey with us and enjoy exclusive benefits.
-          </p>
-          <div className="mt-8">
-            <button className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-b from-purple-500 to-purple-600 px-7 py-3.5 text-base font-medium text-white shadow-lg shadow-purple-500/30 transition-all duration-200 hover:from-purple-600 hover:to-purple-700 hover:shadow-purple-600/40 focus:outline-none active:scale-95 dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800">
-              Sign Up
-            </button>
+    <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        <div className="relative isolate overflow-hidden rounded-[2.5rem] bg-white dark:bg-neutral-950 px-6 py-16 shadow-2xl shadow-neutral-200/50 dark:shadow-black/50 sm:rounded-[3rem] sm:px-16 md:py-24 lg:flex lg:items-center lg:gap-x-20 lg:px-24 border border-neutral-100 dark:border-white/5">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-neutral-100/80 via-transparent to-transparent dark:from-white/5 opacity-50 block pointer-events-none"></div>
+          <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-8 lg:text-left">
+            <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+              Get Started Today.
+              <br />
+              <span className="text-neutral-400 dark:text-neutral-500">Unlock your potential.</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Start your journey with us and enjoy exclusive benefits tailored to help you grow and succeed in your endeavors.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+              <button className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-8 py-3.5 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:bg-neutral-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 active:scale-95 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 dark:focus:ring-white dark:focus:ring-offset-neutral-950">
+                Sign Up Now
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -72,34 +81,44 @@ export default CTA;
 <CTAwithForm />
 </Preview>
 
-```jsx	showLineNumbers
+```tsx	showLineNumbers
 import React from "react";
 
 const CTA = () => {
   return (
-    <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-24">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="overflow-hidden rounded-3xl bg-white/70 dark:bg-gray-800/70 p-12 shadow-xl dark:shadow-gray-900/50 ring-1 ring-gray-900/5 dark:ring-white/10">
-          <h2 className="text-3xl font-medium tracking-tight text-gray-900 dark:text-white">
-            Subscribe to Our Newsletter
-          </h2>
-          <p className="mt-6 text-xl leading-relaxed text-gray-600 dark:text-gray-300">
-            Get the latest news and updates delivered straight to your inbox.
-          </p>
-          <form className="mt-8 sm:flex sm:max-w-md">
-            <input
-              type="email"
-              className="w-full rounded-xl border-gray-200 bg-gray-50/50 dark:bg-gray-700/50 px-4 py-3 text-base placeholder-gray-500 dark:placeholder-gray-400 shadow-sm transition-colors duration-200 focus:border-purple-500 focus:bg-white focus:ring-purple-500 dark:border-gray-600 dark:text-white dark:focus:border-purple-400 dark:focus:ring-purple-400 sm:max-w-xs"
-              placeholder="Your email address"
-              required
-            />
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:max-w-none lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+              Subscribe to Our Newsletter
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Get the latest news, updates, and exclusive content delivered straight to your inbox. No spam, just value.
+            </p>
+          </div>
+          <div className="flex flex-col items-start gap-y-4 sm:flex-row sm:items-center sm:gap-x-3 lg:justify-end">
+            <div className="w-full sm:max-w-md">
+              <label htmlFor="email-address" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="w-full min-w-0 appearance-none rounded-full border border-neutral-200 bg-white px-5 py-3.5 text-base text-neutral-900 placeholder-neutral-400 shadow-sm transition-all duration-200 hover:border-neutral-300 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:border-neutral-800 dark:bg-neutral-900 dark:text-white dark:placeholder-neutral-500 dark:hover:border-neutral-700 dark:focus:border-white dark:focus:ring-white"
+                placeholder="Enter your email"
+              />
+            </div>
             <button
               type="submit"
-              className="mt-4 w-full rounded-xl bg-gradient-to-b from-purple-500 to-purple-600 px-6 py-3 text-base font-medium text-white shadow-lg shadow-purple-500/30 transition-all duration-200 hover:from-purple-600 hover:to-purple-700 hover:shadow-purple-600/40 focus:outline-none active:scale-95 sm:mt-0 sm:ml-4 sm:w-auto dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800"
+              className="mt-3 flex w-full items-center justify-center rounded-full bg-neutral-900 px-6 py-3.5 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:bg-neutral-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 active:scale-95 sm:mt-0 sm:w-auto dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 dark:focus:ring-white dark:focus:ring-offset-neutral-950"
             >
               Subscribe
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

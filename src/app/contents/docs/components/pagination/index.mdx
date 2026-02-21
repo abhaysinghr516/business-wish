@@ -1,41 +1,7 @@
 ---
 title: Pagination
-description: Pagination is a great way to break up large sets of data into smaller, more manageable chunks.
+description: Effortless navigation controls redesigned for ultimate clarity and seamless interactions.
 ---
-
-## Base Styles 
-
-```tsx
-const baseButtonStyles = `
-  relative overflow-hidden
-  disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none
-`;
-
-const rippleEffect = (event: React.MouseEvent<HTMLButtonElement>) => {
-  const button = event.currentTarget;
-  const ripple = document.createElement("span");
-  const rect = button.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  const x = event.clientX - rect.left - size / 2;
-  const y = event.clientY - rect.top - size / 2;
-
-  ripple.style.cssText = `
-    position: absolute;
-    width: ${size}px;
-    height: ${size}px;
-    top: ${y}px;
-    left: ${x}px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    pointer-events: none;
-  `;
-
-  button.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 600);
-};
-```
 
 ### Basic Pagination
 <Preview>
@@ -43,65 +9,58 @@ const rippleEffect = (event: React.MouseEvent<HTMLButtonElement>) => {
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export const BasicPagination: React.FC = () => {
+const BasicPagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 3;
+  const totalPages = 5;
 
-return (
-    <nav className="flex text-base justify-center">
-      <ul className="flex list-none items-center gap-2">
+  return (
+    <nav className="flex justify-center w-full">
+      <ul className="flex items-center gap-1.5 bg-white dark:bg-neutral-950 p-1.5 rounded-2xl border border-neutral-200/60 dark:border-white/10 shadow-sm w-fit">
         <li>
           <button
-            className={`${baseButtonStyles} px-4 py-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              setCurrentPage((p) => Math.max(1, p - 1));
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40 disabled:pointer-events-none"
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
           >
-            Previous
+            <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
-        {[1, 2, 3].map((page) => (
-          <li key={page}>
-            <button
-              className={`${baseButtonStyles} w-10 h-10 rounded-lg font-medium
-                ${
-                  currentPage === page
-                    ? "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-                    : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
+        {[...Array(totalPages)].map((_, i) => {
+          const page = i + 1;
+          const isActive = currentPage === page;
+          return (
+            <li key={page}>
+              <button
+                className={`flex items-center justify-center w-9 h-9 rounded-xl text-[14px] font-medium transition-all ${
+                  isActive
+                    ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transform scale-105"
+                    : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-white"
                 }`}
-              onClick={(e) => {
-                rippleEffect(e);
-                setCurrentPage(page);
-              }}
-            >
-              {page}
-            </button>
-          </li>
-        ))}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            </li>
+          );
+        })}
         <li>
           <button
-            className={`${baseButtonStyles} px-4 py-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              setCurrentPage((p) => Math.min(totalPages, p + 1));
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40 disabled:pointer-events-none"
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
           >
-            Next
+            <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
       </ul>
     </nav>
   );
 };
+
+export default BasicPagination;
 ```
 
 ### Pagination with Icons
@@ -110,79 +69,76 @@ return (
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const PaginationwithIcons = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5;
+
   return (
-    <nav className="flex text-base justify-center">
-      <ul className="flex list-none items-center gap-2">
-        <li>
-          <button
-            className={`${baseButtonStyles} px-4 py-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700 flex items-center gap-2`}
-            onClick={(e) => {
-              rippleEffect(e);
-              setCurrentPage((p) => Math.max(1, p - 1));
-            }}
-            disabled={currentPage === 1}
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Previous</span>
-          </button>
-        </li>
-        {[1, 2, 3].map((page) => (
-          <li key={page}>
-            <button
-              className={`${baseButtonStyles} w-10 h-10 rounded-lg font-medium
-                ${
-                  currentPage === page
-                    ? "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-                    : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
+    <nav className="flex justify-center w-full">
+      <div className="flex items-center gap-2">
+        <button
+          className="flex items-center gap-2 px-4 py-2 text-[14px] font-medium text-neutral-600 dark:text-neutral-400 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-white/10 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-white transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm"
+          onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+        >
+          <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
+          <span>Previous</span>
+        </button>
+        
+        <div className="flex items-center gap-1.5 px-1">
+          {[...Array(totalPages)].map((_, i) => {
+            const page = i + 1;
+            const isActive = currentPage === page;
+            return (
+              <button
+                key={page}
+                className={`flex items-center justify-center w-9 h-9 rounded-xl text-[14px] font-medium transition-all ${
+                  isActive
+                    ? "bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-white"
+                    : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-50 dark:hover:bg-neutral-900"
                 }`}
-              onClick={(e) => {
-                rippleEffect(e);
-                setCurrentPage(page);
-              }}
-            >
-              {page}
-            </button>
-          </li>
-        ))}
-        <li>
-          <button
-            className={`${baseButtonStyles} px-4 py-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700 flex items-center gap-2`}
-            onClick={(e) => {
-              rippleEffect(e);
-              setCurrentPage((p) => Math.min(totalPages, p + 1));
-            }}
-            disabled={currentPage === totalPages}
-          >
-            <span>Next</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </li>
-      </ul>
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            );
+          })}
+        </div>
+
+        <button
+          className="flex items-center gap-2 px-4 py-2 text-[14px] font-medium text-neutral-600 dark:text-neutral-400 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-white/10 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-white transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm"
+          onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+          disabled={currentPage === totalPages}
+        >
+          <span>Next</span>
+          <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
+        </button>
+      </div>
     </nav>
   );
 };
+
+export default PaginationwithIcons;
 ```
 
-### Pagination with Input Field
+### Pagination with Input
 <Preview>
 <PaginationwithInputField />
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
-export const PaginationwithInputField: React.FC = () => {
+const PaginationwithInputField = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [inputValue, setInputValue] = useState('1');
+  const [inputValue, setInputValue] = useState("1");
   const totalPages = 10;
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
       setInputValue(page.toString());
@@ -190,199 +146,257 @@ export const PaginationwithInputField: React.FC = () => {
   };
 
   return (
-    <nav className="flex text-base justify-center">
-      <ul className="flex list-none items-center gap-3">
+    <nav className="flex justify-center w-full">
+      <ul className="flex items-center gap-2 bg-white dark:bg-neutral-950 p-1.5 rounded-2xl border border-neutral-200/60 dark:border-white/10 shadow-sm w-fit">
         <li>
           <button
-            className={`${baseButtonStyles} p-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              handlePageChange(1);
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40"
+            onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
           >
-            <ChevronsLeft className="w-4 h-4" />
+            <ChevronsLeft className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
         <li>
           <button
-            className={`${baseButtonStyles} p-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              handlePageChange(currentPage - 1);
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40"
+            onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
-        <li className="flex items-center gap-2">
-          <input
-            type="text"
-            className="w-16 px-3 py-2 rounded-lg border border-gray-200 text-center 
-              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
-              dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
-            value={inputValue}
-            onChange={(e) => {
-              const value = e.target.value;
-              setInputValue(value);
-              const page = parseInt(value, 10);
-              if (!isNaN(page) && page >= 1 && page <= totalPages) {
-                handlePageChange(page);
-              }
-            }}
-            onBlur={() => {
-              const page = parseInt(inputValue, 10);
-              if (isNaN(page) || page < 1 || page > totalPages) {
-                setInputValue(currentPage.toString());
-              }
-            }}
-          />
-          <span className="text-gray-600 dark:text-gray-400">
-            of {totalPages}
+        
+        <li className="flex items-center gap-3 px-2">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider">Page</span>
+            <input
+              type="text"
+              className="w-10 h-8 text-[14px] font-semibold text-center rounded-lg bg-neutral-100 dark:bg-neutral-900 border-none text-neutral-900 dark:text-white focus:ring-2 focus:ring-neutral-200 dark:focus:ring-neutral-800 transition-all"
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                const page = parseInt(e.target.value, 10);
+                if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                  handlePageChange(page);
+                }
+              }}
+              onBlur={() => {
+                const page = parseInt(inputValue, 10);
+                if (isNaN(page) || page < 1 || page > totalPages) setInputValue(currentPage.toString());
+              }}
+            />
+          </div>
+          <span className="text-[13px] font-medium text-neutral-500">
+            of <span className="text-neutral-900 dark:text-white font-semibold ml-1">{totalPages}</span>
           </span>
         </li>
+
         <li>
           <button
-            className={`${baseButtonStyles} p-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              handlePageChange(currentPage + 1);
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40"
+            onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
         <li>
           <button
-            className={`${baseButtonStyles} p-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              handlePageChange(totalPages);
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40"
+            onClick={() => handlePageChange(totalPages)}
             disabled={currentPage === totalPages}
           >
-            <ChevronsRight className="w-4 h-4" />
+            <ChevronsRight className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
       </ul>
     </nav>
   );
 };
+
+export default PaginationwithInputField;
 ```
 
-### Pagination with Dots
+### Pagination with Dots (Ellipsis)
 <Preview>
 <PaginationwithDots />
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
-export const PaginationwithDots: React.FC = () => {
+const PaginationwithDots = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
 
   const renderPageNumbers = () => {
-    const pageNumbers = [];
-    const maxVisiblePages = 5;
-
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
+    const pages = [];
+    if (currentPage <= 3) {
+      pages.push(1, 2, 3, 4, "ellipsis", totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      pages.push(1, "ellipsis", totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
     } else {
-      if (currentPage <= 3) {
-        for (let i = 1; i <= 4; i++) {
-          pageNumbers.push(i);
-        }
-        pageNumbers.push("...");
-        pageNumbers.push(totalPages);
-      } else if (currentPage >= totalPages - 2) {
-        pageNumbers.push(1);
-        pageNumbers.push("...");
-        for (let i = totalPages - 3; i <= totalPages; i++) {
-          pageNumbers.push(i);
-        }
-      } else {
-        pageNumbers.push(1);
-        pageNumbers.push("...");
-        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-          pageNumbers.push(i);
-        }
-        pageNumbers.push("...");
-        pageNumbers.push(totalPages);
-      }
+      pages.push(1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", totalPages);
     }
 
-    return pageNumbers.map((number, index) => (
-      <li key={index}>
-        <button
-          className={`${baseButtonStyles} w-10 h-10 rounded-lg font-medium
-            ${
-              number === currentPage
-                ? "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-                : number === "..."
-                ? "bg-transparent text-gray-400 hover:bg-transparent cursor-default"
-                : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700"
+    return pages.map((item, index) => {
+      if (item === "ellipsis") {
+        return (
+          <li key={`ellipsis-${index}`} className="flex items-center justify-center w-9 h-9 text-neutral-400">
+            <MoreHorizontal className="w-4 h-4" />
+          </li>
+        );
+      }
+      
+      const isActive = item === currentPage;
+      return (
+        <li key={item}>
+          <button
+            className={`flex items-center justify-center w-9 h-9 rounded-xl text-[14px] font-medium transition-all ${
+              isActive
+                ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-md transform scale-105"
+                : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-white"
             }`}
-          onClick={(e) => {
-            if (number !== "...") {
-              rippleEffect(e);
-              setCurrentPage(Number(number));
-            }
-          }}
-          disabled={number === "..."}
-        >
-          {number}
-        </button>
-      </li>
-    ));
+            onClick={() => setCurrentPage(item)}
+          >
+            {item}
+          </button>
+        </li>
+      );
+    });
   };
 
   return (
-    <nav className="flex text-base justify-center">
-      <ul className="flex list-none items-center gap-2">
+    <nav className="flex justify-center w-full">
+      <ul className="flex items-center gap-1.5">
         <li>
           <button
-            className={`${baseButtonStyles} p-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              setCurrentPage((p) => Math.max(1, p - 1));
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40 disabled:pointer-events-none"
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
         {renderPageNumbers()}
         <li>
           <button
-            className={`${baseButtonStyles} p-2 rounded-lg bg-white border border-gray-200 
-              text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 
-              dark:text-gray-300 dark:hover:bg-gray-700`}
-            onClick={(e) => {
-              rippleEffect(e);
-              setCurrentPage((p) => Math.min(totalPages, p + 1));
-            }}
+            className="flex items-center justify-center w-9 h-9 rounded-xl text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all disabled:opacity-40 disabled:pointer-events-none"
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </li>
       </ul>
     </nav>
   );
 };
+
+export default PaginationwithDots;
+```
+
+### Minimal Line Pagination
+<Preview>
+<MinimalPagination />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const MinimalPagination = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5;
+
+  return (
+    <nav className="flex justify-center w-full">
+      <div className="flex items-center gap-6">
+        <button
+          className="flex items-center gap-2 text-[13px] font-semibold text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors uppercase tracking-widest disabled:opacity-40"
+          onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+        >
+          <ChevronLeft className="w-4 h-4" /> Prev
+        </button>
+        
+        <div className="flex items-center gap-1">
+          {[...Array(totalPages)].map((_, i) => {
+            const page = i + 1;
+            const isActive = currentPage === page;
+            return (
+              <button
+                key={page}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "w-6 bg-neutral-900 dark:bg-white"
+                    : "bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 dark:hover:bg-neutral-500"
+                }`}
+                onClick={() => setCurrentPage(page)}
+                aria-label={`Go to page ${page}`}
+              />
+            );
+          })}
+        </div>
+
+        <button
+          className="flex items-center gap-2 text-[13px] font-semibold text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors uppercase tracking-widest disabled:opacity-40"
+          onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+          disabled={currentPage === totalPages}
+        >
+          Next <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+    </nav>
+  );
+};
+
+export default MinimalPagination;
+```
+
+### Rounded Ghost Pagination
+<Preview>
+<RoundedGhostPagination />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const RoundedGhostPagination = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5;
+
+  return (
+    <nav className="flex justify-center w-full">
+      <div className="inline-flex items-center p-1 bg-neutral-100/50 dark:bg-neutral-900/50 backdrop-blur-md rounded-full border border-neutral-200/50 dark:border-white/5">
+        <button
+          className="flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 hover:bg-white dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white hover:shadow-sm transition-all disabled:opacity-40"
+          onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+        >
+          <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
+        </button>
+        
+        <div className="flex items-center px-2 gap-1 text-[14px]">
+          <span className="font-semibold text-neutral-900 dark:text-white w-5 text-center">{currentPage}</span>
+          <span className="text-neutral-400">/</span>
+          <span className="text-neutral-500 w-5 text-center">{totalPages}</span>
+        </div>
+
+        <button
+          className="flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 hover:bg-white dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white hover:shadow-sm transition-all disabled:opacity-40"
+          onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+          disabled={currentPage === totalPages}
+        >
+          <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
+        </button>
+      </div>
+    </nav>
+  );
+};
+
+export default RoundedGhostPagination;
 ```

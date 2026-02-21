@@ -2,7 +2,7 @@ import React from "react";
 import { Plus, Upload } from "lucide-react";
 
 interface ButtonProps {
-  variant?: "primary" | "secondary" | "outlined" | "danger" | "icon";
+  variant?: "primary" | "secondary" | "outlined" | "ghost" | "glass" | "danger" | "icon";
   size?: "small" | "regular" | "large";
   icon?: "upload" | "edit";
   children: React.ReactNode;
@@ -19,37 +19,37 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
 }) => {
   const baseClass =
-    "font-medium rounded-lg transition-all duration-300 ease-in-out ";
+    "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 dark:focus-visible:ring-white dark:focus-visible:ring-offset-neutral-950 active:scale-[0.98] ";
+    
   const sizeClasses = {
     small: "px-3 py-1.5 text-xs",
     regular: "px-4 py-2 text-sm",
-    large: "px-5 py-3 text-base",
+    large: "px-6 py-3 text-base"
   };
+
   const variantClasses = {
     primary:
-      "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 " +
-      "shadow-md hover:shadow-lg active:shadow-sm " +
-      "border border-transparent " +
-      "dark:bg-blue-700 dark:hover:bg-blue-600",
+      "bg-neutral-900 text-white hover:bg-neutral-800 shadow-[0_1px_2px_rgba(0,0,0,0.05)] " +
+      "dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200",
     secondary:
-      "bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300 " +
-      "shadow-sm hover:shadow " +
-      "border border-gray-200 " +
-      "dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600",
+      "bg-neutral-100 text-neutral-900 hover:bg-neutral-200 " +
+      "dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700",
     outlined:
-      "bg-transparent border border-blue-500 text-blue-700 " +
-      "hover:bg-blue-50 active:bg-blue-100 " +
-      "dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-950",
+      "bg-transparent border border-neutral-200 text-neutral-900 hover:bg-neutral-50 " +
+      "dark:border-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/50",
+    ghost:
+      "bg-transparent text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 " +
+      "dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
+    glass:
+      "bg-white/20 backdrop-blur-md border border-white/20 text-neutral-900 hover:bg-white/30 " +
+      "shadow-[0_8px_32px_0_rgba(0,0,0,0.04)] " +
+      "dark:bg-black/20 dark:border-white/10 dark:text-white dark:hover:bg-black/30",
     danger:
-      "bg-red-500 text-white hover:bg-red-600 active:bg-red-700 " +
-      "shadow-md hover:shadow-lg " +
-      "border border-transparent " +
-      "dark:bg-red-700 dark:hover:bg-red-600",
+      "bg-red-50 text-red-600 hover:bg-red-100 " +
+      "dark:bg-red-500/10 dark:text-red-500 dark:hover:bg-red-500/20",
     icon:
-      "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 " +
-      "shadow-md hover:shadow-lg active:shadow-sm " +
-      "inline-flex items-center justify-center " +
-      "dark:bg-blue-700 dark:hover:bg-blue-600",
+      "bg-neutral-900 text-white hover:bg-neutral-800 shadow-[0_1px_2px_rgba(0,0,0,0.05)] " +
+      "dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200",
   };
 
   return (
@@ -57,9 +57,8 @@ export const Button: React.FC<ButtonProps> = ({
       type="button"
       className={`
         ${baseClass} 
-        ${sizeClasses[size]} 
+        ${variant === "icon" ? "p-2.5" : sizeClasses[size]} 
         ${variantClasses[variant]} 
-        ${variant === "icon" ? "p-2.5" : ""} 
         ${className}
       `}
       onClick={onClick}
@@ -74,10 +73,14 @@ export const Button: React.FC<ButtonProps> = ({
 
 // Usage Components remain the same as in the original code
 export const ButtonGroup: React.FC = () => (
-  <div className="flex gap-2">
+  <div className="flex flex-wrap gap-3 p-4 bg-neutral-50/50 dark:bg-neutral-900/50 rounded-xl border border-neutral-100 dark:border-neutral-800/60">
     <Button variant="primary">Primary</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="outlined">Outlined</Button>
+    <Button variant="ghost">Ghost</Button>
+    <div className="p-2 bg-gradient-to-tr from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 rounded-lg">
+      <Button variant="glass">Glass Component</Button>
+    </div>
     <Button variant="danger">Danger</Button>
     <Button variant="icon" icon="upload">
       Upload
@@ -86,7 +89,7 @@ export const ButtonGroup: React.FC = () => (
 );
 
 export const ButtonSizes: React.FC = () => (
-  <div className="flex gap-2 items-baseline">
+  <div className="flex gap-4 items-center">
     <Button size="small">Small</Button>
     <Button size="regular">Regular</Button>
     <Button size="large">Large</Button>
@@ -95,22 +98,22 @@ export const ButtonSizes: React.FC = () => (
 
 export const ButtonGroups: React.FC = () => (
   <div
-    className="inline-flex rounded-lg shadow-sm dark:shadow-gray-700"
+    className="inline-flex rounded-lg shadow-sm"
     role="group"
   >
-    <Button variant="outlined">Prev</Button>
-    <Button variant="outlined">1</Button>
-    <Button variant="outlined">2</Button>
-    <Button variant="outlined">3</Button>
-    <Button variant="outlined">Next</Button>
+    <Button variant="outlined" className="rounded-r-none border-r-0 focus:z-10 focus:ring-1">Prev</Button>
+    <Button variant="outlined" className="rounded-none border-r-0 focus:z-10 focus:ring-1">1</Button>
+    <Button variant="outlined" className="rounded-none border-r-0 focus:z-10 focus:ring-1 bg-neutral-50 dark:bg-neutral-800/50">2</Button>
+    <Button variant="outlined" className="rounded-none border-r-0 focus:z-10 focus:ring-1">3</Button>
+    <Button variant="outlined" className="rounded-l-none focus:z-10 focus:ring-1">Next</Button>
   </div>
 );
 
 export const FAB: React.FC = () => (
-  <div className="fixed bottom-4 right-4">
+  <div className="fixed bottom-4 right-4 z-50">
     <Button
       variant="primary"
-      className="rounded-full p-3 shadow-xl hover:shadow-2xl"
+      className="rounded-full !p-3 shadow-xl hover:shadow-2xl hover:-translate-y-1"
     >
       <Plus className="h-6 w-6" />
     </Button>

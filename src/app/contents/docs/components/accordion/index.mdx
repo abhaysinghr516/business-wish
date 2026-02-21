@@ -4,17 +4,20 @@ description: Accordion component is used to show and hide content with a toggle 
 ---
 
 ### Basic Accordion
+A flat, clean accordion perfect for minimalist interfaces.
 <Preview>
 <BasicAccordion />
 </Preview>
 
 ```jsx showLineNumbers 
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 
 const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className={`h-5 w-5 transform transition-transform duration-500 ease-out text-gray-400 dark:text-gray-500 ${
+    className={`h-5 w-5 transform transition-transform duration-300 ease-in-out text-neutral-400 dark:text-neutral-500 ${
       isExpanded ? "rotate-180" : ""
     }`}
     fill="none"
@@ -30,7 +33,7 @@ const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
   </svg>
 );
 
-const Accordion: React.FC = () => {
+const BasicAccordion: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [height, setHeight] = useState<number | undefined>(0);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -44,31 +47,29 @@ const Accordion: React.FC = () => {
     }
   }, [isExpanded]);
 
-  const toggleAccordion = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const toggleAccordion = () => setIsExpanded(!isExpanded);
 
   return (
     <div className="max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
-      <div className="rounded-xl overflow-hidden bg-white dark:bg-gray-900 shadow-sm">
+      <div className="rounded-2xl overflow-hidden bg-neutral-50 dark:bg-neutral-900 transition-colors duration-300 border border-transparent dark:border-white/5 shadow-sm">
         <div
-          className="flex items-center justify-between cursor-pointer py-4 px-6 transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800"
+          className="flex items-center justify-between cursor-pointer py-4 px-6 transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
           onClick={toggleAccordion}
         >
-          <div className="text-base font-medium text-gray-900 dark:text-gray-100">
-            Accordion Title
+          <div className="text-[15px] font-medium text-neutral-900 dark:text-neutral-100">
+            What is your return policy?
           </div>
           <span className="ml-6 flex items-center">
             <AnimatedArrow isExpanded={isExpanded} />
           </span>
         </div>
         <div
-          className="transition-all duration-500 ease-out overflow-hidden bg-gray-50 dark:bg-gray-800"
+          className="transition-all duration-300 ease-in-out overflow-hidden"
           style={{ height }}
         >
-          <div ref={contentRef} className="px-6 py-4">
-            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-              Accordion content goes here...
+          <div ref={contentRef} className="px-6 pb-5 pt-1">
+            <p className="text-[14px] leading-relaxed text-neutral-600 dark:text-neutral-400">
+              We offer a 30-day money-back guarantee on all our products. If you are not completely satisfied, you can return your purchase for a full refund or exchange it for another item.
             </p>
           </div>
         </div>
@@ -77,21 +78,24 @@ const Accordion: React.FC = () => {
   );
 };
 
-export default Accordion;
+export default BasicAccordion;
 ```
 
 ### Bordered Accordion
+Bordered accordion that elegantly delineates content.
 <Preview>
 <BorderedAccordion />
 </Preview>
 
 ```jsx showLineNumbers
+"use client";
+
 import React, { useState, useRef, useEffect } from "react";
 
 const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className={`h-5 w-5 transform transition-transform duration-500 ease-out text-gray-400 dark:text-gray-500 ${
+    className={`h-5 w-5 transform transition-transform duration-300 ease-in-out text-neutral-400 dark:text-neutral-500 ${
       isExpanded ? "rotate-180" : ""
     }`}
     fill="none"
@@ -106,7 +110,8 @@ const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
     />
   </svg>
 );
-const Accordion: React.FC = () => {
+
+const BorderedAccordion: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [height, setHeight] = useState<number | undefined>(0);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -120,35 +125,31 @@ const Accordion: React.FC = () => {
     }
   }, [isExpanded]);
 
-  const toggleAccordion = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const toggleAccordion = () => setIsExpanded(!isExpanded);
 
   return (
     <div className="max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4">
-      <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden backdrop-blur-sm bg-white/50 dark:bg-gray-900/50">
+      <div className="border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-black transition-colors duration-300">
         <div
-          className={`flex items-center justify-between cursor-pointer py-4 px-6 transition-colors duration-200 
-            hover:bg-gray-50 dark:hover:bg-gray-800/50
-            ${
-              isExpanded ? "border-b border-gray-200 dark:border-gray-700" : ""
-            }`}
+          className={`flex items-center justify-between cursor-pointer py-4 px-6 transition-colors duration-200 hover:bg-neutral-50 dark:hover:bg-neutral-900/50 ${
+            isExpanded ? "border-b border-neutral-100 dark:border-neutral-800/50" : ""
+          }`}
           onClick={toggleAccordion}
         >
-          <div className="text-base font-medium text-gray-900 dark:text-gray-100">
-            Accordion Title
+          <div className="text-[15px] font-medium text-neutral-900 dark:text-neutral-100">
+            How long does shipping take?
           </div>
           <span className="ml-6 flex items-center">
             <AnimatedArrow isExpanded={isExpanded} />
           </span>
         </div>
         <div
-          className="transition-all duration-500 ease-out overflow-hidden"
+          className="transition-all duration-300 ease-in-out overflow-hidden bg-white dark:bg-black"
           style={{ height }}
         >
           <div ref={contentRef} className="px-6 py-4">
-            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-              Accordion content goes here...
+            <p className="text-[14px] leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Standard shipping usually takes 3-5 business days within the continental US. Expedited shipping options are available at checkout for an additional fee.
             </p>
           </div>
         </div>
@@ -157,5 +158,83 @@ const Accordion: React.FC = () => {
   );
 };
 
-export default Accordion;
+export default BorderedAccordion;
+```
+
+### Ghost Accordion
+A minimal, borderless accordion that floats on the page. Ideal for dense informational sections.
+<Preview>
+<GhostAccordion />
+</Preview>
+
+```jsx showLineNumbers
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+
+const AnimatedArrow: React.FC<{ isExpanded: boolean }> = ({ isExpanded }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={`h-5 w-5 transform transition-transform duration-300 ease-in-out text-neutral-400 dark:text-neutral-500 ${
+      isExpanded ? "rotate-180" : ""
+    }`}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+      d="M19 9l-7 7-7-7"
+    />
+  </svg>
+);
+
+const GhostAccordion: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [height, setHeight] = useState<number | undefined>(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isExpanded) {
+      const contentEl = contentRef.current;
+      setHeight(contentEl?.scrollHeight);
+    } else {
+      setHeight(0);
+    }
+  }, [isExpanded]);
+
+  const toggleAccordion = () => setIsExpanded(!isExpanded);
+
+  return (
+    <div className="max-w-lg mx-auto sm:max-w-sm lg:max-w-3xl my-4 group">
+      <div className="rounded-2xl overflow-hidden bg-transparent transition-colors duration-300">
+        <div
+          className="flex items-center justify-between cursor-pointer py-4 px-4 transition-colors duration-200 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 rounded-xl"
+          onClick={toggleAccordion}
+        >
+          <div className="text-[15px] font-medium text-neutral-900 dark:text-neutral-100">
+            Do you ship internationally?
+          </div>
+          <span className="ml-6 flex items-center">
+            <AnimatedArrow isExpanded={isExpanded} />
+          </span>
+        </div>
+        <div
+          className="transition-all duration-300 ease-in-out overflow-hidden"
+          style={{ height }}
+        >
+          <div ref={contentRef} className="px-4 pb-4 pt-2">
+            <p className="text-[14px] leading-relaxed text-neutral-600 dark:text-neutral-400">
+              Yes, we ship to over 50 countries worldwide. International shipping rates and delivery times vary by location. Please review our shipping policy for more details.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default GhostAccordion;
 ```

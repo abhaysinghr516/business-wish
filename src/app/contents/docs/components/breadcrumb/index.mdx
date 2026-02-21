@@ -4,13 +4,15 @@ description: Breadcrumb is a secondary navigation component that indicates the u
 ---
 
 ### Basic Breadcrumb
+A minimal, flat breadcrumb trail.
 <Preview>
 <BasicBreadcrumb />
 </Preview>
 
 ```jsx showLineNumbers
-import { ChevronRight, Home } from "lucide-react";
+import React from "react";
 import Link from "next/link";
+import { ChevronRight, Home } from "lucide-react";
 
 const Breadcrumb = () => {
   const breadcrumbs = [
@@ -20,30 +22,33 @@ const Breadcrumb = () => {
   ];
 
   return (
-    <nav aria-label="Breadcrumb" className="text-sm">
-      <ol className="list-none p-0 inline-flex items-center bg-gray-50/50 dark:bg-gray-900/50 px-4 py-2 rounded-full border border-gray-200/50 dark:border-gray-800/50">
-        {breadcrumbs.map((breadcrumb, index) => (
-          <li key={breadcrumb.href} className="flex items-center">
-            {index === 0 && (
-              <Home className="w-4 h-4 text-gray-500 dark:text-gray-400 mr-2" />
-            )}
-            {index > 0 && (
-              <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" />
-            )}
-            {index === breadcrumbs.length - 1 ? (
-              <span className="text-gray-800 dark:text-gray-200 font-medium">
-                {breadcrumb.label}
-              </span>
-            ) : (
-              <Link
-                href={breadcrumb.href}
-                className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
-              >
-                {breadcrumb.label}
-              </Link>
-            )}
-          </li>
-        ))}
+    <nav aria-label="Breadcrumb" className="text-[14px]">
+      <ol className="list-none p-0 inline-flex items-center">
+        {breadcrumbs.map((breadcrumb, index) => {
+          const isLast = index === breadcrumbs.length - 1;
+          return (
+            <li key={breadcrumb.href} className="flex items-center group">
+              {index === 0 && (
+                <Home className="w-[14px] h-[14px] text-neutral-400 dark:text-neutral-500 mr-2 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors" />
+              )}
+              {isLast ? (
+                <span className="text-neutral-900 dark:text-neutral-100 font-medium tracking-tight">
+                  {breadcrumb.label}
+                </span>
+              ) : (
+                <Link
+                  href={breadcrumb.href}
+                  className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors duration-200"
+                >
+                  {breadcrumb.label}
+                </Link>
+              )}
+              {!isLast && (
+                <ChevronRight className="w-[14px] h-[14px] mx-1.5 text-neutral-300 dark:text-neutral-700 font-light" strokeWidth={1.5} />
+              )}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
@@ -53,17 +58,19 @@ export default Breadcrumb;
 ```
 
 ### Dropdown Breadcrumb 
+A breadcrumb trail featuring a sleek, glassmorphic dropdown menu for truncating long paths.
 <Preview>
 <DropdownBreadcrumb />
 </Preview>
 
 ```jsx showLineNumbers
-import React, { useState } from "react";
-import { ChevronDown, ChevronRight, Home } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { ChevronRight, Home } from "lucide-react";
 
 const Breadcrumb = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const breadcrumbs = [
     { label: "Home", href: "#" },
     { label: "Services", href: "#" },
@@ -71,41 +78,51 @@ const Breadcrumb = () => {
     { label: "React", href: "#" },
   ];
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <nav aria-label="Breadcrumb" className="text-sm">
-      <ol className="list-none p-0 inline-flex items-center bg-gray-50/50 dark:bg-gray-900/50 px-4 py-2 rounded-full border border-gray-200/50 dark:border-gray-800/50">
-        <li className="flex items-center">
+    <nav aria-label="Breadcrumb" className="text-[14px]">
+      <ol className="list-none p-0 inline-flex items-center">
+        <li className="flex items-center group">
           <Link
             href="/"
-            className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200 flex items-center"
+            className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors duration-200 flex items-center"
           >
-            <Home className="w-4 h-4 mr-1" />
+            <Home className="w-[14px] h-[14px] mr-1.5 text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors" />
             Home
           </Link>
         </li>
-        <li className="flex items-center ml-2">
-          <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" />
+        <li className="flex items-center ml-1.5" ref={dropdownRef}>
+          <ChevronRight className="w-[14px] h-[14px] mx-1.5 text-neutral-300 dark:text-neutral-700 font-light" strokeWidth={1.5} />
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200 flex items-center gap-1 focus:outline-none"
+              className="text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100 transition-colors duration-200 flex items-center justify-center p-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800/50 focus:outline-none"
               aria-expanded={isOpen}
             >
-              <span>•••</span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
-              />
+              <span className="tracking-widest leading-none mt-[-4px]">...</span>
             </button>
             {isOpen && (
-              <div className="absolute z-10 mt-2 w-48 rounded-xl shadow-lg bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 transform transition-all duration-200">
+              <div className="absolute z-20 top-full left-0 mt-1 w-48 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl border border-neutral-100 dark:border-white/5 opacity-100 transform scale-100 transition-all duration-200 origin-top-left animate-in fade-in slide-in-from-top-2">
                 <div className="py-1" role="menu" aria-orientation="vertical">
                   {breadcrumbs.slice(1, -1).map((breadcrumb) => (
                     <Link
                       key={breadcrumb.href}
                       href={breadcrumb.href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100/50 hover:text-blue-500 dark:text-gray-300 dark:hover:bg-gray-700/50 dark:hover:text-blue-400 transition-all duration-200"
+                      className="block px-4 py-2 text-[13px] text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/50 dark:hover:text-neutral-100 transition-colors duration-150"
                       role="menuitem"
                       onClick={() => setIsOpen(false)}
                     >
@@ -117,9 +134,9 @@ const Breadcrumb = () => {
             )}
           </div>
         </li>
-        <li className="flex items-center">
-          <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500" />
-          <span className="text-gray-800 dark:text-gray-200 font-medium">
+        <li className="flex items-center ml-1.5">
+          <ChevronRight className="w-[14px] h-[14px] mx-1.5 text-neutral-300 dark:text-neutral-700 font-light" strokeWidth={1.5} />
+          <span className="text-neutral-900 dark:text-neutral-100 font-medium tracking-tight">
             {breadcrumbs[breadcrumbs.length - 1].label}
           </span>
         </li>
@@ -132,14 +149,15 @@ export default Breadcrumb;
 ```
 
 ### Breadcrumb with Separator
+A clean variation exhibiting subtle separator animations to guide the user's eye and a modern pill to highlight the active path.
 <Preview>
 <BreadcrumbwithSeparators />
 </Preview>
 
 ```jsx showLineNumbers
 import React from "react";
-import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
+import { ChevronRight, Home } from "lucide-react";
 
 const Breadcrumb = () => {
   const breadcrumbs = [
@@ -150,30 +168,33 @@ const Breadcrumb = () => {
   ];
 
   return (
-    <nav aria-label="Breadcrumb" className="text-sm">
-      <ol className="list-none p-0 inline-flex items-center bg-gray-50/50 dark:bg-gray-900/50 px-4 py-2 rounded-full border border-gray-200/50 dark:border-gray-800/50">
-        {breadcrumbs.map((breadcrumb, index) => (
-          <li key={breadcrumb.href} className="flex items-center group">
-            {index === 0 && (
-              <Home className="w-4 h-4 text-gray-500 dark:text-gray-400 mr-2" />
-            )}
-            {index > 0 && (
-              <ChevronRight className="w-4 h-4 mx-2 text-gray-400 dark:text-gray-500 transform transition-transform group-hover:translate-x-0.5" />
-            )}
-            {index === breadcrumbs.length - 1 ? (
-              <span className="text-gray-800 dark:text-gray-200 font-medium px-2 py-1 rounded-md bg-gray-100/50 dark:bg-gray-800/50">
-                {breadcrumb.label}
-              </span>
-            ) : (
-              <Link
-                href={breadcrumb.href}
-                className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200"
-              >
-                {breadcrumb.label}
-              </Link>
-            )}
-          </li>
-        ))}
+    <nav aria-label="Breadcrumb" className="text-[14px]">
+      <ol className="list-none p-0 inline-flex items-center">
+        {breadcrumbs.map((breadcrumb, index) => {
+          const isLast = index === breadcrumbs.length - 1;
+          return (
+            <li key={breadcrumb.href} className="flex items-center group">
+              {index === 0 && (
+                <Home className="w-[14px] h-[14px] text-neutral-400 dark:text-neutral-500 mr-2 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors" />
+              )}
+              {isLast ? (
+                <span className="text-neutral-900 dark:text-neutral-100 font-medium tracking-tight px-2.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800/50">
+                  {breadcrumb.label}
+                </span>
+              ) : (
+                <Link
+                  href={breadcrumb.href}
+                  className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors duration-200"
+                >
+                  {breadcrumb.label}
+                </Link>
+              )}
+              {!isLast && (
+                <ChevronRight className="w-[14px] h-[14px] mx-1.5 text-neutral-300 dark:text-neutral-700 font-light transform transition-transform group-hover:translate-x-0.5" strokeWidth={1.5} />
+              )}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
