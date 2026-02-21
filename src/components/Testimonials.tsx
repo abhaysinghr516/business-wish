@@ -269,7 +269,7 @@ export const MarqueeTestimonial: React.FC = () => {
     <div className="py-24 bg-white dark:bg-[#0A0A0A] overflow-hidden flex flex-col items-center">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">
-          Don't just take our word for it
+          Don&apos;t just take our word for it
         </h2>
         <p className="text-neutral-500 dark:text-neutral-400">
           Hear what the community is saying about us.
@@ -300,7 +300,7 @@ export const MarqueeTestimonial: React.FC = () => {
                 </div>
               </div>
               <p className="text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300">
-                "{item.body}"
+                &quot;{item.body}&quot;
               </p>
             </div>
           ))}
@@ -345,7 +345,7 @@ export const BentoGridTestimonial: React.FC = () => {
                 ))}
               </div>
               <p className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-900 dark:text-white leading-tight mb-8">
-                "The absolute best tool we've used all year. It seamlessly integrated into our stack and cut development time by half."
+                &quot;The absolute best tool we&apos;ve used all year. It seamlessly integrated into our stack and cut development time by half.&quot;
               </p>
             </div>
             <div className="flex items-center gap-4 relative z-10 mt-auto">
@@ -360,7 +360,7 @@ export const BentoGridTestimonial: React.FC = () => {
           {/* Standard block 1 */}
           <div className="rounded-[32px] bg-neutral-900 dark:bg-neutral-800 text-white p-8 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <p className="text-[16px] leading-[1.6] mb-8 font-medium text-white/90">
-              "We migrated perfectly in under 2 hours without downtime. Incredible."
+              &quot;We migrated perfectly in under 2 hours without downtime. Incredible.&quot;
             </p>
             <div className="mt-auto">
               <p className="font-semibold">Marcus Jin</p>
@@ -371,7 +371,7 @@ export const BentoGridTestimonial: React.FC = () => {
           {/* Standard block 2 */}
           <div className="rounded-[32px] bg-white dark:bg-neutral-900 border border-neutral-200/50 dark:border-white/5 p-8 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <p className="text-[16px] leading-[1.6] mb-8 text-neutral-700 dark:text-neutral-300">
-              "Their API is a joy to work with. Highly recommend for enterprise."
+              &quot;Their API is a joy to work with. Highly recommend for enterprise.&quot;
             </p>
             <div className="mt-auto">
               <p className="font-semibold text-neutral-900 dark:text-white">Elena Rostova</p>

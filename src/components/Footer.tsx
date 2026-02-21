@@ -194,7 +194,7 @@ export const DetailedFooter: React.FC = () => (
             <span className="text-[18px] font-semibold tracking-tight text-neutral-900 dark:text-white">Your Brand</span>
           </div>
           <p className="text-[14px] text-neutral-500 dark:text-neutral-400 max-w-xs leading-relaxed">
-            We are dedicated to pushing the boundaries of what's possible with modern web technologies, building tools for next-generation teams.
+            We are dedicated to pushing the boundaries of what&apos;s possible with modern web technologies, building tools for next-generation teams.
           </p>
         </div>
         

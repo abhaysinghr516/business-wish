@@ -242,10 +242,10 @@ export const ForumCard: React.FC = () => (
             <span className="text-xs text-neutral-400 dark:text-neutral-500">@marcusc • 4h ago</span>
           </div>
           <h3 className="text-base font-medium text-neutral-900 dark:text-white tracking-tight leading-snug mb-2">
-            What's your go-to stack for building quick SaaS MVPs in 2026?
+            What&apos;s your go-to stack for building quick SaaS MVPs in 2026?
           </h3>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-2 mb-4">
-            I'm starting a new side project and want to move as fast as possible. Curious what tools, frameworks, and databases everyone is preferring right now for speed and DX...
+            I&apos;m starting a new side project and want to move as fast as possible. Curious what tools, frameworks, and databases everyone is preferring right now for speed and DX...
           </p>
           <div className="flex items-center gap-6 text-neutral-500 dark:text-neutral-400">
             <div className="flex items-center gap-1.5 transition-colors group-hover:text-blue-500">

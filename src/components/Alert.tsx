@@ -49,7 +49,7 @@ export const DismissableAlert: React.FC = () => {
                 Connection Lost
               </p>
               <p className="text-[14px] text-red-700 dark:text-red-300/80 leading-relaxed">
-                We're having trouble connecting to the server. Please check your internet.
+                We&apos;re having trouble connecting to the server. Please check your internet.
               </p>
            </div>
         </div>

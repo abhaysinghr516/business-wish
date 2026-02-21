@@ -184,7 +184,7 @@ export const HoverFeatures = () => {
             Designed for performance.
           </h2>
           <p className="text-lg text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto">
-            We sweat the details so you don't have to. Enjoy an infrastructure that quietly powers your ambition.
+            We sweat the details so you don&apos;t have to. Enjoy an infrastructure that quietly powers your ambition.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
