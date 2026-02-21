@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://www.businesswish.tech/home.png",
+        url: "https://www.businesswish.tech/business-wish-hero.png",
         width: 1200,
         height: 630,
         alt: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     title: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
     description:
       "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
-    images: ["https://www.businesswish.tech/home.png"],
+    images: ["https://www.businesswish.tech/business-wish-hero.png"],
   },
   robots: {
     index: true,

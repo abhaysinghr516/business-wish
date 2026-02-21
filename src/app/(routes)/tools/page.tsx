@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: "https://www.businesswish.tech/tools",
     images: [
       {
-        url: "https://www.businesswish.tech/tools-preview.png",
+        url: "https://www.businesswish.tech/business-wish-tools.png",
         width: 1200,
         height: 630,
         alt: "Business Wish Developer Tools - Free Online Utilities",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Free Developer Tools | 17+ Online Utilities",
     description:
       "Professional developer tools that work completely offline. Color generators, CSS utilities, formatters, and productivity tools.",
-    images: ["https://www.businesswish.tech/tools-preview.png"],
+    images: ["https://www.businesswish.tech/business-wish-tools.png"],
   },
   alternates: {
     canonical: "https://www.businesswish.tech/tools",
