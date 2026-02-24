@@ -3,10 +3,13 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "CSS Box Shadow Generator | Visual Shadow Designer",
+  title: "Tailwind CSS Box Shadow Generator | Visual Shadow Designer",
   description:
-    "Design sophisticated CSS box shadows with real-time preview. Multiple layers, inset shadows, and optimized CSS output. Copy-paste ready code.",
+    "Design sophisticated Tailwind CSS box shadows with real-time preview. Multiple layers, inset shadows, and optimized Tailwind CSS output. Copy-paste ready code.",
   keywords: [
+    "Tailwind CSS box shadow generator",
+    "Tailwind shadow generator",
+    "Tailwind shadow designer",
     "css box shadow generator",
     "box shadow tool",
     "css shadow designer",
@@ -17,11 +20,12 @@ export const metadata: Metadata = {
     "multiple shadows",
     "css3 box shadow",
     "shadow preview tool",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/box-shadow` },
   openGraph: {
-    title: "CSS Box Shadow Generator | Visual Shadow Designer",
-    description: "Design CSS box shadows with real-time preview and copy-ready code.",
+    title: "Tailwind CSS Box Shadow Generator | Visual Shadow Designer",
+    description: "Design Tailwind CSS box shadows with real-time preview and copy-ready code.",
     url: `${baseUrl}/tools/box-shadow`,
     type: "website",
   },

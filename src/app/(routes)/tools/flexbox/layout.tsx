@@ -3,10 +3,13 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "CSS Flexbox Generator | Visual Flexbox Layout Builder",
+  title: "Tailwind CSS Flexbox Generator | Visual Flexbox Layout Builder",
   description:
-    "Master CSS Flexbox layouts with an interactive visual editor. Adjust flex properties, see changes in real-time, and copy generated CSS code.",
+    "Master Tailwind CSS Flexbox layouts with an interactive visual editor. Adjust flex properties, see changes in real-time, and copy generated Tailwind CSS code.",
   keywords: [
+    "Tailwind CSS flexbox generator",
+    "Tailwind flexbox tool",
+    "Tailwind flexbox builder",
     "flexbox generator",
     "css flexbox tool",
     "flexbox layout builder",
@@ -17,11 +20,12 @@ export const metadata: Metadata = {
     "css layout tool",
     "visual flexbox editor",
     "flexbox playground",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/flexbox` },
   openGraph: {
-    title: "CSS Flexbox Generator | Visual Layout Builder",
-    description: "Interactive CSS Flexbox editor with real-time preview and generated code.",
+    title: "Tailwind CSS Flexbox Generator | Visual Layout Builder",
+    description: "Interactive Tailwind CSS Flexbox editor with real-time preview and generated code.",
     url: `${baseUrl}/tools/flexbox`,
     type: "website",
   },

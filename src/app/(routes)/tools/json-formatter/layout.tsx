@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "JSON Formatter & Validator | Free Online JSON Tool",
+  title: "Tailwind JSON Formatter & Validator | Free Online Tool",
   description:
-    "Format, validate, and beautify JSON data with syntax highlighting and error detection. Minify JSON for production. Free online tool with no signup.",
+    "Format, validate, and beautify JSON data for Tailwind projects. Includes syntax highlighting and error detection. Minify JSON for production. Free online tool with no signup.",
   keywords: [
+    "Tailwind JSON formatter",
+    "Tailwind JSON validator",
     "json formatter",
     "json validator",
     "json beautifier",
@@ -17,10 +19,11 @@ export const metadata: Metadata = {
     "json tool",
     "json linter",
     "free json formatter",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/json-formatter` },
   openGraph: {
-    title: "JSON Formatter & Validator | Free Online Tool",
+    title: "Tailwind JSON Formatter & Validator | Free Online Tool",
     description:
       "Format, validate, and minify JSON data. Pretty-print with syntax highlighting.",
     url: `${baseUrl}/tools/json-formatter`,

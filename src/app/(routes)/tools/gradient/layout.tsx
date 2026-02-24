@@ -3,10 +3,13 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "CSS Gradient Generator | Linear & Radial Gradient Maker",
+  title: "Tailwind CSS Gradient Generator | Linear & Radial Gradient Maker",
   description:
-    "Create stunning linear, radial, and conic CSS gradients with an intuitive visual editor. Presets, export as PNG, and copy-paste ready CSS code.",
+    "Create stunning linear, radial, and conic Tailwind CSS gradients with an intuitive visual editor. Presets, export as PNG, and copy-paste ready Tailwind CSS code.",
   keywords: [
+    "Tailwind CSS gradient generator",
+    "Tailwind gradient maker",
+    "Tailwind gradient tool",
     "css gradient generator",
     "gradient maker",
     "linear gradient",
@@ -17,11 +20,12 @@ export const metadata: Metadata = {
     "gradient preview",
     "web gradient maker",
     "css3 gradient",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/gradient` },
   openGraph: {
-    title: "CSS Gradient Generator | Linear & Radial Gradient Maker",
-    description: "Create beautiful CSS gradients with live preview and copy-ready code.",
+    title: "Tailwind CSS Gradient Generator | Linear & Radial Gradient Maker",
+    description: "Create beautiful Tailwind CSS gradients with live preview and copy-ready code.",
     url: `${baseUrl}/tools/gradient`,
     type: "website",
   },

@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Contrast Checker | WCAG Accessibility Color Contrast Tool",
+  title: "Tailwind Contrast Checker | WCAG Accessibility Color Tool",
   description:
-    "Check color contrast ratios against WCAG 2.1 accessibility standards. Ensure your text is readable with real-time AA and AAA compliance scoring.",
+    "Check Tailwind color contrast ratios against WCAG 2.1 accessibility standards. Ensure your text is readable with real-time AA and AAA compliance scoring.",
   keywords: [
+    "Tailwind contrast checker",
+    "Tailwind color contrast",
     "contrast checker",
     "WCAG contrast",
     "color contrast tool",
@@ -17,10 +19,11 @@ export const metadata: Metadata = {
     "color accessibility",
     "readable text colors",
     "web accessibility tool",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/contrast-checker` },
   openGraph: {
-    title: "Contrast Checker | WCAG Accessibility Tool",
+    title: "Tailwind Contrast Checker | WCAG Accessibility Tool",
     description:
       "Check color contrast ratios against WCAG 2.1 standards. Real-time AA and AAA compliance scoring.",
     url: `${baseUrl}/tools/contrast-checker`,

@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Color Blindness Simulator | Vision Deficiency Preview Tool",
+  title: "Tailwind Color Blindness Simulator | Vision Deficiency Tool",
   description:
-    "Visualize how your designs appear to users with different types of color vision deficiency. Simulate protanopia, deuteranopia, tritanopia, and more.",
+    "Visualize how your Tailwind CSS designs appear to users with different types of color vision deficiency. Simulate protanopia, deuteranopia, tritanopia, and more.",
   keywords: [
+    "Tailwind color blindness simulator",
+    "Tailwind accessibility tool",
     "color blindness simulator",
     "vision deficiency tool",
     "protanopia simulator",
@@ -17,10 +19,11 @@ export const metadata: Metadata = {
     "inclusive design",
     "colorblind test",
     "web accessibility",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/blindness-simulator` },
   openGraph: {
-    title: "Color Blindness Simulator | Vision Deficiency Preview",
+    title: "Tailwind Color Blindness Simulator | Vision Deficiency Preview",
     description:
       "See how your designs appear to users with color vision deficiency. Free accessibility tool.",
     url: `${baseUrl}/tools/blindness-simulator`,

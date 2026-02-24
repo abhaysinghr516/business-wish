@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Word Counter | Text Analysis & Reading Time Calculator",
+  title: "Tailwind Word Counter | Text Analysis & Reading Time",
   description:
-    "Count words, characters, sentences, and paragraphs with reading time estimation. Keyword density analysis and text statistics. Free, works offline.",
+    "Count words, characters, sentences, and paragraphs for your Tailwind typography with reading time estimation. Keyword density analysis. Free, works offline.",
   keywords: [
+    "Tailwind word counter",
+    "Tailwind typography tool",
     "word counter",
     "character counter",
     "text analysis tool",
@@ -17,10 +19,11 @@ export const metadata: Metadata = {
     "sentence counter",
     "paragraph counter",
     "free word counter",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/word-counter` },
   openGraph: {
-    title: "Word Counter | Text Analysis & Reading Time",
+    title: "Tailwind Word Counter | Text Analysis & Reading Time",
     description: "Count words, characters, sentences with reading time and keyword density.",
     url: `${baseUrl}/tools/word-counter`,
     type: "website",

@@ -31,7 +31,7 @@ export function generateSEO({
     tags = [],
 }: SEOProps = {}): Metadata {
     const fullTitle = title
-        ? `${title} | Business Wish - Tailwind CSS Components`
+        ? `${title} | Business Wish`
         : "Business Wish - Free Tailwind CSS UI Components Library";
 
     const fullDescription = description ||
@@ -40,6 +40,8 @@ export function generateSEO({
     const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
 
     const allKeywords = [
+        "Businesswish",
+        "Business Wish",
         "Tailwind CSS components",
         "free Tailwind CSS components",
         "React UI components",
@@ -282,6 +284,7 @@ export function generateOrganizationSchema() {
         "@context": "https://schema.org",
         "@type": "Organization",
         name: "Business Wish",
+        alternateName: ["Businesswish", "BusinessWish.tech"],
         url: baseUrl,
         logo: {
             "@type": "ImageObject",

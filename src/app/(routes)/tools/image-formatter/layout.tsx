@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Image Format Converter | Convert PNG JPEG WebP SVG Online",
+  title: "Tailwind Image Format Converter | PNG JPEG WebP SVG",
   description:
-    "Convert between PNG, JPEG, WebP, and SVG image formats with quality settings. Batch conversion, instant preview, and free download. 100% browser-based.",
+    "Convert between PNG, JPEG, WebP, and SVG image formats for your Tailwind projects with quality settings. Batch conversion, instant preview, and free download.",
   keywords: [
+    "Tailwind image format converter",
+    "Tailwind image tool",
     "image format converter",
     "convert png to jpeg",
     "png to webp converter",
@@ -17,10 +19,11 @@ export const metadata: Metadata = {
     "batch image converter",
     "free image converter",
     "photo format converter",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/image-formatter` },
   openGraph: {
-    title: "Image Format Converter | PNG JPEG WebP Converter",
+    title: "Tailwind Image Format Converter | PNG JPEG WebP SVG",
     description: "Convert between image formats with quality settings. Free, browser-based.",
     url: `${baseUrl}/tools/image-formatter`,
     type: "website",

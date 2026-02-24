@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Image Color Picker | Extract Colors from Images",
+  title: "Tailwind Image Color Picker | Extract Colors from Images",
   description:
-    "Extract dominant colors and generate complete palettes from uploaded images. Pick any color from your photos and get HEX, RGB, HSL values.",
+    "Extract dominant colors and generate complete Tailwind CSS palettes from uploaded images. Pick any color from your photos and get HEX, RGB, HSL values.",
   keywords: [
+    "Tailwind image color picker",
+    "Tailwind color extractor",
     "image color picker",
     "extract colors from image",
     "color picker tool",
@@ -17,12 +19,13 @@ export const metadata: Metadata = {
     "color sampling",
     "image palette generator",
     "design color tool",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/image-extractor` },
   openGraph: {
-    title: "Image Color Picker | Extract Colors from Images",
+    title: "Tailwind Image Color Picker | Extract Colors from Images",
     description:
-      "Extract dominant colors and generate palettes from uploaded images.",
+      "Extract dominant colors and generate Tailwind CSS palettes from uploaded images.",
     url: `${baseUrl}/tools/image-extractor`,
     type: "website",
   },

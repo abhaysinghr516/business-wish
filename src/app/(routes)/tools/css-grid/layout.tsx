@@ -3,10 +3,14 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "CSS Grid Generator | Visual Grid Layout Builder",
+  title: "Tailwind CSS Grid Generator | Visual Grid Layout Builder",
   description:
-    "Build CSS Grid layouts visually with an interactive editor. Set rows, columns, gaps, and areas with generated code. Free, no signup required.",
+    "Build Tailwind CSS Grid layouts visually with an interactive editor. Set rows, columns, gaps, and areas with generated Tailwind code. Free, no signup required.",
   keywords: [
+    "Tailwind CSS grid generator",
+    "Tailwind grid layout builder",
+    "Tailwind grid tool",
+    "Tailwind grid area generator",
     "css grid generator",
     "grid layout builder",
     "css grid tool",
@@ -17,11 +21,12 @@ export const metadata: Metadata = {
     "visual grid builder",
     "css layout generator",
     "responsive grid tool",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/css-grid` },
   openGraph: {
-    title: "CSS Grid Generator | Visual Grid Layout Builder",
-    description: "Build CSS Grid layouts visually with interactive controls and generated code.",
+    title: "Tailwind CSS Grid Generator | Visual Grid Layout Builder",
+    description: "Build Tailwind CSS Grid layouts visually with interactive controls and generated code.",
     url: `${baseUrl}/tools/css-grid`,
     type: "website",
   },

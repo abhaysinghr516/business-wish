@@ -3,10 +3,13 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Color Palette Generator | Free Online Color Scheme Tool",
+  title: "Tailwind Color Palette Generator | Free Online Color Scheme Tool",
   description:
-    "Generate harmonious color palettes using complementary, triadic, analogous, monochromatic, and tetradic color schemes. Free online tool with export options.",
+    "Generate harmonious Tailwind CSS color palettes using complementary, triadic, analogous, monochromatic, and tetradic color schemes. Free online tool with export options.",
   keywords: [
+    "Tailwind color palette generator",
+    "Tailwind color scheme generator",
+    "Tailwind colors",
     "color palette generator",
     "color scheme generator",
     "complementary colors",
@@ -18,12 +21,13 @@ export const metadata: Metadata = {
     "web design colors",
     "CSS colors",
     "color harmony",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/palette-generator` },
   openGraph: {
-    title: "Color Palette Generator | Free Online Color Scheme Tool",
+    title: "Tailwind Color Palette Generator | Free Online Color Scheme Tool",
     description:
-      "Generate harmonious color palettes using color theory. Complementary, triadic, analogous, and more.",
+      "Generate harmonious Tailwind color palettes using color theory. Complementary, triadic, analogous, and more.",
     url: `${baseUrl}/tools/palette-generator`,
     type: "website",
   },

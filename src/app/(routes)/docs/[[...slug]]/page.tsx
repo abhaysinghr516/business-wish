@@ -125,13 +125,19 @@ export async function generateMetadata({
     ...generateComponentKeywords(frontmatter.title),
   ];
 
+  // Optimize title based on path (highest CTR optimization)
+  const isComponent = pathName.includes("components");
+  const optimizedTitle = isComponent 
+      ? `Tailwind CSS ${frontmatter.title} Component` 
+      : `${frontmatter.title} - Tailwind CSS`;
+
   return generateSEO({
-    title: frontmatter.title,
+    title: optimizedTitle,
     description: frontmatter.description,
     keywords,
     url: `/docs/${pathName}`,
     type: "article",
-    section: pathName.includes("components") ? "Components" : "Documentation",
+    section: isComponent ? "Components" : "Documentation",
     tags: keywords.slice(0, 10), // Limit tags for better performance
   });
 }

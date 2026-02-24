@@ -17,27 +17,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  generateWebsiteSchema,
-  generateSoftwareApplicationSchema,
-} from "@/lib/seo";
-
-const websiteSchema = generateWebsiteSchema();
-const softwareSchema = generateSoftwareApplicationSchema();
 
 export default function HomePage() {
   return (
     <>
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
-
       {/* Hero Section */}
       <section className="pt-24 pb-20 sm:pt-32 sm:pb-28 px-4 sm:px-6 bg-white dark:bg-stone-950">
         <div className="max-w-4xl mx-auto">
@@ -51,9 +34,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-stone-900 dark:text-stone-100 mb-6 leading-[1.08] tracking-tight">
-            The developer toolkit
-            <br />
-            you always wanted
+            Business Wish: Free Tailwind CSS Components & Tools
           </h1>
 
           <p className="text-lg sm:text-xl text-stone-500 dark:text-stone-400 mb-10 max-w-2xl leading-relaxed">

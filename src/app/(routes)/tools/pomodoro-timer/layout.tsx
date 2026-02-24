@@ -3,10 +3,12 @@ import { Metadata } from "next";
 const baseUrl = "https://www.businesswish.tech";
 
 export const metadata: Metadata = {
-  title: "Pomodoro Timer | Free Focus & Productivity Timer",
+  title: "Tailwind Pomodoro Timer | Free Focus & Productivity Tool",
   description:
-    "Boost productivity with the Pomodoro technique. Customizable work and break intervals, session tracking, and focus statistics. Works offline in your browser.",
+    "Boost Tailwind development productivity with the Pomodoro technique. Customizable work and break intervals, session tracking, and focus statistics. Works offline.",
   keywords: [
+    "Tailwind pomodoro timer",
+    "Tailwind productivity timer",
     "pomodoro timer",
     "focus timer",
     "productivity timer",
@@ -17,10 +19,11 @@ export const metadata: Metadata = {
     "free pomodoro",
     "online timer",
     "focus tracker",
+    "Businesswish"
   ],
   alternates: { canonical: `${baseUrl}/tools/pomodoro-timer` },
   openGraph: {
-    title: "Pomodoro Timer | Free Focus & Productivity Timer",
+    title: "Tailwind Pomodoro Timer | Free Focus & Productivity Tool",
     description: "Boost productivity with customizable Pomodoro timer. Free, works offline.",
     url: `${baseUrl}/tools/pomodoro-timer`,
     type: "website",
