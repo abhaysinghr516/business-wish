@@ -52,6 +52,7 @@
     "react-scrollspy": "^3.4.3",
     "react-syntax-highlighter": "^15.5.0",
     "react-toastify": "^10.0.5",
+    "recharts": "^3.7.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-code-titles": "^1.2.0",
     "rehype-prism-plus": "^2.0.0",

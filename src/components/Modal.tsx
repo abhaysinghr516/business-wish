@@ -1,25 +1,22 @@
----
-title: Modal
-description: Elegant, non-disruptive dialogs that grab user attention for priority tasks or important alerts, featuring flawless animations.
----
-
-### Basic Modal
-<Preview>
-<BasicModal />
-</Preview>
-
-```jsx showLineNumbers
+"use client";
 import React, { useState, useEffect } from "react";
+import { X, CheckCircle2, AlertTriangle, Info, ArrowRight } from "lucide-react";
 
-const useBodyScrollLock = (isOpen) => {
+// Hook to prevent body scroll when modal is open
+const useBodyScrollLock = (isOpen: boolean) => {
   useEffect(() => {
-    if (isOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "unset";
-    return () => { document.body.style.overflow = "unset"; };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [isOpen]);
 };
 
-const BasicModal = () => {
+export const BasicModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   useBodyScrollLock(isOpen);
 
@@ -33,7 +30,7 @@ const BasicModal = () => {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0">
           <div 
             className="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm transition-opacity" 
             onClick={() => setIsOpen(false)} 
@@ -74,23 +71,9 @@ const BasicModal = () => {
   );
 };
 
-export default BasicModal;
-```
-
-### Glass Alert Modal
-<Preview>
-<GlassAlertModal />
-</Preview>
-
-```jsx showLineNumbers
-import React, { useState, useEffect } from "react";
-import { AlertTriangle } from "lucide-react";
-
-// Hook omitted for brevity
-
-const GlassAlertModal = () => {
+export const GlassAlertModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // useBodyScrollLock(isOpen);
+  useBodyScrollLock(isOpen);
 
   return (
     <>
@@ -146,23 +129,9 @@ const GlassAlertModal = () => {
   );
 };
 
-export default GlassAlertModal;
-```
-
-### Rich Content Modal
-<Preview>
-<RichContentModal />
-</Preview>
-
-```jsx showLineNumbers
-import React, { useState, useEffect } from "react";
-import { X, Info } from "lucide-react";
-
-// Hook omitted for brevity
-
-const RichContentModal = () => {
+export const RichContentModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // useBodyScrollLock(isOpen);
+  useBodyScrollLock(isOpen);
 
   return (
     <>
@@ -243,23 +212,9 @@ const RichContentModal = () => {
   );
 };
 
-export default RichContentModal;
-```
-
-### Success Confirmation Modal
-<Preview>
-<SuccessModal />
-</Preview>
-
-```jsx showLineNumbers
-import React, { useState, useEffect } from "react";
-import { CheckCircle2, ArrowRight } from "lucide-react";
-
-// Hook omitted for brevity
-
-const SuccessModal = () => {
+export const SuccessModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // useBodyScrollLock(isOpen);
+  useBodyScrollLock(isOpen);
 
   return (
     <>
@@ -301,6 +256,3 @@ const SuccessModal = () => {
     </>
   );
 };
-
-export default SuccessModal;
-```

@@ -90,8 +90,20 @@ export const ROUTES: EachRoute[] = [
                 href: "/hero",
             },
             {
+                title: "Input",
+                href: "/input",
+            },
+            {
+                title: "Line Chart",
+                href: "/line-chart",
+            },
+            {
                 title: "Loader",
                 href: "/loader",
+            },
+            {
+                title: "Modal",
+                href: "/modal",
             },
             {
                 title: "Pagination",
@@ -126,8 +138,16 @@ export const ROUTES: EachRoute[] = [
                 href: "/testimonial",
             },
             {
+                title: "Toast",
+                href: "/toast",
+            },
+            {
                 title: "Tooltip",
                 href: "/tooltip",
+            },
+            {
+                title: "Tree View",
+                href: "/tree-view",
             },
         ]
     },

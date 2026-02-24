@@ -1,0 +1,292 @@
+---
+title: Toast
+description: Premium toast notifications that bring vital information to the user's attention without disrupting their workflow.
+---
+
+### Simple Elegant Toast
+<Preview>
+<SimpleToast />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState, useEffect } from "react";
+import { X } from "lucide-react";
+
+// Helper hook for auto-dismiss
+const useAutoDismiss = (isOpen, setIsOpen, duration = 4000) => {
+  useEffect(() => {
+    let timeoutId;
+    if (isOpen) {
+      timeoutId = setTimeout(() => setIsOpen(false), duration);
+    }
+    return () => { if (timeoutId) clearTimeout(timeoutId); };
+  }, [isOpen, setIsOpen, duration]);
+};
+
+const SimpleToast = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  useAutoDismiss(isOpen, setIsOpen);
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          setIsOpen(false);
+          setTimeout(() => setIsOpen(true), 100);
+        }}
+        className="px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-[14px] font-medium rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors shadow-sm"
+      >
+        Show Simple Toast
+      </button>
+
+      {isOpen && (
+        <div className="fixed bottom-6 right-6 z-50 animate-[toast-slide-up_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+          <div className="flex items-center gap-3 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-4 py-3 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[300px]">
+            <span className="text-[14px] font-medium tracking-tight">Changes saved successfully</span>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="ml-auto p-1 text-neutral-400 hover:text-white dark:text-neutral-500 dark:hover:text-neutral-900 transition-colors rounded-full"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+      <style>{`
+        @keyframes toast-slide-up {
+          0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default SimpleToast;
+```
+
+### Status Icon Toasts
+<Preview>
+<StatusToast />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState, useEffect } from "react";
+import { CheckCircle2, AlertCircle, X } from "lucide-react";
+
+// Hook omitted for brevity
+
+const StatusToast = () => {
+  const [toastType, setToastType] = useState(null);
+  useAutoDismiss(!!toastType, () => setToastType(null));
+
+  return (
+    <div className="flex gap-3">
+      <button
+        onClick={() => {
+          setToastType(null);
+          setTimeout(() => setToastType("success"), 100);
+        }}
+        className="px-4 py-2 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 text-[14px] font-medium rounded-xl hover:bg-green-100 dark:hover:bg-green-500/20 transition-colors"
+      >
+        Success Toast
+      </button>
+      <button
+        onClick={() => {
+          setToastType(null);
+          setTimeout(() => setToastType("error"), 100);
+        }}
+        className="px-4 py-2 bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 text-[14px] font-medium rounded-xl hover:bg-red-100 dark:hover:bg-red-500/20 transition-colors"
+      >
+        Error Toast
+      </button>
+
+      {toastType === "success" && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 animate-[toast-slide-down_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+          <div className="flex items-center gap-3 bg-white dark:bg-neutral-900 border border-neutral-200/50 dark:border-white/10 px-4 py-3 rounded-2xl shadow-xl min-w-[320px]">
+            <div className="w-8 h-8 rounded-full bg-green-50 dark:bg-green-500/10 flex items-center justify-center flex-shrink-0">
+              <CheckCircle2 className="w-5 h-5 text-green-500" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[14px] font-semibold text-neutral-900 dark:text-white">Profile Updated</span>
+              <span className="text-[13px] text-neutral-500">Your information has been saved.</span>
+            </div>
+            <button
+              onClick={() => setToastType(null)}
+              className="ml-auto p-1.5 text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors rounded-full"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {toastType === "error" && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 animate-[toast-slide-down_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+          <div className="flex items-center gap-3 bg-white dark:bg-neutral-900 border border-neutral-200/50 dark:border-white/10 px-4 py-3 rounded-2xl shadow-xl min-w-[320px]">
+             <div className="w-8 h-8 rounded-full bg-red-50 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0">
+              <AlertCircle className="w-5 h-5 text-red-500" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[14px] font-semibold text-neutral-900 dark:text-white">Connection Error</span>
+              <span className="text-[13px] text-neutral-500">Failed to sync with the server.</span>
+            </div>
+            <button
+              onClick={() => setToastType(null)}
+              className="ml-auto p-1.5 text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors rounded-full"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+      <style>{`
+        @keyframes toast-slide-down {
+          0% { opacity: 0; transform: translate(-50%, -20px) scale(0.95); }
+          100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default StatusToast;
+```
+
+### Action Toast
+<Preview>
+<ActionToast />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState, useEffect } from "react";
+import { Info, X } from "lucide-react";
+
+// Hook omitted for brevity
+
+const ActionToast = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  useAutoDismiss(isOpen, setIsOpen, 6000);
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          setIsOpen(false);
+          setTimeout(() => setIsOpen(true), 100);
+        }}
+        className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white text-[14px] font-medium rounded-xl hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors shadow-sm"
+      >
+        Archive Project
+      </button>
+
+      {isOpen && (
+        <div className="fixed bottom-6 left-6 z-50 animate-[toast-slide-up_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+          <div className="flex items-center gap-4 bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-white/10 p-3 pl-4 rounded-[18px] shadow-2xl min-w-[340px]">
+            <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+              <Info className="w-5 h-5 text-blue-500" />
+            </div>
+            <div className="flex flex-col mr-2">
+              <span className="text-[14px] font-bold text-neutral-900 dark:text-white leading-tight">Project Archived</span>
+              <span className="text-[13px] text-neutral-500">Moved to archive folder</span>
+            </div>
+            <div className="ml-auto flex items-center gap-2 border-l border-neutral-200/60 dark:border-white/10 pl-4">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-[13px] font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+              >
+                Undo
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors rounded-full"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ActionToast;
+```
+
+### Promise Toast
+<Preview>
+<PromiseToast />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { CheckCircle2, Loader2 } from "lucide-react";
+
+const PromiseToast = () => {
+  const [state, setState] = useState("idle");
+
+  const startProcess = () => {
+    setState("loading");
+    setTimeout(() => {
+      setState("success");
+      setTimeout(() => {
+        setState("idle");
+      }, 3000);
+    }, 2000);
+  };
+
+  return (
+    <>
+      <button
+        onClick={startProcess}
+        disabled={state !== "idle"}
+        className="px-4 py-2 bg-blue-600 text-white text-[14px] font-medium rounded-xl hover:bg-blue-700 transition-colors shadow-sm disabled:opacity-50"
+      >
+        Deploy Application
+      </button>
+
+      {state !== "idle" && (
+        <div className="fixed bottom-6 right-6 z-50 animate-[toast-slide-up_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+          <div className="flex items-center gap-3 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-white dark:border-white/10 px-5 py-3.5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] min-w-[280px] overflow-hidden relative">
+            {state === "loading" && (
+               <div className="absolute bottom-0 left-0 h-[2px] bg-blue-500 w-full animate-[progress_2s_ease-in-out]" />
+            )}
+
+            {state === "loading" ? (
+              <>
+                <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />
+                <span className="text-[14px] font-medium text-neutral-800 dark:text-neutral-200">Deploying to production...</span>
+              </>
+            ) : (
+              <>
+                 <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center animate-[pop_0.3s_ease-out]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                </div>
+                <span className="text-[14px] font-medium text-neutral-900 dark:text-white animate-[fade-in_0.3s_ease-out]">Successfully deployed!</span>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+      <style>{`
+        @keyframes progress {
+          0% { transform: scaleX(0); transform-origin: left; }
+          100% { transform: scaleX(1); transform-origin: left; }
+        }
+        @keyframes pop {
+          0% { transform: scale(0.5); opacity: 0; }
+          70% { transform: scale(1.1); }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fade-in {
+          0% { opacity: 0; transform: translateX(5px); }
+          100% { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default PromiseToast;
+```

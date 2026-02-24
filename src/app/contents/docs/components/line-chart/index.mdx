@@ -1,0 +1,205 @@
+---
+title: Line Chart
+description: Beautiful, responsive line chart variants perfect for dashboards, displaying analytics and metrics. Powered by Recharts.
+---
+
+### Installation
+This component requires the `recharts` and `lucide-react` libraries.
+
+```bash
+npm install recharts lucide-react
+```
+
+### Basic Line Chart
+A clean, minimal line chart ideal for revenue or standard metric overviews. It features a custom tooltip and iOS-style curved lines.
+
+<Preview>
+<BasicLineChart />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { TrendingUp } from "lucide-react";
+
+// Data omitted for brevity, expecting { name: string, value: number }[]
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border border-neutral-200 dark:border-white/10 p-3 rounded-xl shadow-xl shadow-neutral-200/50 dark:shadow-black/50">
+        <p className="text-[12px] font-semibold text-neutral-500 mb-1 uppercase tracking-tight">{label}</p>
+        {payload.map((entry: any, index: number) => (
+          <div key={index} className="flex items-center gap-3 mt-1">
+             <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.color }} />
+             <span className="text-[14px] font-medium text-neutral-600 dark:text-neutral-400">{entry.name}:</span>
+             <span className="text-[14px] font-bold text-neutral-900 dark:text-white ml-auto">
+               ${entry.value.toLocaleString()}
+             </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
+const BasicLineChartComponent = ({ data, height = 300, color = "#007AFF" }) => {
+  return (
+    <div className="w-full bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-white/10 rounded-3xl p-6 shadow-sm">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-white tracking-tight">Revenue Overview</h3>
+          <p className="text-[13px] text-neutral-500 mt-1">Monthly performance</p>
+        </div>
+        <div className="flex items-center gap-2 bg-green-50 dark:bg-green-500/10 px-3 py-1.5 rounded-full">
+          <TrendingUp className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
+          <span className="text-[12px] font-semibold text-green-600 dark:text-green-400">+24.5%</span>
+        </div>
+      </div>
+      
+      <div style={{ height: height, width: '100%' }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E5EA" strokeOpacity={0.5} />
+            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#8E8E93' }} dy={10} />
+            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#8E8E93' }} tickFormatter={(value) => `$${value/1000}k`} />
+            <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#E5E5EA', strokeWidth: 1, strokeDasharray: '4 4' }} />
+            <Line 
+              type="monotone" dataKey="value" name="Revenue" stroke={color} strokeWidth={3} dot={false}
+              activeDot={{ r: 6, fill: color, stroke: '#fff', strokeWidth: 3 }} animationDuration={1500}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export default BasicLineChartComponent;
+```
+
+### Gradient Area Chart
+A stunning, ultra-premium dark mode graph with a glowing background orb, multi-metric comparison, and a beautiful gradient area fill beneath the primary line. 
+
+<Preview>
+<GradientAreaChart />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Activity } from "lucide-react";
+
+const GradientAreaChartComponent = ({ data, height = 350 }) => {
+  return (
+    <div className="w-full bg-neutral-950 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-700" />
+      
+      <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <div>
+          <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2">
+            <Activity className="w-5 h-5 text-blue-400" />
+            Cash Flow Analytics
+          </h3>
+          <p className="text-[14px] text-neutral-400 mt-1">Income vs Expenses over the past week</p>
+        </div>
+        <div className="flex gap-4">
+           {/* Legend markup omitted for brevity */}
+        </div>
+      </div>
+      
+      <div style={{ height: height, width: '100%' }} className="relative z-10">
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+            <defs>
+              <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3}/>
+                <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ffffff" strokeOpacity={0.05} />
+            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#737373' }} dy={15} />
+            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#737373' }} tickFormatter={(value) => `$${value/1000}k`} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: '#ffffff', opacity: 0.05 }} />
+            
+            <Area type="monotone" dataKey="income" stroke="none" fillOpacity={1} fill="url(#colorIncome)" />
+            <Line 
+              type="monotone" dataKey="income" name="Income" stroke="#3B82F6" strokeWidth={3} dot={false}
+              activeDot={{ r: 6, fill: "#3B82F6", stroke: '#0a0a0a', strokeWidth: 4 }} animationDuration={2000}
+            />
+            <Line 
+              type="monotone" dataKey="expenses" name="Expenses" stroke="#6366f1" strokeWidth={2}
+              strokeOpacity={0.6} strokeDasharray="5 5" dot={false}
+              activeDot={{ r: 4, fill: "#6366f1", stroke: '#0a0a0a', strokeWidth: 2 }} animationDuration={2000} animationBegin={500}
+            />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export default GradientAreaChartComponent;
+```
+
+### Sparkline Widget
+A compact, highly energetic widget-style chart. Ideal for dense dashboards where space is at a premium, featuring a glowing hover state.
+
+<Preview>
+<SparklineWidget />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { LineChart, Line, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { TrendingDown } from "lucide-react";
+
+const SparklineWidgetComponent = ({ data, color = "#ff3b30" }) => {
+  const latestValue = data[data.length - 1].value;
+  const previousValue = data[data.length - 2].value;
+  const isUp = latestValue > previousValue;
+
+  return (
+    <div className="w-full max-w-sm bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+      <div className="flex justify-between items-start mb-6">
+        <div>
+          <p className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-1">Metric Title</p>
+          <div className="flex items-baseline gap-2">
+            <h4 className="text-[28px] font-bold text-neutral-900 dark:text-white leading-none tracking-tighter">
+              {latestValue}
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div className="h-20 w-full relative">
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none filter blur-md">
+           <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <Line type="monotone" dataKey="value" stroke={color} strokeWidth={4} dot={false} isAnimationActive={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data}>
+            <YAxis domain={['dataMin - 10', 'dataMax + 10']} hide />
+            <Tooltip 
+              contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', fontSize: '12px', fontWeight: 600 }}
+              labelStyle={{ display: 'none' }}
+              cursor={{ stroke: '#e5e5e5', strokeWidth: 1 }}
+            />
+            <Line 
+              type="monotone" dataKey="value" stroke={color} strokeWidth={2.5} dot={false}
+              activeDot={{ r: 5, fill: '#fff', stroke: color, strokeWidth: 2 }} animationDuration={1000}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export default SparklineWidgetComponent;
+```

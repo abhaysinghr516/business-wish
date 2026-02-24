@@ -40,7 +40,11 @@ import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSear
 import { CenterContentHeroSection, GradientHeroSection, MinimalTypographyHero, SideImageHeroSection } from "@/components/Hero";
 import { Loaders } from "@/components/Loader";
 import { BasicPagination, PaginationwithDots, PaginationwithIcons, PaginationwithInputField, MinimalPagination, RoundedGhostPagination } from "@/components/Pagination";
+import { BasicModal, GlassAlertModal, RichContentModal, SuccessModal } from "@/components/Modal";
 import { BasicSettingsPage, SettingsPagewithTabs } from "@/components/Settings";
+import { SimpleToast, StatusToast, ActionToast, PromiseToast } from "@/components/Toast";
+import { BasicTreeView, FinderTreeView, LineTreeView, SettingsTreeView } from "@/components/TreeView";
+import { BasicLineChart, GradientAreaChart, SparklineWidget } from "@/components/LineChart";
 import { BasicSidebar, CollapseSidebar, SidebarwithIcons, FloatingIslandSidebar, ExpandableNestedSidebar } from "@/components/Sidebar";
 import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfile, SkeletonwithLoadedContent, MinimalistTableSkeleton, DashboardWidgetSkeleton } from "@/components/Skeleton";
 import { BasicTabs, TabswithBox, TabswithUnderline, VerticalMinimalTabs } from "@/components/Tabs";
@@ -223,6 +227,21 @@ const components = {
     CircularProgress,
     IndeterminateProgress,
     SegmentsProgress,
+    BasicModal,
+    GlassAlertModal,
+    RichContentModal,
+    SuccessModal,
+    SimpleToast,
+    StatusToast,
+    ActionToast,
+    PromiseToast,
+    BasicTreeView,
+    FinderTreeView,
+    LineTreeView,
+    SettingsTreeView,
+    BasicLineChart,
+    GradientAreaChart,
+    SparklineWidget,
     // Motion components
     MotionPreview,
     TextRevealDemo,
