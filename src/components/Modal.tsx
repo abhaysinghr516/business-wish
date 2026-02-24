@@ -240,7 +240,7 @@ export const SuccessModal: React.FC = () => {
                 Payment Successful!
               </h3>
               <p className="text-[14px] text-neutral-500 dark:text-neutral-400 leading-relaxed mb-8">
-                Your order #4829 has been processed. We've sent a receipt to your email address.
+                Your order #4829 has been processed. We&apos;ve sent a receipt to your email address.
               </p>
               <button
                 onClick={() => setIsOpen(false)}
