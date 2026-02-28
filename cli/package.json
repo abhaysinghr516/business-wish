@@ -1,5 +1,5 @@
 {
-    "name": "business-wish",
+    "name": "@abhaysinghr516/business-wish",
     "version": "1.0.0",
     "description": "CLI to add Business Wish Tailwind CSS components to your project",
     "type": "module",
