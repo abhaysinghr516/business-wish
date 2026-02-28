@@ -70,7 +70,7 @@ export const ROUTES: EachRoute[] = [
                 href: "/dropdown",
             },
             {
-                title: "Featues",
+                title: "Features",
                 href: "/features",
             },
             {

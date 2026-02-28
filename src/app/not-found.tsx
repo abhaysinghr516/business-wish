@@ -34,13 +34,13 @@ export default function NotFound() {
 
       <div className="flex py-20 text-base items-center justify-center min-h-[60vh]">
         <div className="max-w-md text-center">
-          <h1 className="m-0 text-9xl font-bold text-gray-800 dark:text-gray-200">
+          <h1 className="m-0 text-9xl font-bold text-stone-800 dark:text-stone-200">
             404
           </h1>
-          <h2 className="m-0 mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-400">
+          <h2 className="m-0 mt-4 text-2xl font-semibold text-stone-600 dark:text-stone-400">
             Page not found
           </h2>
-          <p className="m-0 mt-2 text-gray-500 dark:text-gray-400">
+          <p className="m-0 mt-2 text-stone-500 dark:text-stone-400">
             The page you are looking for might have been removed, had its name
             changed or is temporarily unavailable.
           </p>
@@ -48,26 +48,26 @@ export default function NotFound() {
           <div className="mt-8 space-y-4">
             <Link
               href="/"
-              className="inline-block rounded-md bg-black dark:bg-gray-50 px-6 py-3 text-sm font-semibold text-white dark:text-gray-800 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+              className="inline-block rounded-md bg-stone-900 dark:bg-stone-100 px-6 py-3 text-sm font-semibold text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
             >
               Go Back Home
             </Link>
 
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-sm text-stone-500 dark:text-stone-400">
               Or explore our popular sections:
             </div>
 
             <div className="flex flex-wrap gap-2 justify-center">
               <Link
                 href="/docs/components/accordion"
-                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm text-stone-900 dark:text-stone-100 hover:underline font-medium"
               >
                 Accordion Components
               </Link>
-              <span className="text-gray-300">•</span>
+              <span className="text-stone-300 dark:text-stone-700">•</span>
               <Link
                 href="/docs/components/button"
-                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm text-stone-900 dark:text-stone-100 hover:underline font-medium"
               >
                 Button Components
               </Link>

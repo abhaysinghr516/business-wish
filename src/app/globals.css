@@ -391,7 +391,11 @@ pre>code {
   background-color: transparent !important;
 }
 
-* {
+/* Theme transition — scoped to avoid unintended animations on third-party elements */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;

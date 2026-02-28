@@ -166,8 +166,6 @@ export default function RootLayout({
           }}
         />
 
-        {/* Preload critical resources */}
-        <link rel="preload" href="/logo.webp" as="image" type="image/webp" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -189,7 +187,7 @@ export default function RootLayout({
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="light"
+            theme="colored"
           />
         </ThemeProvider>
         <GoogleAnalytics gaId="G-Y0FKJQ2T12" />
