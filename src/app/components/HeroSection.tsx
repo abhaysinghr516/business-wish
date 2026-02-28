@@ -58,8 +58,8 @@ export default function HeroSection() {
           animate="visible"
           custom={2}
         >
-          50+ copy-paste Tailwind components, 13 motion primitives, and 17
-          browser-based dev tools. No installs. No config. No accounts.
+          50+ Tailwind components via CLI or copy-paste, 13 motion primitives,
+          and 17 browser-based dev tools. No config. No accounts.
         </motion.p>
 
         <motion.div
@@ -131,15 +131,15 @@ export default function HeroSection() {
               <span className="text-stone-400 dark:text-stone-600 select-none">
                 2{" "}
               </span>
-              <span className="text-stone-900 dark:text-stone-200">Copy</span>{" "}
-              the code with one click
+              <span className="text-stone-900 dark:text-stone-200">Install</span>{" "}
+              via CLI or <span className="text-stone-900 dark:text-stone-200">Copy</span> the code
             </p>
             <p>
               <span className="text-stone-400 dark:text-stone-600 select-none">
                 3{" "}
               </span>
-              <span className="text-stone-900 dark:text-stone-200">Paste</span>{" "}
-              into your project and ship
+              <span className="text-stone-900 dark:text-stone-200">Ship</span>{" "}
+              your project faster
             </p>
           </div>
         </motion.div>

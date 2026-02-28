@@ -7,6 +7,9 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Terminal,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Typography } from "./typography";
 import { cn } from "@/lib/utils";
@@ -32,6 +35,7 @@ export function DocsPageContent({
   content,
   tocs,
   pathname,
+  slug,
 }: DocsPageContentProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
@@ -42,6 +46,15 @@ export function DocsPageContent({
   const isComponent = pathname.includes("components/");
   const isMotion = pathname.includes("motion/");
   const hasToc = tocs && tocs.length > 0;
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyCli = () => {
+    const componentName = slug[slug.length - 1];
+    navigator.clipboard.writeText(`npx @abhaysinghr516/business-wish add ${componentName}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   // ── Scroll-spy ───────────────────────────────────────────────────
   const handleIntersect = useCallback(
@@ -203,6 +216,35 @@ export function DocsPageContent({
         {/* Main prose */}
         <div className="min-w-0 px-4 sm:px-6 py-8 sm:py-12">
           <div className="max-w-4xl min-w-0 docs-content">
+            {isComponent && (
+              <div className="mb-8 p-5 sm:p-6 rounded-xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-900/50 flex flex-col gap-4 shadow-sm">
+                <div>
+                  <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                    <Terminal className="h-4 w-4" /> Install via CLI
+                  </h3>
+                  <p className="text-[14px] text-neutral-500 dark:text-neutral-400 mt-1">
+                    Run this command to automatically add the component and its dependencies to your project.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between bg-neutral-50 dark:bg-black/50 border border-neutral-200 dark:border-white/5 rounded-lg p-2 sm:p-3 relative group">
+                  <div className="overflow-x-auto flex-1 pb-1 sm:pb-0 scrollbar-hide">
+                    <code className="text-[13px] sm:text-[14px] font-mono text-neutral-800 dark:text-neutral-300 whitespace-nowrap px-2">
+                      <span className="text-purple-600 dark:text-purple-400">npx</span> @abhaysinghr516/business-wish add {slug[slug.length - 1]}
+                    </code>
+                  </div>
+                  <button
+                    onClick={handleCopyCli}
+                    className="ml-4 flex-shrink-0 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors text-neutral-500 dark:text-neutral-400"
+                    aria-label="Copy command"
+                  >
+                    {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                  </button>
+                </div>
+                <div className="text-[13px] text-neutral-500 dark:text-neutral-400 pt-2 border-t border-neutral-100 dark:border-white/5 mt-1">
+                  New to the CLI? Run <code className="bg-neutral-100 dark:bg-white/10 px-1 py-0.5 rounded text-neutral-700 dark:text-neutral-300 text-[12px]">npx @abhaysinghr516/business-wish init</code> first to initialize your project.
+                </div>
+              </div>
+            )}
             <Typography>
               <div className="prose prose-neutral dark:prose-invert max-w-none prose-sm sm:prose-base">
                 {content}

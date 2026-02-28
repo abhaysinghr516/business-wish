@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   Copy,
+  Terminal,
   Github,
   Wrench,
   Shield,
@@ -273,13 +274,16 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-200 dark:bg-stone-800 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800">
             <div className="bg-white dark:bg-stone-950 p-6 sm:p-8">
-              <Copy className="h-5 w-5 text-stone-400 dark:text-stone-500 mb-4" />
+              <div className="flex items-center gap-3 mb-4">
+                <Terminal className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+                <span className="text-stone-300 dark:text-stone-700">|</span>
+                <Copy className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+              </div>
               <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">
-                Copy & Paste
+                CLI or Copy & Paste
               </h3>
               <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                No package to install. No dependencies to manage. Just grab the
-                code and go.
+                Use our CLI to add components instantly, or simply grab the code and go. No dependencies to manage either way.
               </p>
             </div>
 

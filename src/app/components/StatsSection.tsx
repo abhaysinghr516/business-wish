@@ -59,7 +59,7 @@ const stats = [
   { value: 50, suffix: "+", label: "UI Components" },
   { value: 13, suffix: "", label: "Motion Primitives" },
   { value: 17, suffix: "", label: "Browser Tools" },
-  { value: 0, suffix: "", label: "Dependencies" },
+  { value: 0, suffix: "", label: "Lock-in" },
 ];
 
 export default function StatsSection() {
