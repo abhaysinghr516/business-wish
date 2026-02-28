@@ -1,0 +1,27 @@
+{
+    "name": "business-wish",
+    "version": "1.0.0",
+    "description": "CLI to add Business Wish Tailwind CSS components to your project",
+    "type": "module",
+    "bin": {
+        "business-wish": "./bin/index.mjs"
+    },
+    "keywords": [
+        "tailwind",
+        "components",
+        "ui",
+        "cli",
+        "tailwindcss",
+        "react",
+        "nextjs"
+    ],
+    "author": "Abhay Singh Rathore",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/abhaysinghr516/business-wish"
+    },
+    "engines": {
+        "node": ">=18"
+    }
+}
