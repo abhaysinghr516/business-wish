@@ -1,3 +1,5 @@
+import { Upload } from "lucide-react";
+
 interface ButtonProps {
   variant?: "primary" | "secondary" | "outlined" | "ghost" | "glass" | "danger" | "icon";
   size?: "small" | "regular" | "large";
