@@ -83,6 +83,72 @@ function detectDependencies(code) {
 }
 
 /**
+ * Known lucide-react icon names used across components.
+ */
+const LUCIDE_ICONS = [
+    "AlertTriangle", "ArrowRight", "Bath", "Bed", "Bell", "Building2",
+    "Car", "Check", "CheckCircle", "ChevronDown", "ChevronLeft",
+    "ChevronLeftIcon", "ChevronRight", "ChevronRightIcon", "CircleAlert",
+    "Clock", "Cookie", "DollarSign", "Download", "Edit", "Eye",
+    "FastForward", "Heart", "Headphones", "Home", "Info", "LogOut",
+    "Mail", "MapPin", "Maximize2", "MessageCircle", "Minus", "Play",
+    "Plus", "Rewind", "Search", "Settings", "Share2", "ShoppingCart",
+    "Star", "Upload", "User", "Users", "X", "Palette",
+];
+
+/**
+ * Auto-detect and prepend missing imports so component files are self-contained.
+ */
+function addMissingImports(code) {
+    const lines = [];
+    const hasReactImport = /import\s+React/.test(code) || /from\s+["']react["']/.test(code);
+    const hasLucideImport = /from\s+["']lucide-react["']/.test(code);
+    const hasUseClient = /^["']use client["']/.test(code.trim());
+
+    // Detect which lucide icons are used but not imported
+    const usedIcons = LUCIDE_ICONS.filter((icon) => {
+        const usageRegex = new RegExp(`<${icon}[\\s/>]|${icon}\\s*className`);
+        return usageRegex.test(code);
+    });
+
+    // Detect React hooks usage
+    const usesHooks = /\b(useState|useEffect|useRef|useCallback|useMemo)\b/.test(code);
+    const usesJSX = /<[A-Z]/.test(code) || /React\.FC/.test(code);
+
+    // Add "use client" if it uses hooks but doesn't have it
+    if (usesHooks && !hasUseClient) {
+        lines.push('"use client";');
+        lines.push("");
+    }
+
+    // Add React import if needed
+    if (!hasReactImport && (usesJSX || usesHooks)) {
+        const hooks = ["useState", "useEffect", "useRef", "useCallback", "useMemo"]
+            .filter((h) => new RegExp(`\\b${h}\\b`).test(code));
+        if (hooks.length > 0) {
+            lines.push(`import React, { ${hooks.join(", ")} } from "react";`);
+        } else {
+            lines.push('import React from "react";');
+        }
+    }
+
+    // Add lucide-react import if icons are used but not imported
+    if (!hasLucideImport && usedIcons.length > 0) {
+        lines.push(`import { ${usedIcons.join(", ")} } from "lucide-react";`);
+    }
+
+    if (lines.length === 0) return code;
+
+    // If code already starts with "use client", insert imports after it
+    if (hasUseClient) {
+        const rest = code.replace(/^["']use client["'];?\s*\n*/, "").trim();
+        return `"use client";\n\n${lines.join("\n")}\n\n${rest}`;
+    }
+
+    return `${lines.join("\n")}\n\n${code}`;
+}
+
+/**
  * Convert kebab-case to PascalCase for file names.
  */
 function toPascalCase(str) {
@@ -129,13 +195,13 @@ function processDirectory(dir, type) {
             files: [
                 {
                     name: fileName,
-                    content: implementationCode,
+                    content: addMissingImports(implementationCode),
                 },
             ],
             variants: variants.map((v) => ({
                 name: v.name,
                 fileName: `${toPascalCase(dirent.name)}${toPascalCase(v.name.replace(/\s+/g, "-"))}.tsx`,
-                content: v.code,
+                content: addMissingImports(v.code),
             })),
             dependencies,
         };
