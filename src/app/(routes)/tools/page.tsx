@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Free Developer Tools | Online Utilities for Web Development",
   description:
-    "17+ professional developer tools that work completely offline. Color palette generators, CSS utilities, formatters, converters, and productivity tools for web developers.",
+    "25+ professional developer tools that work completely offline. Color palette generators, CSS utilities, formatters, converters, and productivity tools for web developers.",
   keywords: [
     "developer tools",
     "web development tools",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Developer Tools | 17+ Online Utilities for Web Development",
     description:
-      "Professional developer tools that work completely offline. Color generators, CSS utilities, formatters, and productivity tools for web developers.",
+    "Professional developer tools that work completely offline. Color generators, CSS utilities, formatters, and productivity tools for web developers.",
     type: "website",
     url: "https://www.businesswish.tech/tools",
     images: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Developer Tools | 17+ Online Utilities",
+    title: "Free Developer Tools | 25+ Online Utilities",
     description:
       "Professional developer tools that work completely offline. Color generators, CSS utilities, formatters, and productivity tools.",
     images: ["https://www.businesswish.tech/business-wish-tools.png"],
@@ -142,6 +142,13 @@ const tools: Tool[] = [
     category: "css",
   },
   {
+    name: "Fractal Glass Generator",
+    description:
+      "Render hyper-realistic frosted glass with refractive SVG noise textures and deep blur. (2026 Trend)",
+    href: "/tools/fractal-glass",
+    category: "css",
+  },
+  {
     name: "CSS Grid Generator",
     description:
       "Visual CSS Grid layout builder with interactive controls and generated code.",
@@ -212,7 +219,7 @@ const toolsPageSchema = {
   "@type": "CollectionPage",
   name: "Developer Tools Collection",
   description:
-    "A comprehensive collection of 17+ professional developer tools that work completely offline",
+    "A comprehensive collection of 25+ professional developer tools that work completely offline",
   url: "https://www.businesswish.tech/tools",
   mainEntity: {
     "@type": "ItemList",
