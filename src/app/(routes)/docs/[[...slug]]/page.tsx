@@ -75,7 +75,9 @@ export async function generateMetadata({
 
   const { frontmatter } = res;
 
-  function generateComponentKeywords(componentName: string): string[] {
+  function generateComponentKeywords(componentName?: string): string[] {
+    if (!componentName) return [];
+
     const baseKeywords = [
       componentName,
       `Tailwind CSS ${componentName}`,
@@ -90,17 +92,18 @@ export async function generateMetadata({
     ];
 
     // Add specific keywords based on component type
-    if (componentName.toLowerCase().includes("button")) {
+    const lowerName = componentName.toLowerCase();
+    if (lowerName.includes("button")) {
       baseKeywords.push(
         "button styles",
         "button variants",
         "interactive buttons"
       );
-    } else if (componentName.toLowerCase().includes("form")) {
+    } else if (lowerName.includes("form")) {
       baseKeywords.push("form validation", "form controls", "input fields");
     } else if (
-      componentName.toLowerCase().includes("navigation") ||
-      componentName.toLowerCase().includes("navbar")
+      lowerName.includes("navigation") ||
+      lowerName.includes("navbar")
     ) {
       baseKeywords.push(
         "responsive navigation",
@@ -112,6 +115,9 @@ export async function generateMetadata({
     return baseKeywords;
   }
 
+  const defaultTitle = frontmatter?.title || "Documentation";
+  const defaultDescription = frontmatter?.description || "";
+
   const keywords = [
     "Tailwind CSS",
     "UI components",
@@ -122,18 +128,18 @@ export async function generateMetadata({
     "responsive design",
     "accessibility",
     "dark mode",
-    ...generateComponentKeywords(frontmatter.title),
+    ...generateComponentKeywords(frontmatter?.title),
   ];
 
   // Optimize title based on path (highest CTR optimization)
   const isComponent = pathName.includes("components");
   const optimizedTitle = isComponent 
-      ? `Tailwind CSS ${frontmatter.title} Component` 
-      : `${frontmatter.title} - Tailwind CSS`;
+      ? `Tailwind CSS ${defaultTitle} Component` 
+      : `${defaultTitle} - Tailwind CSS`;
 
   return generateSEO({
     title: optimizedTitle,
-    description: frontmatter.description,
+    description: defaultDescription,
     keywords,
     url: `/docs/${pathName}`,
     type: "article",
