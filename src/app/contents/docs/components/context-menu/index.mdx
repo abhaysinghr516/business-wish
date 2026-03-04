@@ -1,0 +1,49 @@
+---
+title: Context Menu
+description: Provide deeply embedded native desktop experiences by overriding custom right-click behaviors natively on the web.
+---
+
+Replacing default browser context menus (right-click popups) is essential for Awwwards-worthy applications that mimic native desktop utility (Figma, Notion, Raycast). 
+
+### Interactive Custom Context Zone
+Right click anywhere inside the dashed zone to reveal the blurred modal overlay menu tracking explicitly to your pointer coordinates natively relative to the container.
+
+<Preview>
+  <InteractiveContextMenu />
+</Preview>
+
+```jsx showLineNumbers
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Copy, Plus, Trash2, Edit } from "lucide-react";
+
+const InteractiveContextMenu: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [point, setPoint] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = () => isOpen && setIsOpen(false);
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [isOpen]);
+
+  const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    if (containerRef.current) {
+      const bounds = containerRef.current.getBoundingClientRect();
+      setPoint({ x: e.clientX - bounds.left, y: e.clientY - bounds.top });
+      setIsOpen(true);
+    }
+  };
+
+  return (
+    <div 
+      ref={containerRef}
+      onContextMenu={handleContextMenu}
+      className="relative w-full overflow-hidden ..."
+    >
+        ...
+```

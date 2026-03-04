@@ -54,6 +54,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/card",
             },
             {
+                title: "Context Menu",
+                href: "/context-menu",
+            },
+            {
                 title: "Data Table",
                 href: "/data-table",
             },
@@ -64,6 +68,10 @@ export const ROUTES: EachRoute[] = [
             {
                 title: "Divider",
                 href: "/divider",
+            },
+            {
+                title: "Drawer",
+                href: "/drawer",
             },
             {
                 title: "Dropdown",
@@ -126,8 +134,16 @@ export const ROUTES: EachRoute[] = [
                 href: "/skeleton",
             },
             {
+                title: "Slider",
+                href: "/slider",
+            },
+            {
                 title: "Social Share",
                 href: "/social-share",
+            },
+            {
+                title: "Switch",
+                href: "/switch",
             },
             {
                 title: "Tabs",

@@ -1,0 +1,133 @@
+---
+title: Switch
+description: Sleek, toggle switches driven by physics animations for immediate high-end tactile feedback.
+---
+
+Explore physics-based, **Switch** components. By combining Tailwind CSS gradients and shadows with Framer Motion springs, these toggle inputs feel remarkably snappy and satisfying.
+
+*Say goodbye to default checkboxes. Use these for settings, theme togglers, and activating features.*
+
+### Basic Switch
+The standard pill toggle. Fluid, clean, and immediately recognizable.
+
+<Preview>
+  <BasicSwitch />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+
+const BasicSwitch: React.FC = () => {
+  const [isOn, setIsOn] = useState(false);
+
+  return (
+    <div
+      className={`w-[52px] h-[32px] flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out shadow-inner ${
+        isOn ? "bg-green-500 dark:bg-green-500" : "bg-neutral-200 dark:bg-neutral-800"
+      }`}
+      onClick={() => setIsOn(!isOn)}
+    >
+      <motion.div
+        className="w-6 h-6 bg-white rounded-full shadow-[0_2px_5px_rgba(0,0,0,0.2)] flex items-center justify-center"
+        layout
+        transition={{ type: "spring", stiffness: 700, damping: 30 }}
+        animate={{ x: isOn ? 20 : 0 }}
+      />
+    </div>
+  );
+};
+
+export default BasicSwitch;
+```
+
+### Icon Switch
+A thematic switch commonly utilized for toggling dark/light mode parameters natively inside the tracker.
+
+<Preview>
+  <IconSwitch />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
+
+const IconSwitch: React.FC = () => {
+  const [isOn, setIsOn] = useState(false);
+
+  return (
+    <div
+      className={`w-[60px] h-[34px] flex items-center rounded-full p-1 cursor-pointer transition-colors duration-500 ease-in-out relative ${
+        isOn ? "bg-neutral-900" : "bg-sky-400"
+      }`}
+      onClick={() => setIsOn(!isOn)}
+    >
+      <div className="absolute w-full px-2 flex justify-between pointer-events-none text-white">
+        <Moon size={14} className="opacity-80" />
+        <Sun size={14} className="opacity-80" />
+      </div>
+
+      <motion.div
+        className="w-6 h-6 bg-white rounded-full shadow-[0_2px_5px_rgba(0,0,0,0.2)] z-10 flex items-center justify-center"
+        layout
+        transition={{ type: "spring", stiffness: 700, damping: 30 }}
+        animate={{ x: isOn ? 26 : 0 }}
+      >
+        <motion.div
+          key={isOn ? "moon" : "sun"}
+          initial={{ rotate: -90, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          {isOn ? <Moon size={14} className="text-neutral-900" /> : <Sun size={14} className="text-amber-500" />}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default IconSwitch;
+```
+
+### Labeled Switch
+Incorporate dynamic labels directly into your thumb components mimicking thick tactile physical toggles.
+
+<Preview>
+  <LabeledSwitch />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Check, X } from "lucide-react";
+
+const LabeledSwitch: React.FC = () => {
+  const [isOn, setIsOn] = useState(false);
+
+  return (
+    <div
+      className={`w-20 h-8 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out relative ${
+        isOn ? "bg-black dark:bg-white" : "bg-neutral-200 dark:bg-neutral-800"
+      }`}
+      onClick={() => setIsOn(!isOn)}
+    >
+      <div className={`absolute w-full px-3 flex justify-between text-[11px] font-bold pointer-events-none uppercase tracking-wider ${isOn ? 'text-white dark:text-black' : 'text-neutral-500'}`}>
+        <span className={isOn ? 'opacity-100' : 'opacity-0'}>ON</span>
+        <span className={!isOn ? 'opacity-100' : 'opacity-0'}>OFF</span>
+      </div>
+      
+      <motion.div
+        className="w-6 h-6 bg-white dark:bg-neutral-900 rounded-full shadow-md z-10 flex items-center justify-center"
+        layout
+        transition={{ type: "spring", stiffness: 700, damping: 30 }}
+        animate={{ x: isOn ? 48 : 0 }}
+      >
+          {isOn ? <Check size={12} className="text-black dark:text-white" /> : <X size={12} className="text-neutral-400" />}
+      </motion.div>
+    </div>
+  );
+};
+
+export default LabeledSwitch;
+```

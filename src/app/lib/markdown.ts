@@ -27,7 +27,9 @@ import { BasicBreadcrumb, DropdownBreadcrumb, BreadcrumbwithSeparators } from "@
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
 import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
 import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
+import { InteractiveContextMenu } from "@/components/ContextMenu";
 import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
+import { BottomDrawer, LeftDrawer, RightDrawer, TopDrawer } from "@/components/Drawer";
 import {
     SimpleDropdown,
     DropdownwithIcons,
@@ -47,6 +49,7 @@ import { BasicTreeView, FinderTreeView, LineTreeView, SettingsTreeView } from "@
 import { BasicLineChart, GradientAreaChart, SparklineWidget } from "@/components/LineChart";
 import { BasicSidebar, CollapseSidebar, SidebarwithIcons, FloatingIslandSidebar, ExpandableNestedSidebar } from "@/components/Sidebar";
 import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfile, SkeletonwithLoadedContent, MinimalistTableSkeleton, DashboardWidgetSkeleton } from "@/components/Skeleton";
+import { BasicSlider, IconSlider, TooltipSlider, SteppedSlider } from "@/components/Slider";
 import { BasicTabs, TabswithBox, TabswithUnderline, VerticalMinimalTabs } from "@/components/Tabs";
 import { FullWidthTestimonial, MinimalCardTestimonial, SliderTestimonial, TestimonialSectionwithGridlayout, MarqueeTestimonial, BentoGridTestimonial } from "@/components/Testimonials";
 import { Informative404Section, Interactive404Section, Minimal404Section, Playful404Section, Grid404Section } from "@/components/Error404";
@@ -71,6 +74,7 @@ import { DockDemo } from "@/components/motion/Dock";
 import { SplitTextDemo, SplitTextVariantsDemo } from "@/components/motion/SplitText";
 import { BlurRevealDemo, BlurRevealGroupDemo } from "@/components/motion/BlurReveal";
 import MotionPreview from "@/app/components/MotionPreview";
+import { BasicSwitch, IconSwitch, LabeledSwitch, ThemeSwitch } from "@/components/Switch";
 
 // add custom components
 const components = {
@@ -135,6 +139,7 @@ const components = {
     ArticleCard,
     ForumCard,
     PodcastCard,
+    InteractiveContextMenu,
     SimpleDatePicker,
     CustomCalendarPicker,
     DropdownDatePicker,
@@ -143,6 +148,10 @@ const components = {
     VerticalDivider,
     CustomDividerwithIcon,
     GradientDivider,
+    BottomDrawer,
+    LeftDrawer,
+    RightDrawer,
+    TopDrawer,
     SimpleDropdown,
     DropdownwithIcons,
     SearchableDropdown,
@@ -198,11 +207,19 @@ const components = {
     SkeletonwithLoadedContent,
     MinimalistTableSkeleton,
     DashboardWidgetSkeleton,
+    BasicSlider,
+    IconSlider,
+    TooltipSlider,
+    SteppedSlider,
     FABSocialShare,
     DropdownSocialShare,
     ModalSocialShare,
     InlineSocialShare,
     PillSocialShare,
+    BasicSwitch,
+    IconSwitch,
+    LabeledSwitch,
+    ThemeSwitch,
     BasicTabs,
     TabswithUnderline,
     TabswithBox,
