@@ -43,10 +43,14 @@ import { CenterContentHeroSection, GradientHeroSection, MinimalTypographyHero, S
 import { Loaders } from "@/components/Loader";
 import { BasicPagination, PaginationwithDots, PaginationwithIcons, PaginationwithInputField, MinimalPagination, RoundedGhostPagination } from "@/components/Pagination";
 import { BasicModal, GlassAlertModal, RichContentModal, SuccessModal } from "@/components/Modal";
-import { BasicSettingsPage, SettingsPagewithTabs } from "@/components/Settings";
 import { SimpleToast, StatusToast, ActionToast, PromiseToast } from "@/components/Toast";
 import { BasicTreeView, FinderTreeView, LineTreeView, SettingsTreeView } from "@/components/TreeView";
 import { BasicLineChart, GradientAreaChart, SparklineWidget } from "@/components/LineChart";
+import { BasicBarChart, HorizontalBarChart, StackedBarChart, WidgetBarChart } from "@/components/BarChart";
+import { BasicDonutChart, InteractiveDonutChart, GaugeChart, WidgetPieChart } from "@/components/PieChart";
+import { BasicAreaChart, StackedAreaChart, PercentAreaChart, WidgetAreaChart } from "@/components/AreaChart";
+import { LineSparkline, AreaSparkline, BarSparkline, WidgetSparkline } from "@/components/Sparkline";
+import { AnalyticsDashboard, FinanceDashboard, ProjectDashboard, ECommerceDashboard } from "@/components/Dashboard";
 import { BasicSidebar, CollapseSidebar, SidebarwithIcons, FloatingIslandSidebar, ExpandableNestedSidebar } from "@/components/Sidebar";
 import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfile, SkeletonwithLoadedContent, MinimalistTableSkeleton, DashboardWidgetSkeleton } from "@/components/Skeleton";
 import { BasicSlider, IconSlider, TooltipSlider, SteppedSlider } from "@/components/Slider";
@@ -189,8 +193,6 @@ const components = {
     PaginationwithDots,
     MinimalPagination,
     RoundedGhostPagination,
-    BasicSettingsPage,
-    SettingsPagewithTabs,
     BasicPopover,
     MenuPopover,
     NotificationPopover,
@@ -259,7 +261,26 @@ const components = {
     BasicLineChart,
     GradientAreaChart,
     SparklineWidget,
-    // Motion components
+    BasicBarChart,
+    HorizontalBarChart,
+    StackedBarChart,
+    WidgetBarChart,
+    BasicDonutChart,
+    InteractiveDonutChart,
+    GaugeChart,
+    WidgetPieChart,
+    BasicAreaChart,
+    StackedAreaChart,
+    PercentAreaChart,
+    WidgetAreaChart,
+    LineSparkline,
+    AreaSparkline,
+    BarSparkline,
+    WidgetSparkline,
+    AnalyticsDashboard,
+    FinanceDashboard,
+    ProjectDashboard,
+    ECommerceDashboard,
     MotionPreview,
     TextRevealDemo,
     TextRevealCustomDemo,
@@ -284,7 +305,7 @@ const components = {
     SplitTextDemo,
     SplitTextVariantsDemo,
     BlurRevealDemo,
-    BlurRevealGroupDemo
+    BlurRevealGroupDemo,
 };
 
 // can be used for other pages like blogs, Guides etc

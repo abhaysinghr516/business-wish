@@ -1,0 +1,354 @@
+---
+title: Pie Chart
+description: Flat, Apple-level pie and donut chart visualizations powered by Recharts, four distinct variants for modern dashboards.
+---
+
+Beautifully minimal **Pie & Donut Chart** components built on `recharts`. Every variant ships with smooth entry animations, a polished custom tooltip, and seamless light/dark mode support.
+
+Four variants cover all common use-cases: a static donut with a progress-bar legend, an interactive hover-to-explore donut, a precision half-donut gauge, and a compact spark-pie widget card.
+
+### Basic Donut Chart
+
+A clean donut for categorical breakdown — here, traffic sources. Features a centered total label and a side-by-side legend with inline proportional progress tracks for instant visual scanning.
+
+<Preview>
+<BasicDonutChart />
+</Preview>
+
+```jsx showLineNumbers
+"use client";
+import React from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart as PieChartIcon } from "lucide-react";
+
+const trafficSourcesData = [
+  { name: "Direct",   value: 35, color: "#3B82F6" },
+  { name: "Organic",  value: 25, color: "#6366F1" },
+  { name: "Referral", value: 20, color: "#8B5CF6" },
+  { name: "Social",   value: 20, color: "#D946EF" },
+];
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload?.length) {
+    const d = payload[0].payload;
+    return (
+      <div className="bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 p-3 rounded-2xl shadow-lg min-w-[140px]">
+        <div className="flex items-center gap-2.5">
+          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: d.color }} />
+          <span className="text-[13px] font-medium text-neutral-500 flex-1 capitalize">{d.name}</span>
+          <span className="text-[13px] font-bold text-neutral-900 dark:text-white tabular-nums">{d.value}%</span>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
+export const BasicDonutChart = ({ height = 300 }) => {
+  const total = trafficSourcesData.reduce((s, d) => s + d.value, 0);
+
+  return (
+    <div className="w-full bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-neutral-800/80 rounded-3xl p-6 shadow-sm">
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-1">
+          <PieChartIcon className="w-3.5 h-3.5 text-neutral-400" strokeWidth={2.5} />
+          <p className="text-[12px] font-semibold text-neutral-500 uppercase tracking-widest">Traffic Sources</p>
+        </div>
+        <h3 className="text-[22px] font-bold text-neutral-900 dark:text-white tracking-tight">Visitor Breakdown</h3>
+        <p className="text-[13px] text-neutral-400 mt-1">Distribution of incoming sessions</p>
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-center gap-6">
+        {/* Donut */}
+        <div style={{ height, width: "100%", maxWidth: 280 }} className="relative flex-shrink-0">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <span className="text-[28px] font-bold text-neutral-900 dark:text-white tracking-tighter leading-none">{total}%</span>
+            <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-widest mt-1">Total</span>
+          </div>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Tooltip content={<CustomTooltip />} />
+              <Pie
+                data={trafficSourcesData}
+                cx="50%" cy="50%"
+                innerRadius="58%" outerRadius="80%"
+                paddingAngle={2} dataKey="value" stroke="none"
+                animationDuration={1400} animationEasing="ease-out"
+              >
+                {trafficSourcesData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Progress-bar legend */}
+        <div className="flex flex-col gap-3 w-full">
+          {trafficSourcesData.map((entry) => {
+            const pct = ((entry.value / total) * 100).toFixed(0);
+            return (
+              <div key={entry.name} className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: entry.color }} />
+                <span className="text-[13px] font-medium text-neutral-600 dark:text-neutral-400 flex-1">{entry.name}</span>
+                <div className="flex-1 max-w-[100px] h-1 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
+                  <div className="h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: entry.color }} />
+                </div>
+                <span className="text-[12px] font-bold text-neutral-900 dark:text-white tabular-nums w-8 text-right">{pct}%</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+### Interactive Donut Chart
+
+An advanced donut where hovering a segment expands it and updates the header stat live. Legend items are interactive pills that mirror the hover state — clicking or hovering any pill highlights the matching segment.
+
+<Preview>
+<InteractiveDonutChart />
+</Preview>
+
+```jsx showLineNumbers
+"use client";
+import React, { useState } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
+import { Disc } from "lucide-react";
+
+const categorySalesData = [
+  { name: "Electronics", value: 450, color: "#10B981" },
+  { name: "Clothing",    value: 300, color: "#3B82F6" },
+  { name: "Home",        value: 200, color: "#F59E0B" },
+  { name: "Books",       value: 150, color: "#8B5CF6" },
+];
+
+const renderActiveShape = (props: any) => {
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
+  return (
+    <g>
+      <text x={cx} y={cy - 14} textAnchor="middle" fill={fill} fontSize={15} fontWeight={700}>{payload.name}</text>
+      <text x={cx} y={cy + 8}  textAnchor="middle" fill="#8E8E93" fontSize={13} fontWeight={600}>{value.toLocaleString()}</text>
+      <text x={cx} y={cy + 26} textAnchor="middle" fill="#8E8E93" fontSize={12} fontWeight={500}>{`${(percent * 100).toFixed(0)}%`}</text>
+      <Sector cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius + 8} startAngle={startAngle} endAngle={endAngle} fill={fill} />
+      <Sector cx={cx} cy={cy} startAngle={startAngle} endAngle={endAngle} innerRadius={outerRadius + 12} outerRadius={outerRadius + 15} fill={fill} opacity={0.35} />
+    </g>
+  );
+};
+
+export const InteractiveDonutChart = ({ height = 340 }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = categorySalesData.reduce((s, d) => s + d.value, 0);
+
+  return (
+    <div className="w-full bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-neutral-800/80 rounded-3xl p-6 shadow-sm">
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <Disc className="w-3.5 h-3.5 text-neutral-400" strokeWidth={2.5} />
+            <p className="text-[12px] font-semibold text-neutral-500 uppercase tracking-widest">Category Sales</p>
+          </div>
+          <h3 className="text-[22px] font-bold text-neutral-900 dark:text-white tracking-tight">Revenue Mix</h3>
+          <p className="text-[13px] text-neutral-400 mt-1">Hover segments to explore</p>
+        </div>
+        <div className="flex flex-col items-end">
+          <span className="text-[22px] font-bold tracking-tighter leading-none" style={{ color: categorySalesData[activeIndex].color }}>
+            {categorySalesData[activeIndex].value.toLocaleString()}
+          </span>
+          <span className="text-[11px] font-semibold text-neutral-400 mt-0.5">
+            {((categorySalesData[activeIndex].value / total) * 100).toFixed(0)}% of total
+          </span>
+        </div>
+      </div>
+
+      <div style={{ height, width: "100%" }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              data={categorySalesData}
+              cx="50%" cy="50%"
+              innerRadius="38%" outerRadius="58%"
+              dataKey="value" stroke="none"
+              onMouseEnter={(_: any, index: number) => setActiveIndex(index)}
+              animationDuration={1000}
+              className="cursor-pointer outline-none"
+            >
+              {categorySalesData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Interactive pill legend */}
+      <div className="flex flex-wrap justify-center gap-2 mt-2">
+        {categorySalesData.map((entry, index) => (
+          <button
+            key={entry.name}
+            onMouseEnter={() => setActiveIndex(index)}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-medium transition-all duration-150 cursor-pointer ${
+              activeIndex === index
+                ? "border-transparent text-white"
+                : "bg-neutral-50 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700/60 text-neutral-500"
+            }`}
+            style={activeIndex === index ? { backgroundColor: entry.color } : {}}
+          >
+            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: activeIndex === index ? "#fff" : entry.color }} />
+            {entry.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+### Gauge Chart
+
+A half-donut (180°) gauge for displaying a score or completion metric. The foreground arc has rounded corners (`cornerRadius={8}`), a static background track, and scale labels at each end.
+
+<Preview>
+<GaugeChart />
+</Preview>
+
+```jsx showLineNumbers
+"use client";
+import React from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { Target } from "lucide-react";
+
+const performanceScoreData = [
+  { name: "Score",     value: 82, color: "#3B82F6" },
+  { name: "Remaining", value: 18, color: "transparent" },
+];
+
+export const GaugeChart = ({ height = 280 }) => {
+  const score = performanceScoreData[0].value;
+  const color = performanceScoreData[0].color;
+  const label = score >= 90 ? "EXCELLENT" : score >= 75 ? "GREAT" : score >= 60 ? "GOOD" : "NEEDS WORK";
+
+  return (
+    <div className="w-full bg-[#0A0A0F] border border-white/[0.06] rounded-3xl p-6 shadow-2xl overflow-hidden">
+      <div className="text-center mb-2">
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <Target className="w-3.5 h-3.5 text-neutral-500" strokeWidth={2.5} />
+          <p className="text-[12px] font-semibold text-neutral-500 uppercase tracking-widest">Performance Score</p>
+        </div>
+        <p className="text-[13px] text-neutral-500">Overall system health metric</p>
+      </div>
+
+      <div style={{ height, width: "100%" }} className="relative mt-[-8px]">
+        <div className="absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
+          <span className="text-[52px] font-bold text-white tracking-tighter leading-none">{score}</span>
+          <span className="text-[11px] font-bold tracking-widest mt-1.5" style={{ color }}>{label}</span>
+        </div>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            {/* Background track */}
+            <Pie
+              data={[{ value: 100 }]}
+              cx="50%" cy="70%" startAngle={180} endAngle={0}
+              innerRadius="54%" outerRadius="68%"
+              dataKey="value" stroke="none" fill="rgba(255,255,255,0.06)"
+              isAnimationActive={false}
+            />
+            {/* Foreground arc */}
+            <Pie
+              data={performanceScoreData}
+              cx="50%" cy="70%" startAngle={180} endAngle={0}
+              innerRadius="54%" outerRadius="68%"
+              dataKey="value" stroke="none" cornerRadius={8}
+              animationDuration={2000} animationEasing="ease-out"
+            >
+              <Cell fill={color} />
+              <Cell fill="transparent" />
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="flex justify-between px-8 mt-[-12px]">
+        <span className="text-[11px] font-semibold text-neutral-600">0</span>
+        <span className="text-[11px] font-semibold text-neutral-600">100</span>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+### Widget Spark-Pie Chart
+
+A compact donut card designed for dashboard metric grids. Shows a large primary percentage, a mini legend breakdown, and a small donut that bleeds to the right — ideal for at-a-glance retention or conversion metrics.
+
+<Preview>
+<WidgetPieChart />
+</Preview>
+
+```jsx showLineNumbers
+"use client";
+import React from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { Activity } from "lucide-react";
+
+const widgetMetricData = [
+  { name: "Active",   value: 65, color: "#EC4899" },
+  { name: "Inactive", value: 35 },
+];
+
+export const WidgetPieChart = () => {
+  const activeValue   = widgetMetricData[0].value;
+  const inactiveValue = widgetMetricData[1].value;
+  const color         = widgetMetricData[0].color;
+
+  return (
+    <div className="w-full max-w-[340px] bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 flex items-center gap-5">
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-1.5 mb-2">
+          <Activity className="w-3.5 h-3.5 text-neutral-400" strokeWidth={2.5} />
+          <p className="text-[11px] font-semibold text-neutral-500 uppercase tracking-widest">Retention Rate</p>
+        </div>
+        <div className="flex items-baseline gap-1">
+          <span className="text-[32px] font-bold text-neutral-900 dark:text-white leading-none tracking-tighter">{activeValue}</span>
+          <span className="text-[16px] font-bold text-neutral-400">%</span>
+        </div>
+        <p className="text-[12px] font-medium text-neutral-400 mt-2">Active users</p>
+        <div className="flex items-center gap-3 mt-3">
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
+            <span className="text-[11px] font-medium text-neutral-500">Active {activeValue}%</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-700" />
+            <span className="text-[11px] font-medium text-neutral-400">Inactive {inactiveValue}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="h-[88px] w-[88px] flex-shrink-0">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={widgetMetricData}
+              cx="50%" cy="50%"
+              innerRadius="36%" outerRadius="50%"
+              dataKey="value" stroke="none" paddingAngle={2}
+              animationDuration={1000}
+            >
+              <Cell fill={color} />
+              <Cell fill="currentColor" className="text-neutral-100 dark:text-neutral-800" />
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+```

@@ -102,6 +102,22 @@ export const ROUTES: EachRoute[] = [
                 href: "/input",
             },
             {
+                title: "Bar Chart",
+                href: "/bar-chart",
+            },
+            {
+                title: "Pie Chart",
+                href: "/pie-chart",
+            },
+            {
+                title: "Area Chart",
+                href: "/area-chart",
+            },
+            {
+                title: "Sparkline",
+                href: "/sparkline",
+            },
+            {
                 title: "Line Chart",
                 href: "/line-chart",
             },
@@ -180,10 +196,6 @@ export const ROUTES: EachRoute[] = [
                 title: "Blog List",
                 href: "/blog-list",
             },
-            // {
-            //     title: "Settings",
-            //     href: "/settings",
-            // },
         ]
     },
     {
