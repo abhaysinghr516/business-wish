@@ -22,7 +22,7 @@ export async function add(name) {
     if (!component) {
         error(`Component "${name}" not found.`);
         log("");
-        log(`  ${dim("Run")} npx business-wish list ${dim("to see available components.")}`);
+        log(`  ${dim("Run")} npx @abhaysinghr516/business-wish list ${dim("to see available components.")}`);
         log("");
         process.exit(1);
     }

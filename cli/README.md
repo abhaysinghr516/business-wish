@@ -1,4 +1,4 @@
-# business-wish
+# @abhaysinghr516/business-wish
 
 CLI to add **Business Wish** Tailwind CSS components directly into your project.
 
@@ -6,13 +6,13 @@ CLI to add **Business Wish** Tailwind CSS components directly into your project.
 
 ```bash
 # Add a component
-npx business-wish add button
+npx @abhaysinghr516/business-wish add button
 
 # Initialize config (optional)
-npx business-wish init
+npx @abhaysinghr516/business-wish init
 
 # Browse all components
-npx business-wish list
+npx @abhaysinghr516/business-wish list
 ```
 
 ## Commands
@@ -30,9 +30,9 @@ Creates a `business-wish.json` config file in your project root:
 Downloads a component into your configured output directory.
 
 ```bash
-npx business-wish add accordion
-npx business-wish add text-reveal
-npx business-wish add card
+npx @abhaysinghr516/business-wish add accordion
+npx @abhaysinghr516/business-wish add text-reveal
+npx @abhaysinghr516/business-wish add card
 ```
 
 ### `list`
@@ -40,9 +40,9 @@ Shows all available components and motion primitives.
 
 ## Available Components
 
-**33 UI Components**: Accordion, Alert, Avatar, Badge, Banner, Bottom Navigation, Breadcrumb, Button, Call to Action, Card, Data Table, Date Picker, Divider, Dropdown, Features, File Upload, Footer, Header, Hero, Line Chart, Loader, Modal, Pagination, Popover, Progress, Sidebar, Skeleton, Social Share, Tabs, Testimonial, Toast, Tooltip, Tree View
+**UI Components**: Accordion, Alert, Area Chart, Auth, Avatar, Badge, Banner, Bar Chart, Bottom Navigation, Breadcrumb, Button, Call to Action, Card, Context Menu, Data Table, Date Picker, Dashboard, Divider, Drawer, Dropdown, Features, File Upload, Footer, Header, Hero, Line Chart, Loader, Modal, Pagination, Pie Chart, Popover, Pricing, Progress, Settings, Sidebar, Skeleton, Slider, Social Share, Sparkline, Switch, Tabs, Testimonial, Toast, Tooltip, Tree View
 
-**14 Motion Primitives**: Blur Reveal, Card Spotlight, Dock, Fade In, Gradient Text, Magnetic Element, Morphing Text, Number Ticker, Shimmer Button, Split Text, Text Reveal, Text Shimmer, Tilt Card, Word Rotate
+**Motion Primitives**: Blur Reveal, Card Spotlight, Dock, Fade In, Gradient Text, Magnetic Element, Morphing Text, Number Ticker, Shimmer Button, Split Text, Text Reveal, Text Shimmer, Tilt Card, Word Rotate
 
 ## Publishing
 

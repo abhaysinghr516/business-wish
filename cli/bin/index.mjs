@@ -6,11 +6,11 @@ import { add } from "../src/commands/add.mjs";
 import { list } from "../src/commands/list.mjs";
 import { log, error, dim } from "../src/utils/logger.mjs";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const HELP = `
   ${dim("Usage:")}
-    npx business-wish <command> [options]
+    npx @abhaysinghr516/business-wish <command> [options]
 
   ${dim("Commands:")}
     init                Create a business-wish.json config file
@@ -22,10 +22,10 @@ const HELP = `
     --version, -v       Show version number
 
   ${dim("Examples:")}
-    npx business-wish init
-    npx business-wish add button
-    npx business-wish add text-reveal
-    npx business-wish list
+    npx @abhaysinghr516/business-wish init
+    npx @abhaysinghr516/business-wish add button
+    npx @abhaysinghr516/business-wish add text-reveal
+    npx @abhaysinghr516/business-wish list
 `;
 
 async function main() {
@@ -50,7 +50,7 @@ async function main() {
         case "add": {
             const componentName = args[1];
             if (!componentName) {
-                error("Please specify a component name: npx business-wish add <name>");
+                error("Please specify a component name: npx @abhaysinghr516/business-wish add <name>");
                 exit(1);
             }
             await add(componentName);

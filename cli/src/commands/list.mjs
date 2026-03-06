@@ -49,7 +49,7 @@ export async function list() {
 
     log("");
     log(
-        `  ${dim("Add a component:")} npx business-wish add ${dim("<name>")}`
+        `  ${dim("Add a component:")} npx @abhaysinghr516/business-wish add ${dim("<name>")}`
     );
     log("");
 }

@@ -57,6 +57,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Using the CLI
+
+Install components directly into your project without browsing the website:
+
+```bash
+# Add a component
+npx @abhaysinghr516/business-wish add button
+
+# Initialize config (optional)
+npx @abhaysinghr516/business-wish init
+
+# Browse all components
+npx @abhaysinghr516/business-wish list
+```
+
 ---
 
 ## Project structure
