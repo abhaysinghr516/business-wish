@@ -50,7 +50,6 @@ import { BasicBarChart, HorizontalBarChart, StackedBarChart, WidgetBarChart } fr
 import { BasicDonutChart, InteractiveDonutChart, GaugeChart, WidgetPieChart } from "@/components/PieChart";
 import { BasicAreaChart, StackedAreaChart, PercentAreaChart, WidgetAreaChart } from "@/components/AreaChart";
 import { LineSparkline, AreaSparkline, BarSparkline, WidgetSparkline } from "@/components/Sparkline";
-import { AnalyticsDashboard, FinanceDashboard, ProjectDashboard, ECommerceDashboard } from "@/components/Dashboard";
 import { BasicSidebar, CollapseSidebar, SidebarwithIcons, FloatingIslandSidebar, ExpandableNestedSidebar } from "@/components/Sidebar";
 import { BasicSkeleton, SkeletonLoadingforImageCard, SkeletonLoadingforUserProfile, SkeletonwithLoadedContent, MinimalistTableSkeleton, DashboardWidgetSkeleton } from "@/components/Skeleton";
 import { BasicSlider, IconSlider, TooltipSlider, SteppedSlider } from "@/components/Slider";
@@ -277,10 +276,6 @@ const components = {
     AreaSparkline,
     BarSparkline,
     WidgetSparkline,
-    AnalyticsDashboard,
-    FinanceDashboard,
-    ProjectDashboard,
-    ECommerceDashboard,
     MotionPreview,
     TextRevealDemo,
     TextRevealCustomDemo,
