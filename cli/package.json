@@ -4,7 +4,7 @@
     "description": "CLI to add Business Wish Tailwind CSS components to your project",
     "type": "module",
     "bin": {
-        "business-wish": "./bin/index.mjs"
+        "business-wish": "bin/index.mjs"
     },
     "keywords": [
         "tailwind",
@@ -19,7 +19,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/abhaysinghr516/business-wish"
+        "url": "git+https://github.com/abhaysinghr516/business-wish.git"
     },
     "engines": {
         "node": ">=18"
