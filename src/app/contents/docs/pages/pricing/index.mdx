@@ -1,0 +1,435 @@
+---
+title: Pricing Pages
+description: Minimalist pricing section layouts to clearly communicate your product tiers.
+---
+
+Pricing pages are critical conversion points. They require absolute clarity, extreme minimalism, and intuitive feature differentiation. These **Tailwind CSS pricing page components** feature deep glassmorphism, perfectly balanced typography, and sophisticated interaction models that emulate top-tier native applications.
+
+These layouts fit perfectly within [Pages](/docs/pages) or can be utilized as standalone modules.
+
+### Minimal Pricing Section
+A clean, 3-card layout with deep, soft shadows on the highlighted tier and ultra-thin structural borders.
+
+<Preview>
+<MinimalPricingSection />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { Check } from "lucide-react";
+
+export const MinimalPricingSection: React.FC = () => {
+  return (
+    <section className="py-24 px-4 bg-neutral-50 dark:bg-[#050505]">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-neutral-900 dark:text-white mb-4">
+            Simple, transparent pricing.
+          </h2>
+          <p className="text-lg text-neutral-500 dark:text-neutral-400">
+            No hidden fees. No surprise charges.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* Starter Plan */}
+          <div className="flex flex-col p-8 rounded-[24px] bg-white dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-white/10 transition-transform duration-300 hover:-translate-y-1">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">Starter</h3>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 min-h-[40px]">Perfect for individuals and side-projects.</p>
+            <div className="flex items-baseline gap-1 mb-8">
+              <span className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">Free</span>
+            </div>
+            <button className="w-full py-3 px-4 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-900 dark:text-white rounded-full font-medium transition-colors mb-8">
+              Get Started
+            </button>
+            <div className="flex flex-col gap-4 mt-auto">
+              {['Up to 3 projects', 'Basic analytics', '24-hour support response', '1 team member'].map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-100 dark:bg-white/10">
+                    <Check className="h-3 w-3 text-neutral-900 dark:text-white" />
+                  </div>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pro Plan */}
+          <div className="flex flex-col p-8 rounded-[24px] bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/20 shadow-2xl shadow-neutral-200/50 dark:shadow-black/80 relative transition-transform duration-300 hover:-translate-y-2 md:-translate-y-2">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
+              Most Popular
+            </div>
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">Pro</h3>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 min-h-[40px]">Everything you need to launch and scale.</p>
+            <div className="flex items-baseline gap-1 mb-8">
+              <span className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">$29</span>
+              <span className="text-neutral-500 dark:text-neutral-400">/mo</span>
+            </div>
+            <button className="w-full py-3 px-4 bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-full font-medium transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md mb-8">
+              Start Free Trial
+            </button>
+            <div className="flex flex-col gap-4 mt-auto">
+              {['Unlimited projects', 'Advanced analytics', '1-hour support response', 'Up to 10 team members', 'Custom domains'].map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-900 dark:bg-white">
+                    <Check className="h-3 w-3 text-white dark:text-neutral-900" />
+                  </div>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-300 font-medium">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Enterprise Plan */}
+          <div className="flex flex-col p-8 rounded-[24px] bg-white dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-white/10 transition-transform duration-300 hover:-translate-y-1">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">Enterprise</h3>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 min-h-[40px]">Advanced security and custom infrastructure.</p>
+            <div className="flex items-baseline gap-1 mb-8">
+              <span className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">Custom</span>
+            </div>
+            <button className="w-full py-3 px-4 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-900 dark:text-white rounded-full font-medium transition-colors mb-8">
+              Contact Sales
+            </button>
+            <div className="flex flex-col gap-4 mt-auto">
+              {['Everything in Pro', 'Custom SLA', '24/7 phone support', 'Unlimited team members', 'Dedicated account manager'].map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-100 dark:bg-white/10">
+                    <Check className="h-3 w-3 text-neutral-900 dark:text-white" />
+                  </div>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+```
+
+### Tabbed Pricing Section
+Features a premium pill toggle for Monthly/Annually intervals. It highlights the premium tier using sleek glassmorphism overlaid on ambient glow.
+
+<Preview>
+<TabbedPricingSection />
+</Preview>
+
+```jsx showLineNumbers
+import React, { useState } from "react";
+import { Check, Zap, Crown } from "lucide-react";
+
+export const TabbedPricingSection: React.FC = () => {
+  const [isAnnual, setIsAnnual] = useState(false);
+
+  return (
+    <section className="py-24 px-4 bg-white dark:bg-[#0A0A0A] relative overflow-hidden">
+      {/* Soft background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-blue-500/5 dark:bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="flex flex-col items-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-6 text-center">
+            Pricing that scales with you.
+          </h2>
+          
+          <div className="flex items-center p-1 bg-neutral-100 dark:bg-neutral-800/80 rounded-full border border-neutral-200/60 dark:border-white/5">
+            <button
+              onClick={() => setIsAnnual(false)}
+              className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${!isAnnual ? 'text-neutral-900 dark:text-white shadow-sm bg-white dark:bg-neutral-700' : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'}`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setIsAnnual(true)}
+              className={`relative flex items-center gap-2 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isAnnual ? 'text-neutral-900 dark:text-white shadow-sm bg-white dark:bg-neutral-700' : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'}`}
+            >
+              Annually
+              <span className="text-[10px] font-bold uppercase tracking-wider text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-500/10 px-2 py-0.5 rounded-full">Save 20%</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Basic Tier */}
+          <div className="p-8 rounded-[32px] bg-neutral-50/80 dark:bg-neutral-900/40 border border-neutral-200/50 dark:border-white/5 backdrop-blur-md">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-neutral-800 shadow-sm border border-neutral-200/50 dark:border-white/5">
+                <Zap className="h-6 w-6 text-neutral-700 dark:text-neutral-300" />
+              </div>
+              <div>
+                <h3 className="text-xl font-medium text-neutral-900 dark:text-white">Basic</h3>
+                <p className="text-sm text-neutral-500">For small teams.</p>
+              </div>
+            </div>
+            
+            <div className="mb-8">
+              <span className="text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white transition-all">
+                ${isAnnual ? '15' : '19'}
+              </span>
+              <span className="text-neutral-500">/mo</span>
+            </div>
+
+            <ul className="space-y-4 mb-8">
+              {['5 Projects', '10GB Storage', 'Basic Support', 'Community Access'].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="h-5 w-5 text-neutral-400" />
+                  <span className="text-neutral-600 dark:text-neutral-300">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <button className="w-full py-3.5 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-white/10 text-neutral-900 dark:text-white font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-neutral-200 dark:focus:ring-neutral-800">
+              Choose Basic
+            </button>
+          </div>
+
+          {/* Premium Tier */}
+          <div className="p-8 rounded-[32px] bg-neutral-900 dark:bg-white border border-neutral-800 dark:border-neutral-200 shadow-xl relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-800 dark:bg-neutral-100 shadow-inner">
+                  <Crown className="h-6 w-6 text-white dark:text-neutral-900" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-white dark:text-neutral-900">Premium</h3>
+                  <p className="text-sm text-neutral-400 dark:text-neutral-500">For scaling companies.</p>
+                </div>
+              </div>
+              
+              <div className="mb-8">
+                <span className="text-5xl font-semibold tracking-tight text-white dark:text-neutral-900 transition-all">
+                  ${isAnnual ? '79' : '99'}
+                </span>
+                <span className="text-neutral-400 dark:text-neutral-500">/mo</span>
+              </div>
+
+              <ul className="space-y-4 mb-8">
+                {['Unlimited Projects', '500GB Storage', 'Priority 24/7 Support', 'Custom Integrations', 'Advanced Analytics'].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-neutral-300 dark:text-neutral-600" />
+                    <span className="text-neutral-200 dark:text-neutral-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button className="w-full py-3.5 rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white font-medium hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-white">
+                Choose Premium
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+```
+
+### Grid Pricing Section
+A Bento-grid inspired layout. The Pro/Enterprise tier spans wider, utilizing a dark theme aesthetic even in light mode for stark, premium contrast.
+
+<Preview>
+<GridPricingSection />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { Check, ArrowRight } from "lucide-react";
+
+export const GridPricingSection: React.FC = () => {
+  return (
+    <section className="py-24 px-4 bg-neutral-50 dark:bg-[#050505]">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12 max-w-2xl">
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-4">
+            Plans for every stage of your journey.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          {/* Free Tier */}
+          <div className="col-span-1 p-8 rounded-[32px] bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-white/5 flex flex-col hover:shadow-lg hover:shadow-neutral-200/50 dark:hover:shadow-black/50 transition-shadow">
+            <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-1">Developer</h3>
+            <div className="flex items-baseline gap-1 mb-6">
+              <span className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">Free</span>
+            </div>
+            <p className="text-sm text-neutral-500 mb-8 flex-1">Start building right away with our core features.</p>
+            <ul className="space-y-3 mb-8">
+              {['1 User', 'Community Support', '10 API req/min'].map((item) => (
+                <li key={item} className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
+                  <ArrowRight className="h-4 w-4 mr-2 text-neutral-300 dark:text-neutral-600" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 rounded-xl bg-neutral-100 dark:bg-white/5 text-neutral-900 dark:text-white text-sm font-medium hover:bg-neutral-200 dark:hover:bg-white/10 transition-colors">
+              Deploy Now
+            </button>
+          </div>
+
+          {/* Pro Tier (Bento Spanner) */}
+          <div className="col-span-1 md:col-span-2 p-8 sm:p-10 rounded-[32px] bg-neutral-950 dark:bg-neutral-900 border border-transparent dark:border-white/10 text-white flex flex-col sm:flex-row gap-8 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 dark:bg-white/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+            
+            <div className="flex-1 relative z-10">
+              <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white mb-6">
+                Recommended
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-2">Business Team</h3>
+              <p className="text-neutral-400 mb-8 max-w-sm">Scale your application with higher limits, team collaboration, and priority support.</p>
+              <div className="flex items-baseline gap-1">
+                <span className="text-5xl font-semibold tracking-tight">$49</span>
+                <span className="text-neutral-400">/user/mo</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col flex-1 justify-between relative z-10 border-t border-white/10 sm:border-t-0 sm:border-l sm:pl-8 pt-8 sm:pt-0">
+              <ul className="space-y-4 mb-8">
+                {[
+                  '10,000 API req/min',
+                  'Advanced Roles & Permissions',
+                  'SSO & SAML Integration',
+                  'Dedicated Account Expert',
+                  'Customized Onboarding',
+                ].map((item) => (
+                  <li key={item} className="flex items-center text-sm font-medium text-neutral-200">
+                    <Check className="h-4 w-4 mr-3 text-white bg-white/20 rounded-full p-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-3.5 rounded-xl bg-white text-neutral-950 text-sm font-semibold hover:scale-[1.02] active:scale-[0.98] transition-transform">
+                Start 14-Day Trial
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+```
+
+### Split Pricing Section
+A split-screen layout with sticky bold typography describing the strategy on the left, horizontally scrolled cards on the right.
+
+<Preview>
+<SplitPricingSection />
+</Preview>
+
+```jsx showLineNumbers
+import React from "react";
+import { Check, X, Building2 } from "lucide-react";
+
+export const SplitPricingSection: React.FC = () => {
+  return (
+    <section className="py-24 px-4 bg-white dark:bg-[#0A0A0A]">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-8">
+        
+        {/* Left Sticky Header */}
+        <div className="lg:w-1/3">
+          <div className="sticky top-32">
+            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider text-sm uppercase mb-4">
+              <Building2 className="w-5 h-5" />
+              <span>Pricing</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-6">
+              Right-sized for your ambition.
+            </h2>
+            <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-8">
+              Whether you are just trying things out or need a robust corporate solution, we have a plan that fits perfectly.
+            </p>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-white/5">
+                <div className="p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border border-neutral-200 dark:border-white/5">
+                  <SearchIcon className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 dark:text-white text-sm">Need help choosing?</h4>
+                  <a href="#" className="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-white underline underline-offset-4 decoration-neutral-300 mt-1 inline-block transition-colors">Compare all features</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Scrolling Cards */}
+        <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          {/* Card 1 */}
+          <div className="flex flex-col p-8 rounded-[32px] bg-neutral-50 dark:bg-neutral-900/30 border border-neutral-200/60 dark:border-white/5">
+             <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-2">Hobby</h3>
+             <p className="text-sm text-neutral-500 mb-8">For personal projects.</p>
+             <div className="mb-8 pb-8 border-b border-neutral-200 dark:border-white/10">
+               <span className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">$0</span>
+             </div>
+             <ul className="space-y-4 mb-8 flex-1">
+               {['Single user', '1GB Storage', 'Community Support'].map(feature => (
+                 <li key={feature} className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
+                    <Check className="w-4 h-4 mr-3 text-neutral-400" />
+                    {feature}
+                 </li>
+               ))}
+               <li className="flex items-center text-sm text-neutral-400 line-through opacity-50">
+                  <X className="w-4 h-4 mr-3" /> Dedicated Support
+               </li>
+             </ul>
+             <button className="w-full py-3 rounded-xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors shadow-sm">
+               Get Started
+             </button>
+          </div>
+
+          {/* Card 2 */}
+          <div className="flex flex-col p-8 rounded-[32px] bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 shadow-xl shadow-neutral-200/40 dark:shadow-black/60 relative">
+             <div className="absolute top-0 right-8 transform -translate-y-1/2 rounded-full bg-indigo-600 text-white px-3 py-1 text-xs font-bold uppercase tracking-wider">
+               Popular
+             </div>
+             <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-2">Professional</h3>
+             <p className="text-sm text-neutral-500 mb-8">For independent creators.</p>
+             <div className="mb-8 pb-8 border-b border-neutral-200 dark:border-white/10">
+               <span className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">$15</span>
+               <span className="text-neutral-500">/mo</span>
+             </div>
+             <ul className="space-y-4 mb-8 flex-1">
+               {['All Hobby features', 'Unlimited Users', '100GB Storage', 'Priority Support', 'Custom Domains'].map(feature => (
+                 <li key={feature} className="flex items-center text-sm text-neutral-700 dark:text-neutral-300 font-medium">
+                    <Check className="w-4 h-4 mr-3 text-indigo-500" />
+                    {feature}
+                 </li>
+               ))}
+             </ul>
+             <button className="w-full py-3 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-sm font-medium hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md mt-auto">
+               Subscribe Now
+             </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+function SearchIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+```

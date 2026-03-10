@@ -196,6 +196,10 @@ export const ROUTES: EachRoute[] = [
                 title: "Blog List",
                 href: "/blog-list",
             },
+            {
+                title: "Pricing",
+                href: "/pricing",
+            },
         ]
     },
     {

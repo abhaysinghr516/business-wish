@@ -78,6 +78,7 @@ import { SplitTextDemo, SplitTextVariantsDemo } from "@/components/motion/SplitT
 import { BlurRevealDemo, BlurRevealGroupDemo } from "@/components/motion/BlurReveal";
 import MotionPreview from "@/app/components/MotionPreview";
 import { BasicSwitch, IconSwitch, LabeledSwitch, ThemeSwitch } from "@/components/Switch";
+import { MinimalPricingSection, TabbedPricingSection, GridPricingSection, SplitPricingSection } from "@/components/Pricing";
 
 // add custom components
 const components = {
@@ -301,6 +302,10 @@ const components = {
     SplitTextVariantsDemo,
     BlurRevealDemo,
     BlurRevealGroupDemo,
+    MinimalPricingSection,
+    TabbedPricingSection,
+    GridPricingSection,
+    SplitPricingSection,
 };
 
 // can be used for other pages like blogs, Guides etc
