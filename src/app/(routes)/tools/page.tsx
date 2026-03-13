@@ -156,13 +156,6 @@ const tools: Tool[] = [
     category: "css",
   },
   {
-    name: "Animation Easing",
-    description:
-      "CSS transition timing functions with interactive curves and code preview.",
-    href: "/tools/animation-easing",
-    category: "css",
-  },
-  {
     name: "JSON Formatter",
     description:
       "Format, validate, and beautify JSON data with syntax highlighting and error detection.",
@@ -195,6 +188,13 @@ const tools: Tool[] = [
     description:
       "Convert between image formats (PNG, JPEG, WebP, SVG) with quality settings.",
     href: "/tools/image-formatter",
+    category: "image",
+  },
+  {
+    name: "Duotone Image Filter",
+    description:
+      "Instantly apply a striking dual-color effect to any image. Perfect for branding, playlists, and aesthetic covers.",
+    href: "/tools/duotone-filter",
     category: "image",
   },
   {
