@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/abhaysinghr516/business-wish.svg)](https://github.com/abhaysinghr516/business-wish/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/abhaysinghr516/business-wish.svg)](https://github.com/abhaysinghr516/business-wish/issues)
 
-An open-source developer toolkit — **50+ Tailwind CSS components**, **13 motion primitives**, and **17 browser-based dev tools**. No installs, no config, no accounts.
+An open-source developer toolkit — **50+ Tailwind CSS components** and **13 motion primitives**. No installs, no config, no accounts.
 
 **[businesswish.tech](https://www.businesswish.tech)**
 
@@ -24,17 +24,6 @@ Accordion · Alert · Avatar · Badge · Banner · Bottom Navigation · Breadcru
 
 Text Reveal · Number Ticker · Card Spotlight · Shimmer Button · Gradient Text · Fade In · Morphing Text · Magnetic Element · Text Shimmer · Word Rotate · Dock · Split Text · Blur Reveal
 
-### Developer Tools
-
-17 browser-based utilities that run 100% locally. No data leaves your machine. Try them at [/tools](https://www.businesswish.tech/tools).
-
-| Category | Tools |
-|---|---|
-| **Color & Design** | Palette Generator · Contrast Checker · Blindness Simulator · Color Converter · Image Color Picker |
-| **CSS** | Box Shadow · Gradient · Flexbox Playground · CSS Grid · Animation Easing |
-| **Data & Code** | JSON Formatter · CSV to JSON · QR Code Generator |
-| **Image** | Image Compressor · Image Formatter |
-| **Productivity** | Word Counter · Pomodoro Timer |
 
 ---
 
@@ -80,9 +69,7 @@ npx @abhaysinghr516/business-wish list
 src/
 ├── app/
 │   ├── (routes)/
-│   │   ├── docs/           # Component & motion documentation
-│   │   ├── tools/          # 17 developer tools
-│   │   └── templates/      # Page templates (coming soon)
+│   │   └── docs/           # Component & motion documentation
 │   ├── components/         # Shared app components (Navbar, Footer, etc.)
 │   ├── contents/docs/      # MDX documentation files
 │   └── lib/                # Utilities and markdown config
@@ -104,7 +91,7 @@ src/
 
 ## Contributing
 
-We welcome contributions of all kinds — new components, motion primitives, tools, docs improvements, and bug fixes.
+We welcome contributions of all kinds — new components, motion primitives, docs improvements, and bug fixes.
 
 See our [Contributing Guide](CONTRIBUTING.md) for the full walkthrough.
 
@@ -116,9 +103,9 @@ fork → branch → commit → pull request
 
 ## Stats
 
-| 50+ | 13 | 17 | 0 |
-|:---:|:---:|:---:|:---:|
-| Components | Motion Primitives | Dev Tools | Dependencies |
+| 50+ | 13 | 0 |
+|:---:|:---:|:---:|
+| Components | Motion Primitives | Dependencies |
 
 ---
 
@@ -132,7 +119,6 @@ fork → branch → commit → pull request
 
 - [Website](https://www.businesswish.tech)
 - [Documentation](https://www.businesswish.tech/docs/components)
-- [Tools](https://www.businesswish.tech/tools)
 - [GitHub](https://github.com/abhaysinghr516/business-wish)
 - [Issues](https://github.com/abhaysinghr516/business-wish/issues)
 

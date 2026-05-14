@@ -13,12 +13,10 @@ export default function robots(): MetadataRoute.Robots {
                     "/docs/components/",
                     "/docs/pages/",
                     "/docs/motion/",
-                    "/tools/",
                     "/llms.txt",
                 ],
                 disallow: [
                     "/api/",
-                    "/templates/",
                     "/private/",
                     "/_next/",
                     "/node_modules/",
@@ -36,7 +34,6 @@ export default function robots(): MetadataRoute.Robots {
                     "/docs/components/",
                     "/docs/pages/",
                     "/docs/motion/",
-                    "/tools/",
                     "/llms.txt",
                 ],
                 disallow: [
@@ -53,7 +50,6 @@ export default function robots(): MetadataRoute.Robots {
                     "/",
                     "/docs/",
                     "/docs/motion/",
-                    "/tools/",
                     "/llms.txt",
                 ],
                 disallow: [

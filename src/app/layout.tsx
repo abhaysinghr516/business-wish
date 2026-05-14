@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "./components/theme-provider";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -15,10 +15,10 @@ import {
   generateOrganizationSchema,
 } from "../lib/seo";
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-jakarta",
 });
 
 // Enhanced JSON-LD schema data
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Business Wish",
   },
   description:
-    "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers. Boost your project's design and efficiency with our ready-to-use components and offline utilities.",
+    "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers. Boost your project's design and efficiency with our ready-to-use components.",
   keywords: [
     "Tailwind CSS components",
     "free Tailwind CSS components",
@@ -42,15 +42,6 @@ export const metadata: Metadata = {
     "React UI components",
     "Next.js components",
     "dark mode components",
-    "developer tools",
-    "web development tools",
-    "color palette generator",
-    "CSS tools",
-    "JSON formatter",
-    "QR code generator",
-    "image compressor",
-    "gradient generator",
-    "flexbox generator",
     "Tailwind CSS button",
     "Tailwind CSS form",
     "Tailwind CSS navigation bar",
@@ -59,17 +50,16 @@ export const metadata: Metadata = {
     "best free Tailwind CSS component library",
     "Tailwind CSS component examples",
     "updated Tailwind CSS components",
-    "offline developer tools",
-    "browser-based utilities",
-    "privacy-focused tools",
+    "motion components",
+    "framer motion components",
   ],
   alternates: {
     canonical: "https://www.businesswish.tech",
   },
   openGraph: {
-    title: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
+    title: "Business Wish - Free Tailwind CSS UI Components & Motion",
     description:
-      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
+      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers.",
     type: "website",
     url: "https://www.businesswish.tech",
     siteName: "Business Wish",
@@ -79,7 +69,7 @@ export const metadata: Metadata = {
         url: "https://www.businesswish.tech/business-wish-hero.png",
         width: 1200,
         height: 630,
-        alt: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
+        alt: "Business Wish - Free Tailwind CSS UI Components & Motion",
       },
     ],
   },
@@ -87,9 +77,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@abhaysinghr516",
     creator: "@abhaysinghr516",
-    title: "Business Wish - Free Tailwind CSS UI Components & Developer Tools",
+    title: "Business Wish - Free Tailwind CSS UI Components & Motion",
     description:
-      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
+      "Discover a comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers.",
     images: ["https://www.businesswish.tech/business-wish-hero.png"],
   },
   robots: {
@@ -122,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={jakarta.variable}>
       <head>
         {/* Mobile optimization */}
         <meta
@@ -167,7 +157,7 @@ export default function RootLayout({
         />
 
       </head>
-      <body className={inter.className}>
+      <body className={jakarta.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

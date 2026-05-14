@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { initClarity, tagClaritySession, trackDocumentationView, trackMotionComponentView, trackToolUsed } from "@/lib/analytics";
+import { initClarity, tagClaritySession, trackDocumentationView, trackMotionComponentView } from "@/lib/analytics";
 
 export default function AnalyticsProvider() {
     const pathname = usePathname();
@@ -25,10 +25,6 @@ export default function AnalyticsProvider() {
             const componentName = pathname.split("/").pop() || "";
             trackDocumentationView(pathname, componentName);
             tagClaritySession("section", "docs");
-        } else if (pathname.startsWith("/tools/")) {
-            const toolName = pathname.split("/").pop() || "";
-            trackToolUsed(toolName);
-            tagClaritySession("section", "tools");
         } else {
             tagClaritySession("section", "main");
         }

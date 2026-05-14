@@ -9,7 +9,6 @@ import {
   BookOpenIcon,
   FolderIcon,
   SparklesIcon,
-  WrenchIcon,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -130,10 +129,7 @@ export default function Search({
       return (
         <ComponentIcon className="h-4 w-4 text-blue-500 dark:text-blue-400" />
       );
-    if (path.includes("/tools/"))
-      return (
-        <WrenchIcon className="h-4 w-4 text-orange-500 dark:text-orange-400" />
-      );
+
     if (path.includes("/pages/") || path.includes("/docs/"))
       return (
         <BookOpenIcon className="h-4 w-4 text-green-500 dark:text-green-400" />
@@ -314,12 +310,6 @@ export default function Search({
                     color: "text-blue-500 dark:text-blue-400",
                   },
                   {
-                    title: "Color Palette Generator",
-                    href: "/tools/color-palette",
-                    icon: WrenchIcon,
-                    color: "text-orange-500 dark:text-orange-400",
-                  },
-                  {
                     title: "Blog List",
                     href: "/pages/blog-list",
                     icon: BookOpenIcon,
@@ -398,8 +388,6 @@ export default function Search({
                           <span className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
                             {item.href.includes("/components") &&
                               "UI Components"}
-                            {item.href.includes("/tools") &&
-                              "Development Tools"}
                             {item.href.includes("/pages") && "Page Templates"}
                           </span>
                         )}

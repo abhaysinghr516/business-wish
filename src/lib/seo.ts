@@ -122,8 +122,8 @@ export function generateWebsiteSchema() {
         "@type": "WebSite",
         name: "Business Wish",
         url: baseUrl,
-        description: "Free Tailwind CSS UI components library and developer tools for web developers.",
-        keywords: "Tailwind CSS, UI components, React, Next.js, developer tools, free, open source, color palette generator, CSS tools, JSON formatter",
+        description: "Free Tailwind CSS UI components library and motion primitives for web developers.",
+        keywords: "Tailwind CSS, UI components, React, Next.js, free, open source, motion components, framer motion",
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
@@ -150,11 +150,6 @@ export function generateWebsiteSchema() {
                 target: `${baseUrl}/docs?search={search_term_string}`,
                 "query-input": "required name=search_term_string",
             },
-            {
-                "@type": "SearchAction",
-                target: `${baseUrl}/tools?search={search_term_string}`,
-                "query-input": "required name=search_term_string",
-            },
         ],
     };
 }
@@ -163,10 +158,10 @@ export function generateSoftwareApplicationSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        name: "Business Wish UI Components & Developer Tools",
+        name: "Business Wish UI Components & Motion",
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web Browser",
-        description: "A comprehensive library of free, high-quality Tailwind CSS UI components and 17+ developer tools for web developers.",
+        description: "A comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers.",
         url: baseUrl,
         downloadUrl: `${baseUrl}/docs`,
         softwareVersion: "2.4.0",
@@ -201,17 +196,12 @@ export function generateSoftwareApplicationSchema() {
         },
         featureList: [
             "Free Tailwind CSS UI Components",
-            "17+ Developer Tools",
-            "Color Palette Generator",
-            "CSS Grid & Flexbox Generators",
-            "JSON Formatter & Validator",
-            "Image Compression Tools",
-            "QR Code Generator",
-            "Accessibility Tools",
+            "13 Motion Primitives",
             "Dark Mode Support",
             "Copy-Paste Ready Code",
             "No Registration Required",
-            "Privacy-Focused (Offline Tools)",
+            "WCAG Accessible",
+            "Framework Agnostic",
         ],
     };
 }
@@ -292,7 +282,7 @@ export function generateOrganizationSchema() {
             width: 192,
             height: 192,
         },
-        description: "Free Tailwind CSS UI components library and developer tools for web developers.",
+        description: "Free Tailwind CSS UI components library and motion primitives for web developers.",
         foundingDate: "2024-01-01",
         founder: {
             "@type": "Person",
@@ -315,10 +305,8 @@ export function generateOrganizationSchema() {
             "Web Development",
             "UI/UX Design",
             "Frontend Development",
-            "Developer Tools",
-            "Color Theory",
-            "CSS Grid",
-            "Flexbox",
+            "Motion Components",
+            "Framer Motion",
             "Accessibility",
             "Web Standards",
         ],

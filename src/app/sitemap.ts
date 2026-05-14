@@ -5,27 +5,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://www.businesswish.tech";
     const currentDate = new Date().toISOString();
 
-    // Individual tool page slugs
-    const toolSlugs = [
-        "palette-generator",
-        "contrast-checker",
-        "blindness-simulator",
-        "format-converter",
-        "image-extractor",
-        "json-formatter",
-        "qr-generator",
-        "box-shadow",
-        "gradient",
-        "flexbox",
-        "csv-to-json",
-        "word-counter",
-        "image-compressor",
-        "css-grid",
-        "pomodoro-timer",
-        "animation-easing",
-        "image-formatter",
-    ];
-
     // Static high-priority pages
     const staticRoutes: MetadataRoute.Sitemap = [
         {
@@ -58,19 +37,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "weekly",
             priority: 0.85,
         },
-        {
-            url: `${baseUrl}/tools`,
-            lastModified: currentDate,
-            changeFrequency: "weekly",
-            priority: 0.9,
-        },
-        // Individual tool pages
-        ...toolSlugs.map((slug) => ({
-            url: `${baseUrl}/tools/${slug}`,
-            lastModified: currentDate,
-            changeFrequency: "monthly" as const,
-            priority: 0.8,
-        })),
     ];
 
     // Dynamic component and page routes
@@ -89,9 +55,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority = Math.max(priority, 0.7);
         } else if (route.href.startsWith('/motion')) {
             priority = 0.7;
-            changeFrequency = "weekly";
-        } else if (route.href.startsWith('/tools')) {
-            priority = 0.8;
             changeFrequency = "weekly";
         } else if (route.href.startsWith('/pages')) {
             priority = 0.6;

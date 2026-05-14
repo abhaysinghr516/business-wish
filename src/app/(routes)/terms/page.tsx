@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Terms of Service | Business Wish",
   description:
-    "Terms of service for Business Wish. Learn about the usage terms for our UI components and developer tools.",
+    "Terms of service for Business Wish. Learn about the usage terms for our UI components.",
   keywords: [
     "terms of service",
     "terms of use",
@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     "usage agreement",
     "Apache license",
     "open source",
-    "developer tools terms",
+
   ],
   openGraph: {
     title: "Terms of Service | Business Wish",
     description:
-      "Terms of service for Business Wish UI components and developer tools.",
+      "Terms of service for Business Wish UI components.",
     type: "website",
     url: "https://www.businesswish.tech/terms",
   },
@@ -117,16 +117,7 @@ export default function TermsPage() {
                   </ul>
                 </div>
 
-                <div>
-                  <h3 className="font-medium text-black dark:text-white mb-2">
-                    Developer Tools
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
-                    Our developer tools are provided free of charge for personal
-                    and commercial use. All tools run locally in your browser
-                    and do not require registration.
-                  </p>
-                </div>
+
 
                 <div>
                   <h3 className="font-medium text-black dark:text-white mb-2">
@@ -209,7 +200,7 @@ export default function TermsPage() {
                     Code Quality
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
-                    While we test our components and tools, we cannot guarantee
+                    While we test our components, we cannot guarantee
                     they are error-free or suitable for all use cases. Use at
                     your own discretion and test thoroughly in your projects.
                   </p>

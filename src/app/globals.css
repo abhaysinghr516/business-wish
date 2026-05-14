@@ -67,7 +67,7 @@
   }
 
   .dark {
-    --background: 0 0% 5%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 90%;
     --card: 0 0% 5%;
     --card-foreground: 0 0% 90%;
@@ -113,8 +113,172 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
+}
+
+/* Landing page animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-delayed {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Gradient text utility — brand orange */
+.gradient-text {
+  background: linear-gradient(135deg, #D80B0B 0%, #FC2208 50%, #FF6107 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #FF3903 0%, #FF6107 50%, #FF8A3D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow utilities */
+.glow-blue {
+  background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 97, 7, 0.06), transparent 40%);
+}
+
+.dark .glow-blue {
+  background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 97, 7, 0.08), transparent 40%);
+}
+
+/* Preview card hover glow */
+.preview-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.4, 0.25, 1);
+}
+
+.preview-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+
+.preview-card:hover::before {
+  background: linear-gradient(135deg, rgba(255, 97, 7, 0.3), rgba(216, 11, 11, 0.3));
+}
+
+.preview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08);
+}
+
+.dark .preview-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
 }
 
 .prose {

@@ -14,7 +14,6 @@ import {
   Layers,
   Palette,
   Sparkles,
-  Wrench,
 } from "lucide-react";
 import { ROUTES } from "@/app/lib/routes-config";
 import { cn } from "@/lib/utils";
@@ -36,7 +35,6 @@ export function DocsSidebar({
     components: true,
     pages: true,
     motion: true,
-    tools: true,
   });
 
   const toggleSection = (sectionId: string) => {
@@ -55,7 +53,6 @@ export function DocsSidebar({
       return <Sparkles className={className} />;
     if (lowerTitle.includes("page")) return <FileText className={className} />;
     if (lowerTitle.includes("template")) return <Palette className={className} />;
-    if (lowerTitle.includes("tool")) return <Wrench className={className} />;
     return <Layers className={className} />;
   };
 

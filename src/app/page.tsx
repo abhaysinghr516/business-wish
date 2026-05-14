@@ -1,423 +1,257 @@
 import {
   ArrowRight,
-  Copy,
-  Terminal,
   Github,
-  Wrench,
   Shield,
   Zap,
-  FileJson,
-  Sparkles,
-  Layers,
   MousePointerClick,
-  Droplets,
-  Grid3X3,
-  Scissors,
-  SlidersHorizontal,
+  Terminal,
+  Navigation,
+  FormInput,
   Layout,
-  ShoppingBag,
-  FileText,
-  BarChart3,
-  User,
-  Settings,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import HeroSection from "./components/HeroSection";
 import StatsSection from "./components/StatsSection";
 
+/* ── Wireframe component thumbnails ── */
+const componentThumbs = [
+  {
+    name: "Hero Sections",
+    href: "/docs/components/hero",
+    wire: (
+      <div className="space-y-2 p-3 w-full">
+        <div className="h-2.5 bg-stone-300 dark:bg-stone-600 rounded-full w-1/2" />
+        <div className="h-1.5 bg-stone-200 dark:bg-stone-700 rounded-full w-full" />
+        <div className="h-1.5 bg-stone-200 dark:bg-stone-700 rounded-full w-3/4" />
+        <div className="flex gap-2 mt-3">
+          <div className="h-4 w-12 bg-[#FF3903] rounded-full" />
+          <div className="h-4 w-10 border border-stone-300 dark:border-stone-600 rounded-full" />
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "Cards",
+    href: "/docs/components/card",
+    wire: (
+      <div className="p-3 space-y-2 w-full">
+        <div className="w-full h-10 bg-stone-100 dark:bg-stone-800 rounded-md flex justify-end p-1.5 border border-stone-200 dark:border-stone-700">
+           <div className="w-1.5 h-1.5 rounded-full bg-[#FF3903]" />
+        </div>
+        <div className="h-2 bg-stone-300 dark:bg-stone-600 rounded-full w-3/4" />
+        <div className="h-1.5 bg-stone-200 dark:bg-stone-700 rounded-full w-full" />
+      </div>
+    ),
+  },
+  {
+    name: "Navigation",
+    href: "/docs/components/header",
+    wire: (
+      <div className="p-3 space-y-3 w-full">
+        <div className="flex items-center justify-between">
+          <div className="h-3 w-3 bg-[#FF3903] rounded-full" />
+          <div className="flex gap-1.5">
+            <div className="h-1.5 w-4 bg-stone-300 dark:bg-stone-600 rounded-full" />
+            <div className="h-1.5 w-4 bg-stone-300 dark:bg-stone-600 rounded-full" />
+            <div className="h-1.5 w-4 bg-stone-300 dark:bg-stone-600 rounded-full" />
+          </div>
+        </div>
+        <div className="h-px w-full bg-stone-200 dark:bg-stone-800" />
+      </div>
+    ),
+  },
+  {
+    name: "Buttons",
+    href: "/docs/components/button",
+    wire: (
+      <div className="p-3 flex flex-col gap-2 items-start w-full">
+        <div className="px-4 py-1.5 bg-[#FF3903] rounded-full text-[8px] text-white font-medium w-full text-center">Primary</div>
+        <div className="px-4 py-1.5 border border-stone-300 dark:border-stone-600 rounded-full text-[8px] text-stone-500 dark:text-stone-400 font-medium w-full text-center">Outline</div>
+        <div className="px-4 py-1.5 bg-stone-100 dark:bg-stone-800 rounded-full text-[8px] text-stone-600 dark:text-stone-300 font-medium w-full text-center">Secondary</div>
+      </div>
+    ),
+  },
+  {
+    name: "Data Table",
+    href: "/docs/components/data-table",
+    wire: (
+      <div className="p-3 space-y-2 w-full">
+        <div className="flex items-center justify-between pb-1.5 border-b border-stone-200 dark:border-stone-700">
+          <div className="h-1 w-6 bg-stone-300 dark:bg-stone-600 rounded-full" />
+          <div className="h-1 w-6 bg-stone-300 dark:bg-stone-600 rounded-full" />
+        </div>
+        {[1, 2, 3].map((r) => (
+          <div key={r} className="flex items-center justify-between">
+            <div className="h-1.5 bg-stone-200 dark:bg-stone-700 rounded-full w-10" />
+            <div className={`h-1.5 rounded-full w-6 ${r === 2 ? 'bg-[#FF3903]' : 'bg-stone-200 dark:bg-stone-700'}`} />
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    name: "Accordion",
+    href: "/docs/components/accordion",
+    wire: (
+      <div className="p-3 space-y-1.5 w-full">
+        {[1, 2, 3].map((n) => (
+          <div key={n} className={`border border-stone-200 dark:border-stone-700 rounded-md p-1.5 ${n===1 ? 'border-[#FF3903]/30 bg-[#FF3903]/5' : ''}`}>
+            <div className="flex items-center justify-between">
+              <div className={`h-1.5 rounded-full w-1/2 ${n === 1 ? 'bg-[#FF3903]' : 'bg-stone-300 dark:bg-stone-600'}`} />
+              <div className={`h-1.5 w-1.5 rounded-full ${n === 1 ? 'bg-[#FF3903]' : 'bg-stone-300 dark:bg-stone-600'}`} />
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+];
+
+const motionItems = [
+  { name: "Text Reveal", desc: "Animated text reveal on scroll", href: "/docs/motion/text-reveal" },
+  { name: "Shimmer Button", desc: "Buttons with shimmer animation", href: "/docs/motion/shimmer-button" },
+  { name: "Card Spotlight", desc: "Spotlight hover effect", href: "/docs/motion/card-spotlight" },
+  { name: "Morphing Text", desc: "Smooth text transitions", href: "/docs/motion/morphing-text" },
+  { name: "Magnetic Element", desc: "Cursor-attracted elements", href: "/docs/motion/magnetic-element" },
+  { name: "Gradient Text", desc: "Animated gradient text", href: "/docs/motion/gradient-text" },
+];
+
+const features = [
+  { icon: Terminal, title: "CLI or Copy & Paste", desc: "Install via CLI or grab the code. No dependencies either way." },
+  { icon: Shield, title: "Open Source", desc: "Apache-2.0 licensed. Contribute, customize, build freely." },
+  { icon: Zap, title: "Zero Config", desc: "Works with Next.js, Vite, CRA, or any Tailwind project." },
+  { icon: MousePointerClick, title: "Accessible", desc: "WCAG compliant with ARIA labels and keyboard navigation." },
+];
+
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section — Client component with animations */}
       <HeroSection />
 
-      {/* Divider */}
-      <div className="border-t border-stone-200 dark:border-stone-800" />
-
-      {/* Bento Grid — What's Inside */}
-      <section className="py-20 px-4 sm:px-6 bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
-            <p className="text-xs font-medium uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3">
-              What&apos;s inside
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-medium text-stone-900 dark:text-stone-100 leading-tight">
-              Three pillars, one toolkit
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-stone-200 dark:bg-stone-800 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800">
-            {/* Components */}
-            <div className="bg-white dark:bg-stone-950 p-8 lg:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
-                  <Layers className="h-5 w-5 text-stone-600 dark:text-stone-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                  Components
-                </h3>
-              </div>
-              <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
-                50+ production-ready Tailwind CSS components. Buttons, cards,
-                heroes, navbars, footers, modals — every building block you
-                need.
-              </p>
-              <ul className="space-y-2 text-sm text-stone-500 dark:text-stone-400">
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Dark mode built-in
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  WCAG accessible
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Fully responsive
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Framework agnostic
-                </li>
-              </ul>
-              <Link
-                href="/docs/components/accordion"
-                className="inline-flex items-center gap-1 text-sm font-medium text-stone-900 dark:text-stone-100 mt-6 hover:underline"
-              >
-                Browse components <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-
-            {/* Motion */}
-            <div className="bg-white dark:bg-stone-950 p-8 lg:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
-                  <Sparkles className="h-5 w-5 text-stone-600 dark:text-stone-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                  Motion
-                </h3>
-              </div>
-              <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
-                13 animated components built with Framer Motion. Text reveals,
-                morphing text, shimmer buttons, magnetic elements, and more.
-              </p>
-              <ul className="space-y-2 text-sm text-stone-500 dark:text-stone-400">
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Scroll-triggered
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Interactive hover effects
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Smooth transitions
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  React / Next.js ready
-                </li>
-              </ul>
-              <Link
-                href="/docs/motion/text-reveal"
-                className="inline-flex items-center gap-1 text-sm font-medium text-stone-900 dark:text-stone-100 mt-6 hover:underline"
-              >
-                Explore motion <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-
-            {/* Tools */}
-            <div className="bg-white dark:bg-stone-950 p-8 lg:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-900 flex items-center justify-center">
-                  <Wrench className="h-5 w-5 text-stone-600 dark:text-stone-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                  Dev Tools
-                </h3>
-              </div>
-              <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
-                17 browser-based utilities. Color palettes, CSS generators,
-                JSON formatter, image compressor — all running locally.
-              </p>
-              <ul className="space-y-2 text-sm text-stone-500 dark:text-stone-400">
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  100% offline capable
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Zero data collection
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  No signup required
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-stone-400 dark:bg-stone-600" />
-                  Instant loading
-                </li>
-              </ul>
-              <Link
-                href="/tools"
-                className="inline-flex items-center gap-1 text-sm font-medium text-stone-900 dark:text-stone-100 mt-6 hover:underline"
-              >
-                Open tools <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="border-t border-stone-200 dark:border-stone-800" />
-
-      {/* Tools Grid — Unique icons per tool */}
-      <section className="py-20 px-4 sm:px-6 bg-stone-50 dark:bg-stone-900/30">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
-            <p className="text-xs font-medium uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3">
-              Developer Tools
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-medium text-stone-900 dark:text-stone-100 mb-3 leading-tight">
-              Everything runs in your browser
-            </h2>
-            <p className="text-stone-500 dark:text-stone-400 max-w-xl">
-              Professional-grade utilities with zero installs. Your data never
-              leaves your machine.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
-            {[
-              {
-                name: "Palette Generator",
-                icon: Droplets,
-                href: "/tools/palette-generator",
-              },
-              {
-                name: "Contrast Checker",
-                icon: Shield,
-                href: "/tools/contrast-checker",
-              },
-              {
-                name: "JSON Formatter",
-                icon: FileJson,
-                href: "/tools/json-formatter",
-              },
-              {
-                name: "Box Shadow",
-                icon: Layers,
-                href: "/tools/box-shadow",
-              },
-              {
-                name: "Gradient Generator",
-                icon: SlidersHorizontal,
-                href: "/tools/gradient",
-              },
-              {
-                name: "Flexbox Playground",
-                icon: Layout,
-                href: "/tools/flexbox",
-              },
-              {
-                name: "CSS Grid",
-                icon: Grid3X3,
-                href: "/tools/css-grid",
-              },
-              {
-                name: "Image Compressor",
-                icon: Scissors,
-                href: "/tools/image-compressor",
-              },
-            ].map((tool) => (
-              <Link key={tool.name} href={tool.href}>
-                <div className="bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-lg p-4 sm:p-5 hover:border-stone-400 dark:hover:border-stone-600 transition-colors group">
-                  <tool.icon className="h-5 w-5 text-stone-400 dark:text-stone-500 mb-3 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors" />
-                  <p className="text-sm font-medium text-stone-700 dark:text-stone-300">
-                    {tool.name}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <Link href="/tools">
-            <Button
-              variant="outline"
-              className="px-5 py-2.5 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 rounded-lg text-sm font-medium hover:bg-white dark:hover:bg-stone-900 transition-colors"
-            >
-              View all 17 tools
-              <ArrowRight className="ml-2 h-3.5 w-3.5" />
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="border-t border-stone-200 dark:border-stone-800" />
-
-      {/* Why Section — Flat cards */}
-      <section className="py-20 px-4 sm:px-6 bg-white dark:bg-stone-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
-            <p className="text-xs font-medium uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3">
-              Why Business Wish
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-medium text-stone-900 dark:text-stone-100 leading-tight">
-              Built for how developers actually work
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-200 dark:bg-stone-800 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800">
-            <div className="bg-white dark:bg-stone-950 p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <Terminal className="h-5 w-5 text-stone-400 dark:text-stone-500" />
-                <span className="text-stone-300 dark:text-stone-700">|</span>
-                <Copy className="h-5 w-5 text-stone-400 dark:text-stone-500" />
-              </div>
-              <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">
-                CLI or Copy & Paste
-              </h3>
-              <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                Use our CLI to add components instantly, or simply grab the code and go. No dependencies to manage either way.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-stone-950 p-6 sm:p-8">
-              <Shield className="h-5 w-5 text-stone-400 dark:text-stone-500 mb-4" />
-              <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">
-                Privacy First
-              </h3>
-              <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                Every tool runs locally. Your files and data never touch a
-                server. Ever.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-stone-950 p-6 sm:p-8">
-              <Zap className="h-5 w-5 text-stone-400 dark:text-stone-500 mb-4" />
-              <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">
-                Zero Config
-              </h3>
-              <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                Works with Next.js, Vite, CRA, or any Tailwind project. No
-                setup needed.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-stone-950 p-6 sm:p-8">
-              <MousePointerClick className="h-5 w-5 text-stone-400 dark:text-stone-500 mb-4" />
-              <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">
-                Accessible
-              </h3>
-              <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                WCAG compliant components with proper ARIA labels, keyboard
-                navigation, and focus management.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="border-t border-stone-200 dark:border-stone-800" />
-
-      {/* Numbers — Client component with count-up animation */}
+      {/* ── Stats ── */}
       <StatsSection />
 
-      {/* Divider */}
-      <div className="border-t border-stone-200 dark:border-stone-800" />
-
-      {/* Templates Teaser — Unique icons per template */}
-      <section className="py-20 px-4 sm:px-6 bg-white dark:bg-stone-950">
+      {/* ── Main Features ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-3">
-                Coming Soon
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-medium text-stone-900 dark:text-stone-100 leading-tight">
-                Full-page templates
-              </h2>
-              <p className="text-stone-500 dark:text-stone-400 mt-3 max-w-lg">
-                Complete website templates built with our components.
-                Production-ready designs that ship fast.
-              </p>
-            </div>
-            <Link
-              href="/templates"
-              className="inline-flex items-center gap-1 text-sm font-medium text-stone-900 dark:text-stone-100 hover:underline flex-shrink-0"
-            >
-              View all templates <ArrowRight className="h-3 w-3" />
-            </Link>
+          <div className="mb-12">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 dark:text-stone-100 leading-tight tracking-tight max-w-lg">
+              Build faster with a complete React UI component library
+            </h2>
+            <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl leading-relaxed">
+              50+ free components, production-ready blocks, and a complete design system built for teams who design, build, and ship at scale.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-stone-200 dark:bg-stone-800 rounded-lg overflow-hidden border border-stone-200 dark:border-stone-800">
-            {[
-              { name: "Landing Page", label: "Marketing", icon: Layout },
-              { name: "E-commerce", label: "Store", icon: ShoppingBag },
-              { name: "Blog", label: "Content", icon: FileText },
-              { name: "Dashboard", label: "Analytics", icon: BarChart3 },
-              { name: "Portfolio", label: "Personal", icon: User },
-              { name: "SaaS App", label: "Product", icon: Settings },
-            ].map((template) => (
-              <div
-                key={template.name}
-                className="bg-white dark:bg-stone-950 p-5 text-center"
-              >
-                <div className="w-10 h-10 rounded-lg bg-stone-100 dark:bg-stone-900 mx-auto mb-3 flex items-center justify-center">
-                  <template.icon className="h-4 w-4 text-stone-400 dark:text-stone-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map((f) => (
+              <div key={f.title} className="group p-6 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/50 hover:border-stone-300 dark:hover:border-stone-700 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 flex items-center justify-center mb-4 group-hover:bg-[#FF3903]/10 dark:group-hover:bg-[#FF3903]/20 group-hover:border-[#FF3903]/30 transition-colors">
+                  <f.icon className="h-5 w-5 text-stone-600 dark:text-stone-400 group-hover:text-[#FF3903] transition-colors" />
                 </div>
-                <p className="text-sm font-medium text-stone-900 dark:text-stone-100">
-                  {template.name}
-                </p>
-                <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5">
-                  {template.label}
-                </p>
+                <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">{f.title}</h3>
+                <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-stone-200 dark:border-stone-800" />
+      {/* ── Component Showcase ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 dark:text-stone-100 leading-tight tracking-tight max-w-lg">
+              50+ UI Components and Blocks to Build Faster
+            </h2>
+            <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl leading-relaxed">
+              Each component ships with production-ready code, ensuring consistent design-to-development workflows at scale.
+            </p>
+          </div>
 
-      {/* CTA */}
-      <section className="py-24 px-4 sm:px-6 bg-white dark:bg-stone-950">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-stone-900 dark:text-stone-100 mb-5 leading-tight tracking-tight">
-            Start building today
-          </h2>
-          <p className="text-lg text-stone-500 dark:text-stone-400 mb-10 max-w-xl mx-auto leading-relaxed">
-            Components to build. Tools to create. Motion to delight. All
-            free, all open source.
-          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {componentThumbs.map((comp) => (
+              <Link key={comp.name} href={comp.href} className="group">
+                <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden hover:border-stone-300 dark:hover:border-stone-700 transition-all hover:shadow-sm">
+                  <div className="aspect-[4/3] flex items-center justify-center bg-stone-50 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-800">
+                    {comp.wire}
+                  </div>
+                  <div className="px-3 py-2.5">
+                    <span className="text-xs font-medium text-stone-700 dark:text-stone-300 group-hover:text-[#FF3903] transition-colors">
+                      {comp.name}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
 
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="mt-10">
             <Link href="/docs/components/accordion">
-              <Button
-                size="lg"
-                className="px-8 py-3 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg text-sm font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
-              >
-                Explore Components
+              <Button variant="outline" className="px-6 py-2.5 rounded-xl text-sm font-medium border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all">
+                View all 50+ components
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Motion Showcase ── */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 dark:text-stone-100 leading-tight tracking-tight max-w-lg">
+              Components that come alive
+            </h2>
+            <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl leading-relaxed">
+              13 animated components built with Framer Motion. Scroll-triggered, interactive, and ready for React & Next.js.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {motionItems.map((m) => (
+              <Link key={m.name} href={m.href} className="group">
+                <div className="p-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/50 hover:border-[#FF3903]/30 dark:hover:border-[#FF3903]/30 transition-all">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="font-medium text-stone-900 dark:text-stone-100 group-hover:text-[#FF3903] transition-colors">{m.name}</h3>
+                  </div>
+                  <p className="text-sm text-stone-500 dark:text-stone-400">{m.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <Link href="/docs/motion/text-reveal">
+              <Button variant="outline" className="px-6 py-2.5 rounded-xl text-sm font-medium border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all">
+                Explore all 13 motion primitives
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Community CTA (dark) ── */}
+      <section className="bg-stone-950 dark:bg-stone-900 border-b border-stone-800">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-stone-800">
+          <div className="px-6 sm:px-10 py-16 sm:py-20">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3">
+              Business Wish Community
+            </h2>
+            <p className="text-stone-400 leading-relaxed max-w-sm">
+              Star us on GitHub to stay up to date with the latest updates, releases, and contributions.
+            </p>
+          </div>
+          <div className="px-6 sm:px-10 py-16 sm:py-20 flex items-center">
             <Link
               href="https://github.com/abhaysinghr516/business-wish"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button
-                variant="outline"
-                size="lg"
-                className="px-8 py-3 border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 rounded-lg text-sm font-medium hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors"
-              >
+              <Button size="lg" className="px-8 py-3 bg-white text-stone-900 rounded-xl text-sm font-medium hover:bg-stone-100 transition-all">
                 <Github className="mr-2 h-4 w-4" />
                 Star on GitHub
               </Button>

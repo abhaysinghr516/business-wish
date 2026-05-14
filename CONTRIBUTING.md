@@ -1,6 +1,6 @@
 # Contributing to Business Wish
 
-Thanks for your interest in contributing. This guide covers the three main areas you can contribute to: **components**, **motion primitives**, and **developer tools**.
+Thanks for your interest in contributing. This guide covers the two main areas you can contribute to: **components** and **motion primitives**.
 
 ---
 
@@ -82,74 +82,6 @@ Same conventions as UI components, plus:
 - Import from `framer-motion`
 - Keep animations performant (prefer `transform` and `opacity`)
 - Include a restart/replay mechanism when appropriate
-
----
-
-## Adding a developer tool
-
-Tools are standalone pages in `src/app/(routes)/tools/`. Each tool is a self-contained Next.js page.
-
-### 1. Create the tool page
-
-Create a new directory and `page.tsx` in `src/app/(routes)/tools/your-tool/`:
-
-```tsx
-"use client";
-
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-
-export default function YourTool() {
-  return (
-    <div className="min-h-screen bg-white dark:bg-stone-950">
-      {/* Header */}
-      <div className="border-b border-stone-200 dark:border-stone-800">
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-2 text-stone-500 dark:text-stone-400 text-sm"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Tools
-          </Link>
-          <h1 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mt-4">
-            Your Tool Name
-          </h1>
-          <p className="text-stone-500 dark:text-stone-400 text-sm">
-            Brief description
-          </p>
-        </div>
-      </div>
-
-      {/* Tool content */}
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* ... */}
-      </div>
-    </div>
-  );
-}
-```
-
-### 2. Register the tool
-
-Add your tool to the `tools` array in `src/app/(routes)/tools/page.tsx`:
-
-```ts
-{
-  name: "Your Tool",
-  description: "What it does in one sentence.",
-  href: "/tools/your-tool",
-  category: "data", // color | css | data | image | productivity
-}
-```
-
-### Design conventions for tools
-
-- Use the `stone` color palette (no colored accents)
-- Use `max-w-6xl` for content width
-- No shadows, no gradients — flat design
-- Header icon: `bg-stone-900 dark:bg-stone-100` with `text-white dark:text-stone-900`
-- All processing must happen client-side (no server calls)
 
 ---
 

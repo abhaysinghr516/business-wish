@@ -5,12 +5,11 @@ import { Shield, Eye, Lock, Server, Cookie, Mail } from "lucide-react";
 export const metadata: Metadata = {
   title: "Privacy Policy | Business Wish",
   description:
-    "Learn how Business Wish protects your privacy. We prioritize user privacy with offline tools and minimal data collection.",
+    "Learn how Business Wish protects your privacy. We prioritize user privacy with minimal data collection.",
   keywords: [
     "privacy policy",
     "data protection",
     "user privacy",
-    "offline tools",
     "no tracking",
     "privacy-focused",
     "GDPR compliant",
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Privacy Policy | Business Wish",
     description:
-      "Learn how Business Wish protects your privacy with offline tools and minimal data collection.",
+      "Learn how Business Wish protects your privacy with minimal data collection.",
     type: "website",
     url: "https://www.businesswish.tech/privacy",
   },
@@ -65,10 +64,8 @@ export default function PrivacyPage() {
               </h2>
             </div>
             <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed m-0">
-              Business Wish is built with privacy as a core principle. Our tools
-              work entirely offline in your browser, ensuring your data never
-              leaves your device. We collect minimal information and are
-              transparent about our practices.
+              Business Wish is built with privacy as a core principle. We collect
+              minimal information and are transparent about our practices.
             </p>
           </div>
 
@@ -99,16 +96,7 @@ export default function PrivacyPage() {
                   </ul>
                 </div>
 
-                <div>
-                  <h3 className="font-medium text-black dark:text-white mb-2">
-                    Tool Usage
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
-                    <strong>Important:</strong> All our developer tools run
-                    entirely in your browser. We do not collect, store, or
-                    transmit any data you input into our tools.
-                  </p>
-                </div>
+
 
                 <div>
                   <h3 className="font-medium text-black dark:text-white mb-2">
@@ -140,7 +128,7 @@ export default function PrivacyPage() {
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
                   <span>
-                    Understand which components and tools are most popular
+                    Understand which components are most popular
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -204,7 +192,7 @@ export default function PrivacyPage() {
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Remembering your theme preference (dark/light mode)</li>
                   <li>Analytics tracking (Google Analytics cookies)</li>
-                  <li>Storing your tool preferences locally in your browser</li>
+
                 </ul>
                 <p>
                   You can disable cookies in your browser settings, though this

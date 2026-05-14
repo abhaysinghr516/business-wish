@@ -1,8 +1,8 @@
 # Business Wish
 
-> Free, production-ready Tailwind CSS UI components and developer tools for modern web developers.
+> Free, production-ready Tailwind CSS UI components and motion primitives for modern web developers.
 
-Business Wish is an open-source library of **50+ copy-paste ready Tailwind CSS components**, **13 motion/animation components**, and **17 developer tools**. All components support dark mode, are fully accessible (WCAG compliant), responsive, and framework-agnostic (Next.js, Vite, CRA, etc.).
+Business Wish is an open-source library of **50+ copy-paste ready Tailwind CSS components** and **13 motion/animation components**. All components support dark mode, are fully accessible (WCAG compliant), responsive, and framework-agnostic (Next.js, Vite, CRA, etc.).
 
 - Website: https://www.businesswish.tech
 - GitHub: https://github.com/abhaysinghr516/business-wish
@@ -73,29 +73,6 @@ Full page layout templates ready to use.
 
 - [Error Pages (404)](https://www.businesswish.tech/docs/pages/404): Custom 404 error page designs
 - [Blog List](https://www.businesswish.tech/docs/pages/blog-list): Blog listing page templates
-
-## Developer Tools
-
-Free browser-based tools for developers — no installation required.
-
-- [Tools Home](https://www.businesswish.tech/tools): Browse all developer tools
-- [Palette Generator](https://www.businesswish.tech/tools/palette-generator): Generate color palettes
-- [Contrast Checker](https://www.businesswish.tech/tools/contrast-checker): Check color contrast ratios (WCAG)
-- [Color Blindness Simulator](https://www.businesswish.tech/tools/blindness-simulator): Simulate color blindness
-- [Format Converter](https://www.businesswish.tech/tools/format-converter): Convert between color formats
-- [Image Extractor](https://www.businesswish.tech/tools/image-extractor): Extract colors from images
-- [JSON Formatter](https://www.businesswish.tech/tools/json-formatter): Format and validate JSON
-- [QR Code Generator](https://www.businesswish.tech/tools/qr-generator): Generate QR codes
-- [Box Shadow Generator](https://www.businesswish.tech/tools/box-shadow): Create CSS box shadows visually
-- [Gradient Generator](https://www.businesswish.tech/tools/gradient): Create CSS gradients
-- [Flexbox Playground](https://www.businesswish.tech/tools/flexbox): Interactive CSS Flexbox tool
-- [CSS Grid Playground](https://www.businesswish.tech/tools/css-grid): Interactive CSS Grid tool
-- [CSV to JSON](https://www.businesswish.tech/tools/csv-to-json): Convert CSV data to JSON
-- [Word Counter](https://www.businesswish.tech/tools/word-counter): Count words and characters
-- [Image Compressor](https://www.businesswish.tech/tools/image-compressor): Compress images in browser
-- [Pomodoro Timer](https://www.businesswish.tech/tools/pomodoro-timer): Focus timer with Pomodoro technique
-- [Animation Easing](https://www.businesswish.tech/tools/animation-easing): Preview CSS easing curves
-- [Image Formatter](https://www.businesswish.tech/tools/image-formatter): Convert image formats
 
 ## Optional
 
