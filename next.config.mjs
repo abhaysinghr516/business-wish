@@ -16,6 +16,20 @@ const nextConfig = {
         formats: ['image/webp', 'image/avif'],
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'github.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+            },
+        ],
     },
 
     // Headers for better SEO and performance
@@ -61,6 +75,21 @@ const nextConfig = {
             {
                 source: '/page/:path*',
                 destination: '/docs/pages/:path*',
+                permanent: true,
+            },
+            {
+                source: '/tools',
+                destination: '/docs/components',
+                permanent: true,
+            },
+            {
+                source: '/tools/:path*',
+                destination: '/docs/components',
+                permanent: true,
+            },
+            {
+                source: '/templates',
+                destination: '/docs/components',
                 permanent: true,
             },
         ];

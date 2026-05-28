@@ -424,6 +424,7 @@ export type Author = {
 export type BlogMdxFrontmatter = BaseMdxFrontmatter & {
     date: string;
     authors: Author[];
+    readingTime?: string;
 };
 
 export async function getAllBlogStaticPaths() {

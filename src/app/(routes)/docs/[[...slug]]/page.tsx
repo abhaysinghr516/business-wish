@@ -6,6 +6,7 @@ import {
   generateSEO,
   generateArticleSchema,
   generateBreadcrumbSchema,
+  generateSourceCodeSchema,
 } from "@/lib/seo";
 import { DocsPageContent } from "@/app/components/docs-page-content";
 
@@ -42,6 +43,17 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
     url: `/docs/${pathName}`,
   });
 
+  const isComponent = pathName.includes("components/");
+  const isMotion = pathName.includes("motion/");
+  const sourceCodeSchema = (isComponent || isMotion)
+    ? generateSourceCodeSchema({
+        name: `Tailwind CSS ${res.frontmatter.title} Component`,
+        description: res.frontmatter.description,
+        url: `/docs/${pathName}`,
+        programmingLanguage: isMotion ? "Framer Motion" : "React / TypeScript",
+      })
+    : null;
+
   return (
     <>
       {/* Structured Data */}
@@ -53,6 +65,12 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      {sourceCodeSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(sourceCodeSchema) }}
+        />
+      )}
 
       <DocsPageContent
         title={res.frontmatter.title}

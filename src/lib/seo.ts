@@ -15,7 +15,7 @@ export interface SEOProps {
 }
 
 const baseUrl = "https://www.businesswish.tech";
-const defaultImage = `${baseUrl}/home.png`;
+const defaultImage = `${baseUrl}/business-wish-hero.png`;
 
 export function generateSEO({
     title,
@@ -38,6 +38,13 @@ export function generateSEO({
         "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers. Boost your project's design and efficiency with our ready-to-use components.";
 
     const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
+
+    // If the image is the default one and a custom title is provided, generate a dynamic OG image
+    let ogImage = image;
+    if ((image === defaultImage || image.includes("/home.png") || image.includes("/business-wish-hero.png")) && title) {
+        const displayTitle = title.replace(" | Business Wish", "");
+        ogImage = `${baseUrl}/api/og?title=${encodeURIComponent(displayTitle)}&description=${encodeURIComponent(description || "")}&section=${encodeURIComponent(section || "Docs")}`;
+    }
 
     const allKeywords = [
         "Businesswish",
@@ -77,7 +84,7 @@ export function generateSEO({
             locale: "en_US",
             images: [
                 {
-                    url: image,
+                    url: ogImage,
                     width: 1200,
                     height: 630,
                     alt: fullTitle,
@@ -97,7 +104,7 @@ export function generateSEO({
             creator: "@abhaysinghr516",
             title: fullTitle,
             description: fullDescription,
-            images: [image],
+            images: [ogImage],
         },
         robots: {
             index: true,
@@ -113,6 +120,38 @@ export function generateSEO({
     };
 
     return metadata;
+}
+
+export function generateSourceCodeSchema({
+    name,
+    description,
+    url,
+    codeRepository = "https://github.com/abhaysinghr516/business-wish",
+    programmingLanguage = "TypeScript",
+}: {
+    name: string;
+    description: string;
+    url: string;
+    codeRepository?: string;
+    programmingLanguage?: string;
+}) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name,
+        description,
+        url: `${baseUrl}${url}`,
+        codeRepository,
+        programmingLanguage: {
+            "@type": "ComputerLanguage",
+            name: programmingLanguage,
+        },
+        author: {
+            "@type": "Person",
+            name: "Abhay Singh Rathore",
+            url: "https://abhay-singh-rathore.vercel.app/",
+        },
+    };
 }
 
 // Structured data generators
