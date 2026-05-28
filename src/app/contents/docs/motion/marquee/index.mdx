@@ -1,0 +1,183 @@
+---
+title: Marquee
+description: A hardware-accelerated infinite looping marquee for logos, testimonials, and status elements, supporting both horizontal and vertical scrolling modes.
+---
+
+Display client validation, partners, or product features dynamically with the **Infinite Loop Marquee**. Utilizing high-performance CSS keyframe transforms, this component loops children infinitely in horizontal or vertical layouts, pauses animations on hover, and integrates absolute edge transparency masks.
+
+*Great for logo showcase grids, client testimonial feeds, or vertical scrolling sidebars.*
+
+## Implementation
+
+```jsx
+"use client";
+
+import React from "react";
+import { cn } from "@/lib/utils";
+
+interface MarqueeProps {
+  children: React.ReactNode;
+  direction?: "left" | "right" | "up" | "down";
+  speed?: number; // Duration in seconds
+  pauseOnHover?: boolean;
+  fadeEdges?: boolean;
+  className?: string;
+  innerClassName?: string;
+  vertical?: boolean;
+}
+
+export const Marquee: React.FC<MarqueeProps> = ({
+  children,
+  direction,
+  speed = 30,
+  pauseOnHover = true,
+  fadeEdges = true,
+  className = "",
+  innerClassName = "",
+  vertical = false,
+}) => {
+  const isVertical = vertical || direction === "up" || direction === "down";
+  const finalDirection = direction || (isVertical ? "up" : "left");
+
+  let animationClass = "animate-marquee-left";
+  if (finalDirection === "right") animationClass = "animate-marquee-right";
+  if (finalDirection === "up") animationClass = "animate-marquee-up";
+  if (finalDirection === "down") animationClass = "animate-marquee-down";
+
+  return (
+    <div
+      className={cn(
+        "group relative flex overflow-hidden p-2 select-none w-full gap-4",
+        isVertical ? "flex-col h-full" : "flex-row",
+        fadeEdges && (
+          isVertical
+            ? "[mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+            : "[mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]"
+        ),
+        className
+      )}
+    >
+      <div
+        className={cn(
+          "flex shrink-0 gap-4 min-w-full justify-around items-center",
+          isVertical ? "flex-col min-h-full" : "flex-row",
+          animationClass,
+          pauseOnHover && "group-hover:[animation-play-state:paused]",
+          innerClassName
+        )}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        {children}
+      </div>
+      <div
+        aria-hidden="true"
+        className={cn(
+          "flex shrink-0 gap-4 min-w-full justify-around items-center",
+          isVertical ? "flex-col min-h-full" : "flex-row",
+          animationClass,
+          pauseOnHover && "group-hover:[animation-play-state:paused]",
+          innerClassName
+        )}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        {children}
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes marquee-l {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(calc(-100% - 1rem)); }
+        }
+        @keyframes marquee-r {
+          0% { transform: translateX(calc(-100% - 1rem)); }
+          100% { transform: translateX(0%); }
+        }
+        @keyframes marquee-u {
+          0% { transform: translateY(0%); }
+          100% { transform: translateY(calc(-100% - 1rem)); }
+        }
+        @keyframes marquee-d {
+          0% { transform: translateY(calc(-100% - 1rem)); }
+          100% { transform: translateY(0%); }
+        }
+        .animate-marquee-left {
+          animation: marquee-l linear infinite;
+        }
+        .animate-marquee-right {
+          animation: marquee-r linear infinite;
+        }
+        .animate-marquee-up {
+          animation: marquee-u linear infinite;
+        }
+        .animate-marquee-down {
+          animation: marquee-d linear infinite;
+        }
+      `}} />
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Horizontal & Vertical Examples
+
+Toggle hover over the rows below to pause the marquee animation loops.
+
+<MotionPreview>
+  <MarqueeDemo />
+</MotionPreview>
+
+### Horizontal Code Example
+
+```jsx
+import { Marquee } from "@/components/motion/Marquee";
+
+const TechTicker = () => {
+  return (
+    <div className="border rounded-2xl p-4 bg-stone-50/50">
+      <Marquee direction="left" speed={25}>
+        <span className="px-4 py-2 border rounded-xl bg-white shadow-sm">React</span>
+        <span className="px-4 py-2 border rounded-xl bg-white shadow-sm">TypeScript</span>
+        <span className="px-4 py-2 border rounded-xl bg-white shadow-sm">Next.js</span>
+      </Marquee>
+    </div>
+  );
+};
+```
+
+### Vertical Code Example
+
+```jsx
+import { Marquee } from "@/components/motion/Marquee";
+
+const TestimonialSidebar = () => {
+  return (
+    <div className="h-64 w-80 border rounded-2xl p-4 overflow-hidden">
+      <Marquee direction="up" speed={20} className="h-full">
+        <div className="p-4 border rounded-xl bg-stone-50 h-28">
+          <p className="text-xs">"Extremely gorgeous widgets."</p>
+          <span className="text-xs font-bold block mt-2">Alex K. // CEO</span>
+        </div>
+        <div className="p-4 border rounded-xl bg-stone-50 h-28">
+          <p className="text-xs">"Clean dependency footprints."</p>
+          <span className="text-xs font-bold block mt-2">Sarah M. // Lead</span>
+        </div>
+      </Marquee>
+    </div>
+  );
+};
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `children` | `ReactNode` | — | Items to slide in loop |
+| `direction` | `"left" \| "right" \| "up" \| "down"` | `"left"` | Direction of marquee transition |
+| `vertical` | `boolean` | `false` | Enables vertical layout and scrolling mode (overrides direction defaults) |
+| `speed` | `number` | `30` | Duration in seconds for a complete loop (lower values translate to faster animations) |
+| `pauseOnHover` | `boolean` | `true` | Pauses the scrolling path when pointer is hovering |
+| `fadeEdges` | `boolean` | `true` | Adds linear mask shadows on vertical or horizontal bounds |
+| `className` | `string` | `""` | CSS classes for the outer wrapper |
+| `innerClassName` | `string` | `""` | CSS classes for the track tracks |

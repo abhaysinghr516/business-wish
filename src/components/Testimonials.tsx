@@ -133,28 +133,28 @@ export const FullWidthTestimonial: React.FC = () => (
   </div>
 );
 
-export const SliderTestimonial: React.FC = () => {
-  const testimonials = [
-    {
-      quote:
-        "This product has revolutionized how we approach our projects. The intuitive interface and powerful features have made our team definitively more efficient and creative.",
-      name: "David Lee",
-      position: "Lead Designer, CreativeTech",
-    },
-    {
-      quote:
-        "The level of customization and flexibility offered by this platform is unmatched. It has effectively allowed us to tailor our workflows perfectly to our unique needs.",
-      name: "Amanda Rodriguez",
-      position: "Operations Manager, FlexiSolutions",
-    },
-    {
-      quote:
-        "From the moment we implemented this system, our productivity skyrocketed. The seamless integration with our existing tools made the transition incredibly smooth.",
-      name: "Robert Chen",
-      position: "CEO, InnovateCorp",
-    },
-  ];
+const testimonials = [
+  {
+    quote:
+      "This product has revolutionized how we approach our projects. The intuitive interface and powerful features have made our team definitively more efficient and creative.",
+    name: "David Lee",
+    position: "Lead Designer, CreativeTech",
+  },
+  {
+    quote:
+      "The level of customization and flexibility offered by this platform is unmatched. It has effectively allowed us to tailor our workflows perfectly to our unique needs.",
+    name: "Amanda Rodriguez",
+    position: "Operations Manager, FlexiSolutions",
+  },
+  {
+    quote:
+      "From the moment we implemented this system, our productivity skyrocketed. The seamless integration with our existing tools made the transition incredibly smooth.",
+    name: "Robert Chen",
+    position: "CEO, InnovateCorp",
+  },
+];
 
+export const SliderTestimonial: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

@@ -76,6 +76,11 @@ import { WordRotateDemo, WordRotateStackedDemo } from "@/components/motion/WordR
 import { DockDemo } from "@/components/motion/Dock";
 import { SplitTextDemo, SplitTextVariantsDemo } from "@/components/motion/SplitText";
 import { BlurRevealDemo, BlurRevealGroupDemo } from "@/components/motion/BlurReveal";
+import { TiltCardDemo } from "@/components/motion/TiltCard";
+import { SlidingTabsDemo } from "@/components/motion/SlidingTabs";
+import { ScrollProgressDemo } from "@/components/motion/ScrollProgress";
+import { MarqueeDemo } from "@/components/motion/Marquee";
+import { ScratchCardDemo } from "@/components/motion/ScratchCard";
 import MotionPreview from "@/app/components/MotionPreview";
 import { BasicSwitch, IconSwitch, LabeledSwitch, ThemeSwitch } from "@/components/Switch";
 import { MinimalPricingSection, TabbedPricingSection, GridPricingSection, SplitPricingSection } from "@/components/Pricing";
@@ -302,6 +307,11 @@ const components = {
     SplitTextVariantsDemo,
     BlurRevealDemo,
     BlurRevealGroupDemo,
+    TiltCardDemo,
+    SlidingTabsDemo,
+    ScrollProgressDemo,
+    MarqueeDemo,
+    ScratchCardDemo,
     MinimalPricingSection,
     TabbedPricingSection,
     GridPricingSection,

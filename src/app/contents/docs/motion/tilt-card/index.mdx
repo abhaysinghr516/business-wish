@@ -1,0 +1,164 @@
+---
+title: Tilt Card
+description: An interactive 3D tilt card component built with Framer Motion, reacting smoothly to cursor position with spring smoothing and moving reflections.
+---
+
+Add high-end depth and dynamic interaction to your grids and features using a **3D Tilt Card**. Leveraging Framer Motion's hardware-accelerated transforms, this component reacts dynamically to the user's cursor position by tilting in 3D space, complete with a glossy, light-sheen reflection that moves realistically with the pointer.
+
+*Perfect for high-value feature callouts, pricing plan tiers, interactive portfolios, or highlighting prominent dashboard cards.*
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface TiltCardProps {
+  children: React.ReactNode;
+  className?: string;
+  maxTilt?: number;
+  perspective?: number;
+  scale?: number;
+  glareEnable?: boolean;
+  glareColor?: string;
+  glareMaxOpacity?: number;
+  springConfig?: { stiffness: number; damping: number; mass?: number };
+}
+
+export const TiltCard: React.FC<TiltCardProps> = ({
+  children,
+  className = "",
+  maxTilt = 15,
+  perspective = 1000,
+  scale = 1.02,
+  glareEnable = true,
+  glareColor = "rgba(255, 255, 255, 0.15)",
+  glareMaxOpacity = 0.35,
+  springConfig = { stiffness: 150, damping: 20 },
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  // Normalized motion values for mouse position: 0 to 1
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0.5);
+
+  // Map mouse coordinates to 3D rotation angles
+  const rotateX = useTransform(y, [0, 1], [maxTilt, -maxTilt]);
+  const rotateY = useTransform(x, [0, 1], [-maxTilt, maxTilt]);
+
+  // Apply smoothing spring physics to rotation values
+  const springRotateX = useSpring(rotateX, springConfig);
+  const springRotateY = useSpring(rotateY, springConfig);
+
+  // Glare position mappings
+  const glareXPercent = useTransform(x, [0, 1], ["0%", "100%"]);
+  const glareYPercent = useTransform(y, [0, 1], ["0%", "100%"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    x.set(mouseX / rect.width);
+    y.set(mouseY / rect.height);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    x.set(0.5);
+    y.set(0.5);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  return (
+    <div style={{ perspective: `${perspective}px` }} className="w-full">
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX: springRotateX,
+          rotateY: springRotateY,
+          transformStyle: "preserve-3d",
+        }}
+        whileHover={{ scale }}
+        transition={{ type: "spring", stiffness: 250, damping: 22 }}
+        className={cn(
+          "relative rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm overflow-hidden select-none",
+          className
+        )}
+      >
+        {glareEnable && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-10"
+            style={{
+              background: useMotionTemplate`radial-gradient(circle 250px at ${glareXPercent} ${glareYPercent}, ${glareColor}, transparent 80%)`,
+            }}
+            animate={{ opacity: isHovering ? glareMaxOpacity : 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          />
+        )}
+        <div style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }} className="relative z-0">
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Interactive Feature Cards
+
+Hover over these cards to see them rotate in 3D space with a soft light sheen follow effect. Note the 3D translation depth on icons and headings.
+
+<MotionPreview>
+  <TiltCardDemo />
+</MotionPreview>
+
+```jsx
+import { TiltCard } from "@/components/motion/TiltCard";
+import { Zap } from "lucide-react";
+
+<TiltCard className="h-64 flex flex-col justify-between">
+  <div>
+    <div className="w-10 h-10 rounded-xl bg-[#FF3903]/10 flex items-center justify-center mb-4">
+      <Zap className="h-5 w-5 text-[#FF3903]" />
+    </div>
+    {/* translateZ forces this element to float above the card surface */}
+    <h3 className="text-lg font-semibold text-stone-900" style={{ transform: "translateZ(40px)" }}>
+      High Performance
+    </h3>
+    <p className="text-xs text-stone-500 mt-2" style={{ transform: "translateZ(20px)" }}>
+      Leverages native GPU layers and hardware-accelerated transforms for ultra-smooth interaction.
+    </p>
+  </div>
+  <div className="text-[10px] font-mono text-stone-400 mt-auto">
+    ACCELERATED // TRUE
+  </div>
+</TiltCard>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `children` | `ReactNode` | — | Card content |
+| `className` | `string` | `""` | Additional CSS custom classes |
+| `maxTilt` | `number` | `15` | Maximum tilt degrees along X and Y axes |
+| `perspective` | `number` | `1000` | Perspective depth of the 3D space in pixels |
+| `scale` | `number` | `1.02` | Card scale scale-factor when hovered |
+| `glareEnable` | `boolean` | `true` | Enables or disables the dynamic moving light reflection |
+| `glareColor` | `string` | `"rgba(255, 255, 255, 0.15)"` | Color/transparency overlay of the glare reflection |
+| `glareMaxOpacity` | `number` | `0.35` | Maximum opacity when light glare is fully visible |
+| `springConfig` | `object` | `{ stiffness: 150, damping: 20 }` | Custom configuration options for rotation smoothing |

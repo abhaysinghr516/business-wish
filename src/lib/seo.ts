@@ -164,7 +164,7 @@ export function generateSoftwareApplicationSchema() {
         description: "A comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers.",
         url: baseUrl,
         downloadUrl: `${baseUrl}/docs`,
-        softwareVersion: "2.4.0",
+        softwareVersion: "2.2.0",
         datePublished: "2024-01-01",
         dateModified: new Date().toISOString(),
         author: {

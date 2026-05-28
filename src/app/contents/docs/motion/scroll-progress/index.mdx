@@ -1,0 +1,130 @@
+---
+title: Scroll Progress
+description: An interactive scroll tracker displaying window or container scroll position as a smooth horizontal gradient bar or circular indicator using Framer Motion.
+---
+
+Keep readers oriented inside long articles or configuration processes using the **Scroll Progress Indicator**. This component maps scroll depth dynamically, animating a top page progress bar or a circular percentage ring using Framer Motion's high-efficiency `useScroll` hook.
+
+*Commonly placed at the very top of documentation articles, blog templates, or pinned in a dashboard viewport.*
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface ScrollProgressProps {
+  className?: string;
+  variant?: "bar" | "circle";
+  targetRef?: React.RefObject<HTMLElement>;
+  color?: string;
+  height?: number;
+}
+
+export const ScrollProgress: React.FC<ScrollProgressProps> = ({
+  className = "",
+  variant = "bar",
+  targetRef,
+  color = "bg-gradient-to-r from-[#FF3903] via-[#FF6107] to-[#FF8A3D]",
+  height = 3,
+}) => {
+  const { scrollYProgress } = useScroll(targetRef ? { container: targetRef } : undefined);
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
+  const pathLength = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
+  if (variant === "circle") {
+    return (
+      <div className={cn("h-10 w-10 z-50", className)}>
+        <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
+          <circle
+            cx="50"
+            cy="50"
+            r="30"
+            className="stroke-stone-200 dark:stroke-stone-850 fill-none"
+            strokeWidth="8"
+          />
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="30"
+            className="stroke-[#FF3903] fill-none"
+            strokeWidth="8"
+            strokeDasharray="0 1"
+            style={{ pathLength }}
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      className={cn("fixed top-0 left-0 right-0 z-50 origin-left", color, className)}
+      style={{ scaleX, height }}
+    />
+  );
+};
+```
+
+## Usage
+
+### Container Bound Previews
+
+Scroll inside the left container below to watch the horizontal gradient bar at the top of the container card and the circular tracker in the right block update smoothly in real time.
+
+<MotionPreview>
+  <ScrollProgressDemo />
+</MotionPreview>
+
+```jsx
+import React, { useRef } from "react";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
+
+const MyDocPage = () => {
+  const containerRef = useRef(null);
+
+  return (
+    <div ref={containerRef} className="h-64 overflow-y-auto relative">
+      {/* Top Progress Bar */}
+      <ScrollProgress
+        variant="bar"
+        targetRef={containerRef}
+        className="absolute top-0"
+      />
+      
+      {/* Circle Corner Progress */}
+      <ScrollProgress
+        variant="circle"
+        targetRef={containerRef}
+        className="absolute bottom-4 right-4"
+      />
+      
+      <div>...Long Scrollable Article Content...</div>
+    </div>
+  );
+};
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `variant` | `"bar" \| "circle"` | `"bar"` | Visual styling representation (top horizontal line or corner progress dial) |
+| `targetRef` | `RefObject<HTMLElement>` | — | Target scrollable container. Tracks window scroll if undefined |
+| `color` | `string` | `"bg-gradient-to-r from-[#FF3903] via-[#FF6107] to-[#FF8A3D]"` | Custom tailwind color class or CSS gradient for the bar fill |
+| `height` | `number` | `3` | Height thickness of the horizontal progress line in pixels |
+| `className` | `string` | `""` | Additional CSS custom classes |

@@ -1,0 +1,273 @@
+---
+title: Scratch Card
+description: An interactive scratch card utilizing HTML Canvas pixel composition and Framer Motion transitions, supporting images, gradients, and scratch progress trackers.
+---
+
+Bring gamification to your product promotions using the **Scratch Card**. Underneath, child contents are loaded, while the top cover layer is painted on an HTML Canvas. Click/drag movements erase the covering pixels, auto-revealing the underlying reward once a threshold is reached.
+
+*Perfect for mystery pricing discounts, image reveals, easter eggs, or promotional codes.*
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface ScratchCardProps {
+  children: React.ReactNode;
+  className?: string;
+  brushRadius?: number;
+  finishPercent?: number;
+  coverColor?: string;
+  coverText?: string;
+  coverImage?: string;
+  coverGradient?: string[];
+  onComplete?: () => void;
+  onProgress?: (progress: number) => void;
+}
+
+export const ScratchCard: React.FC<ScratchCardProps> = ({
+  children,
+  className = "",
+  brushRadius = 20,
+  finishPercent = 50,
+  coverColor = "#292524",
+  coverText = "Scratch to Reveal",
+  coverImage,
+  coverGradient,
+  onComplete,
+  onProgress,
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isScratching, setIsScratching] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const drawText = () => {
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 13px system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(coverText, canvas.width / 2, canvas.height / 2);
+    };
+
+    const drawNoiseAndStripes = () => {
+      ctx.fillStyle = "rgba(255, 255, 255, 0.02)";
+      for (let i = 0; i < canvas.width; i += 4) {
+        for (let j = 0; j < canvas.height; j += 4) {
+          if (Math.random() > 0.5) {
+            ctx.fillRect(i, j, 2, 2);
+          }
+        }
+      }
+
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.015)";
+      ctx.lineWidth = 1.5;
+      for (let i = -canvas.height; i < canvas.width; i += 8) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i + canvas.height, canvas.height);
+        ctx.stroke();
+      }
+    };
+
+    const initializeCanvas = () => {
+      const rect = canvas.parentElement?.getBoundingClientRect();
+      if (!rect) return;
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+
+      if (coverImage) {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = coverImage;
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          drawText();
+        };
+      } else if (coverGradient && coverGradient.length >= 2) {
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0, coverGradient[0]);
+        grad.addColorStop(1, coverGradient[1]);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawNoiseAndStripes();
+        drawText();
+      } else {
+        ctx.fillStyle = coverColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawNoiseAndStripes();
+        drawText();
+      }
+    };
+
+    initializeCanvas();
+    window.addEventListener("resize", initializeCanvas);
+    return () => window.removeEventListener("resize", initializeCanvas);
+  }, [coverColor, coverText, coverImage, coverGradient]);
+
+  const draw = (clientX: number, clientY: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, brushRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    checkPercentage();
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsScratching(true);
+    draw(e.clientX, e.clientY);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isScratching || isCompleted) return;
+    draw(e.clientX, e.clientY);
+  };
+
+  const handleMouseUp = () => {
+    setIsScratching(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsScratching(true);
+    const touch = e.touches[0];
+    draw(touch.clientX, touch.clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isScratching || isCompleted) return;
+    const touch = e.touches[0];
+    draw(touch.clientX, touch.clientY);
+  };
+
+  const checkPercentage = () => {
+    const canvas = canvasRef.current;
+    if (!canvas || isCompleted) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+    const imgData = ctx.getImageData(0, 0, width, height);
+    const pixels = imgData.data;
+    let transparentCount = 0;
+
+    for (let i = 3; i < pixels.length; i += 4) {
+      if (pixels[i] === 0) {
+        transparentCount++;
+      }
+    }
+
+    const percentage = (transparentCount / (width * height)) * 100;
+    if (onProgress) {
+      onProgress(Math.round(percentage));
+    }
+
+    if (percentage >= finishPercent) {
+      setIsCompleted(true);
+      if (onComplete) onComplete();
+    }
+  };
+
+  return (
+    <div className={cn("relative overflow-hidden select-none touch-none rounded-2xl w-full", className)}>
+      <div className="w-full h-full bg-stone-50 dark:bg-stone-900/60 p-6 flex flex-col items-center justify-center text-center">
+        {children}
+      </div>
+
+      <AnimatePresence>
+        {!isCompleted && (
+          <motion.canvas
+            ref={canvasRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleMouseUp}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="absolute inset-0 z-20 cursor-crosshair w-full h-full block"
+          />
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Interactive Textured Reveal Card
+
+Wipe the charcoal card below to track real-time progress calculations and unlock ADMIN PRIVILEGES.
+
+<MotionPreview>
+  <ScratchCardDemo />
+</MotionPreview>
+
+### Textured Cover Code Example
+
+```jsx
+import React, { useState } from "react";
+import { ScratchCard } from "@/components/motion/ScratchCard";
+import { Image as ImageIcon } from "lucide-react";
+
+const AdminUnlockReveal = () => {
+  const [percent, setPercent] = useState(0);
+
+  return (
+    <div>
+      <ScratchCard
+        coverText="Wipe screen to view details"
+        coverColor="#1c1917"
+        brushRadius={22}
+        finishPercent={40}
+        onProgress={setPercent}
+        className="h-44 w-72"
+      >
+        <div className="text-center">
+          <ImageIcon className="h-5 w-5 text-sky-500 mb-1" />
+          <h5 className="text-xs font-bold font-mono">WORKSPACE ACCESS</h5>
+          <p className="text-sm font-extrabold text-[#FF3903] mt-1">ADMIN PRIVILEGES</p>
+        </div>
+      </ScratchCard>
+      <p className="text-xs mt-2 font-mono">Scratched: {percent}%</p>
+    </div>
+  );
+};
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `children` | `ReactNode` | — | Hidden content to be revealed |
+| `brushRadius` | `number` | `20` | Radius in pixels of the scratch brush |
+| `finishPercent` | `number` | `50` | Percentage threshold to trigger complete auto-reveal |
+| `coverColor` | `string` | `"#292524"` | Hex color string for the cover overlay canvas |
+| `coverText` | `string` | `"Scratch to Reveal"` | Default label text overlay |
+| `coverImage` | `string` | — | URL path of an image to paint as the cover |
+| `coverGradient` | `string[]` | — | Array of hex strings representing a linear cover gradient |
+| `onComplete` | `() => void` | — | Callback function fired when scratch is complete |
+| `onProgress` | `(progress: number) => void` | — | Callback function returning scratch progress percentage (0 - 100) |
+| `className` | `string` | `""` | Additional CSS custom classes |

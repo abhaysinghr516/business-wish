@@ -259,6 +259,26 @@ export const ROUTES: EachRoute[] = [
                 title: "Blur Reveal",
                 href: "/blur-reveal",
             },
+            {
+                title: "Tilt Card",
+                href: "/tilt-card",
+            },
+            {
+                title: "Sliding Tabs",
+                href: "/sliding-tabs",
+            },
+            {
+                title: "Scroll Progress",
+                href: "/scroll-progress",
+            },
+            {
+                title: "Marquee",
+                href: "/marquee",
+            },
+            {
+                title: "Scratch Card",
+                href: "/scratch-card",
+            },
         ]
     },
 ];

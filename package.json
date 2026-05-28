@@ -10,8 +10,6 @@
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "build:analyze": "ANALYZE=true npm run build",
-    "sitemap": "next build && node scripts/generate-sitemap.js",
-    "seo:check": "node scripts/seo-check.js",
     "lighthouse": "lighthouse https://www.businesswish.tech --output=html --output-path=./lighthouse-report.html"
   },
   "dependencies": {

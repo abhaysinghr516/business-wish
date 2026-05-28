@@ -1,0 +1,152 @@
+---
+title: Sliding Tabs
+description: A navigation tabs component featuring a smooth, sliding highlight capsule or underline transition powered by Framer Motion layoutId.
+---
+
+Create fluid and premium transitions between views with **Sliding Tabs**. Using Framer Motion's shared layout animations (`layoutId`), the active background capsule or underline morphs and slides smoothly from tab to tab. It also includes subtle hover highlight backdrops to elevate visual interactive feedback.
+
+*Perfect for toggle selectors, settings navigation, user profile dashboard sub-views, and top bar layouts.*
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface Tab {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+}
+
+interface SlidingTabsProps {
+  tabs: Tab[];
+  activeTab: string;
+  onChange: (id: string) => void;
+  className?: string;
+  tabClassName?: string;
+  highlightClassName?: string;
+  variant?: "pill" | "underline";
+}
+
+export const SlidingTabs: React.FC<SlidingTabsProps> = ({
+  tabs,
+  activeTab,
+  onChange,
+  className = "",
+  tabClassName = "",
+  highlightClassName = "",
+  variant = "pill",
+}) => {
+  const [hoveredTab, setHoveredTab] = useState<string | null>(null);
+
+  return (
+    <div
+      className={cn(
+        "relative flex items-center gap-1 p-1 rounded-xl bg-stone-100/80 dark:bg-stone-900/50 border border-stone-200/50 dark:border-stone-800/50 w-fit z-0",
+        variant === "underline" && "bg-transparent border-none rounded-none p-0 gap-6 border-b border-stone-200 dark:border-stone-800/80 w-full justify-start",
+        className
+      )}
+    >
+      {tabs.map((tab) => {
+        const isActive = activeTab === tab.id;
+        const isHovered = hoveredTab === tab.id;
+
+        return (
+          <button
+            key={tab.id}
+            onClick={() => onChange(tab.id)}
+            onMouseEnter={() => setHoveredTab(tab.id)}
+            onMouseLeave={() => setHoveredTab(null)}
+            className={cn(
+              "relative px-4 py-1.5 text-sm font-medium transition-colors duration-200 outline-none select-none flex items-center gap-2",
+              isActive
+                ? "text-stone-900 dark:text-white"
+                : "text-stone-500 hover:text-stone-700 dark:hover:text-stone-300",
+              variant === "underline" && "px-1 pb-3 pt-2 text-sm font-medium rounded-none border-b-2 border-transparent",
+              tabClassName
+            )}
+          >
+            {/* Hover Highlight (Pill variant only) */}
+            {variant === "pill" && isHovered && !isActive && (
+              <motion.span
+                layoutId="hover-highlight"
+                className="absolute inset-0 rounded-lg bg-stone-200/50 dark:bg-stone-800/30 -z-10"
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+              />
+            )}
+
+            {/* Active Highlight */}
+            {isActive && (
+              <motion.span
+                layoutId={`active-highlight-${variant}`}
+                className={cn(
+                  "absolute inset-0 rounded-lg bg-white dark:bg-stone-950 shadow-sm border border-stone-200/30 dark:border-stone-750/30 -z-10",
+                  variant === "underline" && "absolute left-0 right-0 bottom-0 top-auto h-[2px] rounded-none bg-[#FF3903] shadow-none border-none z-10",
+                  highlightClassName
+                )}
+                transition={{ type: "spring", stiffness: 300, damping: 24 }}
+              />
+            )}
+
+            <span className="relative z-10 flex items-center gap-1.5">
+              {tab.icon}
+              {tab.label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Stateful Demo
+
+Toggle between these tabs to view the layout shifts and slide transitions in action on both variants.
+
+<MotionPreview>
+  <SlidingTabsDemo />
+</MotionPreview>
+
+```jsx
+import React, { useState } from "react";
+import { SlidingTabs } from "@/components/motion/SlidingTabs";
+import { Home, User, Settings, Folder } from "lucide-react";
+
+const MyComponent = () => {
+  const [activeTab, setActiveTab] = useState("home");
+  
+  const tabs = [
+    { id: "home", label: "Home", icon: <Home className="h-4 w-4" /> },
+    { id: "profile", label: "Profile", icon: <User className="h-4 w-4" /> },
+    { id: "projects", label: "Projects", icon: <Folder className="h-4 w-4" /> },
+    { id: "settings", label: "Settings", icon: <Settings className="h-4 w-4" /> },
+  ];
+
+  return (
+    <SlidingTabs
+      tabs={tabs}
+      activeTab={activeTab}
+      onChange={setActiveTab}
+    />
+  );
+};
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `tabs` | `Tab[]` | — | Array of tab items, containing `id`, `label`, and optional `icon` |
+| `activeTab` | `string` | — | The active tab item id |
+| `onChange` | `(id: string) => void` | — | Triggered callback when clicking a tab |
+| `className` | `string` | `""` | CSS classes for the outer container |
+| `tabClassName` | `string` | `""` | CSS classes for the individual buttons |
+| `highlightClassName` | `string` | `""` | CSS classes for the sliding active indicator |
+| `variant` | `"pill" \| "underline"` | `"pill"` | Visual variant style to display |
