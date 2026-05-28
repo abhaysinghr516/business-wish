@@ -84,6 +84,7 @@ import { ScratchCardDemo } from "@/components/motion/ScratchCard";
 import MotionPreview from "@/app/components/MotionPreview";
 import { BasicSwitch, IconSwitch, LabeledSwitch, ThemeSwitch } from "@/components/Switch";
 import { MinimalPricingSection, TabbedPricingSection, GridPricingSection, SplitPricingSection } from "@/components/Pricing";
+import { ScrollbarCustomDemo, ScrollbarHiddenDemo } from "@/app/components/BlogScrollbarExamples";
 
 // add custom components
 const components = {
@@ -316,6 +317,8 @@ const components = {
     TabbedPricingSection,
     GridPricingSection,
     SplitPricingSection,
+    ScrollbarCustomDemo,
+    ScrollbarHiddenDemo,
 };
 
 // can be used for other pages like blogs, Guides etc
@@ -424,7 +427,6 @@ export type Author = {
 export type BlogMdxFrontmatter = BaseMdxFrontmatter & {
     date: string;
     authors: Author[];
-    readingTime?: string;
 };
 
 export async function getAllBlogStaticPaths() {
@@ -440,13 +442,24 @@ export async function getAllBlogStaticPaths() {
 export async function getAllBlogs() {
     const blogFolder = path.join(process.cwd(), "/contents/blogs/");
     const files = await fs.readdir(blogFolder);
+    
+    function calculateReadingTime(text: string): number {
+        const wordsPerMinute = 225;
+        // Strip frontmatter to avoid inflating word count
+        const cleanText = text.replace(/^---[\s\S]*?---/, "");
+        const words = cleanText.trim().split(/\s+/).length;
+        return Math.max(1, Math.ceil(words / wordsPerMinute));
+    }
+
     return await Promise.all(
         files.map(async (file) => {
             const filepath = path.join(process.cwd(), `/contents/blogs/${file}`);
             const rawMdx = await fs.readFile(filepath, "utf-8");
+            const parsed = await parseMdx<BlogMdxFrontmatter>(rawMdx);
             return {
-                ...(await parseMdx<BlogMdxFrontmatter>(rawMdx)),
+                ...parsed,
                 slug: file.split(".")[0],
+                readingTime: calculateReadingTime(rawMdx),
             };
         })
     );

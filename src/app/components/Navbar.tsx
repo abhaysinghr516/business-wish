@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ComponentIcon, Sparkles } from "lucide-react";
+import { Menu, ComponentIcon, Sparkles, BookOpen } from "lucide-react";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -23,6 +23,7 @@ import GitHubStarButton from "./github-star-button";
 const navLinks = [
   { href: "/docs/components/accordion", label: "Components", matchPath: "/docs/components" },
   { href: "/docs/motion/text-reveal", label: "Motion", matchPath: "/docs/motion" },
+  { href: "/blog", label: "Blog", matchPath: "/blog" },
 ];
 
 const Navbar = () => {
@@ -122,6 +123,19 @@ const Navbar = () => {
                       >
                         <Sparkles className="h-4 w-4" />
                         Motion
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="/blog"
+                        className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                          isActive("/blog")
+                            ? "bg-stone-100 dark:bg-stone-900 text-stone-900 dark:text-white"
+                            : "text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
+                        }`}
+                      >
+                        <BookOpen className="h-4 w-4" />
+                        Blog
                       </Link>
                     </SheetClose>
                   </nav>

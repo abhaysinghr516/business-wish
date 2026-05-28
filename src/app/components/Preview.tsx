@@ -86,6 +86,47 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                 padding: 0;
                 animation: none !important;
               }
+              /* Hide scrollbar utility */
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+              /* Custom scrollbars inside the iframe */
+              * {
+                scrollbar-width: thin;
+                scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+              }
+              *::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+              }
+              *::-webkit-scrollbar-track {
+                background: var(--scrollbar-track);
+                border-radius: 10px;
+              }
+              *::-webkit-scrollbar-thumb {
+                background-color: var(--scrollbar-thumb);
+                border-radius: 20px;
+                border: 2px solid var(--scrollbar-track);
+                transition: background-color 0.2s ease;
+              }
+              *::-webkit-scrollbar-thumb:hover {
+                background-color: var(--scrollbar-thumb-hover);
+              }
+              /* Theme variable definitions for iframe */
+              :root {
+                --scrollbar-track: rgba(0, 0, 0, 0.03);
+                --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+                --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
+              }
+              .dark {
+                --scrollbar-track: rgba(0, 0, 0, 0.2);
+                --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+                --scrollbar-thumb-hover: rgba(255, 255, 255, 0.25);
+              }
             </style>
           </head>
           <body>
@@ -98,6 +139,14 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
       iframeDoc.close();
 
       iframeElement.onload = () => {
+        // Sync theme class from parent document
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark) {
+          iframeDoc.documentElement.classList.add("dark");
+        } else {
+          iframeDoc.documentElement.classList.remove("dark");
+        }
+
         setTimeout(() => {
           const root = iframeDoc.getElementById("root");
           if (root) {

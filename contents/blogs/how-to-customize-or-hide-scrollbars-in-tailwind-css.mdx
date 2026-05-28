@@ -1,0 +1,171 @@
+---
+title: "How to Customize or Hide Scrollbars in Tailwind CSS v4"
+description: "Learn how to build sleek, minimal custom scrollbars and hide them completely for modern slider UIs using Tailwind CSS v4 CSS-first utilities and cross-platform native styles."
+date: "May 28, 2026"
+authors:
+  - username: "Abhay Singh Rathore"
+    handle: "abhaysinghr516"
+    handleUrl: "https://github.com/abhaysinghr516"
+    avatar: "https://github.com/abhaysinghr516.png"
+---
+
+Scrollbars are one of the most neglected elements in web design. By default, browsers render thick, gray, mechanical scrollbars that can quickly break the visual flow of a premium, minimal user interface. 
+
+With Tailwind CSS v4 and standard CSS selectors, you can design sleek, customized scrollbars that match your layout design, or hide them entirely for layouts like swipeable touch carousels.
+
+Tailwind CSS v4 introduces a **CSS-first configuration system**, eliminating the traditional `tailwind.config.js` or `tailwind.config.ts` files in favor of standard CSS directives. In this comprehensive guide, we will cover how to style scrollbars cross-platform and configure custom utilities using Tailwind v4's new `@utility` syntax.
+
+---
+
+### The Cross-Platform Scrollbar Problem
+
+Styling scrollbars is notoriously inconsistent because different browser engines use completely different CSS specifications:
+
+1. **Chromium & WebKit Engines (Chrome, Safari, Edge, Opera):** These use vendor-prefixed pseudo-selectors like `::-webkit-scrollbar`, `::-webkit-scrollbar-track`, and `::-webkit-scrollbar-thumb`. This provides fine-grained control over widths, colors, borders, and hover states.
+2. **Gecko Engine (Firefox):** Firefox uses the W3C draft specification which only supports two properties: `scrollbar-width` (e.g. `auto`, `thin`, `none`) and `scrollbar-color` (e.g. `[thumb_color] [track_color]`). It does not support hover states, border-radii, or custom track borders.
+3. **Legacy Engines (IE/Old Edge):** These use obsolete properties like `scrollbar-face-color` and are generally ignored in modern workflows.
+
+To achieve a consistent, Awwwards-worthy design, you must write styles that satisfy both WebKit pseudo-classes and Firefox properties simultaneously.
+
+---
+
+### 1. Styling Custom Scrollbars with Native CSS variables
+
+The cleanest way to add global, custom-styled scrollbars is by defining them in your global CSS file (e.g., `src/app/globals.css`). This ensures that every scrollable element inherits your theme styling automatically.
+
+Here is a clean, minimal design system template that works for both dark and light modes:
+
+```css
+/* src/app/globals.css */
+
+/* ── Global Scrollbar Styles ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Chrome, Safari, and Edge */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 20px;
+  border: 2px solid var(--scrollbar-track);
+  transition: background-color 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+/* CSS variable declarations mapped to your theme colors */
+:root {
+  --scrollbar-track: rgba(0, 0, 0, 0.03);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
+}
+
+.dark {
+  --scrollbar-track: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.25);
+}
+```
+
+#### Why We Use Bounding Borders
+Notice the `border: 2px solid var(--scrollbar-track)` property on the thumb. By giving the thumb a border matching the track's color, we create the visual illusion of padding around the thumb. This prevents the thumb from hugging the edges of its container, creating a much sleeker look.
+
+Here is how this custom scrollbar behaves in an interactive element:
+
+<Preview>
+  <ScrollbarCustomDemo />
+</Preview>
+
+---
+
+### 2. Configuring Custom Scrollbars in Tailwind CSS v4
+
+Since Tailwind CSS v4 deprecates JavaScript-based configuration (`tailwind.config.js`), you no longer write JavaScript plugins to register custom utilities. Instead, you declare custom utility classes directly in your CSS entry point file using the new **`@utility` directive**.
+
+Add the following declarations to your main CSS file:
+
+```css
+/* src/app/globals.css */
+@import "tailwindcss";
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-zinc-300);
+    border-radius: 10px;
+  }
+  @variant dark {
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-zinc-800);
+    }
+  }
+}
+```
+
+#### The Power of `@utility`
+The `@utility` directive registers `.scrollbar-hide` and `.scrollbar-thin` with Tailwind v4's compiler automatically. You can now use hover, active, or dark-mode variants like `hover:scrollbar-thin` or `dark:scrollbar-thin` inline within your HTML/React nodes.
+
+---
+
+### 3. How to Hide Scrollbars Cleanly (`scrollbar-hide`)
+
+In modern mobile-first web design, horizontal sliders, carousels, and tab groups are very popular. However, the default horizontal scrollbar takes up valuable vertical space and looks visually distracting. 
+
+We can hide the scrollbar completely while **maintaining the native swipe and mouse scroll actions** intact.
+
+#### The Code Implementation
+Our `@utility scrollbar-hide` directive does this by setting `scrollbar-width: none` for Firefox and hiding the `::-webkit-scrollbar` display property:
+
+```tsx
+export const HorizontalCarousel = () => (
+  <div className="w-full overflow-x-auto scrollbar-hide flex gap-4">
+    <div className="flex-shrink-0 w-64 h-40 bg-stone-100 rounded-xl" />
+    <div className="flex-shrink-0 w-64 h-40 bg-stone-100 rounded-xl" />
+    <div className="flex-shrink-0 w-64 h-40 bg-stone-100 rounded-xl" />
+  </div>
+);
+```
+
+Swipe or scroll horizontally on the example below to see it in action:
+
+<Preview>
+  <ScrollbarHiddenDemo />
+</Preview>
+
+---
+
+### 4. Accessibility and UX Considerations
+
+While custom or hidden scrollbars make designs look cleaner, you should use them with caution:
+* **Visual Cue Indicators:** If you hide a scrollbar on a desktop element, ensure there are other visual cues (like fading gradients on the edges or next/prev navigation buttons) to communicate to the user that more content lies beyond the visible screen boundary.
+* **Contrast Compliance:** Ensure that your custom scrollbar thumbs have sufficient contrast against their tracks (at least a 3:1 ratio) so users with visual impairments can easily locate and grab the scroll handle.
+
+Using these techniques allows you to style your scrollable pages and widgets cleanly, ensuring consistent scrollbar aesthetics across platforms.
