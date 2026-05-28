@@ -25,7 +25,7 @@ export const ScrollbarCustomDemo: React.FC = () => {
             By coordinating thumb and track background shading, scrollable segments integrate smoothly with minimal dark and light design motifs.
           </p>
           <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
-            You've reached the bottom! You can scroll back to the top to see the scroll thumb slide back up.
+            You&apos;ve reached the bottom! You can scroll back to the top to see the scroll thumb slide back up.
           </p>
         </div>
       </div>
