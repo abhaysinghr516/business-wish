@@ -89,32 +89,7 @@ export const GradientHeroSection: React.FC = () => (
     </div>
   </section>
 );
-
-export const MinimalTypographyHero: React.FC = () => (
-  <section className="bg-white dark:bg-neutral-950 min-h-[85vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 py-20 relative">
-    <div className="max-w-5xl relative z-10 space-y-8">
-      <h1 className="text-6xl sm:text-7xl md:text-9xl font-medium tracking-tighter text-neutral-900 dark:text-white leading-[0.9]">
-        Simplicity is <br />
-        <span className="text-neutral-400 dark:text-neutral-600">the ultimate</span> <br />
-        sophistication.
-      </h1>
-      
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 pt-12 md:pt-24">
-        <p className="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 max-w-md font-normal leading-relaxed">
-          Create timeless digital experiences with a framework that removes the noise and focuses entirely on the essence of your content.
-        </p>
-        
-        <a
-          href="#"
-          className="group inline-flex items-center text-[15px] font-semibold text-neutral-900 dark:text-white uppercase tracking-wider pb-1 border-b-2 border-neutral-900 dark:border-white transition-all hover:pr-4"
-        >
-          Discover our vision
-          <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 absolute right-0" />
-        </a>
-      </div>
-    </div>
-  </section>
-);
+// --- SIDE IMAGE HERO SECTION ---
 
 export const SideImageHeroSection: React.FC = () => (
   <section className="bg-white dark:bg-neutral-950 min-h-screen flex items-center px-6 py-24 relative overflow-hidden">

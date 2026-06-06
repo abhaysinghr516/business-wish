@@ -39,7 +39,7 @@ import {
 import { BasicFeatures, MinimalFeatures, HoverFeatures } from "@/components/Features";
 import { DetailedFooter, FooterwithCTA, FooterwithMultipleSections, FooterwithNewsletter, SimpleFooter, UltraMinimalFooter } from "@/components/Footer";
 import { BasicHeader, CenteredAlignedHeader, HeaderwithAnimation, HeaderwithSearch, FloatingHeader, MinimalStickyHeader } from "@/components/Header";
-import { CenterContentHeroSection, GradientHeroSection, MinimalTypographyHero, SideImageHeroSection } from "@/components/Hero";
+import { CenterContentHeroSection, GradientHeroSection, SideImageHeroSection } from "@/components/Hero";
 import { Loaders } from "@/components/Loader";
 import { BasicPagination, PaginationwithDots, PaginationwithIcons, PaginationwithInputField, MinimalPagination, RoundedGhostPagination } from "@/components/Pagination";
 import { BasicModal, GlassAlertModal, RichContentModal, SuccessModal } from "@/components/Modal";
@@ -192,7 +192,6 @@ const components = {
     MinimalStickyHeader,
     CenterContentHeroSection,
     GradientHeroSection,
-    MinimalTypographyHero,
     SideImageHeroSection,
     Loaders,
     BasicPagination,
