@@ -7,7 +7,7 @@
       "name": "accordion",
       "type": "component",
       "title": "Accordion",
-      "description": "Tailwind CSS accordion components to concisely show and hide content. Perfect for FAQs, nested navigation, and building a flexible flex accordion interface.",
+      "description": "Free, copy-pasteable Tailwind CSS Accordion component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Accordion.tsx",
@@ -37,7 +37,7 @@
       "name": "alert",
       "type": "component",
       "title": "Alert",
-      "description": "Responsive Tailwind alert components for displaying important messages, warnings, and success states to users.",
+      "description": "Free, copy-pasteable Tailwind CSS Alert component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Alert.tsx",
@@ -80,11 +80,28 @@
         "lucide-react"
       ]
     },
+    "area-chart": {
+      "name": "area-chart",
+      "type": "component",
+      "title": "Area Chart",
+      "description": "Free, copy-pasteable Tailwind CSS Area Chart component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "AreaChart.tsx",
+          "content": "\"use client\";\r\nimport React from \"react\";\r\nimport {\r\n  AreaChart, Area, XAxis, YAxis, CartesianGrid,\r\n  Tooltip, ResponsiveContainer,\r\n} from \"recharts\";\r\nimport { Activity, TrendingUp, TrendingDown } from \"lucide-react\";\r\n\r\nconst totalRevenueData = [\r\n  { name: \"Jan\", revenue: 12000 }, { name: \"Feb\", revenue: 15000 },\r\n  { name: \"Mar\", revenue: 14000 }, { name: \"Apr\", revenue: 22000 },\r\n  { name: \"May\", revenue: 18000 }, { name: \"Jun\", revenue: 28000 },\r\n  { name: \"Jul\", revenue: 31000 }, { name: \"Aug\", revenue: 29000 },\r\n  { name: \"Sep\", revenue: 35000 }, { name: \"Oct\", revenue: 42000 },\r\n  { name: \"Nov\", revenue: 38000 }, { name: \"Dec\", revenue: 48000 },\r\n];\r\n\r\nconst CustomTooltip = ({ active, payload, label }: any) => {\r\n  if (active && payload?.length) {\r\n    return (\r\n      <div className=\"bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 p-3 rounded-2xl shadow-lg min-w-[150px]\">\r\n        <p className=\"text-[11px] font-semibold text-neutral-400 mb-2 tracking-widest uppercase\">{label}</p>\r\n        {payload.map((entry: any, i: number) => (\r\n          <div key={i} className=\"flex items-center gap-2.5\">\r\n            <div className=\"w-1.5 h-1.5 rounded-full\" style={{ backgroundColor: entry.color }} />\r\n            <span className=\"text-[13px] font-medium text-neutral-500 flex-1 capitalize\">{entry.name}</span>\r\n            <span className=\"text-[13px] font-bold text-neutral-900 dark:text-white tabular-nums\">\r\n              ${entry.value.toLocaleString()}\r\n            </span>\r\n          </div>\r\n        ))}\r\n      </div>\r\n    );\r\n  }\r\n  return null;\r\n};\r\n\r\nexport const BasicAreaChart = ({ height = 320, color = \"#007AFF\" }) => {\r\n  const total = totalRevenueData.reduce((s, d) => s + d.revenue, 0);\r\n  const h1 = totalRevenueData.slice(0, 6).reduce((s, d) => s + d.revenue, 0);\r\n  const h2 = totalRevenueData.slice(6).reduce((s, d) => s + d.revenue, 0);\r\n  const delta = ((h2 - h1) / h1) * 100;\r\n  const isUp = delta >= 0;\r\n\r\n  return (\r\n    <div className=\"w-full bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-neutral-800/80 rounded-3xl p-6 shadow-sm\">\r\n      <div className=\"flex items-start justify-between mb-8\">\r\n        <div>\r\n          <div className=\"flex items-center gap-2 mb-1\">\r\n            <Activity className=\"w-3.5 h-3.5 text-neutral-400\" strokeWidth={2.5} />\r\n            <p className=\"text-[12px] font-semibold text-neutral-500 uppercase tracking-widest\">Total Revenue</p>\r\n          </div>\r\n          <h3 className=\"text-[28px] font-bold text-neutral-900 dark:text-white tracking-tighter leading-none\">\r\n            ${(total / 1000).toFixed(0)}k\r\n          </h3>\r\n          <p className=\"text-[13px] text-neutral-400 mt-1\">Annual performance</p>\r\n        </div>\r\n        <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold ${\r\n          isUp ? \"bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400\"\r\n               : \"bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400\"\r\n        }`}>\r\n          {isUp ? <TrendingUp className=\"w-3.5 h-3.5\" strokeWidth={2.5} />\r\n                : <TrendingDown className=\"w-3.5 h-3.5\" strokeWidth={2.5} />}\r\n          <span>{Math.abs(delta).toFixed(1)}% H2 vs H1</span>\r\n        </div>\r\n      </div>\r\n      <div style={{ height, width: \"100%\" }}>\r\n        <ResponsiveContainer width=\"100%\" height=\"100%\">\r\n          <AreaChart data={totalRevenueData} margin={{ top: 8, right: 4, left: -24, bottom: 0 }}>\r\n            <defs>\r\n              <linearGradient id=\"ac-basic-fill\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\r\n                <stop offset=\"0%\" stopColor={color} stopOpacity={0.18} />\r\n                <stop offset=\"100%\" stopColor={color} stopOpacity={0} />\r\n              </linearGradient>\r\n            </defs>\r\n            <CartesianGrid strokeDasharray=\"3 3\" vertical={false} stroke=\"#E5E5EA\" strokeOpacity={0.8} />\r\n            <XAxis dataKey=\"name\" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: \"#8E8E93\" }} dy={10} />\r\n            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: \"#8E8E93\" }} tickFormatter={(v) => `$${v / 1000}k`} />\r\n            <Tooltip content={<CustomTooltip />} cursor={{ stroke: color, strokeWidth: 1, strokeDasharray: \"4 4\", strokeOpacity: 0.4 }} />\r\n            <Area\r\n              type=\"monotone\" dataKey=\"revenue\" name=\"Revenue\"\r\n              stroke={color} strokeWidth={2.5} fillOpacity={1} fill=\"url(#ac-basic-fill)\"\r\n              animationDuration={1400} animationEasing=\"ease-out\"\r\n              activeDot={{ r: 5, fill: color, stroke: \"#fff\", strokeWidth: 2.5 }}\r\n            />\r\n          </AreaChart>\r\n        </ResponsiveContainer>\r\n      </div>\r\n    </div>\r\n  );\r\n};"
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ]
+    },
     "avatar": {
       "name": "avatar",
       "type": "component",
       "title": "Avatar",
-      "description": "Clean Tailwind avatar components for user profiles, featuring initials, notification badges, and grouped layouts.",
+      "description": "Free, copy-pasteable Tailwind CSS Avatar component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Avatar.tsx",
@@ -136,7 +153,7 @@
       "name": "badge",
       "type": "component",
       "title": "Badge",
-      "description": "Versatile Tailwind CSS badge components to show status indicators, counters, or labels with customizable styles and pill variations.",
+      "description": "Free, copy-pasteable Tailwind CSS Badge component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Badge.tsx",
@@ -158,7 +175,7 @@
       "name": "banner",
       "type": "component",
       "title": "Banner",
-      "description": "Eye-catching Tailwind banner components for announcements, app updates, and cookie consent overlays.",
+      "description": "Free, copy-pasteable Tailwind CSS Banner component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Banner.tsx",
@@ -196,11 +213,28 @@
         "lucide-react"
       ]
     },
+    "bar-chart": {
+      "name": "bar-chart",
+      "type": "component",
+      "title": "Bar Chart",
+      "description": "Free, copy-pasteable Tailwind CSS Bar Chart component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "BarChart.tsx",
+          "content": "\"use client\";\r\nimport React from \"react\";\r\nimport {\r\n  BarChart, Bar, XAxis, YAxis, CartesianGrid,\r\n  Tooltip, ResponsiveContainer, Cell,\r\n} from \"recharts\";\r\nimport { Users, TrendingUp, TrendingDown } from \"lucide-react\";\r\n\r\nconst monthlyVisitorsData = [\r\n  { name: \"Jan\", visitors: 4200 }, { name: \"Feb\", visitors: 3100 },\r\n  { name: \"Mar\", visitors: 5800 }, { name: \"Apr\", visitors: 2400 },\r\n  { name: \"May\", visitors: 6500 }, { name: \"Jun\", visitors: 4800 },\r\n  { name: \"Jul\", visitors: 8100 }, { name: \"Aug\", visitors: 6900 },\r\n  { name: \"Sep\", visitors: 8500 }, { name: \"Oct\", visitors: 7200 },\r\n  { name: \"Nov\", visitors: 9100 }, { name: \"Dec\", visitors: 10500 },\r\n];\r\n\r\nconst CustomTooltip = ({ active, payload, label }: any) => {\r\n  if (active && payload?.length) {\r\n    return (\r\n      <div className=\"bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 p-3 rounded-2xl shadow-lg min-w-[150px]\">\r\n        <p className=\"text-[11px] font-semibold text-neutral-400 mb-2 tracking-widest uppercase\">{label}</p>\r\n        {payload.map((entry: any, i: number) => (\r\n          <div key={i} className=\"flex items-center gap-2.5\">\r\n            <div className=\"w-1.5 h-1.5 rounded-full\" style={{ backgroundColor: entry.color || entry.fill }} />\r\n            <span className=\"text-[13px] font-medium text-neutral-500 flex-1 capitalize\">{entry.name}</span>\r\n            <span className=\"text-[13px] font-bold text-neutral-900 dark:text-white tabular-nums\">\r\n              {entry.value.toLocaleString()}\r\n            </span>\r\n          </div>\r\n        ))}\r\n      </div>\r\n    );\r\n  }\r\n  return null;\r\n};\r\n\r\nexport const BasicBarChart = ({ height = 320, color = \"#3B82F6\" }) => {\r\n  const total = monthlyVisitorsData.reduce((s, d) => s + d.visitors, 0);\r\n  const h1 = monthlyVisitorsData.slice(0, 6).reduce((s, d) => s + d.visitors, 0);\r\n  const h2 = monthlyVisitorsData.slice(6).reduce((s, d) => s + d.visitors, 0);\r\n  const delta = ((h2 - h1) / h1) * 100;\r\n  const isUp = delta >= 0;\r\n  const maxVal = Math.max(...monthlyVisitorsData.map((d) => d.visitors));\r\n\r\n  return (\r\n    <div className=\"w-full bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-neutral-800/80 rounded-3xl p-6 shadow-sm\">\r\n      <div className=\"flex items-start justify-between mb-8\">\r\n        <div>\r\n          <div className=\"flex items-center gap-2 mb-1\">\r\n            <Users className=\"w-3.5 h-3.5 text-neutral-400\" strokeWidth={2.5} />\r\n            <p className=\"text-[12px] font-semibold text-neutral-500 uppercase tracking-widest\">Monthly Visitors</p>\r\n          </div>\r\n          <h3 className=\"text-[28px] font-bold text-neutral-900 dark:text-white tracking-tighter leading-none\">\r\n            {(total / 1000).toFixed(1)}k\r\n          </h3>\r\n          <p className=\"text-[13px] text-neutral-400 mt-1\">Unique traffic this year</p>\r\n        </div>\r\n        <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold ${\r\n          isUp ? \"bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400\"\r\n               : \"bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400\"\r\n        }`}>\r\n          {isUp ? <TrendingUp className=\"w-3.5 h-3.5\" strokeWidth={2.5} />\r\n                : <TrendingDown className=\"w-3.5 h-3.5\" strokeWidth={2.5} />}\r\n          <span>{Math.abs(delta).toFixed(1)}% H2 vs H1</span>\r\n        </div>\r\n      </div>\r\n      <div style={{ height, width: \"100%\" }}>\r\n        <ResponsiveContainer width=\"100%\" height=\"100%\">\r\n          <BarChart data={monthlyVisitorsData} margin={{ top: 8, right: 4, left: -24, bottom: 0 }}>\r\n            <CartesianGrid strokeDasharray=\"3 3\" vertical={false} stroke=\"#E5E5EA\" strokeOpacity={0.8} />\r\n            <XAxis dataKey=\"name\" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: \"#8E8E93\" }} dy={10} />\r\n            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: \"#8E8E93\" }} tickFormatter={(v) => v >= 1000 ? `${v / 1000}k` : v} />\r\n            <Tooltip content={<CustomTooltip />} cursor={{ fill: color, fillOpacity: 0.04 }} />\r\n            <Bar dataKey=\"visitors\" radius={[5, 5, 0, 0]} barSize={22} animationDuration={1400} animationEasing=\"ease-out\">\r\n              {monthlyVisitorsData.map((entry, i) => (\r\n                <Cell key={i} fill={entry.visitors === maxVal ? color : `${color}55`} />\r\n              ))}\r\n            </Bar>\r\n          </BarChart>\r\n        </ResponsiveContainer>\r\n      </div>\r\n    </div>\r\n  );\r\n};"
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ]
+    },
     "bottom-navigation": {
       "name": "bottom-navigation",
       "type": "component",
       "title": "Bottom Navigation",
-      "description": "Premium Tailwind bottom navigation bars optimized for mobile web apps, featuring active state micro-animations and glassmorphism.",
+      "description": "Free, copy-pasteable Tailwind CSS Bottom Navigation component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "BottomNavigation.tsx",
@@ -232,7 +266,7 @@
       "name": "breadcrumb",
       "type": "component",
       "title": "Breadcrumb",
-      "description": "Elegant Tailwind breadcrumb components with collapsible dropdowns and animated separators to guide user navigation.",
+      "description": "Free, copy-pasteable Tailwind CSS Breadcrumb component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Breadcrumb.tsx",
@@ -264,7 +298,7 @@
       "name": "button",
       "type": "component",
       "title": "Button",
-      "description": "Highly customizable Tailwind button components and Tailwind button groups for Next.js and React. Features primary, ghost, and glass variants.",
+      "description": "Free, copy-pasteable Tailwind CSS Button component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Button.tsx",
@@ -299,7 +333,7 @@
       "name": "call-to-action",
       "type": "component",
       "title": "Call To Action",
-      "description": "High-converting Tailwind call to action components and Tailwind CTA sections designed with premium, Apple-level aesthetics.",
+      "description": "Free, copy-pasteable Tailwind CSS Call To Action component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "CallToAction.tsx",
@@ -329,7 +363,7 @@
       "name": "card",
       "type": "component",
       "title": "Card",
-      "description": "Premium Tailwind card components designed to beautifully group related content. Explore job, product, and profile Tailwind CSS components.",
+      "description": "Free, copy-pasteable Tailwind CSS Card component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Card.tsx",
@@ -377,11 +411,28 @@
         "lucide-react"
       ]
     },
+    "context-menu": {
+      "name": "context-menu",
+      "type": "component",
+      "title": "Context Menu",
+      "description": "Free, copy-pasteable Tailwind CSS Context Menu component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "ContextMenu.tsx",
+          "content": "\"use client\";\r\n\r\nimport React, { useState, useEffect, useRef } from \"react\";\r\nimport { motion, AnimatePresence } from \"framer-motion\";\r\nimport { Copy, Plus, Trash2, Edit } from \"lucide-react\";\r\n\r\nconst InteractiveContextMenu: React.FC = () => {\r\n  const [isOpen, setIsOpen] = useState(false);\r\n  const [point, setPoint] = useState({ x: 0, y: 0 });\r\n  const containerRef = useRef<HTMLDivElement>(null);\r\n\r\n  useEffect(() => {\r\n    const handleClick = () => isOpen && setIsOpen(false);\r\n    document.addEventListener(\"click\", handleClick);\r\n    return () => document.removeEventListener(\"click\", handleClick);\r\n  }, [isOpen]);\r\n\r\n  const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {\r\n    e.preventDefault();\r\n    if (containerRef.current) {\r\n      const bounds = containerRef.current.getBoundingClientRect();\r\n      setPoint({ x: e.clientX - bounds.left, y: e.clientY - bounds.top });\r\n      setIsOpen(true);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div \r\n      ref={containerRef}\r\n      onContextMenu={handleContextMenu}\r\n      className=\"relative w-full overflow-hidden ...\"\r\n    >\r\n        ..."
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ]
+    },
     "data-table": {
       "name": "data-table",
       "type": "component",
       "title": "Data Table",
-      "description": "Beautifully organized Tailwind data table components and Tailwind CSS tables for displaying complex datasets efficiently.",
+      "description": "Free, copy-pasteable Tailwind CSS Data Table component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "DataTable.tsx",
@@ -411,7 +462,7 @@
       "name": "date-picker",
       "type": "component",
       "title": "Date Picker",
-      "description": "Accessible Tailwind date picker components and interactive Tailwind calendar components for seamless date selection.",
+      "description": "Free, copy-pasteable Tailwind CSS Date Picker component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "DatePicker.tsx",
@@ -448,7 +499,7 @@
       "name": "divider",
       "type": "component",
       "title": "Divider",
-      "description": "Minimalist Tailwind divider and Tailwind CSS hr components for visually separating layouts and content blocks.",
+      "description": "Free, copy-pasteable Tailwind CSS Divider component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Divider.tsx",
@@ -479,11 +530,28 @@
       ],
       "dependencies": []
     },
+    "drawer": {
+      "name": "drawer",
+      "type": "component",
+      "title": "Drawer",
+      "description": "Free, copy-pasteable Tailwind CSS Drawer component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "Drawer.tsx",
+          "content": "\"use client\";\r\n\r\nimport React, { useState, useEffect } from \"react\";\r\nimport { motion, AnimatePresence } from \"framer-motion\";\r\nimport { X } from \"lucide-react\";\r\n\r\nconst BottomDrawer: React.FC = () => {\r\n  const [isOpen, setIsOpen] = useState(false);\r\n\r\n  useEffect(() => {\r\n    if (isOpen) {\r\n      document.body.style.overflow = \"hidden\";\r\n    } else {\r\n      document.body.style.overflow = \"unset\";\r\n    }\r\n  }, [isOpen]);\r\n\r\n  return (\r\n    <>\r\n      <button\r\n        onClick={() => setIsOpen(true)}\r\n        className=\"px-5 py-2.5 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium rounded-full\"\r\n      >\r\n        Open Bottom Sheet\r\n      </button>\r\n\r\n      <AnimatePresence>\r\n        {isOpen && (\r\n          <>\r\n            <motion.div\r\n              initial={{ opacity: 0 }}\r\n              animate={{ opacity: 1 }}\r\n              exit={{ opacity: 0 }}\r\n              onClick={() => setIsOpen(false)}\r\n              className=\"fixed inset-0 bg-black/40 backdrop-blur-sm z-50 cursor-pointer\"\r\n            />\r\n\r\n            <motion.div\r\n              initial={{ y: \"100%\" }}\r\n              animate={{ y: 0 }}\r\n              exit={{ y: \"100%\" }}\r\n              transition={{ type: \"spring\", damping: 25, stiffness: 200 }}\r\n              drag=\"y\"\r\n              dragConstraints={{ top: 0 }}\r\n              dragElastic={0.2}\r\n              onDragEnd={(e, { offset, velocity }) => {\r\n                if (offset.y > 100 || velocity.y > 500) setIsOpen(false);\r\n              }}\r\n              className=\"fixed bottom-0 left-0 right-0 max-h-[85vh] h-[400px] bg-white dark:bg-neutral-900 rounded-t-[2.5rem] p-6 z-50 shadow-2xl flex flex-col\"\r\n            >\r\n              <div className=\"w-12 h-1.5 bg-neutral-200 dark:bg-neutral-700 rounded-full mx-auto mb-6 shrink-0\" />\r\n              \r\n              <div className=\"flex justify-between items-center mb-4 shrink-0\">\r\n                <h2 className=\"text-xl font-bold dark:text-white\">Settings</h2>\r\n                <button onClick={() => setIsOpen(false)} className=\"p-2 bg-neutral-100 dark:bg-neutral-800 rounded-full\">\r\n                  <X size={18} className=\"dark:text-white\" />\r\n                </button>\r\n              </div>\r\n\r\n              <div className=\"flex-1 overflow-y-auto\">\r\n                <p className=\"text-neutral-500 mb-6\">Swipe down on this drawer to close it natively!</p>\r\n              </div>\r\n            </motion.div>\r\n          </>\r\n        )}\r\n      </AnimatePresence>\r\n    </>\r\n  );\r\n};\r\n\r\nexport default BottomDrawer;"
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ]
+    },
     "dropdown": {
       "name": "dropdown",
       "type": "component",
       "title": "Dropdown",
-      "description": "Accessible, animated Tailwind CSS dropdown menus. Perfect for navigation, settings overlays, and context menus with premium styling.",
+      "description": "Free, copy-pasteable Tailwind CSS Dropdown component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Dropdown.tsx",
@@ -520,7 +588,7 @@
       "name": "features",
       "type": "component",
       "title": "Features",
-      "description": "Stunning Tailwind features section components and Tailwind feature grids to highlight your product's core capabilities.",
+      "description": "Free, copy-pasteable Tailwind CSS Features component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Features.tsx",
@@ -552,7 +620,7 @@
       "name": "file-upload",
       "type": "component",
       "title": "File Upload",
-      "description": "Highly interactive Tailwind file upload components featuring Tailwind CSS drag and drop interfaces, image previews, and validation.",
+      "description": "Free, copy-pasteable Tailwind CSS File Upload component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "FileUpload.tsx",
@@ -599,7 +667,7 @@
       "name": "footer",
       "type": "component",
       "title": "Footer",
-      "description": "Comprehensive Tailwind footer components and Tailwind CSS footer layouts for application navigation, branding, and trust signals.",
+      "description": "Free, copy-pasteable Tailwind CSS Footer component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Footer.tsx",
@@ -642,11 +710,48 @@
         "lucide-react"
       ]
     },
+    "form": {
+      "name": "form",
+      "type": "component",
+      "title": "Form",
+      "description": "Custom copy-pasteable Form layouts with flat, minimal designs. Completely responsive and dark-mode ready.",
+      "files": [
+        {
+          "name": "Form.tsx",
+          "content": "\"use client\";\n\n\n// Save as src/components/Form.tsx\n\"use client\";\n\nimport React, { useState } from \"react\";\nimport { Mail, Lock, ArrowRight, Send, Check, Star, MessageSquare, ShieldCheck } from \"lucide-react\";\n\n// --- CONTACT FORM ---\nexport const ContactForm: React.FC = () => {\n  const [submitted, setSubmitted] = useState(false);\n  const [email, setEmail] = useState(\"\");\n  const [subject, setSubject] = useState(\"\");\n  const [message, setMessage] = useState(\"\");\n\n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault();\n    if (email && subject && message) {\n      setSubmitted(true);\n      setTimeout(() => {\n        setSubmitted(false);\n        setEmail(\"\");\n        setSubject(\"\");\n        setMessage(\"\");\n      }, 4000);\n    }\n  };\n\n  return (\n    <div className=\"w-full max-w-lg mx-auto p-6 sm:p-8 bg-stone-50 dark:bg-stone-900/40 rounded-2xl border border-stone-200/60 dark:border-stone-800/60 transition-colors duration-300\">\n      {submitted ? (\n        <div className=\"flex flex-col items-center justify-center py-10 text-center animate-fadeIn\">\n          <div className=\"h-12 w-12 rounded-full bg-[#FF3903]/10 dark:bg-[#FF3903]/20 flex items-center justify-center mb-4 text-[#FF3903]\">\n            <Check className=\"h-6 w-6\" />\n          </div>\n          <h3 className=\"text-lg font-semibold text-stone-900 dark:text-stone-100\">Message Sent!</h3>\n          <p className=\"text-sm text-stone-500 dark:text-stone-400 mt-2 max-w-xs\">\n            Thank you for reaching out. We will get back to you within 24 hours.\n          </p>\n        </div>\n      ) : (\n        <form onSubmit={handleSubmit} className=\"space-y-5\">\n          <div className=\"space-y-1\">\n            <h3 className=\"text-lg font-semibold text-stone-900 dark:text-stone-100\">Contact Us</h3>\n            <p className=\"text-xs text-stone-500 dark:text-stone-400\">\n              We&apos;d love to hear from you. Please fill out the form below.\n            </p>\n          </div>\n          <div className=\"space-y-4\">\n            <div className=\"space-y-1.5\">\n              <label htmlFor=\"email\" className=\"text-xs font-medium text-stone-700 dark:text-stone-300\">\n                Email Address\n              </label>\n              <input\n                id=\"email\"\n                type=\"email\"\n                required\n                value={email}\n                onChange={(e) => setEmail(e.target.value)}\n                placeholder=\"you@example.com\"\n                className=\"w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF3903] focus:border-[#FF3903] transition-all text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600\"\n              />\n            </div>\n            <div className=\"space-y-1.5\">\n              <label htmlFor=\"subject\" className=\"text-xs font-medium text-stone-700 dark:text-stone-300\">\n                Subject\n              </label>\n              <input\n                id=\"subject\"\n                type=\"text\"\n                required\n                value={subject}\n                onChange={(e) => setSubject(e.target.value)}\n                placeholder=\"How can we help you?\"\n                className=\"w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF3903] focus:border-[#FF3903] transition-all text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600\"\n              />\n            </div>\n            <div className=\"space-y-1.5\">\n              <label htmlFor=\"message\" className=\"text-xs font-medium text-stone-700 dark:text-stone-300\">\n                Message\n              </label>\n              <textarea\n                id=\"message\"\n                required\n                rows={4}\n                value={message}\n                onChange={(e) => setMessage(e.target.value)}\n                placeholder=\"Write your message here...\"\n                className=\"w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF3903] focus:border-[#FF3903] transition-all text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600 resize-none\"\n              />\n            </div>\n          </div>\n          <button\n            type=\"submit\"\n            className=\"w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-stone-200 text-white dark:text-stone-900 font-medium rounded-xl text-sm transition-all duration-200 active:scale-[0.98]\"\n          >\n            <Send className=\"h-4 w-4\" />\n            Send Message\n          </button>\n        </form>\n      )}\n    </div>\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Contact Form",
+          "fileName": "FormContactForm.tsx",
+          "content": "import React from \"react\";\n\nimport { ContactForm } from \"@/components/Form\";\n\nexport default function Example() {\n  return <ContactForm />;\n}"
+        },
+        {
+          "name": "Sign In Form",
+          "fileName": "FormSignInForm.tsx",
+          "content": "import React from \"react\";\n\nimport { AuthForm } from \"@/components/Form\";\n\nexport default function Example() {\n  return <AuthForm />;\n}"
+        },
+        {
+          "name": "Newsletter Sign Up",
+          "fileName": "FormNewsletterSignUp.tsx",
+          "content": "import React from \"react\";\n\nimport { NewsletterForm } from \"@/components/Form\";\n\nexport default function Example() {\n  return <NewsletterForm />;\n}"
+        },
+        {
+          "name": "Interactive Feedback Form",
+          "fileName": "FormInteractiveFeedbackForm.tsx",
+          "content": "import React from \"react\";\n\nimport { FeedbackForm } from \"@/components/Form\";\n\nexport default function Example() {\n  return <FeedbackForm />;\n}"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
     "header": {
       "name": "header",
       "type": "component",
       "title": "Header",
-      "description": "Premium Tailwind header and Tailwind navbar components featuring glassmorphism, animated underlines, and responsive mobile menus.",
+      "description": "Free, copy-pasteable Tailwind CSS Header component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Header.tsx",
@@ -693,7 +798,7 @@
       "name": "hero",
       "type": "component",
       "title": "Hero Section",
-      "description": "Stunning Tailwind hero section components and Tailwind CSS hero banners redesigned with premium Apple-level aesthetics and dynamic interactions.",
+      "description": "Free, copy-pasteable Tailwind CSS Hero Section component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Hero.tsx",
@@ -730,11 +835,11 @@
       "name": "line-chart",
       "type": "component",
       "title": "Line Chart",
-      "description": "Beautiful, responsive Tailwind line chart variants perfect for dashboards. These Tailwind chart components are powered by Recharts.",
+      "description": "Free, copy-pasteable Tailwind CSS Line Chart component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "LineChart.tsx",
-          "content": "import React from \"react\";\n\n### Basic Line Chart\r\nA clean, minimal line chart ideal for revenue or standard metric overviews. It features a custom tooltip and iOS-style curved lines.\r\n\r\n<Preview>\r\n<BasicLineChart />\r\n</Preview>"
+          "content": "import React from \"react\";\n\n### Basic Line Chart\r\nA clean, minimal line chart ideal for revenue or standard metric overviews. It features a custom tooltip and curved lines.\r\n\r\n<Preview>\r\n<BasicLineChart />\r\n</Preview>"
         }
       ],
       "variants": [],
@@ -744,7 +849,7 @@
       "name": "loader",
       "type": "component",
       "title": "Loader",
-      "description": "Effortless, refined Tailwind loader components and Tailwind CSS spinners designed to keep your users engaged gracefully.",
+      "description": "Free, copy-pasteable Tailwind CSS Loader component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Loader.tsx",
@@ -796,7 +901,7 @@
       "name": "modal",
       "type": "component",
       "title": "Modal",
-      "description": "Elegant Tailwind modal and Tailwind CSS dialog components that grab user attention for priority tasks or important alerts without disruption.",
+      "description": "Free, copy-pasteable Tailwind CSS Modal component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Modal.tsx",
@@ -810,7 +915,7 @@
       "name": "pagination",
       "type": "component",
       "title": "Pagination",
-      "description": "Effortless Tailwind pagination and Tailwind CSS pagination components redesigned for ultimate clarity and seamless interactions.",
+      "description": "Free, copy-pasteable Tailwind CSS Pagination component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Pagination.tsx",
@@ -853,11 +958,28 @@
         "lucide-react"
       ]
     },
+    "pie-chart": {
+      "name": "pie-chart",
+      "type": "component",
+      "title": "Pie Chart",
+      "description": "Free, copy-pasteable Tailwind CSS Pie Chart component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "PieChart.tsx",
+          "content": "\"use client\";\r\nimport React from \"react\";\r\nimport { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from \"recharts\";\r\nimport { PieChart as PieChartIcon } from \"lucide-react\";\r\n\r\nconst trafficSourcesData = [\r\n  { name: \"Direct\",   value: 35, color: \"#3B82F6\" },\r\n  { name: \"Organic\",  value: 25, color: \"#6366F1\" },\r\n  { name: \"Referral\", value: 20, color: \"#8B5CF6\" },\r\n  { name: \"Social\",   value: 20, color: \"#D946EF\" },\r\n];\r\n\r\nconst CustomTooltip = ({ active, payload }: any) => {\r\n  if (active && payload?.length) {\r\n    const d = payload[0].payload;\r\n    return (\r\n      <div className=\"bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 p-3 rounded-2xl shadow-lg min-w-[140px]\">\r\n        <div className=\"flex items-center gap-2.5\">\r\n          <div className=\"w-1.5 h-1.5 rounded-full\" style={{ backgroundColor: d.color }} />\r\n          <span className=\"text-[13px] font-medium text-neutral-500 flex-1 capitalize\">{d.name}</span>\r\n          <span className=\"text-[13px] font-bold text-neutral-900 dark:text-white tabular-nums\">{d.value}%</span>\r\n        </div>\r\n      </div>\r\n    );\r\n  }\r\n  return null;\r\n};\r\n\r\nexport const BasicDonutChart = ({ height = 300 }) => {\r\n  const total = trafficSourcesData.reduce((s, d) => s + d.value, 0);\r\n\r\n  return (\r\n    <div className=\"w-full bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-neutral-800/80 rounded-3xl p-6 shadow-sm\">\r\n      <div className=\"mb-6\">\r\n        <div className=\"flex items-center gap-2 mb-1\">\r\n          <PieChartIcon className=\"w-3.5 h-3.5 text-neutral-400\" strokeWidth={2.5} />\r\n          <p className=\"text-[12px] font-semibold text-neutral-500 uppercase tracking-widest\">Traffic Sources</p>\r\n        </div>\r\n        <h3 className=\"text-[22px] font-bold text-neutral-900 dark:text-white tracking-tight\">Visitor Breakdown</h3>\r\n        <p className=\"text-[13px] text-neutral-400 mt-1\">Distribution of incoming sessions</p>\r\n      </div>\r\n\r\n      <div className=\"flex flex-col sm:flex-row items-center gap-6\">\r\n        {/* Donut */}\r\n        <div style={{ height, width: \"100%\", maxWidth: 280 }} className=\"relative flex-shrink-0\">\r\n          <div className=\"absolute inset-0 flex flex-col items-center justify-center pointer-events-none\">\r\n            <span className=\"text-[28px] font-bold text-neutral-900 dark:text-white tracking-tighter leading-none\">{total}%</span>\r\n            <span className=\"text-[10px] font-semibold text-neutral-400 uppercase tracking-widest mt-1\">Total</span>\r\n          </div>\r\n          <ResponsiveContainer width=\"100%\" height=\"100%\">\r\n            <PieChart>\r\n              <Tooltip content={<CustomTooltip />} />\r\n              <Pie\r\n                data={trafficSourcesData}\r\n                cx=\"50%\" cy=\"50%\"\r\n                innerRadius=\"58%\" outerRadius=\"80%\"\r\n                paddingAngle={2} dataKey=\"value\" stroke=\"none\"\r\n                animationDuration={1400} animationEasing=\"ease-out\"\r\n              >\r\n                {trafficSourcesData.map((entry, i) => <Cell key={i} fill={entry.color} />)}\r\n              </Pie>\r\n            </PieChart>\r\n          </ResponsiveContainer>\r\n        </div>\r\n\r\n        {/* Progress-bar legend */}\r\n        <div className=\"flex flex-col gap-3 w-full\">\r\n          {trafficSourcesData.map((entry) => {\r\n            const pct = ((entry.value / total) * 100).toFixed(0);\r\n            return (\r\n              <div key={entry.name} className=\"flex items-center gap-3\">\r\n                <div className=\"w-2 h-2 rounded-full flex-shrink-0\" style={{ backgroundColor: entry.color }} />\r\n                <span className=\"text-[13px] font-medium text-neutral-600 dark:text-neutral-400 flex-1\">{entry.name}</span>\r\n                <div className=\"flex-1 max-w-[100px] h-1 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden\">\r\n                  <div className=\"h-full rounded-full\" style={{ width: `${pct}%`, backgroundColor: entry.color }} />\r\n                </div>\r\n                <span className=\"text-[12px] font-bold text-neutral-900 dark:text-white tabular-nums w-8 text-right\">{pct}%</span>\r\n              </div>\r\n            );\r\n          })}\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};"
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "recharts",
+        "lucide-react"
+      ]
+    },
     "popover": {
       "name": "popover",
       "type": "component",
       "title": "Popover",
-      "description": "Elegant Tailwind popover dialogs redesigned with refined glassmorphism. A perfect Tailwind CSS tooltip alternative for complex interactions.",
+      "description": "Free, copy-pasteable Tailwind CSS Popover component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Popover.tsx",
@@ -899,7 +1021,7 @@
       "name": "progress",
       "type": "component",
       "title": "Progress",
-      "description": "Refined Tailwind progress bar components and Tailwind CSS loading indicators displaying operation status with smooth animations.",
+      "description": "Free, copy-pasteable Tailwind CSS Progress component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Progress.tsx",
@@ -909,11 +1031,38 @@
       "variants": [],
       "dependencies": []
     },
+    "quote": {
+      "name": "quote",
+      "type": "component",
+      "title": "Quote",
+      "description": "Elegant copy-pasteable Quote templates, including Blockquotes and Pullquotes built on flat and minimal designs.",
+      "files": [
+        {
+          "name": "Quote.tsx",
+          "content": "// Save as src/components/Quote.tsx\n\"use client\";\n\nimport React from \"react\";\nimport { Quote as QuoteIcon } from \"lucide-react\";\n\ninterface QuoteProps {\n  text: string;\n  author: string;\n  role?: string;\n  company?: string;\n  avatarUrl?: string;\n}\n\n// --- CLEAN CARD QUOTE ---\nexport const CleanCardQuote: React.FC<QuoteProps> = ({\n  text = \"Good design makes a product useful. It concentrates on certain criteria to not only be functional, but also psychological and aesthetic.\",\n  author = \"Dieter Rams\",\n  role = \"Legendary Industrial Designer\",\n  company = \"Braun\",\n  avatarUrl,\n}) => {\n  const initials = author\n    .split(\" \")\n    .map((n) => n[0])\n    .join(\"\")\n    .slice(0, 2);\n\n  return (\n    <div className=\"w-full max-w-xl mx-auto my-6 p-6 sm:p-8 bg-stone-50 dark:bg-stone-900/40 border border-stone-200/50 dark:border-stone-850 rounded-2xl transition-all duration-300 hover:border-stone-300/80 dark:hover:border-stone-800\">\n      <div className=\"space-y-5\">\n        <QuoteIcon className=\"h-6 w-6 text-[#FF3903] opacity-80\" strokeWidth={1.5} />\n        \n        <p className=\"text-sm sm:text-base text-stone-755 dark:text-stone-300 leading-relaxed font-normal\">\n          {text}\n        </p>\n\n        <div className=\"flex items-center gap-3.5 pt-2 border-t border-stone-200/40 dark:border-stone-800/40\">\n          {avatarUrl ? (\n            <img\n              src={avatarUrl}\n              alt={author}\n              className=\"h-10 w-10 rounded-full object-cover border border-stone-200 dark:border-stone-800\"\n            />\n          ) : (\n            <div className=\"h-10 w-10 rounded-xl bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-xs font-semibold text-stone-700 dark:text-stone-300 uppercase select-none\">\n              {initials}\n            </div>\n          )}\n          <div className=\"text-left\">\n            <h5 className=\"text-sm font-semibold text-stone-900 dark:text-stone-100 leading-none\">\n              {author}\n            </h5>\n            <p className=\"text-xs text-stone-500 dark:text-stone-400 mt-1 leading-none\">\n              {role} {company && `• ${company}`}\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\n// --- AUTHOR PULLQUOTE ---\nexport const AuthorPullquote: React.FC<QuoteProps> = ({\n  text = \"Typography is the detail and the synthesis of a visual concept. When details are handled properly, the concept comes alive.\",\n  author = \"Emil Ruder\",\n  role = \"Swiss Typographer\",\n  avatarUrl,\n}) => {\n  const initials = author\n    .split(\" \")\n    .map((n) => n[0])\n    .join(\"\")\n    .slice(0, 2);\n\n  return (\n    <div className=\"w-full max-w-2xl mx-auto my-6 border-y border-stone-200/80 dark:border-stone-850/80 py-6 sm:py-8 px-4 transition-colors duration-300\">\n      <div className=\"grid grid-cols-1 md:grid-cols-4 gap-6 items-center\">\n        <div className=\"md:col-span-1 flex md:flex-col items-center md:items-start text-left gap-3 md:gap-2\">\n          {avatarUrl ? (\n            <img\n              src={avatarUrl}\n              alt={author}\n              className=\"h-9 w-9 rounded-full object-cover\"\n            />\n          ) : (\n            <div className=\"h-9 w-9 rounded-full bg-[#FF3903]/10 dark:bg-[#FF3903]/20 flex items-center justify-center text-xs font-semibold text-[#FF3903] uppercase\">\n              {initials}\n            </div>\n          )}\n          <div>\n            <h5 className=\"text-xs font-bold text-stone-900 dark:text-stone-100 uppercase tracking-wider\">\n              {author}\n            </h5>\n            <p className=\"text-[10px] text-stone-400 dark:text-stone-500 font-medium uppercase mt-0.5 leading-none\">\n              {role}\n            </p>\n          </div>\n        </div>\n\n        <div className=\"md:col-span-3 text-left\">\n          <p className=\"text-sm sm:text-base font-serif italic text-stone-800 dark:text-stone-250 leading-relaxed pl-0 md:pl-6 md:border-l border-stone-200 dark:border-stone-800\">\n            &ldquo;{text}&rdquo;\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Clean Card Quote",
+          "fileName": "QuoteCleanCardQuote.tsx",
+          "content": "import React from \"react\";\n\nimport { CleanCardQuote } from \"@/components/Quote\";\n\nexport default function Example() {\n  return (\n    <CleanCardQuote \n      text=\"The details are not the details. They make the design.\" \n      author=\"Charles Eames\" \n      role=\"Architect & Furniture Designer\" \n      company=\"Herman Miller\" \n    />\n  );\n}"
+        },
+        {
+          "name": "Editorial Pullquote",
+          "fileName": "QuoteEditorialPullquote.tsx",
+          "content": "import React from \"react\";\n\nimport { AuthorPullquote } from \"@/components/Quote\";\n\nexport default function Example() {\n  return (\n    <AuthorPullquote \n      text=\"Typography has a single mission: to convey info in writing without losing readability.\" \n      author=\"Emil Ruder\" \n      role=\"Swiss Typographer\" \n    />\n  );\n}"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
     "sidebar": {
       "name": "sidebar",
       "type": "component",
       "title": "Sidebar",
-      "description": "Premium Tailwind sidebar components featuring glassmorphism, fluid collapsibility, and nested Tailwind CSS sidebar menus.",
+      "description": "Free, copy-pasteable Tailwind CSS Sidebar component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Sidebar.tsx",
@@ -955,7 +1104,7 @@
       "name": "skeleton",
       "type": "component",
       "title": "Skeleton Loading",
-      "description": "Premium Tailwind skeleton loader and Tailwind CSS loading skeleton components to maintain layout integrity during data fetching.",
+      "description": "Free, copy-pasteable Tailwind CSS Skeleton Loading component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Skeleton.tsx",
@@ -996,11 +1145,25 @@
       ],
       "dependencies": []
     },
+    "slider": {
+      "name": "slider",
+      "type": "component",
+      "title": "Slider",
+      "description": "Free, copy-pasteable Tailwind CSS Slider component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "Slider.tsx",
+          "content": "\"use client\";\r\n\r\nimport React, { useState } from \"react\";\r\n\r\nconst BasicSlider: React.FC = () => {\r\n  const [value, setValue] = useState(40);\r\n\r\n  return (\r\n    <div className=\"w-full max-w-sm mx-auto my-6 relative flex items-center h-6 group\">\r\n      {/* Background track */}\r\n      <div className=\"absolute w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden transition-colors duration-300\">\r\n        {/* Fill track */}\r\n        <div \r\n          className=\"h-full bg-neutral-900 dark:bg-neutral-100 transition-all duration-75 ease-out\" \r\n          style={{ width: `${value}%` }} \r\n        />\r\n      </div>\r\n      \r\n      {/* Thumb */}\r\n      <div \r\n        className=\"absolute h-5 w-5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.12)] pointer-events-none transition-all duration-75 ease-out flex items-center justify-center group-hover:scale-110 group-active:scale-95\"\r\n        style={{ left: `calc(${value}% - 10px)` }}\r\n      />\r\n      \r\n      {/* Invisible Input */}\r\n      <input\r\n        type=\"range\"\r\n        min=\"0\"\r\n        max=\"100\"\r\n        value={value}\r\n        onChange={(e) => setValue(Number(e.target.value))}\r\n        className=\"absolute w-full h-full opacity-0 cursor-pointer\"\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default BasicSlider;"
+        }
+      ],
+      "variants": [],
+      "dependencies": []
+    },
     "social-share": {
       "name": "social-share",
       "type": "component",
       "title": "Social Share",
-      "description": "Elegant Tailwind social share buttons and a responsive Tailwind CSS share link component to maximize your content's reach.",
+      "description": "Free, copy-pasteable Tailwind CSS Social Share component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "SocialShare.tsx",
@@ -1038,11 +1201,43 @@
         "lucide-react"
       ]
     },
+    "sparkline": {
+      "name": "sparkline",
+      "type": "component",
+      "title": "Sparkline",
+      "description": "Free, copy-pasteable Tailwind CSS Sparkline component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "Sparkline.tsx",
+          "content": "\"use client\";\r\nimport React from \"react\";\r\nimport { LineChart, Line, Tooltip, ResponsiveContainer, YAxis } from \"recharts\";\r\n\r\nconst data = [\r\n  { value: 10 }, { value: 15 }, { value: 12 }, { value: 20 },\r\n  { value: 18 }, { value: 25 }, { value: 22 }, { value: 30 },\r\n  { value: 28 }, { value: 35 }, { value: 32 }, { value: 40 },\r\n];\r\n\r\nconst SparklineTooltip = ({ active, payload }: any) => {\r\n  if (active && payload?.length) {\r\n    return (\r\n      <div className=\"bg-neutral-900 dark:bg-white px-2.5 py-1.5 rounded-lg shadow-xl\">\r\n        <span className=\"text-[12px] font-bold text-white dark:text-neutral-900\">\r\n          {payload[0].value.toLocaleString()}\r\n        </span>\r\n      </div>\r\n    );\r\n  }\r\n  return null;\r\n};\r\n\r\nexport const LineSparkline = ({ data: d = data, height = 40, color = \"#3B82F6\", dataKey = \"value\" }) => (\r\n  <div style={{ height, width: \"100%\", minWidth: 100 }}>\r\n    <ResponsiveContainer width=\"100%\" height=\"100%\">\r\n      <LineChart data={d} margin={{ top: 2, right: 2, left: 2, bottom: 2 }}>\r\n        <YAxis domain={[\"dataMin - 5\", \"dataMax + 5\"]} hide />\r\n        <Tooltip\r\n          content={<SparklineTooltip />}\r\n          cursor={{ stroke: color, strokeWidth: 1, strokeOpacity: 0.25, strokeDasharray: \"3 3\" }}\r\n        />\r\n        <Line\r\n          type=\"monotone\" dataKey={dataKey}\r\n          stroke={color} strokeWidth={2} dot={false}\r\n          activeDot={{ r: 4, fill: \"#fff\", stroke: color, strokeWidth: 2 }}\r\n          animationDuration={1400} animationEasing=\"ease-out\"\r\n        />\r\n      </LineChart>\r\n    </ResponsiveContainer>\r\n  </div>\r\n);"
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "recharts"
+      ]
+    },
+    "switch": {
+      "name": "switch",
+      "type": "component",
+      "title": "Switch",
+      "description": "Free, copy-pasteable Tailwind CSS Switch component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "Switch.tsx",
+          "content": "\"use client\";\n\n\nimport React, { useState } from \"react\";\r\nimport { motion } from \"framer-motion\";\r\n\r\nconst BasicSwitch: React.FC = () => {\r\n  const [isOn, setIsOn] = useState(false);\r\n\r\n  return (\r\n    <div\r\n      className={`w-[52px] h-[32px] flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ease-in-out shadow-inner ${\r\n        isOn ? \"bg-green-500 dark:bg-green-500\" : \"bg-neutral-200 dark:bg-neutral-800\"\r\n      }`}\r\n      onClick={() => setIsOn(!isOn)}\r\n    >\r\n      <motion.div\r\n        className=\"w-6 h-6 bg-white rounded-full shadow-[0_2px_5px_rgba(0,0,0,0.2)] flex items-center justify-center\"\r\n        layout\r\n        transition={{ type: \"spring\", stiffness: 700, damping: 30 }}\r\n        animate={{ x: isOn ? 20 : 0 }}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default BasicSwitch;"
+        }
+      ],
+      "variants": [],
+      "dependencies": [
+        "framer-motion"
+      ]
+    },
     "tabs": {
       "name": "tabs",
       "type": "component",
       "title": "Tabs",
-      "description": "Minimalist Tailwind tabs and a highly customizable Tailwind CSS tab component for organizing complex interface views.",
+      "description": "Free, copy-pasteable Tailwind CSS Tabs component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Tabs.tsx",
@@ -1077,7 +1272,7 @@
       "name": "testimonial",
       "type": "component",
       "title": "Testimonial",
-      "description": "High-converting Tailwind testimonial section layouts featuring beautiful typography and stunning Tailwind CSS reviews.",
+      "description": "Free, copy-pasteable Tailwind CSS Testimonial component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Testimonial.tsx",
@@ -1124,7 +1319,7 @@
       "name": "toast",
       "type": "component",
       "title": "Toast",
-      "description": "Premium Tailwind toast notification and Tailwind CSS snackbar alerts that bring vital information to users without disrupting workflow.",
+      "description": "Free, copy-pasteable Tailwind CSS Toast component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Toast.tsx",
@@ -1140,7 +1335,7 @@
       "name": "tooltip",
       "type": "component",
       "title": "Tooltip",
-      "description": "Premium Tailwind tooltip components providing essential, non-disruptive context with elegant Tailwind CSS animations.",
+      "description": "Free, copy-pasteable Tailwind CSS Tooltip component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Tooltip.tsx",
@@ -1180,7 +1375,7 @@
       "name": "tree-view",
       "type": "component",
       "title": "Tree View",
-      "description": "Beautifully animated Tailwind tree view components for rendering complex hierarchical data and Tailwind CSS folder structure UI.",
+      "description": "Free, copy-pasteable Tailwind CSS Tree View component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "TreeView.tsx",
@@ -1198,7 +1393,7 @@
       "name": "blur-reveal",
       "type": "motion",
       "title": "Blur Reveal",
-      "description": "Advanced Tailwind blur reveal and Tailwind CSS scroll animation components for staggered, cinematic item intros.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Blur Reveal component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "BlurReveal.tsx",
@@ -1214,7 +1409,7 @@
       "name": "card-spotlight",
       "type": "motion",
       "title": "Card Spotlight",
-      "description": "Interactive Tailwind card spotlight and Tailwind CSS hover effect components featuring radial gradients that follow the cursor.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Card Spotlight component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "CardSpotlight.tsx",
@@ -1228,7 +1423,7 @@
       "name": "dock",
       "type": "motion",
       "title": "Dock",
-      "description": "Beautifully smooth Tailwind dock and Tailwind CSS macOS navigation components featuring spring-based icon magnification.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Dock component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "Dock.tsx",
@@ -1244,7 +1439,7 @@
       "name": "fade-in",
       "type": "motion",
       "title": "Fade In",
-      "description": "Versatile Tailwind fade in components and Tailwind CSS reveal animation wrappers triggered by scroll position.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Fade In component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "FadeIn.tsx",
@@ -1260,7 +1455,7 @@
       "name": "gradient-text",
       "type": "motion",
       "title": "Gradient Text",
-      "description": "Flowing Tailwind gradient text and Tailwind CSS animated text effects to draw immediate attention to key messaging.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Gradient Text component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "GradientText.tsx",
@@ -1274,7 +1469,7 @@
       "name": "magnetic-element",
       "type": "motion",
       "title": "Magnetic Element",
-      "description": "Playful Tailwind magnetic element and Tailwind CSS interactive button components featuring cursor-attracting spring physics.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Magnetic Element component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "MagneticElement.tsx",
@@ -1286,11 +1481,36 @@
         "framer-motion"
       ]
     },
+    "marquee": {
+      "name": "marquee",
+      "type": "motion",
+      "title": "Marquee",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Marquee component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "Marquee.tsx",
+          "content": "\"use client\";\n\nimport React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface MarqueeProps {\n  children: React.ReactNode;\n  direction?: \"left\" | \"right\" | \"up\" | \"down\";\n  speed?: number; // Duration in seconds\n  pauseOnHover?: boolean;\n  fadeEdges?: boolean;\n  className?: string;\n  innerClassName?: string;\n  vertical?: boolean;\n}\n\nexport const Marquee: React.FC<MarqueeProps> = ({\n  children,\n  direction,\n  speed = 30,\n  pauseOnHover = true,\n  fadeEdges = true,\n  className = \"\",\n  innerClassName = \"\",\n  vertical = false,\n}) => {\n  const isVertical = vertical || direction === \"up\" || direction === \"down\";\n  const finalDirection = direction || (isVertical ? \"up\" : \"left\");\n\n  let animationClass = \"animate-marquee-left\";\n  if (finalDirection === \"right\") animationClass = \"animate-marquee-right\";\n  if (finalDirection === \"up\") animationClass = \"animate-marquee-up\";\n  if (finalDirection === \"down\") animationClass = \"animate-marquee-down\";\n\n  return (\n    <div\n      className={cn(\n        \"group relative flex overflow-hidden p-2 select-none w-full gap-4\",\n        isVertical ? \"flex-col h-full\" : \"flex-row\",\n        fadeEdges && (\n          isVertical\n            ? \"[mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]\"\n            : \"[mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]\"\n        ),\n        className\n      )}\n    >\n      <div\n        className={cn(\n          \"flex shrink-0 gap-4 min-w-full justify-around items-center\",\n          isVertical ? \"flex-col min-h-full\" : \"flex-row\",\n          animationClass,\n          pauseOnHover && \"group-hover:[animation-play-state:paused]\",\n          innerClassName\n        )}\n        style={{ animationDuration: `${speed}s` }}\n      >\n        {children}\n      </div>\n      <div\n        aria-hidden=\"true\"\n        className={cn(\n          \"flex shrink-0 gap-4 min-w-full justify-around items-center\",\n          isVertical ? \"flex-col min-h-full\" : \"flex-row\",\n          animationClass,\n          pauseOnHover && \"group-hover:[animation-play-state:paused]\",\n          innerClassName\n        )}\n        style={{ animationDuration: `${speed}s` }}\n      >\n        {children}\n      </div>\n\n      <style dangerouslySetInnerHTML={{ __html: `\n        @keyframes marquee-l {\n          0% { transform: translateX(0%); }\n          100% { transform: translateX(calc(-100% - 1rem)); }\n        }\n        @keyframes marquee-r {\n          0% { transform: translateX(calc(-100% - 1rem)); }\n          100% { transform: translateX(0%); }\n        }\n        @keyframes marquee-u {\n          0% { transform: translateY(0%); }\n          100% { transform: translateY(calc(-100% - 1rem)); }\n        }\n        @keyframes marquee-d {\n          0% { transform: translateY(calc(-100% - 1rem)); }\n          100% { transform: translateY(0%); }\n        }\n        .animate-marquee-left {\n          animation: marquee-l linear infinite;\n        }\n        .animate-marquee-right {\n          animation: marquee-r linear infinite;\n        }\n        .animate-marquee-up {\n          animation: marquee-u linear infinite;\n        }\n        .animate-marquee-down {\n          animation: marquee-d linear infinite;\n        }\n      `}} />\n    </div>\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Horizontal & Vertical Examples",
+          "fileName": "MarqueeHorizontal&VerticalExamples.tsx",
+          "content": "import React from \"react\";\n\nimport { Marquee } from \"@/components/motion/Marquee\";\n\nconst TechTicker = () => {\n  return (\n    <div className=\"border rounded-2xl p-4 bg-stone-50/50\">\n      <Marquee direction=\"left\" speed={25}>\n        <span className=\"px-4 py-2 border rounded-xl bg-white shadow-sm\">React</span>\n        <span className=\"px-4 py-2 border rounded-xl bg-white shadow-sm\">TypeScript</span>\n        <span className=\"px-4 py-2 border rounded-xl bg-white shadow-sm\">Next.js</span>\n      </Marquee>\n    </div>\n  );\n};"
+        },
+        {
+          "name": "Vertical Code Example",
+          "fileName": "MarqueeVerticalCodeExample.tsx",
+          "content": "import React from \"react\";\n\nimport { Marquee } from \"@/components/motion/Marquee\";\n\nconst TestimonialSidebar = () => {\n  return (\n    <div className=\"h-64 w-80 border rounded-2xl p-4 overflow-hidden\">\n      <Marquee direction=\"up\" speed={20} className=\"h-full\">\n        <div className=\"p-4 border rounded-xl bg-stone-50 h-28\">\n          <p className=\"text-xs\">\"Extremely gorgeous widgets.\"</p>\n          <span className=\"text-xs font-bold block mt-2\">Alex K. // CEO</span>\n        </div>\n        <div className=\"p-4 border rounded-xl bg-stone-50 h-28\">\n          <p className=\"text-xs\">\"Clean dependency footprints.\"</p>\n          <span className=\"text-xs font-bold block mt-2\">Sarah M. // Lead</span>\n        </div>\n      </Marquee>\n    </div>\n  );\n};"
+        }
+      ],
+      "dependencies": []
+    },
     "morphing-text": {
       "name": "morphing-text",
       "type": "motion",
       "title": "Morphing Text",
-      "description": "Seamless Tailwind morphing text and Tailwind CSS typography animation components for dynamic, space-saving messaging.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Morphing Text component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "MorphingText.tsx",
@@ -1306,7 +1526,7 @@
       "name": "number-ticker",
       "type": "motion",
       "title": "Number Ticker",
-      "description": "Engaging Tailwind number ticker and Tailwind CSS counter animation components for statistics and data dashboards.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Number Ticker component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "NumberTicker.tsx",
@@ -1318,11 +1538,56 @@
         "framer-motion"
       ]
     },
+    "scratch-card": {
+      "name": "scratch-card",
+      "type": "motion",
+      "title": "Scratch Card",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Scratch Card component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "ScratchCard.tsx",
+          "content": "\"use client\";\n\nimport React, { useRef, useEffect, useState } from \"react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\ninterface ScratchCardProps {\n  children: React.ReactNode;\n  className?: string;\n  brushRadius?: number;\n  finishPercent?: number;\n  coverColor?: string;\n  coverText?: string;\n  coverImage?: string;\n  coverGradient?: string[];\n  onComplete?: () => void;\n  onProgress?: (progress: number) => void;\n}\n\nexport const ScratchCard: React.FC<ScratchCardProps> = ({\n  children,\n  className = \"\",\n  brushRadius = 20,\n  finishPercent = 50,\n  coverColor = \"#292524\",\n  coverText = \"Scratch to Reveal\",\n  coverImage,\n  coverGradient,\n  onComplete,\n  onProgress,\n}) => {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const [isScratching, setIsScratching] = useState(false);\n  const [isCompleted, setIsCompleted] = useState(false);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const drawText = () => {\n      ctx.fillStyle = \"#ffffff\";\n      ctx.font = \"bold 13px system-ui, sans-serif\";\n      ctx.textAlign = \"center\";\n      ctx.textBaseline = \"middle\";\n      ctx.fillText(coverText, canvas.width / 2, canvas.height / 2);\n    };\n\n    const drawNoiseAndStripes = () => {\n      ctx.fillStyle = \"rgba(255, 255, 255, 0.02)\";\n      for (let i = 0; i < canvas.width; i += 4) {\n        for (let j = 0; j < canvas.height; j += 4) {\n          if (Math.random() > 0.5) {\n            ctx.fillRect(i, j, 2, 2);\n          }\n        }\n      }\n\n      ctx.strokeStyle = \"rgba(255, 255, 255, 0.015)\";\n      ctx.lineWidth = 1.5;\n      for (let i = -canvas.height; i < canvas.width; i += 8) {\n        ctx.beginPath();\n        ctx.moveTo(i, 0);\n        ctx.lineTo(i + canvas.height, canvas.height);\n        ctx.stroke();\n      }\n    };\n\n    const initializeCanvas = () => {\n      const rect = canvas.parentElement?.getBoundingClientRect();\n      if (!rect) return;\n      canvas.width = rect.width;\n      canvas.height = rect.height;\n\n      if (coverImage) {\n        const img = new Image();\n        img.crossOrigin = \"anonymous\";\n        img.src = coverImage;\n        img.onload = () => {\n          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);\n          drawText();\n        };\n      } else if (coverGradient && coverGradient.length >= 2) {\n        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);\n        grad.addColorStop(0, coverGradient[0]);\n        grad.addColorStop(1, coverGradient[1]);\n        ctx.fillStyle = grad;\n        ctx.fillRect(0, 0, canvas.width, canvas.height);\n        drawNoiseAndStripes();\n        drawText();\n      } else {\n        ctx.fillStyle = coverColor;\n        ctx.fillRect(0, 0, canvas.width, canvas.height);\n        drawNoiseAndStripes();\n        drawText();\n      }\n    };\n\n    initializeCanvas();\n    window.addEventListener(\"resize\", initializeCanvas);\n    return () => window.removeEventListener(\"resize\", initializeCanvas);\n  }, [coverColor, coverText, coverImage, coverGradient]);\n\n  const draw = (clientX: number, clientY: number) => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const rect = canvas.getBoundingClientRect();\n    const x = clientX - rect.left;\n    const y = clientY - rect.top;\n\n    ctx.globalCompositeOperation = \"destination-out\";\n    ctx.beginPath();\n    ctx.arc(x, y, brushRadius, 0, Math.PI * 2);\n    ctx.fill();\n\n    checkPercentage();\n  };\n\n  const handleMouseDown = (e: React.MouseEvent) => {\n    setIsScratching(true);\n    draw(e.clientX, e.clientY);\n  };\n\n  const handleMouseMove = (e: React.MouseEvent) => {\n    if (!isScratching || isCompleted) return;\n    draw(e.clientX, e.clientY);\n  };\n\n  const handleMouseUp = () => {\n    setIsScratching(false);\n  };\n\n  const handleTouchStart = (e: React.TouchEvent) => {\n    setIsScratching(true);\n    const touch = e.touches[0];\n    draw(touch.clientX, touch.clientY);\n  };\n\n  const handleTouchMove = (e: React.TouchEvent) => {\n    if (!isScratching || isCompleted) return;\n    const touch = e.touches[0];\n    draw(touch.clientX, touch.clientY);\n  };\n\n  const checkPercentage = () => {\n    const canvas = canvasRef.current;\n    if (!canvas || isCompleted) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const width = canvas.width;\n    const height = canvas.height;\n    const imgData = ctx.getImageData(0, 0, width, height);\n    const pixels = imgData.data;\n    let transparentCount = 0;\n\n    for (let i = 3; i < pixels.length; i += 4) {\n      if (pixels[i] === 0) {\n        transparentCount++;\n      }\n    }\n\n    const percentage = (transparentCount / (width * height)) * 100;\n    if (onProgress) {\n      onProgress(Math.round(percentage));\n    }\n\n    if (percentage >= finishPercent) {\n      setIsCompleted(true);\n      if (onComplete) onComplete();\n    }\n  };\n\n  return (\n    <div className={cn(\"relative overflow-hidden select-none touch-none rounded-2xl w-full\", className)}>\n      <div className=\"w-full h-full bg-stone-50 dark:bg-stone-900/60 p-6 flex flex-col items-center justify-center text-center\">\n        {children}\n      </div>\n\n      <AnimatePresence>\n        {!isCompleted && (\n          <motion.canvas\n            ref={canvasRef}\n            onMouseDown={handleMouseDown}\n            onMouseMove={handleMouseMove}\n            onMouseUp={handleMouseUp}\n            onMouseLeave={handleMouseUp}\n            onTouchStart={handleTouchStart}\n            onTouchMove={handleTouchMove}\n            onTouchEnd={handleMouseUp}\n            exit={{ opacity: 0, scale: 1.05 }}\n            transition={{ duration: 0.35, ease: \"easeOut\" }}\n            className=\"absolute inset-0 z-20 cursor-crosshair w-full h-full block\"\n          />\n        )}\n      </AnimatePresence>\n    </div>\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Interactive Textured Reveal Card",
+          "fileName": "ScratchCardInteractiveTexturedRevealCard.tsx",
+          "content": "\"use client\";\n\n\nimport React, { useState } from \"react\";\nimport { ScratchCard } from \"@/components/motion/ScratchCard\";\nimport { Image as ImageIcon } from \"lucide-react\";\n\nconst AdminUnlockReveal = () => {\n  const [percent, setPercent] = useState(0);\n\n  return (\n    <div>\n      <ScratchCard\n        coverText=\"Wipe screen to view details\"\n        coverColor=\"#1c1917\"\n        brushRadius={22}\n        finishPercent={40}\n        onProgress={setPercent}\n        className=\"h-44 w-72\"\n      >\n        <div className=\"text-center\">\n          <ImageIcon className=\"h-5 w-5 text-sky-500 mb-1\" />\n          <h5 className=\"text-xs font-bold font-mono\">WORKSPACE ACCESS</h5>\n          <p className=\"text-sm font-extrabold text-[#FF3903] mt-1\">ADMIN PRIVILEGES</p>\n        </div>\n      </ScratchCard>\n      <p className=\"text-xs mt-2 font-mono\">Scratched: {percent}%</p>\n    </div>\n  );\n};"
+        }
+      ],
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ]
+    },
+    "scroll-progress": {
+      "name": "scroll-progress",
+      "type": "motion",
+      "title": "Scroll Progress",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Scroll Progress component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "ScrollProgress.tsx",
+          "content": "\"use client\";\n\nimport React, { useRef } from \"react\";\nimport { motion, useScroll, useSpring } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\ninterface ScrollProgressProps {\n  className?: string;\n  variant?: \"bar\" | \"circle\";\n  targetRef?: React.RefObject<HTMLElement>;\n  color?: string;\n  height?: number;\n}\n\nexport const ScrollProgress: React.FC<ScrollProgressProps> = ({\n  className = \"\",\n  variant = \"bar\",\n  targetRef,\n  color = \"bg-gradient-to-r from-[#FF3903] via-[#FF6107] to-[#FF8A3D]\",\n  height = 3,\n}) => {\n  const { scrollYProgress } = useScroll(targetRef ? { container: targetRef } : undefined);\n\n  const scaleX = useSpring(scrollYProgress, {\n    stiffness: 120,\n    damping: 24,\n    restDelta: 0.001,\n  });\n\n  const pathLength = useSpring(scrollYProgress, {\n    stiffness: 120,\n    damping: 24,\n    restDelta: 0.001,\n  });\n\n  if (variant === \"circle\") {\n    return (\n      <div className={cn(\"h-10 w-10 z-50\", className)}>\n        <svg className=\"h-full w-full -rotate-90\" viewBox=\"0 0 100 100\">\n          <circle\n            cx=\"50\"\n            cy=\"50\"\n            r=\"30\"\n            className=\"stroke-stone-200 dark:stroke-stone-850 fill-none\"\n            strokeWidth=\"8\"\n          />\n          <motion.circle\n            cx=\"50\"\n            cy=\"50\"\n            r=\"30\"\n            className=\"stroke-[#FF3903] fill-none\"\n            strokeWidth=\"8\"\n            strokeDasharray=\"0 1\"\n            style={{ pathLength }}\n            strokeLinecap=\"round\"\n          />\n        </svg>\n      </div>\n    );\n  }\n\n  return (\n    <motion.div\n      className={cn(\"fixed top-0 left-0 right-0 z-50 origin-left\", color, className)}\n      style={{ scaleX, height }}\n    />\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Container Bound Previews",
+          "fileName": "ScrollProgressContainerBoundPreviews.tsx",
+          "content": "\"use client\";\n\n\nimport React, { useRef } from \"react\";\nimport { ScrollProgress } from \"@/components/motion/ScrollProgress\";\n\nconst MyDocPage = () => {\n  const containerRef = useRef(null);\n\n  return (\n    <div ref={containerRef} className=\"h-64 overflow-y-auto relative\">\n      {/* Top Progress Bar */}\n      <ScrollProgress\n        variant=\"bar\"\n        targetRef={containerRef}\n        className=\"absolute top-0\"\n      />\n      \n      {/* Circle Corner Progress */}\n      <ScrollProgress\n        variant=\"circle\"\n        targetRef={containerRef}\n        className=\"absolute bottom-4 right-4\"\n      />\n      \n      <div>...Long Scrollable Article Content...</div>\n    </div>\n  );\n};"
+        }
+      ],
+      "dependencies": [
+        "framer-motion"
+      ]
+    },
     "shimmer-button": {
       "name": "shimmer-button",
       "type": "motion",
       "title": "Shimmer Button",
-      "description": "High-conversion Tailwind shimmer button and Tailwind CSS animated button components featuring continuous glassy sweeps.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Shimmer Button component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "ShimmerButton.tsx",
@@ -1332,11 +1597,34 @@
       "variants": [],
       "dependencies": []
     },
+    "sliding-tabs": {
+      "name": "sliding-tabs",
+      "type": "motion",
+      "title": "Sliding Tabs",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Sliding Tabs component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "SlidingTabs.tsx",
+          "content": "\"use client\";\n\nimport React, { useState } from \"react\";\nimport { motion } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\ninterface Tab {\n  id: string;\n  label: string;\n  icon?: React.ReactNode;\n}\n\ninterface SlidingTabsProps {\n  tabs: Tab[];\n  activeTab: string;\n  onChange: (id: string) => void;\n  className?: string;\n  tabClassName?: string;\n  highlightClassName?: string;\n  variant?: \"pill\" | \"underline\";\n}\n\nexport const SlidingTabs: React.FC<SlidingTabsProps> = ({\n  tabs,\n  activeTab,\n  onChange,\n  className = \"\",\n  tabClassName = \"\",\n  highlightClassName = \"\",\n  variant = \"pill\",\n}) => {\n  const [hoveredTab, setHoveredTab] = useState<string | null>(null);\n\n  return (\n    <div\n      className={cn(\n        \"relative flex items-center gap-1 p-1 rounded-xl bg-stone-100/80 dark:bg-stone-900/50 border border-stone-200/50 dark:border-stone-800/50 w-fit z-0\",\n        variant === \"underline\" && \"bg-transparent border-none rounded-none p-0 gap-6 border-b border-stone-200 dark:border-stone-800/80 w-full justify-start\",\n        className\n      )}\n    >\n      {tabs.map((tab) => {\n        const isActive = activeTab === tab.id;\n        const isHovered = hoveredTab === tab.id;\n\n        return (\n          <button\n            key={tab.id}\n            onClick={() => onChange(tab.id)}\n            onMouseEnter={() => setHoveredTab(tab.id)}\n            onMouseLeave={() => setHoveredTab(null)}\n            className={cn(\n              \"relative px-4 py-1.5 text-sm font-medium transition-colors duration-200 outline-none select-none flex items-center gap-2\",\n              isActive\n                ? \"text-stone-900 dark:text-white\"\n                : \"text-stone-500 hover:text-stone-700 dark:hover:text-stone-300\",\n              variant === \"underline\" && \"px-1 pb-3 pt-2 text-sm font-medium rounded-none border-b-2 border-transparent\",\n              tabClassName\n            )}\n          >\n            {/* Hover Highlight (Pill variant only) */}\n            {variant === \"pill\" && isHovered && !isActive && (\n              <motion.span\n                layoutId=\"hover-highlight\"\n                className=\"absolute inset-0 rounded-lg bg-stone-200/50 dark:bg-stone-800/30 -z-10\"\n                transition={{ type: \"spring\", stiffness: 350, damping: 25 }}\n              />\n            )}\n\n            {/* Active Highlight */}\n            {isActive && (\n              <motion.span\n                layoutId={`active-highlight-${variant}`}\n                className={cn(\n                  \"absolute inset-0 rounded-lg bg-white dark:bg-stone-950 shadow-sm border border-stone-200/30 dark:border-stone-750/30 -z-10\",\n                  variant === \"underline\" && \"absolute left-0 right-0 bottom-0 top-auto h-[2px] rounded-none bg-[#FF3903] shadow-none border-none z-10\",\n                  highlightClassName\n                )}\n                transition={{ type: \"spring\", stiffness: 300, damping: 24 }}\n              />\n            )}\n\n            <span className=\"relative z-10 flex items-center gap-1.5\">\n              {tab.icon}\n              {tab.label}\n            </span>\n          </button>\n        );\n      })}\n    </div>\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Stateful Demo",
+          "fileName": "SlidingTabsStatefulDemo.tsx",
+          "content": "\"use client\";\n\n\nimport React, { useState } from \"react\";\nimport { SlidingTabs } from \"@/components/motion/SlidingTabs\";\nimport { Home, User, Settings, Folder } from \"lucide-react\";\n\nconst MyComponent = () => {\n  const [activeTab, setActiveTab] = useState(\"home\");\n  \n  const tabs = [\n    { id: \"home\", label: \"Home\", icon: <Home className=\"h-4 w-4\" /> },\n    { id: \"profile\", label: \"Profile\", icon: <User className=\"h-4 w-4\" /> },\n    { id: \"projects\", label: \"Projects\", icon: <Folder className=\"h-4 w-4\" /> },\n    { id: \"settings\", label: \"Settings\", icon: <Settings className=\"h-4 w-4\" /> },\n  ];\n\n  return (\n    <SlidingTabs\n      tabs={tabs}\n      activeTab={activeTab}\n      onChange={setActiveTab}\n    />\n  );\n};"
+        }
+      ],
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ]
+    },
     "split-text": {
       "name": "split-text",
       "type": "motion",
       "title": "Split Text",
-      "description": "Staggered Tailwind split text and Tailwind CSS text reveal components spanning letter-by-letter entrance animations.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Split Text component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "SplitText.tsx",
@@ -1352,7 +1640,7 @@
       "name": "text-reveal",
       "type": "motion",
       "title": "Text Reveal",
-      "description": "Cinematic Tailwind text reveal and Tailwind CSS scroll animation components that blur-in words sequentially as they enter the viewport.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Text Reveal component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "TextReveal.tsx",
@@ -1368,7 +1656,7 @@
       "name": "text-shimmer",
       "type": "motion",
       "title": "Text Shimmer",
-      "description": "Elegant Tailwind text shimmer and Tailwind CSS highlight animation components for drawing continuous attention to important text.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Text Shimmer component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "TextShimmer.tsx",
@@ -1378,11 +1666,34 @@
       "variants": [],
       "dependencies": []
     },
+    "tilt-card": {
+      "name": "tilt-card",
+      "type": "motion",
+      "title": "Tilt Card",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Tilt Card component. Accessible, fully responsive, dark-mode ready, and customizable.",
+      "files": [
+        {
+          "name": "TiltCard.tsx",
+          "content": "\"use client\";\n\nimport React, { useRef, useState } from \"react\";\nimport { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\ninterface TiltCardProps {\n  children: React.ReactNode;\n  className?: string;\n  maxTilt?: number;\n  perspective?: number;\n  scale?: number;\n  glareEnable?: boolean;\n  glareColor?: string;\n  glareMaxOpacity?: number;\n  springConfig?: { stiffness: number; damping: number; mass?: number };\n}\n\nexport const TiltCard: React.FC<TiltCardProps> = ({\n  children,\n  className = \"\",\n  maxTilt = 15,\n  perspective = 1000,\n  scale = 1.02,\n  glareEnable = true,\n  glareColor = \"rgba(255, 255, 255, 0.15)\",\n  glareMaxOpacity = 0.35,\n  springConfig = { stiffness: 150, damping: 20 },\n}) => {\n  const ref = useRef<HTMLDivElement>(null);\n  const [isHovering, setIsHovering] = useState(false);\n\n  // Normalized motion values for mouse position: 0 to 1\n  const x = useMotionValue(0.5);\n  const y = useMotionValue(0.5);\n\n  // Map mouse coordinates to 3D rotation angles\n  const rotateX = useTransform(y, [0, 1], [maxTilt, -maxTilt]);\n  const rotateY = useTransform(x, [0, 1], [-maxTilt, maxTilt]);\n\n  // Apply smoothing spring physics to rotation values\n  const springRotateX = useSpring(rotateX, springConfig);\n  const springRotateY = useSpring(rotateY, springConfig);\n\n  // Glare position mappings\n  const glareXPercent = useTransform(x, [0, 1], [\"0%\", \"100%\"]);\n  const glareYPercent = useTransform(y, [0, 1], [\"0%\", \"100%\"]);\n\n  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {\n    if (!ref.current) return;\n    const rect = ref.current.getBoundingClientRect();\n    const mouseX = e.clientX - rect.left;\n    const mouseY = e.clientY - rect.top;\n\n    x.set(mouseX / rect.width);\n    y.set(mouseY / rect.height);\n  };\n\n  const handleMouseLeave = () => {\n    setIsHovering(false);\n    x.set(0.5);\n    y.set(0.5);\n  };\n\n  const handleMouseEnter = () => {\n    setIsHovering(true);\n  };\n\n  return (\n    <div style={{ perspective: `${perspective}px` }} className=\"w-full\">\n      <motion.div\n        ref={ref}\n        onMouseMove={handleMouseMove}\n        onMouseEnter={handleMouseEnter}\n        onMouseLeave={handleMouseLeave}\n        style={{\n          rotateX: springRotateX,\n          rotateY: springRotateY,\n          transformStyle: \"preserve-3d\",\n        }}\n        whileHover={{ scale }}\n        transition={{ type: \"spring\", stiffness: 250, damping: 22 }}\n        className={cn(\n          \"relative rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-950 p-6 shadow-sm overflow-hidden select-none\",\n          className\n        )}\n      >\n        {glareEnable && (\n          <motion.div\n            className=\"pointer-events-none absolute inset-0 z-10\"\n            style={{\n              background: useMotionTemplate`radial-gradient(circle 250px at ${glareXPercent} ${glareYPercent}, ${glareColor}, transparent 80%)`,\n            }}\n            animate={{ opacity: isHovering ? glareMaxOpacity : 0 }}\n            transition={{ duration: 0.3, ease: \"easeOut\" }}\n          />\n        )}\n        <div style={{ transform: \"translateZ(30px)\", transformStyle: \"preserve-3d\" }} className=\"relative z-0\">\n          {children}\n        </div>\n      </motion.div>\n    </div>\n  );\n};"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Interactive Feature Cards",
+          "fileName": "TiltCardInteractiveFeatureCards.tsx",
+          "content": "import React from \"react\";\n\nimport { TiltCard } from \"@/components/motion/TiltCard\";\nimport { Zap } from \"lucide-react\";\n\n<TiltCard className=\"h-64 flex flex-col justify-between\">\n  <div>\n    <div className=\"w-10 h-10 rounded-xl bg-[#FF3903]/10 flex items-center justify-center mb-4\">\n      <Zap className=\"h-5 w-5 text-[#FF3903]\" />\n    </div>\n    {/* translateZ forces this element to float above the card surface */}\n    <h3 className=\"text-lg font-semibold text-stone-900\" style={{ transform: \"translateZ(40px)\" }}>\n      High Performance\n    </h3>\n    <p className=\"text-xs text-stone-500 mt-2\" style={{ transform: \"translateZ(20px)\" }}>\n      Leverages native GPU layers and hardware-accelerated transforms for ultra-smooth interaction.\n    </p>\n  </div>\n  <div className=\"text-[10px] font-mono text-stone-400 mt-auto\">\n    ACCELERATED // TRUE\n  </div>\n</TiltCard>"
+        }
+      ],
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ]
+    },
     "word-rotate": {
       "name": "word-rotate",
       "type": "motion",
       "title": "Word Rotate",
-      "description": "Dynamic Tailwind word rotate and Tailwind CSS text cycle animation components that flip through phrases in 3D space.",
+      "description": "Free, copy-pasteable Tailwind CSS & Framer Motion Word Rotate component. Accessible, fully responsive, dark-mode ready, and customizable.",
       "files": [
         {
           "name": "WordRotate.tsx",

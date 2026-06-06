@@ -1,0 +1,171 @@
+---
+title: Form
+description: Custom copy-pasteable Form layouts with flat, minimal designs. Completely responsive and dark-mode ready.
+---
+
+Forms are essential elements of any interactive web app. This collection highlights flat and minimal design patterns—relying on balanced paddings, soft background fills, clean fine borders, and elegant state updates.
+
+---
+
+## Implementation
+
+```tsx
+// Save as src/components/Form.tsx
+"use client";
+
+import React, { useState } from "react";
+import { Mail, Lock, ArrowRight, Send, Check, Star, MessageSquare, ShieldCheck } from "lucide-react";
+
+// --- CONTACT FORM ---
+export const ContactForm: React.FC = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email && subject && message) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      }, 4000);
+    }
+  };
+
+  return (
+    <div className="w-full max-w-lg mx-auto p-6 sm:p-8 bg-stone-50 dark:bg-stone-900/40 rounded-2xl border border-stone-200/60 dark:border-stone-800/60 transition-colors duration-300">
+      {submitted ? (
+        <div className="flex flex-col items-center justify-center py-10 text-center animate-fadeIn">
+          <div className="h-12 w-12 rounded-full bg-[#FF3903]/10 dark:bg-[#FF3903]/20 flex items-center justify-center mb-4 text-[#FF3903]">
+            <Check className="h-6 w-6" />
+          </div>
+          <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">Message Sent!</h3>
+          <p className="text-sm text-stone-500 dark:text-stone-400 mt-2 max-w-xs">
+            Thank you for reaching out. We will get back to you within 24 hours.
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="space-y-1">
+            <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100">Contact Us</h3>
+            <p className="text-xs text-stone-500 dark:text-stone-400">
+              We&apos;d love to hear from you. Please fill out the form below.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="space-y-1.5">
+              <label htmlFor="email" className="text-xs font-medium text-stone-700 dark:text-stone-300">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF3903] focus:border-[#FF3903] transition-all text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="subject" className="text-xs font-medium text-stone-700 dark:text-stone-300">
+                Subject
+              </label>
+              <input
+                id="subject"
+                type="text"
+                required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder="How can we help you?"
+                className="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF3903] focus:border-[#FF3903] transition-all text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="message" className="text-xs font-medium text-stone-700 dark:text-stone-300">
+                Message
+              </label>
+              <textarea
+                id="message"
+                required
+                rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Write your message here..."
+                className="w-full bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#FF3903] focus:border-[#FF3903] transition-all text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600 resize-none"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 dark:bg-stone-100 dark:hover:bg-stone-200 text-white dark:text-stone-900 font-medium rounded-xl text-sm transition-all duration-200 active:scale-[0.98]"
+          >
+            <Send className="h-4 w-4" />
+            Send Message
+          </button>
+        </form>
+      )}
+    </div>
+  );
+};
+```
+
+---
+
+## Usage
+
+### Contact Form
+A clean contact layout relying on flat container border structures and inline message actions.
+<Preview>
+  <ContactForm />
+</Preview>
+```jsx
+import { ContactForm } from "@/components/Form";
+
+export default function Example() {
+  return <ContactForm />;
+}
+```
+
+### Sign In Form
+A minimal card auth interface offering email fields combined with secondary Google and GitHub action controls.
+<Preview>
+  <AuthForm />
+</Preview>
+```jsx
+import { AuthForm } from "@/components/Form";
+
+export default function Example() {
+  return <AuthForm />;
+}
+```
+
+### Newsletter Sign Up
+An inline, flat single-row input block designed to blend seamlessly into headers or footers.
+<Preview>
+  <NewsletterForm />
+</Preview>
+```jsx
+import { NewsletterForm } from "@/components/Form";
+
+export default function Example() {
+  return <NewsletterForm />;
+}
+```
+
+### Interactive Feedback Form
+A questionnaire template providing animated rating selectors, flat multiple choice buttons, and feedback message inputs.
+<Preview>
+  <FeedbackForm />
+</Preview>
+```jsx
+import { FeedbackForm } from "@/components/Form";
+
+export default function Example() {
+  return <FeedbackForm />;
+}
+```

@@ -90,6 +90,10 @@ export const ROUTES: EachRoute[] = [
                 href: "/footer",
             },
             {
+                title: "Form",
+                href: "/form",
+            },
+            {
                 title: "Header",
                 href: "/header",
             },
@@ -140,6 +144,10 @@ export const ROUTES: EachRoute[] = [
             {
                 title: "Progress",
                 href: "/progress",
+            },
+            {
+                title: "Quote",
+                href: "/quote",
             },
             {
                 title: "Sidebar",

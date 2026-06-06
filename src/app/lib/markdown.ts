@@ -85,6 +85,8 @@ import MotionPreview from "@/app/components/MotionPreview";
 import { BasicSwitch, IconSwitch, LabeledSwitch, ThemeSwitch } from "@/components/Switch";
 import { MinimalPricingSection, TabbedPricingSection, GridPricingSection, SplitPricingSection } from "@/components/Pricing";
 import { ScrollbarCustomDemo, ScrollbarHiddenDemo } from "@/app/components/BlogScrollbarExamples";
+import { ContactForm, AuthForm, NewsletterForm, FeedbackForm } from "@/components/Form";
+import { CleanCardQuote, AuthorPullquote } from "@/components/Quote";
 
 // add custom components
 const components = {
@@ -319,6 +321,12 @@ const components = {
     SplitPricingSection,
     ScrollbarCustomDemo,
     ScrollbarHiddenDemo,
+    ContactForm,
+    AuthForm,
+    NewsletterForm,
+    FeedbackForm,
+    CleanCardQuote,
+    AuthorPullquote,
 };
 
 // can be used for other pages like blogs, Guides etc
