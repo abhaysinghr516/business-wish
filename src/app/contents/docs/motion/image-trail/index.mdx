@@ -1,0 +1,199 @@
+---
+title: Image Trail
+description: Free, copy-pasteable Framer Motion & Tailwind CSS Image Trail component. Accessible, responsive, fully customizable, and dark-mode ready.
+---
+
+Create an organic, interactive experience with an **Image Trail** component. It detects the speed and path of the user's cursor as it traverses a container, spawning sequential high-quality images with customized animations, scale springs, and random rotations.
+
+*Use an image trail to showcase work portfolios, creative gallery previews, or add premium playful details to high-impact landing pages.*
+
+## Implementation
+
+```jsx
+"use client";
+
+import React, { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+export const ImageTrail = ({
+  children,
+  images,
+  distanceThreshold = 80,
+  maxImages = 8,
+  decayDuration = 0.8,
+  rotationRange = 15,
+  imageWidth = 140,
+  imageHeight = 140,
+  containerClassName = "",
+  imageClassName = "",
+}) => {
+  const [trailImages, setTrailImages] = useState([]);
+  const containerRef = useRef(null);
+  const lastPositionRef = useRef({ x: 0, y: 0 });
+  const imageIndexRef = useRef(0);
+  const imageIdCounterRef = useRef(0);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const dx = x - lastPositionRef.current.x;
+    const dy = y - lastPositionRef.current.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    const isFirst = lastPositionRef.current.x === 0 && lastPositionRef.current.y === 0;
+
+    if (isFirst || distance >= distanceThreshold) {
+      if (images.length === 0) return;
+      const nextIndex = imageIndexRef.current % images.length;
+      imageIndexRef.current += 1;
+
+      const newId = imageIdCounterRef.current++;
+      const rotation = (Math.random() - 0.5) * rotationRange;
+
+      const newImage = {
+        id: newId,
+        x,
+        y,
+        url: images[nextIndex],
+        rotation,
+      };
+
+      setTrailImages((prev) => {
+        const updated = [...prev, newImage];
+        if (updated.length > maxImages) {
+          return updated.slice(updated.length - maxImages);
+        }
+        return updated;
+      });
+
+      lastPositionRef.current = { x, y };
+
+      setTimeout(() => {
+        setTrailImages((prev) => prev.filter((img) => img.id !== newId));
+      }, decayDuration * 1000);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    lastPositionRef.current = { x: 0, y: 0 };
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={cn("relative overflow-hidden rounded-2xl select-none", containerClassName)}
+    >
+      <div className="relative z-10 pointer-events-none">{children}</div>
+
+      <AnimatePresence>
+        {trailImages.map((img) => (
+          <motion.img
+            key={img.id}
+            src={img.url}
+            alt="Trail asset"
+            initial={{
+              opacity: 0,
+              scale: 0.3,
+              x: img.x,
+              y: img.y,
+              translateX: "-50%",
+              translateY: "-50%",
+              rotate: img.rotation,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              rotate: img.rotation,
+            }}
+            exit={{
+              opacity: 0,
+              scale: 0.5,
+              filter: "blur(4px)",
+              transition: { duration: 0.3 },
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 220,
+              damping: 18,
+            }}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: imageWidth,
+              height: imageHeight,
+              objectFit: "cover",
+            }}
+            className={cn(
+              "pointer-events-none rounded-xl shadow-lg border border-white/20 dark:border-black/20",
+              imageClassName
+            )}
+          />
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Interactive Playground
+
+Adjust thresholds, active image count, decay duration, random rotation limits, and see changes instantly in the dashboard below.
+
+<MotionPreview>
+<ImageTrailDemo />
+</MotionPreview>
+
+```jsx
+import { ImageTrail } from "@/components/motion/ImageTrail";
+
+const IMAGES = [
+  "/image-1.jpg",
+  "/image-2.jpg",
+  "/image-3.jpg",
+  // ...
+];
+
+export default function Demo() {
+  return (
+    <ImageTrail
+      images={IMAGES}
+      distanceThreshold={60}
+      maxImages={8}
+      decayDuration={0.8}
+      rotationRange={20}
+      imageWidth={130}
+      imageHeight={130}
+      containerClassName="w-full h-96 flex items-center justify-center border border-dashed"
+    >
+      <div className="text-center">
+        <h3>Move Cursor Here</h3>
+        <p>Trail component will render images as cursor moves.</p>
+      </div>
+    </ImageTrail>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `images` | `string[]` | — | Array of image URLs to cycle through. |
+| `distanceThreshold` | `number` | `80` | Distance in px the cursor moves before spawning next image. |
+| `maxImages` | `number` | `8` | Maximum active images visible simultaneously. |
+| `decayDuration` | `number` | `0.8` | Time in seconds before an image is removed. |
+| `rotationRange` | `number` | `15` | Absolute bounds for random photo rotations. |
+| `imageWidth` | `number \| string` | `140` | Width of the rendered trail images. |
+| `imageHeight` | `number \| string` | `140` | Height of the rendered trail images. |
+| `containerClassName` | `string` | `""` | Extra Tailwind styles for the outer container. |
+| `imageClassName` | `string` | `""` | Extra Tailwind styles for the trailing images. |

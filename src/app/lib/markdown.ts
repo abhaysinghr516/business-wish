@@ -81,6 +81,7 @@ import { SlidingTabsDemo } from "@/components/motion/SlidingTabs";
 import { ScrollProgressDemo } from "@/components/motion/ScrollProgress";
 import { MarqueeDemo } from "@/components/motion/Marquee";
 import { ScratchCardDemo } from "@/components/motion/ScratchCard";
+import { ImageTrailDemo } from "@/components/motion/ImageTrail";
 import MotionPreview from "@/app/components/MotionPreview";
 import { BasicSwitch, IconSwitch, LabeledSwitch, ThemeSwitch } from "@/components/Switch";
 import { MinimalPricingSection, TabbedPricingSection, GridPricingSection, SplitPricingSection } from "@/components/Pricing";
@@ -314,6 +315,7 @@ const components = {
     ScrollProgressDemo,
     MarqueeDemo,
     ScratchCardDemo,
+    ImageTrailDemo,
     MinimalPricingSection,
     TabbedPricingSection,
     GridPricingSection,

@@ -287,6 +287,10 @@ export const ROUTES: EachRoute[] = [
                 title: "Scratch Card",
                 href: "/scratch-card",
             },
+            {
+                title: "Image Trail",
+                href: "/image-trail",
+            },
         ]
     },
 ];
