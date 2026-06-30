@@ -16,6 +16,9 @@ export interface SEOProps {
 
 const baseUrl = "https://www.businesswish.tech";
 const defaultImage = `${baseUrl}/business-wish-hero.png`;
+const defaultPublishedTime = "2024-01-01T00:00:00.000Z";
+const defaultModifiedTime = "2026-05-28T00:00:00.000Z";
+const logoUrl = `${baseUrl}/bw-logo.svg`;
 
 export function generateSEO({
     title,
@@ -174,7 +177,7 @@ export function generateWebsiteSchema() {
             url: baseUrl,
             logo: {
                 "@type": "ImageObject",
-                url: `${baseUrl}/logo.png`,
+                url: logoUrl,
                 width: 192,
                 height: 192,
             },
@@ -183,13 +186,6 @@ export function generateWebsiteSchema() {
                 "https://twitter.com/abhaysinghr516",
             ],
         },
-        potentialAction: [
-            {
-                "@type": "SearchAction",
-                target: `${baseUrl}/docs?search={search_term_string}`,
-                "query-input": "required name=search_term_string",
-            },
-        ],
     };
 }
 
@@ -205,7 +201,7 @@ export function generateSoftwareApplicationSchema() {
         downloadUrl: `${baseUrl}/docs`,
         softwareVersion: "2.2.0",
         datePublished: "2024-01-01",
-        dateModified: new Date().toISOString(),
+        dateModified: defaultModifiedTime,
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
@@ -217,7 +213,7 @@ export function generateSoftwareApplicationSchema() {
             url: baseUrl,
             logo: {
                 "@type": "ImageObject",
-                url: `${baseUrl}/logo.png`,
+                url: logoUrl,
             },
         },
         offers: {
@@ -225,13 +221,6 @@ export function generateSoftwareApplicationSchema() {
             price: "0",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
-        },
-        aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.8",
-            ratingCount: "200",
-            bestRating: "5",
-            worstRating: "1",
         },
         featureList: [
             "Free Tailwind CSS UI Components",
@@ -281,8 +270,8 @@ export function generateArticleSchema({
         headline: title,
         description,
         url: `${baseUrl}${url}`,
-        datePublished: publishedTime || new Date().toISOString(),
-        dateModified: modifiedTime || new Date().toISOString(),
+        datePublished: publishedTime || defaultPublishedTime,
+        dateModified: modifiedTime || publishedTime || defaultModifiedTime,
         author: authors.map(name => ({
             "@type": "Person",
             name,
@@ -292,7 +281,7 @@ export function generateArticleSchema({
             name: "Business Wish",
             logo: {
                 "@type": "ImageObject",
-                url: `${baseUrl}/logo.png`,
+                url: logoUrl,
             },
         },
         image: {
@@ -317,7 +306,7 @@ export function generateOrganizationSchema() {
         url: baseUrl,
         logo: {
             "@type": "ImageObject",
-            url: `${baseUrl}/logo.png`,
+            url: logoUrl,
             width: 192,
             height: 192,
         },

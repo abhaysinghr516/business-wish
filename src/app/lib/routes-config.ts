@@ -102,10 +102,6 @@ export const ROUTES: EachRoute[] = [
                 href: "/hero",
             },
             {
-                title: "Input",
-                href: "/input",
-            },
-            {
                 title: "Bar Chart",
                 href: "/bar-chart",
             },

@@ -22,9 +22,7 @@ export default function GitHubStarButton({
   useEffect(() => {
     const fetchStarCount = async () => {
       try {
-        const response = await fetch(`https://api.github.com/repos/${repo}`, {
-          next: { revalidate: 3600 },
-        });
+        const response = await fetch(`/api/github-stars?repo=${encodeURIComponent(repo)}`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch star count");

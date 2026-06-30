@@ -73,6 +73,14 @@ export default function Search({
     return advanceSearch(trimmedInput);
   }, [searchedInput]);
 
+  const handleItemClick = useCallback(
+    (href: string) => {
+      router.push(`/docs${href}`);
+      setIsOpen(false);
+    },
+    [router]
+  );
+
   useEffect(() => {
     setSelectedIndex(0);
   }, [searchedInput, filteredResults]);
@@ -111,15 +119,7 @@ export default function Search({
         setIsOpen(false);
       }
     },
-    [filteredResults, selectedIndex]
-  );
-
-  const handleItemClick = useCallback(
-    (href: string) => {
-      router.push(`/docs${href}`);
-      setIsOpen(false);
-    },
-    [router]
+    [filteredResults, handleItemClick, selectedIndex]
   );
 
   const getItemIcon = useCallback((href: string, title: string) => {

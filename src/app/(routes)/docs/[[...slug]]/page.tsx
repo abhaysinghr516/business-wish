@@ -16,6 +16,7 @@ type PageProps = {
 
 export default async function DocsPage({ params: { slug = [] } }: PageProps) {
   const pathName = slug.join("/");
+  const docsPath = pathName ? `/docs/${pathName}` : "/docs";
   const res = await getDocsForSlug(pathName);
 
   if (!res) notFound();
@@ -40,16 +41,16 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
   const articleSchema = generateArticleSchema({
     title: res.frontmatter.title,
     description: res.frontmatter.description,
-    url: `/docs/${pathName}`,
+    url: docsPath,
   });
 
-  const isComponent = pathName.includes("components/");
-  const isMotion = pathName.includes("motion/");
+  const isComponent = pathName.startsWith("components/");
+  const isMotion = pathName.startsWith("motion/");
   const sourceCodeSchema = (isComponent || isMotion)
     ? generateSourceCodeSchema({
         name: `Tailwind CSS ${res.frontmatter.title} Component`,
         description: res.frontmatter.description,
-        url: `/docs/${pathName}`,
+        url: docsPath,
         programmingLanguage: isMotion ? "Framer Motion" : "React / TypeScript",
       })
     : null;
@@ -88,6 +89,7 @@ export async function generateMetadata({
   params: { slug = [] },
 }: PageProps): Promise<Metadata> {
   const pathName = slug.join("/");
+  const docsPath = pathName ? `/docs/${pathName}` : "/docs";
   const res = await getDocsForSlug(pathName);
   if (!res) return {};
 
@@ -150,7 +152,7 @@ export async function generateMetadata({
   ];
 
   // Optimize title based on path (highest CTR optimization)
-  const isComponent = pathName.includes("components");
+  const isComponent = pathName.startsWith("components/");
   const optimizedTitle = isComponent 
       ? `Tailwind CSS ${defaultTitle} Component` 
       : `${defaultTitle} - Tailwind CSS`;
@@ -159,7 +161,7 @@ export async function generateMetadata({
     title: optimizedTitle,
     description: defaultDescription,
     keywords,
-    url: `/docs/${pathName}`,
+    url: docsPath,
     type: "article",
     section: isComponent ? "Components" : "Documentation",
     tags: keywords.slice(0, 10), // Limit tags for better performance
@@ -167,7 +169,14 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  return page_routes.map((item) => ({
-    slug: item.href.split("/").slice(1),
-  }));
+  const sectionRoutes = ["", "components", "pages", "motion"];
+
+  return [
+    ...sectionRoutes.map((item) => ({
+      slug: item ? item.split("/") : [],
+    })),
+    ...page_routes.map((item) => ({
+      slug: item.href.split("/").slice(1),
+    })),
+  ];
 }

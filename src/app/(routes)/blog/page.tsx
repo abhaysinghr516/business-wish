@@ -1,4 +1,4 @@
-import { getAllBlogs } from "@/app/lib/markdown";
+import { getAllBlogs } from "@/app/lib/blog-markdown";
 import { generateSEO } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
@@ -25,11 +25,11 @@ export default async function BlogPage() {
     <div className="w-full bg-white dark:bg-stone-950 min-h-screen">
       <div className="max-w-4xl mx-auto px-6 py-16 sm:py-24">
         {/* Header */}
-        <div className="border-b border-stone-200 dark:border-stone-850 pb-10 mb-12 animate-fade-in-up">
+        <div className="border-b border-stone-200 dark:border-stone-850 pb-10 mb-12 animate-fade-in-up min-w-0 overflow-hidden">
           <h1 className="text-4xl font-bold tracking-tight text-stone-900 dark:text-white">
             Blog
           </h1>
-          <p className="text-stone-500 dark:text-stone-400 mt-3 text-base sm:text-lg font-light">
+          <p className="text-stone-500 dark:text-stone-400 mt-3 text-base sm:text-lg font-light break-words">
             Insights, guides, and tutorials on Tailwind CSS, React, and frontend engineering.
           </p>
         </div>
@@ -41,9 +41,9 @@ export default async function BlogPage() {
             {sortedBlogs.map((post) => (
               <article
                 key={post.slug}
-                className="group border border-stone-200 dark:border-stone-850 rounded-2xl p-6 sm:p-8 hover:bg-stone-50/50 dark:hover:bg-stone-900/30 transition-colors duration-200"
+                className="group border border-stone-200 dark:border-stone-850 rounded-2xl p-6 sm:p-8 hover:bg-stone-50/50 dark:hover:bg-stone-900/30 transition-colors duration-200 min-w-0 overflow-hidden"
               >
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 min-w-0">
                   {/* Meta */}
                   <div className="flex items-center gap-4 text-xs text-stone-400 dark:text-stone-500">
                     <div className="flex items-center gap-1">
@@ -58,18 +58,18 @@ export default async function BlogPage() {
 
                   {/* Title */}
                   <h2 className="text-xl sm:text-2xl font-semibold text-stone-900 dark:text-white group-hover:text-[#FF3903] transition-colors leading-snug">
-                    <Link href={`/blog/${post.slug}`}>
+                    <Link href={`/blog/${post.slug}`} className="break-words">
                       {post.frontmatter.title}
                     </Link>
                   </h2>
 
                   {/* Description */}
-                  <p className="text-stone-500 dark:text-stone-400 text-sm sm:text-base font-light leading-relaxed">
+                  <p className="text-stone-500 dark:text-stone-400 text-sm sm:text-base font-light leading-relaxed break-words">
                     {post.frontmatter.description}
                   </p>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-stone-100 dark:border-stone-850/60 mt-2">
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-stone-100 dark:border-stone-850/60 mt-2">
                     {post.frontmatter.authors && post.frontmatter.authors[0] && (
                       <div className="flex items-center gap-2.5">
                         <Image

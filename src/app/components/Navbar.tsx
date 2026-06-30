@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ComponentIcon, Sparkles, BookOpen } from "lucide-react";
+import { Menu, ComponentIcon, Sparkles, BookOpen, Search as SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -78,8 +78,17 @@ const Navbar = () => {
         </div>
 
         {/* Mobile */}
-        <div className="lg:hidden flex items-center gap-2">
-          <Search />
+        <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
+          <Search hideTrigger />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => window.dispatchEvent(new Event("open-search"))}
+            className="h-9 w-9 rounded-lg border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
+            aria-label="Open search"
+          >
+            <SearchIcon className="h-4 w-4" />
+          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button

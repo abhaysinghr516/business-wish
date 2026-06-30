@@ -25,8 +25,8 @@ function CLISnippet() {
   };
 
   return (
-    <div className="inline-flex items-center gap-3 px-4 py-2.5 bg-stone-50 dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 font-mono text-sm">
-      <span className="text-stone-600 dark:text-stone-300 whitespace-nowrap overflow-hidden text-ellipsis">
+    <div className="inline-flex w-full max-w-[calc(100vw-2rem)] sm:w-auto sm:max-w-full items-center gap-3 px-4 py-2.5 bg-stone-50 dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 font-mono text-xs sm:text-sm overflow-hidden">
+      <span className="min-w-0 text-stone-600 dark:text-stone-300 whitespace-nowrap overflow-hidden text-ellipsis">
         {command}
       </span>
       <button
@@ -104,15 +104,14 @@ export default function HeroSection() {
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center text-center">
         <motion.h1
-          className="text-4xl sm:text-5xl lg:text-[4rem] font-semibold text-stone-900 dark:text-stone-100 mb-6 leading-[1.12] tracking-tight"
+          className="text-4xl sm:text-5xl lg:text-[4rem] font-semibold text-stone-900 dark:text-stone-100 mb-6 leading-[1.12] tracking-tight max-w-full"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={1}
         >
-          Production-ready{" "}
-          <br className="hidden sm:block" />
-          <span className="gradient-text font-bold">React components</span>
+          <span className="block">Production-ready</span>
+          <span className="gradient-text block font-bold">React components</span>
         </motion.h1>
 
         <motion.p

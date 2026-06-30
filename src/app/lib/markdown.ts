@@ -11,7 +11,6 @@ import { visit } from "unist-util-visit";
 
 // custom components imports
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 import { Stepper, StepperItem } from "@/components/ui/stepper";
 import Pre from "../components/pre";
 import Note from "../components/note";
@@ -451,7 +450,7 @@ export async function getAllBlogStaticPaths() {
 export async function getAllBlogs() {
     const blogFolder = path.join(process.cwd(), "/contents/blogs/");
     const files = await fs.readdir(blogFolder);
-    
+
     function calculateReadingTime(text: string): number {
         const wordsPerMinute = 225;
         // Strip frontmatter to avoid inflating word count

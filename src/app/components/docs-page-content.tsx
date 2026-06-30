@@ -135,8 +135,8 @@ export function DocsPageContent({
   return (
     <div className="w-full">
       {/* ─── Page header ─── */}
-      <div className="px-4 sm:px-6 py-10 sm:py-16 border-b border-neutral-200/50 dark:border-white/[0.05]">
-        <div className="max-w-4xl">
+      <div className="px-4 sm:px-6 py-10 sm:py-16 border-b border-neutral-200/50 dark:border-white/[0.05] overflow-hidden">
+        <div className="max-w-4xl min-w-0">
           <div className="flex items-start justify-between mb-2">
             <div className="flex-1 min-w-0">
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
@@ -160,7 +160,7 @@ export function DocsPageContent({
                   </Badge>
                 )}
               </div>
-              <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
+              <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 font-light leading-relaxed max-w-2xl break-words">
                 {description}
               </p>
             </div>
@@ -217,16 +217,16 @@ export function DocsPageContent({
         <div className="min-w-0 px-4 sm:px-6 py-8 sm:py-12">
           <div className="max-w-4xl min-w-0 docs-content">
             {isComponent && (
-              <div className="mb-8 p-5 sm:p-6 rounded-xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-900/50 flex flex-col gap-4 shadow-sm">
+              <div className="mb-8 p-5 sm:p-6 rounded-xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-900/50 flex flex-col gap-4 shadow-sm min-w-0 overflow-hidden">
                 <div>
                   <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
                     <Terminal className="h-4 w-4" /> Install via CLI
                   </h3>
-                  <p className="text-[14px] text-neutral-500 dark:text-neutral-400 mt-1">
+                  <p className="text-[14px] text-neutral-500 dark:text-neutral-400 mt-1 break-words">
                     Run this command to automatically add the component and its dependencies to your project.
                   </p>
                 </div>
-                <div className="flex items-center justify-between bg-neutral-50 dark:bg-black/50 border border-neutral-200 dark:border-white/5 rounded-lg p-2 sm:p-3 relative group">
+                <div className="flex items-center justify-between bg-neutral-50 dark:bg-black/50 border border-neutral-200 dark:border-white/5 rounded-lg p-2 sm:p-3 relative group min-w-0 overflow-hidden">
                   <div className="overflow-x-auto flex-1 pb-1 sm:pb-0 scrollbar-hide">
                     <code className="text-[13px] sm:text-[14px] font-mono text-neutral-800 dark:text-neutral-300 whitespace-nowrap px-2">
                       <span className="text-purple-600 dark:text-purple-400">npx</span> @abhaysinghr516/business-wish add {slug[slug.length - 1]}
@@ -240,7 +240,7 @@ export function DocsPageContent({
                     {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
                   </button>
                 </div>
-                <div className="text-[13px] text-neutral-500 dark:text-neutral-400 pt-2 border-t border-neutral-100 dark:border-white/5 mt-1">
+                <div className="text-[13px] text-neutral-500 dark:text-neutral-400 pt-2 border-t border-neutral-100 dark:border-white/5 mt-1 break-words">
                   New to the CLI? Run <code className="bg-neutral-100 dark:bg-white/10 px-1 py-0.5 rounded text-neutral-700 dark:text-neutral-300 text-[12px]">npx @abhaysinghr516/business-wish init</code> first to initialize your project.
                 </div>
               </div>

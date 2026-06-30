@@ -15,32 +15,26 @@ export default function manifest(): MetadataRoute.Manifest {
         dir: 'ltr',
         icons: [
             {
-                src: '/logo.png',
-                sizes: '192x192',
-                type: 'image/png',
+                src: '/bw-logo.svg',
+                sizes: 'any',
+                type: 'image/svg+xml',
                 purpose: 'maskable'
             },
             {
-                src: '/logo.png',
-                sizes: '512x512',
-                type: 'image/png',
-                purpose: 'any'
-            },
-            {
-                src: '/logo.webp',
-                sizes: '192x192',
-                type: 'image/webp',
+                src: '/bw-logo.svg',
+                sizes: 'any',
+                type: 'image/svg+xml',
                 purpose: 'any'
             }
         ],
         screenshots: [
             {
-                src: '/home.png',
+                src: '/business-wish-hero.png',
                 sizes: '1200x630',
                 type: 'image/png'
             },
             {
-                src: '/components-page.png',
+                src: '/business-wish-docs.png',
                 sizes: '1200x630',
                 type: 'image/png'
             }
@@ -51,14 +45,14 @@ export default function manifest(): MetadataRoute.Manifest {
                 short_name: 'Components',
                 description: 'Browse UI components',
                 url: '/docs/components',
-                icons: [{ src: '/logo.png', sizes: '96x96' }]
+                icons: [{ src: '/bw-logo.svg', sizes: 'any' }]
             },
             {
                 name: 'Documentation',
                 short_name: 'Docs',
                 description: 'Read documentation',
                 url: '/docs',
-                icons: [{ src: '/logo.png', sizes: '96x96' }]
+                icons: [{ src: '/bw-logo.svg', sizes: 'any' }]
             }
         ]
     }

@@ -1,3 +1,9 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+    enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Enable experimental features for better performance
@@ -99,4 +105,4 @@ const nextConfig = {
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

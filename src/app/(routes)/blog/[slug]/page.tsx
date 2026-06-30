@@ -1,4 +1,4 @@
-import { getBlogForSlug, getAllBlogStaticPaths } from "@/app/lib/markdown";
+import { getBlogForSlug, getAllBlogStaticPaths } from "@/app/lib/blog-markdown";
 import { notFound } from "next/navigation";
 import { generateSEO, generateArticleSchema } from "@/lib/seo";
 import { Metadata } from "next";

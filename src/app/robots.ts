@@ -16,12 +16,9 @@ export default function robots(): MetadataRoute.Robots {
                     "/llms.txt",
                 ],
                 disallow: [
-                    "/api/",
                     "/private/",
-                    "/_next/",
                     "/node_modules/",
                     "/*.json$",
-                    "/*.xml$",
                     "/admin/",
                 ],
                 crawlDelay: 1,
@@ -37,10 +34,8 @@ export default function robots(): MetadataRoute.Robots {
                     "/llms.txt",
                 ],
                 disallow: [
-                    "/api/",
                     "/admin/",
                     "/private/",
-                    "/_next/",
                 ],
                 crawlDelay: 1,
             },
@@ -53,7 +48,6 @@ export default function robots(): MetadataRoute.Robots {
                     "/llms.txt",
                 ],
                 disallow: [
-                    "/api/",
                     "/admin/",
                     "/private/",
                 ],
