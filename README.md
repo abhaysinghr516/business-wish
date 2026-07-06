@@ -124,4 +124,4 @@ fork → branch → commit → pull request
 
 ---
 
-Built by [Abhay Singh Rathore](https://abhay-singh-rathore.vercel.app/)
+Built by [Abhay Singh Rathore](https://abhaysr.in)

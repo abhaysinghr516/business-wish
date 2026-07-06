@@ -94,9 +94,21 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <p className="text-xs text-stone-500 dark:text-stone-400">
-            © {currentYear} Business Wish. All rights reserved.
-          </p>
+          <div className="text-xs text-stone-500 dark:text-stone-400 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <span>© {currentYear} Business Wish. All rights reserved.</span>
+            <span className="hidden sm:inline text-stone-300 dark:text-stone-850">|</span>
+            <span>
+              Created by{" "}
+              <a
+                href="https://abhaysr.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium hover:text-stone-900 dark:hover:text-white transition-colors underline decoration-stone-300 dark:decoration-stone-800 underline-offset-4 hover:decoration-current"
+              >
+                Abhay Singh Rathore
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>

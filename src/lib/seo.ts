@@ -71,7 +71,7 @@ export function generateSEO({
         description: fullDescription,
         keywords: allKeywords,
         authors: authors?.map(name => ({ name })) || [
-            { name: "Abhay Singh Rathore", url: "https://abhay-singh-rathore.vercel.app/" }
+            { name: "Abhay Singh Rathore", url: "https://abhaysr.in" }
         ],
         creator: "Abhay Singh Rathore",
         publisher: "Business Wish",
@@ -152,7 +152,7 @@ export function generateSourceCodeSchema({
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
-            url: "https://abhay-singh-rathore.vercel.app/",
+            url: "https://abhaysr.in",
         },
     };
 }
@@ -169,7 +169,7 @@ export function generateWebsiteSchema() {
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
-            url: "https://abhay-singh-rathore.vercel.app/",
+            url: "https://abhaysr.in",
         },
         publisher: {
             "@type": "Organization",
@@ -205,7 +205,7 @@ export function generateSoftwareApplicationSchema() {
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
-            url: "https://abhay-singh-rathore.vercel.app/",
+            url: "https://abhaysr.in",
         },
         publisher: {
             "@type": "Organization",
@@ -315,7 +315,7 @@ export function generateOrganizationSchema() {
         founder: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
-            url: "https://abhay-singh-rathore.vercel.app/",
+            url: "https://abhaysr.in",
         },
         sameAs: [
             "https://github.com/abhaysinghr516/business-wish",

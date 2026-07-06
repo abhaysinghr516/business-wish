@@ -99,7 +99,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Abhay Singh Rathore",
-      url: "https://abhay-singh-rathore.vercel.app/",
+      url: "https://abhaysr.in",
     },
   ],
   category: "Technology",
