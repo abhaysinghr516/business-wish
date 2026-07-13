@@ -43,6 +43,8 @@ export default function Search({
   useEffect(() => {
     setIsMac(navigator.userAgent.toUpperCase().includes("MAC"));
 
+    if (triggerOnly) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((isMac ? event.metaKey : event.ctrlKey) && event.key === "k") {
         event.preventDefault();
@@ -66,7 +68,7 @@ export default function Search({
         handleOpenSearch as EventListener
       );
     };
-  }, [isMac, isOpen]);
+  }, [isMac, isOpen, triggerOnly]);
 
   const filteredResults = useMemo(() => {
     const trimmedInput = searchedInput.trim();
@@ -75,8 +77,8 @@ export default function Search({
 
   const handleItemClick = useCallback(
     (href: string) => {
-      router.push(`/docs${href}`);
       setIsOpen(false);
+      router.push(`/docs${href}`);
     },
     [router]
   );

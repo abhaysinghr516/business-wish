@@ -70,7 +70,7 @@ const Navbar = () => {
         {/* Desktop right actions */}
         <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
           <div className="max-w-[240px]">
-            <Search />
+            <Search triggerOnly />
           </div>
           <div className="w-px h-5 bg-stone-200 dark:bg-stone-800" />
           <GitHubStarButton repo="abhaysinghr516/business-wish" />
