@@ -10,7 +10,6 @@ Business Wish is an open-source library of **50+ copy-paste ready Tailwind CSS c
 
 ## Documentation
 
-- [Getting Started](https://www.businesswish.tech/docs/getting-started): How to install and use components in your project
 - [Component Library](https://www.businesswish.tech/docs/components): Browse all UI components
 - [Motion Components](https://www.businesswish.tech/docs/motion): Animated and interactive components
 - [Page Templates](https://www.businesswish.tech/docs/pages): Full page template examples
@@ -78,5 +77,3 @@ Full page layout templates ready to use.
 
 - [Privacy Policy](https://www.businesswish.tech/privacy)
 - [Terms of Service](https://www.businesswish.tech/terms)
-- [Cookie Policy](https://www.businesswish.tech/cookie-policy)
-- [Accessibility Statement](https://www.businesswish.tech/accessibility)

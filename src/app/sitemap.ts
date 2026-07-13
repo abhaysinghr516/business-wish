@@ -4,14 +4,31 @@ import { promises as fs } from "fs";
 import path from "path";
 
 const baseUrl = "https://www.businesswish.tech";
-const fallbackDate = new Date("2026-05-28T00:00:00.000Z");
-
 async function getLastModified(relativePath: string) {
     try {
         const stats = await fs.stat(path.join(process.cwd(), relativePath));
         return stats.mtime;
     } catch {
-        return fallbackDate;
+        return undefined;
+    }
+}
+
+async function getLatestBlogModified() {
+    try {
+        const blogDirectory = path.join(process.cwd(), "contents/blogs");
+        const blogFiles = (await fs.readdir(blogDirectory)).filter((file) =>
+            file.endsWith(".mdx")
+        );
+        const modifiedDates = await Promise.all(
+            blogFiles.map(async (file) => (await fs.stat(path.join(blogDirectory, file))).mtime)
+        );
+
+        return modifiedDates.reduce<Date | undefined>(
+            (latest, date) => (!latest || date > latest ? date : latest),
+            undefined
+        );
+    } catch {
+        return undefined;
     }
 }
 
@@ -50,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
         {
             url: `${baseUrl}/blog`,
-            lastModified: await getLastModified("contents/blogs"),
+            lastModified: await getLatestBlogModified(),
             changeFrequency: "weekly",
             priority: 0.7,
         },

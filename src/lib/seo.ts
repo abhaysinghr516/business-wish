@@ -19,6 +19,7 @@ const defaultImage = `${baseUrl}/business-wish-hero.png`;
 const defaultPublishedTime = "2024-01-01T00:00:00.000Z";
 const defaultModifiedTime = "2026-05-28T00:00:00.000Z";
 const logoUrl = `${baseUrl}/bw-logo.svg`;
+const organizationId = `${baseUrl}/#organization`;
 
 export function generateSEO({
     title,
@@ -162,6 +163,7 @@ export function generateWebsiteSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": `${baseUrl}/#website`,
         name: "Business Wish",
         url: baseUrl,
         description: "Free Tailwind CSS UI components library and motion primitives for web developers.",
@@ -172,19 +174,7 @@ export function generateWebsiteSchema() {
             url: "https://abhaysr.in",
         },
         publisher: {
-            "@type": "Organization",
-            name: "Business Wish",
-            url: baseUrl,
-            logo: {
-                "@type": "ImageObject",
-                url: logoUrl,
-                width: 192,
-                height: 192,
-            },
-            sameAs: [
-                "https://github.com/abhaysinghr516/business-wish",
-                "https://twitter.com/abhaysinghr516",
-            ],
+            "@id": organizationId,
         },
     };
 }
@@ -193,12 +183,15 @@ export function generateSoftwareApplicationSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
+        "@id": `${baseUrl}/#software-application`,
         name: "Business Wish UI Components & Motion",
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web Browser",
         description: "A comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers.",
         url: baseUrl,
         downloadUrl: `${baseUrl}/docs`,
+        isAccessibleForFree: true,
+        license: "https://www.apache.org/licenses/LICENSE-2.0",
         softwareVersion: "2.2.0",
         datePublished: "2024-01-01",
         dateModified: defaultModifiedTime,
@@ -208,13 +201,7 @@ export function generateSoftwareApplicationSchema() {
             url: "https://abhaysr.in",
         },
         publisher: {
-            "@type": "Organization",
-            name: "Business Wish",
-            url: baseUrl,
-            logo: {
-                "@type": "ImageObject",
-                url: logoUrl,
-            },
+            "@id": organizationId,
         },
         offers: {
             "@type": "Offer",
@@ -301,6 +288,7 @@ export function generateOrganizationSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": organizationId,
         name: "Business Wish",
         alternateName: ["Businesswish", "BusinessWish.tech"],
         url: baseUrl,
