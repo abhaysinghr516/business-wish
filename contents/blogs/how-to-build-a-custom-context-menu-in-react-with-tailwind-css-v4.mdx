@@ -1,0 +1,205 @@
+---
+title: "How to Build a Custom Context Menu in React with Tailwind CSS v4"
+description: "Learn how to build an accessible custom right-click context menu in React with Tailwind CSS v4, including pointer positioning, overflow protection, keyboard navigation, and dark mode."
+date: "July 13, 2026"
+authors:
+  - username: "Abhay Singh Rathore"
+    handle: "abhaysinghr516"
+    handleUrl: "https://github.com/abhaysinghr516"
+    avatar: "https://github.com/abhaysinghr516.png"
+---
+
+Native browser context menus are practical, but they rarely belong in polished web applications. Products like Figma, Notion, and Raycast use custom right-click menus to keep common actions close to the item a user is working with.
+
+With React and Tailwind CSS v4, you can create a lightweight custom context menu that opens exactly at the pointer position, stays inside its container, supports dark mode, and remains usable with a keyboard.
+
+In this guide, we will build a custom React context menu with Tailwind CSS v4 styling, smooth Framer Motion transitions, and the accessibility details that make it feel intentional rather than decorative.
+
+---
+
+### What Is a Context Menu?
+
+A context menu is a list of actions related to the item or area a user has selected. It is usually opened with a right-click on desktop, but can also be triggered by the keyboard context-menu key or a long press on touch devices.
+
+Context menus work especially well for file managers, dashboards, tables, design tools, and project-management interfaces. Typical actions include rename, duplicate, copy link, download, and delete.
+
+Here is the finished interaction. Right-click anywhere inside the zone:
+
+<Preview>
+  <InteractiveContextMenu />
+</Preview>
+
+---
+
+### 1. Start with a Client Component
+
+The menu needs to track pointer coordinates, listen for outside clicks, and respond to keyboard input, so it must be a client component in Next.js.
+
+```tsx
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Copy, Plus, Trash2 } from "lucide-react";
+```
+
+Tailwind CSS v4 uses a CSS-first setup. Your global stylesheet should import Tailwind with the following directive:
+
+```css
+@import "tailwindcss";
+```
+
+The utility classes used below work directly in your JSX, so there is no JavaScript plugin or custom Tailwind configuration required for this component.
+
+---
+
+### 2. Capture the Right-Click Position
+
+React exposes the browser's `contextmenu` event through `onContextMenu`. Calling `preventDefault()` stops the browser menu from appearing, while `clientX` and `clientY` tell us where the user clicked.
+
+We subtract the container bounds so the menu can be positioned relative to its parent instead of the page.
+
+```tsx
+const [isOpen, setIsOpen] = useState(false);
+const [point, setPoint] = useState({ x: 0, y: 0 });
+const containerRef = useRef<HTMLDivElement>(null);
+
+function handleContextMenu(e: React.MouseEvent<HTMLDivElement>) {
+  e.preventDefault();
+
+  const bounds = containerRef.current?.getBoundingClientRect();
+  if (!bounds) return;
+
+  setPoint({
+    x: e.clientX - bounds.left,
+    y: e.clientY - bounds.top,
+  });
+  setIsOpen(true);
+}
+```
+
+Attach the handler to a relatively positioned container. The `cursor-context-menu` utility provides a subtle visual cue that right-clicking is available.
+
+```tsx
+<div
+  ref={containerRef}
+  onContextMenu={handleContextMenu}
+  className="relative h-64 w-full overflow-hidden rounded-2xl border-2 border-dashed border-neutral-300 bg-neutral-50 cursor-context-menu dark:border-neutral-700 dark:bg-neutral-900/50"
+>
+  {/* Context menu goes here */}
+</div>
+```
+
+---
+
+### 3. Keep the Menu Inside Its Container
+
+Opening a menu near the lower-right edge can push it outside the visible area. A small boundary check prevents this awkward overflow before the menu is rendered.
+
+```tsx
+const menuWidth = 224; // Tailwind's w-56
+const menuHeight = 130;
+const padding = 8;
+
+let x = e.clientX - bounds.left;
+let y = e.clientY - bounds.top;
+
+if (x + menuWidth > bounds.width) {
+  x = bounds.width - menuWidth - padding;
+}
+
+if (y + menuHeight > bounds.height) {
+  y = bounds.height - menuHeight - padding;
+}
+
+setPoint({
+  x: Math.max(padding, x),
+  y: Math.max(padding, y),
+});
+```
+
+For menus with dynamic content, measure the rendered menu with a ref and use its real dimensions. For a short, fixed action list, this approximation is simple and reliable.
+
+---
+
+### 4. Render a Clean Tailwind CSS v4 Menu
+
+Use absolute positioning with the captured coordinates. The soft translucent surface, `backdrop-blur-xl`, and restrained shadow give the menu a modern desktop-app finish without fighting the rest of the interface.
+
+```tsx
+<AnimatePresence>
+  {isOpen && (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, y: -8 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: -8 }}
+      transition={{ duration: 0.15, ease: "easeOut" }}
+      style={{ top: point.y, left: point.x }}
+      role="menu"
+      aria-label="Asset actions"
+      className="absolute z-50 w-56 overflow-hidden rounded-xl border border-white/20 bg-white/70 p-1 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-neutral-900/70"
+    >
+      <button role="menuitem" className="flex w-full items-center rounded-md px-3 py-2 text-left text-sm text-neutral-700 transition-colors hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none dark:text-neutral-200 dark:hover:bg-white dark:hover:text-black">
+        <Plus size={16} className="mr-2" /> New tab
+      </button>
+      <button role="menuitem" className="flex w-full items-center rounded-md px-3 py-2 text-left text-sm text-neutral-700 transition-colors hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none dark:text-neutral-200 dark:hover:bg-white dark:hover:text-black">
+        <Copy size={16} className="mr-2" /> Copy link
+      </button>
+      <div className="mx-2 my-1 h-px bg-neutral-200 dark:bg-neutral-800" />
+      <button role="menuitem" className="flex w-full items-center rounded-md px-3 py-2 text-left text-sm text-rose-600 transition-colors hover:bg-rose-500 hover:text-white focus:bg-rose-500 focus:text-white focus:outline-none dark:text-rose-400">
+        <Trash2 size={16} className="mr-2" /> Delete asset
+      </button>
+    </motion.div>
+  )}
+</AnimatePresence>
+```
+
+---
+
+### 5. Close It Predictably
+
+A context menu should never linger after its purpose is complete. Close it when a user clicks elsewhere, chooses an action, or presses Escape.
+
+```tsx
+const menuRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  if (!isOpen) return;
+
+  function handlePointerDown(e: MouseEvent) {
+    if (!menuRef.current?.contains(e.target as Node)) {
+      setIsOpen(false);
+    }
+  }
+
+  function handleKeyDown(e: KeyboardEvent) {
+    if (e.key === "Escape") setIsOpen(false);
+  }
+
+  document.addEventListener("mousedown", handlePointerDown);
+  document.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    document.removeEventListener("mousedown", handlePointerDown);
+    document.removeEventListener("keydown", handleKeyDown);
+  };
+}, [isOpen]);
+```
+
+Add `ref={menuRef}` to the menu element. Each action can call `setIsOpen(false)` after it completes.
+
+---
+
+### Accessibility and UX Considerations
+
+Custom context menus should complement native behavior, not make an interface harder to operate.
+
+* **Do not hide essential actions behind right-click alone.** Provide a visible overflow button or toolbar for touch and keyboard users.
+* **Use real buttons.** Buttons receive focus and provide expected semantics; do not use clickable `div` elements for menu items.
+* **Support Escape and arrow keys.** Escape should close the menu, while Arrow Up and Arrow Down can move focus between actions.
+* **Use a clear destructive state.** Actions like Delete should be visually distinct and, when appropriate, followed by a confirmation step.
+* **Respect small screens.** Long-press behavior differs across mobile browsers, so expose important actions through an ordinary button menu there.
+
+With these patterns, your custom context menu feels native to the product while preserving the clarity and accessibility people expect from a modern interface.
+
+You can copy and customize the complete [Context Menu component](/docs/components/context-menu) from Business Wish for your next dashboard, file browser, or editor UI.

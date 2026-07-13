@@ -14,12 +14,14 @@ import {
   ScrollbarCustomDemo,
   ScrollbarHiddenDemo,
 } from "@/app/components/BlogScrollbarExamples";
+import { InteractiveContextMenu } from "@/components/ContextMenu";
 
 const blogComponents = {
   pre: Pre,
   Preview,
   ScrollbarCustomDemo,
   ScrollbarHiddenDemo,
+  InteractiveContextMenu,
 };
 
 type BaseMdxFrontmatter = {
