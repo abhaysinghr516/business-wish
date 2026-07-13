@@ -6,9 +6,11 @@ import {
   SearchIcon,
   XIcon,
   ComponentIcon,
-  BookOpenIcon,
   FolderIcon,
   SparklesIcon,
+  WandSparklesIcon,
+  LayoutTemplateIcon,
+  ArrowUpRightIcon,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -124,30 +126,53 @@ export default function Search({
     [filteredResults, handleItemClick, selectedIndex]
   );
 
-  const getItemIcon = useCallback((href: string, title: string) => {
+  const getItemPresentation = useCallback((href: string, title: string) => {
     const path = href.toLowerCase();
 
+    if (path.includes("/motion/"))
+      return {
+        Icon: WandSparklesIcon,
+        label: "Motion",
+        iconClass: "text-violet-600 dark:text-violet-300",
+        iconBackground: "border-violet-100 bg-violet-50 dark:border-violet-500/20 dark:bg-violet-500/10",
+      };
     if (path.includes("/components/"))
-      return (
-        <ComponentIcon className="h-4 w-4 text-blue-500 dark:text-blue-400" />
-      );
-
-    if (path.includes("/pages/") || path.includes("/docs/"))
-      return (
-        <BookOpenIcon className="h-4 w-4 text-green-500 dark:text-green-400" />
-      );
+      return {
+        Icon: ComponentIcon,
+        label: "Component",
+        iconClass: "text-stone-600 dark:text-stone-300",
+        iconBackground: "border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800",
+      };
+    if (path.includes("/pages/"))
+      return {
+        Icon: LayoutTemplateIcon,
+        label: "Page",
+        iconClass: "text-stone-600 dark:text-stone-300",
+        iconBackground: "border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800",
+      };
     if (path.split("/").length <= 2)
-      return (
-        <FolderIcon className="h-4 w-4 text-amber-500 dark:text-amber-400" />
-      );
+      return {
+        Icon: FolderIcon,
+        label: "Section",
+        iconClass: "text-stone-500 dark:text-stone-400",
+        iconBackground: "border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800",
+      };
     if (
       title.toLowerCase().includes("new") ||
       title.toLowerCase().includes("latest")
     )
-      return (
-        <SparklesIcon className="h-4 w-4 text-purple-500 dark:text-purple-400" />
-      );
-    return <FileIcon className="h-4 w-4 text-stone-500 dark:text-stone-400" />;
+      return {
+        Icon: SparklesIcon,
+        label: "New",
+        iconClass: "text-stone-600 dark:text-stone-300",
+        iconBackground: "border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800",
+      };
+    return {
+      Icon: FileIcon,
+      label: "Document",
+      iconClass: "text-stone-500 dark:text-stone-400",
+      iconBackground: "border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800",
+    };
   }, []);
 
   // If only trigger is needed
@@ -220,7 +245,7 @@ export default function Search({
           </div>
         </DialogTrigger>
       )}
-      <DialogContent className="p-0 max-w-2xl sm:top-[38%] top-[45%] rounded-2xl border dark:border-stone-800 shadow-2xl dark:shadow-stone-950/50 dark:bg-stone-900/90 bg-stone-50/90">
+      <DialogContent className="p-0 max-w-xl sm:top-[38%] top-[45%] overflow-hidden rounded-[20px] border border-stone-200/80 dark:border-stone-800 shadow-[0_24px_80px_-24px_rgb(0,0,0,0.28)] dark:shadow-[0_24px_80px_-24px_rgb(0,0,0,0.8)] dark:bg-stone-950/95 bg-white/95">
         <DialogTitle className="sr-only">Search</DialogTitle>
         <DialogHeader>
           <div className="relative">
@@ -230,8 +255,8 @@ export default function Search({
               value={searchedInput}
               onChange={(e) => setSearchedInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Search"
-              className="h-16 w-full pl-14 pr-12 bg-transparent border-b border-stone-200 dark:border-stone-800 text-base outline-none placeholder:text-stone-500 dark:placeholder:text-stone-400"
+              placeholder="Search components, motion, and pages"
+              className="h-[68px] w-full pl-14 pr-12 bg-transparent border-b border-stone-200/80 dark:border-stone-800 text-[15px] outline-none placeholder:text-stone-400 dark:placeholder:text-stone-500"
             />
             {searchedInput && (
               <button
@@ -246,7 +271,9 @@ export default function Search({
         </DialogHeader>
 
         {/* Hints */}
-        <div className="px-4 py-2 border-b border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-800/50 text-xs text-stone-500 dark:text-stone-400 flex justify-center gap-4">
+        <div className="px-5 py-2.5 border-b border-stone-200/80 dark:border-stone-800 text-[11px] text-stone-400 dark:text-stone-500 flex items-center justify-between gap-4">
+          <span className="hidden sm:inline">Navigate the library</span>
+          <div className="flex items-center gap-4 sm:ml-auto">
           <div className="flex items-center gap-1">
             <kbd className="px-1.5 py-0.5 bg-stone-200 dark:bg-stone-700 rounded">
               ↑↓
@@ -264,6 +291,7 @@ export default function Search({
               Esc
             </kbd>{" "}
             Close
+          </div>
           </div>
         </div>
 
@@ -292,9 +320,9 @@ export default function Search({
         )}
         {/* Quick access when empty */}
         {filteredResults.length === 0 && !searchedInput && (
-          <div className="px-4 py-3">
+          <div className="px-5 py-4">
             <div className="mb-4">
-              <h3 className="text-sm font-medium text-stone-700 dark:text-stone-300 mb-3">
+              <h3 className="mb-3 text-[11px] font-medium uppercase tracking-[0.12em] text-stone-400 dark:text-stone-500">
                 Quick Access
               </h3>
               <div className="grid grid-cols-1 gap-1">
@@ -303,30 +331,33 @@ export default function Search({
                     title: "Button",
                     href: "/components/button",
                     icon: ComponentIcon,
-                    color: "text-blue-500 dark:text-blue-400",
                   },
                   {
                     title: "Card",
                     href: "/components/card",
                     icon: ComponentIcon,
-                    color: "text-blue-500 dark:text-blue-400",
                   },
                   {
                     title: "Blog List",
                     href: "/pages/blog-list",
-                    icon: BookOpenIcon,
-                    color: "text-green-500 dark:text-green-400",
+                    icon: LayoutTemplateIcon,
                   },
-                ].map((item, index) => (
+                  {
+                    title: "Text Reveal",
+                    href: "/motion/text-reveal",
+                    icon: WandSparklesIcon,
+                  },
+                ].map((item) => (
                   <div
                     key={item.href}
                     onClick={() => handleItemClick(item.href)}
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-stone-50 dark:hover:bg-stone-800/50 cursor-pointer transition-colors group"
+                    className="flex items-center gap-3 rounded-lg px-2 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-900/60 cursor-pointer transition-colors group"
                   >
-                    <item.icon className={`h-4 w-4 ${item.color}`} />
+                    <item.icon className={cn("h-4 w-4", item.href.includes("/motion/") ? "text-violet-600 dark:text-violet-300" : "text-stone-500 dark:text-stone-400")} />
                     <span className="text-sm font-medium text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100">
                       {item.title}
                     </span>
+                    <ArrowUpRightIcon className="ml-auto h-4 w-4 text-stone-300 opacity-0 transition-opacity group-hover:opacity-100 dark:text-stone-600" />
                   </div>
                 ))}
               </div>
@@ -339,12 +370,13 @@ export default function Search({
             className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-stone-200 dark:scrollbar-thumb-stone-800 scrollbar-track-transparent"
             ref={containerRef}
           >
-            <div className="flex flex-col items-start overflow-y-auto px-2 pb-2">
+            <div className="flex flex-col items-start overflow-y-auto px-2 py-2">
               {filteredResults.map((item, index) => {
                 const level = (item.href.split("/").slice(1).length -
                   1) as keyof typeof paddingMap;
                 const paddingClass = paddingMap[level];
-                const isCategory = level === 1;
+                const presentation = getItemPresentation(item.href, item.title);
+                const ItemIcon = presentation.Icon;
 
                 return (
                   <div
@@ -355,12 +387,11 @@ export default function Search({
                     }}
                     onClick={() => handleItemClick(item.href)}
                     className={cn(
-                      "group w-full rounded-lg transition-all duration-200 cursor-pointer",
+                      "group w-full rounded-xl transition-colors duration-150 cursor-pointer",
                       paddingClass,
                       index === selectedIndex
-                        ? "bg-blue-50 dark:bg-blue-950/50 ring-1 ring-blue-200 dark:ring-blue-800"
-                        : "hover:bg-stone-50 dark:hover:bg-stone-800/50",
-                      isCategory && "mt-1"
+                        ? "bg-stone-100/80 dark:bg-stone-900"
+                        : "hover:bg-stone-50 dark:hover:bg-stone-900/60"
                     )}
                     role="option"
                     aria-selected={index === selectedIndex}
@@ -372,28 +403,21 @@ export default function Search({
                           "border-l-2 border-stone-200 dark:border-stone-700 ml-2 pl-4"
                       )}
                     >
-                      <div className="flex-shrink-0">
-                        {getItemIcon(item.href, item.title)}
+                      <div className={cn("flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[10px] border", presentation.iconBackground)}>
+                        <ItemIcon className={cn("h-4 w-4", presentation.iconClass)} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <span
                           className={cn(
                             "block truncate transition-colors",
-                            isCategory
-                              ? "text-sm font-semibold text-stone-900 dark:text-stone-100"
-                              : "text-sm font-medium text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100"
+                            "text-sm font-medium text-stone-700 dark:text-stone-300 group-hover:text-stone-900 dark:group-hover:text-stone-100"
                           )}
                         >
                           {item.title}
                         </span>
-                        {isCategory && (
-                          <span className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
-                            {item.href.includes("/components") &&
-                              "UI Components"}
-                            {item.href.includes("/pages") && "Page Templates"}
-                          </span>
-                        )}
                       </div>
+                      <span className="hidden sm:inline text-[11px] text-stone-400 dark:text-stone-500">{presentation.label}</span>
+                      <ArrowUpRightIcon className="h-4 w-4 text-stone-300 opacity-0 transition-opacity group-hover:opacity-100 dark:text-stone-600" />
                       {index === selectedIndex && (
                         <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                       )}
