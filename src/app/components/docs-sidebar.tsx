@@ -9,11 +9,10 @@ import { Badge } from "@/components/ui/badge";
 import {
   ChevronDown,
   ChevronRight,
-  Package,
-  FileText,
   Layers,
-  Palette,
-  Sparkles,
+  Component,
+  WandSparkles,
+  LayoutTemplate,
 } from "lucide-react";
 import { ROUTES } from "@/app/lib/routes-config";
 import { cn } from "@/lib/utils";
@@ -48,11 +47,11 @@ export function DocsSidebar({
     const lowerTitle = title.toLowerCase();
     const className = "h-4 w-4 mr-2 text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors";
     if (lowerTitle.includes("component"))
-      return <Package className={className} />;
+      return <Component className={className} />;
     if (lowerTitle.includes("motion"))
-      return <Sparkles className={className} />;
-    if (lowerTitle.includes("page")) return <FileText className={className} />;
-    if (lowerTitle.includes("template")) return <Palette className={className} />;
+      return <WandSparkles className={className} />;
+    if (lowerTitle.includes("page") || lowerTitle.includes("template"))
+      return <LayoutTemplate className={className} />;
     return <Layers className={className} />;
   };
 
@@ -71,7 +70,7 @@ export function DocsSidebar({
   return (
     <aside
       className={cn(
-        "border-r border-neutral-200/50 dark:border-white/[0.05] bg-neutral-50/50 dark:bg-transparent",
+        "border-r border-neutral-200/70 bg-white/70 dark:border-white/[0.06] dark:bg-neutral-950/70",
         isMobile
           ? "w-full h-full"
           : "hidden lg:block fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 xl:w-72"
@@ -125,10 +124,10 @@ export function DocsSidebar({
                             href={href}
                             onClick={onItemClick}
                             className={cn(
-                              "flex items-center px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 group border border-transparent",
+                              "group flex items-center rounded-lg border border-transparent px-3 py-2 text-[13px] font-medium transition-colors duration-150",
                               isActive
-                                ? "bg-neutral-100 dark:bg-white/10 text-neutral-900 dark:text-white"
-                                : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100/50 dark:hover:bg-white/5"
+                                ? "bg-neutral-100 text-neutral-900 dark:bg-white/[0.08] dark:text-white"
+                                : "text-neutral-500 hover:bg-neutral-50 hover:text-neutral-900 dark:hover:bg-white/[0.04] dark:hover:text-white"
                             )}
                           >
                             <span className="flex-1 truncate relative">

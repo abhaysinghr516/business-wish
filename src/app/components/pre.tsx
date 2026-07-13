@@ -7,12 +7,12 @@ export default function Pre({
   ...rest
 }: ComponentProps<"pre"> & { raw?: string }) {
   return (
-    <div className="my-6 relative rounded-xl overflow-hidden bg-neutral-950 dark:bg-[#050505] border border-neutral-800/40 dark:border-white/[0.05] shadow-lg shadow-black/5 dark:shadow-none w-full">
-      <div className="absolute top-3 right-3 z-10">
+    <div className="relative my-6 w-full overflow-hidden rounded-[18px] border border-neutral-200 bg-neutral-950 shadow-[0_18px_45px_-30px_rgba(0,0,0,0.45)] dark:border-white/[0.08] dark:bg-[#080808] dark:shadow-none">
+      <div className="absolute right-3 top-3 z-10">
         <Copy content={raw!} />
       </div>
       <div className="relative overflow-x-auto custom-scrollbar w-full">
-        <pre className="p-4 sm:p-5 text-[13px] sm:text-sm leading-relaxed bg-transparent! dark:bg-transparent!" {...rest}>
+        <pre className="bg-transparent! p-4 text-[13px] leading-relaxed dark:bg-transparent! sm:p-5 sm:text-sm" {...rest}>
           {children}
         </pre>
       </div>

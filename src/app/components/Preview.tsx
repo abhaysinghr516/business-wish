@@ -8,9 +8,10 @@ import {
   Tablet,
   Maximize2,
   RotateCcw,
+  Eye,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 interface PreviewProps {
   children: React.ReactNode;
@@ -192,11 +193,15 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   return (
     <div className="not-prose my-6">
-      <div className="relative border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-white dark:bg-gray-950">
+      <div className="relative overflow-hidden rounded-[18px] border border-neutral-200/80 bg-white shadow-[0_18px_50px_-30px_rgba(0,0,0,0.22)] dark:border-white/[0.08] dark:bg-neutral-950 dark:shadow-none">
         {/* Toolbar */}
-        <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-gray-50/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800 backdrop-blur-sm">
+        <div className="flex items-center justify-between gap-3 border-b border-neutral-200/80 bg-neutral-50/70 px-3 py-2.5 dark:border-white/[0.07] dark:bg-white/[0.03] sm:px-4">
           {/* Viewport toggles — hidden on mobile */}
-          <div className="hidden sm:flex items-center gap-1">
+          <div className="hidden items-center gap-2 sm:flex">
+            <Eye className="h-3.5 w-3.5 text-neutral-400 dark:text-neutral-500" />
+            <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Preview</span>
+          </div>
+          <div className="hidden rounded-lg border border-neutral-200 bg-white p-0.5 sm:flex dark:border-white/[0.08] dark:bg-neutral-900">
             {(["desktop", "tablet", "mobile"] as ViewType[]).map((v) => {
               const Icon =
                 v === "desktop"
@@ -208,23 +213,24 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                 <Button
                   key={v}
                   onClick={() => setView(v)}
-                  variant={view === v ? "default" : "ghost"}
+                  variant="ghost"
                   size="sm"
-                  className="h-8 px-2"
+                  className={`h-7 w-8 rounded-md px-0 ${view === v ? "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200" : "text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-white"}`}
+                  aria-label={`${v} viewport`}
                 >
                   <Icon className="h-3 w-3" />
                 </Button>
               );
             })}
           </div>
-          <div className="sm:hidden" />
+          <div className="sm:hidden text-xs font-medium text-neutral-500 dark:text-neutral-400">Preview</div>
 
           {/* Right-side actions */}
           <div className="flex items-center gap-1">
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 px-2 text-xs gap-1.5"
+              className="h-7 gap-1.5 rounded-md px-2 text-xs text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
               onClick={restartPreview}
               title="Restart preview"
             >
@@ -237,16 +243,18 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="hidden sm:inline-flex h-8 px-2"
+                  className="hidden h-7 rounded-md px-2 text-neutral-500 hover:text-neutral-900 sm:inline-flex dark:text-neutral-400 dark:hover:text-white"
+                  aria-label="Open full-screen preview"
                 >
                   <Maximize2 className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
-              <DialogContent className="w-screen h-screen max-w-full max-h-full p-0">
+              <DialogContent className="h-screen max-h-full w-screen max-w-full border-0 bg-white p-0 dark:bg-neutral-950">
+                <DialogTitle className="sr-only">Full-screen component preview</DialogTitle>
                 <div className="flex flex-col h-full">
                   {/* Fullscreen toolbar */}
-                  <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between border-b border-neutral-200/80 bg-neutral-50/70 px-4 py-3 dark:border-white/[0.07] dark:bg-white/[0.03]">
+                    <div className="flex items-center gap-1 rounded-lg border border-neutral-200 bg-white p-0.5 dark:border-white/[0.08] dark:bg-neutral-900">
                       {(["desktop", "tablet", "mobile"] as ViewType[]).map(
                         (v) => {
                           const Icon =
@@ -261,10 +269,11 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                             <Button
                               key={v}
                               onClick={() => setFullView(v)}
-                              variant={fullView === v ? "default" : "outline"}
+                              variant="ghost"
                               size="sm"
+                              className={`h-8 rounded-md px-3 text-xs ${fullView === v ? "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200" : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"}`}
                             >
-                              <Icon className="mr-2 h-4 w-4" /> {label}
+                              <Icon className="mr-1.5 h-3.5 w-3.5" /> {label}
                             </Button>
                           );
                         }
@@ -273,7 +282,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="gap-1.5"
+                      className="h-8 gap-1.5 rounded-md px-3 text-xs text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                       onClick={restartPreview}
                       title="Restart preview"
                     >
@@ -283,18 +292,18 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
                   </div>
 
                   {/* Fullscreen iframe */}
-                  <div className="flex-grow overflow-auto p-4 flex justify-center items-start">
+                  <div className="flex-grow overflow-auto bg-neutral-100/70 p-4 dark:bg-black/20 flex justify-center items-start">
                     {fullView === "desktop" ? (
                       <iframe
                         ref={fullViewIframeRef}
-                        className="border border-gray-200 dark:border-gray-800 rounded-lg w-full h-full"
+                        className="h-full w-full rounded-xl border border-neutral-200 bg-white dark:border-white/[0.08] dark:bg-neutral-950"
                         style={{ minHeight: "600px" }}
                       />
                     ) : (
                       <div className="flex justify-center items-start h-full">
                         <iframe
                           ref={fullViewIframeRef}
-                          className="border border-gray-200 dark:border-gray-800 rounded-lg"
+                          className="rounded-xl border border-neutral-200 bg-white dark:border-white/[0.08] dark:bg-neutral-950"
                           style={{
                             width: fullViewDimensions.width,
                             height: "80vh",
@@ -311,9 +320,9 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
         </div>
 
         {/* Preview content with iframe */}
-        <div className="p-2 sm:p-4 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+        <div className="overflow-hidden bg-neutral-100/70 p-2.5 dark:bg-black/20 sm:p-4">
           {view === "desktop" ? (
-            <div className="bg-white dark:bg-gray-950 rounded border border-gray-200 dark:border-gray-800 overflow-hidden">
+            <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-white/[0.08] dark:bg-neutral-950">
               <iframe
                 ref={iframeRef}
                 className="w-full border-0"
@@ -326,7 +335,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           ) : (
             <div className="flex justify-center overflow-x-auto">
               <div
-                className="bg-white dark:bg-gray-950 rounded border border-gray-200 dark:border-gray-800 overflow-hidden flex-shrink-0"
+                className="flex-shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-white/[0.08] dark:bg-neutral-950 dark:shadow-none"
                 style={{
                   width: view === "tablet" ? "768px" : "375px",
                   maxWidth:

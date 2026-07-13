@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ComponentIcon, Sparkles, BookOpen, Search as SearchIcon } from "lucide-react";
+import { Menu, ComponentIcon, WandSparkles, BookOpen, Search as SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -130,7 +130,7 @@ const Navbar = () => {
                             : "text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
                         }`}
                       >
-                        <Sparkles className="h-4 w-4" />
+                        <WandSparkles className="h-4 w-4" />
                         Motion
                       </Link>
                     </SheetClose>

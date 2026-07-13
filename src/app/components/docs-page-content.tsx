@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Badge } from "@/components/ui/badge";
 import {
   List,
   ChevronDown,
@@ -10,6 +9,9 @@ import {
   Terminal,
   Copy,
   Check,
+  Component,
+  WandSparkles,
+  LayoutTemplate,
 } from "lucide-react";
 import { Typography } from "./typography";
 import { cn } from "@/lib/utils";
@@ -45,6 +47,7 @@ export function DocsPageContent({
 
   const isComponent = pathname.includes("components/");
   const isMotion = pathname.includes("motion/");
+  const isPage = pathname.includes("pages/");
   const hasToc = tocs && tocs.length > 0;
 
   const [copied, setCopied] = useState(false);
@@ -135,32 +138,22 @@ export function DocsPageContent({
   return (
     <div className="w-full">
       {/* ─── Page header ─── */}
-      <div className="px-4 sm:px-6 py-10 sm:py-16 border-b border-neutral-200/50 dark:border-white/[0.05] overflow-hidden">
+      <div className="overflow-hidden border-b border-neutral-200/70 px-4 py-12 dark:border-white/[0.06] sm:px-6 sm:py-16">
         <div className="max-w-4xl min-w-0">
           <div className="flex items-start justify-between mb-2">
             <div className="flex-1 min-w-0">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+              <div className="mb-5 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.12em] text-neutral-400 dark:text-neutral-500">
+                {isComponent && <Component className="h-3.5 w-3.5" />}
+                {isMotion && <WandSparkles className="h-3.5 w-3.5" />}
+                {isPage && <LayoutTemplate className="h-3.5 w-3.5" />}
+                <span>{isMotion ? "Motion" : isComponent ? "Component" : isPage ? "Page" : "Documentation"}</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter text-neutral-900 dark:text-white break-words leading-tight">
                   {title}
                 </h1>
-                {isComponent && (
-                  <Badge
-                    variant="secondary"
-                    className="font-mono text-[10px] self-start bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 px-2 py-0.5"
-                  >
-                    Component
-                  </Badge>
-                )}
-                {isMotion && (
-                  <Badge
-                    variant="secondary"
-                    className="font-mono text-[10px] self-start bg-purple-100/50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 px-2 py-0.5"
-                  >
-                    Motion
-                  </Badge>
-                )}
               </div>
-              <p className="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 font-light leading-relaxed max-w-2xl break-words">
+              <p className="max-w-2xl break-words text-lg font-normal leading-relaxed text-neutral-500 dark:text-neutral-400 sm:text-xl">
                 {description}
               </p>
             </div>
@@ -217,7 +210,7 @@ export function DocsPageContent({
         <div className="min-w-0 px-4 sm:px-6 py-8 sm:py-12">
           <div className="max-w-4xl min-w-0 docs-content">
             {isComponent && (
-              <div className="mb-8 p-5 sm:p-6 rounded-xl border border-neutral-200 dark:border-white/10 bg-white dark:bg-neutral-900/50 flex flex-col gap-4 shadow-sm min-w-0 overflow-hidden">
+              <div className="mb-8 flex min-w-0 flex-col gap-4 overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-50/50 p-5 dark:border-white/[0.08] dark:bg-white/[0.03] sm:p-6">
                 <div>
                   <h3 className="text-[15px] font-semibold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
                     <Terminal className="h-4 w-4" /> Install via CLI
@@ -226,7 +219,7 @@ export function DocsPageContent({
                     Run this command to automatically add the component and its dependencies to your project.
                   </p>
                 </div>
-                <div className="flex items-center justify-between bg-neutral-50 dark:bg-black/50 border border-neutral-200 dark:border-white/5 rounded-lg p-2 sm:p-3 relative group min-w-0 overflow-hidden">
+                <div className="group relative flex min-w-0 items-center justify-between overflow-hidden rounded-xl border border-neutral-200 bg-white p-2 dark:border-white/[0.06] dark:bg-black/30 sm:p-3">
                   <div className="overflow-x-auto flex-1 pb-1 sm:pb-0 scrollbar-hide">
                     <code className="text-[13px] sm:text-[14px] font-mono text-neutral-800 dark:text-neutral-300 whitespace-nowrap px-2">
                       <span className="text-purple-600 dark:text-purple-400">npx</span> @abhaysinghr516/business-wish add {slug[slug.length - 1]}
@@ -234,7 +227,7 @@ export function DocsPageContent({
                   </div>
                   <button
                     onClick={handleCopyCli}
-                    className="ml-4 flex-shrink-0 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors text-neutral-500 dark:text-neutral-400"
+                    className="ml-4 flex-shrink-0 rounded-lg p-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-white/10 dark:hover:text-white"
                     aria-label="Copy command"
                   >
                     {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}

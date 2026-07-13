@@ -15,7 +15,7 @@ export default function DocsLayout({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="flex min-h-screen flex-col bg-neutral-50/40 dark:bg-black">
       {/* Mobile Menu Button */}
       <div className="lg:hidden sticky top-0 z-50 bg-background border-b border-border/40 px-4 py-3">
         <Button
