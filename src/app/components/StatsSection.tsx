@@ -39,7 +39,7 @@ function AnimatedNumber({ value, suffix = "", duration = 1800 }: AnimatedNumberP
   }, [value, duration, hasAnimated]);
 
   return (
-    <div ref={ref} className="text-4xl sm:text-5xl font-semibold tracking-tight text-stone-900 dark:text-stone-100 font-mono">
+    <div ref={ref} className="text-4xl font-semibold tracking-[-0.04em] text-stone-900 dark:text-stone-100 sm:text-5xl">
       {count}{suffix}
     </div>
   );
@@ -53,13 +53,13 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-stone-50 dark:bg-[#0a0a0a] border-b border-stone-200 dark:border-stone-800">
+    <section className="border-b border-stone-200/80 bg-stone-50/70 px-4 py-12 dark:border-stone-800 dark:bg-[#090909] sm:px-6 sm:py-16">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-stone-200 dark:divide-stone-800">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center justify-center text-center py-4 sm:py-0 px-4">
+            <div key={stat.label} className="flex flex-col items-center justify-center px-4 py-4 text-center sm:py-0">
               <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-              <p className="text-xs sm:text-sm font-medium text-stone-500 dark:text-stone-400 mt-2 uppercase tracking-widest">{stat.label}</p>
+              <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.14em] text-stone-500 dark:text-stone-400 sm:text-xs">{stat.label}</p>
             </div>
           ))}
         </div>

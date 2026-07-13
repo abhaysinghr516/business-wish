@@ -133,22 +133,22 @@ export default function HomePage() {
       <StatsSection />
 
       {/* ── Main Features ── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+      <section className="border-b border-stone-200/80 bg-white px-4 py-16 dark:border-stone-800 dark:bg-stone-950 sm:px-6 sm:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 dark:text-stone-100 leading-tight tracking-tight max-w-lg">
+            <h2 className="max-w-lg text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-900 dark:text-stone-100 sm:text-4xl">
               Build faster with a complete React UI component library
             </h2>
-            <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl leading-relaxed">
+            <p className="mt-4 max-w-xl leading-relaxed text-stone-500 dark:text-stone-400">
               50+ free components, production-ready blocks, and a complete design system built for teams who design, build, and ship at scale.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {features.map((f) => (
-              <div key={f.title} className="group p-6 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/50 hover:border-stone-300 dark:hover:border-stone-700 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 flex items-center justify-center mb-4 group-hover:bg-[#FF3903]/10 dark:group-hover:bg-[#FF3903]/20 group-hover:border-[#FF3903]/30 transition-colors">
-                  <f.icon className="h-5 w-5 text-stone-600 dark:text-stone-400 group-hover:text-[#FF3903] transition-colors" />
+              <div key={f.title} className="group rounded-2xl border border-stone-200/80 bg-stone-50/50 p-6 transition-colors hover:border-stone-300 hover:bg-white dark:border-stone-800 dark:bg-white/[0.02] dark:hover:border-stone-700 dark:hover:bg-white/[0.04]">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white dark:border-white/[0.08] dark:bg-stone-900">
+                  <f.icon className="h-5 w-5 text-stone-600 dark:text-stone-400" />
                 </div>
                 <h3 className="font-semibold text-stone-900 dark:text-stone-100 mb-2">{f.title}</h3>
                 <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">{f.desc}</p>
@@ -159,13 +159,13 @@ export default function HomePage() {
       </section>
 
       {/* ── Component Showcase ── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+      <section className="border-b border-stone-200/80 bg-stone-50/60 px-4 py-16 dark:border-stone-800 dark:bg-stone-950 sm:px-6 sm:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 dark:text-stone-100 leading-tight tracking-tight max-w-lg">
+            <h2 className="max-w-lg text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-900 dark:text-stone-100 sm:text-4xl">
               50+ UI Components and Blocks to Build Faster
             </h2>
-            <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl leading-relaxed">
+            <p className="mt-4 max-w-xl leading-relaxed text-stone-500 dark:text-stone-400">
               Each component ships with production-ready code, ensuring consistent design-to-development workflows at scale.
             </p>
           </div>
@@ -173,12 +173,12 @@ export default function HomePage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {componentThumbs.map((comp) => (
               <Link key={comp.name} href={comp.href} className="group">
-                <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden hover:border-stone-300 dark:hover:border-stone-700 transition-all hover:shadow-sm">
-                  <div className="aspect-[4/3] flex items-center justify-center bg-stone-50 dark:bg-stone-900/50 border-b border-stone-200 dark:border-stone-800">
+                <div className="overflow-hidden rounded-2xl border border-stone-200/80 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-stone-300 dark:border-stone-800 dark:bg-white/[0.02] dark:hover:border-stone-700">
+                  <div className="flex aspect-[4/3] items-center justify-center border-b border-stone-200/80 bg-stone-50/70 dark:border-stone-800 dark:bg-white/[0.02]">
                     {comp.wire}
                   </div>
                   <div className="px-3 py-2.5">
-                    <span className="text-xs font-medium text-stone-700 dark:text-stone-300 group-hover:text-[#FF3903] transition-colors">
+                    <span className="text-xs font-medium text-stone-700 transition-colors group-hover:text-stone-950 dark:text-stone-300 dark:group-hover:text-white">
                       {comp.name}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ export default function HomePage() {
 
           <div className="mt-10">
             <Link href="/docs/components/accordion">
-              <Button variant="outline" className="px-6 py-2.5 rounded-xl text-sm font-medium border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all">
+              <Button variant="outline" className="rounded-xl border-stone-200 px-6 py-2.5 text-sm font-medium transition-colors hover:bg-stone-100 dark:border-stone-800 dark:hover:bg-stone-900">
                 View all 50+ components
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -199,13 +199,13 @@ export default function HomePage() {
       </section>
 
       {/* ── Motion Showcase ── */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800">
+      <section className="border-b border-stone-200/80 bg-white px-4 py-16 dark:border-stone-800 dark:bg-stone-950 sm:px-6 sm:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 dark:text-stone-100 leading-tight tracking-tight max-w-lg">
+            <h2 className="max-w-lg text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-stone-900 dark:text-stone-100 sm:text-4xl">
               Components that come alive
             </h2>
-            <p className="text-stone-500 dark:text-stone-400 mt-4 max-w-xl leading-relaxed">
+            <p className="mt-4 max-w-xl leading-relaxed text-stone-500 dark:text-stone-400">
               13 animated components built with Framer Motion. Scroll-triggered, interactive, and ready for React & Next.js.
             </p>
           </div>
@@ -213,9 +213,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {motionItems.map((m) => (
               <Link key={m.name} href={m.href} className="group">
-                <div className="p-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/50 hover:border-[#FF3903]/30 dark:hover:border-[#FF3903]/30 transition-all">
+                <div className="rounded-2xl border border-stone-200/80 bg-stone-50/50 p-5 transition-colors hover:border-stone-300 hover:bg-white dark:border-stone-800 dark:bg-white/[0.02] dark:hover:border-stone-700 dark:hover:bg-white/[0.04]">
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-medium text-stone-900 dark:text-stone-100 group-hover:text-[#FF3903] transition-colors">{m.name}</h3>
+                    <h3 className="font-medium text-stone-900 transition-colors group-hover:text-stone-600 dark:text-stone-100 dark:group-hover:text-stone-300">{m.name}</h3>
                   </div>
                   <p className="text-sm text-stone-500 dark:text-stone-400">{m.desc}</p>
                 </div>
@@ -225,7 +225,7 @@ export default function HomePage() {
 
           <div className="mt-10">
             <Link href="/docs/motion/text-reveal">
-              <Button variant="outline" className="px-6 py-2.5 rounded-xl text-sm font-medium border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all">
+              <Button variant="outline" className="rounded-xl border-stone-200 px-6 py-2.5 text-sm font-medium transition-colors hover:bg-stone-100 dark:border-stone-800 dark:hover:bg-stone-900">
                 Explore all 13 motion primitives
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -235,23 +235,23 @@ export default function HomePage() {
       </section>
 
       {/* ── Community CTA (dark) ── */}
-      <section className="bg-stone-950 dark:bg-stone-900 border-b border-stone-800">
+      <section className="border-b border-stone-800 bg-stone-950 dark:bg-black">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-stone-800">
-          <div className="px-6 sm:px-10 py-16 sm:py-20">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight mb-3">
+          <div className="px-6 py-16 sm:px-10 sm:py-20">
+            <h2 className="mb-3 text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
               Business Wish Community
             </h2>
             <p className="text-stone-400 leading-relaxed max-w-sm">
               Star us on GitHub to stay up to date with the latest updates, releases, and contributions.
             </p>
           </div>
-          <div className="px-6 sm:px-10 py-16 sm:py-20 flex items-center">
+          <div className="flex items-center px-6 py-16 sm:px-10 sm:py-20">
             <Link
               href="https://github.com/abhaysinghr516/business-wish"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="lg" className="px-8 py-3 bg-white text-stone-900 rounded-xl text-sm font-medium hover:bg-stone-100 transition-all">
+              <Button size="lg" className="rounded-xl bg-white px-8 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-stone-200">
                 <Github className="mr-2 h-4 w-4" />
                 Star on GitHub
               </Button>

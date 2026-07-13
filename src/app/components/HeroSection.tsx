@@ -25,13 +25,13 @@ function CLISnippet() {
   };
 
   return (
-    <div className="inline-flex w-full max-w-[calc(100vw-2rem)] sm:w-auto sm:max-w-full items-center gap-3 px-4 py-2.5 bg-stone-50 dark:bg-stone-900 rounded-xl border border-stone-200 dark:border-stone-800 font-mono text-xs sm:text-sm overflow-hidden">
+    <div className="inline-flex w-full max-w-[calc(100vw-2rem)] items-center gap-3 overflow-hidden rounded-xl border border-stone-200/80 bg-white px-4 py-2.5 font-mono text-xs dark:border-white/[0.09] dark:bg-stone-900 sm:w-auto sm:max-w-full sm:text-sm">
       <span className="min-w-0 text-stone-600 dark:text-stone-300 whitespace-nowrap overflow-hidden text-ellipsis">
         {command}
       </span>
       <button
         onClick={handleCopy}
-        className="p-1 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 flex-shrink-0"
+        className="flex-shrink-0 rounded-md p-1 text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700 dark:hover:bg-stone-800 dark:hover:text-stone-200"
         aria-label="Copy command"
       >
         {copied ? (
@@ -46,7 +46,7 @@ function CLISnippet() {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 overflow-hidden">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden border-b border-stone-200/80 bg-white px-4 dark:border-stone-800 dark:bg-stone-950 sm:px-6">
 
       {/* ── Background SVGs Constrained to max-w-6xl ── */}
       <div className="absolute inset-0 w-full max-w-5xl mx-auto">
@@ -58,7 +58,7 @@ export default function HeroSection() {
           <svg
             viewBox="0 0 150 150"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-[520px] h-[520px] opacity-80 dark:opacity-60"
+            className="h-[520px] w-[520px] opacity-75 dark:opacity-55"
           >
             <defs>
               <linearGradient id="topGrad" x1="5" x2="146.8" y1="75" y2="75" gradientUnits="userSpaceOnUse">
@@ -83,7 +83,7 @@ export default function HeroSection() {
           <svg
             viewBox="0 0 150 150"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-[520px] h-[520px] opacity-80 dark:opacity-60"
+            className="h-[520px] w-[520px] opacity-75 dark:opacity-55"
           >
             <defs>
               <linearGradient id="botGrad" x1="3.5" x2="145.6" y1="99.85" y2="99.85" gradientUnits="userSpaceOnUse">
@@ -104,7 +104,7 @@ export default function HeroSection() {
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center text-center">
         <motion.h1
-          className="text-4xl sm:text-5xl lg:text-[4rem] font-semibold text-stone-900 dark:text-stone-100 mb-6 leading-[1.12] tracking-tight max-w-full"
+          className="mb-6 max-w-full text-5xl font-semibold leading-[1.04] tracking-[-0.045em] text-stone-900 dark:text-stone-100 sm:text-6xl lg:text-[4.5rem]"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -115,7 +115,7 @@ export default function HeroSection() {
         </motion.h1>
 
         <motion.p
-          className="text-base sm:text-lg text-stone-500 dark:text-stone-400 mb-10 max-w-2xl leading-relaxed mx-auto"
+          className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-stone-500 dark:text-stone-400 sm:text-lg"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -126,7 +126,7 @@ export default function HeroSection() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-5"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -137,7 +137,7 @@ export default function HeroSection() {
             <Link href="/docs/components/accordion">
               <Button
                 size="lg"
-                className="px-6 py-3 bg-stone-900 dark:bg-white text-white dark:text-stone-900 rounded-xl text-sm font-medium hover:bg-stone-800 dark:hover:bg-stone-200 transition-all"
+                className="rounded-xl bg-stone-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-stone-700 dark:bg-white dark:text-stone-900 dark:hover:bg-stone-200"
               >
                 Browse Components
                 <ArrowRight className="ml-2 h-4 w-4" />

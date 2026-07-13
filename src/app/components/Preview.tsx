@@ -193,7 +193,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
 
   return (
     <div className="not-prose my-6">
-      <div className="relative overflow-hidden rounded-[18px] border border-neutral-200/80 bg-white shadow-[0_18px_50px_-30px_rgba(0,0,0,0.22)] dark:border-white/[0.08] dark:bg-neutral-950 dark:shadow-none">
+      <div className="relative overflow-hidden rounded-[18px] border border-neutral-200/80 bg-white dark:border-white/[0.08] dark:bg-neutral-950">
         {/* Toolbar */}
         <div className="flex items-center justify-between gap-3 border-b border-neutral-200/80 bg-neutral-50/70 px-3 py-2.5 dark:border-white/[0.07] dark:bg-white/[0.03] sm:px-4">
           {/* Viewport toggles — hidden on mobile */}
@@ -335,7 +335,7 @@ const Preview: React.FC<PreviewProps> = ({ children }) => {
           ) : (
             <div className="flex justify-center overflow-x-auto">
               <div
-                className="flex-shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-white/[0.08] dark:bg-neutral-950 dark:shadow-none"
+                className="flex-shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-white/[0.08] dark:bg-neutral-950"
                 style={{
                   width: view === "tablet" ? "768px" : "375px",
                   maxWidth:
