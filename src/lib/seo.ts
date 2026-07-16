@@ -68,7 +68,9 @@ export function generateSEO({
     ];
 
     const metadata: Metadata = {
-        title: fullTitle,
+        title: title 
+            ? title 
+            : { absolute: "Business Wish - Free Tailwind CSS UI Components Library" },
         description: fullDescription,
         keywords: allKeywords,
         authors: authors?.map(name => ({ name })) || [

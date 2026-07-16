@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Shield, Eye, Lock, Server, Cookie, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Business Wish",
+  title: "Privacy Policy",
   description:
     "Learn how Business Wish protects your privacy. We prioritize user privacy with minimal data collection.",
   keywords: [

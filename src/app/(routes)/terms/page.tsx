@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Business Wish",
+  title: "Terms of Service",
   description:
     "Terms of service for Business Wish. Learn about the usage terms for our UI components.",
   keywords: [
