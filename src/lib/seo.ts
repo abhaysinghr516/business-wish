@@ -36,10 +36,10 @@ export function generateSEO({
 }: SEOProps = {}): Metadata {
     const fullTitle = title
         ? `${title} | Business Wish`
-        : "Business Wish - Free Tailwind CSS UI Components Library";
+        : "Business Wish - Free React & Tailwind CSS UI Components Library";
 
     const fullDescription = description ||
-        "Discover a comprehensive library of free, high-quality Tailwind CSS UI components for web developers. Boost your project's design and efficiency with our ready-to-use components.";
+        "Discover a comprehensive library of free, high-quality React & Tailwind CSS UI components for web developers. Boost your project's design and efficiency with our ready-to-use React components.";
 
     const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
 
@@ -53,9 +53,12 @@ export function generateSEO({
     const allKeywords = [
         "Businesswish",
         "Business Wish",
+        "React components",
+        "React Tailwind CSS components",
+        "free React components",
+        "React UI components",
         "Tailwind CSS components",
         "free Tailwind CSS components",
-        "React UI components",
         "Next.js components",
         "UI library",
         "web development",
@@ -70,7 +73,7 @@ export function generateSEO({
     const metadata: Metadata = {
         title: title 
             ? title 
-            : { absolute: "Business Wish - Free Tailwind CSS UI Components Library" },
+            : { absolute: "Business Wish - Free React & Tailwind CSS UI Components Library" },
         description: fullDescription,
         keywords: allKeywords,
         authors: authors?.map(name => ({ name })) || [
@@ -168,8 +171,8 @@ export function generateWebsiteSchema() {
         "@id": `${baseUrl}/#website`,
         name: "Business Wish",
         url: baseUrl,
-        description: "Free Tailwind CSS UI components library and motion primitives for web developers.",
-        keywords: "Tailwind CSS, UI components, React, Next.js, free, open source, motion components, framer motion",
+        description: "Free React & Tailwind CSS UI components library and motion primitives for web developers.",
+        keywords: "React, Tailwind CSS, React UI components, React motion primitives, Next.js, free, open source, motion components, framer motion",
         author: {
             "@type": "Person",
             name: "Abhay Singh Rathore",
@@ -186,10 +189,10 @@ export function generateSoftwareApplicationSchema() {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "@id": `${baseUrl}/#software-application`,
-        name: "Business Wish UI Components & Motion",
+        name: "Business Wish React & Tailwind CSS UI Components",
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web Browser",
-        description: "A comprehensive library of free, high-quality Tailwind CSS UI components and motion primitives for web developers.",
+        description: "A comprehensive library of free, high-quality React & Tailwind CSS UI components and motion primitives for web developers.",
         url: baseUrl,
         downloadUrl: `${baseUrl}/docs`,
         isAccessibleForFree: true,
@@ -212,13 +215,13 @@ export function generateSoftwareApplicationSchema() {
             availability: "https://schema.org/InStock",
         },
         featureList: [
-            "Free Tailwind CSS UI Components",
+            "Free React & Tailwind CSS UI Components",
             "13 Motion Primitives",
             "Dark Mode Support",
-            "Copy-Paste Ready Code",
+            "Copy-Paste Ready React Code",
             "No Registration Required",
             "WCAG Accessible",
-            "Framework Agnostic",
+            "Next.js & React Compatible",
         ],
     };
 }

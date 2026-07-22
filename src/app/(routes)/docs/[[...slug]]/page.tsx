@@ -48,10 +48,10 @@ export default async function DocsPage({ params: { slug = [] } }: PageProps) {
   const isMotion = pathName.startsWith("motion/");
   const sourceCodeSchema = (isComponent || isMotion)
     ? generateSourceCodeSchema({
-        name: `Tailwind CSS ${res.frontmatter.title} Component`,
+        name: `React & Tailwind CSS ${res.frontmatter.title} Component`,
         description: res.frontmatter.description,
         url: docsPath,
-        programmingLanguage: isMotion ? "Framer Motion" : "React / TypeScript",
+        programmingLanguage: isMotion ? "Framer Motion / React" : "React / TypeScript",
       })
     : null;
 
@@ -100,12 +100,18 @@ export async function generateMetadata({
 
     const baseKeywords = [
       componentName,
+      `React ${componentName}`,
+      `React ${componentName} component`,
+      `React Tailwind CSS ${componentName}`,
+      `React ${componentName} Tailwind`,
       `Tailwind CSS ${componentName}`,
       `Tailwind ${componentName}`,
       `${componentName} component`,
+      `${componentName} in React`,
       `${componentName} in Tailwind CSS`,
+      `free React ${componentName} components`,
       `free Tailwind CSS ${componentName} components`,
-      `how to use Tailwind CSS ${componentName}`,
+      `how to use ${componentName} in React`,
       `${componentName} examples`,
       `${componentName} tutorial`,
       `responsive ${componentName}`,
@@ -117,10 +123,11 @@ export async function generateMetadata({
       baseKeywords.push(
         "button styles",
         "button variants",
-        "interactive buttons"
+        "interactive buttons",
+        "React button component"
       );
     } else if (lowerName.includes("form")) {
-      baseKeywords.push("form validation", "form controls", "input fields");
+      baseKeywords.push("form validation", "form controls", "input fields", "React form components");
     } else if (
       lowerName.includes("navigation") ||
       lowerName.includes("navbar")
@@ -128,7 +135,8 @@ export async function generateMetadata({
       baseKeywords.push(
         "responsive navigation",
         "mobile menu",
-        "navigation bar"
+        "navigation bar",
+        "React navigation bar"
       );
     }
 
@@ -139,10 +147,12 @@ export async function generateMetadata({
   const defaultDescription = frontmatter?.description || "";
 
   const keywords = [
+    "React components",
+    "React Tailwind CSS",
     "Tailwind CSS",
     "UI components",
     "web development",
-    "React components",
+    "React UI library",
     "documentation",
     "frontend development",
     "responsive design",
@@ -153,9 +163,12 @@ export async function generateMetadata({
 
   // Optimize title based on path (highest CTR optimization)
   const isComponent = pathName.startsWith("components/");
+  const isMotion = pathName.startsWith("motion/");
   const optimizedTitle = isComponent 
-      ? `Tailwind CSS ${defaultTitle} Component` 
-      : `${defaultTitle} - Tailwind CSS`;
+      ? `React Tailwind CSS ${defaultTitle} Component` 
+      : isMotion
+      ? `React ${defaultTitle} Motion Component`
+      : `${defaultTitle} - React & Tailwind CSS`;
 
   return generateSEO({
     title: optimizedTitle,
@@ -163,7 +176,7 @@ export async function generateMetadata({
     keywords,
     url: docsPath,
     type: "article",
-    section: isComponent ? "Components" : "Documentation",
+    section: isComponent ? "Components" : isMotion ? "Motion" : "Documentation",
     tags: keywords.slice(0, 10), // Limit tags for better performance
   });
 }

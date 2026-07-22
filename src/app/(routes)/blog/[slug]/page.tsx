@@ -19,14 +19,14 @@ export async function generateMetadata({
   const { frontmatter } = post;
   
   return generateSEO({
-    title: `${frontmatter.title} | Blog`,
+    title: `${frontmatter.title} | React & Tailwind CSS Blog`,
     description: frontmatter.description,
     url: `/blog/${slug}`,
     type: "article",
     publishedTime: new Date(frontmatter.date).toISOString(),
     authors: frontmatter.authors?.map((a) => a.username) || ["Abhay Singh Rathore"],
     section: "Blog",
-    tags: ["Tailwind CSS", "React", "Frontend", "UI Design"],
+    tags: ["React", "React Components", "Tailwind CSS", "Frontend", "UI Design"],
   });
 }
 

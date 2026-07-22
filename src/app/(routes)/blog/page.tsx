@@ -6,11 +6,12 @@ import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = generateSEO({
-  title: "Blog",
-  description: "Insights, guides, and tutorials on modern CSS, UI engineering, and animations.",
+  title: "React & Tailwind CSS Developer Blog",
+  description: "Insights, guides, and in-depth tutorials on React, Tailwind CSS v4, modern UI engineering, and animations.",
   url: "/blog",
   type: "website",
   section: "Blog",
+  keywords: ["React blog", "Tailwind CSS tutorials", "React UI tutorials", "React animation guides"],
 });
 
 export default async function BlogPage() {
