@@ -2,6 +2,11 @@
   "name": "business-wish",
   "version": "2.2.0",
   "private": true,
+  "homepage": "https://businesswish.tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhaysinghr516/business-wish.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

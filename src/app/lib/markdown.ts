@@ -25,7 +25,7 @@ import { BottomNavigation, BubbleNavigation, FabNavigation } from "@/components/
 import { BasicBreadcrumb, DropdownBreadcrumb, BreadcrumbwithSeparators } from "@/components/Breadcrumbs";
 import { ButtonGroup, ButtonGroups, ButtonSizes, FAB } from "@/components/Button";
 import { CardStyleCTA, CTAwithForm, SimpleCTA } from "@/components/CTA";
-import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard } from "@/components/Card";
+import { ArticleCard, ForumCard, JobCard, PodcastCard, ProductCard, ProfileCard, PropertyCard, MetricCard, EventCard } from "@/components/Card";
 import { InteractiveContextMenu } from "@/components/ContextMenu";
 import { BasicDivider, CustomDividerwithIcon, GradientDivider, VerticalDivider } from "@/components/Divider";
 import { BottomDrawer, LeftDrawer, RightDrawer, TopDrawer } from "@/components/Drawer";
@@ -151,6 +151,8 @@ const components = {
     ArticleCard,
     ForumCard,
     PodcastCard,
+    MetricCard,
+    EventCard,
     InteractiveContextMenu,
     SimpleDatePicker,
     CustomCalendarPicker,
