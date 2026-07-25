@@ -14,31 +14,30 @@ Organize deep hierarchical data beautifully with a **Tailwind tree view**. Wheth
 
 ```jsx showLineNumbers
 import React, { useState } from "react";
-import { ChevronRight, Folder, File, Component, FileImage, LayoutGrid, Terminal, Database, Shield, Image as ImageIcon } from "lucide-react";
+import { ChevronRight, Folder, File, Component, Terminal, Database, Shield, LayoutGrid, ImageIcon, FileImage } from "lucide-react";
 
-const defaultTreeData = [
+export const defaultTreeData = [
   {
     id: "src",
     name: "src",
     type: "folder",
-    icon: <Folder className="w-4 h-4 text-blue-500" />,
+    icon: <Folder className="w-4 h-4 text-neutral-400 dark:text-neutral-500" />,
     children: [
       {
         id: "components",
         name: "components",
         type: "folder",
-        icon: <Component className="w-4 h-4 text-indigo-500" />,
+        icon: <Component className="w-4 h-4 text-neutral-400 dark:text-neutral-500" />,
         children: [
-          { id: "Button.tsx", name: "Button.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400" /> },
-          { id: "Card.tsx", name: "Card.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400" /> },
-          { id: "Input.tsx", name: "Input.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400" /> }
+          { id: "Button.tsx", name: "Button.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400 dark:text-neutral-500" /> },
+          { id: "Card.tsx", name: "Card.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400 dark:text-neutral-500" /> },
+          { id: "Input.tsx", name: "Input.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400 dark:text-neutral-500" /> }
         ]
       },
-      // ... more nodes
+      { id: "index.tsx", name: "index.tsx", type: "file", icon: <File className="w-4 h-4 text-neutral-400 dark:text-neutral-500" /> }
     ]
   },
-  { id: "package.json", name: "package.json", type: "file", icon: <File className="w-4 h-4 text-neutral-400" /> },
-  { id: "README.md", name: "README.md", type: "file", icon: <File className="w-4 h-4 text-neutral-400" /> }
+  { id: "package.json", name: "package.json", type: "file", icon: <File className="w-4 h-4 text-neutral-400 dark:text-neutral-500" /> }
 ];
 
 const BasicTreeNode = ({ node, level }) => {
@@ -48,9 +47,7 @@ const BasicTreeNode = ({ node, level }) => {
   return (
     <div className="w-full">
       <div 
-        className={`flex items-center py-1.5 px-2 rounded-lg cursor-pointer transition-colors ${
-          level === 0 ? "hover:bg-neutral-100 dark:hover:bg-neutral-900" : "hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
-        }`}
+        className="flex items-center py-1.5 px-2 rounded-xl cursor-pointer transition-colors hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 text-neutral-800 dark:text-neutral-200"
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         onClick={() => isFolder && setIsOpen(!isOpen)}
       >
@@ -62,11 +59,11 @@ const BasicTreeNode = ({ node, level }) => {
           )}
         </span>
         {node.icon ? (
-          <span className="mr-2">{node.icon}</span>
+          <span className="mr-2.5 shrink-0">{node.icon}</span>
         ) : (
-          isFolder ? <Folder className="w-4 h-4 mr-2 text-blue-500" /> : <File className="w-4 h-4 mr-2 text-neutral-500" />
+          isFolder ? <Folder className="w-4 h-4 mr-2.5 text-neutral-400 shrink-0" /> : <File className="w-4 h-4 mr-2.5 text-neutral-400 shrink-0" />
         )}
-        <span className="text-[13px] font-medium text-neutral-700 dark:text-neutral-300 truncate">
+        <span className="text-xs font-mono tracking-tight truncate flex-1">
           {node.name}
         </span>
       </div>
@@ -85,20 +82,23 @@ const BasicTreeNode = ({ node, level }) => {
   );
 };
 
-const BasicTreeView = ({ data = defaultTreeData }) => {
+export const BasicTreeView = ({ data = defaultTreeData }) => {
   return (
-    <div className="w-full max-w-sm bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-white/10 rounded-2xl p-4 shadow-sm">
-      <h3 className="text-[14px] font-bold text-neutral-900 dark:text-white px-2 mb-3 tracking-tight">Project Explorer</h3>
-      <div className="flex flex-col space-y-0.5">
-        {data.map(node => (
-          <BasicTreeNode key={node.id} node={node} level={0} />
-        ))}
+    <div className="bg-white dark:bg-neutral-950 px-4 py-10 flex justify-center items-center">
+      <div className="w-full max-w-sm bg-neutral-50 dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800/80 rounded-3xl p-5 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+        <div className="flex items-center justify-between px-2 mb-3">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-neutral-900 dark:text-white font-medium">Project Explorer</h3>
+          <span className="text-[10px] font-mono text-neutral-400 uppercase">TREE // 01</span>
+        </div>
+        <div className="flex flex-col space-y-0.5">
+          {data.map(node => (
+            <BasicTreeNode key={node.id} node={node} level={0} />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
-
-export default BasicTreeView;
 ```
 
 ### MacOS Finder Style Tree View
@@ -108,8 +108,7 @@ export default BasicTreeView;
 
 ```jsx showLineNumbers
 import React, { useState } from "react";
-import { ChevronRight, File } from "lucide-react";
-// tree data omitted for brevity
+import { ChevronRight, Folder, File } from "lucide-react";
 
 const FinderTreeNode = ({ node, level, activeId, onSelect }) => {
   const [isOpen, setIsOpen] = useState(level === 0);
@@ -117,36 +116,32 @@ const FinderTreeNode = ({ node, level, activeId, onSelect }) => {
   const isActive = activeId === node.id;
 
   return (
-    <div className="w-full font-sans">
+    <div className="w-full">
       <div 
-        className={`flex items-center py-1 rounded-md cursor-pointer transition-colors ${
+        className={`flex items-center py-1.5 px-2 rounded-xl cursor-pointer transition-colors ${
           isActive 
-            ? "bg-blue-500 text-white" 
-            : "hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+            ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-medium" 
+            : "hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 text-neutral-800 dark:text-neutral-200"
         }`}
-        style={{ paddingLeft: `${level * 20 + 4}px` }}
+        style={{ paddingLeft: `${level * 18 + 8}px` }}
         onClick={() => {
           onSelect(node.id);
           if (isFolder) setIsOpen(!isOpen);
         }}
-        onDoubleClick={() => isFolder && setIsOpen(!isOpen)}
       >
-        <span className="w-4 h-4 mr-1 flex items-center justify-center">
+        <span className="w-4 h-4 mr-1 flex items-center justify-center shrink-0">
           {isFolder && (
             <ChevronRight 
-              className={`w-3 h-3 transition-transform duration-100 ${isOpen ? "rotate-90" : ""} ${isActive ? "text-white" : "text-neutral-400"}`} 
-              strokeWidth={3}
+              className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? "rotate-90" : ""} ${isActive ? "text-white dark:text-neutral-950" : "text-neutral-400"}`} 
             />
           )}
         </span>
         {isFolder ? (
-           <svg className={`w-4 h-4 mr-2 flex-shrink-0 ${isActive ? "text-white" : "text-blue-400"}`} viewBox="0 0 24 24" fill="currentColor">
-            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
-          </svg>
+          <Folder className={`w-4 h-4 mr-2.5 shrink-0 ${isActive ? "text-white dark:text-neutral-950" : "text-neutral-400"}`} />
         ) : (
-          <File className={`w-4 h-4 mr-2 flex-shrink-0 ${isActive ? "text-white/80" : "text-neutral-400"}`} strokeWidth={2} />
+          <File className={`w-4 h-4 mr-2.5 shrink-0 ${isActive ? "text-white/80 dark:text-neutral-950/80" : "text-neutral-400"}`} />
         )}
-        <span className="text-[13px] truncate select-none leading-relaxed tracking-tight">
+        <span className="text-xs font-mono tracking-tight truncate flex-1">
           {node.name}
         </span>
       </div>
@@ -162,40 +157,39 @@ const FinderTreeNode = ({ node, level, activeId, onSelect }) => {
   );
 };
 
-const FinderTreeView = ({ data = defaultTreeData }) => {
+export const FinderTreeView = ({ data = defaultTreeData }) => {
   const [activeId, setActiveId] = useState("src");
 
   return (
-    <div className="w-full max-w-sm bg-[#fafafa] dark:bg-[#1e1e1e] border border-neutral-300 dark:border-neutral-800 rounded-xl overflow-hidden shadow-lg shadow-neutral-200/50 dark:shadow-none flex flex-col">
-      <div className="h-10 bg-gradient-to-b from-white to-[#f0f0f0] dark:from-[#323232] dark:to-[#282828] border-b border-neutral-300 dark:border-neutral-800 flex items-center px-4">
-        <div className="flex gap-2 mr-4">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
-          <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]" />
+    <div className="bg-white dark:bg-neutral-950 px-4 py-10 flex justify-center items-center">
+      <div className="w-full max-w-sm bg-neutral-50 dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800/80 rounded-3xl overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+        <div className="h-10 bg-neutral-100 dark:bg-neutral-900 border-b border-neutral-200/80 dark:border-neutral-800/80 flex items-center justify-between px-4">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+            <div className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+            <div className="w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+          </div>
+          <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500">my-app</span>
         </div>
-        <span className="text-[12px] font-semibold text-neutral-600 dark:text-neutral-400 mx-auto select-none">my-app</span>
-      </div>
-      
-      <div className="p-2 overflow-y-auto max-h-[400px]">
-        {data.map(node => (
-          <FinderTreeNode key={node.id} node={node} level={0} activeId={activeId} onSelect={setActiveId} />
-        ))}
+        
+        <div className="p-3 max-h-[380px] overflow-y-auto">
+          {data.map(node => (
+            <FinderTreeNode key={node.id} node={node} level={0} activeId={activeId} onSelect={setActiveId} />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
-
-export default FinderTreeView;
 ```
 
-### Connected Line Tree View
+### Hierarchical Line Tree View
 <Preview>
 <LineTreeView />
 </Preview>
 
 ```jsx showLineNumbers
 import React, { useState } from "react";
-// tree data omitted for brevity
 
 const LineTreeNode = ({ node, level, isLast }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -205,38 +199,52 @@ const LineTreeNode = ({ node, level, isLast }) => {
     <div className="w-full relative">
       {level > 0 && (
         <div 
-          className="absolute border-l border-neutral-200 dark:border-neutral-800" 
-          style={{ left: `${level * 24 - 12}px`, top: "-12px", bottom: isLast ? "16px" : "-12px" }} 
+          className="absolute border-l border-neutral-200/80 dark:border-neutral-800/80" 
+          style={{ 
+            left: `${level * 20 - 10}px`, 
+            top: "-10px", 
+            bottom: isLast ? "14px" : "-10px" 
+          }} 
         />
       )}
+      
       {level > 0 && (
         <div 
-          className="absolute border-t border-neutral-200 dark:border-neutral-800 w-3" 
-          style={{ left: `${level * 24 - 12}px`, top: "16px" }} 
+          className="absolute border-t border-neutral-200/80 dark:border-neutral-800/80 w-2.5" 
+          style={{ 
+            left: `${level * 20 - 10}px`, 
+            top: "14px" 
+          }} 
         />
       )}
 
       <div 
-        className="flex items-center py-1.5 rounded-md cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-colors w-fit pr-4"
-        style={{ paddingLeft: `${level * 24}px` }}
+        className="flex items-center py-1.5 px-2 rounded-xl cursor-pointer hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors w-full"
+        style={{ paddingLeft: `${level * 20}px` }}
         onClick={() => isFolder && setIsOpen(!isOpen)}
       >
         {isFolder ? (
-          <div className="w-5 h-5 flex items-center justify-center mr-2 bg-neutral-100 dark:bg-neutral-800 rounded border border-neutral-200 dark:border-neutral-700 z-10 transition-colors hover:border-neutral-300 dark:hover:border-neutral-600">
-             <span className="text-[14px] font-mono text-neutral-500 leading-none pb-0.5">{isOpen ? "-" : "+"}</span>
+          <div className="w-4 h-4 flex items-center justify-center mr-2 bg-white dark:bg-neutral-900 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 text-[11px] font-mono text-neutral-600 dark:text-neutral-400 shrink-0">
+            {isOpen ? "-" : "+"}
           </div>
         ) : (
-          <div className="w-5 h-5 mr-2 flex-shrink-0 z-10" />
+          <div className="w-4 h-4 mr-2 shrink-0" />
         )}
-        <span className="text-[14px] text-neutral-700 dark:text-neutral-300 truncate">
+        
+        <span className="text-xs font-mono text-neutral-800 dark:text-neutral-200 truncate">
           {node.name}
         </span>
       </div>
       
       {isFolder && isOpen && (
-        <div className="flex flex-col pb-1">
+        <div className="flex flex-col">
           {node.children?.map((child, index) => (
-             <LineTreeNode key={child.id} node={child} level={level + 1} isLast={index === node.children.length - 1}  />
+            <LineTreeNode 
+              key={child.id} 
+              node={child} 
+              level={level + 1} 
+              isLast={index === node.children.length - 1} 
+            />
           ))}
         </div>
       )}
@@ -244,22 +252,26 @@ const LineTreeNode = ({ node, level, isLast }) => {
   );
 };
 
-const LineTreeView = ({ data = defaultTreeData }) => {
+export const LineTreeView = ({ data = defaultTreeData }) => {
   return (
-    <div className="w-full max-w-sm bg-white dark:bg-[#050505] p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-sm overflow-hidden">
-      <div className="flex flex-col">
-        {data.map((node, i) => (
-          <LineTreeNode key={node.id} node={node} level={0} isLast={i === data.length - 1} />
-        ))}
+    <div className="bg-white dark:bg-neutral-950 px-4 py-10 flex justify-center items-center">
+      <div className="w-full max-w-sm bg-neutral-50 dark:bg-neutral-900/40 p-5 rounded-3xl border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+        <div className="flex items-center justify-between px-2 mb-3">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-neutral-900 dark:text-white font-medium">Hierarchical Tree</h3>
+          <span className="text-[10px] font-mono text-neutral-400 uppercase">TREE // 02</span>
+        </div>
+        <div className="flex flex-col">
+          {data.map((node, i) => (
+            <LineTreeNode key={node.id} node={node} level={0} isLast={i === data.length - 1} />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
-
-export default LineTreeView;
 ```
 
-### Settings Structure Tree View
+### Settings Tree View
 <Preview>
 <SettingsTreeView />
 </Preview>
@@ -267,35 +279,34 @@ export default LineTreeView;
 ```jsx showLineNumbers
 import React, { useState } from "react";
 import { ChevronRight, Folder, File } from "lucide-react";
-// tree data omitted for brevity
 
 const SettingsTreeNode = ({ node, level }) => {
   const [isOpen, setIsOpen] = useState(level === 0);
   const isFolder = node.type === "folder";
 
   return (
-    <div className="w-full border-b border-neutral-100 dark:border-neutral-800/50 last:border-0">
+    <div className="w-full border-b border-neutral-200/60 dark:border-neutral-800/60 last:border-0">
       <div 
-        className="flex items-center py-3 pr-4 group cursor-pointer transition-colors hover:bg-neutral-50/50 dark:hover:bg-neutral-900/30"
-        style={{ paddingLeft: `${level * 24 + 16}px` }}
+        className="flex items-center py-3 px-4 cursor-pointer transition-colors hover:bg-neutral-200/40 dark:hover:bg-neutral-800/40"
+        style={{ paddingLeft: `${level * 20 + 16}px` }}
         onClick={() => isFolder && setIsOpen(!isOpen)}
       >
-        <span className="mr-3 p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
-          {node.icon ? node.icon : (isFolder ? <Folder className="w-4 h-4" /> : <File className="w-4 h-4" />)}
+        <span className="mr-3 p-1.5 rounded-xl bg-white dark:bg-neutral-900 text-neutral-500 border border-neutral-200/60 dark:border-neutral-800/60 shrink-0">
+          {node.icon ? node.icon : (isFolder ? <Folder className="w-3.5 h-3.5" /> : <File className="w-3.5 h-3.5" />)}
         </span>
-        <span className="text-[14px] font-medium text-neutral-700 dark:text-neutral-200 truncate flex-1">
+        <span className="text-xs font-mono text-neutral-900 dark:text-white truncate flex-1 font-medium">
           {node.name}
         </span>
         {isFolder && (
           <ChevronRight 
-            className={`w-4 h-4 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`} 
+            className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 ${isOpen ? "rotate-90" : ""}`} 
           />
         )}
       </div>
       
       {isFolder && (
         <div 
-          className="overflow-hidden transition-all duration-300 ease-in-out bg-neutral-50/30 dark:bg-neutral-900/10"
+          className="overflow-hidden transition-all duration-300 ease-in-out"
           style={{ maxHeight: isOpen ? "800px" : "0", opacity: isOpen ? 1 : 0 }}
         >
           {node.children?.map(child => (
@@ -307,17 +318,17 @@ const SettingsTreeNode = ({ node, level }) => {
   );
 };
 
-const SettingsTreeView = ({ data = defaultTreeData }) => {
+export const SettingsTreeView = ({ data = defaultTreeData }) => {
   return (
-    <div className="w-full max-w-sm bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl shadow-neutral-200/20 dark:shadow-none overflow-hidden">
-      <div className="flex flex-col">
-        {data.map(node => (
-          <SettingsTreeNode key={node.id} node={node} level={0} />
-        ))}
+    <div className="bg-white dark:bg-neutral-950 px-4 py-10 flex justify-center items-center">
+      <div className="w-full max-w-sm bg-neutral-50 dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800/80 rounded-3xl overflow-hidden hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+        <div className="flex flex-col">
+          {data.map(node => (
+            <SettingsTreeNode key={node.id} node={node} level={0} />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
-
-export default SettingsTreeView;
 ```

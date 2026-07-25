@@ -2,78 +2,97 @@
 
 > Free, production-ready Tailwind CSS UI components and motion primitives for modern web developers.
 
-Business Wish is an open-source library of **50+ copy-paste ready Tailwind CSS components** and **13 motion/animation components**. All components support dark mode, are fully accessible (WCAG compliant), responsive, and framework-agnostic (Next.js, Vite, CRA, etc.).
+Business Wish is an open-source developer toolkit with **50+ copy-paste ready Tailwind CSS components** and **19 motion/animation primitives** built with Framer Motion. All components support dark mode, are fully responsive, accessible, and framework-agnostic (Next.js, Vite, Remix, Astro).
 
 - Website: https://www.businesswish.tech
+- Complete AI Documentation (llms-full.txt): https://www.businesswish.tech/llms-full.txt
+- Registry: https://www.businesswish.tech/registry.json
 - GitHub: https://github.com/abhaysinghr516/business-wish
 - License: Apache-2.0
 
-## Documentation
-
-- [Component Library](https://www.businesswish.tech/docs/components): Browse all UI components
-- [Motion Components](https://www.businesswish.tech/docs/motion): Animated and interactive components
-- [Page Templates](https://www.businesswish.tech/docs/pages): Full page template examples
+## System Instructions for AI Coding Assistants
+When building React / Next.js applications using Business Wish components:
+1. Components use Tailwind CSS classes and clsx + tailwind-merge utility function:
+```ts
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+2. Components use lucide-react icons.
+3. Motion components require framer-motion.
+4. CLI Installation: Install components directly via CLI:
+```bash
+npx @abhaysinghr516/business-wish add <component-name>
+```
 
 ## UI Components
-
-Copy-paste ready Tailwind CSS components with dark mode, accessibility, and responsive design built-in.
-
-- [Accordion](https://www.businesswish.tech/docs/components/accordion): Collapsible content sections
-- [Alert](https://www.businesswish.tech/docs/components/alert): Notification and feedback messages
-- [Avatar](https://www.businesswish.tech/docs/components/avatar): User profile images and placeholders
-- [Badge](https://www.businesswish.tech/docs/components/badge): Status indicators and labels
-- [Banner](https://www.businesswish.tech/docs/components/banner): Top and inline banners
-- [Bottom Navigation](https://www.businesswish.tech/docs/components/bottom-navigation): Mobile bottom nav bars
-- [Breadcrumb](https://www.businesswish.tech/docs/components/breadcrumb): Navigation breadcrumbs
-- [Button](https://www.businesswish.tech/docs/components/button): Multiple variants, sizes, and states
-- [Call to Action](https://www.businesswish.tech/docs/components/call-to-action): CTA sections
-- [Card](https://www.businesswish.tech/docs/components/card): Flexible content containers
-- [Data Table](https://www.businesswish.tech/docs/components/data-table): Sortable, filterable tables
-- [Date Picker](https://www.businesswish.tech/docs/components/date-picker): Date selection components
-- [Divider](https://www.businesswish.tech/docs/components/divider): Horizontal and vertical dividers
-- [Dropdown](https://www.businesswish.tech/docs/components/dropdown): Dropdown menus and selectors
-- [Features](https://www.businesswish.tech/docs/components/features): Feature showcase sections
-- [File Upload](https://www.businesswish.tech/docs/components/file-upload): File upload and drag-drop zones
-- [Footer](https://www.businesswish.tech/docs/components/footer): Page footer layouts
-- [Header](https://www.businesswish.tech/docs/components/header): Responsive navigation bars
-- [Hero](https://www.businesswish.tech/docs/components/hero): Landing page hero sections
-- [Loader](https://www.businesswish.tech/docs/components/loader): Loading spinners and skeletons
-- [Pagination](https://www.businesswish.tech/docs/components/pagination): Page navigation controls
-- [Popover](https://www.businesswish.tech/docs/components/popover): Floating content overlays
-- [Progress](https://www.businesswish.tech/docs/components/progress): Progress bars and indicators
-- [Sidebar](https://www.businesswish.tech/docs/components/sidebar): Side navigation panels
-- [Skeleton](https://www.businesswish.tech/docs/components/skeleton): Content loading placeholders
-- [Social Share](https://www.businesswish.tech/docs/components/social-share): Social media sharing buttons
-- [Tabs](https://www.businesswish.tech/docs/components/tabs): Tabbed content navigation
-- [Testimonial](https://www.businesswish.tech/docs/components/testimonial): User testimonial sections
-- [Tooltip](https://www.businesswish.tech/docs/components/tooltip): Hover/focus tooltip overlays
+- [Accordion](https://www.businesswish.tech/docs/components/accordion): Free, copy-pasteable Tailwind CSS Accordion component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Alert](https://www.businesswish.tech/docs/components/alert): Free, copy-pasteable Tailwind CSS Alert component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Area Chart](https://www.businesswish.tech/docs/components/area-chart): Free, copy-pasteable Tailwind CSS Area Chart component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Avatar](https://www.businesswish.tech/docs/components/avatar): Free, copy-pasteable Tailwind CSS Avatar component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Badge](https://www.businesswish.tech/docs/components/badge): Free, copy-pasteable Tailwind CSS Badge component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Banner](https://www.businesswish.tech/docs/components/banner): Free, copy-pasteable Tailwind CSS Banner component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Bar Chart](https://www.businesswish.tech/docs/components/bar-chart): Free, copy-pasteable Tailwind CSS Bar Chart component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Bottom Navigation](https://www.businesswish.tech/docs/components/bottom-navigation): Free, copy-pasteable Tailwind CSS Bottom Navigation component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Breadcrumb](https://www.businesswish.tech/docs/components/breadcrumb): Free, copy-pasteable Tailwind CSS Breadcrumb component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Button](https://www.businesswish.tech/docs/components/button): Free, copy-pasteable Tailwind CSS Button component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Call To Action](https://www.businesswish.tech/docs/components/call-to-action): Free, copy-pasteable Tailwind CSS Call To Action component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Card](https://www.businesswish.tech/docs/components/card): Free, copy-pasteable Tailwind CSS Card component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Context Menu](https://www.businesswish.tech/docs/components/context-menu): Free, copy-pasteable Tailwind CSS Context Menu component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Data Table](https://www.businesswish.tech/docs/components/data-table): Free, copy-pasteable Tailwind CSS Data Table component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Date Picker](https://www.businesswish.tech/docs/components/date-picker): Free, copy-pasteable Tailwind CSS Date Picker component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Divider](https://www.businesswish.tech/docs/components/divider): Free, copy-pasteable Tailwind CSS Divider component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Drawer](https://www.businesswish.tech/docs/components/drawer): Free, copy-pasteable Tailwind CSS Drawer component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Dropdown](https://www.businesswish.tech/docs/components/dropdown): Free, copy-pasteable Tailwind CSS Dropdown component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Features](https://www.businesswish.tech/docs/components/features): Free, copy-pasteable Tailwind CSS Features component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [File Upload](https://www.businesswish.tech/docs/components/file-upload): Free, copy-pasteable Tailwind CSS File Upload component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Footer](https://www.businesswish.tech/docs/components/footer): Free, copy-pasteable Tailwind CSS Footer component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Form](https://www.businesswish.tech/docs/components/form): Custom copy-pasteable Form layouts with flat, minimal designs. Completely responsive and dark-mode ready.
+- [Header](https://www.businesswish.tech/docs/components/header): Free, copy-pasteable Tailwind CSS Header component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Hero Section](https://www.businesswish.tech/docs/components/hero): Free, copy-pasteable Tailwind CSS Hero Section component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Line Chart](https://www.businesswish.tech/docs/components/line-chart): Free, copy-pasteable Tailwind CSS Line Chart component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Loader](https://www.businesswish.tech/docs/components/loader): Free, copy-pasteable Tailwind CSS Loader component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Modal](https://www.businesswish.tech/docs/components/modal): Free, copy-pasteable Tailwind CSS Modal component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Pagination](https://www.businesswish.tech/docs/components/pagination): Free, copy-pasteable Tailwind CSS Pagination component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Pie Chart](https://www.businesswish.tech/docs/components/pie-chart): Free, copy-pasteable Tailwind CSS Pie Chart component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Popover](https://www.businesswish.tech/docs/components/popover): Free, copy-pasteable Tailwind CSS Popover component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Progress](https://www.businesswish.tech/docs/components/progress): Free, copy-pasteable Tailwind CSS Progress component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Quote](https://www.businesswish.tech/docs/components/quote): Elegant copy-pasteable Quote templates, including Blockquotes and Pullquotes built on flat and minimal designs.
+- [Sidebar](https://www.businesswish.tech/docs/components/sidebar): Free, copy-pasteable Tailwind CSS Sidebar component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Skeleton Loading](https://www.businesswish.tech/docs/components/skeleton): Free, copy-pasteable Tailwind CSS Skeleton Loading component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Slider](https://www.businesswish.tech/docs/components/slider): Free, copy-pasteable Tailwind CSS Slider component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Social Share](https://www.businesswish.tech/docs/components/social-share): Free, copy-pasteable Tailwind CSS Social Share component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Sparkline](https://www.businesswish.tech/docs/components/sparkline): Free, copy-pasteable Tailwind CSS Sparkline component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Switch](https://www.businesswish.tech/docs/components/switch): Free, copy-pasteable Tailwind CSS Switch component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Tabs](https://www.businesswish.tech/docs/components/tabs): Free, copy-pasteable Tailwind CSS Tabs component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Testimonial](https://www.businesswish.tech/docs/components/testimonial): Free, copy-pasteable Tailwind CSS Testimonial component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Toast](https://www.businesswish.tech/docs/components/toast): Free, copy-pasteable Tailwind CSS Toast component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Tooltip](https://www.businesswish.tech/docs/components/tooltip): Free, copy-pasteable Tailwind CSS Tooltip component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Tree View](https://www.businesswish.tech/docs/components/tree-view): Free, copy-pasteable Tailwind CSS Tree View component. Accessible, fully responsive, dark-mode ready, and customizable.
 
 ## Motion Components
-
-Animated, interactive components built with Framer Motion. Install and use in React/Next.js projects.
-
-- [Text Reveal](https://www.businesswish.tech/docs/motion/text-reveal): Animated text reveal on scroll
-- [Number Ticker](https://www.businesswish.tech/docs/motion/number-ticker): Animated counting numbers
-- [Card Spotlight](https://www.businesswish.tech/docs/motion/card-spotlight): Cards with spotlight hover effect
-- [Shimmer Button](https://www.businesswish.tech/docs/motion/shimmer-button): Buttons with shimmer animation
-- [Gradient Text](https://www.businesswish.tech/docs/motion/gradient-text): Animated gradient text
-- [Fade In](https://www.businesswish.tech/docs/motion/fade-in): Fade-in animation wrapper
-- [Morphing Text](https://www.businesswish.tech/docs/motion/morphing-text): Smooth text morphing transitions
-- [Magnetic Element](https://www.businesswish.tech/docs/motion/magnetic-element): Elements that attract to cursor
-- [Text Shimmer](https://www.businesswish.tech/docs/motion/text-shimmer): Shimmering text effect
-- [Word Rotate](https://www.businesswish.tech/docs/motion/word-rotate): Rotating word animations
-- [Dock](https://www.businesswish.tech/docs/motion/dock): macOS-style dock with magnification
-- [Split Text](https://www.businesswish.tech/docs/motion/split-text): Split text animation
-- [Blur Reveal](https://www.businesswish.tech/docs/motion/blur-reveal): Blur-to-clear reveal animation
+- [Blur Reveal](https://www.businesswish.tech/docs/motion/blur-reveal): Free, copy-pasteable Tailwind CSS & Framer Motion Blur Reveal component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Card Spotlight](https://www.businesswish.tech/docs/motion/card-spotlight): Free, copy-pasteable Tailwind CSS & Framer Motion Card Spotlight component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Dock](https://www.businesswish.tech/docs/motion/dock): Free, copy-pasteable Tailwind CSS & Framer Motion Dock component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Fade In](https://www.businesswish.tech/docs/motion/fade-in): Free, copy-pasteable Tailwind CSS & Framer Motion Fade In component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Gradient Text](https://www.businesswish.tech/docs/motion/gradient-text): Free, copy-pasteable Tailwind CSS & Framer Motion Gradient Text component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Image Trail](https://www.businesswish.tech/docs/motion/image-trail): Free, copy-pasteable Framer Motion & Tailwind CSS Image Trail component. Accessible, responsive, fully customizable, and dark-mode ready.
+- [Magnetic Element](https://www.businesswish.tech/docs/motion/magnetic-element): Free, copy-pasteable Tailwind CSS & Framer Motion Magnetic Element component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Marquee](https://www.businesswish.tech/docs/motion/marquee): Free, copy-pasteable Tailwind CSS & Framer Motion Marquee component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Morphing Text](https://www.businesswish.tech/docs/motion/morphing-text): Free, copy-pasteable Tailwind CSS & Framer Motion Morphing Text component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Number Ticker](https://www.businesswish.tech/docs/motion/number-ticker): Free, copy-pasteable Tailwind CSS & Framer Motion Number Ticker component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Scratch Card](https://www.businesswish.tech/docs/motion/scratch-card): Free, copy-pasteable Tailwind CSS & Framer Motion Scratch Card component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Scroll Progress](https://www.businesswish.tech/docs/motion/scroll-progress): Free, copy-pasteable Tailwind CSS & Framer Motion Scroll Progress component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Shimmer Button](https://www.businesswish.tech/docs/motion/shimmer-button): Free, copy-pasteable Tailwind CSS & Framer Motion Shimmer Button component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Sliding Tabs](https://www.businesswish.tech/docs/motion/sliding-tabs): Free, copy-pasteable Tailwind CSS & Framer Motion Sliding Tabs component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Split Text](https://www.businesswish.tech/docs/motion/split-text): Free, copy-pasteable Tailwind CSS & Framer Motion Split Text component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Text Reveal](https://www.businesswish.tech/docs/motion/text-reveal): Free, copy-pasteable Tailwind CSS & Framer Motion Text Reveal component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Text Shimmer](https://www.businesswish.tech/docs/motion/text-shimmer): Free, copy-pasteable Tailwind CSS & Framer Motion Text Shimmer component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Tilt Card](https://www.businesswish.tech/docs/motion/tilt-card): Free, copy-pasteable Tailwind CSS & Framer Motion Tilt Card component. Accessible, fully responsive, dark-mode ready, and customizable.
+- [Word Rotate](https://www.businesswish.tech/docs/motion/word-rotate): Free, copy-pasteable Tailwind CSS & Framer Motion Word Rotate component. Accessible, fully responsive, dark-mode ready, and customizable.
 
 ## Page Templates
-
-Full page layout templates ready to use.
-
-- [Error Pages (404)](https://www.businesswish.tech/docs/pages/404): Custom 404 error page designs
-- [Blog List](https://www.businesswish.tech/docs/pages/blog-list): Blog listing page templates
-
-## Optional
-
-- [Privacy Policy](https://www.businesswish.tech/privacy)
-- [Terms of Service](https://www.businesswish.tech/terms)
+- [Error Pages (404)](https://www.businesswish.tech/docs/pages/404): Custom 404 error page layouts.
+- [Blog List](https://www.businesswish.tech/docs/pages/blog-list): Blog list and article grid page templates.
