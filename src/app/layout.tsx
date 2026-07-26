@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "./components/theme-provider";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -15,10 +15,19 @@ import {
   generateOrganizationSchema,
 } from "../lib/seo";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
+const satoshi = localFont({
+  src: [
+    {
+      path: "../../public/fonts/satoshi/Satoshi-Variable.woff2",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/satoshi/Satoshi-VariableItalic.woff2",
+      style: "italic",
+    },
+  ],
+  variable: "--font-satoshi",
   display: "swap",
-  variable: "--font-jakarta",
 });
 
 // Enhanced JSON-LD schema data
@@ -123,19 +132,13 @@ export default function RootLayout({
   const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
 
   return (
-    <html lang="en" className={jakarta.variable}>
+    <html lang="en" className={satoshi.variable}>
       <head>
         {/* Mobile optimization */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://vercel.live" />
@@ -166,7 +169,7 @@ export default function RootLayout({
         />
 
       </head>
-      <body className={jakarta.className}>
+      <body className={satoshi.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

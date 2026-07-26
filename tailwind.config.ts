@@ -9,6 +9,9 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['var(--font-satoshi)', 'sans-serif'],
+			},
 			screens: {
 				'xs': '475px',
 			},
