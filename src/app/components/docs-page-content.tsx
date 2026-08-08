@@ -199,7 +199,10 @@ export function DocsPageContent({
                 {/* Mobile Newsletter Card */}
                 <div className="rounded-xl border border-stone-800 bg-stone-950 p-3 text-white">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-semibold text-[#FF3903]">AI Newsletter</span>
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
+                      <span className="inline-block h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-[#FF3903] animate-pulse" />
+                      AI Newsletter
+                    </span>
                     <a
                       href="https://howmachinesthink.substack.com"
                       target="_blank"
@@ -358,8 +361,8 @@ export function DocsPageContent({
 
                 {/* ── Black Card: How Machines Think AI Newsletter ── */}
                 <div className="rounded-2xl border border-stone-800 bg-stone-950 p-4 text-white shadow-md dark:border-stone-800 dark:bg-stone-900/90">
-                  <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FF3903] animate-pulse" />
+                  <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
+                    <span className="inline-block h-2 w-2 shrink-0 aspect-square rounded-full bg-[#FF3903] animate-pulse" />
                     AI Newsletter
                   </div>
                   <h4 className="mt-2 text-xs font-semibold text-white">

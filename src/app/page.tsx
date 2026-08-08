@@ -241,7 +241,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-4">
                 <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-100/80 px-3 py-1 text-xs font-medium text-stone-700 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="inline-block h-2 w-2 shrink-0 aspect-square rounded-full bg-emerald-500 animate-pulse" />
                   Sponsor Slot Available · 500+ Monthly Developers
                 </div>
                 <h2 className="text-3xl font-semibold tracking-[-0.03em] text-stone-900 dark:text-stone-100 sm:text-4xl">
