@@ -24,6 +24,7 @@ const navLinks = [
   { href: "/docs/components/accordion", label: "Components", matchPath: "/docs/components" },
   { href: "/docs/motion/text-reveal", label: "Motion", matchPath: "/docs/motion" },
   { href: "/blog", label: "Blog", matchPath: "/blog" },
+  { href: "https://howmachinesthink.substack.com", label: "AI Newsletter", matchPath: "/substack", external: true },
 ];
 
 const Navbar = () => {
@@ -56,6 +57,7 @@ const Navbar = () => {
             <Link
               key={link.label}
               href={link.href}
+              {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className={`text-sm font-medium transition-colors ${
                 isActive(link.matchPath)
                   ? "text-stone-900 dark:text-white"
@@ -146,6 +148,17 @@ const Navbar = () => {
                         <BookOpen className="h-4 w-4" />
                         Blog
                       </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <a
+                        href="https://howmachinesthink.substack.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
+                      >
+                        <WandSparkles className="h-4 w-4 text-[#FF3903]" />
+                        AI Newsletter
+                      </a>
                     </SheetClose>
                   </nav>
 

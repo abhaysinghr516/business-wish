@@ -104,6 +104,25 @@ export default function HeroSection() {
 
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center text-center">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+          className="mb-6 flex flex-wrap items-center justify-center gap-2"
+        >
+          <a
+            href="https://howmachinesthink.substack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-full border border-stone-200/80 bg-stone-50/90 px-3.5 py-1 text-xs text-stone-600 backdrop-blur-sm transition-all hover:border-stone-300 hover:bg-stone-100 hover:text-stone-900 dark:border-white/10 dark:bg-white/[0.04] dark:text-stone-300 dark:hover:border-white/20 dark:hover:bg-white/[0.08] dark:hover:text-white"
+          >
+            <span className="flex h-1.5 w-1.5 rounded-full bg-[#FF3903]" />
+            <span>Read our AI Newsletter: <strong className="font-semibold text-stone-900 dark:text-white">How Machines Think</strong></span>
+            <ArrowRight className="h-3 w-3 text-stone-400 transition-transform group-hover:translate-x-0.5 group-hover:text-stone-900 dark:group-hover:text-white" />
+          </a>
+        </motion.div>
+
         <motion.h1
           className="mb-6 max-w-full text-5xl font-semibold leading-[1.04] tracking-[-0.045em] text-stone-900 dark:text-stone-100 sm:text-6xl lg:text-[4.5rem]"
           variants={fadeUp}

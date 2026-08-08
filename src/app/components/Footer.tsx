@@ -6,23 +6,24 @@ const footerLinks = {
   Resources: [
     { label: "Components", href: "/docs/components/accordion" },
     { label: "Motion", href: "/docs/motion/text-reveal" },
-    { label: "Documentation", href: "/docs/components/accordion" },
+    { label: "How Machines Think (AI)", href: "https://howmachinesthink.substack.com" },
   ],
   "Useful Links": [
     { label: "License", href: "https://github.com/abhaysinghr516/business-wish/blob/main/LICENSE" },
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
   ],
-  "Help and Support": [
+  "Help & Sponsors": [
+    { label: "Sponsor Business Wish", href: "mailto:abhaysinghr516@gmail.com?subject=Sponsorship%20Inquiry%20-%20Business%20Wish" },
     { label: "GitHub Issues", href: "https://github.com/abhaysinghr516/business-wish/issues" },
-    { label: "Email", href: "mailto:rathoreabhay1234@gmail.com" },
+    { label: "Contact (Abhay)", href: "mailto:abhaysinghr516@gmail.com" },
   ],
 };
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/abhaysinghr516/business-wish", label: "GitHub" },
   { icon: Twitter, href: "https://x.com/abhaysinghr1", label: "Twitter" },
-  { icon: Mail, href: "mailto:rathoreabhay1234@gmail.com", label: "Email" },
+  { icon: Mail, href: "mailto:abhaysinghr516@gmail.com", label: "Email" },
 ];
 
 const Footer = () => {

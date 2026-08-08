@@ -234,6 +234,128 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Sponsor Slot Spotlight ── */}
+      <section className="border-b border-stone-200/80 bg-stone-50/50 px-4 py-16 dark:border-stone-800 dark:bg-stone-900/30 sm:px-6 sm:py-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-3xl border border-stone-200/90 bg-gradient-to-b from-white to-stone-50/80 p-8 shadow-sm dark:border-stone-800 dark:from-stone-900/80 dark:to-stone-950/80 sm:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-100/80 px-3 py-1 text-xs font-medium text-stone-700 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Sponsor Slot Available · 500+ Monthly Developers
+                </div>
+                <h2 className="text-3xl font-semibold tracking-[-0.03em] text-stone-900 dark:text-stone-100 sm:text-4xl">
+                  Put your product in front of active React builders
+                </h2>
+                <p className="text-stone-600 dark:text-stone-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                  Reach 500+ monthly organic frontend and fullstack developers building Next.js and React products. Reserve prime hero banner and component docs visibility.
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-medium text-stone-500 dark:text-stone-400">
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FF3903]">✓</span> 100% Organic Developer Traffic
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FF3903]">✓</span> Prominent Banner Placement
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-[#FF3903]">✓</span> Flexible Monthly Sponsorship
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 flex flex-col items-center sm:items-end justify-center">
+                <div className="w-full max-w-md rounded-2xl border border-dashed border-stone-300 bg-white/60 p-6 text-center dark:border-stone-700 dark:bg-stone-900/60 backdrop-blur-sm">
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-300">
+                    <Zap className="h-5 w-5 text-[#FF3903]" />
+                  </div>
+                  <h3 className="font-semibold text-stone-900 dark:text-stone-100 text-sm">
+                    Featured Sponsor Slot
+                  </h3>
+                  <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+                    Your logo, headline, and link featured here & across component docs.
+                  </p>
+                  <div className="mt-5">
+                    <a
+                      href="mailto:abhaysinghr516@gmail.com?subject=Sponsorship%20Inquiry%20-%20Business%20Wish&body=Hi%20Abhay,%0A%0AI'm%20interested%20in%20reserving%20the%20sponsor%20slot%20on%20Business%20Wish.%0A%0ACompany%20/%20Product:%0AWebsite%20URL:%0A"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-stone-900 px-5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-stone-800 active:scale-98 dark:bg-white dark:text-stone-900 dark:hover:bg-stone-200"
+                    >
+                      <span>Claim Sponsor Spot</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                  <p className="mt-2 text-[11px] text-stone-400 dark:text-stone-500">
+                    Direct inquiries: abhaysinghr516@gmail.com
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Substack Newsletter Spotlight ── */}
+      <section className="border-b border-stone-200/80 bg-white px-4 py-16 dark:border-stone-800 dark:bg-stone-950 sm:px-6 sm:py-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-600 dark:border-stone-800 dark:bg-white/[0.03] dark:text-stone-300">
+                <span>Featured AI Publication</span>
+              </div>
+              <h2 className="text-3xl font-semibold tracking-[-0.035em] text-stone-900 dark:text-stone-100 sm:text-4xl">
+                How Machines Think
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-stone-600 dark:text-stone-400">
+                Before AI, there was logic. Before neural networks, there was mathematics. Discover the ideas and breakthroughs behind modern artificial intelligence.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2 text-xs">
+                <span className="rounded-md bg-stone-100 px-2.5 py-1 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                  AI Architecture
+                </span>
+                <span className="rounded-md bg-stone-100 px-2.5 py-1 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                  Neural Networks
+                </span>
+                <span className="rounded-md bg-stone-100 px-2.5 py-1 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+                  Deep Tech Logic
+                </span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="rounded-2xl border border-stone-200/90 bg-stone-50/60 p-6 dark:border-stone-800 dark:bg-stone-900/40">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="h-8 w-8 rounded-lg bg-[#FF3903]/10 flex items-center justify-center text-[#FF3903] font-bold text-sm">
+                    AI
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-stone-900 dark:text-white">
+                      Subscribe on Substack
+                    </h3>
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      Free weekly engineering insights
+                    </p>
+                  </div>
+                </div>
+                <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed mb-4">
+                  Join developers exploring the foundational math, logic, and systems behind artificial intelligence.
+                </p>
+                <div className="flex gap-2">
+                  <a
+                    href="https://howmachinesthink.substack.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#FF3903] px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-[#e03202] active:scale-98"
+                  >
+                    <span>Read on Substack</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Community CTA (dark) ── */}
       <section className="border-b border-stone-800 bg-stone-950 dark:bg-black">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-stone-800">

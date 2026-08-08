@@ -12,6 +12,8 @@ import {
   Component,
   WandSparkles,
   LayoutTemplate,
+  ArrowRight,
+  Zap,
 } from "lucide-react";
 import { Typography } from "./typography";
 import { cn } from "@/lib/utils";
@@ -192,6 +194,37 @@ export function DocsPageContent({
                   </a>
                 );
               })}
+
+              <div className="pt-4 space-y-3">
+                {/* Mobile Newsletter Card */}
+                <div className="rounded-xl border border-stone-800 bg-stone-950 p-3 text-white">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-semibold text-[#FF3903]">AI Newsletter</span>
+                    <a
+                      href="https://howmachinesthink.substack.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-medium text-stone-300 underline"
+                    >
+                      Read &rarr;
+                    </a>
+                  </div>
+                  <div className="text-xs font-semibold text-white mt-1">How Machines Think</div>
+                </div>
+
+                {/* Mobile Sponsor Card */}
+                <div className="rounded-xl border border-dashed border-stone-300 bg-white/70 p-3 text-center dark:border-stone-700 dark:bg-stone-900">
+                  <span className="text-[11px] font-medium text-stone-600 dark:text-stone-300">
+                    Sponsor Business Wish (500+ Devs)
+                  </span>
+                  <a
+                    href="mailto:abhaysinghr516@gmail.com?subject=Sponsorship%20Inquiry%20-%20Business%20Wish"
+                    className="mt-1 block text-xs font-semibold text-[#FF3903] underline"
+                  >
+                    Claim this spot &rarr;
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </div>
@@ -322,6 +355,47 @@ export function DocsPageContent({
                     );
                   })}
                 </nav>
+
+                {/* ── Black Card: How Machines Think AI Newsletter ── */}
+                <div className="rounded-2xl border border-stone-800 bg-stone-950 p-4 text-white shadow-md dark:border-stone-800 dark:bg-stone-900/90">
+                  <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#FF3903] animate-pulse" />
+                    AI Newsletter
+                  </div>
+                  <h4 className="mt-2 text-xs font-semibold text-white">
+                    How Machines Think
+                  </h4>
+                  <p className="mt-1 text-[11px] leading-relaxed text-stone-400">
+                    Deep dives into logic, mathematics & neural networks.
+                  </p>
+                  <a
+                    href="https://howmachinesthink.substack.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex w-full items-center justify-between rounded-lg bg-stone-800/90 px-3 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-stone-700 hover:text-white"
+                  >
+                    <span>Read on Substack</span>
+                    <ArrowRight className="h-3 w-3 text-stone-400" />
+                  </a>
+                </div>
+
+                {/* ── Placeholder Sponsor Card ── */}
+                <div className="rounded-2xl border border-dashed border-stone-200/90 bg-stone-50/70 p-3.5 text-center dark:border-stone-800 dark:bg-stone-950/40">
+                  <div className="flex items-center justify-center gap-1 text-[10px] font-medium text-stone-500 dark:text-stone-400">
+                    <Zap className="h-3 w-3 text-[#FF3903]" />
+                    <span>Sponsor Spot · 500+ Devs</span>
+                  </div>
+                  <p className="mt-1.5 text-[11px] text-stone-600 dark:text-stone-400 leading-snug">
+                    Promote your developer tool to active React builders.
+                  </p>
+                  <a
+                    href="mailto:abhaysinghr516@gmail.com?subject=Sponsorship%20Inquiry%20-%20Business%20Wish&body=Hi%20Abhay,%0A%0AI'm%20interested%20in%20reserving%20the%20sponsor%20slot%20on%20Business%20Wish.%0A%0ACompany%20/%20Product:%0A"
+                    className="mt-2.5 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-stone-300/80 bg-white px-3 py-1 text-[11px] font-medium text-stone-800 transition-colors hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:bg-stone-800"
+                  >
+                    <span>Claim Sponsor Spot</span>
+                    <ArrowRight className="h-3 w-3 text-stone-400" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
