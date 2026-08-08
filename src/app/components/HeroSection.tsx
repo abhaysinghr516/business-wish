@@ -29,9 +29,10 @@ function CLISnippet() {
       <span className="min-w-0 text-stone-600 dark:text-stone-300 whitespace-nowrap overflow-hidden text-ellipsis">
         {command}
       </span>
+      <div className="h-4 w-px bg-stone-200/80 dark:bg-white/[0.09] flex-shrink-0" />
       <button
         onClick={handleCopy}
-        className="flex-shrink-0 rounded-md p-1 text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700 dark:hover:bg-stone-800 dark:hover:text-stone-200"
+        className="flex-shrink-0 rounded-md bg-stone-100 p-1.5 text-stone-500 transition-colors hover:bg-stone-200 hover:text-stone-900 active:scale-95 dark:bg-stone-800 dark:text-stone-400 dark:hover:bg-stone-700 dark:hover:text-stone-200"
         aria-label="Copy command"
       >
         {copied ? (
