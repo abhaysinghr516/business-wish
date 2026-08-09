@@ -26,13 +26,47 @@ export default async function BlogPage() {
     <div className="w-full bg-white dark:bg-stone-950 min-h-screen">
       <div className="max-w-4xl mx-auto px-6 py-16 sm:py-24">
         {/* Header */}
-        <div className="border-b border-stone-200 dark:border-stone-850 pb-10 mb-12 animate-fade-in-up min-w-0 overflow-hidden">
+        <div className="border-b border-stone-200 dark:border-stone-850 pb-10 mb-8 animate-fade-in-up min-w-0 overflow-hidden">
           <h1 className="text-4xl font-bold tracking-tight text-stone-900 dark:text-white">
             Blog
           </h1>
           <p className="text-stone-500 dark:text-stone-400 mt-3 text-base sm:text-lg font-light break-words">
             Insights, guides, and tutorials on Tailwind CSS, React, and frontend engineering.
           </p>
+        </div>
+
+        {/* Featured Newsletter Spotlight */}
+        <div className="mb-10 rounded-2xl border border-stone-200/90 bg-stone-50/60 p-5 sm:p-6 dark:border-stone-800 dark:bg-stone-900/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/how-machines-think-logo.png"
+              alt="How Machines Think"
+              width={48}
+              height={48}
+              className="rounded-xl border border-stone-200 dark:border-stone-800 shrink-0 object-cover"
+            />
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
+                <span className="inline-block h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-[#FF3903] animate-pulse" />
+                Featured AI Publication
+              </div>
+              <h3 className="text-sm sm:text-base font-semibold text-stone-900 dark:text-white">
+                How Machines Think
+              </h3>
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5 max-w-md leading-relaxed">
+                Explore the mathematics, logic, and systems behind artificial intelligence.
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://howmachinesthink.substack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 shrink-0 rounded-xl bg-[#FF3903] px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-[#e03202] active:scale-98"
+          >
+            <span>Subscribe on Substack</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
         </div>
 
         {sortedBlogs.length === 0 ? (

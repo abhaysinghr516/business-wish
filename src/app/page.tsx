@@ -10,6 +10,7 @@ import {
   Layout,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import HeroSection from "./components/HeroSection";
 import StatsSection from "./components/StatsSection";
@@ -300,11 +301,27 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-600 dark:border-stone-800 dark:bg-white/[0.03] dark:text-stone-300">
+                <Image
+                  src="/how-machines-think-logo.png"
+                  alt="How Machines Think"
+                  width={16}
+                  height={16}
+                  className="rounded-full object-cover"
+                />
                 <span>Featured AI Publication</span>
               </div>
-              <h2 className="text-3xl font-semibold tracking-[-0.035em] text-stone-900 dark:text-stone-100 sm:text-4xl">
-                How Machines Think
-              </h2>
+              <div className="flex items-center gap-4">
+                <Image
+                  src="/how-machines-think-logo.png"
+                  alt="How Machines Think Logo"
+                  width={52}
+                  height={52}
+                  className="rounded-2xl border border-stone-200/80 dark:border-stone-800 shadow-sm shrink-0 object-cover"
+                />
+                <h2 className="text-3xl font-semibold tracking-[-0.035em] text-stone-900 dark:text-stone-100 sm:text-4xl">
+                  How Machines Think
+                </h2>
+              </div>
               <p className="mt-4 text-base leading-relaxed text-stone-600 dark:text-stone-400">
                 Before AI, there was logic. Before neural networks, there was mathematics. Discover the ideas and breakthroughs behind modern artificial intelligence.
               </p>
@@ -324,9 +341,13 @@ export default function HomePage() {
             <div className="lg:col-span-5 flex flex-col justify-center">
               <div className="rounded-2xl border border-stone-200/90 bg-stone-50/60 p-6 dark:border-stone-800 dark:bg-stone-900/40">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="h-8 w-8 rounded-lg bg-[#FF3903]/10 flex items-center justify-center text-[#FF3903] font-bold text-sm">
-                    AI
-                  </div>
+                  <Image
+                    src="/how-machines-think-logo.png"
+                    alt="How Machines Think Logo"
+                    width={40}
+                    height={40}
+                    className="rounded-xl border border-stone-200 dark:border-stone-800 shrink-0 object-cover"
+                  />
                   <div>
                     <h3 className="text-sm font-semibold text-stone-900 dark:text-white">
                       Subscribe on Substack

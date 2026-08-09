@@ -19,6 +19,7 @@ import { Typography } from "./typography";
 import { cn } from "@/lib/utils";
 import { page_routes } from "@/app/lib/routes-config";
 import Link from "next/link";
+import Image from "next/image";
 
 interface DocsPageContentProps {
   title: string;
@@ -198,7 +199,7 @@ export function DocsPageContent({
               <div className="pt-4 space-y-3">
                 {/* Mobile Newsletter Card */}
                 <div className="rounded-xl border border-stone-800 bg-stone-950 p-3 text-white">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-2">
                     <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
                       <span className="inline-block h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-[#FF3903] animate-pulse" />
                       AI Newsletter
@@ -212,7 +213,16 @@ export function DocsPageContent({
                       Read &rarr;
                     </a>
                   </div>
-                  <div className="text-xs font-semibold text-white mt-1">How Machines Think</div>
+                  <div className="flex items-center gap-2.5">
+                    <Image
+                      src="/how-machines-think-logo.png"
+                      alt="How Machines Think"
+                      width={28}
+                      height={28}
+                      className="rounded-lg border border-stone-800 shrink-0 object-cover"
+                    />
+                    <div className="text-xs font-semibold text-white">How Machines Think</div>
+                  </div>
                 </div>
 
                 {/* Mobile Sponsor Card */}
@@ -308,8 +318,8 @@ export function DocsPageContent({
                       Next
                     </span>
                     <div className="flex items-center justify-end gap-2">
-                       <span className="font-medium text-[15px]">{nextPage.title}</span>
-                       <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <span className="font-medium text-[15px]">{nextPage.title}</span>
+                      <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>
                 ) : (
@@ -346,12 +356,12 @@ export function DocsPageContent({
                           level === 2
                             ? "pl-4"
                             : level === 3
-                            ? "pl-8"
-                            : "pl-12"
+                              ? "pl-8"
+                              : "pl-12"
                         )}
                       >
                         {isActive && (
-                           <span className="absolute left-[-0.5px] top-1/2 -translate-y-1/2 h-4 w-[2px] rounded-full bg-neutral-900 dark:bg-white transition-all duration-300" />
+                          <span className="absolute left-[-0.5px] top-1/2 -translate-y-1/2 h-4 w-[2px] rounded-full bg-neutral-900 dark:bg-white transition-all duration-300" />
                         )}
                         <span className="line-clamp-2">{text}</span>
                       </a>
@@ -365,10 +375,21 @@ export function DocsPageContent({
                     <span className="inline-block h-2 w-2 shrink-0 aspect-square rounded-full bg-[#FF3903] animate-pulse" />
                     AI Newsletter
                   </div>
-                  <h4 className="mt-2 text-xs font-semibold text-white">
-                    How Machines Think
-                  </h4>
-                  <p className="mt-1 text-[11px] leading-relaxed text-stone-400">
+                  <div className="mt-3 flex items-center gap-3">
+                    <Image
+                      src="/how-machines-think-logo.png"
+                      alt="How Machines Think Logo"
+                      width={36}
+                      height={36}
+                      className="rounded-xl border border-stone-800 shrink-0 object-cover"
+                    />
+                    <div>
+                      <h4 className="text-xs font-semibold text-white">
+                        How Machines Think
+                      </h4>
+                    </div>
+                  </div>
+                  <p className="mt-2.5 text-[11px] leading-relaxed text-stone-400">
                     Deep dives into logic, mathematics & neural networks.
                   </p>
                   <a

@@ -4,7 +4,7 @@ import { generateSEO, generateArticleSchema } from "@/lib/seo";
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 
 type PageProps = {
   params: { slug: string };
@@ -109,6 +109,42 @@ export default async function BlogPostPage({ params: { slug } }: PageProps) {
         <section className="prose prose-stone dark:prose-invert max-w-none prose-base leading-relaxed prose-headings:font-bold prose-headings:tracking-tight dark:prose-headings:text-stone-100 prose-headings:text-stone-950 prose-a:text-[#FF3903] dark:prose-a:text-[#FF3903] hover:prose-a:underline prose-strong:text-stone-950 dark:prose-strong:text-white prose-code:text-[#FF3903] dark:prose-code:text-[#FF3903] prose-code:before:content-none prose-code:before:content-[''] prose-code:after:content-none prose-code:after:content-[''] prose-pre:bg-transparent dark:prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0 prose-pre:border-none prose-pre:shadow-none">
           {content}
         </section>
+
+        {/* Bottom Newsletter Spotlight */}
+        <div className="mt-16 pt-8 border-t border-stone-200 dark:border-stone-850">
+          <div className="rounded-2xl border border-stone-200/90 bg-stone-50/60 p-6 dark:border-stone-800 dark:bg-stone-900/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/how-machines-think-logo.png"
+                alt="How Machines Think"
+                width={48}
+                height={48}
+                className="rounded-xl border border-stone-200 dark:border-stone-800 shrink-0 object-cover"
+              />
+              <div>
+                <div className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#FF3903]">
+                  <span className="inline-block h-1.5 w-1.5 shrink-0 aspect-square rounded-full bg-[#FF3903] animate-pulse" />
+                  AI Newsletter
+                </div>
+                <h3 className="text-base font-semibold text-stone-900 dark:text-white mt-0.5">
+                  How Machines Think
+                </h3>
+                <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 max-w-md leading-relaxed">
+                  Deep dives into logic, mathematics & neural networks. Delivered weekly to your inbox.
+                </p>
+              </div>
+            </div>
+            <a
+              href="https://howmachinesthink.substack.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 shrink-0 rounded-xl bg-[#FF3903] px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-[#e03202] active:scale-98"
+            >
+              <span>Read on Substack</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
       </div>
     </article>
   );

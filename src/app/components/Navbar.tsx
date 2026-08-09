@@ -156,7 +156,13 @@ const Navbar = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900"
                       >
-                        <WandSparkles className="h-4 w-4 text-[#FF3903]" />
+                        <Image
+                          src="/how-machines-think-logo.png"
+                          alt="How Machines Think"
+                          width={18}
+                          height={18}
+                          className="rounded object-cover"
+                        />
                         AI Newsletter
                       </a>
                     </SheetClose>
