@@ -3088,68 +3088,270 @@ const InteractiveContextMenu: React.FC = () => {
 - **Description**: Free, copy-pasteable Tailwind CSS Data Table component. Accessible, fully responsive, dark-mode ready, and customizable.
 - **CLI Command**: `npx @abhaysinghr516/business-wish add data-table`
 - **Documentation URL**: https://www.businesswish.tech/docs/components/data-table
+- **Dependencies**: lucide-react
 
 ### File: `DataTable.tsx`
 
 ```tsx
-import React from "react";
+"use client";
 
-const people = [
+
+import React, { useState, useMemo } from "react";
+import {
+  Search,
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight,
+  UserPlus,
+} from "lucide-react";
+
+interface Member {
+  id: string;
+  name: string;
+  email: string;
+  role: "Owner" | "Admin" | "Editor" | "Viewer";
+  department: string;
+  status: "Active" | "Invited" | "Suspended";
+  lastActive: string;
+  avatarColor: string;
+}
+
+const membersData: Member[] = [
   {
-    name: "John Doe",
-    title: "Frontend Developer",
-    email: "john.doe@example.com",
-    role: "Member",
-  },
-  {
-    name: "Jane Smith",
-    title: "Backend Developer",
-    email: "jane.smith@example.com",
-    role: "Admin",
-  },
-  {
-    name: "Samuel Brown",
-    title: "UI/UX Designer",
-    email: "samuel.brown@example.com",
-    role: "Member",
-  },
-  {
-    name: "Sara Wilson",
-    title: "Project Manager",
-    email: "sara.wilson@example.com",
+    id: "mem-1",
+    name: "Sarah Jenkins",
+    email: "sarah.j@example.com",
     role: "Owner",
+    department: "Product Engineering",
+    status: "Active",
+    lastActive: "2 mins ago",
+    avatarColor: "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950",
+  },
+  {
+    id: "mem-2",
+    name: "John Doe",
+    email: "john.doe@example.com",
+    role: "Admin",
+    department: "Frontend Systems",
+    status: "Active",
+    lastActive: "15 mins ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
+  },
+  {
+    id: "mem-3",
+    name: "Elena Rostova",
+    email: "elena.r@example.com",
+    role: "Editor",
+    department: "Security & Cloud",
+    status: "Active",
+    lastActive: "1 hour ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
+  },
+  {
+    id: "mem-4",
+    name: "Alex Rivera",
+    email: "alex.r@example.com",
+    role: "Editor",
+    department: "Platform Architecture",
+    status: "Invited",
+    lastActive: "1 day ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
+  },
+  {
+    id: "mem-5",
+    name: "Marcus Chen",
+    email: "marcus.c@example.com",
+    role: "Viewer",
+    department: "Data Analytics",
+    status: "Suspended",
+    lastActive: "3 days ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
   },
 ];
 
 const BasicDataTable: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [roleFilter, setRoleFilter] = useState<string>("All");
+
+  const filteredMembers = useMemo(() => {
+    return membersData.filter((member) => {
+      const matchesSearch =
+        member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.department.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesRole = roleFilter === "All" || member.role === roleFilter;
+      return matchesSearch && matchesRole;
+    });
+  }, [searchTerm, roleFilter]);
+
+  const getStatusBadge = (status: Member["status"]) => {
+    switch (status) {
+      case "Active":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Active
+          </span>
+        );
+      case "Invited":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+            Invited
+          </span>
+        );
+      case "Suspended":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-500/10 text-neutral-700 dark:text-neutral-400 border border-neutral-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+            Suspended
+          </span>
+        );
+    }
+  };
+
+  const getRoleBadge = (role: Member["role"]) => {
+    if (role === "Owner" || role === "Admin") {
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 border border-neutral-900 dark:border-white">
+          {role}
+        </span>
+      );
+    }
+    return (
+      <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
+        {role}
+      </span>
+    );
+  };
+
   return (
     <div className="w-full max-w-5xl mx-auto my-8">
-      <div className="overflow-hidden rounded-[2rem] border border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 overflow-hidden">
+        {/* Header toolbar */}
+        <div className="p-4 sm:p-5 border-b border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                Team Members
+              </h3>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+                {filteredMembers.length} Total
+              </span>
+            </div>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+              Manage member workspace permissions and account statuses.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <div className="relative flex-1 sm:w-60">
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="text"
+                placeholder="Filter members..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-9 pr-3 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
+              />
+            </div>
+            <button className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 text-xs font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors shrink-0">
+              <UserPlus className="w-3.5 h-3.5" />
+              <span>Invite</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Table content */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
             <thead>
-              <tr className="border-b border-neutral-200/60 dark:border-white/10 bg-neutral-50/50 dark:bg-neutral-900/50 text-neutral-500 dark:text-neutral-400">
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Name</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Title</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Email</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide text-right">Role</th>
+              <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-900/50 text-[11px] font-medium tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
+                <th scope="col" className="px-5 py-3.5">Member</th>
+                <th scope="col" className="px-5 py-3.5">Department</th>
+                <th scope="col" className="px-5 py-3.5">Role</th>
+                <th scope="col" className="px-5 py-3.5">Status</th>
+                <th scope="col" className="px-5 py-3.5 font-mono">Last Active</th>
+                <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200/60 dark:divide-white/10">
-              {people.map((person) => (
-                <tr key={person.email} className="transition-colors">
-                  <td className="px-8 py-5 font-medium text-neutral-900 dark:text-white">{person.name}</td>
-                  <td className="px-8 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
-                  <td className="px-8 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
-                  <td className="px-8 py-5 text-right">
-                    <span className="inline-flex items-center rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900 px-3 py-1 text-xs font-medium text-neutral-800 dark:text-neutral-200">
-                      {person.role}
-                    </span>
+            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-xs">
+              {filteredMembers.length > 0 ? (
+                filteredMembers.map((member) => {
+                  const initials = member.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2);
+
+                  return (
+                    <tr
+                      key={member.id}
+                      className="hover:bg-neutral-50/70 dark:hover:bg-neutral-900/40 transition-colors"
+                    >
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-semibold border border-neutral-200/60 dark:border-neutral-700/60 ${member.avatarColor}`}
+                          >
+                            {initials}
+                          </div>
+                          <div>
+                            <div className="font-medium text-neutral-900 dark:text-neutral-100 text-xs">
+                              {member.name}
+                            </div>
+                            <div className="text-[11px] font-mono text-neutral-400 dark:text-neutral-500">
+                              {member.email}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4 text-neutral-600 dark:text-neutral-300">
+                        {member.department}
+                      </td>
+                      <td className="px-5 py-4">
+                        {getRoleBadge(member.role)}
+                      </td>
+                      <td className="px-5 py-4">
+                        {getStatusBadge(member.status)}
+                      </td>
+                      <td className="px-5 py-4 font-mono text-neutral-500 dark:text-neutral-400 text-[11px]">
+                        {member.lastActive}
+                      </td>
+                      <td className="px-5 py-4 text-right">
+                        <button className="p-1 rounded-md text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                          <MoreHorizontal className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={6} className="px-5 py-8 text-center text-neutral-500 dark:text-neutral-400">
+                    No matching members found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
+        </div>
+
+        {/* Footer pagination bar */}
+        <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50/40 dark:bg-neutral-900/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <span className="text-neutral-500 dark:text-neutral-400 font-mono text-[11px]">
+            Showing 1-{filteredMembers.length} of {membersData.length} records
+          </span>
+          <div className="flex items-center gap-1.5">
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 disabled:opacity-50">
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>Previous</span>
+            </button>
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 disabled:opacity-50">
+              <span>Next</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -3164,64 +3366,265 @@ export default BasicDataTable;
 #### Variant: Basic Data Table
 
 ```tsx
-import React from "react";
+"use client";
 
-const people = [
+
+import React, { useState, useMemo } from "react";
+import {
+  Search,
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight,
+  UserPlus,
+} from "lucide-react";
+
+interface Member {
+  id: string;
+  name: string;
+  email: string;
+  role: "Owner" | "Admin" | "Editor" | "Viewer";
+  department: string;
+  status: "Active" | "Invited" | "Suspended";
+  lastActive: string;
+  avatarColor: string;
+}
+
+const membersData: Member[] = [
   {
-    name: "John Doe",
-    title: "Frontend Developer",
-    email: "john.doe@example.com",
-    role: "Member",
-  },
-  {
-    name: "Jane Smith",
-    title: "Backend Developer",
-    email: "jane.smith@example.com",
-    role: "Admin",
-  },
-  {
-    name: "Samuel Brown",
-    title: "UI/UX Designer",
-    email: "samuel.brown@example.com",
-    role: "Member",
-  },
-  {
-    name: "Sara Wilson",
-    title: "Project Manager",
-    email: "sara.wilson@example.com",
+    id: "mem-1",
+    name: "Sarah Jenkins",
+    email: "sarah.j@example.com",
     role: "Owner",
+    department: "Product Engineering",
+    status: "Active",
+    lastActive: "2 mins ago",
+    avatarColor: "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950",
+  },
+  {
+    id: "mem-2",
+    name: "John Doe",
+    email: "john.doe@example.com",
+    role: "Admin",
+    department: "Frontend Systems",
+    status: "Active",
+    lastActive: "15 mins ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
+  },
+  {
+    id: "mem-3",
+    name: "Elena Rostova",
+    email: "elena.r@example.com",
+    role: "Editor",
+    department: "Security & Cloud",
+    status: "Active",
+    lastActive: "1 hour ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
+  },
+  {
+    id: "mem-4",
+    name: "Alex Rivera",
+    email: "alex.r@example.com",
+    role: "Editor",
+    department: "Platform Architecture",
+    status: "Invited",
+    lastActive: "1 day ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
+  },
+  {
+    id: "mem-5",
+    name: "Marcus Chen",
+    email: "marcus.c@example.com",
+    role: "Viewer",
+    department: "Data Analytics",
+    status: "Suspended",
+    lastActive: "3 days ago",
+    avatarColor: "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200",
   },
 ];
 
 const BasicDataTable: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [roleFilter, setRoleFilter] = useState<string>("All");
+
+  const filteredMembers = useMemo(() => {
+    return membersData.filter((member) => {
+      const matchesSearch =
+        member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.department.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesRole = roleFilter === "All" || member.role === roleFilter;
+      return matchesSearch && matchesRole;
+    });
+  }, [searchTerm, roleFilter]);
+
+  const getStatusBadge = (status: Member["status"]) => {
+    switch (status) {
+      case "Active":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Active
+          </span>
+        );
+      case "Invited":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+            Invited
+          </span>
+        );
+      case "Suspended":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-500/10 text-neutral-700 dark:text-neutral-400 border border-neutral-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+            Suspended
+          </span>
+        );
+    }
+  };
+
+  const getRoleBadge = (role: Member["role"]) => {
+    if (role === "Owner" || role === "Admin") {
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 border border-neutral-900 dark:border-white">
+          {role}
+        </span>
+      );
+    }
+    return (
+      <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
+        {role}
+      </span>
+    );
+  };
+
   return (
     <div className="w-full max-w-5xl mx-auto my-8">
-      <div className="overflow-hidden rounded-[2rem] border border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 overflow-hidden">
+        {/* Header toolbar */}
+        <div className="p-4 sm:p-5 border-b border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                Team Members
+              </h3>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+                {filteredMembers.length} Total
+              </span>
+            </div>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+              Manage member workspace permissions and account statuses.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <div className="relative flex-1 sm:w-60">
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="text"
+                placeholder="Filter members..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-9 pr-3 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
+              />
+            </div>
+            <button className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 text-xs font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors shrink-0">
+              <UserPlus className="w-3.5 h-3.5" />
+              <span>Invite</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Table content */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
             <thead>
-              <tr className="border-b border-neutral-200/60 dark:border-white/10 bg-neutral-50/50 dark:bg-neutral-900/50 text-neutral-500 dark:text-neutral-400">
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Name</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Title</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Email</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide text-right">Role</th>
+              <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-900/50 text-[11px] font-medium tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
+                <th scope="col" className="px-5 py-3.5">Member</th>
+                <th scope="col" className="px-5 py-3.5">Department</th>
+                <th scope="col" className="px-5 py-3.5">Role</th>
+                <th scope="col" className="px-5 py-3.5">Status</th>
+                <th scope="col" className="px-5 py-3.5 font-mono">Last Active</th>
+                <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200/60 dark:divide-white/10">
-              {people.map((person) => (
-                <tr key={person.email} className="transition-colors">
-                  <td className="px-8 py-5 font-medium text-neutral-900 dark:text-white">{person.name}</td>
-                  <td className="px-8 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
-                  <td className="px-8 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
-                  <td className="px-8 py-5 text-right">
-                    <span className="inline-flex items-center rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-neutral-900 px-3 py-1 text-xs font-medium text-neutral-800 dark:text-neutral-200">
-                      {person.role}
-                    </span>
+            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-xs">
+              {filteredMembers.length > 0 ? (
+                filteredMembers.map((member) => {
+                  const initials = member.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2);
+
+                  return (
+                    <tr
+                      key={member.id}
+                      className="hover:bg-neutral-50/70 dark:hover:bg-neutral-900/40 transition-colors"
+                    >
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-semibold border border-neutral-200/60 dark:border-neutral-700/60 ${member.avatarColor}`}
+                          >
+                            {initials}
+                          </div>
+                          <div>
+                            <div className="font-medium text-neutral-900 dark:text-neutral-100 text-xs">
+                              {member.name}
+                            </div>
+                            <div className="text-[11px] font-mono text-neutral-400 dark:text-neutral-500">
+                              {member.email}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4 text-neutral-600 dark:text-neutral-300">
+                        {member.department}
+                      </td>
+                      <td className="px-5 py-4">
+                        {getRoleBadge(member.role)}
+                      </td>
+                      <td className="px-5 py-4">
+                        {getStatusBadge(member.status)}
+                      </td>
+                      <td className="px-5 py-4 font-mono text-neutral-500 dark:text-neutral-400 text-[11px]">
+                        {member.lastActive}
+                      </td>
+                      <td className="px-5 py-4 text-right">
+                        <button className="p-1 rounded-md text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                          <MoreHorizontal className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={6} className="px-5 py-8 text-center text-neutral-500 dark:text-neutral-400">
+                    No matching members found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
+        </div>
+
+        {/* Footer pagination bar */}
+        <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50/40 dark:bg-neutral-900/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <span className="text-neutral-500 dark:text-neutral-400 font-mono text-[11px]">
+            Showing 1-{filteredMembers.length} of {membersData.length} records
+          </span>
+          <div className="flex items-center gap-1.5">
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 disabled:opacity-50">
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>Previous</span>
+            </button>
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 disabled:opacity-50">
+              <span>Next</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -3234,67 +3637,213 @@ export default BasicDataTable;
 #### Variant: Striped Data Table
 
 ```tsx
-import React from "react";
+"use client";
 
-const people = [
+
+import React, { useState } from "react";
+import { Download, CreditCard, FileText } from "lucide-react";
+
+interface Transaction {
+  id: string;
+  invoice: string;
+  description: string;
+  date: string;
+  method: string;
+  amount: string;
+  status: "Settled" | "Processing" | "Refunded";
+}
+
+const transactionsData: Transaction[] = [
   {
-    name: "John Doe",
-    title: "Frontend Developer",
-    email: "john.doe@example.com",
-    role: "Member",
+    id: "tx-101",
+    invoice: "INV-2024-001",
+    description: "Enterprise Subscription - Monthly",
+    date: "2024-12-18",
+    method: "Mastercard •••• 8842",
+    amount: "$4,250.00",
+    status: "Settled",
   },
   {
-    name: "Jane Smith",
-    title: "Backend Developer",
-    email: "jane.smith@example.com",
-    role: "Admin",
+    id: "tx-102",
+    invoice: "INV-2024-002",
+    description: "Cloud Edge CDN Bandwidth",
+    date: "2024-12-16",
+    method: "Visa •••• 1049",
+    amount: "$840.00",
+    status: "Settled",
   },
   {
-    name: "Samuel Brown",
-    title: "UI/UX Designer",
-    email: "samuel.brown@example.com",
-    role: "Member",
+    id: "tx-103",
+    invoice: "INV-2024-003",
+    description: "API Token Compute Cluster",
+    date: "2024-12-14",
+    method: "Visa •••• 1049",
+    amount: "$1,249.50",
+    status: "Processing",
   },
   {
-    name: "Sara Wilson",
-    title: "Project Manager",
-    email: "sara.wilson@example.com",
-    role: "Owner",
+    id: "tx-104",
+    invoice: "INV-2024-004",
+    description: "Organization Seats - 25 Users",
+    date: "2024-12-11",
+    method: "Mastercard •••• 8842",
+    amount: "$525.00",
+    status: "Settled",
+  },
+  {
+    id: "tx-105",
+    invoice: "INV-2024-005",
+    description: "Workspace Storage Addon",
+    date: "2024-12-05",
+    method: "Amex •••• 3012",
+    amount: "$180.00",
+    status: "Refunded",
   },
 ];
 
 const StripedDataTable: React.FC = () => {
+  const [selectedPeriod, setSelectedPeriod] = useState("This Month");
+
+  const getStatusBadge = (status: Transaction["status"]) => {
+    switch (status) {
+      case "Settled":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Settled
+          </span>
+        );
+      case "Processing":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-sky-500/10 text-sky-700 dark:text-sky-400 border border-sky-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-sky-500 animate-pulse" />
+            Processing
+          </span>
+        );
+      case "Refunded":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+            Refunded
+          </span>
+        );
+    }
+  };
+
   return (
     <div className="w-full max-w-5xl mx-auto my-8">
-      <div className="overflow-hidden rounded-[2rem] border border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 overflow-hidden">
+        {/* Header toolbar */}
+        <div className="p-4 sm:p-5 border-b border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                Billing & Invoices
+              </h3>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+                USD
+              </span>
+            </div>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+              Review transaction history and export invoice receipts.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <select
+              value={selectedPeriod}
+              onChange={(e) => setSelectedPeriod(e.target.value)}
+              aria-label="Filter transactions by billing period"
+              className="px-3 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg text-neutral-700 dark:text-neutral-300 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
+            >
+              <option value="This Month">This Month</option>
+              <option value="Last Month">Last Month</option>
+              <option value="All Time">All Time</option>
+            </select>
+
+            <button className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-xs font-medium transition-colors">
+              <Download className="w-3.5 h-3.5 text-neutral-500" />
+              <span>Export</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Striped Table content */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
             <thead>
-              <tr className="border-b border-neutral-200/60 dark:border-white/10 bg-white dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400">
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Name</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Title</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide">Email</th>
-                <th scope="col" className="px-8 py-5 font-medium tracking-wide text-right">Role</th>
+              <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-100/50 dark:bg-neutral-900/60 text-[11px] font-medium tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
+                <th scope="col" className="px-5 py-3.5 font-mono">Invoice</th>
+                <th scope="col" className="px-5 py-3.5">Description</th>
+                <th scope="col" className="px-5 py-3.5 font-mono">Date</th>
+                <th scope="col" className="px-5 py-3.5">Payment Method</th>
+                <th scope="col" className="px-5 py-3.5 font-mono">Amount</th>
+                <th scope="col" className="px-5 py-3.5">Status</th>
+                <th scope="col" className="px-5 py-3.5 text-right">Receipt</th>
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-neutral-950">
-              {people.map((person, index) => (
-                <tr
-                  key={person.email}
-                  className={index % 2 === 0 ? "bg-white dark:bg-neutral-950" : "bg-neutral-50/80 dark:bg-neutral-900/40"}
-                >
-                  <td className="px-8 py-5 font-medium text-neutral-900 dark:text-white">{person.name}</td>
-                  <td className="px-8 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
-                  <td className="px-8 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
-                  <td className="px-8 py-5 text-right">
-                    <span className="inline-flex items-center rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                      {person.role}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-xs">
+              {transactionsData.map((item, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                  <tr
+                    key={item.id}
+                    className={`transition-colors ${
+                      isEven
+                        ? "bg-white dark:bg-neutral-950 hover:bg-neutral-50/80 dark:hover:bg-neutral-900/50"
+                        : "bg-neutral-50/60 dark:bg-neutral-900/30 hover:bg-neutral-100/60 dark:hover:bg-neutral-900/60"
+                    }`}
+                  >
+                    <td className="px-5 py-4">
+                      <span className="font-mono text-xs font-medium text-neutral-900 dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-800/80 px-2 py-0.5 rounded border border-neutral-200/80 dark:border-neutral-700/80">
+                        {item.invoice}
+                      </span>
+                    </td>
+                    <td className="px-5 py-4 font-medium text-neutral-900 dark:text-neutral-100">
+                      {item.description}
+                    </td>
+                    <td className="px-5 py-4 font-mono text-neutral-500 dark:text-neutral-400 text-[11px]">
+                      {item.date}
+                    </td>
+                    <td className="px-5 py-4 text-neutral-600 dark:text-neutral-300">
+                      <div className="flex items-center gap-1.5">
+                        <CreditCard className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+                        <span>{item.method}</span>
+                      </div>
+                    </td>
+                    <td className="px-5 py-4 font-mono font-medium text-neutral-900 dark:text-neutral-100">
+                      {item.amount}
+                    </td>
+                    <td className="px-5 py-4">
+                      {getStatusBadge(item.status)}
+                    </td>
+                    <td className="px-5 py-4 text-right">
+                      <button className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                        <FileText className="w-3.5 h-3.5" />
+                        <span>PDF</span>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
+        </div>
+
+        {/* Footer info bar */}
+        <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50/40 dark:bg-neutral-900/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-400 font-mono text-[11px]">
+            <span>Net Total:</span>
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">$7,044.50 USD</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors text-xs disabled:opacity-50">
+              Previous
+            </button>
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors text-xs disabled:opacity-50">
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -3307,74 +3856,363 @@ export default StripedDataTable;
 #### Variant: Modern Data Table
 
 ```tsx
-import React from "react";
+"use client";
 
-const people = [
+
+import React, { useState, useMemo } from "react";
+import {
+  Search,
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  RefreshCw,
+  Clock,
+} from "lucide-react";
+
+interface ProjectItem {
+  id: string;
+  title: string;
+  category: string;
+  priority: "Critical" | "High" | "Medium" | "Low";
+  progress: number;
+  assignees: string[];
+  status: "In Progress" | "Completed" | "Review";
+  dueDate: string;
+}
+
+const projectsData: ProjectItem[] = [
   {
-    name: "John Doe",
-    title: "Frontend Developer",
-    email: "john.doe@example.com",
-    role: "Member",
+    id: "proj-1",
+    title: "Design System Architecture",
+    category: "Core UI",
+    priority: "High",
+    progress: 88,
+    assignees: ["SJ", "JD"],
+    status: "In Progress",
+    dueDate: "2024-12-24",
   },
   {
-    name: "Jane Smith",
-    title: "Backend Developer",
-    email: "jane.smith@example.com",
-    role: "Admin",
+    id: "proj-2",
+    title: "Auth & RBAC Security Overhaul",
+    category: "Security",
+    priority: "Critical",
+    progress: 100,
+    assignees: ["ER", "AR"],
+    status: "Completed",
+    dueDate: "2024-12-18",
   },
   {
-    name: "Samuel Brown",
-    title: "UI/UX Designer",
-    email: "samuel.brown@example.com",
-    role: "Member",
+    id: "proj-3",
+    title: "Realtime Webhook Dispatcher",
+    category: "Backend",
+    priority: "Medium",
+    progress: 45,
+    assignees: ["MC", "JD"],
+    status: "In Progress",
+    dueDate: "2024-12-30",
   },
   {
-    name: "Sara Wilson",
-    title: "Project Manager",
-    email: "sara.wilson@example.com",
-    role: "Owner",
+    id: "proj-4",
+    title: "Performance & Bundle Audit",
+    category: "Infrastructure",
+    priority: "Low",
+    progress: 25,
+    assignees: ["SJ"],
+    status: "Review",
+    dueDate: "2025-01-05",
+  },
+  {
+    id: "proj-5",
+    title: "Global Search Index Pipeline",
+    category: "Engine",
+    priority: "High",
+    progress: 62,
+    assignees: ["AR", "ER", "MC"],
+    status: "In Progress",
+    dueDate: "2025-01-12",
   },
 ];
 
 const ModernDataTable: React.FC = () => {
+  const [selectedIds, setSelectedIds] = useState<string[]>(["proj-1"]);
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((item) => {
+      const matchesFilter =
+        activeFilter === "All" || item.status === activeFilter;
+      const matchesSearch =
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesFilter && matchesSearch;
+    });
+  }, [activeFilter, searchQuery]);
+
+  const isAllSelected =
+    filteredProjects.length > 0 &&
+    filteredProjects.every((p) => selectedIds.includes(p.id));
+
+  const toggleSelectAll = () => {
+    if (isAllSelected) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredProjects.map((p) => p.id));
+    }
+  };
+
+  const toggleSelectRow = (id: string) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const getPriorityBadge = (priority: ProjectItem["priority"]) => {
+    switch (priority) {
+      case "Critical":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20">
+            Critical
+          </span>
+        );
+      case "High":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+            High
+          </span>
+        );
+      case "Medium":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20">
+            Medium
+          </span>
+        );
+      case "Low":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+            Low
+          </span>
+        );
+    }
+  };
+
+  const getStatusChip = (status: ProjectItem["status"]) => {
+    switch (status) {
+      case "Completed":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+            <Check className="w-3 h-3" />
+            Completed
+          </span>
+        );
+      case "In Progress":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 border border-neutral-900 dark:border-white">
+            <RefreshCw className="w-3 h-3 animate-spin text-white dark:text-neutral-900" />
+            In Progress
+          </span>
+        );
+      case "Review":
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/20">
+            <Clock className="w-3 h-3" />
+            Review
+          </span>
+        );
+    }
+  };
+
   return (
     <div className="w-full max-w-5xl mx-auto my-8">
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm whitespace-nowrap">
-          <thead>
-            <tr className="border-b border-neutral-200/80 dark:border-white/10 text-neutral-400 dark:text-neutral-500">
-              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px]">Name</th>
-              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px]">Title</th>
-              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px]">Email</th>
-              <th scope="col" className="px-4 py-4 font-medium uppercase tracking-wider text-[11px] text-right">Role</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-neutral-100 dark:divide-white/5">
-            {people.map((person) => (
-              <tr key={person.email} className="group hover:bg-neutral-50/50 dark:hover:bg-neutral-900/30 transition-colors duration-200 rounded-2xl">
-                <td className="px-4 py-5 font-semibold text-neutral-900 dark:text-white">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-medium text-neutral-600 dark:text-neutral-300">
-                      {person.name.charAt(0)}
-                    </div>
-                    {person.name}
-                  </div>
-                </td>
-                <td className="px-4 py-5 text-neutral-600 dark:text-neutral-300">{person.title}</td>
-                <td className="px-4 py-5 text-neutral-500 dark:text-neutral-400">{person.email}</td>
-                <td className="px-4 py-5 text-right">
-                  <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${
-                    person.role === 'Admin' || person.role === 'Owner' 
-                      ? 'bg-neutral-900 text-white ring-neutral-900 dark:bg-white dark:text-neutral-900 dark:ring-white' 
-                      : 'bg-neutral-50 text-neutral-700 ring-neutral-200 dark:bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800'
-                  }`}>
-                    {person.role}
+      <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 overflow-hidden">
+        {/* Top filter & action bar */}
+        <div className="p-4 sm:p-5 border-b border-neutral-200 dark:border-neutral-800 space-y-3.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2.5">
+                <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+                  Project Workspace
+                </h3>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+                  {filteredProjects.length} Active
+                </span>
+              </div>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                Track delivery milestones, assignees, and completion progress.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {selectedIds.length > 0 && (
+                <div className="flex items-center gap-2 animate-in fade-in duration-200">
+                  <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                    {selectedIds.length} selected
                   </span>
-                </td>
+                  <button
+                    onClick={() => setSelectedIds([])}
+                    className="px-2.5 py-1 text-xs font-medium rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                  >
+                    Clear
+                  </button>
+                  <button className="px-2.5 py-1 text-xs font-medium rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors">
+                    Bulk Action
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Filter tabs and search */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-1">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+              {["All", "In Progress", "Completed", "Review"].map((tab) => {
+                const isActive = activeFilter === tab;
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveFilter(tab)}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors shrink-0 ${
+                      isActive
+                        ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950"
+                        : "bg-neutral-100/80 dark:bg-neutral-800/60 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200/70 dark:hover:bg-neutral-800"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="relative">
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full sm:w-56 pl-9 pr-3 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Table content */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead>
+              <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-900/50 text-[11px] font-medium tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
+                <th scope="col" className="px-4 py-3.5 w-10 text-center">
+                  <input
+                    type="checkbox"
+                    checked={isAllSelected}
+                    onChange={toggleSelectAll}
+                    aria-label="Select all projects in table"
+                    className="rounded border-neutral-300 dark:border-neutral-700 text-neutral-900 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                  />
+                </th>
+                <th scope="col" className="px-5 py-3.5">Project</th>
+                <th scope="col" className="px-5 py-3.5">Assignees</th>
+                <th scope="col" className="px-5 py-3.5">Progress</th>
+                <th scope="col" className="px-5 py-3.5">Priority</th>
+                <th scope="col" className="px-5 py-3.5 font-mono">Due Date</th>
+                <th scope="col" className="px-5 py-3.5">Status</th>
+                <th scope="col" className="px-5 py-3.5 text-right">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-xs">
+              {filteredProjects.map((project) => {
+                const isSelected = selectedIds.includes(project.id);
+                return (
+                  <tr
+                    key={project.id}
+                    className={`transition-colors ${
+                      isSelected
+                        ? "bg-neutral-100/80 dark:bg-neutral-900/70"
+                        : "hover:bg-neutral-50/70 dark:hover:bg-neutral-900/40"
+                    }`}
+                  >
+                    <td className="px-4 py-4 text-center">
+                      <input
+                        type="checkbox"
+                        checked={isSelected}
+                        onChange={() => toggleSelectRow(project.id)}
+                        aria-label={`Select project ${project.title}`}
+                        className="rounded border-neutral-300 dark:border-neutral-700 text-neutral-900 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                      />
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex flex-col">
+                        <span className="font-medium text-neutral-900 dark:text-neutral-100 text-xs">
+                          {project.title}
+                        </span>
+                        <span className="text-[11px] font-mono text-neutral-400 dark:text-neutral-500">
+                          {project.category}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex items-center -space-x-1.5">
+                        {project.assignees.map((assignee, idx) => (
+                          <div
+                            key={idx}
+                            className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px] font-semibold text-neutral-700 dark:text-neutral-300 border border-white dark:border-neutral-900"
+                          >
+                            {assignee}
+                          </div>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-2.5 w-32">
+                        <div className="h-1.5 flex-1 rounded-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden border border-neutral-200/50 dark:border-neutral-700/50">
+                          <div
+                            className="h-full bg-neutral-900 dark:bg-neutral-100 rounded-full"
+                            style={{ width: `${project.progress}%` }}
+                          />
+                        </div>
+                        <span className="font-mono text-[11px] text-neutral-500 dark:text-neutral-400 tabular-nums">
+                          {project.progress}%
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-5 py-4">
+                      {getPriorityBadge(project.priority)}
+                    </td>
+                    <td className="px-5 py-4 font-mono text-neutral-500 dark:text-neutral-400 text-[11px]">
+                      {project.dueDate}
+                    </td>
+                    <td className="px-5 py-4">
+                      {getStatusChip(project.status)}
+                    </td>
+                    <td className="px-5 py-4 text-right">
+                      <button className="p-1 rounded-md text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                        <MoreHorizontal className="w-4 h-4" />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Footer pagination */}
+        <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50/40 dark:bg-neutral-900/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <span className="text-neutral-500 dark:text-neutral-400 font-mono text-[11px]">
+            Showing 1-{filteredProjects.length} of {projectsData.length} entries
+          </span>
+          <div className="flex items-center gap-1.5">
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 disabled:opacity-50">
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>Prev</span>
+            </button>
+            <button className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 disabled:opacity-50">
+              <span>Next</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
